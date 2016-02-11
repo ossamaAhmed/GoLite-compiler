@@ -69,7 +69,7 @@ exception Eof
 }
 
 let alpha = ['a'-'z' 'A'-'Z']
-let ascii = ['\x00' -'\x7F']
+let ascii = ['\x00' -'\x5b' '\x5d'-'\x7f']
 
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
 let rune_lit = '\''(ascii|'\\'escaped_char)'\''
