@@ -1,0 +1,9 @@
+### Starting build.
+# Target: mini.ml.depends, tags: { extension:ml, file:mini.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules mini.ml > mini.ml.depends # cached
+# Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
+/usr/bin/ocamllex -q lexer.mll
++ /usr/bin/ocamllex -q lexer.mll
+File "lexer.mll", line 20, character 0: syntax error.
+Command exited with code 3.
+# Compilation unsuccessful.
