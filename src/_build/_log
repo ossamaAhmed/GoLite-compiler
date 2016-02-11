@@ -1,42 +1,226 @@
 ### Starting build.
-# Target: mini.ml.depends, tags: { extension:ml, file:mini.ml, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules mini.ml > mini.ml.depends
+# Target: goLite.ml.depends, tags: { extension:ml, file:goLite.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules goLite.ml > goLite.ml.depends
 # Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
-/usr/local/bin/ocamllex.opt -q lexer.mll # cached
+/usr/local/bin/ocamllex.opt -q lexer.mll
 # Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends # cached
+/usr/local/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends
 # Target: error.ml.depends, tags: { extension:ml, file:error.ml, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules error.ml > error.ml.depends # cached
+/usr/local/bin/ocamldep.opt -modules error.ml > error.ml.depends
+# Target: parser.mly.depends, tags: { extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
+menhir --explain --raw-depend --ocamldep '/usr/local/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends
++ menhir --explain --raw-depend --ocamldep '/usr/local/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends
+File "parser.mly", line 9, characters 7-10:
+Warning: the token AND is unused.
+File "parser.mly", line 53, characters 7-16:
+Warning: the token AND_CARET is unused.
+File "parser.mly", line 54, characters 7-19:
+Warning: the token AND_CARET_EQ is unused.
+File "parser.mly", line 11, characters 7-13:
+Warning: the token AND_EQ is unused.
+File "parser.mly", line 18, characters 7-10:
+Warning: the token BAR is unused.
+File "parser.mly", line 20, characters 7-13:
+Warning: the token BAR_EQ is unused.
+File "parser.mly", line 27, characters 7-12:
+Warning: the token CARET is unused.
+File "parser.mly", line 29, characters 7-15:
+Warning: the token CARET_EQ is unused.
+File "parser.mly", line 34, characters 7-24:
+Warning: the token CLOSE_CUR_BRACKET is unused.
+File "parser.mly", line 16, characters 7-18:
+Warning: the token CLOSE_PAREN is unused.
+File "parser.mly", line 25, characters 7-24:
+Warning: the token CLOSE_SQR_BRACKET is unused.
+File "parser.mly", line 52, characters 7-12:
+Warning: the token COLON is unused.
+File "parser.mly", line 41, characters 7-15:
+Warning: the token COLON_EQ is unused.
+File "parser.mly", line 42, characters 7-12:
+Warning: the token COMMA is unused.
+File "parser.mly", line 51, characters 7-10:
+Warning: the token DOT is unused.
+File "parser.mly", line 12, characters 7-17:
+Warning: the token DOUBLE_AND is unused.
+File "parser.mly", line 21, characters 7-17:
+Warning: the token DOUBLE_BAR is unused.
+File "parser.mly", line 13, characters 7-16:
+Warning: the token DOUBLE_EQ is unused.
+File "parser.mly", line 48, characters 7-19:
+Warning: the token DOUBLE_MINUS is unused.
+File "parser.mly", line 39, characters 7-18:
+Warning: the token DOUBLE_PLUS is unused.
+File "parser.mly", line 40, characters 7-9:
+Warning: the token EQ is unused.
+File "parser.mly", line 31, characters 7-9:
+Warning: the token GT is unused.
+File "parser.mly", line 32, characters 7-12:
+Warning: the token GT_EQ is unused.
+File "parser.mly", line 22, characters 7-9:
+Warning: the token LT is unused.
+File "parser.mly", line 23, characters 7-12:
+Warning: the token LT_EQ is unused.
+File "parser.mly", line 30, characters 7-15:
+Warning: the token LT_MINUS is unused.
+File "parser.mly", line 17, characters 7-12:
+Warning: the token MINUS is unused.
+File "parser.mly", line 19, characters 7-15:
+Warning: the token MINUS_EQ is unused.
+File "parser.mly", line 49, characters 7-10:
+Warning: the token NOT is unused.
+File "parser.mly", line 14, characters 7-13:
+Warning: the token NOT_EQ is unused.
+File "parser.mly", line 33, characters 7-23:
+Warning: the token OPEN_CUR_BRACKET is unused.
+File "parser.mly", line 15, characters 7-17:
+Warning: the token OPEN_PAREN is unused.
+File "parser.mly", line 24, characters 7-23:
+Warning: the token OPEN_SQR_BRACKET is unused.
+File "parser.mly", line 44, characters 7-14:
+Warning: the token PERCENT is unused.
+File "parser.mly", line 46, characters 7-17:
+Warning: the token PERCENT_EQ is unused.
+File "parser.mly", line 8, characters 7-11:
+Warning: the token PLUS is unused.
+File "parser.mly", line 10, characters 7-14:
+Warning: the token PLUS_EQ is unused.
+File "parser.mly", line 43, characters 7-16:
+Warning: the token SEMICOLON is unused.
+File "parser.mly", line 36, characters 7-17:
+Warning: the token SHIFT_LEFT is unused.
+File "parser.mly", line 38, characters 7-20:
+Warning: the token SHIFT_LEFT_EQ is unused.
+File "parser.mly", line 45, characters 7-18:
+Warning: the token SHIFT_RIGHT is unused.
+File "parser.mly", line 47, characters 7-21:
+Warning: the token SHIFT_RIGHT_EQ is unused.
+File "parser.mly", line 35, characters 7-12:
+Warning: the token SLASH is unused.
+File "parser.mly", line 37, characters 7-15:
+Warning: the token SLASH_EQ is unused.
+File "parser.mly", line 26, characters 7-11:
+Warning: the token STAR is unused.
+File "parser.mly", line 28, characters 7-14:
+Warning: the token STAR_EQ is unused.
+File "parser.mly", line 50, characters 7-17:
+Warning: the token TRIPLE_DOT is unused.
 # Target: error.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:error.cmo, file:error.ml, implem, ocaml, quiet }
-/usr/local/bin/ocamlc.opt -c -o error.cmo error.ml # cached
-# Target: lextTest.mly.depends, tags: { extension:mly, file:lextTest.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
-menhir --explain --raw-depend --ocamldep '/usr/local/bin/ocamldep.opt -modules' lextTest.mly > lextTest.mly.depends # cached
-# Target: lextTest.mly, tags: { byte, compile, extension:ml, extension:mly, file:lextTest.ml, file:lextTest.mly, infer, menhir, ocaml, parser, quiet }
-menhir --explain --ocamlc /usr/local/bin/ocamlc.opt --infer lextTest.mly # cached
-# Target: lextTest.mli.depends, tags: { extension:mli, file:lextTest.mli, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules lextTest.mli > lextTest.mli.depends # cached
-# Target: lextTest.cmi, tags: { byte, compile, extension:mli, file:lextTest.mli, interf, ocaml, quiet }
-/usr/local/bin/ocamlc.opt -c -o lextTest.cmi lextTest.mli # cached
+/usr/local/bin/ocamlc.opt -c -o error.cmo error.ml
+# Target: parser.mly, tags: { byte, compile, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet }
+menhir --explain --ocamlc /usr/local/bin/ocamlc.opt --infer parser.mly
++ menhir --explain --ocamlc /usr/local/bin/ocamlc.opt --infer parser.mly
+File "parser.mly", line 9, characters 7-10:
+Warning: the token AND is unused.
+File "parser.mly", line 53, characters 7-16:
+Warning: the token AND_CARET is unused.
+File "parser.mly", line 54, characters 7-19:
+Warning: the token AND_CARET_EQ is unused.
+File "parser.mly", line 11, characters 7-13:
+Warning: the token AND_EQ is unused.
+File "parser.mly", line 18, characters 7-10:
+Warning: the token BAR is unused.
+File "parser.mly", line 20, characters 7-13:
+Warning: the token BAR_EQ is unused.
+File "parser.mly", line 27, characters 7-12:
+Warning: the token CARET is unused.
+File "parser.mly", line 29, characters 7-15:
+Warning: the token CARET_EQ is unused.
+File "parser.mly", line 34, characters 7-24:
+Warning: the token CLOSE_CUR_BRACKET is unused.
+File "parser.mly", line 16, characters 7-18:
+Warning: the token CLOSE_PAREN is unused.
+File "parser.mly", line 25, characters 7-24:
+Warning: the token CLOSE_SQR_BRACKET is unused.
+File "parser.mly", line 52, characters 7-12:
+Warning: the token COLON is unused.
+File "parser.mly", line 41, characters 7-15:
+Warning: the token COLON_EQ is unused.
+File "parser.mly", line 42, characters 7-12:
+Warning: the token COMMA is unused.
+File "parser.mly", line 51, characters 7-10:
+Warning: the token DOT is unused.
+File "parser.mly", line 12, characters 7-17:
+Warning: the token DOUBLE_AND is unused.
+File "parser.mly", line 21, characters 7-17:
+Warning: the token DOUBLE_BAR is unused.
+File "parser.mly", line 13, characters 7-16:
+Warning: the token DOUBLE_EQ is unused.
+File "parser.mly", line 48, characters 7-19:
+Warning: the token DOUBLE_MINUS is unused.
+File "parser.mly", line 39, characters 7-18:
+Warning: the token DOUBLE_PLUS is unused.
+File "parser.mly", line 40, characters 7-9:
+Warning: the token EQ is unused.
+File "parser.mly", line 31, characters 7-9:
+Warning: the token GT is unused.
+File "parser.mly", line 32, characters 7-12:
+Warning: the token GT_EQ is unused.
+File "parser.mly", line 22, characters 7-9:
+Warning: the token LT is unused.
+File "parser.mly", line 23, characters 7-12:
+Warning: the token LT_EQ is unused.
+File "parser.mly", line 30, characters 7-15:
+Warning: the token LT_MINUS is unused.
+File "parser.mly", line 17, characters 7-12:
+Warning: the token MINUS is unused.
+File "parser.mly", line 19, characters 7-15:
+Warning: the token MINUS_EQ is unused.
+File "parser.mly", line 49, characters 7-10:
+Warning: the token NOT is unused.
+File "parser.mly", line 14, characters 7-13:
+Warning: the token NOT_EQ is unused.
+File "parser.mly", line 33, characters 7-23:
+Warning: the token OPEN_CUR_BRACKET is unused.
+File "parser.mly", line 15, characters 7-17:
+Warning: the token OPEN_PAREN is unused.
+File "parser.mly", line 24, characters 7-23:
+Warning: the token OPEN_SQR_BRACKET is unused.
+File "parser.mly", line 44, characters 7-14:
+Warning: the token PERCENT is unused.
+File "parser.mly", line 46, characters 7-17:
+Warning: the token PERCENT_EQ is unused.
+File "parser.mly", line 8, characters 7-11:
+Warning: the token PLUS is unused.
+File "parser.mly", line 10, characters 7-14:
+Warning: the token PLUS_EQ is unused.
+File "parser.mly", line 43, characters 7-16:
+Warning: the token SEMICOLON is unused.
+File "parser.mly", line 36, characters 7-17:
+Warning: the token SHIFT_LEFT is unused.
+File "parser.mly", line 38, characters 7-20:
+Warning: the token SHIFT_LEFT_EQ is unused.
+File "parser.mly", line 45, characters 7-18:
+Warning: the token SHIFT_RIGHT is unused.
+File "parser.mly", line 47, characters 7-21:
+Warning: the token SHIFT_RIGHT_EQ is unused.
+File "parser.mly", line 35, characters 7-12:
+Warning: the token SLASH is unused.
+File "parser.mly", line 37, characters 7-15:
+Warning: the token SLASH_EQ is unused.
+File "parser.mly", line 26, characters 7-11:
+Warning: the token STAR is unused.
+File "parser.mly", line 28, characters 7-14:
+Warning: the token STAR_EQ is unused.
+File "parser.mly", line 50, characters 7-17:
+Warning: the token TRIPLE_DOT is unused.
+# Target: parser.mli.depends, tags: { extension:mli, file:parser.mli, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules parser.mli > parser.mli.depends
+# Target: parser.cmi, tags: { byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -o parser.cmi parser.mli
 # Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
-/usr/local/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
-# Target: mini.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:mini.cmo, file:mini.ml, implem, ocaml, quiet }
-/usr/local/bin/ocamlc.opt -c -o mini.cmo mini.ml
-+ /usr/local/bin/ocamlc.opt -c -o mini.cmo mini.ml
-File "mini.ml", line 14, characters 16-33:
-Warning 10: this expression should have type unit.
+/usr/local/bin/ocamlc.opt -c -o lexer.cmo lexer.ml
+# Target: goLite.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:goLite.cmo, file:goLite.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -o goLite.cmo goLite.ml
+# Target: parser.ml.depends, tags: { extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules parser.ml > parser.ml.depends
 # Target: error.cmx, tags: { compile, extension:cmx, extension:ml, file:error.cmx, file:error.ml, implem, native, ocaml, quiet }
-/usr/local/bin/ocamlopt.opt -c -o error.cmx error.ml # cached
-# Target: lextTest.ml.depends, tags: { extension:ml, file:lextTest.ml, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules lextTest.ml > lextTest.ml.depends # cached
-# Target: lextTest.cmx, tags: { compile, extension:cmx, extension:ml, file:lextTest.cmx, file:lextTest.ml, implem, native, ocaml, quiet }
-/usr/local/bin/ocamlopt.opt -c -o lextTest.cmx lextTest.ml # cached
+/usr/local/bin/ocamlopt.opt -c -o error.cmx error.ml
+# Target: parser.cmx, tags: { compile, extension:cmx, extension:ml, file:parser.cmx, file:parser.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -o parser.cmx parser.ml
 # Target: lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:lexer.cmx, file:lexer.ml, implem, native, ocaml, quiet }
-/usr/local/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml # cached
-# Target: mini.cmx, tags: { compile, extension:cmx, extension:ml, file:mini.cmx, file:mini.ml, implem, native, ocaml, quiet }
-/usr/local/bin/ocamlopt.opt -c -o mini.cmx mini.ml
-+ /usr/local/bin/ocamlopt.opt -c -o mini.cmx mini.ml
-File "mini.ml", line 14, characters 16-33:
-Warning 10: this expression should have type unit.
-# Target: mini.native, tags: { dont_link_with, extension:native, file:mini.native, link, native, ocaml, program, quiet }
-/usr/local/bin/ocamlopt.opt error.cmx lextTest.cmx lexer.cmx mini.cmx -o mini.native
+/usr/local/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml
+# Target: goLite.cmx, tags: { compile, extension:cmx, extension:ml, file:goLite.cmx, file:goLite.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -o goLite.cmx goLite.ml
+# Target: goLite.native, tags: { dont_link_with, extension:native, file:goLite.native, link, native, ocaml, program, quiet }
+/usr/local/bin/ocamlopt.opt error.cmx parser.cmx lexer.cmx goLite.cmx -o goLite.native
 # Compilation successful.

@@ -1,13 +1,60 @@
 {
 
-open LextTest 
+open Parser 
 open Error
 
 type token =
-  | INTLITERAL of (int)
-  | FLOATLITERAL of (float)
-  | STRINGVAR of (string)
-  | EOL
+    | INTLITERAL of (int)
+    | FLOATLITERAL of (float)
+    | STRINGVAR of (string)
+    | PLUS 
+    | AND 
+    | PLUS_EQ 
+    | AND_EQ 
+    | DOUBLE_AND 
+    | DOUBLE_EQ 
+    | NOT_EQ 
+    | OPEN_PAREN 
+    | CLOSE_PAREN 
+    | MINUS 
+    | BAR 
+    | MINUS_EQ 
+    | BAR_EQ 
+    | DOUBLE_BAR 
+    | LT 
+    | LT_EQ 
+    | OPEN_SQR_BRACKET 
+    | CLOSE_SQR_BRACKET 
+    | STAR 
+    | CARET 
+    | STAR_EQ 
+    | CARET_EQ 
+    | LT_MINUS 
+    | GT 
+    | GT_EQ 
+    | OPEN_CUR_BRACKET 
+    | CLOSE_CUR_BRACKET 
+    | SLASH 
+    | SHIFT_LEFT 
+    | SLASH_EQ 
+    | SHIFT_LEFT_EQ 
+    | DOUBLE_PLUS 
+    | EQ 
+    | COLON_EQ 
+    | COMMA 
+    | SEMICOLON 
+    | PERCENT 
+    | SHIFT_RIGHT 
+    | PERCENT_EQ 
+    | SHIFT_RIGHT_EQ 
+    | DOUBLE_MINUS 
+    | NOT 
+    | TRIPLE_DOT 
+    | DOT 
+    | COLON 
+    | AND_CARET 
+    | AND_CARET_EQ 
+    | EOL
 (* keyword -> token translation table *)
 (*let keywords = [
     "var", VARDCL;"float", FLOATDCL; "int", INTDCL;"string",STRINGDCL ;"read", READ; "print", PRINT; "if", IF;
@@ -45,7 +92,7 @@ let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
 let comments = ('#')+ (notnewline)* '\n'
 
-rule mini = parse
+rule golite = parse
     | "+"      { PLUS }
     | "&"      { AND }
     | "+="     { PLUS_EQ }
@@ -93,6 +140,7 @@ rule mini = parse
       | ":"      { COLON }
     | "&^"     { AND_CARET }
     | "&^="    { AND_CARET_EQ }
+
     | int_lit as d { 
         (* parse literal *)
         INTLITERAL (int_of_string d)
@@ -103,9 +151,9 @@ rule mini = parse
     | interpreted_string_lit as s {
       STRINGVAR   (s)
     }
-    | '\n'     {EOL} (* counting new line characters and increment line num FORGOT *)
-    | blank    { mini lexbuf } (* skipping blank characters *)
-    | comments { mini lexbuf }
+    | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; EOL} (* counting new line characters and increment line num FORGOT *)
+    | blank    { golite lexbuf } (* skipping blank characters *)
+    | comments { golite lexbuf }
     | eof      { raise Eof } (* no more tokens *)
     | _        { raise (MinilangError ("unknown char "^ "on line "^(string_of_int !line_num)))}
 

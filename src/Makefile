@@ -2,10 +2,10 @@
 OCAMLBUILD=/usr/bin/env ocamlbuild -use-menhir -menhir 'menhir --explain'
 ############
 all: mini
-mini: mini.ml lexer.mll lextTest.mly error.ml
-	$(OCAMLBUILD) mini.native
+golite: goLite.ml lexer.mll parser.mly error.ml
+	$(OCAMLBUILD) goLite.native
 	
 ############
 clean:
 	rm -r _build
-	rm 	  mini.native
+	rm 	  goLite.native

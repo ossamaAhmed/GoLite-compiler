@@ -1,2 +1,2 @@
-parser.ml: Ast Error GenerateAST Lexing Printf
-parser.mli: Ast Lexing
+parser.ml: Error Lexing
+parser.mli: Lexing
