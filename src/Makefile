@@ -2,7 +2,7 @@
 OCAMLBUILD=/usr/bin/env ocamlbuild -use-menhir -menhir 'menhir --explain'
 ############
 all: mini
-mini: mini.ml lexer.mll parser.mly error.ml
+mini: mini.ml lexer.mll lextTest.mly error.ml
 	$(OCAMLBUILD) mini.native
 	
 ############
