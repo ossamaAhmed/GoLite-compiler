@@ -6,7 +6,8 @@ open Error
 type token =
     | INTLITERAL of (int)
     | FLOATLITERAL of (float)
-    | STRINGVAR of (string)
+    | STRINGLITERAL of (string)
+    | RUNELITERAL of (char)
     | PLUS 
     | AND 
     | PLUS_EQ 
@@ -68,12 +69,14 @@ exception Eof
 }
 
 let alpha = ['a'-'z' 'A'-'Z']
+let ascii = ['\x00' -'\x7F']
 
-let escaped_char = ('\\'('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\''))
-let rune_lit = '\\'(alpha|escaped_char)
+let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
+let rune_lit = '\''(ascii|'\\'escaped_char)'\''
 
-let interpreted_string_lit = ('"'(alpha|escaped_char|'"')*'"')
+let interpreted_string_lit = ('"'( ascii|'\\'escaped_char|'\\''"')*'"')
 let raw_string_lit = ('`' (([^ '`'])*) '`') 
+let string_lit = (interpreted_string_lit|raw_string_lit)
 
 let digit = ['0'-'9']
 let decimal_lit = (['1'-'9']digit*)
@@ -148,14 +151,17 @@ rule golite = parse
     | float_lit as f {
       FLOATLITERAL (float_of_string f)
     }
-    | interpreted_string_lit as s {
-      STRINGVAR   (s)
+    | string_lit as s {
+      STRINGLITERAL  (s)
+    }
+    | rune_lit as r{
+      RUNELITERAL(String.get r 0)
     }
     | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; EOL} (* counting new line characters and increment line num FORGOT *)
     | blank    { golite lexbuf } (* skipping blank characters *)
     | comments { golite lexbuf }
     | eof      { raise Eof } (* no more tokens *)
-    | _        { raise (MinilangError ("unknown char "^ "on line "^(string_of_int !line_num)))}
+    | _        { print_string ("unknown char "^Lexing.lexeme lexbuf);print_string(" on line "^(string_of_int !line_num)^"\n");golite lexbuf}
 
 
 {

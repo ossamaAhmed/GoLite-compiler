@@ -4,7 +4,8 @@ open Lexer
 let printtoken tokenenizer= match tokenenizer with 
 					| INTLITERAL(int) -> "INTLITERAL"
 					|	FLOATLITERAL(float) -> "FLOATLITERAL"
-					| STRINGVAR(string) -> "IDENTIFIER"
+					| STRINGLITERAL(string) -> "STRINGLITERAL"
+                    | RUNELITERAL(char) -> "RUNELITERAL"
 					| EOL -> "EOL\n"
 					| PLUS -> "PLUS"
 				    | AND -> "AND"
@@ -60,5 +61,5 @@ let _ =
             let result = Lexer.golite lexbuf in 
                 print_string ((printtoken result)^" "); flush stdout;
         done
-    with Lexer. Eof -> print_newline();
-        exit 0
+    with 
+    |Lexer. Eof -> print_newline(); exit 0;
