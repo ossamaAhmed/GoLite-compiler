@@ -46,6 +46,53 @@ let notnewline = [^ '\n']
 let comments = ('#')+ (notnewline)* '\n'
 
 rule mini = parse
+    | "+"      { PLUS }
+    | "&"      { AND }
+    | "+="     { PLUS_EQ }
+    | "&="     { AND_EQ }
+    | "&&"     { DOUBLE_AND }
+    | "=="     { DOUBLE_EQ }
+    | "!="     { NOT_EQ }
+    | "("      { OPEN_PAREN }
+    | ")"      { CLOSE_PAREN }
+    | "-"      { MINUS }
+    | "|"      { BAR }
+    | "-="     { MINUS_EQ }
+    | "|="     { BAR_EQ }
+    | "||"     { DOUBLE_BAR }
+    | "<"      { LT }
+    | "<="     { LT_EQ }
+    | "["      { OPEN_SQR_BRACKET }
+    | "]"      { CLOSE_SQR_BRACKET }
+    | "*"      { STAR }
+    | "^"      { CARET }
+    | "*="     { STAR_EQ }
+    | "^="     { CARET_EQ }
+    | "<-"     { LT_MINUS }
+    | ">"      { GT }
+    | ">="     { GT_EQ }
+    | "{"      { OPEN_CUR_BRACKET }
+    | "}"      { CLOSE_CUR_BRACKET }
+    | "/"      { SLASH }
+    | "<<"     { SHIFT_LEFT }
+    | "/="     { SLASH_EQ }
+    | "<<="    { SHIFT_LEFT_EQ }
+    | "++"     { DOUBLE_PLUS }
+    | "="      { EQ }
+    | ":="     { COLON_EQ }
+    | ","      { COMMA }
+    | ";"      { SEMICOLON }
+    | "%"      { PERCENT }
+    | ">>"     { SHIFT_RIGHT }
+    | "%="     { PERCENT_EQ }
+    | ">>="    { SHIFT_RIGHT_EQ }
+    | "--"     { DOUBLE_MINUS }
+    | "!"      { NOT }
+    | "..."    { TRIPLE_DOT }
+    | "."      { DOT }
+      | ":"      { COLON }
+    | "&^"     { AND_CARET }
+    | "&^="    { AND_CARET_EQ }
     | int_lit as d { 
         (* parse literal *)
         INTLITERAL (int_of_string d)
