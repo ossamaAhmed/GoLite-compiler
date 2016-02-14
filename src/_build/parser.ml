@@ -1,7 +1,10 @@
 exception Error
 
 type token = 
+  | VAR
+  | TYPE
   | TRIPLE_DOT
+  | SWITCH
   | STRINGVAR of (string)
   | STAR_EQ
   | STAR
@@ -12,10 +15,14 @@ type token =
   | SHIFT_LEFT_EQ
   | SHIFT_LEFT
   | SEMICOLON
+  | SELECT
+  | RETURN
+  | RANGE
   | PLUS_EQ
   | PLUS
   | PERCENT_EQ
   | PERCENT
+  | PACKAGE
   | OPEN_SQR_BRACKET
   | OPEN_PAREN
   | OPEN_CUR_BRACKET
@@ -23,29 +30,47 @@ type token =
   | NOT
   | MINUS_EQ
   | MINUS
+  | MAP
   | LT_MINUS
   | LT_EQ
   | LT
   | INTLITERAL of (int)
+  | INTERFACE
+  | IMPORT
+  | IF
+  | IDENTIFIER
   | GT_EQ
   | GT
+  | GOTO
+  | GO
+  | FUNC
+  | FOR
   | FLOATLITERAL of (float)
+  | FALLTHROUGH
   | EQ
   | EOL
+  | ELSE
   | DOUBLE_PLUS
   | DOUBLE_MINUS
   | DOUBLE_EQ
   | DOUBLE_BAR
   | DOUBLE_AND
   | DOT
+  | DEFER
+  | DEFAULT
+  | CONTINUE
+  | CONST
   | COMMA
   | COLON_EQ
   | COLON
   | CLOSE_SQR_BRACKET
   | CLOSE_PAREN
   | CLOSE_CUR_BRACKET
+  | CHAN
+  | CASE
   | CARET_EQ
   | CARET
+  | BREAK
   | BAR_EQ
   | BAR
   | AND_EQ
@@ -56,10 +81,8 @@ type token =
 and _menhir_env = {
   _menhir_lexer: Lexing.lexbuf -> token;
   _menhir_lexbuf: Lexing.lexbuf;
-  mutable _menhir_token: token;
-  mutable _menhir_startp: Lexing.position;
-  mutable _menhir_endp: Lexing.position;
-  mutable _menhir_shifted: int
+  _menhir_token: token;
+  mutable _menhir_error: bool
 }
 
 and _menhir_state
@@ -73,7 +96,7 @@ let rec _menhir_goto_expr : _menhir_env -> 'ttv_tail -> (unit) -> 'ttv_return =
   fun _menhir_env _menhir_stack _v ->
     let _menhir_stack = (_menhir_stack, _v) in
     let _menhir_stack = Obj.magic _menhir_stack in
-    assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
+    assert (not _menhir_env._menhir_error);
     let _tok = _menhir_env._menhir_token in
     match _tok with
     | EOL ->
@@ -86,59 +109,57 @@ let rec _menhir_goto_expr : _menhir_env -> 'ttv_tail -> (unit) -> 'ttv_return =
         let _1 = _v in
         Obj.magic _1
     | _ ->
-        assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
-        _menhir_env._menhir_shifted <- (-1);
+        assert (not _menhir_env._menhir_error);
+        _menhir_env._menhir_error <- true;
         let _menhir_stack = Obj.magic _menhir_stack in
         raise _eRR
 
-and _menhir_discard : _menhir_env -> token =
+and _menhir_discard : _menhir_env -> _menhir_env =
   fun _menhir_env ->
+    let lexer = _menhir_env._menhir_lexer in
     let lexbuf = _menhir_env._menhir_lexbuf in
-    let _tok = _menhir_env._menhir_lexer lexbuf in
-    _menhir_env._menhir_token <- _tok;
-    _menhir_env._menhir_startp <- lexbuf.Lexing.lex_start_p;
-    _menhir_env._menhir_endp <- lexbuf.Lexing.lex_curr_p;
-    let shifted = Pervasives.(+) _menhir_env._menhir_shifted 1 in
-    if Pervasives.(>=) shifted 0 then
-      _menhir_env._menhir_shifted <- shifted;
-    _tok
-
-and main : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (unit) =
-  fun lexer lexbuf ->
-    let _menhir_env = let _tok = lexer lexbuf in
+    let _tok = lexer lexbuf in
     {
       _menhir_lexer = lexer;
       _menhir_lexbuf = lexbuf;
       _menhir_token = _tok;
-      _menhir_startp = lexbuf.Lexing.lex_start_p;
-      _menhir_endp = lexbuf.Lexing.lex_curr_p;
-      _menhir_shifted = max_int;
+      _menhir_error = false;
+      }
+
+and main : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (unit) =
+  fun lexer lexbuf ->
+    let _menhir_env = let _tok = Obj.magic () in
+    {
+      _menhir_lexer = lexer;
+      _menhir_lexbuf = lexbuf;
+      _menhir_token = _tok;
+      _menhir_error = false;
       } in
     Obj.magic (let _menhir_stack = () in
-    assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
+    let _menhir_env = _menhir_discard _menhir_env in
     let _tok = _menhir_env._menhir_token in
     match _tok with
     | FLOATLITERAL _v ->
         let _menhir_stack = Obj.magic _menhir_stack in
-        let _ = _menhir_discard _menhir_env in
+        let _menhir_env = _menhir_discard _menhir_env in
         let _menhir_stack = Obj.magic _menhir_stack in
         let _v : (unit) =                    (()) in
         _menhir_goto_expr _menhir_env _menhir_stack _v
     | INTLITERAL _v ->
         let _menhir_stack = Obj.magic _menhir_stack in
-        let _ = _menhir_discard _menhir_env in
+        let _menhir_env = _menhir_discard _menhir_env in
         let _menhir_stack = Obj.magic _menhir_stack in
         let _v : (unit) =                (()) in
         _menhir_goto_expr _menhir_env _menhir_stack _v
     | STRINGVAR _v ->
         let _menhir_stack = Obj.magic _menhir_stack in
-        let _ = _menhir_discard _menhir_env in
+        let _menhir_env = _menhir_discard _menhir_env in
         let _menhir_stack = Obj.magic _menhir_stack in
         let _v : (unit) =                 (()) in
         _menhir_goto_expr _menhir_env _menhir_stack _v
     | _ ->
-        assert (Pervasives.(<>) _menhir_env._menhir_shifted (-1));
-        _menhir_env._menhir_shifted <- (-1);
+        assert (not _menhir_env._menhir_error);
+        _menhir_env._menhir_error <- true;
         let _menhir_stack = Obj.magic _menhir_stack in
         raise _eRR)
 

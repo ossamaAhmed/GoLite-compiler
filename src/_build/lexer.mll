@@ -3,10 +3,12 @@
 open Parser 
 open Error
 
+
 type token =
     | INTLITERAL of (int)
     | FLOATLITERAL of (float)
     | STRINGLITERAL of (string)
+    | IDENTIFIER of (string)
     | RUNELITERAL of (char)
     | PLUS 
     | AND 
@@ -55,7 +57,58 @@ type token =
     | COLON 
     | AND_CARET 
     | AND_CARET_EQ 
+    | BREAK 
+    | DEFAULT 
+    | FUNC 
+    | INTERFACE
+    | SELECT
+    | CASE
+    | DEFER
+    | GO
+    | MAP
+    | CHAN 
+    | ELSE
+    | GOTO
+    | PACKAGE
+    | SWITCH
+    | CONST
+    | FALLTHROUGH
+    | IF
+    | RANGE
+    | TYPE 
+    | CONTINUE 
+    | FOR 
+    | IMPORT 
+    | RETURN 
+    | VAR 
     | EOL
+
+let keywords = Hashtbl.create 30;;
+Hashtbl.add keywords "break" BREAK ;
+Hashtbl.add keywords "default" DEFAULT ;
+Hashtbl.add keywords "func" FUNC ;
+Hashtbl.add keywords "interface" INTERFACE ;
+Hashtbl.add keywords "select" SELECT ;
+Hashtbl.add keywords "defer" DEFER ;
+Hashtbl.add keywords "go" GO ;
+Hashtbl.add keywords "map" MAP ;
+Hashtbl.add keywords "chan" CHAN ;
+Hashtbl.add keywords "else" ELSE ;
+Hashtbl.add keywords "goto" GOTO ;
+Hashtbl.add keywords "package" PACKAGE ;
+Hashtbl.add keywords "switch" SWITCH ;
+Hashtbl.add keywords "const" CONST ;
+Hashtbl.add keywords "fallthrough" FALLTHROUGH ;
+Hashtbl.add keywords "if" IF ;
+Hashtbl.add keywords "range" RANGE ;
+Hashtbl.add keywords "type" TYPE ;
+Hashtbl.add keywords "continue" CONTINUE ;
+Hashtbl.add keywords "for" FOR ;
+Hashtbl.add keywords "import" IMPORT ;
+Hashtbl.add keywords "return" RETURN ;
+Hashtbl.add keywords "var" VAR ;
+Hashtbl.add keywords "case" CASE ;;
+
 (* keyword -> token translation table *)
 (*let keywords = [
     "var", VARDCL;"float", FLOATDCL; "int", INTDCL;"string",STRINGDCL ;"read", READ; "print", PRINT; "if", IF;
@@ -70,6 +123,7 @@ exception Eof
 
 let alpha = ['a'-'z' 'A'-'Z']
 let ascii = ['\x00' -'\x5b' '\x5d'-'\x7f']
+
 
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
 let rune_lit = '\''(ascii|'\\'escaped_char)'\''
@@ -94,6 +148,9 @@ let blank = [' ' '\r' '\t']
 let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
 let comments = ('#')+ (notnewline)* '\n'
+
+let identifier = (alpha | '_') (alpha | digit | '_')*
+
 
 rule golite = parse
     | "+"      { PLUS }
@@ -140,7 +197,7 @@ rule golite = parse
     | "!"      { NOT }
     | "..."    { TRIPLE_DOT }
     | "."      { DOT }
-      | ":"      { COLON }
+    | ":"      { COLON }
     | "&^"     { AND_CARET }
     | "&^="    { AND_CARET_EQ }
 
@@ -150,6 +207,12 @@ rule golite = parse
     }
     | float_lit as f {
       FLOATLITERAL (float_of_string f)
+    }
+    | identifier as i {
+        (* try keywords if not found then it's identifier *)
+        let myvar = i in
+        try Hashtbl.find keywords myvar
+        with Not_found -> IDENTIFIER myvar   
     }
     | string_lit as s {
       STRINGLITERAL  (s)

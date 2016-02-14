@@ -52,8 +52,33 @@ open Error
 %token COLON 
 %token AND_CARET 
 %token AND_CARET_EQ 
-%token EOL
 
+%token IDENTIFIER
+%token BREAK 
+%token DEFAULT 
+%token FUNC 
+%token INTERFACE
+%token SELECT
+%token CASE
+%token DEFER
+%token GO
+%token MAP
+%token CHAN 
+%token ELSE
+%token GOTO
+%token PACKAGE
+%token SWITCH
+%token CONST
+%token FALLTHROUGH
+%token IF
+%token RANGE
+%token TYPE 
+%token CONTINUE 
+%token FOR 
+%token IMPORT 
+%token RETURN 
+%token VAR 
+%token EOL
 %start main
 %type <unit> main
 %%
