@@ -3,7 +3,7 @@
 open Lexer
 let printtoken tokenenizer= match tokenenizer with 
 					| INTLITERAL(int) -> "INTLITERAL"
-					|	FLOATLITERAL(float) -> "FLOATLITERAL"
+					| FLOATLITERAL(float) -> "FLOATLITERAL"
 					| STRINGLITERAL(string) -> "STRINGLITERAL"
                     | RUNELITERAL(char) -> "RUNELITERAL"
                    	| IDENTIFIER(string) -> "IDENTIFIER"

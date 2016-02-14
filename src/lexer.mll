@@ -163,7 +163,8 @@ let blank = [' ' '\r' '\t']
 
 let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
-let comments = ('#')+ (notnewline)* '\n'
+let one_line_comment = ('/' '/') (notnewline)* '\n'
+let block_comment = ('/' '*') (_)* ('*' '/')
 
 let identifier = (alpha | '_') (alpha | digit | '_')*
 
@@ -238,7 +239,8 @@ rule golite = parse
     }
     | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; EOL} (* counting new line characters and increment line num FORGOT *)
     | blank    { golite lexbuf } (* skipping blank characters *)
-    | comments { golite lexbuf }
+    | one_line_comment { golite lexbuf }
+    | block_comment { golite lexbuf }
     | eof      { raise Eof } (* no more tokens *)
     | _        { print_string ("unknown char "^Lexing.lexeme lexbuf);print_string(" on line "^(string_of_int !line_num)^"\n");golite lexbuf}
 
