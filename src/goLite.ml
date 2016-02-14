@@ -79,6 +79,14 @@ let printtoken tokenenizer= match tokenenizer with
 				    | IMPORT -> "IMPORT"
 				    | RETURN -> "RETURN"
 				    | VAR -> "VAR"
+				    | INT -> "INT"
+				    | FLOAT64 -> "FLOAT64"
+				    | BOOL -> "BOOL"
+				    | RUNE -> "RUNE"
+				    | STRING -> "STRING"
+				    | PRINT -> "PRINT"
+				    | PRINTLN -> "PRINTLN"
+				    | APPEND -> "APPEND"
 let _ = 
     try
         let lexbuf = Lexing.from_channel stdin in

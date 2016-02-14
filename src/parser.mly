@@ -78,6 +78,14 @@ open Error
 %token IMPORT 
 %token RETURN 
 %token VAR 
+%token INT
+%token FLOAT64 
+%token BOOL 
+%token RUNE 
+%token STRING 
+%token PRINT 
+%token PRINTLN 
+%token APPEND
 %token EOL
 %start main
 %type <unit> main

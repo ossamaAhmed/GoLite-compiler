@@ -5,6 +5,7 @@ type token =
   | TRIPLE_DOT
   | SWITCH
   | STRINGVAR of (string)
+  | STRING
   | STAR_EQ
   | STAR
   | SLASH_EQ
@@ -15,8 +16,11 @@ type token =
   | SHIFT_LEFT
   | SEMICOLON
   | SELECT
+  | RUNE
   | RETURN
   | RANGE
+  | PRINTLN
+  | PRINT
   | PLUS_EQ
   | PLUS
   | PERCENT_EQ
@@ -35,6 +39,7 @@ type token =
   | LT
   | INTLITERAL of (int)
   | INTERFACE
+  | INT
   | IMPORT
   | IF
   | IDENTIFIER
@@ -45,6 +50,7 @@ type token =
   | FUNC
   | FOR
   | FLOATLITERAL of (float)
+  | FLOAT64
   | FALLTHROUGH
   | EQ
   | EOL
@@ -70,8 +76,10 @@ type token =
   | CARET_EQ
   | CARET
   | BREAK
+  | BOOL
   | BAR_EQ
   | BAR
+  | APPEND
   | AND_EQ
   | AND_CARET_EQ
   | AND_CARET

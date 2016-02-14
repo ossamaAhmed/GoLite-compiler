@@ -1,6 +1,6 @@
 ### Starting build.
 # Target: goLite.ml.depends, tags: { extension:ml, file:goLite.ml, ocaml, ocamldep, quiet }
-/usr/local/bin/ocamldep.opt -modules goLite.ml > goLite.ml.depends
+/usr/local/bin/ocamldep.opt -modules goLite.ml > goLite.ml.depends # cached
 # Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
 /usr/local/bin/ocamllex.opt -q lexer.mll
 # Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
@@ -20,10 +20,14 @@ File "parser.mly", line 54, characters 7-19:
 Warning: the token AND_CARET_EQ is unused.
 File "parser.mly", line 11, characters 7-13:
 Warning: the token AND_EQ is unused.
+File "parser.mly", line 88, characters 7-13:
+Warning: the token APPEND is unused.
 File "parser.mly", line 18, characters 7-10:
 Warning: the token BAR is unused.
 File "parser.mly", line 20, characters 7-13:
 Warning: the token BAR_EQ is unused.
+File "parser.mly", line 83, characters 7-11:
+Warning: the token BOOL is unused.
 File "parser.mly", line 57, characters 7-12:
 Warning: the token BREAK is unused.
 File "parser.mly", line 27, characters 7-12:
@@ -72,6 +76,8 @@ File "parser.mly", line 40, characters 7-9:
 Warning: the token EQ is unused.
 File "parser.mly", line 72, characters 7-18:
 Warning: the token FALLTHROUGH is unused.
+File "parser.mly", line 82, characters 7-14:
+Warning: the token FLOAT64 is unused.
 File "parser.mly", line 77, characters 7-10:
 Warning: the token FOR is unused.
 File "parser.mly", line 59, characters 7-11:
@@ -90,6 +96,8 @@ File "parser.mly", line 73, characters 7-9:
 Warning: the token IF is unused.
 File "parser.mly", line 78, characters 7-13:
 Warning: the token IMPORT is unused.
+File "parser.mly", line 81, characters 7-10:
+Warning: the token INT is unused.
 File "parser.mly", line 60, characters 7-16:
 Warning: the token INTERFACE is unused.
 File "parser.mly", line 22, characters 7-9:
@@ -124,10 +132,16 @@ File "parser.mly", line 8, characters 7-11:
 Warning: the token PLUS is unused.
 File "parser.mly", line 10, characters 7-14:
 Warning: the token PLUS_EQ is unused.
+File "parser.mly", line 86, characters 7-12:
+Warning: the token PRINT is unused.
+File "parser.mly", line 87, characters 7-14:
+Warning: the token PRINTLN is unused.
 File "parser.mly", line 74, characters 7-12:
 Warning: the token RANGE is unused.
 File "parser.mly", line 79, characters 7-13:
 Warning: the token RETURN is unused.
+File "parser.mly", line 84, characters 7-11:
+Warning: the token RUNE is unused.
 File "parser.mly", line 61, characters 7-13:
 Warning: the token SELECT is unused.
 File "parser.mly", line 43, characters 7-16:
@@ -148,6 +162,8 @@ File "parser.mly", line 26, characters 7-11:
 Warning: the token STAR is unused.
 File "parser.mly", line 28, characters 7-14:
 Warning: the token STAR_EQ is unused.
+File "parser.mly", line 85, characters 7-13:
+Warning: the token STRING is unused.
 File "parser.mly", line 70, characters 7-13:
 Warning: the token SWITCH is unused.
 File "parser.mly", line 50, characters 7-17:
@@ -167,10 +183,14 @@ File "parser.mly", line 54, characters 7-19:
 Warning: the token AND_CARET_EQ is unused.
 File "parser.mly", line 11, characters 7-13:
 Warning: the token AND_EQ is unused.
+File "parser.mly", line 88, characters 7-13:
+Warning: the token APPEND is unused.
 File "parser.mly", line 18, characters 7-10:
 Warning: the token BAR is unused.
 File "parser.mly", line 20, characters 7-13:
 Warning: the token BAR_EQ is unused.
+File "parser.mly", line 83, characters 7-11:
+Warning: the token BOOL is unused.
 File "parser.mly", line 57, characters 7-12:
 Warning: the token BREAK is unused.
 File "parser.mly", line 27, characters 7-12:
@@ -219,6 +239,8 @@ File "parser.mly", line 40, characters 7-9:
 Warning: the token EQ is unused.
 File "parser.mly", line 72, characters 7-18:
 Warning: the token FALLTHROUGH is unused.
+File "parser.mly", line 82, characters 7-14:
+Warning: the token FLOAT64 is unused.
 File "parser.mly", line 77, characters 7-10:
 Warning: the token FOR is unused.
 File "parser.mly", line 59, characters 7-11:
@@ -237,6 +259,8 @@ File "parser.mly", line 73, characters 7-9:
 Warning: the token IF is unused.
 File "parser.mly", line 78, characters 7-13:
 Warning: the token IMPORT is unused.
+File "parser.mly", line 81, characters 7-10:
+Warning: the token INT is unused.
 File "parser.mly", line 60, characters 7-16:
 Warning: the token INTERFACE is unused.
 File "parser.mly", line 22, characters 7-9:
@@ -271,10 +295,16 @@ File "parser.mly", line 8, characters 7-11:
 Warning: the token PLUS is unused.
 File "parser.mly", line 10, characters 7-14:
 Warning: the token PLUS_EQ is unused.
+File "parser.mly", line 86, characters 7-12:
+Warning: the token PRINT is unused.
+File "parser.mly", line 87, characters 7-14:
+Warning: the token PRINTLN is unused.
 File "parser.mly", line 74, characters 7-12:
 Warning: the token RANGE is unused.
 File "parser.mly", line 79, characters 7-13:
 Warning: the token RETURN is unused.
+File "parser.mly", line 84, characters 7-11:
+Warning: the token RUNE is unused.
 File "parser.mly", line 61, characters 7-13:
 Warning: the token SELECT is unused.
 File "parser.mly", line 43, characters 7-16:
@@ -295,6 +325,8 @@ File "parser.mly", line 26, characters 7-11:
 Warning: the token STAR is unused.
 File "parser.mly", line 28, characters 7-14:
 Warning: the token STAR_EQ is unused.
+File "parser.mly", line 85, characters 7-13:
+Warning: the token STRING is unused.
 File "parser.mly", line 70, characters 7-13:
 Warning: the token SWITCH is unused.
 File "parser.mly", line 50, characters 7-17:

@@ -81,6 +81,14 @@ type token =
     | IMPORT 
     | RETURN 
     | VAR 
+    | INT
+    | FLOAT64 
+    | BOOL 
+    | RUNE 
+    | STRING 
+    | PRINT 
+    | PRINTLN 
+    | APPEND
     | EOL
 
 let keywords = Hashtbl.create 30;;
@@ -107,6 +115,14 @@ Hashtbl.add keywords "for" FOR ;
 Hashtbl.add keywords "import" IMPORT ;
 Hashtbl.add keywords "return" RETURN ;
 Hashtbl.add keywords "var" VAR ;
+Hashtbl.add keywords "int" INT  ;
+Hashtbl.add keywords "float64" FLOAT64  ;
+Hashtbl.add keywords "bool" BOOL ;
+Hashtbl.add keywords "rune" RUNE ;
+Hashtbl.add keywords "string" STRING ;
+Hashtbl.add keywords "print" PRINT ;
+Hashtbl.add keywords "println" PRINTLN ;
+Hashtbl.add keywords "append" APPEND ;
 Hashtbl.add keywords "case" CASE ;;
 
 (* keyword -> token translation table *)
