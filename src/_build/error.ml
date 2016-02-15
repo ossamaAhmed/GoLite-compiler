@@ -1,2 +1,2 @@
-exception MinilangError of string
+exception GoliteError of string
 let line_num = ref 1

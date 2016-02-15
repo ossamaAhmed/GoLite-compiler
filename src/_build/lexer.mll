@@ -89,6 +89,8 @@ type token =
     | PRINT 
     | PRINTLN 
     | APPEND
+    | STRUCT
+    | EOF
     | EOL
 
 let keywords = Hashtbl.create 30;;
@@ -100,6 +102,7 @@ Hashtbl.add keywords "select" SELECT ;
 Hashtbl.add keywords "defer" DEFER ;
 Hashtbl.add keywords "go" GO ;
 Hashtbl.add keywords "map" MAP ;
+Hashtbl.add keywords "struct" STRUCT ;
 Hashtbl.add keywords "chan" CHAN ;
 Hashtbl.add keywords "else" ELSE ;
 Hashtbl.add keywords "goto" GOTO ;
@@ -241,8 +244,8 @@ rule golite = parse
     | blank    { golite lexbuf } (* skipping blank characters *)
     | one_line_comment { golite lexbuf }
     | block_comment { golite lexbuf }
-    | eof      { raise Eof } (* no more tokens *)
-    | _        { print_string ("unknown char "^Lexing.lexeme lexbuf);print_string(" on line "^(string_of_int !line_num)^"\n");golite lexbuf}
+    | eof      { EOF } (* no more tokens *)
+    | _        { raise (GoliteError ("unknown char "^ "on line "^(string_of_int !line_num))) }
 
 
 {

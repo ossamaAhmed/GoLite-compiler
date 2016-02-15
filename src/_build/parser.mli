@@ -4,7 +4,9 @@ type token =
   | TYPE
   | TRIPLE_DOT
   | SWITCH
+  | STRUCT
   | STRINGVAR of (string)
+  | STRINGLITERAL of (string)
   | STRING
   | STAR_EQ
   | STAR
@@ -42,7 +44,7 @@ type token =
   | INT
   | IMPORT
   | IF
-  | IDENTIFIER
+  | IDENTIFIER of (string)
   | GT_EQ
   | GT
   | GOTO
@@ -54,6 +56,7 @@ type token =
   | FALLTHROUGH
   | EQ
   | EOL
+  | EOF
   | ELSE
   | DOUBLE_PLUS
   | DOUBLE_MINUS
@@ -89,5 +92,5 @@ type token =
 exception Error
 
 (* The monolithic API. *)
-val main: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (unit)
+val sourcefile: (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (unit)
 

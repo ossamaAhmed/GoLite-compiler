@@ -90,6 +90,8 @@ type token =
     | PRINT 
     | PRINTLN 
     | APPEND
+    | STRUCT
+    | EOF
     | EOL
 
 let keywords = Hashtbl.create 30;;
@@ -101,6 +103,7 @@ Hashtbl.add keywords "select" SELECT ;
 Hashtbl.add keywords "defer" DEFER ;
 Hashtbl.add keywords "go" GO ;
 Hashtbl.add keywords "map" MAP ;
+Hashtbl.add keywords "struct" STRUCT ;
 Hashtbl.add keywords "chan" CHAN ;
 Hashtbl.add keywords "else" ELSE ;
 Hashtbl.add keywords "goto" GOTO ;
@@ -137,7 +140,7 @@ exception Eof
 
 
 
-# 141 "lexer.ml"
+# 144 "lexer.ml"
 let __ocaml_lex_tables = {
   Lexing.lex_base = 
    "\000\000\198\255\199\255\202\255\203\255\126\000\158\000\001\001\
@@ -469,340 +472,340 @@ let rec golite lexbuf =
 and __ocaml_lex_golite_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 173 "lexer.mll"
+# 176 "lexer.mll"
                ( PLUS )
-# 475 "lexer.ml"
+# 478 "lexer.ml"
 
   | 1 ->
-# 174 "lexer.mll"
+# 177 "lexer.mll"
                ( AND )
-# 480 "lexer.ml"
+# 483 "lexer.ml"
 
   | 2 ->
-# 175 "lexer.mll"
+# 178 "lexer.mll"
                ( PLUS_EQ )
-# 485 "lexer.ml"
+# 488 "lexer.ml"
 
   | 3 ->
-# 176 "lexer.mll"
+# 179 "lexer.mll"
                ( AND_EQ )
-# 490 "lexer.ml"
+# 493 "lexer.ml"
 
   | 4 ->
-# 177 "lexer.mll"
+# 180 "lexer.mll"
                ( DOUBLE_AND )
-# 495 "lexer.ml"
+# 498 "lexer.ml"
 
   | 5 ->
-# 178 "lexer.mll"
+# 181 "lexer.mll"
                ( DOUBLE_EQ )
-# 500 "lexer.ml"
+# 503 "lexer.ml"
 
   | 6 ->
-# 179 "lexer.mll"
+# 182 "lexer.mll"
                ( NOT_EQ )
-# 505 "lexer.ml"
+# 508 "lexer.ml"
 
   | 7 ->
-# 180 "lexer.mll"
+# 183 "lexer.mll"
                ( OPEN_PAREN )
-# 510 "lexer.ml"
+# 513 "lexer.ml"
 
   | 8 ->
-# 181 "lexer.mll"
+# 184 "lexer.mll"
                ( CLOSE_PAREN )
-# 515 "lexer.ml"
+# 518 "lexer.ml"
 
   | 9 ->
-# 182 "lexer.mll"
+# 185 "lexer.mll"
                ( MINUS )
-# 520 "lexer.ml"
+# 523 "lexer.ml"
 
   | 10 ->
-# 183 "lexer.mll"
+# 186 "lexer.mll"
                ( BAR )
-# 525 "lexer.ml"
+# 528 "lexer.ml"
 
   | 11 ->
-# 184 "lexer.mll"
+# 187 "lexer.mll"
                ( MINUS_EQ )
-# 530 "lexer.ml"
+# 533 "lexer.ml"
 
   | 12 ->
-# 185 "lexer.mll"
+# 188 "lexer.mll"
                ( BAR_EQ )
-# 535 "lexer.ml"
+# 538 "lexer.ml"
 
   | 13 ->
-# 186 "lexer.mll"
+# 189 "lexer.mll"
                ( DOUBLE_BAR )
-# 540 "lexer.ml"
+# 543 "lexer.ml"
 
   | 14 ->
-# 187 "lexer.mll"
+# 190 "lexer.mll"
                ( LT )
-# 545 "lexer.ml"
+# 548 "lexer.ml"
 
   | 15 ->
-# 188 "lexer.mll"
+# 191 "lexer.mll"
                ( LT_EQ )
-# 550 "lexer.ml"
+# 553 "lexer.ml"
 
   | 16 ->
-# 189 "lexer.mll"
+# 192 "lexer.mll"
                ( OPEN_SQR_BRACKET )
-# 555 "lexer.ml"
+# 558 "lexer.ml"
 
   | 17 ->
-# 190 "lexer.mll"
+# 193 "lexer.mll"
                ( CLOSE_SQR_BRACKET )
-# 560 "lexer.ml"
+# 563 "lexer.ml"
 
   | 18 ->
-# 191 "lexer.mll"
+# 194 "lexer.mll"
                ( STAR )
-# 565 "lexer.ml"
+# 568 "lexer.ml"
 
   | 19 ->
-# 192 "lexer.mll"
+# 195 "lexer.mll"
                ( CARET )
-# 570 "lexer.ml"
+# 573 "lexer.ml"
 
   | 20 ->
-# 193 "lexer.mll"
+# 196 "lexer.mll"
                ( STAR_EQ )
-# 575 "lexer.ml"
+# 578 "lexer.ml"
 
   | 21 ->
-# 194 "lexer.mll"
+# 197 "lexer.mll"
                ( CARET_EQ )
-# 580 "lexer.ml"
+# 583 "lexer.ml"
 
   | 22 ->
-# 195 "lexer.mll"
+# 198 "lexer.mll"
                ( LT_MINUS )
-# 585 "lexer.ml"
+# 588 "lexer.ml"
 
   | 23 ->
-# 196 "lexer.mll"
+# 199 "lexer.mll"
                ( GT )
-# 590 "lexer.ml"
+# 593 "lexer.ml"
 
   | 24 ->
-# 197 "lexer.mll"
+# 200 "lexer.mll"
                ( GT_EQ )
-# 595 "lexer.ml"
+# 598 "lexer.ml"
 
   | 25 ->
-# 198 "lexer.mll"
+# 201 "lexer.mll"
                ( OPEN_CUR_BRACKET )
-# 600 "lexer.ml"
+# 603 "lexer.ml"
 
   | 26 ->
-# 199 "lexer.mll"
+# 202 "lexer.mll"
                ( CLOSE_CUR_BRACKET )
-# 605 "lexer.ml"
+# 608 "lexer.ml"
 
   | 27 ->
-# 200 "lexer.mll"
+# 203 "lexer.mll"
                ( SLASH )
-# 610 "lexer.ml"
+# 613 "lexer.ml"
 
   | 28 ->
-# 201 "lexer.mll"
+# 204 "lexer.mll"
                ( SHIFT_LEFT )
-# 615 "lexer.ml"
+# 618 "lexer.ml"
 
   | 29 ->
-# 202 "lexer.mll"
+# 205 "lexer.mll"
                ( SLASH_EQ )
-# 620 "lexer.ml"
+# 623 "lexer.ml"
 
   | 30 ->
-# 203 "lexer.mll"
+# 206 "lexer.mll"
                ( SHIFT_LEFT_EQ )
-# 625 "lexer.ml"
+# 628 "lexer.ml"
 
   | 31 ->
-# 204 "lexer.mll"
+# 207 "lexer.mll"
                ( DOUBLE_PLUS )
-# 630 "lexer.ml"
+# 633 "lexer.ml"
 
   | 32 ->
-# 205 "lexer.mll"
+# 208 "lexer.mll"
                ( EQ )
-# 635 "lexer.ml"
+# 638 "lexer.ml"
 
   | 33 ->
-# 206 "lexer.mll"
+# 209 "lexer.mll"
                ( COLON_EQ )
-# 640 "lexer.ml"
+# 643 "lexer.ml"
 
   | 34 ->
-# 207 "lexer.mll"
+# 210 "lexer.mll"
                ( COMMA )
-# 645 "lexer.ml"
+# 648 "lexer.ml"
 
   | 35 ->
-# 208 "lexer.mll"
+# 211 "lexer.mll"
                ( SEMICOLON )
-# 650 "lexer.ml"
+# 653 "lexer.ml"
 
   | 36 ->
-# 209 "lexer.mll"
+# 212 "lexer.mll"
                ( PERCENT )
-# 655 "lexer.ml"
+# 658 "lexer.ml"
 
   | 37 ->
-# 210 "lexer.mll"
+# 213 "lexer.mll"
                ( SHIFT_RIGHT )
-# 660 "lexer.ml"
+# 663 "lexer.ml"
 
   | 38 ->
-# 211 "lexer.mll"
+# 214 "lexer.mll"
                ( PERCENT_EQ )
-# 665 "lexer.ml"
+# 668 "lexer.ml"
 
   | 39 ->
-# 212 "lexer.mll"
+# 215 "lexer.mll"
                ( SHIFT_RIGHT_EQ )
-# 670 "lexer.ml"
+# 673 "lexer.ml"
 
   | 40 ->
-# 213 "lexer.mll"
+# 216 "lexer.mll"
                ( DOUBLE_MINUS )
-# 675 "lexer.ml"
+# 678 "lexer.ml"
 
   | 41 ->
-# 214 "lexer.mll"
+# 217 "lexer.mll"
                ( NOT )
-# 680 "lexer.ml"
+# 683 "lexer.ml"
 
   | 42 ->
-# 215 "lexer.mll"
+# 218 "lexer.mll"
                ( TRIPLE_DOT )
-# 685 "lexer.ml"
+# 688 "lexer.ml"
 
   | 43 ->
-# 216 "lexer.mll"
+# 219 "lexer.mll"
                ( DOT )
-# 690 "lexer.ml"
+# 693 "lexer.ml"
 
   | 44 ->
-# 217 "lexer.mll"
+# 220 "lexer.mll"
                ( COLON )
-# 695 "lexer.ml"
+# 698 "lexer.ml"
 
   | 45 ->
-# 218 "lexer.mll"
+# 221 "lexer.mll"
                ( AND_CARET )
-# 700 "lexer.ml"
+# 703 "lexer.ml"
 
   | 46 ->
-# 219 "lexer.mll"
+# 222 "lexer.mll"
                ( AND_CARET_EQ )
-# 705 "lexer.ml"
+# 708 "lexer.ml"
 
   | 47 ->
 let
-# 221 "lexer.mll"
+# 224 "lexer.mll"
                  d
-# 711 "lexer.ml"
+# 714 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 221 "lexer.mll"
+# 224 "lexer.mll"
                    ( 
         (* parse literal *)
         INTLITERAL (int_of_string d)
     )
-# 718 "lexer.ml"
+# 721 "lexer.ml"
 
   | 48 ->
 let
-# 225 "lexer.mll"
+# 228 "lexer.mll"
                    f
-# 724 "lexer.ml"
+# 727 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 225 "lexer.mll"
+# 228 "lexer.mll"
                      (
       FLOATLITERAL (float_of_string f)
     )
-# 730 "lexer.ml"
+# 733 "lexer.ml"
 
   | 49 ->
 let
-# 228 "lexer.mll"
+# 231 "lexer.mll"
                     i
-# 736 "lexer.ml"
+# 739 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 228 "lexer.mll"
+# 231 "lexer.mll"
                       (
         (* try keywords if not found then it's identifier *)
         let myvar = i in
         try Hashtbl.find keywords myvar
         with Not_found -> IDENTIFIER myvar   
     )
-# 745 "lexer.ml"
+# 748 "lexer.ml"
 
   | 50 ->
 let
-# 234 "lexer.mll"
+# 237 "lexer.mll"
                     s
-# 751 "lexer.ml"
+# 754 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 234 "lexer.mll"
+# 237 "lexer.mll"
                       (
       STRINGLITERAL  (s)
     )
-# 757 "lexer.ml"
+# 760 "lexer.ml"
 
   | 51 ->
 let
-# 237 "lexer.mll"
+# 240 "lexer.mll"
                   r
-# 763 "lexer.ml"
+# 766 "lexer.ml"
 = Lexing.sub_lexeme lexbuf lexbuf.Lexing.lex_start_pos lexbuf.Lexing.lex_curr_pos in
-# 237 "lexer.mll"
+# 240 "lexer.mll"
                    (
       RUNELITERAL(String.get r 0)
     )
-# 769 "lexer.ml"
+# 772 "lexer.ml"
 
   | 52 ->
-# 240 "lexer.mll"
+# 243 "lexer.mll"
                ( line_num:= !line_num+1; Lexing.new_line lexbuf; EOL)
-# 774 "lexer.ml"
+# 777 "lexer.ml"
 
   | 53 ->
-# 241 "lexer.mll"
+# 244 "lexer.mll"
                ( golite lexbuf )
-# 779 "lexer.ml"
+# 782 "lexer.ml"
 
   | 54 ->
-# 242 "lexer.mll"
+# 245 "lexer.mll"
                        ( golite lexbuf )
-# 784 "lexer.ml"
+# 787 "lexer.ml"
 
   | 55 ->
-# 243 "lexer.mll"
+# 246 "lexer.mll"
                     ( golite lexbuf )
-# 789 "lexer.ml"
+# 792 "lexer.ml"
 
   | 56 ->
-# 244 "lexer.mll"
-               ( raise Eof )
-# 794 "lexer.ml"
+# 247 "lexer.mll"
+               ( EOF )
+# 797 "lexer.ml"
 
   | 57 ->
-# 245 "lexer.mll"
-               ( print_string ("unknown char "^Lexing.lexeme lexbuf);print_string(" on line "^(string_of_int !line_num)^"\n");golite lexbuf)
-# 799 "lexer.ml"
+# 248 "lexer.mll"
+               ( raise (GoliteError ("unknown char "^ "on line "^(string_of_int !line_num))) )
+# 802 "lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
       __ocaml_lex_golite_rec lexbuf __ocaml_lex_state
 
 ;;
 
-# 248 "lexer.mll"
+# 251 "lexer.mll"
  
 
-# 809 "lexer.ml"
+# 812 "lexer.ml"

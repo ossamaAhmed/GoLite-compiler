@@ -87,6 +87,7 @@ let printtoken tokenenizer= match tokenenizer with
 				    | PRINT -> "PRINT"
 				    | PRINTLN -> "PRINTLN"
 				    | APPEND -> "APPEND"
+				    | STRUCT -> "STRUCT"
 let _ = 
     try
         let lexbuf = Lexing.from_channel stdin in

@@ -5,6 +5,8 @@ open Error
 %token <int> INTLITERAL
 %token <float> FLOATLITERAL
 %token <string> STRINGVAR
+%token <string> STRINGLITERAL
+%token <string> IDENTIFIER
 %token PLUS 
 %token AND 
 %token PLUS_EQ 
@@ -52,8 +54,6 @@ open Error
 %token COLON 
 %token AND_CARET 
 %token AND_CARET_EQ 
-
-%token IDENTIFIER
 %token BREAK 
 %token DEFAULT 
 %token FUNC 
@@ -63,6 +63,7 @@ open Error
 %token DEFER
 %token GO
 %token MAP
+%token STRUCT
 %token CHAN 
 %token ELSE
 %token GOTO
@@ -87,15 +88,115 @@ open Error
 %token PRINTLN 
 %token APPEND
 %token EOL
-%start main
-%type <unit> main
+%token EOF
+%start sourcefile
+%type <unit> sourcefile
 %%
 
-main:
-    expr EOL {()}
-
-expr:
-    INTLITERAL {()}
-    | FLOATLITERAL {()}
-    | STRINGVAR {()}
+sourcefile:
+    |	packageclause SEMICOLON topleveldeclaration_list EOF {()}
+	| 	error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
     ;
+topleveldeclaration_list:
+	| {()}
+	| topleveldeclaration SEMICOLON topleveldeclaration_list {()}
+	;
+packageclause:
+	|	package_name IDENTIFIER {()}
+	;
+topleveldeclaration:
+	| variable_declaration {()}
+	| type_declaration {()}
+	| function_declaration {()}
+	;
+
+
+variable_declaration:
+	| VAR varspec {()}
+	| VAR OPEN_PAREN varspec* CLOSE_PAREN {()}
+	;
+varspec:
+	| identifier_list type_i EQ expression_list {()}
+	| identifier_list EQ expression_list {()}
+	;
+expression_list:
+	| {()}
+	;
+type_declaration:
+	| TYPE type_spec {()}
+	| TYPE OPEN_PAREN type_spec_list CLOSE_PAREN {()}
+	;
+type_spec_list:
+	| {()}
+	| type_spec SEMICOLON type_spec_list {()}
+	;
+type_spec:
+	| IDENTIFIER type_i {()}
+	;
+element_type:
+	| type_i {()}
+	;
+type_i:
+	| type_name {()}
+	| type_lit {()}
+	| OPEN_PAREN type_i CLOSE_PAREN {()}
+	;
+type_name:
+	| IDENTIFIER {()}
+	| qualified_ident {()}
+	;
+qualified_ident:
+	| package_name DOT IDENTIFIER {()}
+	;
+type_lit:
+	| array_type {()}
+	| struct_type {()}
+	| slice_type {()}
+	;
+array_type:
+	| OPEN_SQR_BRACKET array_length CLOSE_SQR_BRACKET element_type {()}
+	;
+array_length:
+	| expression {()}
+	;
+struct_type:
+	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET {()}
+	;
+field_dcl_list:
+	| {()}
+	| field_dcl SEMICOLON field_dcl_list {()}
+	;
+field_dcl:
+	| identifier_list type_i optional_tag {()}
+	| annonymous_field optional_tag {()}
+optional_tag:
+	| {()}
+	| tag {()}
+	;
+tag:
+	| STRINGLITERAL {()}
+	;
+annonymous_field:
+	| type_name {()}
+	| STAR type_name {()}
+	;
+
+slice_type:
+	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET element_type {()}
+	;
+
+function_declaration:
+	| {()}
+	;
+package_name:
+	| IDENTIFIER {()}
+	;
+expression: 
+	| {()}
+	;
+identifier_list:
+	| IDENTIFIER {()}
+	| IDENTIFIER COMMA identifier_list {()}
+	;
+
+%%

@@ -3,7 +3,7 @@
 open Lexer
 let printtoken tokenenizer= match tokenenizer with 
 					| INTLITERAL(int) -> "INTLITERAL"
-					|	FLOATLITERAL(float) -> "FLOATLITERAL"
+					| FLOATLITERAL(float) -> "FLOATLITERAL"
 					| STRINGLITERAL(string) -> "STRINGLITERAL"
                     | RUNELITERAL(char) -> "RUNELITERAL"
                    	| IDENTIFIER(string) -> "IDENTIFIER"
@@ -87,6 +87,7 @@ let printtoken tokenenizer= match tokenenizer with
 				    | PRINT -> "PRINT"
 				    | PRINTLN -> "PRINTLN"
 				    | APPEND -> "APPEND"
+				    | STRUCT -> "STRUCT"
 let _ = 
     try
         let lexbuf = Lexing.from_channel stdin in
