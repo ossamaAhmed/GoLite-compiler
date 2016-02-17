@@ -105,11 +105,12 @@ packageclause:
 	|	package_name IDENTIFIER {()}
 	;
 topleveldeclaration:
-	| variable_declaration {()}
-	| type_declaration {()}
+    | declaration {()}
 	| function_declaration {()}
 	;
-
+declaration:
+    | variable_declaration {()}
+	| type_declaration {()}
 
 variable_declaration:
 	| VAR varspec {()}
@@ -120,7 +121,9 @@ varspec:
 	| identifier_list EQ expression_list {()}
 	;
 expression_list:
-	| {()}
+    | {()}
+	| expression {()}
+    | expression COMMA expression_list {()}
 	;
 type_declaration:
 	| TYPE type_spec {()}
@@ -186,8 +189,16 @@ slice_type:
 	;
 
 function_declaration:
-	| {()}
+	| FUNC IDENTIFIER functiondef {()}
+    | FUNC IDENTIFIER signature {()}
 	;
+functiondef: signature functionbody {()};
+
+functionbody: block {()}
+
+(*TODO: IMPLEMENT SIGNATURES *)
+signature: {()};
+
 package_name:
 	| IDENTIFIER {()}
 	;
@@ -195,9 +206,129 @@ expression:
 	| {()}
 	| INTLITERAL PLUS INTLITERAL {()}
 	;
+
 identifier_list:
 	| IDENTIFIER {()}
 	| IDENTIFIER COMMA identifier_list {()}
 	;
+
+(*TODO: CHECK THAT LHS IS AN LVALUE *)
+assignment:
+    | expression_list EQ expression_list {()}
+    | expression assign_op expression {()}
+    ;
+
+assign_op:
+    | PLUS_EQ {()}
+    | STAR_EQ {()}
+    ;
+
+block:
+    | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {()};
+
+stmt: 
+    | declaration {()}
+    | return_stmt {()}
+    | break_stmt {()}
+    | continue_stmt {()}
+    | block {()}
+    | conditional_stmt {()}
+    | switch_stmt {()}
+    | for_stmt {()}
+    | simple_stmt {()}
+    | print_stmt {()}
+    | println_stmt {()}
+    ;
+
+simple_stmt:
+    | {()}
+    | expression_stmt {()}
+    | increment_stmt {()}
+    | assignment {()}
+    | short_var_decl {()}
+    ;
+
+stmt_list: stmt {()}
+    | stmt SEMICOLON stmt_list {()}
+;
+
+short_var_decl: 
+    | identifier_list COLON_EQ expression_list {()}
+    ;
+
+increment_stmt:
+    | expression DOUBLE_PLUS {()}
+    | expression DOUBLE_MINUS {()}
+    ;
+
+expression_stmt:
+    | expression {()}
+    ;
+
+print_stmt:
+    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {()}
+    ;
+
+println_stmt:
+    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {()}
+    ;
+
+condition: expression {()};
+
+return_stmt:
+    | RETURN expression_list {()}
+    | RETURN {()}
+    ;
+
+if_stmt:
+    | IF condition block {()};
+else_stmt: 
+    | if_stmt ELSE block {()}
+    | if_stmt ELSE else_stmt {()};
+
+conditional_stmt: 
+    | if_stmt {()}
+    | else_stmt {()}
+;
+
+for_stmt:
+    | FOR block {()}
+    | FOR  condition block {()}
+    | FOR  for_clause block {()}
+    ;
+for_clause: 
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()} ;
+
+init_stmt: 
+    | simple_stmt {()};
+post_stmt: 
+    | simple_stmt {()};
+
+switch_stmt:
+    | SWITCH switch_clause OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
+    ;
+
+switch_clause:
+    | simple_stmt SEMICOLON {()}
+    | expression {()}
+    | simple_stmt SEMICOLON expression {()}
+    ;
+
+expr_case_clause: 
+    | expr_switch_case COLON stmt_list {()}
+    ;
+
+expr_switch_case: 
+    | CASE expression_list {()}
+    | DEFAULT {()}
+    ;
+
+break_stmt: 
+    | BREAK {()}
+    ;
+
+continue_stmt:
+    | CONTINUE {()}
+    ;
 
 %%
