@@ -95,7 +95,7 @@ let _ =
         let lexbuf = Lexing.from_channel (open_in file) in
         while true do
             let result = Lexer.golite lexbuf in 
-                print_string ((printtoken result)^" "); flush stdout;
+            print_string ((printtoken result)^" "); flush stdout;if result = EOF then exit 0;
         done
     with 
     |Lexer. Eof -> print_newline(); exit 0;
