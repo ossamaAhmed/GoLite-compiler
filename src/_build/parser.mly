@@ -193,6 +193,7 @@ package_name:
 	;
 expression: 
 	| {()}
+	| INTLITERAL PLUS INTLITERAL {()}
 	;
 identifier_list:
 	| IDENTIFIER {()}

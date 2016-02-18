@@ -90,8 +90,6 @@ File "parser.mly", line 82, characters 7-10:
 Warning: the token INT is unused.
 File "parser.mly", line 60, characters 7-16:
 Warning: the token INTERFACE is unused.
-File "parser.mly", line 5, characters 13-23:
-Warning: the token INTLITERAL is unused.
 File "parser.mly", line 24, characters 7-9:
 Warning: the token LT is unused.
 File "parser.mly", line 25, characters 7-12:
@@ -114,8 +112,6 @@ File "parser.mly", line 46, characters 7-14:
 Warning: the token PERCENT is unused.
 File "parser.mly", line 48, characters 7-17:
 Warning: the token PERCENT_EQ is unused.
-File "parser.mly", line 10, characters 7-11:
-Warning: the token PLUS is unused.
 File "parser.mly", line 12, characters 7-14:
 Warning: the token PLUS_EQ is unused.
 File "parser.mly", line 87, characters 7-12:
@@ -233,8 +229,6 @@ File "parser.mly", line 82, characters 7-10:
 Warning: the token INT is unused.
 File "parser.mly", line 60, characters 7-16:
 Warning: the token INTERFACE is unused.
-File "parser.mly", line 5, characters 13-23:
-Warning: the token INTLITERAL is unused.
 File "parser.mly", line 24, characters 7-9:
 Warning: the token LT is unused.
 File "parser.mly", line 25, characters 7-12:
@@ -257,8 +251,6 @@ File "parser.mly", line 46, characters 7-14:
 Warning: the token PERCENT is unused.
 File "parser.mly", line 48, characters 7-17:
 Warning: the token PERCENT_EQ is unused.
-File "parser.mly", line 10, characters 7-11:
-Warning: the token PLUS is unused.
 File "parser.mly", line 12, characters 7-14:
 Warning: the token PLUS_EQ is unused.
 File "parser.mly", line 87, characters 7-12:
