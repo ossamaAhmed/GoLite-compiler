@@ -1,0 +1,8 @@
+#!/bin/bash
+for foldername in ./TEST_PROGRAMS/*; do
+	for filename in $foldername/*; do 
+	echo "$filename" >>  test_results.txt
+	./run $filename >> test_results.txt
+	done
+        
+done
