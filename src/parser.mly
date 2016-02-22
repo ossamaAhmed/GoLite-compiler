@@ -215,7 +215,6 @@ package_name:
 	| IDENTIFIER {()}
 	;
 expression: 
-	| {()}
 	| INTLITERAL PLUS INTLITERAL {()}
 	;
 
@@ -253,7 +252,6 @@ stmt:
     ;
 
 simple_stmt:
-    | {()}
     | expression_stmt {()}
     | increment_stmt {()}
     | assignment {()}
@@ -289,7 +287,8 @@ condition: expression {()};
 
 return_stmt:
     | RETURN expression_list {()}
-    | RETURN {()}
+    | RETURN SEMICOLON {()}
+    | RETURN EOL {()}
     ;
 
 if_stmt:
@@ -309,7 +308,15 @@ for_stmt:
     | FOR  for_clause block {()}
     ;
 for_clause: 
-    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()};
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()}
+    | init_stmt SEMICOLON  condition SEMICOLON {()}
+    | init_stmt SEMICOLON  SEMICOLON post_stmt {()}
+    | init_stmt SEMICOLON  SEMICOLON {()}
+    | SEMICOLON  condition SEMICOLON post_stmt {()}
+    | SEMICOLON  condition SEMICOLON {()}
+    | SEMICOLON  SEMICOLON post_stmt {()}
+    | SEMICOLON  SEMICOLON {()}
+    ;
 
 init_stmt: 
     | simple_stmt {()};
@@ -318,9 +325,11 @@ post_stmt:
 
 switch_stmt:
     | SWITCH switch_clause OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
     ;
 
 switch_clause:
+    | SEMICOLON {()}
     | simple_stmt SEMICOLON {()}
     | expression {()}
     | simple_stmt SEMICOLON expression {()}
