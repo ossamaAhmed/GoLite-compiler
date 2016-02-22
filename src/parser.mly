@@ -291,11 +291,20 @@ return_stmt:
     | RETURN EOL {()}
     ;
 
+if_init:
+    | simple_stmt {()}
+    ;
+
 if_stmt:
-    | IF condition block {()};
+    | IF if_init condition block {()}
+    | IF condition block {()}
+    ;
+
 else_stmt: 
     | if_stmt ELSE block {()}
-    | if_stmt ELSE else_stmt {()};
+    | if_stmt ELSE else_stmt {()}
+    | if_stmt ELSE if_stmt {()}
+    ;
 
 conditional_stmt: 
     | if_stmt {()}
