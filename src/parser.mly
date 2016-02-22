@@ -2,6 +2,8 @@
 open Error
 %}
 
+(* Tokens *)
+
 %token <int> INTLITERAL
 %token <float> FLOATLITERAL
 %token <string> STRINGVAR
@@ -89,6 +91,16 @@ open Error
 %token APPEND
 %token EOL
 %token EOF
+
+(* Associativity and precedence *)
+
+%left SLASH
+%left STAR
+%left MINUS
+%left PLUS
+
+(* Start of parser *)
+
 %start sourcefile
 %type <unit> sourcefile
 %%
@@ -250,7 +262,7 @@ simple_stmt:
 
 stmt_list: stmt {()}
     | stmt SEMICOLON stmt_list {()}
-;
+    ;
 
 short_var_decl: 
     | identifier_list COLON_EQ expression_list {()}
@@ -289,7 +301,7 @@ else_stmt:
 conditional_stmt: 
     | if_stmt {()}
     | else_stmt {()}
-;
+    ;
 
 for_stmt:
     | FOR block {()}
@@ -297,7 +309,7 @@ for_stmt:
     | FOR  for_clause block {()}
     ;
 for_clause: 
-    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()} ;
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()};
 
 init_stmt: 
     | simple_stmt {()};
