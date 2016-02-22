@@ -3,7 +3,6 @@
 open Parser 
 open Error
 
-
 type token =
     | INTLITERAL of (int)
     | FLOATLITERAL of (float)
@@ -137,12 +136,10 @@ Hashtbl.add keywords "case" CASE ;;
 exception Syntax_error of string
 exception Eof
 
-
 }
 
 let alpha = ['a'-'z' 'A'-'Z']
 let ascii = ['\x00' -'\x5b' '\x5d'-'\x7f']
-
 
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
 let rune_lit = '\''(ascii|'\\'escaped_char)'\''
@@ -170,7 +167,6 @@ let one_line_comment = ('/' '/') (notnewline)* '\n'
 let block_comment = ('/' '*') (_)* ('*' '/')
 
 let identifier = (alpha | '_') (alpha | digit | '_')*
-
 
 rule golite = parse
     | "+"      { PLUS }
@@ -232,12 +228,12 @@ rule golite = parse
         (* try keywords if not found then it's identifier *)
         let myvar = i in
         try Hashtbl.find keywords myvar
-        with Not_found -> IDENTIFIER myvar   
+        with Not_found -> IDENTIFIER myvar
     }
     | string_lit as s {
-      STRINGLITERAL  (s)
+      STRINGLITERAL (s)
     }
-    | rune_lit as r{
+    | rune_lit as r {
       RUNELITERAL(String.get r 0)
     }
     | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; EOL} (* counting new line characters and increment line num FORGOT *)
@@ -247,6 +243,6 @@ rule golite = parse
     | eof      { EOF } (* no more tokens *)
     | _        { raise (GoliteError ("unknown char "^ "on line "^(string_of_int !line_num))) }
 
-
 {
+
 }
