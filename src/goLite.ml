@@ -110,6 +110,5 @@ let _ =
             let file = Array.get Sys.argv 1 in
             let lexbuf= Lexing.from_channel (open_in file) in
             Parser.sourcefile Lexer.golite lexbuf;
-            (* Parser.sourcefile Lexer.golite lexbuf  *)
         with 
         | Parser.Error -> print_string("Invalid grammar\n"); exit 0;

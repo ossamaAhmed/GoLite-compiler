@@ -218,17 +218,15 @@ rule golite = parse
     | "&^="    { AND_CARET_EQ }
 
     | int_lit as d { 
-        (* parse literal *)
-        INTLITERAL (int_of_string d)
+      INTLITERAL (int_of_string d)
     }
     | float_lit as f {
       FLOATLITERAL (float_of_string f)
     }
     | identifier as i {
-        (* try keywords if not found then it's identifier *)
-        let myvar = i in
-        try Hashtbl.find keywords myvar
-        with Not_found -> IDENTIFIER myvar
+      let myvar = i in
+      try Hashtbl.find keywords myvar
+      with Not_found -> IDENTIFIER myvar
     }
     | string_lit as s {
       STRINGLITERAL (s)

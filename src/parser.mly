@@ -19,7 +19,8 @@ open Error
 %token NOT_EQ 
 %token OPEN_PAREN 
 %token CLOSE_PAREN 
-%token MINUS 
+%token MINUS
+%token UMINUS
 %token BAR 
 %token MINUS_EQ 
 %token BAR_EQ 
@@ -95,10 +96,9 @@ open Error
 
 (* Associativity and precedence *)
 
-%left SLASH
-%left STAR
-%left MINUS
-%left PLUS
+%left PLUS MINUS
+%left STAR SLASH
+%nonassoc UMINUS
 
 (* Start of parser *)
 
