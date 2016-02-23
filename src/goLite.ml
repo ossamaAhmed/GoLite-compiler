@@ -111,6 +111,8 @@ let _ =
             let lexbuf = Lexing.from_channel (open_in file) in
             (* Parser.sourcefile Lexer.golite lexbuf  *)
             print_lexer_tokens lexbuf
-        with Lexer.Eof -> 
+        with 
+        |Lexer.Eof -> 
             print_newline();
             exit 0;
+        | Parser.Error -> print_string("Invalid grammar\n"); exit 0;
