@@ -7,6 +7,7 @@ open Error
 %token <string> STRINGVAR
 %token <string> STRINGLITERAL
 %token <string> IDENTIFIER
+%token <char> RUNELITERAL
 %token PLUS 
 %token AND 
 %token PLUS_EQ 
@@ -105,11 +106,12 @@ packageclause:
 	|	package_name IDENTIFIER {()}
 	;
 topleveldeclaration:
-	| variable_declaration {()}
-	| type_declaration {()}
+    | declaration {()}
 	| function_declaration {()}
 	;
-
+declaration:
+    | variable_declaration {()}
+	| type_declaration {()}
 
 variable_declaration:
 	| VAR varspec {()}
@@ -120,7 +122,9 @@ varspec:
 	| identifier_list EQ expression_list {()}
 	;
 expression_list:
-	| {()}
+    | {()}
+	| expression {()}
+    | expression COMMA expression_list {()}
 	;
 type_declaration:
 	| TYPE type_spec {()}
@@ -186,18 +190,278 @@ slice_type:
 	;
 
 function_declaration:
-	| {()}
+	| FUNC IDENTIFIER functiondef {()}
+    | FUNC IDENTIFIER signature {()}
 	;
+functiondef: signature functionbody {()};
+
+functionbody: block {()}
+
+(*TODO: IMPLEMENT SIGNATURES *)
+signature: {()};
+
 package_name:
 	| IDENTIFIER {()}
 	;
-expression: 
-	| {()}
-	| INTLITERAL PLUS INTLITERAL {()}
-	;
+
 identifier_list:
 	| IDENTIFIER {()}
 	| IDENTIFIER COMMA identifier_list {()}
 	;
 
+(*TODO: CHECK THAT LHS IS AN LVALUE *)
+assignment:
+    | expression_list EQ expression_list {()}
+    | expression assign_op expression {()}
+    ;
+
+assign_op:
+    | PLUS_EQ {()}
+    | STAR_EQ {()}
+    ;
+
+block:
+    | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {()};
+
+stmt: 
+    | declaration {()}
+    | return_stmt {()}
+    | break_stmt {()}
+    | continue_stmt {()}
+    | block {()}
+    | conditional_stmt {()}
+    | switch_stmt {()}
+    | for_stmt {()}
+    | simple_stmt {()}
+    | print_stmt {()}
+    | println_stmt {()}
+    ;
+
+simple_stmt:
+    | {()}
+    | expression_stmt {()}
+    | increment_stmt {()}
+    | assignment {()}
+    | short_var_decl {()}
+    ;
+
+stmt_list: 
+    |  {()}
+    | stmt SEMICOLON stmt_list {()}
+;
+
+short_var_decl: 
+    | identifier_list COLON_EQ expression_list {()}
+    ;
+
+increment_stmt:
+    | expression DOUBLE_PLUS {()}
+    | expression DOUBLE_MINUS {()}
+    ;
+
+expression_stmt:
+    | expression {()}
+    ;
+
+print_stmt:
+    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {()}
+    ;
+
+println_stmt:
+    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {()}
+    ;
+
+condition: expression {()};
+
+return_stmt:
+    | RETURN expression_list {()}
+    ;
+
+if_stmt:
+    | IF condition block {()};
+else_stmt: 
+    | if_stmt ELSE block {()}
+    | if_stmt ELSE else_stmt {()};
+
+conditional_stmt: 
+    | if_stmt {()}
+    | else_stmt {()}
+;
+
+for_stmt:
+    | FOR block {()}
+    | FOR  condition block {()}
+    | FOR  for_clause block {()}
+    ;
+for_clause: 
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()} ;
+
+init_stmt: 
+    | simple_stmt {()};
+post_stmt: 
+    | simple_stmt {()};
+
+switch_stmt:
+    | SWITCH switch_clause OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
+    ;
+
+switch_clause:
+    | simple_stmt SEMICOLON {()}
+    | expression {()}
+    | simple_stmt SEMICOLON expression {()}
+    ;
+
+expr_case_clause: 
+    | expr_switch_case COLON stmt_list {()}
+    ;
+
+expr_switch_case: 
+    | CASE expression_list {()}
+    | DEFAULT {()}
+    ;
+
+break_stmt: 
+    | BREAK {()}
+    ;
+
+continue_stmt:
+    | CONTINUE {()}
+    ;
+
+(*TODO: EXPRESSIONS*)
+operand:
+    | literal {()}
+    | operand_name {()}
+    | OPEN_PAREN expression CLOSE_PAREN {()}
+    ;
+literal:
+    | basic_lit {()}
+    | composite_lit {()}
+    | function_lit {()}
+    ;
+basic_lit:
+    | INTLITERAL {()}
+    | FLOATLITERAL {()}
+    | RUNELITERAL {()}
+    | STRINGLITERAL {()}
+    ;
+operand_name:
+    | IDENTIFIER {()}
+    | qualified_ident {()}
+    ;
+(*TODO: COMPOSITELIT*)
+composite_lit: 
+    | literal_type {()}
+    | literal_value {()}
+    ;
+literal_type:
+    | struct_type {()}
+    | array_type {()}
+    | OPEN_SQR_BRACKET TRIPLE_DOT CLOSE_SQR_BRACKET element_type {()}
+    | slice_type {()}
+    | type_name {()}
+literal_value:
+    | OPEN_CUR_BRACKET element_list CLOSE_CUR_BRACKET {()}
+    ;
+element_list:
+    | keyed_element {()}
+    | keyed_element COMMA element_list {()}
+    ;
+keyed_element: 
+    | element {()}
+    | key COLON element {()}
+    ;
+key:
+    | IDENTIFIER {()}
+    | expression {()}
+    | literal_value {()}
+    ;
+element:
+    | expression {()}
+    | literal_value {()}
+    ;
+function_lit:
+    | FUNC function_i {()}
+    ;
+function_i: 
+    | {()}
+    ;
+(*EXPRESSIONS PART*)
+expression: 
+    | unary_expr {()}
+    | expression binary_op expression {()}
+    ;
+unary_expr:
+ (*   | primary_expr {()} *)
+    | unary_op unary_expr {()}
+    ;
+(*NOT SURE ABOUT PRIMARY EXPRESSION*)
+primary_expr:
+    | operand {()}
+    | conversion {()}
+    | primary_expr index {()}
+    | primary_expr selector {()}
+    | primary_expr slice {()}
+    | primary_expr type_assertion {()}
+    | primary_expr arguments {()}
+    ;
+selector:
+    | DOT IDENTIFIER {()}
+    ;
+index: 
+    | OPEN_SQR_BRACKET expression CLOSE_SQR_BRACKET {()}
+    ;
+slice:
+    | OPEN_SQR_BRACKET option(expression) COLON option(expression) CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET option(expression) COLON expression COLON expression CLOSE_SQR_BRACKET {()}
+    ;
+type_assertion:
+    | {()}
+    ;
+arguments:
+    | {()}
+    ;
+conversion: 
+    | {()}
+    ;
+
+binary_op:
+    | DOUBLE_BAR {()}
+    | DOUBLE_AND {()}
+    | rel_op {()}
+    | add_op {()}
+    | mul_op {()}
+    ;
+rel_op: 
+    | DOUBLE_EQ {()}
+    | NOT_EQ {()}
+    | LT {()}
+    | GT {()}
+    | LT_EQ {()}
+    | GT_EQ {()}
+    ;
+add_op: 
+    | PLUS {()}
+    | MINUS {()}
+    | BAR {()}
+    | CARET {()}
+    ;
+mul_op:
+    | STAR {()}
+    | SLASH {()}
+    | PERCENT {()}
+    | SHIFT_RIGHT {()}
+    | SHIFT_LEFT {()}
+    | AND {()}
+    | AND_CARET {()}
+    ;
+unary_op:
+    | PLUS {()}
+    | MINUS {()}
+    | NOT {()}
+    | CARET {()}
+    | STAR {()}
+    | AND {()}
+    | LT_MINUS {()}
+    ;
 %%

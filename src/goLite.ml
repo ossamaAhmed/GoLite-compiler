@@ -8,6 +8,7 @@ let printtoken tokenenizer= match tokenenizer with
                     | RUNELITERAL(char) -> "RUNELITERAL"
                    	| IDENTIFIER(string) -> "IDENTIFIER"
 					| EOL -> "EOL\n"
+					| EOF -> "EOF\n"
 					| PLUS -> "PLUS"
 				    | AND -> "AND"
 				    | PLUS_EQ ->  "PLUS_EQ"
@@ -90,10 +91,11 @@ let printtoken tokenenizer= match tokenenizer with
 				    | STRUCT -> "STRUCT"
 let _ = 
     try
-        let lexbuf = Lexing.from_channel stdin in
+        let file = Array.get Sys.argv 1 in
+        let lexbuf = Lexing.from_channel (open_in file) in
         while true do
             let result = Lexer.golite lexbuf in 
-                print_string ((printtoken result)^" "); flush stdout;
+            print_string ((printtoken result)^" "); flush stdout;if result = EOF then exit 0;
         done
     with 
     |Lexer. Eof -> print_newline(); exit 0;
