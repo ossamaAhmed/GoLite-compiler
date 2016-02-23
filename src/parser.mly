@@ -2,6 +2,8 @@
 open Error
 %}
 
+(* Tokens *)
+
 %token <int> INTLITERAL
 %token <float> FLOATLITERAL
 %token <string> STRINGVAR
@@ -90,6 +92,16 @@ open Error
 %token APPEND
 %token EOL
 %token EOF
+
+(* Associativity and precedence *)
+
+%left SLASH
+%left STAR
+%left MINUS
+%left PLUS
+
+(* Start of parser *)
+
 %start sourcefile
 %type <unit> sourcefile
 %%
@@ -103,7 +115,7 @@ topleveldeclaration_list:
 	| topleveldeclaration SEMICOLON topleveldeclaration_list {()}
 	;
 packageclause:
-	|	package_name IDENTIFIER {()}
+	|	PACKAGE package_name IDENTIFIER {()}
 	;
 topleveldeclaration:
     | declaration {()}
@@ -238,7 +250,6 @@ stmt:
     ;
 
 simple_stmt:
-    | {()}
     | expression_stmt {()}
     | increment_stmt {()}
     | assignment {()}
@@ -248,7 +259,7 @@ simple_stmt:
 stmt_list: 
     |  {()}
     | stmt SEMICOLON stmt_list {()}
-;
+    ;
 
 short_var_decl: 
     | identifier_list COLON_EQ expression_list {()}
@@ -277,16 +288,25 @@ return_stmt:
     | RETURN expression_list {()}
     ;
 
+if_init:
+    | simple_stmt {()}
+    ;
+
 if_stmt:
-    | IF condition block {()};
+    | IF if_init condition block {()}
+    | IF condition block {()}
+    ;
+
 else_stmt: 
     | if_stmt ELSE block {()}
-    | if_stmt ELSE else_stmt {()};
+    | if_stmt ELSE else_stmt {()}
+    | if_stmt ELSE if_stmt {()}
+    ;
 
 conditional_stmt: 
     | if_stmt {()}
     | else_stmt {()}
-;
+    ;
 
 for_stmt:
     | FOR block {()}
@@ -294,7 +314,15 @@ for_stmt:
     | FOR  for_clause block {()}
     ;
 for_clause: 
-    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()} ;
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()}
+    | init_stmt SEMICOLON  condition SEMICOLON {()}
+    | init_stmt SEMICOLON  SEMICOLON post_stmt {()}
+    | init_stmt SEMICOLON  SEMICOLON {()}
+    | SEMICOLON  condition SEMICOLON post_stmt {()}
+    | SEMICOLON  condition SEMICOLON {()}
+    | SEMICOLON  SEMICOLON post_stmt {()}
+    | SEMICOLON  SEMICOLON {()}
+    ;
 
 init_stmt: 
     | simple_stmt {()};
@@ -303,9 +331,11 @@ post_stmt:
 
 switch_stmt:
     | SWITCH switch_clause OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
     ;
 
 switch_clause:
+    | SEMICOLON {()}
     | simple_stmt SEMICOLON {()}
     | expression {()}
     | simple_stmt SEMICOLON expression {()}
