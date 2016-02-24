@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 func main() {
 
@@ -8,11 +7,11 @@ func main() {
         var z = 10;
 
         if x := 5; x < y {
-                fmt.Println("x<y")
+                println("x<y")
         } else if x > z {
-                fmt.Println("x>z")
+                println("x>z")
         } else {
-                fmt.Println("neither")
+                println("neither")
         }
 
 }
