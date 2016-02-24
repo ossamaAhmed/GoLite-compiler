@@ -102,29 +102,29 @@ open Error
 
 (* Start of parser *)
 
-%start sourcefile
-%type <unit> sourcefile
+%start parse
+%type <unit> parse
 %%
 
-sourcefile:
-    |	packageclause SEMICOLON topleveldeclaration_list EOF {()}
-	| 	error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
+parse:
+    | package_clause SEMICOLON toplevel_declaration_list EOF {()}
+	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
     ;
-topleveldeclaration_list:
+toplevel_declaration_list:
 	| {()}
-	| topleveldeclaration SEMICOLON topleveldeclaration_list {()}
+	| toplevel_declaration SEMICOLON toplevel_declaration_list {()}
 	;
-packageclause:
-	|	PACKAGE package_name IDENTIFIER {()}
+package_clause:
+	| PACKAGE package_name IDENTIFIER {()}
 	;
-topleveldeclaration:
+toplevel_declaration:
     | declaration {()}
 	| function_declaration {()}
 	;
 declaration:
     | variable_declaration {()}
 	| type_declaration {()}
-
+    ;
 variable_declaration:
 	| VAR varspec {()}
 	| VAR OPEN_PAREN varspec* CLOSE_PAREN {()}
