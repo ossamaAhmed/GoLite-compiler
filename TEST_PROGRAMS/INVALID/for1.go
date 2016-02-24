@@ -3,14 +3,13 @@
 
 package main
 
-import "fmt"
 
 func main() {
 
     // The most basic type, with a single condition.
     i := 1
     for i <= 3 i++ {
-        fmt.Println(i)
+        println(i)
         i = i + 1
     }
 
