@@ -19,7 +19,8 @@ open Error
 %token NOT_EQ 
 %token OPEN_PAREN 
 %token CLOSE_PAREN 
-%token MINUS 
+%token MINUS
+%token UMINUS
 %token BAR 
 %token MINUS_EQ 
 %token BAR_EQ 
@@ -95,37 +96,35 @@ open Error
 
 (* Associativity and precedence *)
 
-%left SLASH
-%left STAR
-%left MINUS
-%left PLUS
+%left PLUS MINUS
+%left STAR SLASH
+%nonassoc UMINUS
 
 (* Start of parser *)
-
-%start sourcefile
-
-%type <unit> sourcefile
+%start parse
+%type <unit> parse
 %%
 
-sourcefile:
-    |	packageclause SEMICOLON topleveldeclaration_list EOF {()}
-	| 	error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
+parse:
+    | package_clause SEMICOLON toplevel_declaration_list EOF {()}
+	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
     ;
-topleveldeclaration_list:
+toplevel_declaration_list:
 	| {()}
-	| topleveldeclaration SEMICOLON topleveldeclaration_list {()}
+	| toplevel_declaration SEMICOLON toplevel_declaration_list {()}
 	;
-packageclause:
+
+package_clause:
 	|	PACKAGE package_name {()}
 	;
-topleveldeclaration:
+toplevel_declaration:
     | declaration {()}
 	| function_declaration {()}
 	;
 declaration:
     | variable_declaration {()}
 	| type_declaration {()}
-
+    ;
 variable_declaration:
 	| VAR varspec {()}
 	| VAR OPEN_PAREN varspec* CLOSE_PAREN {()}
@@ -337,7 +336,7 @@ switch_stmt:
 
 switch_clause:
     | SEMICOLON {()}
-    | simple_stmt SEMICOLON {()}
+   (* | simple_stmt SEMICOLON {()}  THIS IS CAUSING A CONFLICT*)
     | expression {()}
     | simple_stmt SEMICOLON expression {()}
     ;

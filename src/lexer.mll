@@ -1,96 +1,8 @@
 {
 
-open Parser 
+open Parser
+open Lexing
 open Error
-
-(*type token =
-    | INTLITERAL of (int)
-    | FLOATLITERAL of (float)
-    | STRINGLITERAL of (string)
-    | IDENTIFIER of (string)
-    | RUNELITERAL of (char)
-    | PLUS 
-    | AND 
-    | PLUS_EQ 
-    | AND_EQ 
-    | DOUBLE_AND 
-    | DOUBLE_EQ 
-    | NOT_EQ 
-    | OPEN_PAREN 
-    | CLOSE_PAREN 
-    | MINUS 
-    | BAR 
-    | MINUS_EQ 
-    | BAR_EQ 
-    | DOUBLE_BAR 
-    | LT 
-    | LT_EQ 
-    | OPEN_SQR_BRACKET 
-    | CLOSE_SQR_BRACKET 
-    | STAR 
-    | CARET 
-    | STAR_EQ 
-    | CARET_EQ 
-    | LT_MINUS 
-    | GT 
-    | GT_EQ 
-    | OPEN_CUR_BRACKET 
-    | CLOSE_CUR_BRACKET 
-    | SLASH 
-    | SHIFT_LEFT 
-    | SLASH_EQ 
-    | SHIFT_LEFT_EQ 
-    | DOUBLE_PLUS 
-    | EQ 
-    | COLON_EQ 
-    | COMMA 
-    | SEMICOLON 
-    | PERCENT 
-    | SHIFT_RIGHT 
-    | PERCENT_EQ 
-    | SHIFT_RIGHT_EQ 
-    | DOUBLE_MINUS 
-    | NOT 
-    | TRIPLE_DOT 
-    | DOT 
-    | COLON 
-    | AND_CARET 
-    | AND_CARET_EQ 
-    | BREAK 
-    | DEFAULT 
-    | FUNC 
-    | INTERFACE
-    | SELECT
-    | CASE
-    | DEFER
-    | GO
-    | MAP
-    | CHAN 
-    | ELSE
-    | GOTO
-    | PACKAGE
-    | SWITCH
-    | CONST
-    | FALLTHROUGH
-    | IF
-    | RANGE
-    | TYPE 
-    | CONTINUE 
-    | FOR 
-    | IMPORT 
-    | RETURN 
-    | VAR 
-    | INT
-    | FLOAT64 
-    | BOOL 
-    | RUNE 
-    | STRING 
-    | PRINT 
-    | PRINTLN 
-    | APPEND
-    | STRUCT
-    | EOF
-    | EOL*)
 
 let keywords = Hashtbl.create 30;;
 Hashtbl.add keywords "break" BREAK ;
@@ -127,11 +39,17 @@ Hashtbl.add keywords "println" PRINTLN ;
 Hashtbl.add keywords "append" APPEND ;
 Hashtbl.add keywords "case" CASE ;;
 
-(* keyword -> token translation table *)
-(*let keywords = [
-    "var", VARDCL;"float", FLOATDCL; "int", INTDCL;"string",STRINGDCL ;"read", READ; "print", PRINT; "if", IF;
-    "then", THEN; "else", ELSE; "endif", ENDIF; "while", WHILE; "do", DO; "done", DONE
-]*)
+let line_num lexbuf =
+    lexbuf.Lexing.lex_curr_p.pos_lnum
+;;
+
+let char_num lexbuf =
+    lexbuf.Lexing.lex_curr_p.pos_bol
+;;
+
+let file_name lexbuf = 
+    lexbuf.Lexing.lex_curr_p.pos_fname
+;;
 
 exception Syntax_error of string
 exception Eof
@@ -218,17 +136,15 @@ rule golite = parse
     | "&^="    { AND_CARET_EQ }
 
     | int_lit as d { 
-        (* parse literal *)
-        INTLITERAL (int_of_string d)
+      INTLITERAL (int_of_string d)
     }
     | float_lit as f {
       FLOATLITERAL (float_of_string f)
     }
     | identifier as i {
-        (* try keywords if not found then it's identifier *)
-        let myvar = i in
-        try Hashtbl.find keywords myvar
-        with Not_found -> IDENTIFIER myvar
+      let myvar = i in
+      try Hashtbl.find keywords myvar
+      with Not_found -> IDENTIFIER myvar
     }
     | string_lit as s {
       STRINGLITERAL (s)
@@ -236,12 +152,12 @@ rule golite = parse
     | rune_lit as r {
       RUNELITERAL(String.get r 0)
     }
-    | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; golite lexbuf} (* I removed the EOL token here, counting new line characters and increment line num FORGOT *)
+    | '\n'     { Lexing.new_line lexbuf; golite lexbuf} (* increment line number and char number *)
     | blank    { golite lexbuf } (* skipping blank characters *)
     | one_line_comment { golite lexbuf }
     | block_comment { golite lexbuf }
     | eof      { EOF } (* no more tokens *)
-    | _        { raise (GoliteError ("unknown char "^ "on line "^(string_of_int !line_num))) }
+    | _        { raise (GoliteError ("Unknown token in"^(file_name lexbuf)^"on line "^(string_of_int (line_num lexbuf))^":"^(string_of_int (char_num lexbuf)))) }
 
 {
 
