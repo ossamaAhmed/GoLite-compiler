@@ -350,16 +350,11 @@ switch_stmt:
     ;
 
 switch_clause:
-<<<<<<< HEAD
-    | SEMICOLON {()}
-    | simple_stmt SEMICOLON {()} (*THIS IS CAUSING SHIFT REDUCE CONFLICT*)
-=======
     | simple_stmt SEMICOLON switch_expr_clause {()}
     ;
 
 switch_expr_clause:
     | {()}
->>>>>>> 11efd8b40b1ed59f0b2836f900f30c35c28476a6
     | expression {()}
     ;
 
