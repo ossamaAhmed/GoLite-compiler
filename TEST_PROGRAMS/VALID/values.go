@@ -1,8 +1,5 @@
 
-package main
-
-import "fmt"
-
+package main;
 func main() {
     
         // Strings, which can be added together with `+`.

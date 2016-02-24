@@ -103,6 +103,7 @@ open Error
 (* Start of parser *)
 
 %start sourcefile
+
 %type <unit> sourcefile
 %%
 
@@ -115,7 +116,7 @@ topleveldeclaration_list:
 	| topleveldeclaration SEMICOLON topleveldeclaration_list {()}
 	;
 packageclause:
-	|	PACKAGE package_name IDENTIFIER {()}
+	|	PACKAGE package_name {()}
 	;
 topleveldeclaration:
     | declaration {()}
@@ -422,18 +423,18 @@ expression:
     | expression binary_op expression {()}
     ;
 unary_expr:
- (*   | primary_expr {()} *)
+    | primary_expr {()} 
     | unary_op unary_expr {()}
     ;
 (*NOT SURE ABOUT PRIMARY EXPRESSION*)
 primary_expr:
     | operand {()}
-    | conversion {()}
+    (*| conversion {()}
     | primary_expr index {()}
     | primary_expr selector {()}
     | primary_expr slice {()}
     | primary_expr type_assertion {()}
-    | primary_expr arguments {()}
+    | primary_expr arguments {()}*)
     ;
 selector:
     | DOT IDENTIFIER {()}

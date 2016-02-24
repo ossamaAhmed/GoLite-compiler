@@ -236,7 +236,7 @@ rule golite = parse
     | rune_lit as r {
       RUNELITERAL(String.get r 0)
     }
-    | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; EOL} (* counting new line characters and increment line num FORGOT *)
+    | '\n'     { line_num:= !line_num+1; Lexing.new_line lexbuf; golite lexbuf} (* I removed the EOL token here, counting new line characters and increment line num FORGOT *)
     | blank    { golite lexbuf } (* skipping blank characters *)
     | one_line_comment { golite lexbuf }
     | block_comment { golite lexbuf }
