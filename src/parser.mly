@@ -251,6 +251,7 @@ stmt:
     ;
 
 simple_stmt:
+    | {()}
     | expression_stmt {()}
     | increment_stmt {()}
     | assignment {()}
@@ -295,7 +296,6 @@ if_init:
 
 if_stmt:
     | IF if_init condition block {()}
-    | IF condition block {()}
     ;
 
 else_stmt: 
@@ -316,13 +316,7 @@ for_stmt:
     ;
 for_clause: 
     | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()}
-    | init_stmt SEMICOLON  condition SEMICOLON {()}
     | init_stmt SEMICOLON  SEMICOLON post_stmt {()}
-    | init_stmt SEMICOLON  SEMICOLON {()}
-    | SEMICOLON  condition SEMICOLON post_stmt {()}
-    | SEMICOLON  condition SEMICOLON {()}
-    | SEMICOLON  SEMICOLON post_stmt {()}
-    | SEMICOLON  SEMICOLON {()}
     ;
 
 init_stmt: 
@@ -336,10 +330,12 @@ switch_stmt:
     ;
 
 switch_clause:
-    | SEMICOLON {()}
-   (* | simple_stmt SEMICOLON {()}  THIS IS CAUSING A CONFLICT*)
+    | simple_stmt SEMICOLON switch_expr_clause {()}
+    ;
+
+switch_expr_clause:
+    | {()}
     | expression {()}
-    | simple_stmt SEMICOLON expression {()}
     ;
 
 expr_case_clause: 
