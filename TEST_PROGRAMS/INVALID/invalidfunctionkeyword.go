@@ -1,4 +1,3 @@
-import "fmt"
 function main() {
-        fmt.Println("hello world")
+        println("hello world")
 }

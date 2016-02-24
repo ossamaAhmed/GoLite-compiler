@@ -3,7 +3,6 @@
 
 package main
 
-import "fmt"
 
 // Here's a function that takes two `int`s and returns
 // their sum as an `int`.
@@ -28,8 +27,8 @@ func main() {
     // Call a function just as you'd expect, with
     // `name(args)`.
     res := plus(1, 2)
-    fmt.Println("1+2 =", res)
+    println("1+2 =", res)
 
     res = plusPlus(1, 2, 3)
-    fmt.Println("1+2+3 =", res)
+    println("1+2+3 =", res)
 }
