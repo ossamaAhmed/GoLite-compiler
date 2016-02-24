@@ -3,8 +3,6 @@
 
 package main
 
-import "fmt"
-
 func main() {
 
     // Here's a basic example.

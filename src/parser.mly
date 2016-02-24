@@ -211,7 +211,27 @@ functiondef: signature functionbody {()};
 functionbody: block {()}
 
 (*TODO: IMPLEMENT SIGNATURES *)
-signature: {()};
+function_type: 
+    | FUNC signature {()}
+    ;
+signature:
+    | parameters option(result) {()}
+    ;
+result: 
+    | parameters {()}
+    | type_i {()}
+    ;
+parameters:
+    | OPEN_PAREN option(parameters_list) CLOSE_PAREN {()}
+    ;
+parameters_list:
+    | parameter_declaration {()}
+    | parameter_declaration COMMA parameters_list {()}
+    ;
+parameter_declaration:
+    | option(identifier_list) option(TRIPLE_DOT) type_i {()}
+    ;
+(*DONE IMPLEMENTING SIGNATURES*)
 
 package_name:
 	| IDENTIFIER {()}
@@ -337,7 +357,7 @@ switch_stmt:
 
 switch_clause:
     | SEMICOLON {()}
-   (* | simple_stmt SEMICOLON {()}  THIS IS CAUSING A CONFLICT*)
+    | simple_stmt SEMICOLON {()} (*THIS IS CAUSING SHIFT REDUCE CONFLICT*)
     | expression {()}
     | simple_stmt SEMICOLON expression {()}
     ;
@@ -367,7 +387,7 @@ operand:
     ;
 literal:
     | basic_lit {()}
-    | composite_lit {()}
+    | composite_lit {()}  (*CAUSING CONFLICT*)
     | function_lit {()}
     ;
 basic_lit:
@@ -384,7 +404,7 @@ operand_name:
 composite_lit: 
     | literal_type {()}
     | literal_value {()}
-    ;
+    ; 
 literal_type:
     | struct_type {()}
     | array_type {()}
@@ -420,7 +440,7 @@ function_i:
 (*EXPRESSIONS PART*)
 expression: 
     | unary_expr {()}
-    | expression binary_op expression {()}
+    | expression binary_op expression {()}  (*CAUSING SHIFT REDUCE CONFLICTS*)
     ;
 unary_expr:
     | primary_expr {()} 
