@@ -109,6 +109,7 @@ let _ =
         try
             let file = Array.get Sys.argv 1 in
             let lexbuf= Lexing.from_channel (open_in file) in
+            (* Lexer.print_tokens lexbuf; *)
             Parser.parse Lexer.golite lexbuf;
         with 
-        | Parser.Error -> print_string("Invalid grammar\n"); exit 0;
+            | Parser.Error -> print_string("Invalid grammar\n"); exit 0;

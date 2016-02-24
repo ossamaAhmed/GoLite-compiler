@@ -134,11 +134,7 @@ let line_num lexbuf =
 ;;
 
 let char_num lexbuf =
-    lexbuf.Lexing.lex_curr_p.pos_bol
-;;
-
-let file_name lexbuf = 
-    lexbuf.Lexing.lex_curr_p.pos_fname
+    lexbuf.Lexing.lex_curr_p.pos_cnum
 ;;
 let last_token = ref EOL
 ;;
@@ -248,7 +244,7 @@ rule golite = parse
     | one_line_comment { golite lexbuf }
     | block_comment { golite lexbuf }
     | eof      { EOF } (* no more tokens *)
-    | _        { raise (GoliteError ("Unknown token in"^(file_name lexbuf)^"on line "^(string_of_int (line_num lexbuf))^":"^(string_of_int (char_num lexbuf)))) }
+    | _        { raise (GoliteError ("Unknown token "^"on line "^(string_of_int (line_num lexbuf))^":"^(string_of_int (char_num lexbuf)))) }
 
 {
 
