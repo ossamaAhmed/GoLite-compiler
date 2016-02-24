@@ -104,6 +104,7 @@ open Error
 
 %start parse
 %type <unit> parse
+
 %%
 
 parse:
