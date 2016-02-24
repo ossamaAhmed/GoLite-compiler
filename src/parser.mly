@@ -103,6 +103,7 @@ open Error
 (* Start of parser *)
 %start parse
 %type <unit> parse
+
 %%
 
 parse:
