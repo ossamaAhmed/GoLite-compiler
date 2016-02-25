@@ -117,7 +117,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration {()}
-	| function_declaration {()}
+	| func_declaration {()}
 	;
 declaration:
     | variable_declaration {()}
@@ -194,37 +194,49 @@ slice_type:
 	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET element_type {()}
 	;
 
-function_declaration:
-	| FUNC IDENTIFIER functiondef {()}
-    | FUNC IDENTIFIER signature {()}
+(* FUNCTION *)
+
+func_declaration:
+	| FUNC IDENTIFIER func_def {()}
+    | FUNC IDENTIFIER func_signature {()}
 	;
-functiondef: signature functionbody {()};
 
-functionbody: block {()}
+func_def: func_signature func_body {()};
 
-(*TODO: IMPLEMENT SIGNATURES *)
-function_type: 
-    | FUNC signature {()}
+func_body: block {()}
+
+func_type: 
+    | FUNC func_signature {()}
     ;
-signature:
-    | parameters result {()}
+func_signature:
+    | func_params result {()}
     ;
 result: 
     | {()}
     | type_i {()}
     ;
-parameters:
-    | OPEN_PAREN parameters_list CLOSE_PAREN {()}
+func_params:
+    | OPEN_PAREN func_params_list CLOSE_PAREN {()}
     | OPEN_PAREN  CLOSE_PAREN {()}
     ;
-parameters_list:
-    | parameter_declaration {()}
-    | parameter_declaration COMMA parameters_list {()}
+func_params_list:
+    | func_param_declaration {()}
+    | func_param_declaration COMMA func_params_list {()}
     ;
-parameter_declaration:
+func_param_declaration:
     | identifier_list  type_i {()}
     ;
-(*DONE IMPLEMENTING SIGNATURES*)
+
+func_call:
+    | IDENTIFIER func_args {()}
+    ;
+
+func_args:
+    | OPEN_PAREN CLOSE_PAREN {()}
+    | OPEN_PAREN expression_list CLOSE_PAREN {()}
+   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
+    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
+    ;
 
 package_name:
 	| IDENTIFIER {()}
@@ -261,6 +273,7 @@ stmt:
     | simple_stmt {()}
     | print_stmt {()}
     | println_stmt {()}
+    | func_call {()}
     ;
 
 simple_stmt:
@@ -375,16 +388,11 @@ continue_stmt:
 (*TODO: EXPRESSIONS*)
 operand:
     | literal {()}
-  (*  | operand_name {()} *) (*REPITITION WITH TYPE_NAME*)
     | OPEN_PAREN expression CLOSE_PAREN {()}
-    ;
-operand_name:
-    | IDENTIFIER {()}
     ;
 literal:
     | basic_lit {()}
     | composite_lit {()}  (*CAUSING CONFLICT*)
-(*    | function_lit {()} *)
     ;
 basic_lit:
     | INTLITERAL {()}
@@ -441,11 +449,11 @@ unary_expr:
 (*NOT SURE ABOUT PRIMARY EXPRESSION*)
 primary_expr:
     | operand {()}
+    | func_call {()}
     | primary_expr index {()}
     | primary_expr selector {()}
     | primary_expr slice {()}
     | primary_expr type_assertion {()}
-    | primary_expr arguments {()}
     ;
 selector:
     | DOT IDENTIFIER {()}
@@ -463,12 +471,6 @@ slice:
     ;
 type_assertion:
     | DOT OPEN_PAREN type_i CLOSE_PAREN {()}
-    ;
-arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
-    | OPEN_PAREN CLOSE_PAREN {()}
-    | OPEN_PAREN expression_list CLOSE_PAREN {()}
-   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
-    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
 binary_op:
     | DOUBLE_BAR {()}
