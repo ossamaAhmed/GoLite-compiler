@@ -1,7 +1,5 @@
 package main
-func main() 
-{
+func main() {
         println("hello world")
 }
-
 

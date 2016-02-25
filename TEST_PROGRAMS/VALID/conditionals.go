@@ -6,7 +6,7 @@ package main
 func main() {
 
     // Here's a basic example.
-    if 7%2 == 0 {
+    if 8%4 == 0 {
         println("7 is even")
     } else {
         println("7 is odd")

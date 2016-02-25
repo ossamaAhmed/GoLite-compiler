@@ -108,7 +108,7 @@ open Error
 
 parse:
     | package_clause SEMICOLON toplevel_declaration_list EOF {()}
-	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_num)) )) }
+	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_number)) )) }
     ;
 toplevel_declaration_list:
 	| {()}
@@ -128,12 +128,20 @@ declaration:
     ;
 variable_declaration:
 	| VAR varspec {()}
-	| VAR OPEN_PAREN varspec* CLOSE_PAREN {()}
+	| VAR OPEN_PAREN varspec_list CLOSE_PAREN {()}
 	;
+varspec_list:
+    | {()}
+    | varspec SEMICOLON varspec_list {()}
+    ;
 varspec:
-	| identifier_list type_i EQ expression_list {()}
+	| identifier_list type_i  varspec_optional_expression_list {()}
 	| identifier_list EQ expression_list {()}
 	;
+varspec_optional_expression_list:
+    | {()}
+    | EQ expression_list {()}
+    ;
 expression_list:
     | {()}
 	| expression {()}
@@ -166,6 +174,11 @@ qualified_ident:
 	| package_name DOT IDENTIFIER {()}
 	;
 type_lit:
+    | INT {()}
+    | RUNE {()}
+    | STRING {()}
+    | FLOAT64 {()}
+    | BOOL {()}
 	| array_type {()}
 	| struct_type {()}
 	| slice_type {()}
@@ -174,7 +187,7 @@ array_type:
 	| OPEN_SQR_BRACKET array_length CLOSE_SQR_BRACKET element_type {()}
 	;
 array_length:
-	| expression {()}
+	| INTLITERAL {()}
 	;
 struct_type:
 	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET {()}
@@ -311,10 +324,11 @@ return_stmt:
     ;
 
 if_init:
-    | simple_stmt {()}
+    | simple_stmt SEMICOLON {()} (*I ADDED HERE A SEMICOLON*)
     ;
 
 if_stmt:
+    | IF condition block {()}
     | IF if_init condition block {()}
     ;
 
@@ -381,6 +395,10 @@ operand:
     | operand_name {()}
     | OPEN_PAREN expression CLOSE_PAREN {()}
     ;
+operand_name:
+    | IDENTIFIER {()}
+    | qualified_ident {()}
+    ;
 literal:
     | basic_lit {()}
     | composite_lit {()}  (*CAUSING CONFLICT*)
@@ -391,10 +409,6 @@ basic_lit:
     | FLOATLITERAL {()}
     | RUNELITERAL {()}
     | STRINGLITERAL {()}
-    ;
-operand_name:
-    | IDENTIFIER {()}
-    | qualified_ident {()}
     ;
 (*TODO: COMPOSITELIT*)
 composite_lit: 
@@ -435,18 +449,16 @@ function_i:
     ;
 (*EXPRESSIONS PART*)
 expression: 
-    | operand {()}
     | unary_expr {()}
     | expression binary_op expression {()}  (*CAUSING SHIFT REDUCE CONFLICTS*)
     ;
 unary_expr:
-    (*| primary_expr {()} *)
+    | primary_expr {()} 
     | unary_op unary_expr {()}
     ;
 (*NOT SURE ABOUT PRIMARY EXPRESSION*)
 primary_expr:
     | operand {()}
-    | conversion {()}
     | primary_expr index {()}
     | primary_expr selector {()}
     | primary_expr slice {()}
@@ -460,19 +472,25 @@ index:
     | OPEN_SQR_BRACKET expression CLOSE_SQR_BRACKET {()}
     ;
 slice:
-    | OPEN_SQR_BRACKET option(expression) COLON option(expression) CLOSE_SQR_BRACKET {()}
-    | OPEN_SQR_BRACKET option(expression) COLON expression COLON expression CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET  COLON  CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET expression COLON expression CLOSE_SQR_BRACKET
+    | OPEN_SQR_BRACKET COLON expression CLOSE_SQR_BRACKET
+    | OPEN_SQR_BRACKET expression COLON  CLOSE_SQR_BRACKET
+    | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     ;
 type_assertion:
-    | {()}
+    | DOT OPEN_PAREN type_i CLOSE_PAREN {()}
     ;
 arguments:
-    | {()}
+    | OPEN_PAREN CLOSE_PAREN {()}
+    | OPEN_PAREN expression_list option(TRIPLE_DOT) option(COMMA) CLOSE_PAREN {()}
+    | OPEN_PAREN type_i optional_comma_expression_list option(TRIPLE_DOT) option(COMMA) CLOSE_PAREN  {()}
     ;
-conversion: 
+optional_comma_expression_list:
     | {()}
+    | COMMA expression_list {()}
     ;
-
 binary_op:
     | DOUBLE_BAR {()}
     | DOUBLE_AND {()}
@@ -508,8 +526,5 @@ unary_op:
     | MINUS {()}
     | NOT {()}
     | CARET {()}
-    | STAR {()}
-    | AND {()}
-    | LT_MINUS {()}
     ;
 %%
