@@ -22,6 +22,14 @@ func plusPlus(a, b, c int) int {
     return a + b + c
 }
 
+func sum(a []int, count int) int {
+    var total = 0;
+    for i := 0; i < count; i++ {
+        total++;
+    }
+    return total;
+}
+
 func main() {
 
     // Call a function just as you'd expect, with
@@ -31,4 +39,7 @@ func main() {
 
     res = plusPlus(1, 2, 3)
     println("1+2+3 =", res)
+
+    // Function call
+    plusPlus(1,5);
 }

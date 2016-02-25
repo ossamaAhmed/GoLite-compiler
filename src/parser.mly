@@ -227,7 +227,7 @@ func_param_declaration:
     | identifier_list  type_i {()}
     ;
 
-func_call:
+func_call_expr:
     | IDENTIFIER func_args {()}
     ;
 
@@ -273,7 +273,7 @@ stmt:
     | simple_stmt {()}
     | print_stmt {()}
     | println_stmt {()}
-    | func_call {()}
+    | func_call_expr {()}
     ;
 
 simple_stmt:
@@ -449,12 +449,15 @@ unary_expr:
 (*NOT SURE ABOUT PRIMARY EXPRESSION*)
 primary_expr:
     | operand {()}
-    | func_call {()}
+    | func_call_expr {()}
+    | append_expr {()}
     | primary_expr index {()}
     | primary_expr selector {()}
     | primary_expr slice {()}
     | type_cast OPEN_PAREN primary_expr CLOSE_PAREN {()}
     ;
+append_expr:
+    | APPEND OPEN_PAREN IDENTIFIER COMMA expression CLOSE_PAREN {()}
 selector:
     | DOT IDENTIFIER {()}
     ;
@@ -469,7 +472,7 @@ slice:
     | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     ;
-type_cast: (* Type casting only works with primitive types except string *)
+type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
     | IDENTIFIER {()}
     | INT {()}
     | RUNE {()}
