@@ -359,19 +359,22 @@ post_stmt:
     | simple_stmt {()};
 
 switch_stmt:
-    | SWITCH switch_clause OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
-    | SWITCH OPEN_CUR_BRACKET expr_case_clause CLOSE_CUR_BRACKET {()}
+    | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {()}
+    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {()}
+    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {()}
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {()}
     ;
 
 switch_clause:
-    | simple_stmt SEMICOLON switch_expr_clause {()}
+    | simple_stmt SEMICOLON  {()}
     ;
 
 switch_expr_clause:
-    | {()}
     | expression {()}
     ;
-
+expr_case_clause_list:
+    | {()}
+    | expr_case_clause expr_case_clause_list {()}
 expr_case_clause: 
     | expr_switch_case COLON stmt_list {()}
     ;
