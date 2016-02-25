@@ -346,9 +346,9 @@ conditional_stmt:
 for_stmt:
     | FOR block {()}
     | FOR  condition block {()}
-    | FOR  for_clause block {()}
+    | FOR  for_clause block {()} 
     ;
-for_clause: 
+for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
     | init_stmt SEMICOLON  condition SEMICOLON post_stmt {()}
     | init_stmt SEMICOLON  SEMICOLON post_stmt {()}
     ;
