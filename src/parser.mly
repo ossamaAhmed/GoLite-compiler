@@ -107,7 +107,7 @@ open Error
 %%
 
 parse:
-    | package_clause SEMICOLON toplevel_declaration_list EOF {()}
+    | PACKAGE IDENTIFIER SEMICOLON toplevel_declaration_list EOF {()}
 	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_number)) )) }
     ;
 toplevel_declaration_list:
@@ -115,9 +115,6 @@ toplevel_declaration_list:
 	| toplevel_declaration SEMICOLON toplevel_declaration_list {()}
 	;
 
-package_clause:
-	|	PACKAGE package_name {()}
-	;
 toplevel_declaration:
     | declaration {()}
 	| function_declaration {()}
@@ -162,16 +159,10 @@ element_type:
 	| type_i {()}
 	;
 type_i:
-	| type_name {()}
+	| IDENTIFIER {()}
+    | IDENTIFIER selector {()}
 	| type_lit {()}
 	| OPEN_PAREN type_i CLOSE_PAREN {()}
-	;
-type_name:
-	| IDENTIFIER {()}
-	| qualified_ident {()}
-	;
-qualified_ident:
-	| package_name DOT IDENTIFIER {()}
 	;
 type_lit:
     | INT {()}
@@ -197,20 +188,8 @@ field_dcl_list:
 	| field_dcl SEMICOLON field_dcl_list {()}
 	;
 field_dcl:
-	| identifier_list type_i optional_tag {()}
-	| annonymous_field optional_tag {()}
-optional_tag:
-	| {()}
-	| tag {()}
-	;
-tag:
-	| STRINGLITERAL {()}
-	;
-annonymous_field:
-	| type_name {()}
-	| STAR type_name {()}
-	;
-
+	| identifier_list type_i  {()}
+    ;
 slice_type:
 	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET element_type {()}
 	;
@@ -228,21 +207,22 @@ function_type:
     | FUNC signature {()}
     ;
 signature:
-    | parameters option(result) {()}
+    | parameters result {()}
     ;
 result: 
-    | parameters {()}
+    | {()}
     | type_i {()}
     ;
 parameters:
-    | OPEN_PAREN option(parameters_list) CLOSE_PAREN {()}
+    | OPEN_PAREN parameters_list CLOSE_PAREN {()}
+    | OPEN_PAREN  CLOSE_PAREN {()}
     ;
 parameters_list:
     | parameter_declaration {()}
     | parameter_declaration COMMA parameters_list {()}
     ;
 parameter_declaration:
-    | option(identifier_list) option(TRIPLE_DOT) type_i {()}
+    | identifier_list  type_i {()}
     ;
 (*DONE IMPLEMENTING SIGNATURES*)
 
@@ -395,17 +375,16 @@ continue_stmt:
 (*TODO: EXPRESSIONS*)
 operand:
     | literal {()}
-    | operand_name {()}
+  (*  | operand_name {()} *) (*REPITITION WITH TYPE_NAME*)
     | OPEN_PAREN expression CLOSE_PAREN {()}
     ;
 operand_name:
     | IDENTIFIER {()}
-    | qualified_ident {()}
     ;
 literal:
     | basic_lit {()}
     | composite_lit {()}  (*CAUSING CONFLICT*)
-    | function_lit {()}
+(*    | function_lit {()} *)
     ;
 basic_lit:
     | INTLITERAL {()}
@@ -416,15 +395,15 @@ basic_lit:
 (*TODO: COMPOSITELIT*)
 composite_lit: 
     | literal_type {()}
-    | literal_value {()}
+  (*  | literal_value {()} *)
     ; 
 literal_type:
     | struct_type {()}
     | array_type {()}
     | OPEN_SQR_BRACKET TRIPLE_DOT CLOSE_SQR_BRACKET element_type {()}
     | slice_type {()}
-    | type_name {()}
-literal_value:
+    | IDENTIFIER {()}
+literal_value: (*NOT SURE IF WE SHOULD INCLUDE THIS IN GOLITE*)
     | OPEN_CUR_BRACKET element_list CLOSE_CUR_BRACKET {()}
     ;
 element_list:
@@ -485,14 +464,11 @@ slice:
 type_assertion:
     | DOT OPEN_PAREN type_i CLOSE_PAREN {()}
     ;
-arguments:
+arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
     | OPEN_PAREN CLOSE_PAREN {()}
-    | OPEN_PAREN expression_list option(TRIPLE_DOT) option(COMMA) CLOSE_PAREN {()}
-    | OPEN_PAREN type_i optional_comma_expression_list option(TRIPLE_DOT) option(COMMA) CLOSE_PAREN  {()}
-    ;
-optional_comma_expression_list:
-    | {()}
-    | COMMA expression_list {()}
+    | OPEN_PAREN expression_list CLOSE_PAREN {()}
+   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
+    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
 binary_op:
     | DOUBLE_BAR {()}
