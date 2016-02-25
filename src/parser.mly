@@ -453,7 +453,7 @@ primary_expr:
     | primary_expr index {()}
     | primary_expr selector {()}
     | primary_expr slice {()}
-    | primary_expr type_assertion {()}
+    | type_cast OPEN_PAREN primary_expr CLOSE_PAREN {()}
     ;
 selector:
     | DOT IDENTIFIER {()}
@@ -469,9 +469,14 @@ slice:
     | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     ;
-type_assertion:
-    | DOT OPEN_PAREN type_i CLOSE_PAREN {()}
+type_cast: (* Type casting only works with primitive types except string *)
+    | IDENTIFIER {()}
+    | INT {()}
+    | RUNE {()}
+    | FLOAT64 {()}
+    | BOOL {()}
     ;
+
 binary_op:
     | DOUBLE_BAR {()}
     | DOUBLE_AND {()}
