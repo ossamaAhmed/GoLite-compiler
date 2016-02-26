@@ -190,19 +190,11 @@ slice_type:
 (* FUNCTION *)
 
 func_declaration:
-	| FUNC IDENTIFIER func_def {generate_func_declDef($2,$3)}
-    | FUNC IDENTIFIER func_signature {generate_func_declSig($2,$3)}
-	;
-
-func_def: func_signature func_body {generate_func_def($1,$2)};
-
-func_body: block {$1}
-
-func_type: 
-    | FUNC func_signature {()}
+	| FUNC IDENTIFIER func_signature block { generate_func_declaration($1,$2) }
     ;
+
 func_signature:
-    | func_params result {generate_func_signature($1,$2)}
+    | func_params result { generate_func_signature($1,$2) }
     ;
 result: 
     | {Empty}
