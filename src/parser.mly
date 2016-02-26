@@ -115,7 +115,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration { $1 }
-	| func_declaration { generate_func_decl "tempstuff"  } 
+	| func_declaration { $1} 
 	;
 declaration:
     | variable_declaration { $1 }
@@ -196,7 +196,7 @@ func_declaration:
 
 func_def: func_signature func_body {generate_func_def($1,$2)};
 
-func_body: block {generate_block($1)}
+func_body: block {$1}
 
 func_type: 
     | FUNC func_signature {()}
@@ -205,8 +205,8 @@ func_signature:
     | func_params result {generate_func_signature($1,$2)}
     ;
 result: 
-    | {generate_result_empty(Empty)}
-    | type_i {generate_result_type($1)}
+    | {Empty}
+    | type_i {generate_result($1)}
     ;
 func_params:
     | OPEN_PAREN func_params_list CLOSE_PAREN {generate_func_params($2)}
@@ -259,7 +259,7 @@ mul_op_eq:
     ;
 
 block:
-    | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {generate_block($2)};
+    | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {$2};
 
 stmt: 
     | declaration {generate_decl_stmt($1)}
@@ -313,8 +313,8 @@ condition: expression {generate_condition($1)};
 
 (* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression {generate_rt_stmt($2)}
-    | RETURN {generate_rt_stmt(Empty)}
+    | RETURN expression {$2}
+    | RETURN {Empty}
     ;
 
 if_init:
@@ -354,10 +354,10 @@ post_stmt:
 
 switch_stmt:
     | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch($2,$3,$5)}
-    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(generate_switch_clause(Empty),$2,4)}
-    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch($2,generate_switch_expr(Empty),$4)}
-    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(generate_switch_clause(Empty),generate_switch_expr(Empty),$3)}
-    ;
+    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(Empty,$2,4)}
+    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch($2,Empty,$4)}
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(Empty,Empty,$3)}
+    
 
 switch_clause:
     | simple_stmt SEMICOLON  {generate_switch_clause($1)}
@@ -374,8 +374,8 @@ expr_case_clause:
     ;
 
 expr_switch_case: 
-    | CASE expression_list {generate_switch_case($2)}
-    | DEFAULT {generate_switch_case(Empty)}
+    | CASE expression_list {($2)}
+    | DEFAULT {[]}
     ;
 
 break_stmt: 

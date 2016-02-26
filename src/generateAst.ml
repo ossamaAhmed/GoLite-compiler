@@ -1,5 +1,21 @@
 open Ast
 
+let generate_result typeiden = Result(typeiden)
+let generate_params paramList typeiden = ParamDeclaration(paramList,typeiden)
+
+let generate_func_params paramsList = FuncParams(paramsList)
+let generate_func_signature paramsList result = FunctionSignature(paramsList, result)
+let generate_func_def funcSig stmtList = Function(funcSig,stmtList)
+
+let generate_func_declDef ident funcDef = Functiondef(ident,funcDef)
+let generate_fun_declSig ident sign = Functionsig(ident,sign)
+let generate_switch switchClause switchExpr switchCase = Switch(switchClause,switchExpr,switchCase)
+
+let generate_switch_clause simple = SwitchClause(simple)
+let generate_switch_expr exp = SwitchExpr(exp)
+
+let generate_switch_case_clause expList stmtList = SwitchCaseClause(expList,stmtList)
+let generate_switch_case_block clauseList = SwithcCasestmt(clauseList)
 
 let generate_symbol identifier = Identifier(identifier)
 let generate_operator identifier = OperandName(identifier)
