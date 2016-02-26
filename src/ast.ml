@@ -51,7 +51,7 @@ type expression =
 	| UnaryCaret of expression
 	| Value of literal
 	| Selectorexpr of expression * identifier
-	| TypeCastExpr of string * expression
+	| TypeCastExpr of type_i * expression
 	| Appendexpr of identifier * expression
 
 

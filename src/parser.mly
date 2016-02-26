@@ -427,8 +427,15 @@ slice: (*NOT SURE IF THIS SUPPORTED IN GOLITE*)
     | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
     ;
-type_assertion:
-    | DOT OPEN_PAREN IDENTIFIER CLOSE_PAREN {()}
+append_expr:
+    | APPEND OPEN_PAREN IDENTIFIER COMMA expression CLOSE_PAREN { generate_append_expression (generate_symbol $3) $5}
+    ;
+type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
+    | IDENTIFIER { generate_defined_type $1 }
+    | INT { generate_primitive_type "int" }
+    | RUNE {generate_primitive_type "rune"}
+    | FLOAT64 { generate_primitive_type "float64"}
+    | BOOL {generate_primitive_type "bool"}
     ;
 binary_op:
     | DOUBLE_BAR {"||"}
@@ -513,15 +520,6 @@ function_i:
     | {()}
     ;
 
-append_expr:
-    | APPEND OPEN_PAREN IDENTIFIER COMMA expression CLOSE_PAREN { generate_append_expression (generate_symbol $3) $5}
-    ;
-type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
-    | IDENTIFIER { $1 }
-    | INT { "int" }
-    | RUNE {"rune"}
-    | FLOAT64 {"float64"}
-    | BOOL {"bool"}
-    ;
+
 
 %%
