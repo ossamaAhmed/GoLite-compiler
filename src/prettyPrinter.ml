@@ -56,11 +56,11 @@ let print_declaration decl =
     | VarDcl(value)->  write_message ("var declaration here\n")
     | FuncDcl(value)-> write_message ("func declaration here\n")
 
-let print_pretty_program program filename = 
+let pretty_print program filename = 
     let _ = set_file filename in 
     (match program with
     | Prog(packagename,dcllist)->
-        let _=write_message ("package "^(packagename)^" ;\n") in 
+        let _ = write_message ("package "^(packagename)^" ;\n") in 
         (List.map print_declaration dcllist))
 
 
