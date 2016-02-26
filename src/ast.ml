@@ -2,11 +2,7 @@ exception AST_error of string
 
 let ast_error msg = raise (AST_error msg)
 
-type return =
-    | EmptyReturn
-    | expression list
-    and
-    varspec = 
+type varspec = 
     | Identifierlist of identifier list * type_i * expression list
     and
     variable_declaration =
@@ -29,6 +25,9 @@ type return =
     function_signature = 
     | Signature of func_params * result
     and
+    func_signature = 
+    | FunctionSignature of func_params * result
+    and
     function_def = 
     | Function of func_signature * block
     and
@@ -41,7 +40,8 @@ type return =
     | FunctionDecl of function_declaration
     and
     switch_clause = 
-    | SwitchClause of simple_stmt
+    | SwitchClause of simple
+    and
     switch_expr = 
     | SwitchExpr of expression
     and
@@ -62,16 +62,16 @@ type return =
     | SwitchBare of switch_case_block
     and
     incdec = 
-    | Increment expression
-    | Decrement expression
+    | Increment of expression
+    | Decrement of expression
     and
     assign_op = 
     | PlusEq
     | StarEq
     and 
     assignment = 
-    | AssignmentBare expression list * expression list
-    | AssignmentOp expression * assign_op * expression
+    | AssignmentBare of expression list * expression list
+    | AssignmentOp of expression * assign_op * expression
     and
     short_var_decl = 
     | ShortVarDecl of identifier list * expression list
@@ -99,6 +99,7 @@ type return =
     | ElseSingle of if_stmt * block
     | ElseIFMultitple of if_stmt * else_stmt
     | ElseIFSingle of if_stmt * if_stmt
+    and
     if_init = 
     | IfInitSimple of simple
     and
@@ -117,9 +118,13 @@ type return =
     function_call = 
     | FunctionCallExpr of identifier * func_args
     and
+    rt_stmt = 
+    |Empty
+    | ReturnStatement of expression list
+    and
      stmt = 
     | Declaration of declaration 
-    | Return of return
+    | Ret of rt_stmt
     | Break 
     | Continue 
     | Block of block
@@ -130,73 +135,70 @@ type return =
     | Print of expression list
     | Println of expression list
     | FunctionCall of function_call
-
-type field_dcl =
-	| Fielddcl of identifier list * type_i
-type qualified_identifier=
-	| Qulaifiedidentifier of identifier * identifier
-
-
-type type_name =
-	| Qualifiedtypename qualified_identifier
-	| Newtypedeclared identifier
-type array_type =
-	| Arraytype of int * type_i
-type struct_type =
-	| Structtype of field_dcl list
-type slice_type =
-	| Slicetype of type_i
-type type_i =
-	| Definedtype of type_name
-	| Primitivetype of string (*can accept INT, RUNE, BOOL, STRING, FLOAT64, *)
-	| Arraytypedcl of array_type
-	| Slicetypedcl of slice_type
-	| Structtypedcl of struct_type
-
-type basic_literal =
+    and
+    identifier =
+	| Identifier of string
+    and
+    literal =
 	| Intliteral of int
 	| Floatliteral of float 
-	| Runeliteral of rune (*Not sure about this*)
+	| Runeliteral of char (*Not sure about this*)
 	| Stringliteral of string 
-type operand = 
-	| Operandexpr of expression
-	| Operandname of type_name (*double check this*)
-	| Basicliteral of basic_literal
-	| Operandstructtype of struct_type
-	| Operandarraytype of array_type
-	| Operandslicetype of slice_type
-
-type expression = 
-	| Unaryexpr of unaryexpr
-	| Binaryexpr of binaryexpr
-
-type unaryexpr = 
-	| Unaryop of unaryop
-	| Primaryexpr of primaryexpr
-
-type identifier =
-	| Identifier of string
-
-type primaryexpr =
-	| Operand of operand 
-	| Indexexpr of primaryexpr * expression
-	| Selectorexpr of primaryexpr * identifier
-	| Sliceexpr of primaryexpr * expression * expression * expression (*May be we have to break it down to 6 cases if we cant pass null values*)
-	| Typeassertionexpr of primaryexpr * type_i
-	| Argumentsexpr of type_i * expression list 
-type unaryop =
-	| Unaryplus of unaryexpr
-	| Unaryminus of unaryexpr
-	| Unarynot of unaryexpr
-	| Unarycaret of unaryexpr
-type binaryexpr =
-
-type topleveldcl = 
-	| Functiondcl of 
-	| Variabledcl of 
-	| Typedcl of 
-
-type package =
-	| Packagename of string
-
-type prog = Prog of package * topleveldcl list
+    and
+    type_i =
+	| Definedtype of identifier
+	| Primitivetype of string (*can accept INT, RUNE, BOOL, STRING, FLOAT64, *)
+	| Arraytype of int * type_i
+	| Slicetype of type_i
+	| Structtype of (identifier list * type_i) list
+    and
+    expression = 
+	| OperandName of string
+	| AndAndOp of expression * expression
+	| OrOrOp of expression * expression
+	| EqualEqualCmp of expression * expression
+	| NotEqualCmp of expression * expression
+	| LessThanCmp of expression * expression
+	| GreaterThanCmp of expression * expression
+	| LessThanOrEqualCmp of expression * expression
+	| GreaterThanOrEqualCmp of expression * expression
+	| AddOp of expression * expression
+	| MinusOp of expression * expression
+	| OrOp of expression * expression
+	| CaretOp of expression * expression
+	| MulOp of expression * expression
+	| DivOp of expression * expression
+	| ModuloOp of expression * expression
+	| SrOp of expression * expression
+	| SlOp of expression * expression
+	| AndOp of expression * expression
+	| AndCaretOp of expression * expression
+	| OperandParenthesis of expression
+	| Indexexpr of expression * expression
+	| Unaryexpr of expression
+	| Binaryexpr of expression
+	| Sliceexpr of expression * expression * expression * expression (*May be we have to break it down to 6 cases if we cant pass null values*)
+	| FuncCallExpr of identifier * expression list (*needs to be revised*)
+	| UnaryPlus of expression
+	| UnaryMinus of expression
+	| UnaryNot of expression
+	| UnaryCaret of expression
+	| Value of literal
+	| Selectorexpr of expression * identifier
+	| TypeCastExpr of type_i * expression
+	| Appendexpr of identifier * expression
+    and
+    variablespec = 
+	| VarSpecWithType of identifier list * type_i * expression list
+	| VarSpecWithoutType of identifier list * expression list	
+    and
+     typespec =
+	| TypeSpec of identifier * type_i
+    and
+    dcl =
+	| TypeDcl of typespec list
+	| VarDcl of variablespec list
+	| FuncDcl of string (*TEMPORARY*)
+    and
+    prog = 
+    |Prog of string * dcl list
