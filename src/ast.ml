@@ -55,6 +55,11 @@ type expression =
 	| Appendexpr of identifier * expression
 
 
+type variablespec = 
+	| VarSpecWithType of identifier list * type_i * expression list
+	| VarSpecWithoutType of identifier list * expression list
+type variabledcl =
+	| VarDcl of variablespec list
 
 (* type topleveldcl = 
 	| Functiondcl of 

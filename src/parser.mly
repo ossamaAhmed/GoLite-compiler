@@ -125,21 +125,18 @@ declaration:
 	| type_declaration {()}
     ;
 variable_declaration:
-	| VAR varspec {()}
-	| VAR OPEN_PAREN varspec_list CLOSE_PAREN {()}
+	| VAR varspec {generate_variable_decl [$2]}
+	| VAR OPEN_PAREN varspec_list CLOSE_PAREN {generate_variable_decl $3}
 	;
 varspec_list:
-    | {()}
-    | varspec SEMICOLON varspec_list {()}
+    | {[]}
+    | varspec SEMICOLON varspec_list { $1::$3}
     ;
 varspec:
-	| identifier_list type_i  varspec_optional_expression_list {()}
-	| identifier_list EQ expression_list {()}
+	| identifier_list type_i  EQ expression_list { generate_variable_with_type_spec $1 $2 $4}
+    | identifier_list type_i  { generate_variable_with_type_spec $1 $2 []}
+	| identifier_list EQ expression_list { generate_variable_without_type_spec $1 $3 }
 	;
-varspec_optional_expression_list:
-    | {()}
-    | EQ expression_list {()}
-    ;
 type_declaration:
 	| TYPE type_spec {()}
 	| TYPE OPEN_PAREN type_spec_list CLOSE_PAREN {()}
@@ -262,11 +259,10 @@ stmt:
     | simple_stmt {()}
     | print_stmt {()}
     | println_stmt {()}
-    | func_call_expr {()}
     ;
 
 simple_stmt:
-    | {()}
+  (*  | {()} *) (*WHY WOULD A SIMPLE STMT BE EMPTY*)
     | expression_stmt {()}
     | increment_stmt {()}
     | assignment {()}
@@ -274,7 +270,7 @@ simple_stmt:
     ;
 
 stmt_list: 
-    |  {()}
+    | {()}
     | stmt SEMICOLON stmt_list {()}
     ;
 
@@ -376,7 +372,6 @@ continue_stmt:
 
 (*EXPRESSIONS PART*)
 expression_list:
-    | {[]}
     | expression {[$1]}
     | expression COMMA expression_list {$1::$3}
     ;
@@ -431,7 +426,7 @@ append_expr:
     | APPEND OPEN_PAREN IDENTIFIER COMMA expression CLOSE_PAREN { generate_append_expression (generate_symbol $3) $5}
     ;
 type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
-    | IDENTIFIER { generate_defined_type $1 }
+ (*   | IDENTIFIER { generate_defined_type $1 }  *) (*SEE THE NOTE AT THE END OF TYPE CASTING, IT CREATES CONFLICTS*)
     | INT { generate_primitive_type "int" }
     | RUNE {generate_primitive_type "rune"}
     | FLOAT64 { generate_primitive_type "float64"}

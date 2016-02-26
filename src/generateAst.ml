@@ -21,7 +21,9 @@ let generate_func_expr identifier expressions = FuncCallExpr(identifier, express
 let generate_index_expr expr1 expr2 = Indexexpr (expr1, expr2)
 let generate_parathesis_expression exp = OperandParenthesis(exp)
 let generate_append_expression identifier exp = Appendexpr (identifier, exp)
-
+let generate_variable_with_type_spec identifiers typename expressions = VarSpecWithType(identifiers,typename,expressions)
+let generate_variable_without_type_spec identifiers expressions = VarSpecWithoutType(identifiers,expressions)
+let generate_variable_decl varspecs = VarDcl(varspecs)
 let generate_unary_expression op exp = match op with 
 									| '-' -> Unaryexpr(UnaryMinus(exp))
 									| '+' -> Unaryexpr(UnaryPlus(exp))
