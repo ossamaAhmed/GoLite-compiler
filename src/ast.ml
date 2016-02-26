@@ -21,7 +21,6 @@ type varspec =
     and
     func_params = 
     | FuncParams of params list
-    | Empty
     and
     function_signature = 
     | Signature of func_params * result
@@ -70,7 +69,7 @@ type varspec =
     | Decrement of expression
     and
     assign_op = 
-    | AssignmentOP of sting
+    | AssignmentOP of string
     and 
     assignment = 
     | AssignmentBare of expression list * expression list

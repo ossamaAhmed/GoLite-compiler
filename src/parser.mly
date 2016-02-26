@@ -194,7 +194,7 @@ func_declaration:
     | FUNC IDENTIFIER func_signature {generate_func_declSig($2,$3)}
 	;
 
-func_def: func_signature func_body {generate_func_dec($1,$2)};
+func_def: func_signature func_body {generate_func_def($1,$2)};
 
 func_body: block {generate_block($1)}
 
@@ -205,12 +205,12 @@ func_signature:
     | func_params result {generate_func_signature($1,$2)}
     ;
 result: 
-    | {generate_result(Empty)}
-    | type_i {generate_result($1)}
+    | {generate_result_empty(Empty)}
+    | type_i {generate_result_type($1)}
     ;
 func_params:
     | OPEN_PAREN func_params_list CLOSE_PAREN {generate_func_params($2)}
-    | OPEN_PAREN  CLOSE_PAREN {generate_func_params(Emtpy)}
+    | OPEN_PAREN  CLOSE_PAREN {generate_func_params([])}
     ;
 func_params_list:
     | func_param_declaration {[$1]}
