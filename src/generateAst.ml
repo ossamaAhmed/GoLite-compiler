@@ -24,6 +24,10 @@ let generate_append_expression identifier exp = Appendexpr (identifier, exp)
 let generate_variable_with_type_spec identifiers typename expressions = VarSpecWithType(identifiers,typename,expressions)
 let generate_variable_without_type_spec identifiers expressions = VarSpecWithoutType(identifiers,expressions)
 let generate_variable_decl varspecs = VarDcl(varspecs)
+let generate_type_spec identifier typename = TypeSpec(identifier, typename)
+let generate_type_decl typespecs = TypeDcl(typespecs)
+
+
 let generate_unary_expression op exp = match op with 
 									| '-' -> Unaryexpr(UnaryMinus(exp))
 									| '+' -> Unaryexpr(UnaryPlus(exp))

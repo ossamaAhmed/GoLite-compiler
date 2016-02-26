@@ -117,12 +117,12 @@ toplevel_declaration_list:
 	;
 
 toplevel_declaration:
-    | declaration {()}
+    | declaration { ()}
 	| func_declaration {()}
 	;
 declaration:
-    | variable_declaration {()}
-	| type_declaration {()}
+    | variable_declaration { () }
+	| type_declaration { () }
     ;
 variable_declaration:
 	| VAR varspec {generate_variable_decl [$2]}
@@ -138,15 +138,15 @@ varspec:
 	| identifier_list EQ expression_list { generate_variable_without_type_spec $1 $3 }
 	;
 type_declaration:
-	| TYPE type_spec {()}
-	| TYPE OPEN_PAREN type_spec_list CLOSE_PAREN {()}
+	| TYPE type_spec { generate_type_decl [$2] }
+	| TYPE OPEN_PAREN type_spec_list CLOSE_PAREN { generate_type_decl $3 }
 	;
 type_spec_list:
-	| {()}
-	| type_spec SEMICOLON type_spec_list {()}
+	| {[]}
+	| type_spec SEMICOLON type_spec_list {$1::$3}
 	;
 type_spec:
-	| IDENTIFIER type_i {()}
+	| IDENTIFIER type_i { generate_type_spec (generate_symbol $1) $2}
 	;
 type_i:
 	| IDENTIFIER { generate_defined_type $1 } (*NOT SURE IF WE CAN DEFINE OUR OWN TYPES*)
@@ -223,7 +223,7 @@ func_args:
    (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
     | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
-    
+
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
 	| IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }

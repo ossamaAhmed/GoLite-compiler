@@ -61,6 +61,11 @@ type variablespec =
 type variabledcl =
 	| VarDcl of variablespec list
 
+type typespec =
+	| TypeSpec of identifier * type_i
+type typedcl =
+	| TypeDcl of typespec list
+
 (* type topleveldcl = 
 	| Functiondcl of 
 	| Variabledcl of 
