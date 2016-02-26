@@ -21,6 +21,7 @@ type varspec =
     and
     func_params = 
     | FuncParams of params list
+    | Empty
     and
     function_signature = 
     | Signature of func_params * result
@@ -41,9 +42,11 @@ type varspec =
     and
     switch_clause = 
     | SwitchClause of simple
+    | Empty
     and
     switch_expr = 
     | SwitchExpr of expression
+    | Empty
     and
     switch_case = 
     | Empty
@@ -51,6 +54,7 @@ type varspec =
     and
     switch_case_clause = 
     | SwitchCaseClause of switch_case * stmt list
+    | Empty
     and
     switch_case_block =
     | SwitchCaseBlock of switch_case_clause list
@@ -66,8 +70,7 @@ type varspec =
     | Decrement of expression
     and
     assign_op = 
-    | PlusEq
-    | StarEq
+    | AssignmentOP of sting
     and 
     assignment = 
     | AssignmentBare of expression list * expression list
