@@ -226,14 +226,10 @@ func_param_declaration:
 func_call_expr:
     | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
     ;
-
 func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
     | OPEN_PAREN expression_list CLOSE_PAREN {$2}
-   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
-    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
-
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
 	| IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }
@@ -473,14 +469,6 @@ unary_op:
     | MINUS {'-'}
     | NOT {'!'}
     | CARET {'^'}
-    ;
-
-(*STARTING FROM HERE IM NOT SURE IF GOLITE SUPPORT THESE*)
-arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
-    | OPEN_PAREN CLOSE_PAREN {()}
-    | OPEN_PAREN expression_list CLOSE_PAREN {()}
-   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
-    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
 composite_lit: 
     | literal_type {()}
