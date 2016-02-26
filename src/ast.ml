@@ -3,10 +3,7 @@ exception AST_error of string
 let ast_error msg = raise (AST_error msg)
 
 
-type block = 
-    | Stmt_list of stmt list
-    and
-    result = 
+type result = 
     | Emtpy
     | Result of type_i
     and    
@@ -23,7 +20,7 @@ type block =
     | FunctionSignature of func_params * result
     and
     function_def = 
-    | Function of func_signature * block
+    | Function of func_signature * stmt list
     and
     function_declaration = 
     | Functiondef of identifier * function_def
@@ -45,14 +42,14 @@ type block =
     | SwitchCaseClause of switch_case * stmt list
     | Empty
     and
-    switch_case_block =
-    | SwitchCaseBlock of switch_case_clause list
+    switch_case_stmt list =
+    | SwitchCasestmt list of switch_case_clause list
     and
     switch = 
-    | SwitchClauseExpr of switch_clause * switch_expr * switch_case_block
-    | SwitchClasue of switch_clause * switch_case_block
-    | SwitchExpr of switch_expr * switch_case_block
-    | SwitchBare of switch_case_block
+    | SwitchClauseExpr of switch_clause * switch_expr * switch_case_stmt list
+    | SwitchClasue of switch_clause * switch_case_stmt list
+    | SwitchExpr of switch_expr * switch_case_stmt list
+    | SwitchBare of switch_case_stmt list
     and
     incdec = 
     | Increment of expression
@@ -83,12 +80,12 @@ type block =
     | ForClauseCond of simple *condition *simple
     and
     for_stmt = 
-    | ForBlock of block
-    | ForCondition of condition * block
-    | ForClause of for_clause * block
+    | Forstmt list of stmt list
+    | ForCondition of condition * stmt list
+    | ForClause of for_clause * stmt list
     and
     else_stmt = 
-    | ElseSingle of if_stmt * block
+    | ElseSingle of if_stmt * stmt list
     | ElseIFMultitple of if_stmt * else_stmt
     | ElseIFSingle of if_stmt * if_stmt
     and
@@ -96,8 +93,8 @@ type block =
     | IfInitSimple of simple
     and
     if_stmt = 
-    | IfInit of if_init * condition * block
-    | IfNoInit of condition * block
+    | IfInit of if_init * condition * stmt list
+    | IfNoInit of condition * stmt list
     and
     conditional = 
     | IfStmt of if_stmt
@@ -118,13 +115,13 @@ type block =
     | Ret of rt_stmt
     | Break 
     | Continue 
-    | Block of block
+    | Block of stmt list
     | Conditional of conditional
     | Switch of switch
     | For of for_stmt
     | Simple of simple 
-    | Print of print_stmt
-    | Println of println_stmt
+    | Print of expression list
+    | Println of expresssion list
     | FunctionCall of function_call
     and
     identifier =
