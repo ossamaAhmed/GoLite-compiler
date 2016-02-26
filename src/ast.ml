@@ -122,7 +122,7 @@ type varspec =
     |Empty
     | ReturnStatement of expression list
     and
-     stmt = 
+    stmt = 
     | Declaration of declaration 
     | Ret of rt_stmt
     | Break 
@@ -192,7 +192,7 @@ type varspec =
 	| VarSpecWithType of identifier list * type_i * expression list
 	| VarSpecWithoutType of identifier list * expression list	
     and
-     typespec =
+    typespec =
 	| TypeSpec of identifier * type_i
     and
     dcl =

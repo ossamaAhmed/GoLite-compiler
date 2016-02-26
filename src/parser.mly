@@ -118,7 +118,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration { $1 }
-	| func_declaration { generate_func_decl "tempstuff"  } 
+	| func_declaration { generate_func_decl("temp") } 
 	;
 declaration:
     | variable_declaration { $1 }
@@ -193,42 +193,32 @@ slice_type:
 (* FUNCTION *)
 
 func_declaration:
-	| FUNC IDENTIFIER func_def {()}
-    | FUNC IDENTIFIER func_signature {()}
+	| FUNC IDENTIFIER func_signature block { "temp" };
 	;
-
-func_def: func_signature func_body {()};
-
-func_body: block {()}
-
-func_type: 
-    | FUNC func_signature {()}
-    ;
 func_signature:
-    | func_params result {()}
+    | func_params func_return_type {()}
     ;
-result: 
+func_return_type: 
     | {()}
     | type_i {()}
     ;
 func_params:
     | OPEN_PAREN func_params_list CLOSE_PAREN {()}
-    | OPEN_PAREN  CLOSE_PAREN {()}
+    | OPEN_PAREN CLOSE_PAREN {()}
     ;
 func_params_list:
     | func_param_declaration {()}
     | func_param_declaration COMMA func_params_list {()}
     ;
 func_param_declaration:
-    | identifier_list  type_i {()}
+    | identifier_list type_i {()}
     ;
-
 func_call_expr:
     | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
     ;
 func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
-    | OPEN_PAREN expression_list CLOSE_PAREN {$2}
+    | OPEN_PAREN expression_list CLOSE_PAREN { $2 }
     ;
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
@@ -300,7 +290,7 @@ println_stmt:
 condition: expression {()};
 
 return_stmt:
-    | RETURN expression_list {()}
+    | RETURN expression {()}
     ;
 
 if_init:
