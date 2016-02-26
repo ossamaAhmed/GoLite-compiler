@@ -93,11 +93,11 @@ let rec print_expressions exprlist = match exprlist with
 
 let print_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs) -> ( match exprs with
-																							| [] -> ""
+																							| [] -> "var "^(print_identifiers iden_list)^" "^(print_type_name typename)^";\n"
 																							| head::tail -> "var "^(print_identifiers iden_list)^" "^(print_type_name typename)^" = "^(print_expressions exprs)^";\n"
 																					)
 									| VarSpecWithoutType  (iden_list,exprs) -> ( match exprs with
-																							| [] -> ""
+																							| [] -> "var "^(print_identifiers iden_list)^";\n"
 																							| head::tail -> "var "^(print_identifiers iden_list)^" = "^(print_expressions exprs)^";\n")
 									| _ -> ast_error ("var_dcl error")
 let print_declaration decl = match decl with 
