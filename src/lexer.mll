@@ -184,7 +184,6 @@ let token_type_to_string token = match token with
     | STRINGLITERAL(string) -> "STRINGLITERAL"
     | RUNELITERAL(char) -> "RUNELITERAL"
     | IDENTIFIER(string) -> "IDENTIFIER"
-    | STRINGVAR(string) -> "STRINGVAR"
     | EOL -> "EOL\n"
     | EOF -> "EOF\n"
     | PLUS -> "PLUS"
@@ -267,7 +266,6 @@ let token_type_to_string token = match token with
     | PRINTLN -> "PRINTLN"
     | APPEND -> "APPEND"
     | STRUCT -> "STRUCT"
-    | UMINUS -> "UMINUS"
 
 let print_token token = match token with
     | EOL -> print_string "EOL\n"

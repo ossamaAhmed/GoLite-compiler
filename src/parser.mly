@@ -7,7 +7,6 @@ open GenerateAst
 
 %token <int> INTLITERAL
 %token <float> FLOATLITERAL
-%token <string> STRINGVAR
 %token <string> STRINGLITERAL
 %token <string> IDENTIFIER
 %token <char> RUNELITERAL
@@ -21,7 +20,6 @@ open GenerateAst
 %token OPEN_PAREN 
 %token CLOSE_PAREN 
 %token MINUS
-%token UMINUS
 %token BAR 
 %token MINUS_EQ 
 %token BAR_EQ 
@@ -99,7 +97,6 @@ open GenerateAst
 
 %left PLUS MINUS
 %left STAR SLASH
-%nonassoc UMINUS
 
 (* Start of parser *)
 %start parse
@@ -236,8 +233,23 @@ assignment:
     ;
 
 assign_op:
-    | PLUS_EQ {()}
-    | STAR_EQ {()}
+    | add_op_eq {()}
+    | mul_op_eq {()}
+    ;
+add_op_eq: 
+    | PLUS_EQ {"+"}
+    | MINUS_EQ {"-"}
+    | BAR_EQ {"|"}
+    | CARET_EQ {"^"}
+    ;
+mul_op_eq:
+    | STAR_EQ {"*"}
+    | SLASH_EQ {"/"}
+    | PERCENT_EQ {"%"}
+    | SHIFT_RIGHT_EQ {">>"}
+    | SHIFT_LEFT_EQ {"<<"}
+    | AND_EQ { "&"}
+    | AND_CARET_EQ { "&^" }
     ;
 
 block:
@@ -258,7 +270,7 @@ stmt:
     ;
 
 simple_stmt:
-  (*  | {()} *) (*WHY WOULD A SIMPLE STMT BE EMPTY*)
+    | {()}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
     | expression_stmt {()}
     | incdec_stmt {()}
     | assignment {()}
