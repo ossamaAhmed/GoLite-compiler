@@ -73,22 +73,23 @@ type result =
     and
     else_stmt = 
     | ElseSingle of if_stmt * stmt list
-    | ElseIFMultitple of if_stmt * else_stmt
+    | ElseIFMultiple of if_stmt * else_stmt
     | ElseIFSingle of if_stmt * if_stmt
     and
     if_init = 
+    | Empty
     | IfInitSimple of simple
     and
     if_stmt = 
     | IfInit of if_init * condition * stmt list
-    | IfNoInit of condition * stmt list
     and
     conditional = 
     | IfStmt of if_stmt
     | ElseStmt of else_stmt
     and
     rt_stmt = 
-    | ReturnStatement of expression list
+    | ReturnStatement of expression
+    | Empty
     and
     stmt = 
     | Declaration of dcl 
