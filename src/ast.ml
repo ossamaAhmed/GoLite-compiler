@@ -154,7 +154,7 @@ type func_return =
     dcl =
 	| TypeDcl of typespec list
 	| VarDcl of variablespec list
-	| FuncDcl of string (*TEMPORARY*)
+	| FuncDcl of func_declaration list
     and
     prog = 
-    |Prog of string * dcl list
+    | Prog of string * dcl list
