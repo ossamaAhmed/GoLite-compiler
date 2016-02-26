@@ -223,11 +223,7 @@ func_args:
    (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
     | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
-
-package_name:
-	| IDENTIFIER {()}
-	;
-
+    
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
 	| IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }
@@ -478,7 +474,6 @@ arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
    (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
     | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
     ;
-
 composite_lit: 
     | literal_type {()}
     | literal_value {()} 
@@ -514,7 +509,4 @@ function_lit:
 function_i: 
     | {()}
     ;
-
-
-
 %%
