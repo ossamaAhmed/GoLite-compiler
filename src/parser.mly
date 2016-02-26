@@ -115,7 +115,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration { $1 }
-	| func_declaration { generate_func_decl("temp") } 
+	| func_declaration { $1} 
 	;
 declaration:
     | variable_declaration { $1 }
@@ -193,29 +193,30 @@ func_declaration:
 	| FUNC IDENTIFIER func_signature block { generate_func_declaration($1,$2) }
     ;
 func_signature:
-    | func_params result { generate_func_signature($1,$2) }
+    | func_params result {generate_func_signature($1,$2)}
     ;
 result: 
     | {Empty}
     | type_i { generate_result($1) }
     ;
 func_params:
-    | OPEN_PAREN func_params_list CLOSE_PAREN { generate_func_params($2) }
-    | OPEN_PAREN  CLOSE_PAREN { generate_func_params([]) }
+    | OPEN_PAREN func_params_list CLOSE_PAREN {generate_func_params($2)}
+    | OPEN_PAREN  CLOSE_PAREN {generate_func_params([])}
     ;
 func_params_list:
-    | func_param_declaration { [$1] }
-    | func_param_declaration COMMA func_params_list { $1::$2 }
+    | func_param_declaration {[$1]}
+    | func_param_declaration COMMA func_params_list {$1::$2}
     ;
 func_param_declaration:
-    | identifier_list  type_i { generate_params($1,$2) }
+    | identifier_list  type_i {generate_params($1,$2)}
     ;
+
 func_call_expr:
     | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
     ;
 func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
-    | OPEN_PAREN expression_list CLOSE_PAREN { $2 }
+    | OPEN_PAREN expression_list CLOSE_PAREN {$2}
     ;
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
@@ -266,8 +267,8 @@ stmt:
     ;
 
 simple_stmt:
-    | {generate_simple_Empty()}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
-    | expression_stmt {generate_simple_expr($1)}
+    | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
+    | expression_stmt {$1}
     | incdec_stmt {generate_simple_incdec($1)}
     | assignment {generate_simple_assignment($1)}
     | short_var_decl {generate_simple_shortvardecl($1)}
