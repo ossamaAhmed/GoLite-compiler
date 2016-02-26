@@ -57,21 +57,16 @@ type expression =
 
 type variablespec = 
 	| VarSpecWithType of identifier list * type_i * expression list
-	| VarSpecWithoutType of identifier list * expression list
-type variabledcl =
-	| VarDcl of variablespec list
+	| VarSpecWithoutType of identifier list * expression list	
 
 type typespec =
 	| TypeSpec of identifier * type_i
-type typedcl =
+type dcl =
 	| TypeDcl of typespec list
+	| VarDcl of variablespec list
+	| FuncDcl of string (*TEMPORARY*)
 
-(* type topleveldcl = 
-	| Functiondcl of 
-	| Variabledcl of 
-	| Typedcl of 
 
-type package =
-	| Packagename of string
+type prog = Prog of string * dcl list
 
-type prog = Prog of package * topleveldcl list *)
+

@@ -151,30 +151,28 @@ rule golite = parse
     | rune_lit as r {
       last_token:= RUNELITERAL(String.get r 0); RUNELITERAL(String.get r 0)
     }
-    | '\n'     { line_number:= lexbuf.Lexing.lex_curr_p.pos_lnum; match !last_token with
-                                            | IDENTIFIER(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
-                                            | INTLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
-                                            | FLOATLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
-                                            | RUNELITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
-                                            | STRINGLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | BREAK-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | CONTINUE -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | FALLTHROUGH -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | RETURN -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | DOUBLE_PLUS -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | DOUBLE_MINUS -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | CLOSE_PAREN ->last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | CLOSE_SQR_BRACKET ->last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | CLOSE_CUR_BRACKET -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | INT -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | FLOAT64 -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | RUNE -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
-                                            | STRING -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
-                                            | BOOL -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
-                                            | _ ->last_token:= EOL ;Lexing.new_line lexbuf; golite lexbuf } (* increment line number and char number *)
-    | blank    { last_token:= EOL; golite lexbuf } (* skipping blank characters *)
-    | one_line_comment {last_token:= EOL ;Lexing.new_line lexbuf;golite lexbuf }
-    | block_comment { last_token:= EOL ;Lexing.new_line lexbuf; golite lexbuf }
+    | '\n' | one_line_comment | block_comment { line_number:= lexbuf.Lexing.lex_curr_p.pos_lnum; match !last_token with
+                                                        | IDENTIFIER(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
+                                                        | INTLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
+                                                        | FLOATLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
+                                                        | RUNELITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
+                                                        | STRINGLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | BREAK-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | CONTINUE -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | FALLTHROUGH -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | RETURN -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | DOUBLE_PLUS -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | DOUBLE_MINUS -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | CLOSE_PAREN ->last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | CLOSE_SQR_BRACKET ->last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | CLOSE_CUR_BRACKET -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | INT -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | FLOAT64 -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | RUNE -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON 
+                                                        | STRING -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
+                                                        | BOOL -> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
+                                                        | _ ->last_token:= EOL ;Lexing.new_line lexbuf; golite lexbuf } (* increment line number and char number *)
+    | blank    { golite lexbuf } (* skipping blank characters *)
     | eof      { EOF } (* no more tokens *)
     | _        { raise (GoliteError ("Unknown token "^"on line "^(string_of_int (line_num lexbuf))^":"^(string_of_int (char_num lexbuf)))) }
 

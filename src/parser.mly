@@ -103,26 +103,26 @@ open GenerateAst
 
 (* Start of parser *)
 %start parse
-%type <unit> parse
+%type <Ast.prog> parse
 
 %%
 
 parse:
-    | PACKAGE IDENTIFIER SEMICOLON toplevel_declaration_list EOF {()}
+    | PACKAGE IDENTIFIER SEMICOLON toplevel_declaration_list EOF { generate_program $2 $4  }
 	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_number)) )) }
     ;
 toplevel_declaration_list:
-	| {()}
-	| toplevel_declaration SEMICOLON toplevel_declaration_list {()}
+	| {[]}
+	| toplevel_declaration SEMICOLON toplevel_declaration_list { $1::$3 }
 	;
 
 toplevel_declaration:
-    | declaration { ()}
-	| func_declaration {()}
+    | declaration { $1 }
+	| func_declaration { generate_func_decl "tempstuff"  } 
 	;
 declaration:
-    | variable_declaration { () }
-	| type_declaration { () }
+    | variable_declaration { $1 }
+	| type_declaration { $1 }
     ;
 variable_declaration:
 	| VAR varspec {generate_variable_decl [$2]}

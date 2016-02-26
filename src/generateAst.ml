@@ -1,4 +1,3 @@
-open Printf
 open Ast
 
 
@@ -26,7 +25,7 @@ let generate_variable_without_type_spec identifiers expressions = VarSpecWithout
 let generate_variable_decl varspecs = VarDcl(varspecs)
 let generate_type_spec identifier typename = TypeSpec(identifier, typename)
 let generate_type_decl typespecs = TypeDcl(typespecs)
-
+let generate_func_decl funcname = FuncDcl(funcname)  (*TEMPORARY*)
 
 let generate_unary_expression op exp = match op with 
 									| '-' -> Unaryexpr(UnaryMinus(exp))
@@ -53,6 +52,9 @@ let generate_bin_expression op exp1 exp2 = match op with
 									| "<<" -> Binaryexpr(SlOp(exp1,exp2))
 									| "&" -> Binaryexpr(AndOp(exp1,exp2))
 									| "&^" ->Binaryexpr(AndCaretOp(exp1,exp2))
+
+let generate_program packagename dcls = Prog(packagename,dcls)
+
 
 
 
