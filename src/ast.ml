@@ -2,14 +2,8 @@ exception AST_error of string
 
 let ast_error msg = raise (AST_error msg)
 
-type varspec = 
-    | Identifierlist of identifier list * type_i * expression list
-    and
-    variable_declaration =
-    | Varspec of varspec
-    | Varspeclist of varspec list
-    and
-    block = 
+
+type block = 
     | Stmt_list of stmt list
     and
     result = 
@@ -34,10 +28,6 @@ type varspec =
     function_declaration = 
     | Functiondef of identifier * function_def
     | Functionsig of identifier * func_signature
-    and
-    declaration =
-    | VariableDecl of variable_declaration
-    | FunctionDecl of function_declaration
     and
     switch_clause = 
     | SwitchClause of simple
@@ -121,17 +111,10 @@ type varspec =
     | FunctionCallExpr of identifier * func_args
     and
     rt_stmt = 
-    |Empty
-    | ReturnStatement of expression 
-    and
-    println_stmt =
-    | PrintlnStatement of expression list
-    and
-    print_stmt =
-    | PrintStatement of expression list
+    | ReturnStatement of expression list
     and
      stmt = 
-    | Declaration of declaration 
+    | Declaration of dcl 
     | Ret of rt_stmt
     | Break 
     | Continue 
