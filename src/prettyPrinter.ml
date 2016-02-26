@@ -88,8 +88,111 @@ let rec pretty_print_expression exp =
 												| _-> ast_error ("expression error")
 
 let rec print_expressions exprlist = match exprlist with
+
 									| head::[] -> pretty_print_expression head
 									| head::tail -> (pretty_print_expression head)^", "^(print_expressions tail)
+
+
+let rec print_stmts stmts = match stmts with
+									| head::[] -> print_stmt head
+									| head::tail -> (print_stmt head)^";\n"^(print_stmt tail)
+and print_stmt stmt = match stmt with
+				    | Declaration(dcl)-> print_declaration dcl (*DONE*)
+				    | Ret(rt_stmt)-> print_return_stmt rt_stmt (*DONE*)
+				    | Break -> "break" 
+				    | Continue -> "continue"
+				    | Block(stmt_list)-> print_stmts stmts (*DONE*)
+				    | Conditional(conditional)-> print_conditional conditional (*DONE*)
+				    | Switch(switch)-> print_switch_stmt switch
+				    | For(for_stmt)-> print_for_stmt for_stmt (*DONE*)
+				    | Simple(simple)-> print_simple_stmt simple 
+				    | Print(exprs)-> "print ("^(print_expressions exprs)^" )" (*DONE*)
+				    | Println(exprs)-> "println ("^(print_expressions exprs)^" )" (*DONE*)
+and print_return_stmt stmt= match stmt with
+							| Empty -> "return"
+							| ReturnStatement(expr)-> "return"^(print_expression exprs)
+and print_conditional cond = match cond with 
+							| IfStmt(if_stmt)-> print_if_stmt if_stmt
+							| ElseStmt(else_stmt)-> print_else_stmt else_stmt
+and print_if_stmt if_stmt = match if_stmt with
+							| IfInit(if_init, condition, stmts)-> "if "^(print_if_init if_init)^(print_condition condition)^"{\n"^(print_stmts stmts)^"}"
+							| IfNoInit(condition,stmts)-> "if "^(print_condition condition)^"{\n"^(print_stmts stmts)^"}"
+and print_if_init if_init = match if_init with
+							| IfInitSimple(simplestmt) -> (print_simple_stmt simplestmt)^";"
+and print_simple_stmt stmt = match stmt with 
+							| Empty -> ""
+							| SimpleExpression(expr)-> print_expression expr
+							| IncDec(incdec)-> print_inc_dec_stmt incdec 
+							| Assignment(assignment_stmt)-> print_assignment_stmt assignment_stmt
+							| ShortVardecl(short_var_decl)-> print_short_var_decl short_var_decl
+and  print_condition cond = match cod with 
+							| Empty -> ""
+							| ConditionExpression (expr)-> print_expression expr
+and print_else_stmt stmt =  match stmt with 
+							| ElseSingle(if_stmt,stmts)-> (print_if_stmt if_stmt)^" else {\n "^(print_stmts stmts)^"}"
+						    | ElseIFMultitple(if_stmt,else_stmt)->(print_if_stmt if_stmt)^" else "^(print_else_stmt else_stmt)
+						    | ElseIFSingle(if_stmt1,if_stmt2)->(print_if_stmt if_stmt1)^" else "^(print_if_stmt if_stmt2)
+and for_stmt stmt = match stmt with 
+				    | Forstmt(stmts)-> "for {\n"^(print_stmts stmts)^"}"
+				    | ForCondition(condition, stmts)-> "for "^(print_condition condition)^"{\n"^(print_stmts stmts)^"}"
+				    | ForClause (for_clause, stmts)-> "for "^(print_clause clause)^"{\n"^(print_stmts stmts)^"}"
+and print_clause clause= match clause with 
+						 | ForClauseCond(simple1,condition,simple2)-> "( "^(print_simple_stmt simple1)^"; "^(print_condition condition)^"; "^(print_simple_stmt simple2)^" )"
+
+
+and print_switch_stmt stmt = match stmt with
+							| SwitchClauseExpr(switch_clause,switch_expr,switch_case_stmts)->
+						    | SwitchClasue(switch_clause, switch_case_stmts)->
+						    | SwitchExpr(switch_expr,switch_case_stmts)->
+						    | SwitchBare (switch_case_stmts)->
+and print_inc_dec_stmt stmt = match stmt with 
+						 | Increment(expr)->(print_expression expr)^"++"
+   						 | Decrement(expr)->(print_expression)^"--"
+
+
+and print_assignment_stmt stmt = match stmt with 
+						    | AssignmentBare(exprs1,exprs2)-> (print_expressions exprs1)^" = "^(print_expressions exprs2)
+   						    | AssignmentOp(exprs1, assign_op, exprs2)-> (print_expressions exprs1)^assign_op^(print_expressions exprs2)
+
+
+    switch_clause = 
+    | SwitchClause of simple
+    | Empty
+    and
+    switch_expr = 
+    | SwitchExpr of expression
+    | Empty
+    and
+    switch_case = 
+    | Empty
+    | SwitchCase of expression list
+    and
+    and
+    switch_case_clause = 
+    | SwitchCaseClause of switch_case * stmt list
+    | Empty
+    and
+    switch_case_stmt list =
+    | SwitchCasestmt list of switch_case_clause list
+    and
+    switch = 
+    | SwitchClauseExpr of switch_clause * switch_expr * switch_case_stmt list
+    | SwitchClasue of switch_clause * switch_case_stmt list
+    | SwitchExpr of switch_expr * switch_case_stmt list
+    | SwitchBare of switch_case_stmt list
+    and
+    assign_op = 
+    | AssignmentOP of string
+    and 
+    assignment = 
+    | AssignmentBare of expression list * expression list
+    | AssignmentOp of expression * assign_op * expression
+    and
+    short_var_decl = 
+    | ShortVarDecl of identifier list * expression list
+
+
+
 
 let print_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs) -> ( match exprs with

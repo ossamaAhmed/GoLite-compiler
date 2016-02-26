@@ -42,7 +42,7 @@ type result =
     | SwitchCaseClause of switch_case * stmt list
     | Empty
     and
-    switch_case_stmt list =
+    switch_case_stmt =
     | SwitchCasestmt list of switch_case_clause list
     and
     switch = 
@@ -77,10 +77,10 @@ type result =
     | ConditionExpression of expression 
     and
     for_clause = 
-    | ForClauseCond of simple *condition *simple
+    | ForClauseCond of simple * condition * simple
     and
     for_stmt = 
-    | Forstmt list of stmt list
+    | Forstmt of stmt list
     | ForCondition of condition * stmt list
     | ForClause of for_clause * stmt list
     and
@@ -108,7 +108,8 @@ type result =
     | FunctionCallExpr of identifier * func_args
     and
     rt_stmt = 
-    | ReturnStatement of expression list
+    | ReturnStatement of expression
+    | Empty
     and
      stmt = 
     | Declaration of dcl 
@@ -122,7 +123,6 @@ type result =
     | Simple of simple 
     | Print of expression list
     | Println of expresssion list
-    | FunctionCall of function_call
     and
     identifier =
 	| Identifier of string
