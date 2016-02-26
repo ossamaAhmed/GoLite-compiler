@@ -265,8 +265,8 @@ stmt:
     | switch_stmt {()}
     | for_stmt {()}
     | simple_stmt {()}
-    | print_stmt {()}
-    | println_stmt {()}
+    | print_stmt {(generate_print($1))}
+    | println_stmt {generate_println($1)}
     ;
 
 simple_stmt:
@@ -296,30 +296,32 @@ expression_stmt:
     ;
 
 print_stmt:
-    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {()}
+    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {generate_print_stmt($2)}
     ;
 
 println_stmt:
-    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {()}
+    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {generate_println_stmt($2)}
     ;
 
 condition: expression {()};
 
+(* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression_list {()}
+    | RETURN expression {generate_rt_stmt($2)}
+    | RETURN {generate_rt_stmt(Empty)}
     ;
 
 if_init:
-    | simple_stmt SEMICOLON {()} (*I ADDED HERE A SEMICOLON*)
+    | simple_stmt SEMICOLON {(generate_if_init($1))} (*I ADDED HERE A SEMICOLON*)
     ;
 
 if_stmt:
-    | IF condition block {()}
-    | IF if_init condition block {()}
+    | IF condition block {generate_if_stmt(generate_if_init(Empty),generate_condition($2),generate_block($3))}
+    | IF if_init condition block {generate_if_stmt(generate_if_init($2),generate_condition($3),generate_block($4))}
     ;
 
 else_stmt: 
-    | if_stmt ELSE block {()}
+    | if_stmt ELSE block {(generate_else_single($1,$2)}
     | if_stmt ELSE else_stmt {()}
     | if_stmt ELSE if_stmt {()}
     ;
@@ -371,11 +373,11 @@ expr_switch_case:
     ;
 
 break_stmt: 
-    | BREAK {()}
+    | BREAK {(generate_break())}
     ;
 
 continue_stmt:
-    | CONTINUE {()}
+    | CONTINUE {(generate_continue())}
     ;
 
 (*EXPRESSIONS PART*)

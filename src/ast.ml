@@ -120,7 +120,13 @@ type varspec =
     and
     rt_stmt = 
     |Empty
-    | ReturnStatement of expression list
+    | ReturnStatement of expression 
+    and
+    println_stmt =
+    | PrintlnStatement of expression list
+    and
+    print_stmt =
+    | PrintStatement of expression list
     and
      stmt = 
     | Declaration of declaration 
@@ -132,8 +138,8 @@ type varspec =
     | Switch of switch
     | For of for_stmt
     | Simple of simple 
-    | Print of expression list
-    | Println of expression list
+    | Print of print_stmt
+    | Println of println_stmt
     | FunctionCall of function_call
     and
     identifier =
