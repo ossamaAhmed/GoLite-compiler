@@ -41,9 +41,6 @@ type result =
     switch_case_stmt =
     | SwitchCasestmt of switch_case_clause list
     and
-    switch = 
-    | Switch of switch_clause * switch_expr * switch_case_stmt list
-    and
     incdec = 
     | Increment of expression
     | Decrement of expression
@@ -73,7 +70,7 @@ type result =
     | ForClauseCond of simple *condition *simple
     and
     for_stmt = 
-    | Forstmt list of stmt list
+    | Forstmt of stmt list
     | ForCondition of condition * stmt list
     | ForClause of for_clause * stmt list
     and
@@ -93,13 +90,6 @@ type result =
     | IfStmt of if_stmt
     | ElseStmt of else_stmt
     and
-    func_args = 
-    | Empty
-    | FunctionArgs of expression list
-    and
-    function_call = 
-    | FunctionCallExpr of identifier * func_args
-    and
     rt_stmt = 
     | ReturnStatement of expression list
     and
@@ -110,7 +100,7 @@ type result =
     | Continue 
     | Block of stmt list
     | Conditional of conditional
-    | Switch of switch
+    | Switch of switch_clause * switch_expr * switch_case_stmt list
     | For of for_stmt
     | Simple of simple 
     | Print of expression list

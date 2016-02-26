@@ -239,8 +239,8 @@ assignment:
     ;
 
 assign_op:
-    | add_op_eq {generate_assingment_op($1)}
-    | mul_op_eq {generate_assignment_op($1)}
+    | add_op_eq {$1}
+    | mul_op_eq {$1}
     ;
 add_op_eq: 
     | PLUS_EQ {"+="}
@@ -268,7 +268,7 @@ stmt:
     | continue_stmt {generate_continue_stmt($1)}
     | block {generate_block_stmt($1)}
     | conditional_stmt {generate_conditional_stmt($1)}
-    | switch_stmt {generate_switch_stmt($1)}
+    | switch_stmt {$1}
     | for_stmt {generate_for_stmt($1)}
     | simple_stmt {generate_simple_stmt($1)}
     | print_stmt {(generate_print($1))}
