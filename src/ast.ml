@@ -93,8 +93,8 @@ type result =
     rt_stmt = 
     | ReturnStatement of expression list
     and
-     stmt = 
-    | Declaration of dcl 
+    stmt = 
+    | Declaration of declaration 
     | Ret of rt_stmt
     | Break 
     | Continue 
@@ -162,7 +162,7 @@ type result =
 	| VarSpecWithType of identifier list * type_i * expression list
 	| VarSpecWithoutType of identifier list * expression list	
     and
-     typespec =
+    typespec =
 	| TypeSpec of identifier * type_i
     and
     dcl =
