@@ -3,28 +3,18 @@ exception AST_error of string
 let ast_error msg = raise (AST_error msg)
 
 
-type result = 
-    | Emtpy
-    | Result of type_i
+type func_return = 
+    | Empty
+    | FuncReturnType of type_i
     and    
-    params = 
-    | ParamDeclaration of identifier list * type_i
-    and
     func_params = 
-    | FuncParams of params list
-    and
-    function_signature = 
-    | Signature of func_params * result
+    | FuncParams of typespec list
     and
     func_signature = 
-    | FunctionSignature of func_params * result
+    | FuncSig of func_params * func_return
     and
-    function_def = 
+    func_declaration = 
     | Function of func_signature * stmt list
-    and
-    function_declaration = 
-    | Functiondef of identifier * function_def
-    | Functionsig of identifier * func_signature
     and
     switch_clause = 
     | SwitchClause of simple
@@ -93,7 +83,7 @@ type result =
     and
     stmt = 
     | Declaration of dcl 
-    | Ret of rt_stmt
+    | Return of rt_stmt
     | Break 
     | Continue 
     | Block of stmt list
@@ -165,7 +155,7 @@ type result =
     dcl =
 	| TypeDcl of typespec list
 	| VarDcl of variablespec list
-	| FuncDcl of string (*TEMPORARY*)
+	| FuncDcl of func_declaration list
     and
     prog = 
-    |Prog of string * dcl list
+    | Prog of string * dcl list
