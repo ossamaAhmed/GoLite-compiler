@@ -192,13 +192,12 @@ slice_type:
 func_declaration:
 	| FUNC IDENTIFIER func_signature block { generate_func_declaration($1,$2) }
     ;
-
 func_signature:
     | func_params result { generate_func_signature($1,$2) }
     ;
 result: 
     | {Empty}
-    | type_i {generate_result($1)}
+    | type_i { generate_result($1) }
     ;
 func_params:
     | OPEN_PAREN func_params_list CLOSE_PAREN { generate_func_params($2) }
