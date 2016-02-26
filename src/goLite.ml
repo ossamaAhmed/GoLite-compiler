@@ -10,9 +10,9 @@ let _ =
             let filename= (Filename.basename file) in
             let out = (Filename.chop_extension filename) in
             let lexbuf= Lexing.from_channel (open_in file) in
-(*             Lexer.print_tokens lexbuf;
- *)            let myprog= Parser.parse Lexer.golite lexbuf in
-            let _=PrettyPrinter.print_pretty_program myprog out in
+            (* Lexer.print_tokens lexbuf; *)
+            let myprog = Parser.parse Lexer.golite lexbuf in
+            let _ = PrettyPrinter.pretty_print myprog out in
             print_string ("Valid\n"); 
         with 
             | Parser.Error -> print_string("Invalid grammar\n"); exit 0;
