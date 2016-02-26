@@ -109,7 +109,7 @@ open GenerateAst
 
 parse:
     | PACKAGE IDENTIFIER SEMICOLON toplevel_declaration_list EOF { generate_program $2 $4  }
-	| error { raise (GoliteError (Printf.sprintf "Syntax Error at (%d)" ((!line_number)) )) }
+	| error { raise (GoliteError (Printf.sprintf "Syntax Error at %d" ((!line_number)) )) }
     ;
 toplevel_declaration_list:
 	| {[]}
@@ -133,9 +133,19 @@ varspec_list:
     | varspec SEMICOLON varspec_list { $1::$3}
     ;
 varspec:
-	| identifier_list type_i  EQ expression_list { generate_variable_with_type_spec $1 $2 $4}
-    | identifier_list type_i  { generate_variable_with_type_spec $1 $2 []}
-	| identifier_list EQ expression_list { generate_variable_without_type_spec $1 $3 }
+	| identifier_list type_i EQ expression_list {
+        if List.length $1 = List.length $4 then
+            generate_variable_with_type_spec $1 $2 $4
+        else
+            raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) ))
+    }
+    | identifier_list type_i { generate_variable_with_type_spec $1 $2 [] }
+	| identifier_list EQ expression_list { 
+        if List.length $1 = List.length $3 then
+            generate_variable_without_type_spec $1 $3
+        else
+            raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) ))
+    }
 	;
 type_declaration:
 	| TYPE type_spec { generate_type_decl [$2] }
@@ -167,7 +177,7 @@ array_type:
 	| OPEN_SQR_BRACKET INTLITERAL CLOSE_SQR_BRACKET type_i { generate_array_type $2 $4}
 	;
 struct_type:
-	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET {  generate_struct_type $3 }
+	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET { generate_struct_type $3 }
 	;
 field_dcl_list:
 	| { [] }
