@@ -1,5 +1,6 @@
 %{
 open Error
+open GenerateAst
 %}
 
 (* Tokens *)
@@ -139,11 +140,6 @@ varspec_optional_expression_list:
     | {()}
     | EQ expression_list {()}
     ;
-expression_list:
-    | {()}
-	| expression {()}
-    | expression COMMA expression_list {()}
-	;
 type_declaration:
 	| TYPE type_spec {()}
 	| TYPE OPEN_PAREN type_spec_list CLOSE_PAREN {()}
@@ -155,43 +151,36 @@ type_spec_list:
 type_spec:
 	| IDENTIFIER type_i {()}
 	;
-element_type:
-	| type_i {()}
-	;
 type_i:
-	| IDENTIFIER {()}
-    | IDENTIFIER selector {()}
-	| type_lit {()}
-	| OPEN_PAREN type_i CLOSE_PAREN {()}
+	| IDENTIFIER { generate_defined_type $1 } (*NOT SURE IF WE CAN DEFINE OUR OWN TYPES*)
+	| type_lit { $1 }
+	| OPEN_PAREN type_i CLOSE_PAREN { $2 }
 	;
 type_lit:
-    | INT {()}
-    | RUNE {()}
-    | STRING {()}
-    | FLOAT64 {()}
-    | BOOL {()}
-	| array_type {()}
-	| struct_type {()}
-	| slice_type {()}
+    | INT { generate_primitive_type "int" }
+    | RUNE { generate_primitive_type "rune" }
+    | STRING {generate_primitive_type "string"}
+    | FLOAT64 {generate_primitive_type "float64"}
+    | BOOL { generate_primitive_type "bool"}
+	| array_type { $1 }
+	| struct_type {$1}
+	| slice_type { $1 }
 	;
 array_type:
-	| OPEN_SQR_BRACKET array_length CLOSE_SQR_BRACKET element_type {()}
-	;
-array_length:
-	| INTLITERAL {()}
+	| OPEN_SQR_BRACKET INTLITERAL CLOSE_SQR_BRACKET type_i { generate_array_type $2 $4}
 	;
 struct_type:
-	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET {()}
+	| STRUCT  OPEN_CUR_BRACKET field_dcl_list CLOSE_CUR_BRACKET {  generate_struct_type $3 }
 	;
 field_dcl_list:
-	| {()}
-	| field_dcl SEMICOLON field_dcl_list {()}
+	| { [] }
+	| field_dcl SEMICOLON field_dcl_list { $1::$3 }
 	;
 field_dcl:
-	| identifier_list type_i  {()}
+	| identifier_list type_i  { ($1,$2) }
     ;
 slice_type:
-	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET element_type {()}
+	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET type_i { generate_slice_type $3 }
 	;
 
 function_declaration:
@@ -231,8 +220,8 @@ package_name:
 	;
 
 identifier_list:
-	| IDENTIFIER {()}
-	| IDENTIFIER COMMA identifier_list {()}
+	| IDENTIFIER { [generate_symbol $1] }
+	| IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }
 	;
 
 (*TODO: CHECK THAT LHS IS AN LVALUE *)
@@ -372,37 +361,118 @@ continue_stmt:
     | CONTINUE {()}
     ;
 
-(*TODO: EXPRESSIONS*)
-operand:
-    | literal {()}
-  (*  | operand_name {()} *) (*REPITITION WITH TYPE_NAME*)
-    | OPEN_PAREN expression CLOSE_PAREN {()}
+
+(*EXPRESSIONS PART*)
+expression_list:
+    | {[]}
+    | expression {[$1]}
+    | expression COMMA expression_list {$1::$3}
     ;
-operand_name:
-    | IDENTIFIER {()}
+expression: 
+    | unary_expr { $1 }
+    | expression binary_op expression {  generate_bin_expression $2 $1 $3  }  (*CAUSING SHIFT REDUCE CONFLICTS*)
+    ;
+unary_expr:
+    | primary_expr {$1} 
+    | unary_op unary_expr { generate_unary_expression $1 $2 }
+    ;
+primary_expr:
+    | operand { $1 }
+    | primary_expr index { generate_index_expr $1 $2}
+    | primary_expr selector { generate_selector_expr $1 $2 }
+   (* | primary_expr slice {()} *)   (*I SKIPPED GENERATING THIS FOR NOW*)
+   (* | type_lit type_assertion {()} *)
+  (*  | primary_expr arguments {()} *) (*REPLACE THIS WITH MICHAELS VERSION*)
+    ;
+operand:
+    | literal { $1 }
+    | IDENTIFIER { generate_operator $1 }  (*REPITITION WITH TYPE_NAME*)
+    | OPEN_PAREN expression CLOSE_PAREN { $2 }
     ;
 literal:
-    | basic_lit {()}
-    | composite_lit {()}  (*CAUSING CONFLICT*)
+      | basic_lit {$1}
+ (*   | composite_lit {()} *) (*CAUSING CONFLICT AND NOT SURE IF WE SHOULD SUPPORT THIS*)
 (*    | function_lit {()} *)
     ;
 basic_lit:
-    | INTLITERAL {()}
-    | FLOATLITERAL {()}
-    | RUNELITERAL {()}
-    | STRINGLITERAL {()}
+    | INTLITERAL { generate_integer $1 }
+    | FLOATLITERAL { generate_float $1 }
+    | RUNELITERAL { generate_rune $1 }
+    | STRINGLITERAL { generate_string $1 }
     ;
-(*TODO: COMPOSITELIT*)
+index: 
+    | OPEN_SQR_BRACKET expression CLOSE_SQR_BRACKET { $2 }
+    ;
+selector:
+    | DOT IDENTIFIER { generate_symbol $2 }
+    ;
+slice: (*NOT SURE IF THIS SUPPORTED IN GOLITE*)
+    | OPEN_SQR_BRACKET  COLON  CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET expression COLON expression CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET COLON expression CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET expression COLON  CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
+    | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
+    ;
+type_assertion:
+    | DOT OPEN_PAREN IDENTIFIER CLOSE_PAREN {()}
+    ;
+binary_op:
+    | DOUBLE_BAR {"||"}
+    | DOUBLE_AND {"&&"}
+    | rel_op {$1}
+    | add_op {$1}
+    | mul_op {$1}
+    ;
+rel_op: 
+    | DOUBLE_EQ {"=="}
+    | NOT_EQ {"!="}
+    | LT {"<"}
+    | GT {">"}
+    | LT_EQ {"<="}
+    | GT_EQ { ">="}
+    ;
+add_op: 
+    | PLUS {"+"}
+    | MINUS {"-"}
+    | BAR {"|"}
+    | CARET {"^"}
+    ;
+mul_op:
+    | STAR {"*"}
+    | SLASH {"/"}
+    | PERCENT {"%"}
+    | SHIFT_RIGHT {">>"}
+    | SHIFT_LEFT {"<<"}
+    | AND { "&"}
+    | AND_CARET { "&^" }
+    ;
+unary_op:
+    | PLUS { '+' }
+    | MINUS {'-'}
+    | NOT {'!'}
+    | CARET {'^'}
+    ;
+
+
+
+(*STARTING FROM HERE IM NOT SURE IF GOLITE SUPPORT THESE*)
+arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
+    | OPEN_PAREN CLOSE_PAREN {()}
+    | OPEN_PAREN expression_list CLOSE_PAREN {()}
+   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
+    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
+    ;
+
 composite_lit: 
     | literal_type {()}
-  (*  | literal_value {()} *)
+    | literal_value {()} 
     ; 
 literal_type:
     | struct_type {()}
     | array_type {()}
-    | OPEN_SQR_BRACKET TRIPLE_DOT CLOSE_SQR_BRACKET element_type {()}
+    | OPEN_SQR_BRACKET TRIPLE_DOT CLOSE_SQR_BRACKET type_i {()}
     | slice_type {()}
-    | IDENTIFIER {()}
 literal_value: (*NOT SURE IF WE SHOULD INCLUDE THIS IN GOLITE*)
     | OPEN_CUR_BRACKET element_list CLOSE_CUR_BRACKET {()}
     ;
@@ -429,81 +499,9 @@ function_lit:
 function_i: 
     | {()}
     ;
-(*EXPRESSIONS PART*)
-expression: 
-    | unary_expr {()}
-    | expression binary_op expression {()}  (*CAUSING SHIFT REDUCE CONFLICTS*)
-    ;
-unary_expr:
-    | primary_expr {()} 
-    | unary_op unary_expr {()}
-    ;
-(*NOT SURE ABOUT PRIMARY EXPRESSION*)
-primary_expr:
-    | operand {()}
-    | primary_expr index {()}
-    | primary_expr selector {()}
-    | primary_expr slice {()}
-    | primary_expr type_assertion {()}
-    | primary_expr arguments {()}
-    ;
-selector:
-    | DOT IDENTIFIER {()}
-    ;
-index: 
-    | OPEN_SQR_BRACKET expression CLOSE_SQR_BRACKET {()}
-    ;
-slice:
-    | OPEN_SQR_BRACKET  COLON  CLOSE_SQR_BRACKET {()}
-    | OPEN_SQR_BRACKET expression COLON expression CLOSE_SQR_BRACKET
-    | OPEN_SQR_BRACKET COLON expression CLOSE_SQR_BRACKET
-    | OPEN_SQR_BRACKET expression COLON  CLOSE_SQR_BRACKET
-    | OPEN_SQR_BRACKET  COLON expression COLON expression CLOSE_SQR_BRACKET {()}
-    | OPEN_SQR_BRACKET expression COLON expression COLON expression CLOSE_SQR_BRACKET {()}
-    ;
-type_assertion:
-    | DOT OPEN_PAREN type_i CLOSE_PAREN {()}
-    ;
-arguments: (*HAVE TO CHECK WHAT IS SUPPORTED IN GOLITE*)
-    | OPEN_PAREN CLOSE_PAREN {()}
-    | OPEN_PAREN expression_list CLOSE_PAREN {()}
-   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
-    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
-    ;
-binary_op:
-    | DOUBLE_BAR {()}
-    | DOUBLE_AND {()}
-    | rel_op {()}
-    | add_op {()}
-    | mul_op {()}
-    ;
-rel_op: 
-    | DOUBLE_EQ {()}
-    | NOT_EQ {()}
-    | LT {()}
-    | GT {()}
-    | LT_EQ {()}
-    | GT_EQ {()}
-    ;
-add_op: 
-    | PLUS {()}
-    | MINUS {()}
-    | BAR {()}
-    | CARET {()}
-    ;
-mul_op:
-    | STAR {()}
-    | SLASH {()}
-    | PERCENT {()}
-    | SHIFT_RIGHT {()}
-    | SHIFT_LEFT {()}
-    | AND {()}
-    | AND_CARET {()}
-    ;
-unary_op:
-    | PLUS {()}
-    | MINUS {()}
-    | NOT {()}
-    | CARET {()}
-    ;
+
+
+
+
+
 %%

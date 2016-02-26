@@ -5,7 +5,7 @@ func main() {
 
         x :=1;
 
-        for ;;{
+        for ;;{ //not supported in golite
               println(x)
               x++;
               break;

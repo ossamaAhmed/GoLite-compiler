@@ -13,10 +13,14 @@ func main() {
                                 println(true && false)
                                     println(true || false)
                                         println(!true)
-}x := 5; x < y {
+
+                x := 5; if x < y {
         return x
 } else if x > z {
         return z
 } else {
         return y
 }
+}
+
+
