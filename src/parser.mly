@@ -258,7 +258,7 @@ stmt:
     ;
 
 simple_stmt:
-  (*  | {()} *) (*WHY WOULD A SIMPLE STMT BE EMPTY*)
+    | {()}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
     | expression_stmt {()}
     | increment_stmt {()}
     | assignment {()}

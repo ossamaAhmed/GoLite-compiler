@@ -43,7 +43,6 @@ type expression =
 	| Indexexpr of expression * expression
 	| Unaryexpr of expression
 	| Binaryexpr of expression
-	| Sliceexpr of expression * expression * expression * expression (*May be we have to break it down to 6 cases if we cant pass null values*)
 	| FuncCallExpr of identifier * expression list (*needs to be revised*)
 	| UnaryPlus of expression
 	| UnaryMinus of expression
