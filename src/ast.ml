@@ -34,22 +34,15 @@ type result =
     | SwitchExpr of expression
     | Empty
     and
-    switch_case = 
-    | Empty
-    | SwitchCase of expression list
-    and
     switch_case_clause = 
-    | SwitchCaseClause of switch_case * stmt list
+    | SwitchCaseClause of expression list * stmt list
     | Empty
     and
-    switch_case_stmt list =
-    | SwitchCasestmt list of switch_case_clause list
+    switch_case_stmt =
+    | SwitchCasestmt of switch_case_clause list
     and
     switch = 
-    | SwitchClauseExpr of switch_clause * switch_expr * switch_case_stmt list
-    | SwitchClasue of switch_clause * switch_case_stmt list
-    | SwitchExpr of switch_expr * switch_case_stmt list
-    | SwitchBare of switch_case_stmt list
+    | Switch of switch_clause * switch_expr * switch_case_stmt list
     and
     incdec = 
     | Increment of expression
