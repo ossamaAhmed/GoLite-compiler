@@ -1,14 +1,12 @@
 open Ast
 
+let generate_func_declaration funcSig stmtList = Function(funcSig,stmtList)
+let generate_func_params paramsList = FuncParams(paramsList)
+let generate_func_signature paramsList result = FunctionSignature(paramsList,result)
+
 let generate_result typeiden = Result(typeiden)
 let generate_params paramList typeiden = ParamDeclaration(paramList,typeiden)
 
-let generate_func_declaration funcSig stmtList = Function(funcSig,stmtList)
-let generate_func_params paramsList = FuncParams(paramsList)
-let generate_func_signature paramsList result = FunctionSignature(paramsList, result)
-
-let generate_func_declDef ident funcDef = Functiondef(ident,funcDef)
-let generate_fun_declSig ident sign = Functionsig(ident,sign)
 let generate_switch switchClause switchExpr switchCase = Switch(switchClause,switchExpr,switchCase)
 
 let generate_switch_clause simple = SwitchClause(simple)
