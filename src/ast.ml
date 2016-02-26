@@ -44,14 +44,15 @@ type expression =
 	| Unaryexpr of expression
 	| Binaryexpr of expression
 	| Sliceexpr of expression * expression * expression * expression (*May be we have to break it down to 6 cases if we cant pass null values*)
-	| Argumentsexpr of type_i * expression list (*needs to be revised*)
+	| FuncCallExpr of identifier * expression list (*needs to be revised*)
 	| UnaryPlus of expression
 	| UnaryMinus of expression
 	| UnaryNot of expression
 	| UnaryCaret of expression
 	| Value of literal
 	| Selectorexpr of expression * identifier
-	| Typeassertionexpr of identifier * type_i
+	| TypeCastExpr of string * expression
+	| Appendexpr of identifier * expression
 
 
 

@@ -118,7 +118,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration {()}
-	| function_declaration {()}
+	| func_declaration {()}
 	;
 declaration:
     | variable_declaration {()}
@@ -183,37 +183,49 @@ slice_type:
 	| OPEN_SQR_BRACKET CLOSE_SQR_BRACKET type_i { generate_slice_type $3 }
 	;
 
-function_declaration:
-	| FUNC IDENTIFIER functiondef {()}
-    | FUNC IDENTIFIER signature {()}
+(* FUNCTION *)
+
+func_declaration:
+	| FUNC IDENTIFIER func_def {()}
+    | FUNC IDENTIFIER func_signature {()}
 	;
-functiondef: signature functionbody {()};
 
-functionbody: block {()}
+func_def: func_signature func_body {()};
 
-(*TODO: IMPLEMENT SIGNATURES *)
-function_type: 
-    | FUNC signature {()}
+func_body: block {()}
+
+func_type: 
+    | FUNC func_signature {()}
     ;
-signature:
-    | parameters result {()}
+func_signature:
+    | func_params result {()}
     ;
 result: 
     | {()}
     | type_i {()}
     ;
-parameters:
-    | OPEN_PAREN parameters_list CLOSE_PAREN {()}
+func_params:
+    | OPEN_PAREN func_params_list CLOSE_PAREN {()}
     | OPEN_PAREN  CLOSE_PAREN {()}
     ;
-parameters_list:
-    | parameter_declaration {()}
-    | parameter_declaration COMMA parameters_list {()}
+func_params_list:
+    | func_param_declaration {()}
+    | func_param_declaration COMMA func_params_list {()}
     ;
-parameter_declaration:
+func_param_declaration:
     | identifier_list  type_i {()}
     ;
-(*DONE IMPLEMENTING SIGNATURES*)
+
+func_call_expr:
+    | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
+    ;
+
+func_args:
+    | OPEN_PAREN CLOSE_PAREN {[]}
+    | OPEN_PAREN expression_list CLOSE_PAREN {$2}
+   (* | OPEN_PAREN type_i COMMA expression_list  CLOSE_PAREN  {()}
+    | OPEN_PAREN type_i   CLOSE_PAREN  {()} *)
+    ;
 
 package_name:
 	| IDENTIFIER {()}
@@ -250,6 +262,7 @@ stmt:
     | simple_stmt {()}
     | print_stmt {()}
     | println_stmt {()}
+    | func_call_expr {()}
     ;
 
 simple_stmt:
@@ -361,7 +374,6 @@ continue_stmt:
     | CONTINUE {()}
     ;
 
-
 (*EXPRESSIONS PART*)
 expression_list:
     | {[]}
@@ -378,11 +390,12 @@ unary_expr:
     ;
 primary_expr:
     | operand { $1 }
+    | func_call_expr { $1}
+    | append_expr { $1 }
     | primary_expr index { generate_index_expr $1 $2}
     | primary_expr selector { generate_selector_expr $1 $2 }
+    | type_cast OPEN_PAREN primary_expr CLOSE_PAREN { generate_type_casting_expr $1 $3 }
    (* | primary_expr slice {()} *)   (*I SKIPPED GENERATING THIS FOR NOW*)
-   (* | type_lit type_assertion {()} *)
-  (*  | primary_expr arguments {()} *) (*REPLACE THIS WITH MICHAELS VERSION*)
     ;
 operand:
     | literal { $1 }
@@ -391,7 +404,7 @@ operand:
     ;
 literal:
       | basic_lit {$1}
- (*   | composite_lit {()} *) (*CAUSING CONFLICT AND NOT SURE IF WE SHOULD SUPPORT THIS*)
+(*   | composite_lit {()} *) (*CAUSING CONFLICT AND NOT SURE IF WE SHOULD SUPPORT THIS*)
 (*    | function_lit {()} *)
     ;
 basic_lit:
@@ -500,8 +513,15 @@ function_i:
     | {()}
     ;
 
-
-
-
+append_expr:
+    | APPEND OPEN_PAREN IDENTIFIER COMMA expression CLOSE_PAREN { generate_append_expression (generate_symbol $3) $5}
+    ;
+type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
+    | IDENTIFIER { $1 }
+    | INT { "int" }
+    | RUNE {"rune"}
+    | FLOAT64 {"float64"}
+    | BOOL {"bool"}
+    ;
 
 %%
