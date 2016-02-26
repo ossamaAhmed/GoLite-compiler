@@ -3,11 +3,9 @@ open Ast
 
 let file = ref "../your_program.go"
 let oc = ref stdout
-let set_file filename= (file := "../"^filename^".pretty.go"); oc:= (open_out (!file))
-let write_message message= fprintf (!oc) "%s" message   (* write something *)   
-let close oc= close_out oc
-let indentstack = Stack.create
-
+let set_file filename = (file := "../"^filename^".pretty.go"); oc:= (open_out (!file))
+let write_message message = fprintf (!oc) "%s" message   (* write something *)   
+let close oc = close_out oc
 let indentation = Stack.create()
 let _= Stack.push "" indentation
 let indent ="  "
@@ -107,13 +105,11 @@ let print_declaration decl = match decl with
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
 								| FuncDcl(value)-> write_message ("func declaration here\n")
 
-let print_pretty_program program filename= 
+let pretty_print program filename= 
 							let _= set_file filename in 
 								 (match program with
 									  | Prog(packagename,dcllist)->
 									          let _=write_message ("package "^(packagename)^" ;\n") in 
 											  (List.map print_declaration dcllist))
-
-
 
 
