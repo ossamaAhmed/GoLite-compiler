@@ -13,7 +13,12 @@ let generate_switch_clause simple = SwitchClause(simple)
 let generate_switch_expr exp = SwitchExpr(exp)
 
 let generate_switch_case_clause expList stmtList = SwitchCaseClause(expList,stmtList)
-let generate_switch_case_block clauseList = SwithcCasestmt(clauseList)
+let generate_switch_case_block clauseList = SwitchCasestmt(clauseList)
+let generate_inc exp = Increment(exp)
+let generate_dec exp = Decrement(exp)
+
+let generate_assign_bare expl1 expl2 = AssignmentBare(expl1,exl2)
+let generate_assign_op exp1 op exp2 = AssignmentOP(exp1,op,exp2)
 
 let generate_symbol identifier = Identifier(identifier)
 let generate_operator identifier = OperandName(identifier)

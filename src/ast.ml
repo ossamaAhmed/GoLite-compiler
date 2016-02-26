@@ -45,12 +45,9 @@ type result =
     | Increment of expression
     | Decrement of expression
     and
-    assign_op = 
-    | AssignmentOP of string
-    and 
     assignment = 
     | AssignmentBare of expression list * expression list
-    | AssignmentOp of expression * assign_op * expression
+    | AssignmentOp of expression * string * expression
     and
     short_var_decl = 
     | ShortVarDecl of identifier list * expression list
@@ -95,7 +92,7 @@ type result =
     | Empty
     and
     stmt = 
-    | Declaration of declaration 
+    | Declaration of dcl 
     | Ret of rt_stmt
     | Break 
     | Continue 
@@ -105,7 +102,7 @@ type result =
     | For of for_stmt
     | Simple of simple 
     | Print of expression list
-    | Println of expresssion list
+    | Println of expression list
     and
     identifier =
 	| Identifier of string
