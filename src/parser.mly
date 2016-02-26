@@ -115,7 +115,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration { $1 }
-	| func_declaration { $1} 
+	| func_declaration { generate_func_decl("temp") } 
 	;
 declaration:
     | variable_declaration { $1 }
@@ -190,42 +190,32 @@ slice_type:
 (* FUNCTION *)
 
 func_declaration:
-	| FUNC IDENTIFIER func_def {generate_func_declDef($2,$3)}
-    | FUNC IDENTIFIER func_signature {generate_func_declSig($2,$3)}
-	;
-
-func_def: func_signature func_body {generate_func_def($1,$2)};
-
-func_body: block {$1}
-
-func_type: 
-    | FUNC func_signature {()}
+	| FUNC IDENTIFIER func_signature block { generate_func_declaration($1,$2) }
     ;
 func_signature:
-    | func_params result {generate_func_signature($1,$2)}
+    | func_params result { generate_func_signature($1,$2) }
     ;
 result: 
     | {Empty}
-    | type_i {generate_result($1)}
+    | type_i { generate_result($1) }
     ;
 func_params:
-    | OPEN_PAREN func_params_list CLOSE_PAREN {generate_func_params($2)}
-    | OPEN_PAREN  CLOSE_PAREN {generate_func_params([])}
+    | OPEN_PAREN func_params_list CLOSE_PAREN { generate_func_params($2) }
+    | OPEN_PAREN  CLOSE_PAREN { generate_func_params([]) }
     ;
 func_params_list:
-    | func_param_declaration {[$1]}
-    | func_param_declaration COMMA func_params_list {$1::$2}
+    | func_param_declaration { [$1] }
+    | func_param_declaration COMMA func_params_list { $1::$2 }
     ;
 func_param_declaration:
-    | identifier_list  type_i {generate_params($1,$2)}
+    | identifier_list  type_i { generate_params($1,$2) }
     ;
-
 func_call_expr:
     | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
     ;
 func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
-    | OPEN_PAREN expression_list CLOSE_PAREN {$2}
+    | OPEN_PAREN expression_list CLOSE_PAREN { $2 }
     ;
 identifier_list:
 	| IDENTIFIER { [generate_symbol $1] }
@@ -239,8 +229,8 @@ assignment:
     ;
 
 assign_op:
-    | add_op_eq {generate_assingment_op($1)}
-    | mul_op_eq {generate_assignment_op($1)}
+    | add_op_eq {$1}
+    | mul_op_eq {$1}
     ;
 add_op_eq: 
     | PLUS_EQ {"+="}
@@ -268,7 +258,7 @@ stmt:
     | continue_stmt {generate_continue_stmt($1)}
     | block {generate_block_stmt($1)}
     | conditional_stmt {generate_conditional_stmt($1)}
-    | switch_stmt {generate_switch_stmt($1)}
+    | switch_stmt {$1}
     | for_stmt {generate_for_stmt($1)}
     | simple_stmt {generate_simple_stmt($1)}
     | print_stmt {(generate_print($1))}

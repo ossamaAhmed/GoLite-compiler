@@ -41,9 +41,6 @@ type result =
     switch_case_stmt =
     | SwitchCasestmt of switch_case_clause list
     and
-    switch = 
-    | Switch of switch_clause * switch_expr * switch_case_stmt list
-    and
     incdec = 
     | Increment of expression
     | Decrement of expression
@@ -97,14 +94,14 @@ type result =
     | ReturnStatement of expression
     | Empty
     and
-     stmt = 
-    | Declaration of dcl 
+    stmt = 
+    | Declaration of declaration 
     | Ret of rt_stmt
     | Break 
     | Continue 
     | Block of stmt list
     | Conditional of conditional
-    | Switch of switch
+    | Switch of switch_clause * switch_expr * switch_case_stmt list
     | For of for_stmt
     | Simple of simple 
     | Print of expression list
@@ -165,7 +162,7 @@ type result =
 	| VarSpecWithType of identifier list * type_i * expression list
 	| VarSpecWithoutType of identifier list * expression list	
     and
-     typespec =
+    typespec =
 	| TypeSpec of identifier * type_i
     and
     dcl =
