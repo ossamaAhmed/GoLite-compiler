@@ -270,7 +270,7 @@ stmt:
 simple_stmt:
   (*  | {()} *) (*WHY WOULD A SIMPLE STMT BE EMPTY*)
     | expression_stmt {()}
-    | increment_stmt {()}
+    | incdec_stmt {()}
     | assignment {()}
     | short_var_decl {()}
     ;
@@ -284,7 +284,7 @@ short_var_decl:
     | identifier_list COLON_EQ expression_list {()}
     ;
 
-increment_stmt:
+incdec_stmt:
     | expression DOUBLE_PLUS {()}
     | expression DOUBLE_MINUS {()}
     ;
