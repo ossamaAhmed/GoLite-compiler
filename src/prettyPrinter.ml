@@ -103,7 +103,7 @@ and print_stmt stmt = match stmt with
 				    | Continue -> "continue"
 				    | Block(stmt_list)-> print_stmts stmts (*DONE*)
 				    | Conditional(conditional)-> print_conditional conditional (*DONE*)
-				    | Switch(switch)-> print_switch_stmt switch
+				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> "switch "^(print_switch_clause switch_clause)^" "^(print_switch_expression switch_expr)^" {\n"^(print_switch_case_stmt switch_case_stmts)^"}"
 				    | For(for_stmt)-> print_for_stmt for_stmt (*DONE*)
 				    | Simple(simple)-> print_simple_stmt simple 
 				    | Print(exprs)-> "print ("^(print_expressions exprs)^" )" (*DONE*)
@@ -140,59 +140,31 @@ and print_clause clause= match clause with
 						 | ForClauseCond(simple1,condition,simple2)-> "( "^(print_simple_stmt simple1)^"; "^(print_condition condition)^"; "^(print_simple_stmt simple2)^" )"
 
 
-and print_switch_stmt stmt = match stmt with
-							| SwitchClauseExpr(switch_clause,switch_expr,switch_case_stmts)->
-						    | SwitchClasue(switch_clause, switch_case_stmts)->
-						    | SwitchExpr(switch_expr,switch_case_stmts)->
-						    | SwitchBare (switch_case_stmts)->
+and print_switch_clause clause = match clause with
+								| Empty -> ""
+								| SwitchClause(simple_stmt) -> (print_simple_stmt simple_stmt)^";"
+and print_switch_expression expr = match expr with 
+								| Empty -> ""
+								| SwitchExpr(expr)-> (print_expression expr)	
+and print_switch_case_clause clause = match clause with 
+								| Empty -> ""
+								| SwitchCaseClause(exprs, stmts)-> (match exprs with
+																	| []->	"default : "^(print_stmts stmts)
+																	| head::tail -> "case "^(print_expressions exprs)^" : "^(print_stmts stmts)
+																	)	
+
+and print_switch_case_stmt stmts = match stmts with
+								| SwitchCasestmt(switch_case_clauses)->(print_list(List.map print_switch_case_clause switch_case_clauses))						
 and print_inc_dec_stmt stmt = match stmt with 
 						 | Increment(expr)->(print_expression expr)^"++"
    						 | Decrement(expr)->(print_expression)^"--"
-
 
 and print_assignment_stmt stmt = match stmt with 
 						    | AssignmentBare(exprs1,exprs2)-> (print_expressions exprs1)^" = "^(print_expressions exprs2)
    						    | AssignmentOp(exprs1, assign_op, exprs2)-> (print_expressions exprs1)^assign_op^(print_expressions exprs2)
 
-
-    switch_clause = 
-    | SwitchClause of simple
-    | Empty
-    and
-    switch_expr = 
-    | SwitchExpr of expression
-    | Empty
-    and
-    switch_case = 
-    | Empty
-    | SwitchCase of expression list
-    and
-    and
-    switch_case_clause = 
-    | SwitchCaseClause of switch_case * stmt list
-    | Empty
-    and
-    switch_case_stmt list =
-    | SwitchCasestmt list of switch_case_clause list
-    and
-    switch = 
-    | SwitchClauseExpr of switch_clause * switch_expr * switch_case_stmt list
-    | SwitchClasue of switch_clause * switch_case_stmt list
-    | SwitchExpr of switch_expr * switch_case_stmt list
-    | SwitchBare of switch_case_stmt list
-    and
-    assign_op = 
-    | AssignmentOP of string
-    and 
-    assignment = 
-    | AssignmentBare of expression list * expression list
-    | AssignmentOp of expression * assign_op * expression
-    and
-    short_var_decl = 
-    | ShortVarDecl of identifier list * expression list
-
-
-
+and print_short_var_decl dcl = match dcl with
+							| ShortVarDecl(idens, exprs)-> (print_identifiers idens)^" := "^(print_expressions exprs)
 
 let print_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs) -> ( match exprs with
@@ -203,6 +175,7 @@ let print_variable_declaration decl= match decl with
 																							| [] -> "var "^(print_identifiers iden_list)^";\n"
 																							| head::tail -> "var "^(print_identifiers iden_list)^" = "^(print_expressions exprs)^";\n")
 									| _ -> ast_error ("var_dcl error")
+
 let print_declaration decl = match decl with 
 								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))

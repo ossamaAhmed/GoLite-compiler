@@ -101,7 +101,7 @@ type result =
     | Continue 
     | Block of stmt list
     | Conditional of conditional
-    | Switch of switch_clause * switch_expr * switch_case_stmt list
+    | Switch of switch_clause * switch_expr * switch_case_stmt
     | For of for_stmt
     | Simple of simple 
     | Print of expression list
