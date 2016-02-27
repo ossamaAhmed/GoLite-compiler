@@ -3,7 +3,7 @@ package main
 func main(){
     type( 
         num int;
-    point stuct {
+    point struct {
         y, x float64
     }
     )

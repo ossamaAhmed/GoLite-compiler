@@ -2,7 +2,7 @@
 for foldername in ./TEST_PROGRAMS/*; do
 	for filename in $foldername/*; do 
 	echo "$filename" 
-	./run $filename 
+	./src/goLite.native $filename 
 	done
         
 done
