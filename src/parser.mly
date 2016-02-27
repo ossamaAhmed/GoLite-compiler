@@ -205,11 +205,7 @@ func_params:
     | OPEN_PAREN  CLOSE_PAREN { FuncParams([]) }
     ;
 func_params_list:
-    | func_param_declaration COMMA func_params_list { $1 @ $3 }
-    | func_param_declaration { $1 }
-    ;
-
-func_param_declaration:
+    | identifier_list type_i COMMA func_params_list { (generate_type_spec_list $1 $2) @ $4 }
     | identifier_list type_i { generate_type_spec_list $1 $2 }
     ;
 

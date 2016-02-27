@@ -42,9 +42,8 @@ let rec print_type_name type_name = match type_name with
 																let _= Stack.pop indentation in result
 let rec print_identifiers_with_type idenlist = match idenlist with
 									| [] -> ""
-									| TypeSpec(Identifier(value),return_type)::[] -> value
+									| TypeSpec(Identifier(value),return_type)::[] -> value^" "^(print_type_name return_type)
 									| TypeSpec(Identifier(value),return_type)::tail -> value^" "^(print_type_name return_type)^", "^(print_identifiers_with_type tail)
-
 
 let print_type_declaration decl = match decl with
 								| TypeSpec(Identifier(value), typename)-> (Stack.top indentation)^"type "^value^" "^(print_type_name typename)^"\n"
