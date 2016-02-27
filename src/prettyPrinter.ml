@@ -149,7 +149,7 @@ and print_for_stmt stmt = match stmt with
 				    | ForCondition(condition, stmts)-> "for "^(print_condition condition)^"{\n"^(print_stmts stmts)^"}"
 				    | ForClause (for_clause, stmts)-> "for "^(print_clause for_clause)^"{\n"^(print_stmts stmts)^"}"
 and print_clause clause= match clause with 
-						 | ForClauseCond(simple1,condition,simple2)-> "( "^(print_simple_stmt simple1)^"; "^(print_condition condition)^"; "^(print_simple_stmt simple2)^" )"
+						 | ForClauseCond(simple1,condition,simple2)-> " "^(print_simple_stmt simple1)^"; "^(print_condition condition)^"; "^(print_simple_stmt simple2)^" "
 
 
 and print_switch_clause clause = match clause with
@@ -193,7 +193,7 @@ and print_signature signature = match signature with
 	FuncSig(FuncParams(func_params), return_type) -> "("^(print_identifiers_with_type func_params)^")"^" "^(print_signature_return_type return_type)
 
 and print_function_declaration func_name signature stmts =
-	"func "^(func_name)^(print_signature signature)^"{\n"^(print_stmts stmts)^"}"
+	"func "^(func_name)^(print_signature signature)^"{\n"^(print_stmts stmts)^"};\n"
 
 let pretty_print program filename= 
 							let _= set_file filename in 
