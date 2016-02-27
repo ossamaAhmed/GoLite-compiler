@@ -63,6 +63,11 @@ let generate_type_spec identifier typename = TypeSpec(identifier, typename)
 let generate_type_decl typespecs = TypeDcl(typespecs)
 let generate_func_decl funcname = FuncDcl(funcname)  (*TEMPORARY*)
 
+let generate_println expressions = Println(expressions)
+let generate_print expressions = Print(expressions)
+let generate_simple_stmt stmt = Simple(stmt)
+let generate_conditional_stmt stmt = Conditional(stmt)
+let generate_block_stmt stmt = Block(stmt)
 let generate_unary_expression op exp = match op with 
 									| '-' -> Unaryexpr(UnaryMinus(exp))
 									| '+' -> Unaryexpr(UnaryPlus(exp))

@@ -257,10 +257,10 @@ block:
     | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {$2};
 
 stmt: 
-    | declaration {generate_decl_stmt($1)}
-    | return_stmt {generate_return_stmt($1)}
-    | break_stmt {generate_break_stmt($1)}
-    | continue_stmt {generate_continue_stmt($1)}
+    | declaration {Declaration($1)}
+    | return_stmt {  Return($1) }
+    | break_stmt { $1 }
+    | continue_stmt { $1 }
     | block {generate_block_stmt($1)}
     | conditional_stmt {generate_conditional_stmt($1)}
     | switch_stmt {$1}
@@ -284,7 +284,7 @@ stmt_list:
     ;
 
 short_var_decl: 
-    | identifier_list COLON_EQ expression_list {generate_short_var_decl $1 $3}
+    | identifier_list COLON_EQ expression_list {ShortVarDecl($1,$3) }
     ;
 
 incdec_stmt:
@@ -297,19 +297,19 @@ expression_stmt:
     ;
 
 print_stmt:
-    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {generate_print_stmt $2 }
+    | PRINT OPEN_PAREN expression_list CLOSE_PAREN { $3 }
     ;
 
 println_stmt:
-    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {generate_println_stmt $2 }
+    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN { $3 }
     ;
 
 condition: expression {generate_condition $1 };
 
 (* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression {generate_return $1 }
-    | RETURN {Empty}
+    | RETURN expression {generate_return $2 }
+    | RETURN { Empty }
     ;
 
 if_init:
@@ -349,7 +349,7 @@ post_stmt:
 
 switch_stmt:
     | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 $3 $5}
-    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty $2 4 }
+    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty $2 $4 }
     | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 Empty $4 }
     | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty Empty $3 }
     
