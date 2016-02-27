@@ -1,7 +1,6 @@
 package main
 
-func main()
-{
+func main(){
     var (
     x,x1 int;
     y,y4 = 43,45

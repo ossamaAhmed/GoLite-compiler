@@ -1,6 +1,5 @@
 package main
 
-func main()
-{
-    // this is a comment
+func main(){
+    var x int;
 }
