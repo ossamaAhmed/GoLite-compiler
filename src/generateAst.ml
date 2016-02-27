@@ -1,10 +1,6 @@
 open Ast
 
-let generate_func_declaration funcSig stmtList = Function(funcSig,stmtList)
-let generate_func_params paramsList = FuncParams(paramsList)
-let generate_func_signature paramsList result = FunctionSignature(paramsList,result)
-
-let generate_result typeiden = Result(typeiden)
+let generate_result typeiden = FuncReturnType(typeiden)
 let generate_params paramList typeiden = ParamDeclaration(paramList,typeiden)
 
 let generate_switch switchClause switchExpr switchCase = Switch(switchClause,switchExpr,switchCase)
@@ -17,8 +13,33 @@ let generate_switch_case_block clauseList = SwitchCasestmt(clauseList)
 let generate_inc exp = Increment(exp)
 let generate_dec exp = Decrement(exp)
 
-let generate_assign_bare expl1 expl2 = AssignmentBare(expl1,exl2)
-let generate_assign_op exp1 op exp2 = AssignmentOP(exp1,op,exp2)
+let generate_assign_bare expl1 expl2 = AssignmentBare(expl1,expl2)
+let generate_assign_op exp1 op exp2 = AssignmentOp(exp1,op,exp2)
+
+let generate_simple_exp exp = SimpleExpression(exp)
+let generate_simple_incdec incdec = IncDec(incdec)
+let generate_simple_assignment assi = Assignment(assi)
+let generate_simple_shortvardecl svd = ShortVardecl(svd)
+
+let generate_condition exp = ConditionExpression(exp)
+
+let generate_for_stmt f = For(f)
+let generate_for_block stmtlst = Forstmt(stmtlst)
+let generate_for_cond_block cond stmtlst = ForCondition(cond,stmtlst)
+let generate_for_clause_block clause stmtlst = ForClause(clause,stmtlst)
+
+let generate_for_clause simple1 cond simple2 = ForClauseCond(simple1,cond,simple2)
+
+let generate_if_stmt ifinit cond stmtlst = IfInit(ifinit,cond,stmtlst)
+let generate_if_init simple = IfInitSimple(simple)
+
+let generate_conditional_if ifstmt = IfStmt(ifstmt)
+let generate_conditional_else elsestmt = ElseStmt(elsestmt)
+
+let generate_else_single ifstmt stmtlst = ElseSingle(ifstmt,stmtlst)
+let generate_else_multiple ifstmt elsestmt = ElseIFMultiple(ifstmt,elsestmt)
+let generate_else_if if1 if2 = ElseIFSingle(if1,if2)
+let generate_return exp = ReturnStatement(exp)
 
 let generate_symbol identifier = Identifier(identifier)
 let generate_operator identifier = OperandName(identifier)

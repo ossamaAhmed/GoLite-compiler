@@ -115,7 +115,7 @@ toplevel_declaration_list:
 
 toplevel_declaration:
     | declaration { $1 }
-	| func_declaration { $1} 
+	| func_declaration { $1 } 
 	;
 declaration:
     | variable_declaration { $1 }
@@ -127,7 +127,7 @@ variable_declaration:
 	;
 varspec_list:
     | {[]}
-    | varspec SEMICOLON varspec_list { $1::$3}
+    | varspec SEMICOLON varspec_list { $1::$3 }
     ;
 varspec:
 	| identifier_list type_i EQ expression_list {
@@ -190,25 +190,26 @@ slice_type:
 (* FUNCTION *)
 
 func_declaration:
-	| FUNC IDENTIFIER func_signature block { generate_func_declaration($1,$2) }
+	| FUNC IDENTIFIER func_signature block { Function($3,$4) }
     ;
 func_signature:
-    | func_params result {generate_func_signature($1,$2)}
+    | func_params func_return { FuncSig($1,$2) }
     ;
-result: 
-    | {Empty}
-    | type_i { generate_result($1) }
+func_return: 
+    | { Empty }
+    | type_i { FuncReturnType($1) }
     ;
 func_params:
-    | OPEN_PAREN func_params_list CLOSE_PAREN {generate_func_params($2)}
-    | OPEN_PAREN  CLOSE_PAREN {generate_func_params([])}
+    | OPEN_PAREN func_params_list CLOSE_PAREN { FuncParams($2) }
+    | OPEN_PAREN  CLOSE_PAREN { FuncParams([]) }
     ;
 func_params_list:
-    | func_param_declaration {[$1]}
-    | func_param_declaration COMMA func_params_list {$1::$2}
+    | func_param_declaration COMMA func_params_list { $1::$2 }
+    | func_param_declaration { [$1] }
     ;
+
 func_param_declaration:
-    | identifier_list  type_i {generate_params($1,$2)}
+    | identifier_list type_i { List.map TypeSpec(a,$2) $1 }
     ;
 
 func_call_expr:
@@ -268,7 +269,7 @@ stmt:
 
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
-    | expression_stmt {$1}
+    | expression_stmt {generate_simple_exp($1)}
     | incdec_stmt {generate_simple_incdec($1)}
     | assignment {generate_simple_assignment($1)}
     | short_var_decl {generate_simple_shortvardecl($1)}
@@ -304,7 +305,7 @@ condition: expression {generate_condition($1)};
 
 (* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression {$2}
+    | RETURN expression {generate_return($1)}
     | RETURN {Empty}
     ;
 
@@ -313,7 +314,7 @@ if_init:
     ;
 
 if_stmt:
-    | IF condition block {generate_if_stmt(generate_if_init(Empty),$2,$3)}
+    | IF condition block {generate_if_stmt(Empty,$2,$3)}
     | IF if_init condition block {generate_if_stmt($2,$3,$4)}
     ;
 
@@ -335,7 +336,7 @@ for_stmt:
     ;
 for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
     | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause($1,$2,$3)}
-    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause($1,generate_condition(Empty),$4)}
+    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause($1,Empty,$4)}
     ;
 
 init_stmt: 
