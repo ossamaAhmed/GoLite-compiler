@@ -182,16 +182,13 @@ and print_short_var_decl dcl = match dcl with
 and print_declaration decl = match decl with 
 								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
-								| Function(signature,stmts)-> write_message (print_function_declaration signature stmts)
+								| Function(func_name,signature,stmts)-> write_message (print_function_declaration signature stmts)
 
 and print_signature signature = match signature with
 	FuncSig(FuncParams(func_params), FuncReturnType(return_type)) -> (print_identifiers_with_type func_params)^":"^(print_type_name return_type)
 
 and print_function_declaration signature stmts =
 	(print_signature signature)^(print_stmts stmts)
-
-
-
 
 let pretty_print program filename= 
 							let _= set_file filename in 
