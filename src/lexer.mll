@@ -81,7 +81,7 @@ let blank = [' ' '\r' '\t']
 let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
 let one_line_comment = ('/' '/') (notnewline)* '\n'
-let block_comment = ('/' '*') [^'*''/']* ('*' '/')
+let block_comment = ('/' '*') (_)* ('*' '/')
 
 let identifier = (alpha | '_') (alpha | digit | '_')*
 
