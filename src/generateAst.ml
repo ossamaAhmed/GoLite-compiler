@@ -8,6 +8,7 @@ let generate_switch_expr exp = SwitchExpr(exp)
 let rec generate_type_spec_list identifier_list type_i =
 	match identifier_list with
 	| x::xs -> TypeSpec(x,type_i) :: (generate_type_spec_list xs type_i)
+	| x::[] -> [TypeSpec(x,type_i)]
 	| [] -> []
 
 let generate_switch_case_clause expList stmtList = SwitchCaseClause(expList,stmtList)
