@@ -5,6 +5,11 @@ let generate_switch switchClause switchExpr switchCase = Switch(switchClause,swi
 let generate_switch_clause simple = SwitchClause(simple)
 let generate_switch_expr exp = SwitchExpr(exp)
 
+let rec generate_type_spec_list identifier_list type_i =
+	match identifier_list with
+	| x::xs -> TypeSpec(x,type_i) :: (generate_type_spec_list xs type_i)
+	| [] -> []
+
 let generate_switch_case_clause expList stmtList = SwitchCaseClause(expList,stmtList)
 let generate_switch_case_block clauseList = SwitchCasestmt(clauseList)
 let generate_inc exp = Increment(exp)

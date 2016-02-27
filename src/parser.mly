@@ -205,15 +205,12 @@ func_params:
     | OPEN_PAREN  CLOSE_PAREN { FuncParams([]) }
     ;
 func_params_list:
-    | func_param_declaration COMMA func_params_list { [] }
-    | func_param_declaration { [] }
+    | func_param_declaration COMMA func_params_list { $1 @ $3 }
+    | func_param_declaration { $1 }
     ;
 
 func_param_declaration:
-    | identifier_list type_i {
-        let create_typespec x = TypeSpec(x,$2) in
-        List.map create_typespec $1
-    }
+    | identifier_list type_i { generate_type_spec_list $1 $2 }
     ;
 
 func_call_expr:
