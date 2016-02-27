@@ -229,8 +229,8 @@ identifier_list:
 
 (*TODO: CHECK THAT LHS IS AN LVALUE *)
 assignment:
-    | expression_list EQ expression_list {generate_assign_bare($1,$3)}
-    | expression assign_op expression {generate_assign_op($1,$2,$3)}
+    | expression_list EQ expression_list {generate_assign_bare $1 $3 }
+    | expression assign_op expression {generate_assign_op $1 $2 $3 }
     ;
 
 assign_op:
@@ -272,10 +272,10 @@ stmt:
 
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
-    | expression_stmt {generate_simple_exp($1)}
-    | incdec_stmt {generate_simple_incdec($1)}
-    | assignment {generate_simple_assignment($1)}
-    | short_var_decl {generate_simple_shortvardecl($1)}
+    | expression_stmt {generate_simple_exp $1 }
+    | incdec_stmt {generate_simple_incdec $1 }
+    | assignment {generate_simple_assignment $1 }
+    | short_var_decl {generate_simple_shortvardecl $1 }
     ;
 
 stmt_list: 
@@ -284,12 +284,12 @@ stmt_list:
     ;
 
 short_var_decl: 
-    | identifier_list COLON_EQ expression_list {generate_short_var_decl($1,$3)}
+    | identifier_list COLON_EQ expression_list {generate_short_var_decl $1 $3}
     ;
 
 incdec_stmt:
-    | expression DOUBLE_PLUS {generate_inc($1)}
-    | expression DOUBLE_MINUS {generate_dec($1)}
+    | expression DOUBLE_PLUS {generate_inc $1 }
+    | expression DOUBLE_MINUS {generate_dec $1 }
     ;
 
 expression_stmt:
@@ -297,49 +297,49 @@ expression_stmt:
     ;
 
 print_stmt:
-    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {generate_print_stmt($2)}
+    | PRINT OPEN_PAREN expression_list CLOSE_PAREN {generate_print_stmt $2 }
     ;
 
 println_stmt:
-    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {generate_println_stmt($2)}
+    | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN {generate_println_stmt $2 }
     ;
 
-condition: expression {generate_condition($1)};
+condition: expression {generate_condition $1 };
 
 (* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression {generate_return($1)}
+    | RETURN expression {generate_return $1 }
     | RETURN {Empty}
     ;
 
 if_init:
-    | simple_stmt SEMICOLON {(generate_if_init($1))} (*I ADDED HERE A SEMICOLON*)
+    | simple_stmt SEMICOLON { generate_if_init $1} (*I ADDED HERE A SEMICOLON*)
     ;
 
 if_stmt:
-    | IF condition block {generate_if_stmt(Empty,$2,$3)}
-    | IF if_init condition block {generate_if_stmt($2,$3,$4)}
+    | IF condition block {generate_if_stmt Empty $2 $3 }
+    | IF if_init condition block {generate_if_stmt $2 $3 $4 }
     ;
 
 else_stmt: 
-    | if_stmt ELSE block {generate_else_single($1,$3)}
-    | if_stmt ELSE else_stmt {generate_else_multiple($1,$3)}
-    | if_stmt ELSE if_stmt {generate_else_if($1,$2)}
+    | if_stmt ELSE block {generate_else_single $1 $3 }
+    | if_stmt ELSE else_stmt {generate_else_multiple $1 $3 }
+    | if_stmt ELSE if_stmt {generate_else_if $1 $2 }
     ;
 
 conditional_stmt: 
-    | if_stmt {(generate_conditional_if($1))}
-    | else_stmt {generate_conditional_else($1)}
+    | if_stmt {(generate_conditional_if $1)}
+    | else_stmt {generate_conditional_else $1 }
     ;
 
 for_stmt:
-    | FOR block {generate_for_block($2)}
-    | FOR  condition block {generate_for_cond_block($2,$3)}
-    | FOR  for_clause block {generate_for_clause_block($2,$3)} 
+    | FOR block {generate_for_block $2 }
+    | FOR  condition block {generate_for_cond_block $2 $3 }
+    | FOR  for_clause block {generate_for_clause_block $2 $3 } 
     ;
 for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
-    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause($1,$2,$3)}
-    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause($1,Empty,$4)}
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause $1 $2 $3 }
+    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause $1 Empty $4 }
     ;
 
 init_stmt: 
@@ -348,37 +348,37 @@ post_stmt:
     | simple_stmt {$1};
 
 switch_stmt:
-    | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch($2,$3,$5)}
-    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(Empty,$2,4)}
-    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch($2,Empty,$4)}
-    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch(Empty,Empty,$3)}
+    | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 $3 $5}
+    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty $2 4 }
+    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 Empty $4 }
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty Empty $3 }
     
 
 switch_clause:
-    | simple_stmt SEMICOLON  {generate_switch_clause($1)}
+    | simple_stmt SEMICOLON  {generate_switch_clause $1 }
     ;
 
 switch_expr_clause:
-    | expression {generate_switch_expr($1)}
+    | expression {generate_switch_expr $1 }
     ;
 expr_case_clause_list:
-    | {generate_switch_case_block(Empty)}
-    | expr_case_clause expr_case_clause_list {generate_switch_case_block($2)}
+    | {generate_switch_case_block Empty }
+    | expr_case_clause expr_case_clause_list {generate_switch_case_block $2 }
 expr_case_clause: 
-    | expr_switch_case COLON stmt_list {generate_switch_case_clause($1,$3)}
+    | expr_switch_case COLON stmt_list {generate_switch_case_clause $1 $3 }
     ;
 
 expr_switch_case: 
-    | CASE expression_list {($2)}
+    | CASE expression_list { $2 }
     | DEFAULT {[]}
     ;
 
 break_stmt: 
-    | BREAK {(generate_break())}
+    | BREAK { Break }
     ;
 
 continue_stmt:
-    | CONTINUE {(generate_continue())}
+    | CONTINUE { Continue }
     ;
 
 (*EXPRESSIONS PART*)

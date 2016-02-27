@@ -1,8 +1,5 @@
 open Ast
 
-let generate_result typeiden = FuncReturnType(typeiden)
-let generate_params paramList typeiden = ParamDeclaration(paramList,typeiden)
-
 let generate_switch switchClause switchExpr switchCase = Switch(switchClause,switchExpr,switchCase)
 
 let generate_switch_clause simple = SwitchClause(simple)
