@@ -106,7 +106,7 @@ let print_variable_declaration decl= match decl with
 let print_declaration decl = match decl with 
 								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
-								(* | FuncDcl(value)-> write_message ("func declaration here\n") *)
+								(* | FuncDcl(value)-> write_message ("func declaration here\n") *) 
 
 let rec  print_stmts stmts = match stmts with
 									| head::[] -> print_stmt head
