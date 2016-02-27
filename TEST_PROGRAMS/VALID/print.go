@@ -1,7 +1,6 @@
 package main
 
-func main()
-{
+func main(){
     print("hello")
     println("hellO")
     print("hello\n")

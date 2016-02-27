@@ -1,7 +1,6 @@
 package main
 
-func main()
-{
+func main(){
     type( 
         num int;
     point stuct {

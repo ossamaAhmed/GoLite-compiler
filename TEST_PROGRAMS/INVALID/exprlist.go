@@ -1,7 +1,6 @@
 package main
 
-func main ()
-{
+func main (){
     //missing comma
     print("hello" "hello")
 }

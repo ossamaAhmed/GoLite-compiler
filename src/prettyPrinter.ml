@@ -41,6 +41,7 @@ let rec print_type_name type_name = match type_name with
 																let result ="struct {\n"^(print_list(List.map print_field_dcl field_dcl_list))^"}\n" in 
 																let _= Stack.pop indentation in result
 let rec print_identifiers_with_type idenlist = match idenlist with
+									| [] -> ""
 									| TypeSpec(Identifier(value),return_type)::[] -> value
 									| TypeSpec(Identifier(value),return_type)::tail -> value^" "^(print_type_name return_type)^", "^(print_identifiers_with_type tail)
 
@@ -183,13 +184,17 @@ and print_short_var_decl dcl = match dcl with
 and print_declaration decl = match decl with 
 								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
-								| Function(func_name,signature,stmts)-> write_message (print_function_declaration signature stmts)
+								| Function(func_name,signature,stmts)-> write_message (print_function_declaration func_name signature stmts)
+
+and print_signature_return_type return_type = match return_type with
+	| FuncReturnType(return_type_i) -> (print_type_name return_type_i)^" "
+	| Empty -> ""
 
 and print_signature signature = match signature with
-	|FuncSig(FuncParams(func_params), FuncReturnType(return_type)) -> (print_identifiers_with_type func_params)^":"^(print_type_name return_type)
+	FuncSig(FuncParams(func_params), return_type) -> "("^(print_identifiers_with_type func_params)^")"^" "^(print_signature_return_type return_type)
 
-and print_function_declaration signature stmts =
-	(print_signature signature)^(print_stmts stmts)
+and print_function_declaration func_name signature stmts =
+	"func "^(func_name)^(print_signature signature)^"{"^(print_stmts stmts)^"}"
 
 let pretty_print program filename= 
 							let _= set_file filename in 
