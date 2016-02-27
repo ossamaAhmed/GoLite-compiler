@@ -2,7 +2,7 @@ package main
 
 func main(){
     /*
-
-        this is a block comment
+    * 
+    *    this is a block comment
     */
 }
