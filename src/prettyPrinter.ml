@@ -9,8 +9,24 @@ let close oc = close_out oc
 let indentation = Stack.create()
 let _= Stack.push "" indentation
 let indent ="	"
+let num_indent = ref 0
 
+let rec print_indent_rec count =
+	match count with
+	| 0 -> ""
+	| _ -> "  "^(print_indent_rec (count-1))
 
+let print_indent =
+	let num = !num_indent in 
+		print_indent_rec num
+
+let inc_indent = 
+	num_indent := !num_indent + 1;
+	""
+
+let dec_indent =
+	num_indent := !num_indent - 1;
+	""
 
 let rec print_list lis = match lis with
 						| last::[]-> last
@@ -46,7 +62,7 @@ let rec print_identifiers_with_type idenlist = match idenlist with
 									| TypeSpec(Identifier(value),return_type)::tail -> value^" "^(print_type_name return_type)^", "^(print_identifiers_with_type tail)
 
 let print_type_declaration decl = match decl with
-								| TypeSpec(Identifier(value), typename)-> (Stack.top indentation)^"type "^value^" "^(print_type_name typename)^"\n"
+								| TypeSpec(Identifier(value), typename)-> (print_indent)^"type "^value^" "^(print_type_name typename)^"\n"
 								| _-> ast_error ("type_dcl error")
 								
 let rec pretty_print_expression exp =
@@ -90,7 +106,6 @@ let rec pretty_print_expression exp =
 												| _-> ast_error ("expression error")
 
 let rec print_expressions exprlist = match exprlist with
-
 									| head::[] -> pretty_print_expression head
 									| head::tail -> (pretty_print_expression head)^", "^(print_expressions tail)
 
@@ -106,8 +121,8 @@ let print_variable_declaration decl= match decl with
 
 let rec  print_stmts stmts = match stmts with
 									| [] -> ""
-									| head::[] ->(print_stmt head)^";\n"
-									| head::tail -> (print_stmt head)^";\n"^(print_stmts tail)
+									| head::[] -> (print_indent)^(print_stmt head)^";\n"
+									| head::tail -> (print_indent)^(print_stmt head)^";\n"^(print_stmts tail)
 and print_stmt stmt = match stmt with
 				    | Declaration(dcl)-> print_declaration dcl;"" (*DONE*)
 				    | Return(rt_stmt)-> print_return_stmt rt_stmt (*DONE*)
@@ -193,7 +208,7 @@ and print_signature signature = match signature with
 	FuncSig(FuncParams(func_params), return_type) -> "("^(print_identifiers_with_type func_params)^")"^" "^(print_signature_return_type return_type)
 
 and print_function_declaration func_name signature stmts =
-	"func "^(func_name)^(print_signature signature)^"{\n"^(print_stmts stmts)^"};\n"
+	"func "^(func_name)^(print_signature signature)^"{\n"^(inc_indent)^(print_stmts stmts)^(dec_indent)^"};\n"
 
 let pretty_print program filename= 
 							let _= set_file filename in 
