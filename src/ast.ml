@@ -13,9 +13,6 @@ type func_return =
     func_signature = 
     | FuncSig of func_params * func_return
     and
-    func_declaration = 
-    | Function of func_signature * stmt list
-    and
     switch_clause = 
     | SwitchClause of simple
     | Empty
@@ -155,7 +152,7 @@ type func_return =
     dcl =
 	| TypeDcl of typespec list
 	| VarDcl of variablespec list
-	| FuncDcl of func_declaration list
+	| Function of func_signature * stmt list
     and
     prog = 
     | Prog of string * dcl list
