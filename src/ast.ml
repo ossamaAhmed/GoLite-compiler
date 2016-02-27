@@ -152,7 +152,7 @@ type func_return =
     dcl =
 	| TypeDcl of typespec list
 	| VarDcl of variablespec list
-	| Function of func_signature * stmt list
+	| Function of string * func_signature * stmt list
     and
     prog = 
     | Prog of string * dcl list
