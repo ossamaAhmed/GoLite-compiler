@@ -1,32 +1,32 @@
 # comp520-2016-02
 Many code examples taken from:
-    * https://gobyexample.com
-    * http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html
-    * https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html
+* https://gobyexample.com
+* http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html
+* https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html
 
 ##Valid Programs found in: 
-    * TEST\_PROGRAMS/VALID/for.go
-    * TEST\_PROGRAMS/VALID/arrays.go
-    * TEST\_PROGRAMS/VALID/hellowold.go
+* TEST\_PROGRAMS/VALID/for.go
+* TEST\_PROGRAMS/VALID/arrays.go
+* TEST\_PROGRAMS/VALID/hellowold.go
 
 #To Compile:
-    * cd src
-    * make golite
+* cd src
+* make golite
 
 #To run:
-    * ./run [filename]
+* ./run [filename]
 
 #To test
-    * ./test
-    * cat test\_results.txt
+* ./test
+* cat test\_results.txt
 
 #Milestone 1 report:
 
 ##Features implemented
-    * Lexer
-    * Parser
-    * Abstract syntax tree
-    * Pretty Printer
+* Lexer
+* Parser
+* Abstract syntax tree
+* Pretty Printer
 
 ##Design Choices
 ###OpEquals
