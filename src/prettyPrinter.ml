@@ -105,6 +105,7 @@ let print_variable_declaration decl= match decl with
 									| _ -> ast_error ("var_dcl error")
 
 let rec  print_stmts stmts = match stmts with
+									| [] -> ""
 									| head::[] -> print_stmt head
 									| head::tail -> (print_stmt head)^";\n"^(print_stmts tail)
 and print_stmt stmt = match stmt with
@@ -185,7 +186,7 @@ and print_declaration decl = match decl with
 								| Function(func_name,signature,stmts)-> write_message (print_function_declaration signature stmts)
 
 and print_signature signature = match signature with
-	FuncSig(FuncParams(func_params), FuncReturnType(return_type)) -> (print_identifiers_with_type func_params)^":"^(print_type_name return_type)
+	|FuncSig(FuncParams(func_params), FuncReturnType(return_type)) -> (print_identifiers_with_type func_params)^":"^(print_type_name return_type)
 
 and print_function_declaration signature stmts =
 	(print_signature signature)^(print_stmts stmts)

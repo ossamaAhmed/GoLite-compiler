@@ -1,6 +1,6 @@
 package main
 
-func main()
-{
+func main(){
     // this is a comment
 }
+
