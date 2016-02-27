@@ -272,7 +272,7 @@ stmt:
 
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
-    | expression_stmt {$1}
+    | expression_stmt {generate_simple_exp($1)}
     | incdec_stmt {generate_simple_incdec($1)}
     | assignment {generate_simple_assignment($1)}
     | short_var_decl {generate_simple_shortvardecl($1)}
@@ -308,7 +308,7 @@ condition: expression {generate_condition($1)};
 
 (* golite does not support arbitrary number of return values *)
 return_stmt:
-    | RETURN expression {$2}
+    | RETURN expression {generate_return($1)}
     | RETURN {Empty}
     ;
 
@@ -317,7 +317,7 @@ if_init:
     ;
 
 if_stmt:
-    | IF condition block {generate_if_stmt(generate_if_init(Empty),$2,$3)}
+    | IF condition block {generate_if_stmt(Empty,$2,$3)}
     | IF if_init condition block {generate_if_stmt($2,$3,$4)}
     ;
 
@@ -339,7 +339,7 @@ for_stmt:
     ;
 for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
     | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause($1,$2,$3)}
-    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause($1,generate_condition(Empty),$4)}
+    | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause($1,Empty,$4)}
     ;
 
 init_stmt: 
