@@ -2,6 +2,8 @@ open Ast
 
 let generate_switch switchClause switchExpr switchCase = Switch(switchClause,switchExpr,switchCase)
 
+let generate_func_sig f1 f2 = FuncSig(f1,f2)
+
 let generate_switch_clause simple = SwitchClause(simple)
 let generate_switch_expr exp = SwitchExpr(exp)
 

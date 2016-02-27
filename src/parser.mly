@@ -193,7 +193,7 @@ func_declaration:
 	| FUNC IDENTIFIER func_signature block { Function($3,$4) }
     ;
 func_signature:
-    | func_params func_return { FuncSig($1,$2) }
+    | func_params func_return { generate_func_sig $1 $2 }
     ;
 func_return: 
     | { Empty }
