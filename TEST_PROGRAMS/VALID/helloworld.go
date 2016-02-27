@@ -16,7 +16,7 @@ type (
     var s string; var _p []Polar
     // Slice types, 2.7.2; Array types, 2.7.3
     
-func main() {
+func main(a,b int) string {
         // println("hello world")
 
 	return a

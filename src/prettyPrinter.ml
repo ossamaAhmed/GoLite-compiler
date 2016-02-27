@@ -8,7 +8,7 @@ let write_message message = fprintf (!oc) "%s" message   (* write something *)
 let close oc = close_out oc
 let indentation = Stack.create()
 let _= Stack.push "" indentation
-let indent ="  "
+let indent ="	"
 
 
 
@@ -38,7 +38,7 @@ let rec print_type_name type_name = match type_name with
 																in 
 																let last_indent = (Stack.top indentation) in 
 																let _= Stack.push (last_indent^indent) indentation in
-																let result ="struct {\n"^(print_list(List.map print_field_dcl field_dcl_list))^"}\n" in 
+																let result =(last_indent)^"struct {\n"^(print_list(List.map print_field_dcl field_dcl_list))^"}\n" in 
 																let _= Stack.pop indentation in result
 let rec print_identifiers_with_type idenlist = match idenlist with
 									| [] -> ""
@@ -106,23 +106,23 @@ let print_variable_declaration decl= match decl with
 
 let rec  print_stmts stmts = match stmts with
 									| [] -> ""
-									| head::[] -> print_stmt head
+									| head::[] ->(print_stmt head)^";\n"
 									| head::tail -> (print_stmt head)^";\n"^(print_stmts tail)
 and print_stmt stmt = match stmt with
 				    | Declaration(dcl)-> print_declaration dcl;"" (*DONE*)
 				    | Return(rt_stmt)-> print_return_stmt rt_stmt (*DONE*)
-				    | Break -> "break" 
-				    | Continue -> "continue"
+				    | Break -> "break " 
+				    | Continue -> "continue "
 				    | Block(stmt_list)-> print_stmts stmt_list (*DONE*)
 				    | Conditional(conditional)-> print_conditional conditional (*DONE*)
 				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> "switch "^(print_switch_clause switch_clause)^" "^(print_switch_expression switch_expr)^" {\n"^(print_switch_case_stmt switch_case_stmts)^"}"
 				    | For(for_stmt)-> print_for_stmt for_stmt (*DONE*)
 				    | Simple(simple)-> print_simple_stmt simple 
-				    | Print(exprs)-> "print ("^(print_expressions exprs)^" )" (*DONE*)
-				    | Println(exprs)-> "println ("^(print_expressions exprs)^" )" (*DONE*)
+				    | Print(exprs)-> "print ("^(print_expressions exprs)^") " (*DONE*)
+				    | Println(exprs)-> "println ("^(print_expressions exprs)^") " (*DONE*)
 and print_return_stmt stmt= match stmt with
-							| Empty -> "return"
-							| ReturnStatement(expr)-> "return"^(pretty_print_expression expr)
+							| Empty -> "return "
+							| ReturnStatement(expr)-> "return "^(pretty_print_expression expr)
 and print_conditional cond = match cond with 
 							| IfStmt(if_stmt)-> print_if_stmt if_stmt
 							| ElseStmt(else_stmt)-> print_else_stmt else_stmt
@@ -193,7 +193,7 @@ and print_signature signature = match signature with
 	FuncSig(FuncParams(func_params), return_type) -> "("^(print_identifiers_with_type func_params)^")"^" "^(print_signature_return_type return_type)
 
 and print_function_declaration func_name signature stmts =
-	"func "^(func_name)^(print_signature signature)^"{"^(print_stmts stmts)^"}"
+	"func "^(func_name)^(print_signature signature)^"{\n"^(print_stmts stmts)^"}"
 
 let pretty_print program filename= 
 							let _= set_file filename in 
