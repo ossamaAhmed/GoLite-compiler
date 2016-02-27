@@ -191,7 +191,7 @@ slice_type:
 (* FUNCTION *)
 
 func_declaration:
-	| FUNC IDENTIFIER func_signature block { Function($3,$4) }
+	| FUNC IDENTIFIER func_signature block { Function($2,$3,$4) }
     ;
 func_signature:
     | func_params func_return { (FuncSig($1,$2)) }
