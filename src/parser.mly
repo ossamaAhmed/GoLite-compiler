@@ -194,7 +194,7 @@ func_declaration:
 	| FUNC IDENTIFIER func_signature block { Function($3,$4) }
     ;
 func_signature:
-    | func_params func_return { FuncSig($1,$2) }
+    | func_params func_return { (FuncSig($1,$2)) }
     ;
 func_return: 
     | { Empty }
@@ -205,15 +205,12 @@ func_params:
     | OPEN_PAREN  CLOSE_PAREN { FuncParams([]) }
     ;
 func_params_list:
-    | func_param_declaration COMMA func_params_list { [] }
-    | func_param_declaration { [] }
+    | func_param_declaration COMMA func_params_list { $1 @ $3 }
+    | func_param_declaration { $1 }
     ;
 
 func_param_declaration:
-    | identifier_list type_i {
-        let create_typespec x = TypeSpec(x,$2) in
-        List.map create_typespec $1
-    }
+    | identifier_list type_i { generate_type_spec_list $1 $2 }
     ;
 
 func_call_expr:
@@ -325,7 +322,7 @@ if_stmt:
 else_stmt: 
     | if_stmt ELSE block {generate_else_single $1 $3 }
     | if_stmt ELSE else_stmt {generate_else_multiple $1 $3 }
-    | if_stmt ELSE if_stmt {generate_else_if $1 $2 }
+    | if_stmt ELSE if_stmt {generate_else_if $1 $3 }
     ;
 
 conditional_stmt: 
@@ -339,7 +336,7 @@ for_stmt:
     | FOR  for_clause block {generate_for_clause_block $2 $3 } 
     ;
 for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
-    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause $1 $2 $3 }
+    | init_stmt SEMICOLON  condition SEMICOLON post_stmt {generate_for_clause $1 $3 $5 }
     | init_stmt SEMICOLON  SEMICOLON post_stmt {generate_for_clause $1 Empty $4 }
     ;
 
@@ -349,11 +346,11 @@ post_stmt:
     | simple_stmt {$1};
 
 switch_stmt:
-    | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 $3 $5}
-    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty $2 $4 }
-    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 Empty $4 }
-    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty Empty $3 }
-    
+    | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 $3 (generate_switch_case_block($5))}
+    | SWITCH switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty $2 (generate_switch_case_block($4)) }
+    | SWITCH switch_clause  OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 Empty (generate_switch_case_block($4)) }
+    | SWITCH OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch Empty Empty (generate_switch_case_block($3)) }
+    ;
 
 switch_clause:
     | simple_stmt SEMICOLON  {generate_switch_clause $1 }
@@ -363,8 +360,9 @@ switch_expr_clause:
     | expression {generate_switch_expr $1 }
     ;
 expr_case_clause_list:
-    | {generate_switch_case_block Empty }
-    | expr_case_clause expr_case_clause_list {generate_switch_case_block $2 }
+    | { [] }
+    | expr_case_clause expr_case_clause_list { $1::$2 }
+    ;
 expr_case_clause: 
     | expr_switch_case COLON stmt_list {generate_switch_case_clause $1 $3 }
     ;

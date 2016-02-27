@@ -5,6 +5,11 @@ let generate_switch switchClause switchExpr switchCase = Switch(switchClause,swi
 let generate_switch_clause simple = SwitchClause(simple)
 let generate_switch_expr exp = SwitchExpr(exp)
 
+let rec generate_type_spec_list identifier_list type_i =
+	match identifier_list with
+	| x::xs -> TypeSpec(x,type_i) :: (generate_type_spec_list xs type_i)
+	| [] -> []
+
 let generate_switch_case_clause expList stmtList = SwitchCaseClause(expList,stmtList)
 let generate_switch_case_block clauseList = SwitchCasestmt(clauseList)
 let generate_inc exp = Increment(exp)
@@ -61,7 +66,6 @@ let generate_variable_without_type_spec identifiers expressions = VarSpecWithout
 let generate_variable_decl varspecs = VarDcl(varspecs)
 let generate_type_spec identifier typename = TypeSpec(identifier, typename)
 let generate_type_decl typespecs = TypeDcl(typespecs)
-let generate_func_decl funcname = FuncDcl(funcname)  (*TEMPORARY*)
 
 let generate_println expressions = Println(expressions)
 let generate_print expressions = Print(expressions)
