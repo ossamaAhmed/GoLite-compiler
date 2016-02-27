@@ -40,7 +40,9 @@ let rec print_type_name type_name = match type_name with
 																let _= Stack.push (last_indent^indent) indentation in
 																let result ="struct {\n"^(print_list(List.map print_field_dcl field_dcl_list))^"}\n" in 
 																let _= Stack.pop indentation in result
-
+let rec print_identifiers_with_type idenlist = match idenlist with
+									| TypeSpec(Identifier(value),return_type)::[] -> value
+									| TypeSpec(Identifier(value),return_type)::tail -> value^" "^(print_type_name return_type)^", "^(print_identifiers_with_type tail)
 
 
 let print_type_declaration decl = match decl with
@@ -102,12 +104,6 @@ let print_variable_declaration decl= match decl with
 																							| head::tail -> "var "^(print_identifiers iden_list)^" = "^(print_expressions exprs)^";\n")
 									| _ -> ast_error ("var_dcl error")
 
-
-let print_declaration decl = match decl with 
-								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
-								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
-								(* | FuncDcl(value)-> write_message ("func declaration here\n") *) 
-
 let rec  print_stmts stmts = match stmts with
 									| head::[] -> print_stmt head
 									| head::tail -> (print_stmt head)^";\n"^(print_stmts tail)
@@ -132,6 +128,7 @@ and print_conditional cond = match cond with
 and print_if_stmt if_stmt = match if_stmt with
 							| IfInit(if_init, condition, stmts)-> "if "^(print_if_init if_init)^(print_condition condition)^"{\n"^(print_stmts stmts)^"}"
 and print_if_init if_init = match if_init with
+							| Empty -> ""
 							| IfInitSimple(simplestmt) -> (print_simple_stmt simplestmt)^";"
 and print_simple_stmt stmt = match stmt with 
 							| Empty -> ""
@@ -180,6 +177,18 @@ and print_assignment_stmt stmt = match stmt with
 and print_short_var_decl dcl = match dcl with
 							| ShortVarDecl(idens, exprs)-> (print_identifiers idens)^" := "^(print_expressions exprs)
 
+
+
+and print_declaration decl = match decl with 
+								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
+								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
+								| Function(signature,stmts)-> write_message (print_function_declaration signature stmts)
+
+and print_signature signature = match signature with
+	FuncSig(FuncParams(func_params), FuncReturnType(return_type)) -> (print_identifiers_with_type func_params)^":"^(print_type_name return_type)
+
+and print_function_declaration signature stmts =
+	(print_signature signature)^(print_stmts stmts)
 
 
 
