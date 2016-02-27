@@ -4,8 +4,8 @@ let ast_error msg = raise (AST_error msg)
 
 
 type func_return = 
-    | Empty
     | FuncReturnType of type_i
+    | Empty
     and    
     func_params = 
     | FuncParams of typespec list

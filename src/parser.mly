@@ -1,6 +1,7 @@
 %{
 open Error
 open GenerateAst
+open Ast
 %}
 
 (* Tokens *)
@@ -193,7 +194,7 @@ func_declaration:
 	| FUNC IDENTIFIER func_signature block { Function($3,$4) }
     ;
 func_signature:
-    | func_params func_return { FuncSig($1,$2) }
+    | func_params func_return { (FuncSig($1,$2)) }
     ;
 func_return: 
     | { Empty }
@@ -204,14 +205,13 @@ func_params:
     | OPEN_PAREN  CLOSE_PAREN { FuncParams([]) }
     ;
 func_params_list:
-    | func_param_declaration COMMA func_params_list { $1::$2 }
-    | func_param_declaration { [$1] }
+    | func_param_declaration COMMA func_params_list { $1@$2 }
+    | func_param_declaration { $1 }
     ;
 
 func_param_declaration:
     | identifier_list type_i {
-        let create_typespec x = TypeSpec(x,$2) in
-        List.map create_typespec $1
+        (List.map (let create_typespec x = TypeSpec(x,$2)) $1) 
     }
     ;
 
