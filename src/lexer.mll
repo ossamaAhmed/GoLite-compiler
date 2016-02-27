@@ -62,7 +62,7 @@ let rune_lit = '\''(ascii|'\\'escaped_char)'\''
 
 let ascii_without_quotes = ['\x00' -'\x21' '\x23' -'\x5b' '\x5d'-'\x7f'] (*QUOTATION CHARACTERS WERE INVLUDED CAUSING THE LEXER TO SCAN JUST THE FIRST LINE*)
 let interpreted_string_lit = ('"' ( ascii_without_quotes | '\\' escaped_char| '\\' '"')* '"')
-let raw_string_lit = (''' (([^ '''])*) ''') 
+let raw_string_lit = ('`'[^'`']* '`') 
 let string_lit = (interpreted_string_lit|raw_string_lit)
 
 let digit = ['0'-'9']
@@ -81,7 +81,7 @@ let blank = [' ' '\r' '\t']
 let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
 let one_line_comment = ('/' '/') (notnewline)* '\n'
-let block_comment = ('/' '*') (_)* ('*' '/')
+let block_comment = ('/' '*') [^'*''/']* ('*' '/')
 
 let identifier = (alpha | '_') (alpha | digit | '_')*
 
