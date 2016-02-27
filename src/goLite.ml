@@ -12,7 +12,7 @@ let _ =
             let lexbuf= Lexing.from_channel (open_in file) in
             (* Lexer.print_tokens lexbuf; *)
             let myprog = Parser.parse Lexer.golite lexbuf in
-            let _ = PrettyPrinter.pretty_print myprog out in
+           (*  let _ = PrettyPrinter.pretty_print myprog out in *)
             print_string ("Valid\n"); 
         with 
             | Parser.Error -> print_string("Invalid grammar\n"); exit 0;

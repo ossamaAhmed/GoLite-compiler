@@ -66,7 +66,6 @@ let generate_variable_without_type_spec identifiers expressions = VarSpecWithout
 let generate_variable_decl varspecs = VarDcl(varspecs)
 let generate_type_spec identifier typename = TypeSpec(identifier, typename)
 let generate_type_decl typespecs = TypeDcl(typespecs)
-let generate_func_decl funcname = FuncDcl(funcname)  (*TEMPORARY*)
 
 let generate_println expressions = Println(expressions)
 let generate_print expressions = Print(expressions)

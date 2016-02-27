@@ -4,17 +4,14 @@ let ast_error msg = raise (AST_error msg)
 
 
 type func_return = 
-    | Empty
     | FuncReturnType of type_i
+    | Empty
     and    
     func_params = 
     | FuncParams of typespec list
     and
     func_signature = 
     | FuncSig of func_params * func_return
-    and
-    func_declaration = 
-    | Function of func_signature * stmt list
     and
     switch_clause = 
     | SwitchClause of simple
@@ -155,7 +152,7 @@ type func_return =
     dcl =
 	| TypeDcl of typespec list
 	| VarDcl of variablespec list
-	| FuncDcl of func_declaration list
+	| Function of func_signature * stmt list
     and
     prog = 
     | Prog of string * dcl list
