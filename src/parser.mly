@@ -209,7 +209,10 @@ func_params_list:
     ;
 
 func_param_declaration:
-    | identifier_list type_i { List.map TypeSpec(a,$2) $1 }
+    | identifier_list type_i {
+        let create_typespec x = TypeSpec(x,$2) in
+        List.map create_typespec $1
+    }
     ;
 
 func_call_expr:
