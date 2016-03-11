@@ -97,7 +97,7 @@ type func_return =
     literal =
 	| Intliteral of int
 	| Floatliteral of float 
-	| Runeliteral of char (*Not sure about this*)
+	| Runeliteral of string 
 	| Stringliteral of string 
     and
     type_i =

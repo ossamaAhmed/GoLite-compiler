@@ -10,7 +10,7 @@ open Ast
 %token <float> FLOATLITERAL
 %token <string> STRINGLITERAL
 %token <string> IDENTIFIER
-%token <char> RUNELITERAL
+%token <string> RUNELITERAL
 %token PLUS 
 %token AND 
 %token PLUS_EQ 
