@@ -58,7 +58,7 @@ let alpha = ['a'-'z' 'A'-'Z']
 let ascii = ['\x00' -'\x5b'  '\x5d'-'\x7f']
 
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
-let rune_lit = '\''(ascii|'\\'escaped_char)'\''
+let rune_lit = '''(ascii|'\\'escaped_char)'''
 
 let ascii_without_quotes = ['\x00' -'\x21' '\x23' -'\x5b' '\x5d'-'\x7f'] (*QUOTATION CHARACTERS WERE INVLUDED CAUSING THE LEXER TO SCAN JUST THE FIRST LINE*)
 let interpreted_string_lit = ('"' ( ascii_without_quotes | '\\' escaped_char| '\\' '"')* '"')
