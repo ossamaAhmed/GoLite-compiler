@@ -96,8 +96,13 @@ open Ast
 
 (* Associativity and precedence *)
 
-%left PLUS MINUS
-%left STAR SLASH
+%left DOUBLE_BAR
+%left DOUBLE_AND
+%left DOUBLE_EQ NOT_EQ LT LT_EQ GT GT_EQ
+%left PLUS MINUS BAR CARET 
+%left STAR SLASH PERCENT SHIFT_LEFT SHIFT_RIGHT AND AND_CARET
+%left unary
+%left idenlist
 
 (* Start of parser *)
 %start parse
@@ -216,10 +221,7 @@ func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
     | OPEN_PAREN expression_list CLOSE_PAREN {$2}
     ;
-identifier_list:
-	| IDENTIFIER { [generate_symbol $1] }
-	| IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }
-	;
+
 
 (*TODO: CHECK THAT LHS IS AN LVALUE *)
 assignment:
@@ -230,6 +232,14 @@ assignment:
             raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) ))
          }
     | expression assign_op expression {generate_assign_op $1 $2 $3 }
+    | identifier_list EQ expression_list { 
+
+                    if List.length $1 = List.length $3 then let convert_iden iden= match iden with 
+                                                        |Identifier(val1) ->generate_operator val1 in  
+                                                        let result= List.map convert_iden $1 in
+                                                         generate_assign_bare result $3
+                    else 
+                     raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) )) }
     ;
 
 assign_op:
@@ -272,6 +282,8 @@ stmt:
 
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
+    | func_call_expr { generate_simple_exp $1} (*Added These Two As Stmts Instead Of Expression Stmt*)
+    | append_expr { generate_simple_exp $1 }
     (*| expression_stmt {generate_simple_exp $1 } *)
     | incdec_stmt {generate_simple_incdec $1 }
     | assignment {generate_simple_assignment $1 }
@@ -303,10 +315,12 @@ expression_stmt:
 
 print_stmt:
     | PRINT OPEN_PAREN expression_list CLOSE_PAREN { $3 }
+    | PRINT OPEN_PAREN  CLOSE_PAREN { [] }
     ;
 
 println_stmt:
     | PRINTLN OPEN_PAREN expression_list CLOSE_PAREN { $3 }
+    | PRINTLN OPEN_PAREN  CLOSE_PAREN { [] }
     ;
 
 condition: expression {generate_condition $1 };
@@ -350,6 +364,7 @@ for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
 init_stmt: 
     | simple_stmt {$1};
 post_stmt: (*REMOVED SHORTVAR DECLARATION FROM HERE *)
+    | {Empty}
     | incdec_stmt {generate_simple_incdec $1 }
     | assignment {generate_simple_assignment $1 }
     ;
@@ -393,14 +408,17 @@ continue_stmt:
 expression_list:
     | expression {[$1]}
     | expression COMMA expression_list {$1::$3}
+  (*  | identifier_list {let convert_iden iden= match iden with 
+                                |Identifier(val1) ->generate_operator val1 in  
+                                List.map convert_iden $1 } *)
     ;
 expression: 
     | unary_expr { $1 }
+    | primary_expr {$1}
     | expression binary_op expression {  generate_bin_expression $2 $1 $3  }  (*CAUSING SHIFT REDUCE CONFLICTS*)
     ;
 unary_expr:
-    | primary_expr {$1} 
-    | unary_op unary_expr { generate_unary_expression $1 $2 }
+    | unary_op expression %prec unary { generate_unary_expression $1 $2 }
     ;
 primary_expr:
     | operand { $1 }
@@ -454,25 +472,16 @@ type_cast: (* TYPE CASTING ONLY WORKS WITH PRIMITIVES EXCEPT STRING *)
 binary_op:
     | DOUBLE_BAR {"||"}
     | DOUBLE_AND {"&&"}
-    | rel_op {$1}
-    | add_op {$1}
-    | mul_op {$1}
-    ;
-rel_op: 
     | DOUBLE_EQ {"=="}
     | NOT_EQ {"!="}
     | LT {"<"}
     | GT {">"}
     | LT_EQ {"<="}
     | GT_EQ { ">="}
-    ;
-add_op: 
     | PLUS {"+"}
     | MINUS {"-"}
     | BAR {"|"}
     | CARET {"^"}
-    ;
-mul_op:
     | STAR {"*"}
     | SLASH {"/"}
     | PERCENT {"%"}
@@ -521,5 +530,9 @@ function_lit:
     ;
 function_i: 
     | {()}
+    ;
+identifier_list:
+    | IDENTIFIER { [generate_symbol $1] }
+    | IDENTIFIER COMMA identifier_list { [generate_symbol $1]@$3 }
     ;
 %%

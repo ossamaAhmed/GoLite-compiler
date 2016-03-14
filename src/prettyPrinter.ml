@@ -124,7 +124,10 @@ let rec  print_stmts stmts = match stmts with
 									| head::[] -> (print_indent)^(print_stmt head)^";\n"
 									| head::tail -> (print_indent)^(print_stmt head)^";\n"^(print_stmts tail)
 and print_stmt stmt = match stmt with
-				    | Declaration(dcl)-> print_declaration dcl;"" (*DONE*)
+				    | Declaration(dcl)-> (match dcl with 
+								| TypeDcl(value)-> print_list(List.map print_type_declaration value)
+								| VarDcl(value)->   print_list(List.map print_variable_declaration value)
+								| Function(func_name,signature,stmts)->  print_function_declaration func_name signature stmts)
 				    | Return(rt_stmt)-> print_return_stmt rt_stmt (*DONE*)
 				    | Break -> "break " 
 				    | Continue -> "continue "

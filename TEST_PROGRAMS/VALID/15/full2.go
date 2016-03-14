@@ -48,9 +48,9 @@ func main(){
     // bool stuff
     y = !y||y&&y==(x < x)!=(x > x)||x>=x&&x<=x; 
 
-    /* * weird comments stuff * / / / /* / * *  // */
+    // /* * weird comments stuff * / / / /* / * *  // */
 
-    // runes and strings
+    // // runes and strings
     z = 'a'
     z = '\a'
     z = '\b'
@@ -95,9 +95,9 @@ func main(){
     another_slice := array[0+1][1*slice[0]][23]
     another_slice = append(another_slice, g(5)[0][0][0][0])
     aa, bb := z, z
-    print()
+    // print()
     print(z,'5',1,1.)
-    println()
+    // println()
     println(g(100)[0][0][0][0], p.z.z1)
     return
 
@@ -138,6 +138,5 @@ func main(){
     // Three-part loop
     for i := 0; i < 10; i++ {
     }
-
-    afsdjfk := string(int(float64((((((((((5)+((((xyx))))*((((((((((g(100)[0][0][0][0])))))))))))))))))))))
+    afsdjfk := int(int(float64((((((((((5)+((((xyx))))*((((((((((g(100)[0][0][0][0])))))))))))))))))))))
 }

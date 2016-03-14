@@ -82,12 +82,13 @@ let float_lit = (decimals '.' decimals | '.' decimals | decimals '.')
 
 let blank = [' ' '\r' '\t']
 
-let iden = (alpha) (alpha | digit | '_')* (*removed blank indentifier*)
+let iden = (alpha | '_') (alpha | digit | '_')* (*removed blank indentifier*)
 let notnewline = [^ '\n']
 let one_line_comment = ('/' '/') (notnewline)* '\n'
 let block_comment = ('/' '*') ((_)#'*')* ((_)#'/')* ('*' '/')
 
-let identifier = (alpha ) (alpha | digit | '_')* (*removed blank indentifier*)
+
+let identifier = (alpha| '_' ) (alpha | digit | '_')* (*removed blank indentifier*)
 
 rule golite = parse
     | "+"      { last_token:= PLUS; PLUS }

@@ -32,7 +32,7 @@ func main() {
 	
 	var y , z int;
 	
-	y , z = 2 , 4
+	y , z = y , z
 	
 	println(y  ,z)
 	println(2, 3, 5.0, 0x343, 0021)

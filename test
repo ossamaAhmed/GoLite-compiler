@@ -1,6 +1,6 @@
 #!/bin/bash
 # for foldername in ./TEST_PROGRAMS/*; do
-	for foldername2 in ./TEST_PROGRAMS/invalid/*; do
+	for foldername2 in ./TEST_PROGRAMS/valid/*; do
 	for filename in $foldername2/*; do 
 	echo "$filename" 
 	./src/goLite.native $filename 

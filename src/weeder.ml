@@ -69,24 +69,35 @@ let weed_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs) -> ""
 									| VarSpecWithoutType  (iden_list,exprs) -> ""
 
-let rec  weed_stmts stmts = match stmts with
+let rec  weed_stmts stmts case = match stmts with
 									| [] -> ""
-									| head::[] -> weed_stmt head
-									| head::tail -> let _= weed_stmt head in weed_stmts tail
-and weed_stmts_without_break_continue stmts = match stmts with
+									| head::[] -> weed_stmt head case
+									| head::tail -> let _= weed_stmt head case in weed_stmts tail case
+and weed_stmts_without_break_continue stmts case= match stmts with
 									| [] -> ""
 									| Break::tail ->  ast_error "Break statement outside a loop"
 									| Continue::tail ->  ast_error "Continue statement outside a loop"
-									| head::[] -> weed_stmt head
-									| head::tail -> let _= weed_stmt head in weed_stmts_without_break_continue tail
-and weed_stmt stmt = match stmt with
+									| head::[] -> weed_stmt head case
+									| head::tail -> let _= weed_stmt head case in weed_stmts_without_break_continue tail case
+
+and weed_stmts_without_continue stmts case= match stmts with
+									| [] -> ""
+									| Continue::tail ->  ast_error "Continue statement outside a loop"
+									| head::[] -> weed_stmt head case
+									| head::tail -> let _= weed_stmt head case in weed_stmts_without_continue tail case
+and weed_stmt stmt case=
+
+					match stmt with
 				    | Declaration(dcl)-> ""
 				    | Return(rt_stmt)-> ""
 				    | Break -> ""
 				    | Continue -> ""
-				    | Block(stmt_list)-> weed_stmts_without_break_continue stmt_list
-				    | Conditional(conditional)-> weed_conditional conditional
-				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> weed_switch_case_stmt switch_case_stmts
+				    | Block(stmt_list)-> (match case with
+				    					| "withoutcontinue" -> weed_stmts_without_continue stmt_list case
+				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmt_list case
+				    					| _ -> weed_stmts stmt_list case)
+				    | Conditional(conditional)-> weed_conditional conditional case
+				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> weed_switch_case_stmt switch_case_stmts case
 				    | For(for_stmt)-> ""
 				    | Simple(simple)-> weed_simple_stmt simple
 				    | Print(exprs)-> ""
@@ -94,11 +105,14 @@ and weed_stmt stmt = match stmt with
 and weed_return_stmt stmt= match stmt with
 							| Empty -> ""
 							| ReturnStatement(expr)-> ""
-and weed_conditional cond = match cond with 
-							| IfStmt(if_stmt)-> weed_if_stmt if_stmt
-							| ElseStmt(else_stmt)-> weed_else_stmt else_stmt
-and weed_if_stmt if_stmt = match if_stmt with
-							| IfInit(if_init, condition, stmts)-> weed_stmts_without_break_continue stmts
+and weed_conditional cond case = match cond with 
+							| IfStmt(if_stmt)-> weed_if_stmt if_stmt case
+							| ElseStmt(else_stmt)-> weed_else_stmt else_stmt case
+and weed_if_stmt if_stmt case= match if_stmt with
+							| IfInit(if_init, condition, stmts)-> (match case with
+				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
+				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
+				    					| _ -> weed_stmts stmts case)
 and weed_if_init if_init = match if_init with
 							| IfInitSimple(simplestmt) -> ""
 							| Empty -> ""
@@ -112,10 +126,13 @@ and  weed_condition cond = match cond with
 							| ConditionExpression (expr)-> ""
 							| Empty -> ""
 
-and weed_else_stmt stmt =  match stmt with 
-							| ElseSingle(if_stmt,stmts)-> weed_stmts_without_break_continue stmts
-						    | ElseIFMultiple(if_stmt,else_stmt)-> let _=(weed_if_stmt if_stmt) in weed_else_stmt else_stmt
-						    | ElseIFSingle(if_stmt1,if_stmt2)-> let _=(weed_if_stmt if_stmt1) in weed_if_stmt if_stmt2
+and weed_else_stmt stmt case=  match stmt with 
+							| ElseSingle(if_stmt,stmts)->  (match case with
+				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
+				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
+				    					| _ -> weed_stmts stmts case)
+						    | ElseIFMultiple(if_stmt,else_stmt)-> let _=(weed_if_stmt if_stmt case) in weed_else_stmt else_stmt case
+						    | ElseIFSingle(if_stmt1,if_stmt2)-> let _=(weed_if_stmt if_stmt1 case) in weed_if_stmt if_stmt2 case
 and weed_for_stmt stmt = match stmt with 
 				    | Forstmt(stmts)-> ""
 				    | ForCondition(condition, stmts)-> ""
@@ -137,18 +154,24 @@ and count_switch_case_defaults switchcaseclauses count= match switchcaseclauses 
 																	| head::tail2 -> count_switch_case_defaults tail count
 																	)
 											| Empty::tail -> count_switch_case_defaults tail count
-and weed_switch_case_clause clause = match clause with 
-								| SwitchCaseClause(exprs, stmts)-> weed_stmts_without_break_continue stmts
+and weed_switch_case_clause case clause= match clause with 
+								| SwitchCaseClause(exprs, stmts)-> (match case with
+				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
+				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
+				    					| _ -> weed_stmts stmts case)
 								| Empty -> ""	
 
-and weed_switch_case_stmt stmts = match stmts with
+and weed_switch_case_stmt stmts case= match stmts with
 								| SwitchCasestmt(switch_case_clauses)-> 
 												let defaults_count= count_switch_case_defaults switch_case_clauses 0 in 
-												let _= (List.map weed_switch_case_clause switch_case_clauses) in ""
+												let _= (List.map (weed_switch_case_clause case) switch_case_clauses ) in ""
 
 and lvalue_eval expr = match expr with 
 						| OperandName(iden)-> ""
 						| Indexexpr(expr1,expr2)-> ""
+						| FuncCallExpr(Identifier(iden),exprs)-> ""
+						| Appendexpr (Identifier(iden),exp1)-> ""
+						| Selectorexpr(exp1,Identifier(iden))-> ""
 						| _ -> ast_error "Lvalue error"
 and weed_inc_dec_stmt stmt = match stmt with 
 						 | Increment(expr)->  let _= ( lvalue_eval expr) in ""
@@ -175,7 +198,7 @@ and weed_signature_return_type return_type = match return_type with
 and weed_signature signature = match signature with
 	FuncSig(FuncParams(func_params), return_type) -> ""
 
-and weed_function_declaration func_name signature stmts = (weed_stmts_without_break_continue stmts)::[]
+and weed_function_declaration func_name signature stmts = (weed_stmts stmts "withoutbreakandcontinue")::[]
 
 let weed_program program = match program with
 									  | Prog(packagename,dcllist)-> List.map weed_declaration dcllist
