@@ -55,12 +55,14 @@ exception Eof
 } (* End Header *)
 
 let alpha = ['a'-'z' 'A'-'Z']
-let ascii = ['\x00' -'\x5b'  '\x5d'-'\x7f']
+let ascii = ['\x00' -'\x09' '\x11'-'\x5b'  '\x5d'-'\x7f']
+let ascii_no_single_quote = ['\x00' -'\x09' '\x11'-'\x26'  '\x28'-'\x5b'  '\x5d'-'\x7f']
 
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
-let rune_lit = '''(ascii|'\\'escaped_char)'''
 
-let ascii_without_quotes = ['\x00' -'\x21' '\x23' -'\x5b' '\x5d'-'\x7f'] (*QUOTATION CHARACTERS WERE INVLUDED CAUSING THE LEXER TO SCAN JUST THE FIRST LINE*)
+let rune_lit = ("'"ascii_no_single_quote"'") |("'\\"escaped_char"'")
+
+let ascii_without_quotes = ['\x00' -'\x09' '\x11'-'\x21' '\x23' -'\x5b' '\x5d'-'\x7f'] (*QUOTATION CHARACTERS WERE INVLUDED CAUSING THE LEXER TO SCAN JUST THE FIRST LINE*)
 let interpreted_string_lit = ('"' ( ascii_without_quotes | '\\' escaped_char| '\\' '"')* '"')
 let raw_string_lit = ('`'[^'`']* '`') 
 let string_lit = (interpreted_string_lit|raw_string_lit)
@@ -80,8 +82,9 @@ let blank = [' ' '\r' '\t']
 
 let iden = (alpha | '_') (alpha | digit | '_')*
 let notnewline = [^ '\n']
+let notblockend_comment = (_) (_)
 let one_line_comment = ('/' '/') (notnewline)* '\n'
-let block_comment = ('/' '*') (_)* ('*' '/')
+let block_comment = ('/' '*') ((_)#'*')* ((_)#'/')* ('*' '/')
 
 let identifier = (alpha | '_') (alpha | digit | '_')*
 
@@ -149,7 +152,7 @@ rule golite = parse
       last_token:= STRINGLITERAL (s);STRINGLITERAL (s)
     }
     | rune_lit as r {
-      last_token:= RUNELITERAL(String.get r 0); RUNELITERAL(String.get r 0)
+      last_token:= RUNELITERAL(r); RUNELITERAL(r)
     }
     | '\n' | one_line_comment | block_comment { line_number:= lexbuf.Lexing.lex_curr_p.pos_lnum; match !last_token with
                                                         | IDENTIFIER(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
@@ -182,7 +185,7 @@ let token_type_to_string token = match token with
     | INTLITERAL(int) -> "INTLITERAL"
     | FLOATLITERAL(float) -> "FLOATLITERAL"
     | STRINGLITERAL(string) -> "STRINGLITERAL"
-    | RUNELITERAL(char) -> "RUNELITERAL"
+    | RUNELITERAL(string) -> "RUNELITERAL"
     | IDENTIFIER(string) -> "IDENTIFIER"
     | EOL -> "EOL\n"
     | EOF -> "EOF\n"

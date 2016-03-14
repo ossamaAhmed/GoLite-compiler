@@ -37,7 +37,7 @@ let rec print_identifiers idenlist = match idenlist with
 let print_literal lit = match lit with
 						| Intliteral(value) -> (Printf.sprintf "%i" value)
 						| Floatliteral(value) -> (Printf.sprintf "%f" value)
-						| Runeliteral(value) -> (Printf.sprintf "%c" value)
+						| Runeliteral(value) -> (Printf.sprintf "%s" value)
 						| Stringliteral(value) -> value
 
 

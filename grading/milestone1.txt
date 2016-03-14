@@ -1,0 +1,65 @@
+                               ━━━━━━━━━
+                                TEAM 02
+                               ━━━━━━━━━
+
+
+Members
+═══════
+
+  • Michael Chum
+  • Shabbir Hussain
+  • Ossama Ahmed
+
+
+Q1
+══
+
+  • Total: 7/10
+    • We asked for programs that compute something useful (paragraph 2,
+      Q1) (-3)
+    • helloworld.go is syntactically valid, but cannot be executed: main
+      takes no parameters and does not return an int in Go
+
+
+Q2
+══
+
+  • Total: 20.7/30
+    • Valid programs: 12.1/16
+      • Recognized as valid: 220/269
+      • Recognized as invalid: 29/269
+      • Pattern matching failures: 19/269
+      • No indentation in pretty printed programs (-1)
+    • Invalid programs: 7.6/10
+      • Recognized as invalid (GoliteError): 308/403
+      • Recognized as valid: 60/403
+      • "Invalid grammar" (?): 28/403
+    • Good error messages: 2/4
+      • Contains line number, no column number
+      • You should try and give more information to the user about the
+        nature of his error by adding error productions to your parser
+        (if an error production introduces a conflict, it's okay to just
+        let a more general rule handle the error with a less precise
+        message)
+
+
+Q3
+══
+
+  • Total: 8/10
+    • What are block quotes? Block comments?
+    • OpAssign: this is exactly how it should be done
+    • What about semi-colons, how did you handle those?  Did you need to
+      be more general with some productions in order to get rid of
+      parser conflicts?
+    • The report should be in a PDF file in a doc/ directory.
+
+
+Comments
+════════
+
+  • Your run script should only execute your compiler, not compile it as
+    well as that takes a lot of time to do it every time for 650+ test
+    files.
+  • Don't assume your compiler is ran from a specific location in the
+    file system; make sure I can call it from wherever

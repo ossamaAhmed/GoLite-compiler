@@ -10,7 +10,7 @@ open Ast
 %token <float> FLOATLITERAL
 %token <string> STRINGLITERAL
 %token <string> IDENTIFIER
-%token <char> RUNELITERAL
+%token <string> RUNELITERAL
 %token PLUS 
 %token AND 
 %token PLUS_EQ 
@@ -223,7 +223,12 @@ identifier_list:
 
 (*TODO: CHECK THAT LHS IS AN LVALUE *)
 assignment:
-    | expression_list EQ expression_list {generate_assign_bare $1 $3 }
+    | expression_list EQ expression_list {
+          if List.length $1 = List.length $3 then
+           generate_assign_bare $1 $3
+        else
+            raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) ))
+         }
     | expression assign_op expression {generate_assign_op $1 $2 $3 }
     ;
 
@@ -251,7 +256,8 @@ block:
     | OPEN_CUR_BRACKET stmt_list CLOSE_CUR_BRACKET {$2};
 
 stmt: 
-    | declaration {Declaration($1)}
+    | variable_declaration { Declaration($1) }
+    | type_declaration { Declaration($1) }
     | return_stmt {  Return($1) }
     | break_stmt { $1 }
     | continue_stmt { $1 }
@@ -266,7 +272,7 @@ stmt:
 
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
-    | expression_stmt {generate_simple_exp $1 }
+    (*| expression_stmt {generate_simple_exp $1 } *)
     | incdec_stmt {generate_simple_incdec $1 }
     | assignment {generate_simple_assignment $1 }
     | short_var_decl {generate_simple_shortvardecl $1 }
@@ -278,7 +284,12 @@ stmt_list:
     ;
 
 short_var_decl: 
-    | identifier_list COLON_EQ expression_list {ShortVarDecl($1,$3) }
+    | identifier_list COLON_EQ expression_list {
+         if List.length $1 = List.length $3 then
+             ShortVarDecl($1,$3)
+        else
+            raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in shortvar declaration" ((!line_number)) ))
+        }
     ;
 
 incdec_stmt:

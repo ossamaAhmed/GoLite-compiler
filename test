@@ -1,8 +1,10 @@
 #!/bin/bash
-for foldername in ./TEST_PROGRAMS/*; do
-	for filename in $foldername/*; do 
+# for foldername in ./TEST_PROGRAMS/*; do
+	for foldername2 in ./TEST_PROGRAMS/invalid/*; do
+	for filename in $foldername2/*; do 
 	echo "$filename" 
-	./run $filename 
+	./src/goLite.native $filename 
+	done
 	done
         
-done
+# done

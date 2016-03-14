@@ -1,0 +1,2 @@
+package weird;
+package nop;
