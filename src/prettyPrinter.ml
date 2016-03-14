@@ -47,6 +47,7 @@ let rec print_type_name type_name = match type_name with
 								| Primitivetype(value)->value 
 								| Arraytype(len, type_name2)-> "[ "^(Printf.sprintf "%i" len)^" ] "^(print_type_name type_name2)
 								| Slicetype(type_name2)->  "[ ] "^(print_type_name type_name2)
+								| Structtype([]) -> ""
 								| Structtype(field_dcl_list) -> 
 									let print_field_dcl field = match field with 
 																| (iden_list,type_name1) -> (Stack.top indentation)^(print_identifiers iden_list)^" "^(print_type_name type_name1)^";\n"
@@ -67,6 +68,7 @@ let print_type_declaration decl = match decl with
 								
 let rec pretty_print_expression exp =
 									let rec print_expressions exprlist = match exprlist with
+									| [] -> ""
 									| head::[] -> pretty_print_expression head
 									| head::tail -> ((pretty_print_expression head)^", "^(print_expressions tail) )in 
 									match exp with 
@@ -106,6 +108,7 @@ let rec pretty_print_expression exp =
 												| _-> ast_error ("expression error")
 
 let rec print_expressions exprlist = match exprlist with
+									| [] -> ""
 									| head::[] -> pretty_print_expression head
 									| head::tail -> (pretty_print_expression head)^", "^(print_expressions tail)
 
@@ -125,7 +128,9 @@ let rec  print_stmts stmts = match stmts with
 									| head::tail -> (print_indent)^(print_stmt head)^";\n"^(print_stmts tail)
 and print_stmt stmt = match stmt with
 				    | Declaration(dcl)-> (match dcl with 
+				    			| TypeDcl([])->  ""
 								| TypeDcl(value)-> print_list(List.map print_type_declaration value)
+								| VarDcl([])->  ""
 								| VarDcl(value)->   print_list(List.map print_variable_declaration value)
 								| Function(func_name,signature,stmts)->  print_function_declaration func_name signature stmts)
 				    | Return(rt_stmt)-> print_return_stmt rt_stmt (*DONE*)
@@ -184,6 +189,7 @@ and print_switch_case_clause clause = match clause with
 								| Empty -> ""	
 
 and print_switch_case_stmt stmts = match stmts with
+								| SwitchCasestmt([]) -> ""
 								| SwitchCasestmt(switch_case_clauses)->(print_list(List.map print_switch_case_clause switch_case_clauses))						
 and print_inc_dec_stmt stmt = match stmt with 
 						 | Increment(expr)->(pretty_print_expression expr)^"++"
@@ -199,9 +205,12 @@ and print_short_var_decl dcl = match dcl with
 
 
 and print_declaration decl = match decl with 
+								| TypeDcl([])->  ()
 								| TypeDcl(value)-> write_message(print_list(List.map print_type_declaration value))
+								| VarDcl([])->  ()
 								| VarDcl(value)->  write_message (print_list(List.map print_variable_declaration value))
 								| Function(func_name,signature,stmts)-> write_message (print_function_declaration func_name signature stmts)
+								| _ -> ()
 
 and print_signature_return_type return_type = match return_type with
 	| FuncReturnType(return_type_i) -> (print_type_name return_type_i)^" "
