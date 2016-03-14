@@ -58,12 +58,14 @@ let alpha = ['a'-'z' 'A'-'Z']
 let ascii = ['\x00' -'\x09' '\x11'-'\x5b'  '\x5d'-'\x7f']
 let ascii_no_single_quote = ['\x00' -'\x09' '\x11'-'\x26'  '\x28'-'\x5b'  '\x5d'-'\x7f']
 
+let escaped_char_string = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\')
+
 let escaped_char = ('a'|'b'|'f'|'n'|'r'|'t'|'v'|'\\'|'\'')
 
 let rune_lit = ("'"ascii_no_single_quote"'") |("'\\"escaped_char"'")
 
 let ascii_without_quotes = ['\x00' -'\x09' '\x11'-'\x21' '\x23' -'\x5b' '\x5d'-'\x7f'] (*QUOTATION CHARACTERS WERE INVLUDED CAUSING THE LEXER TO SCAN JUST THE FIRST LINE*)
-let interpreted_string_lit = ('"' ( ascii_without_quotes | '\\' escaped_char| '\\' '"')* '"')
+let interpreted_string_lit = ('"' ( ascii_without_quotes | '\\' escaped_char_string| '\\' '"')* '"')
 let raw_string_lit = ('`'[^'`']* '`') 
 let string_lit = (interpreted_string_lit|raw_string_lit)
 
@@ -80,13 +82,12 @@ let float_lit = (decimals '.' decimals | '.' decimals | decimals '.')
 
 let blank = [' ' '\r' '\t']
 
-let iden = (alpha | '_') (alpha | digit | '_')*
+let iden = (alpha) (alpha | digit | '_')* (*removed blank indentifier*)
 let notnewline = [^ '\n']
-let notblockend_comment = (_) (_)
 let one_line_comment = ('/' '/') (notnewline)* '\n'
 let block_comment = ('/' '*') ((_)#'*')* ((_)#'/')* ('*' '/')
 
-let identifier = (alpha | '_') (alpha | digit | '_')*
+let identifier = (alpha ) (alpha | digit | '_')* (*removed blank indentifier*)
 
 rule golite = parse
     | "+"      { last_token:= PLUS; PLUS }

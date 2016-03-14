@@ -73,14 +73,20 @@ let rec  weed_stmts stmts = match stmts with
 									| [] -> ""
 									| head::[] -> weed_stmt head
 									| head::tail -> let _= weed_stmt head in weed_stmts tail
+and weed_stmts_without_break_continue stmts = match stmts with
+									| [] -> ""
+									| Break::tail ->  ast_error "Break statement outside a loop"
+									| Continue::tail ->  ast_error "Continue statement outside a loop"
+									| head::[] -> weed_stmt head
+									| head::tail -> let _= weed_stmt head in weed_stmts_without_break_continue tail
 and weed_stmt stmt = match stmt with
 				    | Declaration(dcl)-> ""
 				    | Return(rt_stmt)-> ""
 				    | Break -> ""
 				    | Continue -> ""
-				    | Block(stmt_list)-> ""
-				    | Conditional(conditional)-> ""
-				    | Switch(switch_clause, switch_expr, switch_case_stmts)->""
+				    | Block(stmt_list)-> weed_stmts_without_break_continue stmt_list
+				    | Conditional(conditional)-> weed_conditional conditional
+				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> weed_switch_case_stmt switch_case_stmts
 				    | For(for_stmt)-> ""
 				    | Simple(simple)-> weed_simple_stmt simple
 				    | Print(exprs)-> ""
@@ -89,16 +95,16 @@ and weed_return_stmt stmt= match stmt with
 							| Empty -> ""
 							| ReturnStatement(expr)-> ""
 and weed_conditional cond = match cond with 
-							| IfStmt(if_stmt)-> ""
-							| ElseStmt(else_stmt)-> ""
+							| IfStmt(if_stmt)-> weed_if_stmt if_stmt
+							| ElseStmt(else_stmt)-> weed_else_stmt else_stmt
 and weed_if_stmt if_stmt = match if_stmt with
-							| IfInit(if_init, condition, stmts)-> ""
+							| IfInit(if_init, condition, stmts)-> weed_stmts_without_break_continue stmts
 and weed_if_init if_init = match if_init with
 							| IfInitSimple(simplestmt) -> ""
 							| Empty -> ""
 and weed_simple_stmt stmt = match stmt with 
 							| SimpleExpression(expr)-> ""
-							| IncDec(incdec)-> ""
+							| IncDec(incdec)-> weed_inc_dec_stmt incdec
 							| Assignment(assignment_stmt)-> weed_assignment_stmt assignment_stmt
 							| ShortVardecl(short_var_decl)-> ""
 							| Empty -> ""
@@ -107,9 +113,9 @@ and  weed_condition cond = match cond with
 							| Empty -> ""
 
 and weed_else_stmt stmt =  match stmt with 
-							| ElseSingle(if_stmt,stmts)-> ""
-						    | ElseIFMultiple(if_stmt,else_stmt)->""
-						    | ElseIFSingle(if_stmt1,if_stmt2)->""
+							| ElseSingle(if_stmt,stmts)-> weed_stmts_without_break_continue stmts
+						    | ElseIFMultiple(if_stmt,else_stmt)-> let _=(weed_if_stmt if_stmt) in weed_else_stmt else_stmt
+						    | ElseIFSingle(if_stmt1,if_stmt2)-> let _=(weed_if_stmt if_stmt1) in weed_if_stmt if_stmt2
 and weed_for_stmt stmt = match stmt with 
 				    | Forstmt(stmts)-> ""
 				    | ForCondition(condition, stmts)-> ""
@@ -124,23 +130,30 @@ and weed_switch_clause clause = match clause with
 and weed_switch_expression expr = match expr with 
 								| SwitchExpr(expr)-> ""
 								| Empty -> ""
-and weed_switch_case_clause clause = match clause with 
-								| SwitchCaseClause(exprs, stmts)-> (match exprs with
-																	| []->	""
-																	| head::tail -> ""
+and count_switch_case_defaults switchcaseclauses count= match switchcaseclauses with
+											| [] -> if count>1 then ast_error "more than one default case" else count
+											| SwitchCaseClause(exprs, stmts)::tail -> (match exprs with
+																	| []->	count_switch_case_defaults tail (count+1)
+																	| head::tail2 -> count_switch_case_defaults tail count
 																	)
+											| Empty::tail -> count_switch_case_defaults tail count
+and weed_switch_case_clause clause = match clause with 
+								| SwitchCaseClause(exprs, stmts)-> weed_stmts_without_break_continue stmts
 								| Empty -> ""	
 
 and weed_switch_case_stmt stmts = match stmts with
-								| SwitchCasestmt(switch_case_clauses)->""
+								| SwitchCasestmt(switch_case_clauses)-> 
+												let defaults_count= count_switch_case_defaults switch_case_clauses 0 in 
+												let _= (List.map weed_switch_case_clause switch_case_clauses) in ""
 
-and weed_inc_dec_stmt stmt = match stmt with 
-						 | Increment(expr)->""
-   						 | Decrement(expr)->""
 and lvalue_eval expr = match expr with 
 						| OperandName(iden)-> ""
 						| Indexexpr(expr1,expr2)-> ""
 						| _ -> ast_error "Lvalue error"
+and weed_inc_dec_stmt stmt = match stmt with 
+						 | Increment(expr)->  let _= ( lvalue_eval expr) in ""
+   						 | Decrement(expr)->  let _= ( lvalue_eval expr) in ""
+
 and weed_assignment_stmt stmt = match stmt with 
 						    | AssignmentBare(exprs1,exprs2)-> let _= (List.map lvalue_eval exprs1) in ""
    						    | AssignmentOp(exprs1, assign_op, exprs2)-> lvalue_eval exprs1
@@ -162,7 +175,7 @@ and weed_signature_return_type return_type = match return_type with
 and weed_signature signature = match signature with
 	FuncSig(FuncParams(func_params), return_type) -> ""
 
-and weed_function_declaration func_name signature stmts = (weed_stmts stmts)::[]
+and weed_function_declaration func_name signature stmts = (weed_stmts_without_break_continue stmts)::[]
 
 let weed_program program = match program with
 									  | Prog(packagename,dcllist)-> List.map weed_declaration dcllist

@@ -349,8 +349,10 @@ for_clause: (*GOLITE DOESNT SUPPORT INITSTMT FOR FORLOOP*)
 
 init_stmt: 
     | simple_stmt {$1};
-post_stmt: 
-    | simple_stmt {$1};
+post_stmt: (*REMOVED SHORTVAR DECLARATION FROM HERE *)
+    | incdec_stmt {generate_simple_incdec $1 }
+    | assignment {generate_simple_assignment $1 }
+    ;
 
 switch_stmt:
     | SWITCH switch_clause switch_expr_clause OPEN_CUR_BRACKET expr_case_clause_list CLOSE_CUR_BRACKET {generate_switch $2 $3 (generate_switch_case_block($5))}
