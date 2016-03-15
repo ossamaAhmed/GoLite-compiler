@@ -85,7 +85,8 @@ let blank = [' ' '\r' '\t']
 let iden = (alpha | '_') (alpha | digit | '_')* (*removed blank indentifier*)
 let notnewline = [^ '\n']
 let one_line_comment = ('/' '/') (notnewline)* '\n'
-let block_comment = "/*"([^'*']|('*'+[^'*''/']))*('*'+'/')
+let block_comment_with_new_line = "/*"([^'*']|('*'+[^'*''/']))*('*'+'/')
+let block_comment = "/*"([^'*''\n']|('*'+[^'*''/']))*('*'+'/')
 
 let identifier = (alpha| '_' ) (alpha | digit | '_')* (*removed blank indentifier*)
 
@@ -155,7 +156,10 @@ rule golite = parse
     | rune_lit as r {
       last_token:= RUNELITERAL(r); RUNELITERAL(r)
     }
-    | '\n' | one_line_comment | block_comment { line_number:= lexbuf.Lexing.lex_curr_p.pos_lnum; match !last_token with
+    | block_comment as s{
+        golite lexbuf
+    }
+    | '\n' | one_line_comment| block_comment_with_new_line { line_number:= lexbuf.Lexing.lex_curr_p.pos_lnum; match !last_token with
                                                         | IDENTIFIER(x)-> last_token:= EOL ;Lexing.new_line lexbuf;SEMICOLON
                                                         | INTLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
                                                         | FLOATLITERAL(x)-> last_token:= EOL ;Lexing.new_line lexbuf; SEMICOLON
