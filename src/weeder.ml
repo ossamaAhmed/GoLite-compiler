@@ -173,8 +173,8 @@ and weed_switch_case_stmt stmts case= match stmts with
 and lvalue_eval expr = match expr with 
 						| OperandName(iden)-> ""
 						| Indexexpr(expr1,expr2)-> ""
-						| FuncCallExpr(expr,exprs)-> ""
-						| Appendexpr (Identifier(iden),exp1)-> ""
+						(* | FuncCallExpr(expr,exprs)-> ""
+						| Appendexpr (Identifier(iden),exp1)-> "" *)
 						| Selectorexpr(exp1,Identifier(iden))-> ""
 						| _ -> ast_error "Lvalue error"
 and weed_inc_dec_stmt stmt = match stmt with 

@@ -2,6 +2,7 @@
 
 open Lexer
 open Weeder
+open TypeChecker
 
 let _ =
     if Array.length Sys.argv > 1
@@ -15,6 +16,7 @@ let _ =
  *)            let myprog = Parser.parse Lexer.golite lexbuf in
             let weededProg = Weeder.weed_program myprog in 
             let _ = PrettyPrinter.pretty_print myprog out in
+             let _ = TypeChecker.type_check_program myprog out in
             print_string ("Valid\n"); 
         with 
             | Parser.Error -> print_string("Invalid grammar\n"); exit 0;

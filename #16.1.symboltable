@@ -1,0 +1,4 @@
+var: y ,type:arrayint 
+var: x ,type:sliceint 
+var: true ,type:bool 
+var: false ,type:bool 
