@@ -18,8 +18,7 @@ func main() {
 into a 3 by 3 array and place in the global list */
 func square(set []string) ([3][3]string) {
     size := 9
-    count := (((len)))(((set)))
-    var data [3][3]string
+     var data [3][3]string
 
     for count < size {
         set := append(set, "empty");
@@ -37,7 +36,7 @@ func square(set []string) ([3][3]string) {
     }
 
     println(data)
-    return string(data)
+    // return string(data)
 }
 
 func len(set []string) int {

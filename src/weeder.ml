@@ -51,7 +51,7 @@ let rec weed_expression exp = match exp with
 												| Indexexpr(exp1,exp2)-> ""
 												| Unaryexpr(exp1) -> ""
 												| Binaryexpr(exp1) -> ""
-												| FuncCallExpr(Identifier(iden),exprs)-> ""
+												| FuncCallExpr(expr,exprs)-> ""
 												| UnaryPlus(exp1) -> ""
 												| UnaryMinus(exp1) -> ""
 												| UnaryNot(exp1) -> ""
@@ -97,7 +97,11 @@ and weed_stmt stmt case=
 				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmt_list case
 				    					| _ -> weed_stmts stmt_list case)
 				    | Conditional(conditional)-> weed_conditional conditional case
-				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> weed_switch_case_stmt switch_case_stmts case
+				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> 
+				    (match case with
+				    					| "withoutcontinue" -> weed_switch_case_stmt switch_case_stmts case
+				    					| "withoutbreakandcontinue"-> weed_switch_case_stmt switch_case_stmts "withoutcontinue"
+				    					| _ ->  weed_switch_case_stmt switch_case_stmts "withbreakandcontinue") 
 				    | For(for_stmt)-> ""
 				    | Simple(simple)-> weed_simple_stmt simple
 				    | Print(exprs)-> ""
@@ -169,7 +173,7 @@ and weed_switch_case_stmt stmts case= match stmts with
 and lvalue_eval expr = match expr with 
 						| OperandName(iden)-> ""
 						| Indexexpr(expr1,expr2)-> ""
-						| FuncCallExpr(Identifier(iden),exprs)-> ""
+						| FuncCallExpr(expr,exprs)-> ""
 						| Appendexpr (Identifier(iden),exp1)-> ""
 						| Selectorexpr(exp1,Identifier(iden))-> ""
 						| _ -> ast_error "Lvalue error"

@@ -132,7 +132,7 @@ type func_return =
 	| Indexexpr of expression * expression
 	| Unaryexpr of expression
 	| Binaryexpr of expression
-	| FuncCallExpr of identifier * expression list (*needs to be revised*)
+	| FuncCallExpr of expression * expression list (*needs to be revised*)
 	| UnaryPlus of expression
 	| UnaryMinus of expression
 	| UnaryNot of expression

@@ -96,7 +96,7 @@ let rec pretty_print_expression exp =
 												| Indexexpr(exp1,exp2)-> "( "^(pretty_print_expression exp1)^"["^(pretty_print_expression exp2 )^"]"^")"
 												| Unaryexpr(exp1) -> (pretty_print_expression exp1)
 												| Binaryexpr(exp1) -> (pretty_print_expression exp1)
-												| FuncCallExpr(Identifier(iden),exprs)-> "( "^iden^"("^(print_expressions exprs)^")"^")"
+												| FuncCallExpr(expr,exprs)-> "( "^(pretty_print_expression expr)^"("^(print_expressions exprs)^")"^")"
 												| UnaryPlus(exp1) -> "( +"^(pretty_print_expression exp1)^" )"
 												| UnaryMinus(exp1) -> "( -"^(pretty_print_expression exp1)^" )"
 												| UnaryNot(exp1) -> "( !"^(pretty_print_expression exp1)^" )"

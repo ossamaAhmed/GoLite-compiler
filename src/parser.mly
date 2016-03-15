@@ -101,8 +101,8 @@ open Ast
 %left DOUBLE_EQ NOT_EQ LT LT_EQ GT GT_EQ
 %left PLUS MINUS BAR CARET 
 %left STAR SLASH PERCENT SHIFT_LEFT SHIFT_RIGHT AND AND_CARET
-%left unary
-%left idenlist
+%nonassoc idenlist
+%nonassoc unary
 
 (* Start of parser *)
 %start parse
@@ -215,7 +215,7 @@ func_params_list:
     ;
 
 func_call_expr:
-    | IDENTIFIER func_args { generate_func_expr (generate_symbol $1) $2}
+    | primary_expr func_args { generate_func_expr  $1 $2}
     ;
 func_args:
     | OPEN_PAREN CLOSE_PAREN {[]}
@@ -225,22 +225,29 @@ func_args:
 
 (*TODO: CHECK THAT LHS IS AN LVALUE *)
 assignment:
-    | expression_list EQ expression_list {
+    | temprule EQ expression_list {
           if List.length $1 = List.length $3 then
            generate_assign_bare $1 $3
         else
             raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) ))
          }
     | expression assign_op expression {generate_assign_op $1 $2 $3 }
-    | identifier_list EQ expression_list { 
+  (*  | identifier_list EQ expression_list { 
 
                     if List.length $1 = List.length $3 then let convert_iden iden= match iden with 
                                                         |Identifier(val1) ->generate_operator val1 in  
                                                         let result= List.map convert_iden $1 in
                                                          generate_assign_bare result $3
                     else 
-                     raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) )) }
+                     raise (GoliteError (Printf.sprintf "Parser Error at %d: Number of variables must match number of expressions in assignment" ((!line_number)) )) } *)
     ;
+temprule:
+| expression_list {$1}
+| IDENTIFIER COMMA expression_list { (generate_operator $1)::$3}
+| identifier_list { let convert_iden iden= match iden with 
+                                                        |Identifier(val1) ->generate_operator val1 in  
+                                                        List.map convert_iden $1 }
+;
 
 assign_op:
     | add_op_eq {$1}
@@ -426,7 +433,7 @@ primary_expr:
     | append_expr { $1 }
     | primary_expr index { generate_index_expr $1 $2}
     | primary_expr selector { generate_selector_expr $1 $2 }
-    | type_cast OPEN_PAREN primary_expr CLOSE_PAREN { generate_type_casting_expr $1 $3 }
+    | type_cast OPEN_PAREN expression CLOSE_PAREN { generate_type_casting_expr $1 $3 }
    (* | primary_expr slice {()} *)   (*I SKIPPED GENERATING THIS FOR NOW*)
     ;
 operand:
