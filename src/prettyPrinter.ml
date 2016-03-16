@@ -3,7 +3,7 @@ open Ast
 
 let file = ref "../your_program.go"
 let oc = ref stdout
-let set_file filename = (file := "../"^filename^".pretty.go"); oc:= (open_out (!file))
+let set_file filedir filename = (file := filedir^(Filename.dir_sep)^filename^".pretty.go"); oc := (open_out (!file))
 let write_message message = fprintf (!oc) "%s" message   (* write something *)   
 let close oc = close_out oc
 let indentation = Stack.create()
@@ -203,11 +203,11 @@ and print_signature signature = match signature with
 and print_function_declaration func_name signature stmts =
     "func "^(func_name)^(print_signature signature)^"{\n"^(print_stmts stmts)^"};\n"
 
-let print program filepath filename = 
-    let _ = set_file filename in 
-         (match program with
+let print program filedir filename = 
+    let _ = set_file filedir filename in 
+        (match program with
             | Prog(packagename,dcllist)->
-                      let _ = write_message ("package "^(packagename)^" ;\n") in 
-                      (List.map print_declaration dcllist))
+            let _ = write_message ("package "^(packagename)^" ;\n") in 
+            (List.map print_declaration dcllist))
 
 

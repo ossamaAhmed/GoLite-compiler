@@ -3,3 +3,4 @@ src/_build/
 .DS_Store
 test_results.txt
 *.pretty.go
+*.symboltable

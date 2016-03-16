@@ -5,6 +5,3 @@ make clean
 make golite
 } &> /dev/null
 ./goLite.native  ../$1
-{
-make clean	
-} &> /dev/null
