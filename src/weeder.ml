@@ -204,7 +204,7 @@ and weed_signature signature = match signature with
 
 and weed_function_declaration func_name signature stmts = (weed_stmts stmts "withoutbreakandcontinue")::[]
 
-let weed_program program = match program with
+let weed program = match program with
 									  | Prog(packagename,dcllist)-> List.map weed_declaration dcllist
 
 
