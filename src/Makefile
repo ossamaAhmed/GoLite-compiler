@@ -4,8 +4,5 @@ OCAMLBUILD=/usr/bin/env ocamlbuild -tag debug -use-menhir -menhir 'menhir --expl
 all: golite
 golite: goLite.ml lexer.mll parser.mly error.ml
 	$(OCAMLBUILD) goLite.native
-	
-############
 clean:
-	rm -r _build
-	rm 	  goLite.native
+	(rm -r _build) || (rm goLite.native) || (cd ../ && find . -type f -name '*.pretty.go' -exec rm {} +)
