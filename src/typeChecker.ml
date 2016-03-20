@@ -7,7 +7,7 @@ let oc = ref stdout
 let set_file filename = (file := "../"^filename^".symboltable"); oc:= (open_out (!file))
 let write_message message = fprintf (!oc) "%s" message   (* write something *)   
 let close oc = close_out oc
-let searched_type = ref "none"
+let scope_counter = ref 1
 
 exception Symbol_table_error of string
 
@@ -61,11 +61,15 @@ let rec print_type y= match y with
 				| SymArray(symType) -> "array"^(print_type symType) 
 				| SymSlice (symType) -> "slice"^(print_type symType)
 				| SymStruct (fieldlst)-> "struct" (*doesn't print out the fields*)
-				| SymFunc(symType,argslist)->"function" (*doesn't print out the function args*) 							 
+				| SymFunc(symType,argslist)->"function" (*doesn't print out the function args*) 
+				| SymType(symType)-> print_type symType				
+				| Void -> "void"			 
 
 let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
 let print_table tbl= match tbl with 
-					| Scope(table)->Hashtbl.iter print_tuple table
+					| Scope(table)->let _= write_message ("\n\nscope number"^(Printf.sprintf "%i" !scope_counter)^"\n\n") 
+									in let _= Hashtbl.iter print_tuple table 
+									in scope_counter:= !scope_counter+1
 
 let print_stack s= List.iter print_table !symbol_table
 
@@ -108,7 +112,7 @@ and create_field_types_list lst= match lst with
 								| (identifierlst,typ)::tail-> (struct_field_types identifierlst typ)@(create_field_types_list tail)
 
 and typecheck_type_name type_name = match type_name with
-								| Definedtype(Identifier(value))-> search_current_scope value
+								| Definedtype(Identifier(value))->let x= search_current_scope value in (match x with | SymType(mytype)-> mytype)
 								| Primitivetype(value)-> get_primitive_type value 
 								| Arraytype(len, type_name2)-> SymArray((typecheck_type_name type_name2))
 								| Slicetype(type_name2)-> SymSlice((typecheck_type_name type_name2))
@@ -118,16 +122,21 @@ and typecheck_type_name type_name = match type_name with
 																| (iden_list,type_name1) -> let mytype = typecheck_type_name typename in List.map (add_variable_to_current_scope mytype) iden_list
 																| _ -> ast_error ("field_dcl_print error") *)
 																
-(*
-let rec typecheck_identifiers_with_type idenlist = match idenlist with
-									| [] -> ""
-									| TypeSpec(Identifier(value),return_type)::[] -> value^" "^(typecheck_type_name return_type)
-									| TypeSpec(Identifier(value),return_type)::tail -> value^" "^(typecheck_type_name return_type)^", "^(typecheck_identifiers_with_type tail)
 
-let typecheck_type_declaration decl = match decl with
-								| TypeSpec(Identifier(value), typename)-> (typecheck_indent)^"type "^value^" "^(typecheck_type_name typename)^"\n"
-								| _-> ast_error ("type_dcl error")
-*)								
+let rec typecheck_identifiers_with_type idenlist = match idenlist with
+									| [] -> []
+									| TypeSpec(Identifier(value),return_type)::tail -> let mytype = typecheck_type_name return_type in 
+																						(value, mytype)::(typecheck_identifiers_with_type tail)
+
+and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
+									| [] -> ()
+									| TypeSpec(value,return_type)::tail -> let mytype = typecheck_type_name return_type in 
+																		    let _= add_variable_to_current_scope mytype value in
+																			typecheck_identifiers_with_type_new_scope tail
+and typecheck_type_declaration decl = match decl with
+								| TypeSpec(value, typename)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in ()
+								| _-> type_checking_error ("type_dcl error")
+								
 (* let rec pretty_typecheck_expression exp =
 									let rec typecheck_expressions exprlist = match exprlist with
 									| [] -> ""
@@ -174,7 +183,7 @@ let rec typecheck_expressions exprlist = match exprlist with
 									| head::[] -> pretty_typecheck_expression head
 									| head::tail -> (pretty_typecheck_expression head)^", "^(typecheck_expressions tail) *)
 
- let typecheck_variable_declaration decl= match decl with
+ and typecheck_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs) -> let mytype = typecheck_type_name typename in let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
 																					(* ( match exprs with
 																							| [] -> "var "^(typecheck_identifiers iden_list)^" "^(typecheck_type_name typename)^";\n"
@@ -268,23 +277,28 @@ and typecheck_short_var_decl dcl = match dcl with
 
 *)
 
-let typecheck_declaration decl = match decl with 
+and typecheck_declaration decl = match decl with 
 								| TypeDcl([])->  ()
-								| TypeDcl(value)->() (* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
+								| TypeDcl(value)-> let result= (List.map typecheck_type_declaration value) in ()(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
 								| VarDcl([])->  ()
 								| VarDcl(value)-> let result= (List.map typecheck_variable_declaration value) in ()
-								| Function(func_name,signature,stmts)->() (* write_message (typecheck_function_declaration func_name signature stmts) *)
+								| Function(func_name,signature,stmts)->let result=  typecheck_function_declaration func_name signature stmts in ()
 								| _ -> ()
 
-(*and typecheck_signature_return_type return_type = match return_type with
-	| FuncReturnType(return_type_i) -> (typecheck_type_name return_type_i)^" "
-	| Empty -> ""
+and typecheck_signature_return_type return_type = match return_type with
+	| FuncReturnType(return_type_i) -> typecheck_type_name return_type_i  
+	| Empty -> Void
 
-and typecheck_signature signature = match signature with
-	FuncSig(FuncParams(func_params), return_type) -> "("^(typecheck_identifiers_with_type func_params)^")"^" "^(typecheck_signature_return_type return_type)
 
-and typecheck_function_declaration func_name signature stmts =
-	"func "^(func_name)^(typecheck_signature signature)^"{\n"^(inc_indent)^(typecheck_stmts stmts)^(dec_indent)^"};\n" *)
+and typecheck_signature signature func_name= match signature with
+	FuncSig(FuncParams(func_params), return_type) -> let mytype=typecheck_signature_return_type return_type in 
+													let params= typecheck_identifiers_with_type func_params in  
+													let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name)) in 
+													let _= start_scope () in 
+													typecheck_identifiers_with_type_new_scope func_params
+													 
+
+and typecheck_function_declaration func_name signature stmts = (* let _= *) typecheck_signature signature func_name (* in let _=typecheck_stmts stmts *) (* in end_scope() *)
 
 let type_check_program program filename= 
 							let _= set_file filename in let _=start_scope () in

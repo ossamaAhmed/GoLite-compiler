@@ -8,6 +8,8 @@ type symType =
 	| SymSlice of symType
 	| SymStruct of (string * symType) list
 	| SymFunc of symType * (string * symType) list (*resturn, args*)
+	| SymType of symType
+	| Void
 
 	and 
 	symTable = 
