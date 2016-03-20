@@ -1,5 +1,6 @@
 open Printf
 open Ast
+open Symboltbl
 
 let file = ref "../your_program.go"
 let oc = ref stdout
@@ -17,40 +18,56 @@ exception Type_checking_error of string
 let type_checking_error msg = raise (Type_checking_error msg)
 
 
-let symbol_table = Stack.create()
-let basic_table = (Hashtbl.create 2);;
-Hashtbl.add basic_table "true" "bool";;
-Hashtbl.add basic_table "false" "bool";;
-Stack.push basic_table symbol_table;;
+let symbol_table = ref []
+let basic_table = (Hashtbl.create 20);;
+Hashtbl.add basic_table "true" SymBool;;
+Hashtbl.add basic_table "false" SymBool;;
+symbol_table :=Scope(basic_table)::!symbol_table;;
 
-let start_scope ()= Stack.push (Hashtbl.create 50) symbol_table
-let end_scope ()= Stack.pop symbol_table
-let search_current_scope x= let current_scope = Stack.top symbol_table in 
+let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
+let end_scope ()= match !symbol_table with 
+				| head::tail -> symbol_table:= tail
+let search_current_scope x= match !symbol_table with 
+							| Scope(current_scope)::tail -> 
 							if (Hashtbl.mem current_scope x) then 
 									Hashtbl.find current_scope x
 							else 
 								    symbol_table_error ("variable is not defined")
 
-let search_table x table=  if (Hashtbl.mem table x && (!searched_type)=="none") then 
-									searched_type:=Hashtbl.find table x
+let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
+							| []-> symbol_table_error ("variable is not defined")
+							| Scope(current_scope)::tail -> 
+							if (Hashtbl.mem current_scope x) then 
+									Hashtbl.find current_scope x
 							else 
-								   ()
-
-let search_previous_scopes x= Stack.iter (search_table x) symbol_table
+								    search_previous_scopes x tail
 
 
 let add_variable_to_current_scope mytype myvar=  match myvar with
-											| Identifier(myvariable)->
-											let current_scope = Stack.top symbol_table in 
-											 if not(Hashtbl.mem current_scope myvariable) then 
-												Hashtbl.add current_scope myvariable mytype
-											else 
-												 symbol_table_error ("variable is defined more than one time")
+											| Identifier(myvariable)-> 
+												(match !symbol_table with
+													| Scope(current_scope)::tail ->
+													if not(Hashtbl.mem current_scope myvariable) then 
+														Hashtbl.add current_scope myvariable mytype
+													else 
+														 symbol_table_error ("variable is defined more than one time")
+												 ) 
+let rec print_type y= match y with 
+				| SymInt -> "int"
+				| SymFloat64 -> "float"
+				| SymRune -> "rune"
+				| SymString -> "string"
+				| SymBool -> "bool"	
+				| SymArray(symType) -> "array"^(print_type symType) 
+				| SymSlice (symType) -> "slice"^(print_type symType)
+				| SymStruct (fieldlst)-> "struct" (*doesn't print out the fields*)
+				| SymFunc(symType,argslist)->"function" (*doesn't print out the function args*) 							 
 
-let print_tuple x y= write_message ("var: "^x^" ,type:"^y^" \n")
-let print_table tbl= Hashtbl.iter print_tuple tbl
+let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
+let print_table tbl= match tbl with 
+					| Scope(table)->Hashtbl.iter print_tuple table
 
-let print_stack s= Stack.iter print_table symbol_table
+let print_stack s= List.iter print_table !symbol_table
 
 
 
@@ -69,20 +86,34 @@ let rec typecheck_identifiers idenlist = match idenlist with
 *)
 
 let typecheck_literal lit = match lit with
-						| Intliteral(value) -> "int"
-						| Floatliteral(value) -> "float"
-						| Runeliteral(value) -> "rune"
-						| Stringliteral(value) -> "string"
+						| Intliteral(value) -> SymInt
+						| Floatliteral(value) ->SymFloat64
+						| Runeliteral(value) -> SymRune
+						| Stringliteral(value) -> SymString
 
+let get_primitive_type typestr = match typestr with
+						| "int" -> SymInt
+						| "float64" ->SymFloat64
+						| "rune" -> SymRune
+						| "string" -> SymString
+						| "bool" -> SymBool
 
+let helper mytype x= match x with 
+			| Identifier(myvar)->(myvar,mytype)
 
-let rec typecheck_type_name type_name = match type_name with
+let rec struct_field_types identifierlst typ= let mytype= typecheck_type_name typ in List.map (helper mytype) identifierlst
+
+and create_field_types_list lst= match lst with 
+								| []->[]
+								| (identifierlst,typ)::tail-> (struct_field_types identifierlst typ)@(create_field_types_list tail)
+
+and typecheck_type_name type_name = match type_name with
 								| Definedtype(Identifier(value))-> search_current_scope value
-								| Primitivetype(value)-> value 
-								| Arraytype(len, type_name2)-> "array"^(typecheck_type_name type_name2)
-								| Slicetype(type_name2)->  "slice"^(typecheck_type_name type_name2)
-								| Structtype([]) -> "struct"
-								| Structtype(field_dcl_list) -> "struct"
+								| Primitivetype(value)-> get_primitive_type value 
+								| Arraytype(len, type_name2)-> SymArray((typecheck_type_name type_name2))
+								| Slicetype(type_name2)-> SymSlice((typecheck_type_name type_name2))
+								| Structtype([]) -> SymStruct([])
+								| Structtype(field_dcl_list) -> SymStruct(create_field_types_list field_dcl_list)
 									(* let typecheck_field_dcl field = match field with 
 																| (iden_list,type_name1) -> let mytype = typecheck_type_name typename in List.map (add_variable_to_current_scope mytype) iden_list
 																| _ -> ast_error ("field_dcl_print error") *)

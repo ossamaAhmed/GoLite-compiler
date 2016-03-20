@@ -1,5 +1,5 @@
 #!/bin/bash
-for validinvalid in ./TEST_PROGRAMS/invalid/*; do
+for validinvalid in ./TEST_PROGRAMS/valid/*; do
 	# for subfolder in $validinvalid/*; do
         for filename in $validinvalid/*; do 
         echo "$filename" 

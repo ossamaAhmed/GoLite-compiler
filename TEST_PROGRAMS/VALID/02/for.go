@@ -3,7 +3,6 @@
 
 package main
 
-
 func main() {
 
     // The most basic type, with a single condition.

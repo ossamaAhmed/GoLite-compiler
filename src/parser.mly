@@ -290,7 +290,6 @@ stmt:
 simple_stmt:
     | {Empty}  (*WHY WOULD A SIMPLE STMT BE EMPTY*)
     | func_call_expr { generate_simple_exp $1} (*Added These Two As Stmts Instead Of Expression Stmt*)
-    | append_expr { generate_simple_exp $1 }
     (*| expression_stmt {generate_simple_exp $1 } *)
     | incdec_stmt {generate_simple_incdec $1 }
     | assignment {generate_simple_assignment $1 }
