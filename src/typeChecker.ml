@@ -641,4 +641,3 @@ let type_check_program program filename=
 											  let new_decl_list= (List.map typecheck_declaration dcllist)in 
 											  Prog(packagename,new_decl_list)) 
 
-

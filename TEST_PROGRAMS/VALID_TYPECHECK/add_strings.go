@@ -4,6 +4,6 @@ func main() {
     
     //this assignment is allowed
     var c string = "1234hello";
-    var x int = c+c;
+    var x string = c+c;
     print(x);
 }
