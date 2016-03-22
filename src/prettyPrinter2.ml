@@ -595,7 +595,57 @@ let print program filedir filename =
                     end
             in
             print_for_stmt level for_stmt
-        (* | Switch(switch_clause, switch_expr, switch_case_stmts)-> (indent (level))^"switch "^(print_switch_clause switch_clause)^" "^(print_switch_expression switch_expr)^" {\n"^(print_switch_case_stmt level switch_case_stmts)^"}" *)
+        | Switch(switch_clause, switch_expr, switch_case_stmts) -> 
+            let print_switch_clause clause = match clause with
+                | SwitchClause(simple_stmt) -> 
+                    begin
+                        print_simple_stmt simple_stmt;
+                        print_string "; ";
+                    end
+                | Empty -> ()
+            in
+            let print_switch_expr expr = match expr with 
+                | SwitchExpr(expr)->
+                    begin
+                        print_expr expr;
+                        print_string " ";
+                    end
+                | Empty -> ()
+            in
+            let print_switch_case_clause level clause = match clause with 
+                | SwitchCaseClause(exprs, stmts) -> 
+                    (match exprs with
+                        | [] -> 
+                            begin
+                                print_tab (level);
+                                print_string "default :\n";
+                                print_stmt_list (level+1) stmts;
+                            end
+                        | head::tail ->
+                            begin
+                                print_tab (level);
+                                print_string "case ";
+                                print_expr_list exprs;
+                                print_string " :\n";
+                                print_stmt_list (level+1) stmts;
+                            end
+                    )
+                | Empty -> ()   
+            in
+            let print_switch_case_stmt level stmts = match stmts with
+                | SwitchCasestmt([]) -> ()
+                | SwitchCasestmt(switch_case_clauses) -> List.iter (print_switch_case_clause level) switch_case_clauses
+            in       
+            begin
+                print_tab (level);
+                print_string "switch ";
+                print_switch_clause switch_clause;
+                print_switch_expr switch_expr;
+                print_string "{\n";
+                print_switch_case_stmt (level+1) switch_case_stmts;
+                print_tab (level);
+                print_string "}\n";
+            end
         | _ -> ()
     and print_stmt_list level stmt_list = match stmt_list with
         | [] -> ()
