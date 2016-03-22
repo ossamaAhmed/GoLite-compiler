@@ -11,7 +11,7 @@ type cool int
 type y4 cool
 
 func main (x,y int){
-	print(1+3);
+	print(cool(1,2));
 	x=/*hi*/3+/**/5;
 }
 

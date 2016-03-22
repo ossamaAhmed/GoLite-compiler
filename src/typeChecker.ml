@@ -253,10 +253,10 @@ let rec pretty_typecheck_expression exp =
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" &^ "^(pretty_typecheck_expression exp2 )^" )" *)
 												| OperandParenthesis (exp1,linenum,ast_type)-> pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| Indexexpr(exp1,exp2,linenum,ast_type)-> SymInt  (* "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")" *)
+						(*    NOT DONE*)		| Indexexpr(exp1,exp2,linenum,ast_type)-> type_checking_error ("index expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))  (* "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")" *)
 												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
 												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> SymInt (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
+						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> type_checking_error ("function call not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymInt-> SymInt
@@ -283,9 +283,9 @@ let rec pretty_typecheck_expression exp =
 																	 | _ -> type_checking_error "Unary Bitwise should be done on an integer value"
 																		)(* "( ^"^(pretty_typecheck_expression exp1)^" )" *)
 												| Value(value,linenum,ast_type)-> (typecheck_literal value) 
-						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)->SymInt (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
-						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> SymInt(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
-						(*    NOT DONE*)		| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)->SymInt (* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
+						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)->type_checking_error ("selector expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum2)) (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
+						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> type_checking_error ("type cast expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
+						(*    NOT DONE*)		| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)->type_checking_error ("append expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum2)) (* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 (*
 let rec typecheck_expressions exprlist = match exprlist with
@@ -448,10 +448,6 @@ and typecheck_assignment_stmt stmt = match stmt with
 
  *)
 and typecheck_declaration decl = match decl with 
-								| TypeDcl([],linenum)->  ()
-								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in ()(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
-								| VarDcl([],linenum)->  ()
-								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in ()
 								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts in ()
 								| _ -> ()
 
@@ -461,11 +457,8 @@ and typecheck_signature_return_type return_type = match return_type with
 
 
 and typecheck_signature signature func_name= match signature with
-	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let mytype=typecheck_signature_return_type return_type in 
-													let params= typecheck_identifiers_with_type func_params in  
-													let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
-													let _= start_scope () in 
-													let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let _= start_scope () in 
+																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
 													 
 
 and typecheck_function_declaration func_name signature stmts = let _= typecheck_signature signature func_name in 
@@ -473,10 +466,29 @@ and typecheck_function_declaration func_name signature stmts = let _= typecheck_
 															   let _= end_scope() in 
 															   end_scope()
 
+
+and firstpass_typecheck_signature signature func_name= match signature with
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let mytype=typecheck_signature_return_type return_type in 
+																	   let params= typecheck_identifiers_with_type func_params in  
+																	   add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1))
+																	   
+
+and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
+																		 
+and firstpass_function_declaration decl = match decl with
+
+								| TypeDcl([],linenum)->  ()
+								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in ()(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
+								| VarDcl([],linenum)->  ()
+								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in ()
+								| Function(func_name,signature,stmts,linenum)->let result=  firstpass_typecheck_function_declaration func_name signature in ()
+								| _ -> ()
+
 let type_check_program program filename= 
-							let _= set_file filename in let _=start_scope () in
+							let _= set_file filename in let _= start_scope () in 
 								 (match program with
 									  | Prog(packagename,dcllist)->
+									  		  let _= (List.map firstpass_function_declaration dcllist) in  
 									          (* let _=write_message ("package "^(packagename)^" ;\n") in  *)
 											  let a= (List.map typecheck_declaration dcllist)in print_stack symbol_table) 
 
