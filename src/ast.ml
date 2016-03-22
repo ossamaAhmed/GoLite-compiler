@@ -4,7 +4,6 @@ exception AST_error of string
 
 let ast_error msg = raise (AST_error msg)
 
-
 type func_return = 
     | FuncReturnType of type_i * int
     | Empty
