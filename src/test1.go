@@ -1,24 +1,11 @@
-package main
+package main;
 
-// this tests for simple declaration of array and slice
+func main (){
 
-var x int
-var z[] int = 1
-var x1, x2 int
-var z1, z2 int = 1, 2
-var x3 bool
-type cool int
-type y4 cool
+    var x int = 5;
+    var s[] = append(s,x)
 
-func main (x,y int){
-	print(append(z,1));
-	x=/*hi*/3+/**/5;
-}
+    //accessing an out of range variable is a runtime error
+    print(s[1])
 
-
-//this is allowed
-func foo (a int, b int) int{
-    {
-        var a = 6;
-    }
 }

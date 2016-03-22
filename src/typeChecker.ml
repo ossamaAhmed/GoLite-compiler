@@ -32,10 +32,10 @@ let search_current_scope x= match !symbol_table with
 							if (Hashtbl.mem current_scope x) then 
 									Hashtbl.find current_scope x
 							else 
-								    symbol_table_error ("variable is not defined")
+								    symbol_table_error ("variable is not defined in current_scope")
 
 let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
-							| []-> symbol_table_error ("variable is not defined")
+							| []-> symbol_table_error ("variable is not defined in current and previous scopes")
 							| Scope(current_scope)::tail -> 
 							if (Hashtbl.mem current_scope x) then 
 									Hashtbl.find current_scope x
@@ -320,7 +320,7 @@ let rec  typecheck_stmts stmts = match stmts with
 									| [] -> ()
 									| head::tail -> let _=typecheck_stmt head in (typecheck_stmts tail)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl,linenum)-> let _=typecheck_declaration in ()
+				    | Declaration(dcl,linenum)-> let _=firstpass_function_declaration dcl in ()
 	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> ()(* "break "  *)
 				    | Continue(linenum) -> ()(* "continue " *)
