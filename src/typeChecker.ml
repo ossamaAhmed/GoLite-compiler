@@ -81,7 +81,12 @@ let is_basetype_typecheck a= match a with
 						| SymBool-> true
 						| SymString-> true
 						| _ -> false
-
+let is_basetype_numeric_typecheck a= match a with 
+						| SymInt -> true
+						| SymFloat64-> true
+						| SymRune-> true
+						| SymBool-> true
+						| _ -> false
 
 let rec is_exprs_of_base_type expr_list_types= match expr_list_types with 
 				    				 	| []-> true
@@ -316,7 +321,11 @@ and pretty_typecheck_expression exp =
 																												   	| SymStruct(field_list)-> search_struct_field_list iden field_list linenum1
 																												   	| _-> type_checking_error ("selector operator is only allowed on structs linenum:="^(Printf.sprintf "%i" linenum1))
 																												   )
-						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> type_checking_error ("type cast expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
+												| TypeCastExpr (typename,exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																								    let mytype = typecheck_type_name typename in
+																								    if (is_basetype_numeric_typecheck exp_type) && (is_basetype_numeric_typecheck mytype) then mytype
+																								    else type_checking_error ("type casting is only allowed on numeric base types linenum:="^(Printf.sprintf "%i" linenum))
+
 												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
 																												  let exp_type= pretty_typecheck_expression exp1 in 
 																												  (match iden_type_check with 
