@@ -263,7 +263,10 @@ and pretty_typecheck_expression exp =
 												| AddOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  				  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  				  let mytype= numeric_string_typecheck exp_type1 exp_type2 in 
-																	  				  (AddOp(exp1,exp2,linenum,mytype), mytype)
+																	  				  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in 
+															
+																	  				  (AddOp(exp_type1_node,exp_type2_node,linenum,mytype), mytype)
 												 					 
 												| MinusOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
@@ -307,8 +310,10 @@ and pretty_typecheck_expression exp =
 																	 						 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  						let mytype= integer_typecheck exp_type1 exp_type2 in 
 																	  						(AndCaretOp (exp1,exp2,linenum,mytype),mytype)
-												| OperandParenthesis (exp1,linenum,ast_type)-> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																							   (OperandParenthesis (exp1,linenum,mytype),mytype)
+												| OperandParenthesis (exp1,linenum,ast_type)-> let mytype= pretty_typecheck_expression exp1 in
+																							   let mytype_name=  extract_type_from_expr_tuple mytype in
+																							   let mytype_node= extract_node_from_expr_tuple mytype in 
+																							   (OperandParenthesis (mytype_node,linenum,mytype_name),mytype_name)
 
 												| Indexexpr(exp1,exp2,linenum,ast_type)-> let index_name_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																						  let indexing= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
@@ -320,8 +325,10 @@ and pretty_typecheck_expression exp =
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					 (Unaryexpr(exp1,linenum,mytype),mytype)
-												| Binaryexpr(exp1,linenum,ast_type) ->  let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																					 (Binaryexpr(exp1,linenum,mytype),mytype)
+												| Binaryexpr(exp1,linenum,ast_type) ->  let mytype= pretty_typecheck_expression exp1 in 
+																						let mytype_name= extract_type_from_expr_tuple mytype in 
+																						let mytype_node = extract_node_from_expr_tuple mytype in
+																					 	(Binaryexpr(mytype_node,linenum,mytype_name),mytype_name)
 												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression expr) in
 																							  ( match exp_type, expr,exprs with 
 																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(expr,exprs,linenum,symType) ,symType)

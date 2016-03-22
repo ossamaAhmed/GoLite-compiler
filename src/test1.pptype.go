@@ -1,5 +1,5 @@
 package main;
 var x bool;
 func main() {
-	print(c)
+	c = ( 1 /* int */ + 1 /* int */ ) /* int */;
 }

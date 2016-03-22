@@ -321,7 +321,11 @@ let print program filedir filename =
                 print_string " )";
                 print_sym_type sym_type;
             end
-        | Value(value, _, sym_type)-> print_literal value
+        | Value(value, _, sym_type)-> 
+             begin
+                print_literal value;
+                print_sym_type sym_type;
+            end
         | Selectorexpr(exp1, Identifier(iden, _), _, sym_type) ->
             begin
                 print_string "( ";

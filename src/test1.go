@@ -7,8 +7,8 @@ func main() {
     // this comparison is allowed
     // var c bool=1;
     //  var x bool;
- var c bool;
-     print(c);
-    
+ var c int;
+     c =1+1
+
      
 }
