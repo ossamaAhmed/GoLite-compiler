@@ -292,7 +292,11 @@ let rec pretty_typecheck_expression exp =
 												| Value(value,linenum,ast_type)-> (typecheck_literal value) 
 						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)->type_checking_error ("selector expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum2)) (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
 						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> type_checking_error ("type cast expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
-						(*    NOT DONE*)		| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)->type_checking_error ("append expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum2)) (* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
+												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
+																												  let exp_type= pretty_typecheck_expression exp1 in 
+																												  (match iden_type_check with 
+																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else symtype
+																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 (*
 let rec typecheck_expressions exprlist = match exprlist with
