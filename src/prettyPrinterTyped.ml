@@ -1,18 +1,37 @@
 open Printf
 open Ast
+open Symboltbl
 
 let print program filedir filename =
     let Prog(package_name, decl_list) = program in
     let output_filename = filedir^(Filename.dir_sep)^filename^".pptype.go" in
     let output_file = open_out output_filename in 
     let print_string s = output_string output_file s in
-    let print_char c = output_char output_file c in
     let print_int value = print_string (string_of_int value) in
     let print_float value = print_string (string_of_float value) in
     let print_tab (level) = print_string (String.make level '\t') in
-
+    let rec string_of_sym_type y = match y with 
+        | SymInt -> "int"
+        | SymFloat64 -> "float"
+        | SymRune -> "rune"
+        | SymString -> "string"
+        | SymBool -> "bool" 
+        | SymArray(symType) -> "array of "^(string_of_sym_type symType) 
+        | SymSlice(symType) -> "slice of "^(string_of_sym_type symType)
+        | SymStruct(fieldlst) -> "struct" (*doesn't print out the fields*)
+        | SymFunc(symType, argslist) -> "function" (*doesn't print out the function args*) 
+        | SymType(symType) -> string_of_sym_type symType             
+        | Void -> "void"
+        | NotDefined -> ""
+    in
+    let print_sym_type sym_type =
+        begin
+            print_string " /* ";
+            print_string (string_of_sym_type sym_type);
+            print_string " */";
+        end
+    in
     let print_package package_name = print_string ("package "^(package_name)^";\n") in
-
     let rec print_identifier_list iden_list = match iden_list with
         | Identifier(iden, _)::[] -> print_string iden
         | Identifier(iden, _)::tail ->
@@ -79,161 +98,180 @@ let print program filedir filename =
         | Stringliteral(value, _) -> print_string value
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, _, _) -> print_string value
-        | AndAndOp(exp1, exp2, _, _) -> 
+        | OperandName(value, _, sym_type) -> print_string value (* No need for symtyping *)
+        | AndAndOp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " && ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | OrOrOp(exp1, exp2, _, _) -> 
+        | OrOrOp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " || ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | EqualEqualCmp(exp1, exp2, _, _) -> 
+        | EqualEqualCmp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " == ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | NotEqualCmp(exp1, exp2, _, _) -> 
+        | NotEqualCmp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " != ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | LessThanCmp(exp1, exp2, _, _) -> 
+        | LessThanCmp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " < ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | GreaterThanCmp (exp1, exp2, _, _) -> 
+        | GreaterThanCmp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " > ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | LessThanOrEqualCmp(exp1, exp2, _, _) -> 
+        | LessThanOrEqualCmp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " <= ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | GreaterThanOrEqualCmp(exp1, exp2, _, _) -> 
+        | GreaterThanOrEqualCmp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " >= ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | AddOp(exp1, exp2, _, _) -> 
+        | AddOp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " + ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | MinusOp(exp1, exp2, _, _) -> 
+        | MinusOp(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " - ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | OrOp (exp1, exp2, _, _) -> 
+        | OrOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " | ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | CaretOp (exp1, exp2, _, _) -> 
+        | CaretOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " ^ ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | MulOp (exp1, exp2, _, _)-> 
+        | MulOp (exp1, exp2, _, sym_type)-> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " * ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | DivOp (exp1, exp2, _, _)-> 
+        | DivOp (exp1, exp2, _, sym_type)-> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " / ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | ModuloOp (exp1, exp2, _, _) -> 
+        | ModuloOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " % ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | SrOp (exp1, exp2, _, _) -> 
+        | SrOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " >> ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | SlOp (exp1, exp2, _, _) ->
+        | SlOp (exp1, exp2, _, sym_type) ->
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " << ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | AndOp (exp1, exp2, _, _) -> 
+        | AndOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " & ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | AndCaretOp (exp1, exp2, _, _) -> 
+        | AndCaretOp (exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " &^ ";
                 print_expr exp2;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | OperandParenthesis (exp1, _, _) -> print_expr exp1
-        | Indexexpr(exp1, exp2, _, _) -> 
+        | OperandParenthesis (exp1, _, sym_type) -> print_expr exp1
+        | Indexexpr(exp1, exp2, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -241,10 +279,11 @@ let print program filedir filename =
                 print_expr exp2;
                 print_string "]";
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | Unaryexpr(exp1, _, _) -> print_expr exp1
-        | Binaryexpr(exp1, _, _) -> print_expr exp1
-        | FuncCallExpr(exp1, exprs, _, _) -> 
+        | Unaryexpr(exp1, _, sym_type) -> print_expr exp1
+        | Binaryexpr(exp1, _, sym_type) -> print_expr exp1
+        | FuncCallExpr(exp1, exprs, _, sym_type) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -252,54 +291,62 @@ let print program filedir filename =
                 print_expr_list exprs;
                 print_string ")";
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | UnaryPlus(exp1, _, _) -> 
+        | UnaryPlus(exp1, _, sym_type) -> 
             begin
                 print_string "( +";
                 print_expr exp1;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | UnaryMinus(exp1, _, _) ->
+        | UnaryMinus(exp1, _, sym_type) ->
             begin
                 print_string "( -";
                 print_expr exp1;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | UnaryNot(exp1, _, _) ->
+        | UnaryNot(exp1, _, sym_type) ->
             begin
                 print_string "( !";
                 print_expr exp1;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | UnaryCaret(exp1, _, _) ->
+        | UnaryCaret(exp1, _, sym_type) ->
             begin
                 print_string "( ^";
                 print_expr exp1;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | Value(value, _, _)-> print_literal value
-        | Selectorexpr(exp1, Identifier(iden, _), _, _) ->
+        | Value(value, _, sym_type)-> print_literal value
+        | Selectorexpr(exp1, Identifier(iden, _), _, sym_type) ->
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string ".";
                 print_string iden;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | TypeCastExpr(typename, exp1, _, _) ->
+        | TypeCastExpr(typename, exp1, _, sym_type) ->
             begin
                 print_string "( ";
                 print_type_name 0 typename;
                 print_expr exp1;
                 print_string " )";
+                print_sym_type sym_type;
             end
-        | Appendexpr(Identifier(iden, _),exp1, _, _)-> 
+        | Appendexpr(Identifier(iden, _),exp1, _, sym_type)-> 
             begin
                 print_string "( append(";
                 print_string iden;
                 print_string ", ";
                 print_expr exp1;
                 print_string ") )";
+                print_sym_type sym_type;
             end
         | _ -> ast_error ("expression error")
     and print_expr_list expr_list = match expr_list with
@@ -377,6 +424,7 @@ let print program filedir filename =
     let print_type_decl level decl = match decl with
         | TypeSpec(Identifier(iden, _), typename, _)->
             begin
+                print_tab (level);
                 print_string "type ";
                 print_string iden;
                 print_string " ";
