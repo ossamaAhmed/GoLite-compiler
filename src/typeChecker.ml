@@ -173,6 +173,7 @@ and typecheck_type_name type_name = match type_name with
 								| Structtype(field_dcl_list,linenum) -> SymStruct(create_field_types_list field_dcl_list)
 																
 
+
 let rec typecheck_identifiers_with_type idenlist = match idenlist with
 									| [] -> []
 									| TypeSpec(Identifier(value,linenum1),return_type,linenum2)::tail -> let mytype = typecheck_type_name return_type in 
@@ -186,8 +187,19 @@ and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
 and typecheck_type_declaration decl = match decl with
 								| TypeSpec(value, typename,linenum)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in ()
 								| _-> type_checking_error ("type_dcl error")
-								
-let rec pretty_typecheck_expression exp =
+
+
+let rec check_func_call_args exprs args_list linenum= if List.length exprs != List.length args_list then
+           										 type_checking_error ("function call and argument list length mismatch linenum:="^(Printf.sprintf "%i" linenum))
+           									 else
+											(match exprs, args_list with 
+											| [],[]-> ()
+											| head1::tail1, (str,symType)::tail2-> let exp_type= pretty_typecheck_expression head1 in 
+																		  		 let arg_type = symType in 
+																		  		 if exp_type==arg_type then check_func_call_args tail1 tail2 linenum
+																		  		 else type_checking_error ("function call and argument list type mismatch linenum:="^(Printf.sprintf "%i" linenum)))
+							
+and pretty_typecheck_expression exp =
 								(* 	let rec typecheck_expressions exprlist = match exprlist with
 									| [] -> ""
 									| head::[] -> pretty_typecheck_expression head
@@ -263,9 +275,9 @@ let rec pretty_typecheck_expression exp =
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
 												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
 																							  ( match exp_type, expr,exprs with 
-																							  	| SymFunc(symType,argslist),_,_-> type_checking_error ("func call expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))
+																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in symType
 																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
@@ -412,12 +424,13 @@ and typecheck_switch_case_stmt stmts = match stmts with
 						 | Increment(expr)->(pretty_typecheck_expression expr)^"++"
    						 | Decrement(expr)->(pretty_typecheck_expression expr)^"--" *)
 
+
 and type_check_assignment_exprs exprs1 exprs2 linenum= match exprs1,exprs2 with
 											| [] ,[] -> () 
 											| head1::tail1, head2::tail2 -> let lhsexpr_type= pretty_typecheck_expression head1 in
 																			let rhsexprs_type= pretty_typecheck_expression head2 in 
 																			if lhsexpr_type==rhsexprs_type then type_check_assignment_exprs tail1 tail2 linenum
-																			else type_checking_error ("assignment should have the same types linenum:="^(Printf.sprintf "%i" linenum))
+																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum))
 and type_check_assignment_op exp1 exp2 assign_op = match assign_op with 
 													    | "+="-> let exp_type1= pretty_typecheck_expression exp1 in 
 															     let exp_type2= pretty_typecheck_expression exp2 in 
