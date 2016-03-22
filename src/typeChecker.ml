@@ -199,8 +199,7 @@ and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
 									| [] -> []
 									| TypeSpec(value,return_type,linenum)::tail -> let mytype = typecheck_type_name return_type in 
 																		    let _= add_variable_to_current_scope mytype value in
-																			let _= typecheck_identifiers_with_type_new_scope tail in 
-																			TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope idenlist)
+																			TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope tail)
 and typecheck_type_declaration decl = match decl with
 								| TypeSpec(value, typename,linenum)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in TypeSpec(value, typename,linenum)
 								| _-> type_checking_error ("type_dcl error")
@@ -629,23 +628,23 @@ and typecheck_function_declaration func_name signature stmts = let _= typecheck_
 															   let _= end_scope() in 
 															   new_stmts
 
-
+(* 
 and firstpass_typecheck_signature signature func_name= match signature with
 	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let mytype=typecheck_signature_return_type return_type in 
 																	   let params= typecheck_identifiers_with_type func_params in  
 																	   let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
-																	   signature
+																	   signature *)
 																	   
 
-and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
-																		 
-and firstpass_function_declaration decl = match decl with
+(* and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
+ *)																		 
+(* and firstpass_function_declaration decl = match decl with
 								| TypeDcl([],linenum)->  decl
 								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in  TypeDcl(result,linenum)(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
 								| VarDcl([],linenum)-> decl
 								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in VarDcl(result,linenum)
 								| Function(func_name,signature,stmts,linenum)->let result=  firstpass_typecheck_function_declaration func_name signature in decl
-								| _ -> decl
+								| _ -> decl *)
 
 
 let type_check_program program filename= 
