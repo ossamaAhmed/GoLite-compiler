@@ -310,14 +310,14 @@ let rec  typecheck_stmts stmts = match stmts with
 									| head::tail -> let _=typecheck_stmt head in (typecheck_stmts tail)
 and typecheck_stmt stmt = match stmt with
 				    | Declaration(dcl,linenum)-> let _=typecheck_declaration in ()
-	(*NOT DONE*)	| Return(rt_stmt,linenum)->() (* typecheck_return_stmt rt_stmt (*DONE*) *)
+	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> ()(* "break "  *)
 				    | Continue(linenum) -> ()(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
 				    					 let _= typecheck_stmts stmt_list in
 				    					 end_scope()
-	(*NOT DONE*)    | Conditional(conditional,linenum)->() (* typecheck_conditional conditional (*DONE*) *)
-	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->() (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
+	(*NOT DONE*)    | Conditional(conditional,linenum)->type_checking_error ("if stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_conditional conditional (*DONE*) *)
+	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
 				    | For(for_stmt,linenum)-> typecheck_for_stmt for_stmt (*DONE*) 
 				    | Simple(simple,linenum)-> typecheck_simple_stmt simple 
 				    | Print(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
@@ -342,9 +342,9 @@ and typecheck_if_init if_init = match if_init with
 and typecheck_simple_stmt stmt = match stmt with 
 							| Empty -> ()
 							| SimpleExpression(expr,linenum)-> let _=pretty_typecheck_expression expr in ()
-				(*NOT DONE*)| IncDec(incdec,linenum)-> ()(* typecheck_inc_dec_stmt incdec  *)
+				(*NOT DONE*)| IncDec(incdec,linenum)-> type_checking_error ("inc dec stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* typecheck_inc_dec_stmt incdec  *)
 							| Assignment(assignment_stmt,linenum)-> typecheck_assignment_stmt assignment_stmt 
-				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->() (* typecheck_short_var_decl short_var_decl *)
+				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->type_checking_error ("shortvar decl not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_short_var_decl short_var_decl *)
 and  typecheck_condition cond = match cond with 
 							| ConditionExpression (expr,linenum)->let cond_type= pretty_typecheck_expression expr in 
 														   if cond_type == SymBool then ()
