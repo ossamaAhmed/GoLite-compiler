@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Golang Compiler\\ Milestone 2 Report\\ Group 2} % Title
+
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+\begin{center}
+\begin{tabular}{l r}
+Members: & Shabbir Hussain \\ % Date the experiment was performed
+& Ossama Ahmed \\ % Partner names
+& Michael Ho \\ \end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\section{Invalid Programs}
+All invalid programs pertaining to type checking can be found in the folder /TEST\_ PROGRAMS/INVALID\_ TYPECHECK. All tests are commented to describe the type check rule under test.
+
+\section{Features}
+
+\subsection{Weeding Phases}
+The first feature implemented in this milestone was the weeder phase. In the weeder phase we've implemented 
+
+\subsection{Type checking Phase}
+The main feature 
+
+
+\section{Team Contribution}
+
+\subsection{Shabbir Hussain}
+In the last milestone we lost a considerable amount of points due to our program failing a few test cases. In this milestone, I worked on creating as many test cases as possible both for invalid type check (to catch programs we shouldn't allow) and valid type check  (to make sure we allow valid programs). The type checking test cases were based on the specification located at: http://www.sable.mcgill.ca/~hendren/520/2016/assignments/typechecker.pdf. To test invalid programs we run the program and expect an error. To test for valid programs we look run the program and expect to see no error. For test programs which are valid we force a situation that will cause an error to occur if our test case fails. For example, after a binary expression, we put the result on the right hand side of an assignement to check of the correct type is resolved by the binary expression.
+
+
+\subsection{Ossama Ahmed}
+\subsection{Michael Ho}
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

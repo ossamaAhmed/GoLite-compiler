@@ -32,10 +32,10 @@ let search_current_scope x= match !symbol_table with
 							if (Hashtbl.mem current_scope x) then 
 									Hashtbl.find current_scope x
 							else 
-								    symbol_table_error ("variable is not defined")
+								    symbol_table_error ("variable is not defined in current_scope")
 
 let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
-							| []-> symbol_table_error ("variable is not defined")
+							| []-> symbol_table_error ("variable is not defined in current and previous scopes")
 							| Scope(current_scope)::tail -> 
 							if (Hashtbl.mem current_scope x) then 
 									Hashtbl.find current_scope x
@@ -44,7 +44,7 @@ let rec search_previous_scopes x table= match table with (*called with !symbol_t
 
 
 let add_variable_to_current_scope mytype myvar=  match myvar with
-											| Identifier(myvariable)-> 
+											| Identifier(myvariable,linenum)-> 
 												(match !symbol_table with
 													| Scope(current_scope)::tail ->
 													if not(Hashtbl.mem current_scope myvariable) then 
@@ -74,26 +74,84 @@ let print_table tbl= match tbl with
 let print_stack s= List.iter print_table !symbol_table
 
 
+let is_basetype_typecheck a= match a with 
+						| SymInt -> true
+						| SymFloat64-> true
+						| SymRune-> true
+						| SymBool-> true
+						| SymString-> true
+						| _ -> false
+let is_basetype_numeric_typecheck a= match a with 
+						| SymInt -> true
+						| SymFloat64-> true
+						| SymRune-> true
+						| SymBool-> true
+						| _ -> false
+
+let rec is_exprs_of_base_type expr_list_types= match expr_list_types with 
+				    				 	| []-> true
+				    				 	| head::tail -> if (is_basetype_typecheck head) then is_exprs_of_base_type tail
+				    				 					else false
 
 
 
 
+let numeric_typecheck a b= match a,b with 
+						| SymInt, SymInt -> SymInt
+						| SymFloat64, SymFloat64 -> SymFloat64
+						| SymInt, SymFloat64 ->SymInt
+						| SymFloat64, SymInt -> SymFloat64
+						| SymRune, SymRune->SymRune
+						| SymRune, SymInt->SymRune
+						| SymRune, SymFloat64-> SymRune
+						| SymInt, SymRune->SymInt
+						| SymFloat64, SymRune-> SymFloat64
+						| _ ,_ -> type_checking_error "arithmetic operation should be done on a numeric value"
+let comparable_typecheck a b= match a,b with 
+						| SymInt, SymInt -> SymBool
+						| SymFloat64, SymFloat64 -> SymBool
+						| SymRune, SymRune->SymBool
+						| SymString, SymString -> SymBool
+						| SymBool, SymBool->SymBool 
+						|_ ,_ -> type_checking_error "arguments are not comparable"
+let ordered_typecheck a b= match a,b with 
+						| SymInt, SymInt -> SymBool
+						| SymFloat64, SymFloat64 -> SymBool
+						| SymRune, SymRune->SymBool
+						| SymString, SymString -> SymBool
+						|_ ,_ -> type_checking_error "arguments are not comparable"
 
+let numeric_string_typecheck a b= match a,b with 
+						| SymInt, SymInt -> SymInt
+						| SymFloat64, SymFloat64 -> SymFloat64
+						| SymInt, SymFloat64 ->SymInt
+						| SymFloat64, SymInt -> SymFloat64
+						| SymRune, SymRune->SymRune
+						| SymRune, SymInt->SymRune
+						| SymRune, SymFloat64-> SymRune
+						| SymInt, SymRune->SymInt
+						| SymFloat64, SymRune-> SymFloat64
+						| SymString, SymString -> SymString
+						| SymInt, SymString -> SymInt
+						| SymString, SymInt -> SymString
+						| SymFloat64, SymString -> SymFloat64
+						| SymString, SymFloat64-> SymString
+						| SymString, SymRune->SymString
+						| SymRune, SymString-> SymRune
+						| _ ,_ -> type_checking_error "plus operation should be done on a numeric value or string"
 
-
-(* let rec typecheck_list lis = match lis with
-						| last::[]-> last
-						| head::tail -> head^ (typecheck_list tail)
-let rec typecheck_identifiers idenlist = match idenlist with
-									| Identifier(value)::[] -> value
-									| Identifier(value)::tail -> value^", "^(typecheck_identifiers tail)
-*)
+let integer_typecheck a b= match a,b with 
+						| SymInt, SymInt -> SymInt
+						| _ ,_ -> type_checking_error "arithmetic operation should be done on a integer value"
+let bool_typecheck a b= match a,b with 
+						| SymBool, SymBool -> SymBool
+						| _ ,_ -> type_checking_error "comparison operation should be done on bool values"
 
 let typecheck_literal lit = match lit with
-						| Intliteral(value) -> SymInt
-						| Floatliteral(value) ->SymFloat64
-						| Runeliteral(value) -> SymRune
-						| Stringliteral(value) -> SymString
+						| Intliteral(value,linenum) -> SymInt
+						| Floatliteral(value,linenum) ->SymFloat64
+						| Runeliteral(value,linenum) -> SymRune
+						| Stringliteral(value,linenum) -> SymString
 
 let get_primitive_type typestr = match typestr with
 						| "int" -> SymInt
@@ -103,7 +161,11 @@ let get_primitive_type typestr = match typestr with
 						| "bool" -> SymBool
 
 let helper mytype x= match x with 
-			| Identifier(myvar)->(myvar,mytype)
+			| Identifier(myvar,linenum)->(myvar,mytype)
+
+let rec search_struct_field_list iden field_list linenum= match field_list with 
+												| []-> type_checking_error ("Identifier not found in struct at linenum:="^(Printf.sprintf "%i" linenum))
+												| (str, symType)::tail-> if str=iden then symType else  search_struct_field_list iden tail linenum
 
 let rec struct_field_types identifierlst typ= let mytype= typecheck_type_name typ in List.map (helper mytype) identifierlst
 
@@ -112,111 +174,203 @@ and create_field_types_list lst= match lst with
 								| (identifierlst,typ)::tail-> (struct_field_types identifierlst typ)@(create_field_types_list tail)
 
 and typecheck_type_name type_name = match type_name with
-								| Definedtype(Identifier(value))->let x= search_current_scope value in (match x with | SymType(mytype)-> mytype)
-								| Primitivetype(value)-> get_primitive_type value 
-								| Arraytype(len, type_name2)-> SymArray((typecheck_type_name type_name2))
-								| Slicetype(type_name2)-> SymSlice((typecheck_type_name type_name2))
-								| Structtype([]) -> SymStruct([])
-								| Structtype(field_dcl_list) -> SymStruct(create_field_types_list field_dcl_list)
-									(* let typecheck_field_dcl field = match field with 
-																| (iden_list,type_name1) -> let mytype = typecheck_type_name typename in List.map (add_variable_to_current_scope mytype) iden_list
-																| _ -> ast_error ("field_dcl_print error") *)
+								| Definedtype(Identifier(value,linenum1),linenum2)->let x= search_current_scope value in (match x with | SymType(mytype)-> mytype)
+								| Primitivetype(value,linenum)-> get_primitive_type value 
+								| Arraytype(len, type_name2,linenum)-> SymArray((typecheck_type_name type_name2))
+								| Slicetype(type_name2,linenum)-> SymSlice((typecheck_type_name type_name2))
+								| Structtype([],linenum) -> SymStruct([])
+								| Structtype(field_dcl_list,linenum) -> SymStruct(create_field_types_list field_dcl_list)
 																
+
 
 let rec typecheck_identifiers_with_type idenlist = match idenlist with
 									| [] -> []
-									| TypeSpec(Identifier(value),return_type)::tail -> let mytype = typecheck_type_name return_type in 
+									| TypeSpec(Identifier(value,linenum1),return_type,linenum2)::tail -> let mytype = typecheck_type_name return_type in 
 																						(value, mytype)::(typecheck_identifiers_with_type tail)
 
 and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
 									| [] -> ()
-									| TypeSpec(value,return_type)::tail -> let mytype = typecheck_type_name return_type in 
+									| TypeSpec(value,return_type,linenum)::tail -> let mytype = typecheck_type_name return_type in 
 																		    let _= add_variable_to_current_scope mytype value in
 																			typecheck_identifiers_with_type_new_scope tail
 and typecheck_type_declaration decl = match decl with
-								| TypeSpec(value, typename)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in ()
+								| TypeSpec(value, typename,linenum)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in ()
 								| _-> type_checking_error ("type_dcl error")
-								
-(* let rec pretty_typecheck_expression exp =
-									let rec typecheck_expressions exprlist = match exprlist with
+
+
+let rec check_func_call_args exprs args_list linenum= if List.length exprs != List.length args_list then
+           										 type_checking_error ("function call and argument list length mismatch linenum:="^(Printf.sprintf "%i" linenum))
+           									 else
+											(match exprs, args_list with 
+											| [],[]-> ()
+											| head1::tail1, (str,symType)::tail2-> let exp_type= pretty_typecheck_expression head1 in 
+																		  		 let arg_type = symType in 
+																		  		 if exp_type==arg_type then check_func_call_args tail1 tail2 linenum
+																		  		 else type_checking_error ("function call and argument list type mismatch linenum:="^(Printf.sprintf "%i" linenum)))
+							
+and pretty_typecheck_expression exp =
+								(* 	let rec typecheck_expressions exprlist = match exprlist with
 									| [] -> ""
 									| head::[] -> pretty_typecheck_expression head
-									| head::tail -> ((pretty_typecheck_expression head)^", "^(typecheck_expressions tail) )in 
+									| head::tail -> ((pretty_typecheck_expression head)^", "^(typecheck_expressions tail) )in  *)
 									match exp with 
-												| OperandName(value)-> value
-												| AndAndOp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" && "^(pretty_typecheck_expression exp2 )^" )"
-												| OrOrOp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" || "^(pretty_typecheck_expression exp2 )^" )"
-												| EqualEqualCmp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" == "^(pretty_typecheck_expression exp2 )^" )"
-												| NotEqualCmp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" != "^(pretty_typecheck_expression exp2 )^" )"
-												| LessThanCmp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" < "^(pretty_typecheck_expression exp2 )^" )"
-												| GreaterThanCmp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" >"^(pretty_typecheck_expression exp2 )^" )"
-												| LessThanOrEqualCmp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" <= "^(pretty_typecheck_expression exp2 )^" )"
-												| GreaterThanOrEqualCmp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" >= "^(pretty_typecheck_expression exp2 )^" )"
-												| AddOp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" + "^(pretty_typecheck_expression exp2 )^" )"
-												| MinusOp(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" - "^(pretty_typecheck_expression exp2 )^" )"
-												| OrOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" | "^(pretty_typecheck_expression exp2 )^" )"
-												| CaretOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" ^ "^(pretty_typecheck_expression exp2 )^" )"
-												| MulOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" * "^(pretty_typecheck_expression exp2 )^" )"
-												| DivOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" / "^(pretty_typecheck_expression exp2 )^" )"
-												| ModuloOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" % "^(pretty_typecheck_expression exp2 )^" )"
-												| SrOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" >> "^(pretty_typecheck_expression exp2 )^" )"
-												| SlOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" << "^(pretty_typecheck_expression exp2 )^" )"
-												| AndOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" & "^(pretty_typecheck_expression exp2 )^" )"
-												| AndCaretOp (exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^" &^ "^(pretty_typecheck_expression exp2 )^" )"
-												| OperandParenthesis (exp1)-> (pretty_typecheck_expression exp1)
-												| Indexexpr(exp1,exp2)-> "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")"
-												| Unaryexpr(exp1) -> (pretty_typecheck_expression exp1)
-												| Binaryexpr(exp1) -> (pretty_typecheck_expression exp1)
-												| FuncCallExpr(expr,exprs)-> "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")"
-												| UnaryPlus(exp1) -> "( +"^(pretty_typecheck_expression exp1)^" )"
-												| UnaryMinus(exp1) -> "( -"^(pretty_typecheck_expression exp1)^" )"
-												| UnaryNot(exp1) -> "( !"^(pretty_typecheck_expression exp1)^" )"
-												| UnaryCaret(exp1) -> "( ^"^(pretty_typecheck_expression exp1)^" )"
-												| Value(value)-> (typecheck_literal value)
-												| Selectorexpr(exp1,Identifier(iden))-> "("^(pretty_typecheck_expression exp1)^"."^iden^")"
-												| TypeCastExpr (typename,exp1) -> "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))"
-												| Appendexpr (Identifier(iden),exp1)-> "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))"
-												| _-> ast_error ("expression error") *)
-(*
-let rec typecheck_expressions exprlist = match exprlist with
-									| [] -> ""
-									| head::[] -> pretty_typecheck_expression head
-									| head::tail -> (pretty_typecheck_expression head)^", "^(typecheck_expressions tail) *)
+												| OperandName(value,linenum,ast_type)->  search_previous_scopes value !symbol_table  (*  value *)
+												| AndAndOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   bool_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" && "^(pretty_typecheck_expression exp2 )^" )" *)
+												| OrOrOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   bool_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" || "^(pretty_typecheck_expression exp2 )^" )" *)
+												| EqualEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   comparable_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" == "^(pretty_typecheck_expression exp2 )^" )" *)
+												| NotEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= pretty_typecheck_expression exp1 in 
+																	   	let exp_type2= pretty_typecheck_expression exp2 in 
+																	   comparable_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" != "^(pretty_typecheck_expression exp2 )^" )" *)
+												| LessThanCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	  		let exp_type2= pretty_typecheck_expression exp2 in 
+																	 	    ordered_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" < "^(pretty_typecheck_expression exp2 )^" )" *)
+												| GreaterThanCmp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	 		  let exp_type2= pretty_typecheck_expression exp2 in 
+																	 		  ordered_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" >"^(pretty_typecheck_expression exp2 )^" )" *)
+												| LessThanOrEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	  			 let exp_type2= pretty_typecheck_expression exp2 in 
+																	  			 ordered_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" <= "^(pretty_typecheck_expression exp2 )^" )" *)
+												| GreaterThanOrEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   ordered_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" >= "^(pretty_typecheck_expression exp2 )^" )" *)
+												| AddOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   numeric_string_typecheck exp_type1 exp_type2
+												 					 (* "( "^(pretty_typecheck_expression exp1)^" + "^(pretty_typecheck_expression exp2 )^" )" *)
+												| MinusOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" - "^(pretty_typecheck_expression exp2 )^" )" *)
+												| OrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" | "^(pretty_typecheck_expression exp2 )^" )" *)
+												| CaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" ^ "^(pretty_typecheck_expression exp2 )^" )" *)
+												| MulOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" * "^(pretty_typecheck_expression exp2 )^" )" *)
+												| DivOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" / "^(pretty_typecheck_expression exp2 )^" )" *)
+												| ModuloOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" % "^(pretty_typecheck_expression exp2 )^" )" *)
+												| SrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" >> "^(pretty_typecheck_expression exp2 )^" )" *)
+												| SlOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" << "^(pretty_typecheck_expression exp2 )^" )" *)
+												| AndOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" & "^(pretty_typecheck_expression exp2 )^" )" *)
+												| AndCaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
+																	   let exp_type2= pretty_typecheck_expression exp2 in 
+																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" &^ "^(pretty_typecheck_expression exp2 )^" )" *)
+												| OperandParenthesis (exp1,linenum,ast_type)-> pretty_typecheck_expression exp1
+												| Indexexpr(exp1,exp2,linenum,ast_type)-> let index_name_type= pretty_typecheck_expression exp1 in 
+																						  let indexing= pretty_typecheck_expression exp2 in 
+																						  if indexing!= SymInt then type_checking_error ("indexing should have an int expression linenum:="^(Printf.sprintf "%i" linenum))
+																						  else (match index_name_type with 
+																						  	| SymArray(symtype)-> symtype
+																						  	| SymSlice(symtype)-> symtype
+																						  	| _-> type_checking_error ("indexing should be done on an array or a slice linenum:="^(Printf.sprintf "%i" linenum))
+																						  )
+												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
+												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
+												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+																							  ( match exp_type, expr,exprs with 
+																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in symType
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))
+																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
+																							  ) 
+												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																	 (match exp_type with 
+																	 | SymInt-> SymInt
+																	 | SymFloat64-> SymFloat64
+																	 | SymRune -> SymRune
+																	 | _ -> type_checking_error "Unary Plus should be done on a numeric value"
+																		)(* "( +"^(pretty_typecheck_expression exp1)^" )" *)
+												| UnaryMinus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																	 (match exp_type with 
+																	 | SymInt-> SymInt
+																	 | SymFloat64-> SymFloat64
+																	 | SymRune -> SymRune
+																	 | _ -> type_checking_error "Unary Negation should be done on a numeric value"
+																		)(*  "( -"^(pretty_typecheck_expression exp1)^" )" *)
+												| UnaryNot(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																	 (match exp_type with 
+																	 | SymBool-> SymBool
+																	 | _ -> type_checking_error "Unary Logical Negation should be done on a bool value"
+																		)(* "( !"^(pretty_typecheck_expression exp1)^" )" *)
+												| UnaryCaret(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																	 (match exp_type with 
+																	 | SymInt-> SymInt
+																	 | SymRune -> SymRune
+																	 | _ -> type_checking_error "Unary Bitwise should be done on an integer value"
+																		)(* "( ^"^(pretty_typecheck_expression exp1)^" )" *)
+												| Value(value,linenum,ast_type)-> (typecheck_literal value) 
+												| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)-> let exp1_type= pretty_typecheck_expression exp1 in 
+																												   ( match exp1_type with 
+																												   	| SymStruct(field_list)-> search_struct_field_list iden field_list linenum1
+																												   	| _-> type_checking_error ("selector operator is only allowed on structs linenum:="^(Printf.sprintf "%i" linenum1))
+																												   )
+												| TypeCastExpr (typename,exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
+																								    let mytype = typecheck_type_name typename in
+																								    if (is_basetype_numeric_typecheck exp_type) && (is_basetype_numeric_typecheck mytype) then mytype
+																								    else type_checking_error ("type casting is only allowed on numeric base types linenum:="^(Printf.sprintf "%i" linenum))
+
+												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
+																												  let exp_type= pretty_typecheck_expression exp1 in 
+																												  (match iden_type_check with 
+																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else symtype
+																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
+												| _-> type_checking_error ("expression error") 
+
+
+
+and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs with 
+															| [],[]->()
+															| head1::tail1, head2::tail2-> let exp_type= pretty_typecheck_expression head2 in 
+																						   let _= add_variable_to_current_scope exp_type head1 in 
+																						   typecheck_var_decl_without_type tail1 tail2 linenum
+
 
  and typecheck_variable_declaration decl= match decl with
-									| VarSpecWithType (iden_list,typename,exprs) -> let mytype = typecheck_type_name typename in let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
-																					(* ( match exprs with
-																							| [] -> "var "^(typecheck_identifiers iden_list)^" "^(typecheck_type_name typename)^";\n"
-																							| head::tail -> "var "^(typecheck_identifiers iden_list)^" "^(typecheck_type_name typename)^" = "^(typecheck_expressions exprs)^";\n"
-																					) *)
-									| VarSpecWithoutType  (iden_list,exprs) -> ()
-																						(* ( match exprs with
-																							| [] -> "var "^(typecheck_identifiers iden_list)^";\n"
-																							| head::tail -> "var "^(typecheck_identifiers iden_list)^" = "^(typecheck_expressions exprs)^";\n") *)
+									| VarSpecWithType (iden_list,typename,exprs,linenum) -> let mytype = typecheck_type_name typename in let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
+									| VarSpecWithoutType  (iden_list,exprs,linenum) -> let _= typecheck_var_decl_without_type iden_list exprs linenum in ()
 									| _ -> ast_error ("var_dcl error")
  
-(*let rec  typecheck_stmts stmts = match stmts with
-									| [] -> ""
-									| head::[] -> (typecheck_indent)^(typecheck_stmt head)^";\n"
-									| head::tail -> (typecheck_indent)^(typecheck_stmt head)^";\n"^(typecheck_stmts tail)
+let rec  typecheck_stmts stmts = match stmts with
+									| [] -> ()
+									| head::tail -> let _=typecheck_stmt head in (typecheck_stmts tail)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl)-> (match dcl with 
-				    			| TypeDcl([])->  ""
-								| TypeDcl(value)-> typecheck_list(List.map typecheck_type_declaration value)
-								| VarDcl([])->  ""
-								| VarDcl(value)->   typecheck_list(List.map typecheck_variable_declaration value)
-								| Function(func_name,signature,stmts)->  typecheck_function_declaration func_name signature stmts)
-				    | Return(rt_stmt)-> typecheck_return_stmt rt_stmt (*DONE*)
-				    | Break -> "break " 
-				    | Continue -> "continue "
-				    | Block(stmt_list)-> typecheck_stmts stmt_list (*DONE*)
-				    | Conditional(conditional)-> typecheck_conditional conditional (*DONE*)
-				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}"
-				    | For(for_stmt)-> typecheck_for_stmt for_stmt (*DONE*)
-				    | Simple(simple)-> typecheck_simple_stmt simple 
-				    | Print(exprs)-> "print ("^(typecheck_expressions exprs)^") " (*DONE*)
-				    | Println(exprs)-> "println ("^(typecheck_expressions exprs)^") " (*DONE*)
-and typecheck_return_stmt stmt= match stmt with
+				    | Declaration(dcl,linenum)-> let _=firstpass_function_declaration dcl in ()
+	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
+				    | Break(linenum) -> ()(* "break "  *)
+				    | Continue(linenum) -> ()(* "continue " *)
+				    | Block(stmt_list,linenum)-> let _= start_scope() in 
+				    					 let _= typecheck_stmts stmt_list in
+				    					 end_scope()
+	(*NOT DONE*)    | Conditional(conditional,linenum)->type_checking_error ("if stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_conditional conditional (*DONE*) *)
+	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
+				    | For(for_stmt,linenum)-> typecheck_for_stmt for_stmt (*DONE*) 
+				    | Simple(simple,linenum)-> typecheck_simple_stmt simple 
+				    | Print(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
+				    				  if (is_exprs_of_base_type expr_list_types) then ()
+				    				  else type_checking_error ("print only accepts base types linenum:="^(Printf.sprintf "%i" linenum)) 
+				    				  (* "print ("^(typecheck_expressions exprs)^") " (*DONE*) *)
+				    | Println(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
+				    				  if (is_exprs_of_base_type expr_list_types) then ()
+				    				  else type_checking_error ("print only accepts base types linenum:="^(Printf.sprintf "%i" linenum))
+				    				  (* "println ("^(typecheck_expressions exprs)^") " (*DONE*) *)
+(* and typecheck_return_stmt stmt= match stmt with
 							| Empty -> "return "
 							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr)
 and typecheck_conditional cond = match cond with 
@@ -226,29 +380,45 @@ and typecheck_if_stmt if_stmt = match if_stmt with
 							| IfInit(if_init, condition, stmts)-> "if "^(typecheck_if_init if_init)^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}"
 and typecheck_if_init if_init = match if_init with
 							| Empty -> ""
-							| IfInitSimple(simplestmt) -> (typecheck_simple_stmt simplestmt)^";"
+							| IfInitSimple(simplestmt) -> (typecheck_simple_stmt simplestmt)^";" *)
 and typecheck_simple_stmt stmt = match stmt with 
-							| Empty -> ""
-							| SimpleExpression(expr)-> pretty_typecheck_expression expr
-							| IncDec(incdec)-> typecheck_inc_dec_stmt incdec 
-							| Assignment(assignment_stmt)-> typecheck_assignment_stmt assignment_stmt
-							| ShortVardecl(short_var_decl)-> typecheck_short_var_decl short_var_decl
+							| Empty -> ()
+							| SimpleExpression(expr,linenum)-> let _=pretty_typecheck_expression expr in ()
+				(*NOT DONE*)| IncDec(incdec,linenum)-> type_checking_error ("inc dec stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* typecheck_inc_dec_stmt incdec  *)
+							| Assignment(assignment_stmt,linenum)-> typecheck_assignment_stmt assignment_stmt 
+				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->type_checking_error ("shortvar decl not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_short_var_decl short_var_decl *)
 and  typecheck_condition cond = match cond with 
-							| Empty -> ""
-							| ConditionExpression (expr)-> pretty_typecheck_expression expr
-and typecheck_else_stmt stmt =  match stmt with 
+							| ConditionExpression (expr,linenum)->let cond_type= pretty_typecheck_expression expr in 
+														   if cond_type == SymBool then ()
+														   else type_checking_error ("condition has to be bool linenum:="^(Printf.sprintf "%i" linenum))
+							| Empty -> ()
+(* and typecheck_else_stmt stmt =  match stmt with 
 							| ElseSingle(if_stmt,stmts)-> (typecheck_if_stmt if_stmt)^" else {\n "^(typecheck_stmts stmts)^"}"
 						    | ElseIFMultiple(if_stmt,else_stmt)->(typecheck_if_stmt if_stmt)^" else "^(typecheck_else_stmt else_stmt)
-						    | ElseIFSingle(if_stmt1,if_stmt2)->(typecheck_if_stmt if_stmt1)^" else "^(typecheck_if_stmt if_stmt2)
+						    | ElseIFSingle(if_stmt1,if_stmt2)->(typecheck_if_stmt if_stmt1)^" else "^(typecheck_if_stmt if_stmt2) *)
 and typecheck_for_stmt stmt = match stmt with 
-				    | Forstmt(stmts)-> "for {\n"^(typecheck_stmts stmts)^"}"
-				    | ForCondition(condition, stmts)-> "for "^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}"
-				    | ForClause (for_clause, stmts)-> "for "^(typecheck_clause for_clause)^"{\n"^(typecheck_stmts stmts)^"}"
-and typecheck_clause clause= match clause with 
-						 | ForClauseCond(simple1,condition,simple2)-> " "^(typecheck_simple_stmt simple1)^"; "^(typecheck_condition condition)^"; "^(typecheck_simple_stmt simple2)^" "
+				    | Forstmt(stmts,linenum)-> let _= start_scope() in 
+				    				   let _= typecheck_stmts stmts in 
+				    					end_scope() (* "for {\n"^(typecheck_stmts stmts)^"}" *)
+				    | ForCondition(condition, stmts,linenum)-> let _= typecheck_condition condition in 
+				    								   let _= start_scope() in 
+								    				   let _= typecheck_stmts stmts in 
+								    					end_scope()
+				    							    	(* "for "^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}" *)
+				    | ForClause (for_clause, stmts,linenum)-> let _ = typecheck_clause for_clause in 
+				    								  let _= start_scope() in 
+								    				  let _= typecheck_stmts stmts in 
+								    				  let _= end_scope() in 
+								    				  end_scope()(* "for "^(typecheck_clause for_clause)^"{\n"^(typecheck_stmts stmts)^"}" *)
+and typecheck_clause clause= match clause with (*NEEDS REVISION*)
+						 | ForClauseCond(simple1,condition,simple2,linenum)-> let _= start_scope() in
+						 											  let _= typecheck_simple_stmt simple1 in 
+						 											  let _= typecheck_condition condition in
+						 											  typecheck_simple_stmt simple2
+						 (* " "^(typecheck_simple_stmt simple1)^"; "^(typecheck_condition condition)^"; "^(typecheck_simple_stmt simple2)^" " *)
 
 
-and typecheck_switch_clause clause = match clause with
+(* and typecheck_switch_clause clause = match clause with
 								| Empty -> ""
 								| SwitchClause(simple_stmt) -> (typecheck_simple_stmt simple_stmt)^";"
 and typecheck_switch_expression expr = match expr with 
@@ -263,47 +433,105 @@ and typecheck_switch_case_clause clause = match clause with
 
 and typecheck_switch_case_stmt stmts = match stmts with
 								| SwitchCasestmt([]) -> ""
-								| SwitchCasestmt(switch_case_clauses)->(typecheck_list(List.map typecheck_switch_case_clause switch_case_clauses))						
-and typecheck_inc_dec_stmt stmt = match stmt with 
+								| SwitchCasestmt(switch_case_clauses)->(typecheck_list(List.map typecheck_switch_case_clause switch_case_clauses))						 *)
+(* and typecheck_inc_dec_stmt stmt = match stmt with 
 						 | Increment(expr)->(pretty_typecheck_expression expr)^"++"
-   						 | Decrement(expr)->(pretty_typecheck_expression expr)^"--"
+   						 | Decrement(expr)->(pretty_typecheck_expression expr)^"--" *)
+
+
+and type_check_assignment_exprs exprs1 exprs2 linenum= match exprs1,exprs2 with
+											| [] ,[] -> () 
+											| head1::tail1, head2::tail2 -> let lhsexpr_type= pretty_typecheck_expression head1 in
+																			let rhsexprs_type= pretty_typecheck_expression head2 in 
+																			if lhsexpr_type==rhsexprs_type then type_check_assignment_exprs tail1 tail2 linenum
+																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum))
+and type_check_assignment_op exp1 exp2 assign_op = match assign_op with 
+													    | "+="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_string_typecheck exp_type1 exp_type2
+													    | "-="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "|="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																 let exp_type2= pretty_typecheck_expression exp2 in 
+															     integer_typecheck exp_type1 exp_type2
+													    | "^="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 integer_typecheck exp_type1 exp_type2
+													    | "*="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "/="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "%="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | ">>="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
+													    | "<<="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
+													    | "&="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 integer_typecheck exp_type1 exp_type2
+													    | "&^="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
 
 and typecheck_assignment_stmt stmt = match stmt with 
-						    | AssignmentBare(exprs1,exprs2)-> (typecheck_expressions exprs1)^" = "^(typecheck_expressions exprs2)
-   						    | AssignmentOp(exprs1, assign_op, exprs2)-> (pretty_typecheck_expression exprs1)^assign_op^(pretty_typecheck_expression exprs2)
+						    | AssignmentBare(exprs1,exprs2,linenum)-> type_check_assignment_exprs exprs1 exprs2 linenum
+   						    | AssignmentOp(exprs1, assign_op, exprs2,linenum)-> let _=type_check_assignment_op exprs1 exprs2 assign_op in ()
 
-and typecheck_short_var_decl dcl = match dcl with
+
+(* and typecheck_short_var_decl dcl = match dcl with
 							| ShortVarDecl(idens, exprs)-> (typecheck_identifiers idens)^" := "^(typecheck_expressions exprs)
 
-*)
 
+ *)
 and typecheck_declaration decl = match decl with 
-								| TypeDcl([])->  ()
-								| TypeDcl(value)-> let result= (List.map typecheck_type_declaration value) in ()(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
-								| VarDcl([])->  ()
-								| VarDcl(value)-> let result= (List.map typecheck_variable_declaration value) in ()
-								| Function(func_name,signature,stmts)->let result=  typecheck_function_declaration func_name signature stmts in ()
+								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts in ()
 								| _ -> ()
 
 and typecheck_signature_return_type return_type = match return_type with
-	| FuncReturnType(return_type_i) -> typecheck_type_name return_type_i  
+	| FuncReturnType(return_type_i,linenum) -> typecheck_type_name return_type_i  
 	| Empty -> Void
 
 
 and typecheck_signature signature func_name= match signature with
-	FuncSig(FuncParams(func_params), return_type) -> let mytype=typecheck_signature_return_type return_type in 
-													let params= typecheck_identifiers_with_type func_params in  
-													let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name)) in 
-													let _= start_scope () in 
-													typecheck_identifiers_with_type_new_scope func_params
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let _= start_scope () in 
+																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
 													 
 
-and typecheck_function_declaration func_name signature stmts = (* let _= *) typecheck_signature signature func_name (* in let _=typecheck_stmts stmts *) (* in end_scope() *)
+and typecheck_function_declaration func_name signature stmts = let _= typecheck_signature signature func_name in 
+															   let _=typecheck_stmts stmts  in 
+															   let _= end_scope() in 
+															   end_scope()
+
+
+and firstpass_typecheck_signature signature func_name= match signature with
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let mytype=typecheck_signature_return_type return_type in 
+																	   let params= typecheck_identifiers_with_type func_params in  
+																	   add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1))
+																	   
+
+and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
+																		 
+and firstpass_function_declaration decl = match decl with
+
+								| TypeDcl([],linenum)->  ()
+								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in ()(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
+								| VarDcl([],linenum)->  ()
+								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in ()
+								| Function(func_name,signature,stmts,linenum)->let result=  firstpass_typecheck_function_declaration func_name signature in ()
+								| _ -> ()
 
 let type_check_program program filename= 
-							let _= set_file filename in let _=start_scope () in
+							let _= set_file filename in let _= start_scope () in 
 								 (match program with
 									  | Prog(packagename,dcllist)->
+									  		  let _= (List.map firstpass_function_declaration dcllist) in  
 									          (* let _=write_message ("package "^(packagename)^" ;\n") in  *)
 											  let a= (List.map typecheck_declaration dcllist)in print_stack symbol_table) 
 
