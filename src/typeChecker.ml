@@ -321,16 +321,17 @@ let rec typecheck_expressions exprlist = match exprlist with
 									| head::[] -> pretty_typecheck_expression head
 									| head::tail -> (pretty_typecheck_expression head)^", "^(typecheck_expressions tail) *)
 
+
+and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs with 
+															| [],[]->()
+															| head1::tail1, head2::tail2-> let exp_type= pretty_typecheck_expression head2 in 
+																						   let _= add_variable_to_current_scope exp_type head1 in 
+																						   typecheck_var_decl_without_type tail1 tail2 linenum
+
+
  and typecheck_variable_declaration decl= match decl with
 									| VarSpecWithType (iden_list,typename,exprs,linenum) -> let mytype = typecheck_type_name typename in let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
-																					(* ( match exprs with
-																							| [] -> "var "^(typecheck_identifiers iden_list)^" "^(typecheck_type_name typename)^";\n"
-																							| head::tail -> "var "^(typecheck_identifiers iden_list)^" "^(typecheck_type_name typename)^" = "^(typecheck_expressions exprs)^";\n"
-																					) *)
-									| VarSpecWithoutType  (iden_list,exprs,linenum) -> ()
-																						(* ( match exprs with
-																							| [] -> "var "^(typecheck_identifiers iden_list)^";\n"
-																							| head::tail -> "var "^(typecheck_identifiers iden_list)^" = "^(typecheck_expressions exprs)^";\n") *)
+									| VarSpecWithoutType  (iden_list,exprs,linenum) -> let _= typecheck_var_decl_without_type iden_list exprs linenum in ()
 									| _ -> ast_error ("var_dcl error")
  
 let rec  typecheck_stmts stmts = match stmts with
