@@ -209,10 +209,6 @@ let rec check_func_call_args exprs args_list linenum= if List.length exprs != Li
 																		  		 else type_checking_error ("function call and argument list type mismatch linenum:="^(Printf.sprintf "%i" linenum)))
 							
 and pretty_typecheck_expression exp =
-								(* 	let rec typecheck_expressions exprlist = match exprlist with
-									| [] -> ""
-									| head::[] -> pretty_typecheck_expression head
-									| head::tail -> ((pretty_typecheck_expression head)^", "^(typecheck_expressions tail) )in  *)
 									match exp with 
 												| OperandName(value,linenum,ast_type)->  search_previous_scopes value !symbol_table  (*  value *)
 												| AndAndOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
@@ -342,8 +338,17 @@ and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs
 																						   typecheck_var_decl_without_type tail1 tail2 linenum
 
 
- and typecheck_variable_declaration decl= match decl with
-									| VarSpecWithType (iden_list,typename,exprs,linenum) -> let mytype = typecheck_type_name typename in let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
+and typecheck_exprs_of_type exprs typename= match exprs with
+										| [] -> true 
+										| head::tail -> let head_type= pretty_typecheck_expression head in 
+														if head_type==typename then typecheck_exprs_of_type tail typename
+														else false
+and typecheck_variable_declaration decl= match decl with
+									| VarSpecWithType (iden_list,typename,exprs,linenum) -> let mytype = typecheck_type_name typename in 
+																							if (typecheck_exprs_of_type exprs mytype) then  
+																								let result=List.map (add_variable_to_current_scope mytype) iden_list in ()
+																							else type_checking_error ("expressions have to be the same as variable declaration at linenum:="^(Printf.sprintf "%i" linenum))
+
 									| VarSpecWithoutType  (iden_list,exprs,linenum) -> let _= typecheck_var_decl_without_type iden_list exprs linenum in ()
 									| _ -> ast_error ("var_dcl error")
  
@@ -358,7 +363,7 @@ and typecheck_stmt stmt = match stmt with
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
 				    					 let _= typecheck_stmts stmt_list in
 				    					 end_scope()
-	(*NOT DONE*)    | Conditional(conditional,linenum)->type_checking_error ("if stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_conditional conditional (*DONE*) *)
+				    | Conditional(conditional,linenum)->type_checking_error ("if stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_conditional conditional (*DONE*) *)
 	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
 				    | For(for_stmt,linenum)-> typecheck_for_stmt for_stmt (*DONE*) 
 				    | Simple(simple,linenum)-> typecheck_simple_stmt simple 
@@ -372,30 +377,42 @@ and typecheck_stmt stmt = match stmt with
 				    				  (* "println ("^(typecheck_expressions exprs)^") " (*DONE*) *)
 (* and typecheck_return_stmt stmt= match stmt with
 							| Empty -> "return "
-							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr)
+							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr) *)
 and typecheck_conditional cond = match cond with 
-							| IfStmt(if_stmt)-> typecheck_if_stmt if_stmt
-							| ElseStmt(else_stmt)-> typecheck_else_stmt else_stmt
+							| IfStmt(if_stmt,linenum)-> let _= typecheck_if_stmt if_stmt in end_scope()
+							| ElseStmt(else_stmt,linenum)-> let _= typecheck_else_stmt else_stmt in end_scope()
 and typecheck_if_stmt if_stmt = match if_stmt with
-							| IfInit(if_init, condition, stmts)-> "if "^(typecheck_if_init if_init)^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}"
+							| IfInit(if_init, condition, stmts,linenum)-> let _= start_scope() in 
+																  let _= typecheck_if_init if_init in 
+																  let _= typecheck_condition condition in 
+																  let _ = start_scope() in 
+																  let _= typecheck_stmts stmts in 
+																  end_scope()  
+																
 and typecheck_if_init if_init = match if_init with
-							| Empty -> ""
-							| IfInitSimple(simplestmt) -> (typecheck_simple_stmt simplestmt)^";" *)
+							| Empty -> ()
+							| IfInitSimple(simplestmt,linenum) -> let _= typecheck_simple_stmt simplestmt in ()
 and typecheck_simple_stmt stmt = match stmt with 
 							| Empty -> ()
 							| SimpleExpression(expr,linenum)-> let _=pretty_typecheck_expression expr in ()
-				(*NOT DONE*)| IncDec(incdec,linenum)-> type_checking_error ("inc dec stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* typecheck_inc_dec_stmt incdec  *)
+							| IncDec(incdec,linenum)-> typecheck_inc_dec_stmt incdec 
 							| Assignment(assignment_stmt,linenum)-> typecheck_assignment_stmt assignment_stmt 
 				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->type_checking_error ("shortvar decl not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_short_var_decl short_var_decl *)
 and  typecheck_condition cond = match cond with 
-							| ConditionExpression (expr,linenum)->let cond_type= pretty_typecheck_expression expr in 
+							| ConditionExpression (expr,linenum)->
+															let cond_type= pretty_typecheck_expression expr in 
 														   if cond_type == SymBool then ()
 														   else type_checking_error ("condition has to be bool linenum:="^(Printf.sprintf "%i" linenum))
 							| Empty -> ()
-(* and typecheck_else_stmt stmt =  match stmt with 
-							| ElseSingle(if_stmt,stmts)-> (typecheck_if_stmt if_stmt)^" else {\n "^(typecheck_stmts stmts)^"}"
-						    | ElseIFMultiple(if_stmt,else_stmt)->(typecheck_if_stmt if_stmt)^" else "^(typecheck_else_stmt else_stmt)
-						    | ElseIFSingle(if_stmt1,if_stmt2)->(typecheck_if_stmt if_stmt1)^" else "^(typecheck_if_stmt if_stmt2) *)
+and typecheck_else_stmt stmt =  match stmt with 
+							| ElseSingle(if_stmt,stmts,linenum)-> let _= typecheck_if_stmt if_stmt in 
+														  let _= start_scope() in 
+														  let _= typecheck_stmts stmts in 
+														  end_scope() 
+						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let _= typecheck_if_stmt if_stmt in 
+																  typecheck_else_stmt else_stmt
+						    | ElseIFSingle(if_stmt1,if_stmt2,linenum)-> let _= typecheck_if_stmt if_stmt1 in 
+						    									typecheck_if_stmt if_stmt2
 and typecheck_for_stmt stmt = match stmt with 
 				    | Forstmt(stmts,linenum)-> let _= start_scope() in 
 				    				   let _= typecheck_stmts stmts in 
@@ -434,9 +451,9 @@ and typecheck_switch_case_clause clause = match clause with
 and typecheck_switch_case_stmt stmts = match stmts with
 								| SwitchCasestmt([]) -> ""
 								| SwitchCasestmt(switch_case_clauses)->(typecheck_list(List.map typecheck_switch_case_clause switch_case_clauses))						 *)
-(* and typecheck_inc_dec_stmt stmt = match stmt with 
-						 | Increment(expr)->(pretty_typecheck_expression expr)^"++"
-   						 | Decrement(expr)->(pretty_typecheck_expression expr)^"--" *)
+and typecheck_inc_dec_stmt stmt = match stmt with 
+						 | Increment(expr,linenum)->let _= type_check_assignment_op expr expr "+=" in ()
+   						 | Decrement(expr,linenum)->let _= type_check_assignment_op expr expr "-=" in ()
 
 
 and type_check_assignment_exprs exprs1 exprs2 linenum= match exprs1,exprs2 with
