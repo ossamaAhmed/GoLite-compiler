@@ -117,7 +117,7 @@ and print_stmt stmt = match stmt with
                     | Return(rt_stmt,linenum)-> print_return_stmt rt_stmt (*DONE*)
                     | Break (linenum)-> "break " 
                     | Continue (linenum)-> "continue "
-                    | Block(stmt_list,linenum)-> print_stmts stmt_list (*DONE*)
+                    | Block(stmt_list,linenum)-> "{\n"^(print_stmts stmt_list)^"}\n" (*DONE*)
                     | Conditional(conditional,linenum)-> print_conditional conditional (*DONE*)
                     | Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> "switch "^(print_switch_clause switch_clause)^" "^(print_switch_expression switch_expr)^" {\n"^(print_switch_case_stmt switch_case_stmts)^"}"
                     | For(for_stmt,linenum)-> print_for_stmt for_stmt (*DONE*)
