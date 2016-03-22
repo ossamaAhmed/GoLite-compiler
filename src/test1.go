@@ -1,9 +1,14 @@
 package main;
 
+var x bool;
 func main() {
-    var x bool = true;
+   
     
-    //this comparison is allowed
-    var c bool = 1>0 == true;
-    print(c);
+    // this comparison is allowed
+    // var c bool=1;
+    //  var x bool;
+ var c bool;
+     print(c);
+    
+     
 }

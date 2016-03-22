@@ -405,11 +405,12 @@ and typecheck_variable_declaration decl= match decl with
 (*DONE*)
 let rec  typecheck_stmts stmts = match stmts with
 									| [] -> []
-									| head::tail -> (typecheck_stmt head)::(typecheck_stmts tail)
+									| head::tail -> let head_result= (typecheck_stmt head) in 
+													head_result::(typecheck_stmts tail)
 
 (*DONE*)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl,linenum)-> let _=firstpass_function_declaration dcl in stmt
+				    | Declaration(dcl,linenum)-> let _=typecheck_declaration dcl in stmt
 	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> stmt(* "break "  *)
 				    | Continue(linenum) -> stmt(* "continue " *)
@@ -595,6 +596,10 @@ and typecheck_assignment_stmt stmt = match stmt with
  *)
 and typecheck_declaration decl = match decl with 
 								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts in Function(func_name,signature,result,linenum)
+								| TypeDcl([],linenum)->  decl
+								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in  TypeDcl(result,linenum)(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
+								| VarDcl([],linenum)-> decl
+								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in VarDcl(result,linenum)
 								| _ -> decl
 
 and typecheck_signature_return_type return_type = match return_type with
@@ -603,7 +608,11 @@ and typecheck_signature_return_type return_type = match return_type with
 
 
 and typecheck_signature signature func_name= match signature with
-	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let _= start_scope () in 
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> 
+																	let mytype=typecheck_signature_return_type return_type in 
+																	let params= typecheck_identifiers_with_type func_params in  
+																	let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
+																	let _= start_scope () in 
 																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
 													 
 
@@ -636,7 +645,7 @@ let type_check_program program filename=
 							let _= set_file filename in let _= start_scope () in 
 								 (match program with
 									  | Prog(packagename,dcllist)->
-									  		  let _= (List.map firstpass_function_declaration dcllist) in  
+									  		  (* et _= (List.map firstpass_function_declaration dcllist) in   *)
 									          (* let _=write_message ("package "^(packagename)^" ;\n") in  *)
 											  let new_decl_list= (List.map typecheck_declaration dcllist)in 
 											  Prog(packagename,new_decl_list)) 

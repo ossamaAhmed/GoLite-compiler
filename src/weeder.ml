@@ -190,14 +190,17 @@ and weed_declaration decl = match decl with
     | Function(func_name,signature,stmts,linenum) -> weed_function_declaration func_name signature stmts
 
 and weed_signature_return_type return_type = match return_type with
-    | FuncReturnType(return_type_i,linenum) -> ""
-    | Empty -> ""
+    | FuncReturnType(return_type_i,linenum) -> true
+    | Empty -> false
 
 and weed_signature signature = match signature with
-    FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> ""
+    FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> weed_signature_return_type return_type
 
 and weed_function_declaration func_name signature stmts =
-    begin
+    if weed_signature signature then begin
+        (*look for all paths with return *)
+        []
+    end else begin
         (weed_stmts stmts "withoutbreakandcontinue")::[];
         (weed_func_return stmts)::[];
     end
