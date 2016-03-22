@@ -1,11 +1,13 @@
 package main;
 
-func main (){
+type foox int
+func main() {
+    var x = 5;
+    print(foo(x));
+}
 
-    var x int = 5;
-    var s[] = append(s,x)
-
-    //accessing an out of range variable is a runtime error
-    print(s[1])
-
+//this is not allowed
+func foo (a int, b int) int{
+    var foo = 6;
+    return a+b;
 }

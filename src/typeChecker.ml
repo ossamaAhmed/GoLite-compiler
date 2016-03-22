@@ -263,7 +263,12 @@ let rec pretty_typecheck_expression exp =
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
 												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> type_checking_error ("function call not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
+						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+																							  ( match exp_type, expr,exprs with 
+																							  	| SymFunc(symType,argslist),_,_-> type_checking_error ("func call expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))
+																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
+																							  ) 
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymInt-> SymInt
