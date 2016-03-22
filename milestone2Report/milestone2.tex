@@ -57,7 +57,8 @@ Members: & Shabbir Hussain \\ % Date the experiment was performed
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 \section{Invalid Programs}
-All invalid programs pertaining to type checking can be found in the folder /TEST\_ PROGRAMS/INVALID\_ TYPECHECK. All tests are commented to describe the type check rule under test.
+All invalid programs pertaining to type checking can be found in the folder /TEST\_ PROGRAMS/INVALID\_ TYPECHECK. All tests are commented to describe the type check rule under test. The type checking test cases were based on the specification located at: http://www.sable.mcgill.ca/~hendren/520/2016/assignments/typechecker.pdf. To test invalid programs we run the program and expect an error. To test for valid programs we look run the program and expect to see no error. For test programs which are valid we force a situation that will cause an error to occur if our test case fails. For example, after a binary expression, we put the result on the right hand side of an assignement to check of the correct type is resolved by the binary expression. If the expression is not well typed then the assignment will fail. We've also first tested our assignment type checking in order to validate binary expressions.
+
 
 \section{Features}
 
@@ -71,7 +72,7 @@ The first feature implemented in this milestone was the weeder phase. In the wee
 \item checking that assignments have LHS matching RHS
 \end{itemize}
 
-The weeder was designed to follow the tree search of the pretty printer. It goes through every kkk
+We decided to place these syntactic checks in the weeding phase as opposed to the parser because it is easier to check. For example it is easier to check if  a switch statement has only one default case after all the cases have been defined. The parser builds the AST bottom up and our weeder checks the syntax from the top down. It searches trough every node until it hits a node that needs to propagate information to its leaf node. For example, a loop node needs to pass on information to its children that it is in a loop such that we can catch dangling break and continue statements. 
 
 \subsection{Type checking Phase}
 The biggest feature for this milestone was the type checking. We've implemented the type checking based on the specification on the sable course page as well as the reference compiler. 
@@ -80,15 +81,13 @@ The biggest feature for this milestone was the type checking. We've implemented 
 \section{Team Contribution}
 
 \subsection{Shabbir Hussain}
-In the last milestone we lost a considerable amount of points due to our program failing a few test cases. In this milestone, I worked on creating as many test cases as possible both for invalid type check (to catch programs we shouldn't allow) and valid type check  (to make sure we allow valid programs). The type checking test cases were based on the specification located at: http://www.sable.mcgill.ca/~hendren/520/2016/assignments/typechecker.pdf. To test invalid programs we run the program and expect an error. To test for valid programs we look run the program and expect to see no error. For test programs which are valid we force a situation that will cause an error to occur if our test case fails. For example, after a binary expression, we put the result on the right hand side of an assignement to check of the correct type is resolved by the binary expression.
-
+In the last milestone we lost a considerable amount of points due to our program failing a few test cases. In this milestone, I worked on creating as many test cases as possible both for invalid type check (to catch programs we shouldn't allow) and valid type check  (to make sure we allow valid programs). I also added a some functionality to the weeder to check for breaks/continue inside loops as well as all paths containing a return statement.
 
 \subsection{Ossama Ahmed}
-For this milestone I worked on the weeder and the type checking. The weeder was designed by following the tree search of the pretty printer. 
+For this milestone I worked on the weeder and the type checking. I designed the overall architecture of the weeder and type checking tree search. I also worked on several weeder rules, as well as all the type check rules other than the ones Michael did. 
 
 \subsection{Michael Ho}
-In this milestone I worked on the type checking phase. I implemented type checking for statements and expressions. Ex
-
+In this milestone I worked on the type checking phase. I implemented type checking for statements and expressions. I implemented all the recursive search type checking rules and the list of type check rules for expressions as defined in the specification. 
 
 
 %----------------------------------------------------------------------------------------
