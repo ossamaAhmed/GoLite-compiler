@@ -1,13 +1,11 @@
-package main;
+package main
 
-type foox int
-func main() {
-    var x =1.1;
-    print(foo(x,x));
-}
-
-//this is not allowed
-func foo (a int, b int) int{
-    var foo = 6;
-    // return a+b;
+func main(){
+    type point struct{
+        x,y,z int;
+    }
+    var p point
+    p.x = 1
+    p.y = 8
+    p.z = 9
 }

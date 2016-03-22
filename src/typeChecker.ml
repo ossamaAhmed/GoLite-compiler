@@ -158,6 +158,10 @@ let get_primitive_type typestr = match typestr with
 let helper mytype x= match x with 
 			| Identifier(myvar,linenum)->(myvar,mytype)
 
+let rec search_struct_field_list iden field_list linenum= match field_list with 
+												| []-> type_checking_error ("Identifier not found in struct at linenum:="^(Printf.sprintf "%i" linenum))
+												| (str, symType)::tail-> if str=iden then symType else  search_struct_field_list iden tail linenum
+
 let rec struct_field_types identifierlst typ= let mytype= typecheck_type_name typ in List.map (helper mytype) identifierlst
 
 and create_field_types_list lst= match lst with 
@@ -307,7 +311,11 @@ and pretty_typecheck_expression exp =
 																	 | _ -> type_checking_error "Unary Bitwise should be done on an integer value"
 																		)(* "( ^"^(pretty_typecheck_expression exp1)^" )" *)
 												| Value(value,linenum,ast_type)-> (typecheck_literal value) 
-						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)->type_checking_error ("selector expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum2)) (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
+												| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)-> let exp1_type= pretty_typecheck_expression exp1 in 
+																												   ( match exp1_type with 
+																												   	| SymStruct(field_list)-> search_struct_field_list iden field_list linenum1
+																												   	| _-> type_checking_error ("selector operator is only allowed on structs linenum:="^(Printf.sprintf "%i" linenum1))
+																												   )
 						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> type_checking_error ("type cast expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
 												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
 																												  let exp_type= pretty_typecheck_expression exp1 in 
@@ -315,11 +323,7 @@ and pretty_typecheck_expression exp =
 																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else symtype
 																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
-(*
-let rec typecheck_expressions exprlist = match exprlist with
-									| [] -> ""
-									| head::[] -> pretty_typecheck_expression head
-									| head::tail -> (pretty_typecheck_expression head)^", "^(typecheck_expressions tail) *)
+
 
 
 and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs with 
