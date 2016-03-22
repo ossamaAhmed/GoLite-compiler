@@ -56,7 +56,11 @@ let rec weed_expression exp = match exp with
     | TypeCastExpr (typename,exp1,linenum,ast_type) -> ""
     | Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type) -> ""
 
-let weed_func_return stmts = ()
+(* Check if function return exists in function *)
+
+(* let func_return_in_stmts stmts = () in
+let func_return_in_if_block stmts = () in *)
+let weed_func_return stmts = ""
 
 let rec weed_expressions exprlist = match exprlist with
     | head::[] -> ""
@@ -195,6 +199,7 @@ and weed_signature signature = match signature with
 and weed_function_declaration func_name signature stmts =
     begin
         (weed_stmts stmts "withoutbreakandcontinue")::[];
+        (weed_func_return stmts)::[];
     end
     
 let weed program = match program with
