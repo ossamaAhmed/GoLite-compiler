@@ -10,6 +10,7 @@ type symType =
 	| SymFunc of symType * (string * symType) list (*resturn, args*)
 	| SymType of symType
 	| Void
+	| NotDefined
 
 	and 
 	symTable = 
