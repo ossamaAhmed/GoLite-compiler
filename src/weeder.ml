@@ -3,71 +3,71 @@ open Ast
 
 
 let weed_literal lit = match lit with
-						| Intliteral(value) -> ""
-						| Floatliteral(value) -> ""
-						| Runeliteral(value) -> ""
-						| Stringliteral(value) -> ""
+						| Intliteral(value,linenum) -> ""
+						| Floatliteral(value,linenum) -> ""
+						| Runeliteral(value,linenum) -> ""
+						| Stringliteral(value,linenum) -> ""
 
 
 
 let rec weed_type_name type_name = match type_name with
-								| Definedtype(Identifier(value))->""
-								| Primitivetype(value)->"" 
-								| Arraytype(len, type_name2)-> ""
-								| Slicetype(type_name2)-> ""
-								| Structtype(field_dcl_list) -> ""
+								| Definedtype(Identifier(value,linenum1),linenum2)->""
+								| Primitivetype(value,linenum)->"" 
+								| Arraytype(len, type_name2,linenum)-> ""
+								| Slicetype(type_name2,linenum)-> ""
+								| Structtype(field_dcl_list,linenum) -> ""
 								
 																
 let rec weed_identifiers_with_type idenlist = match idenlist with
 									| [] -> ""
-									| TypeSpec(Identifier(value),return_type)::[] -> ""
-									| TypeSpec(Identifier(value),return_type)::tail -> ""
+									| TypeSpec(Identifier(value,linenum1),return_type,linenum)::[] -> ""
+									| TypeSpec(Identifier(value,linenum1),return_type,linenum)::tail -> ""
 
 let weed_type_declaration decl = match decl with
-								| TypeSpec(Identifier(value), typename)-> ""
+								| TypeSpec(Identifier(value,linenum1), typename,linenum2)-> ""
 								
 let rec weed_expression exp = match exp with
-												| OperandName(value)-> value
-												| AndAndOp(exp1,exp2)-> ""
-												| OrOrOp(exp1,exp2)->""
-												| EqualEqualCmp(exp1,exp2)->""
-												| NotEqualCmp(exp1,exp2)-> ""
-												| LessThanCmp(exp1,exp2)-> ""
-												| GreaterThanCmp (exp1,exp2)-> ""
-												| LessThanOrEqualCmp(exp1,exp2)-> ""
-												| GreaterThanOrEqualCmp(exp1,exp2)-> ""
-												| AddOp(exp1,exp2)-> ""
-												| MinusOp(exp1,exp2)-> ""
-												| OrOp (exp1,exp2)-> ""
-												| CaretOp (exp1,exp2)-> ""
-												| MulOp (exp1,exp2)-> ""
-												| DivOp (exp1,exp2)-> ""
-												| ModuloOp (exp1,exp2)-> ""
-												| SrOp (exp1,exp2)-> ""
-												| SlOp (exp1,exp2)-> ""
-												| AndOp (exp1,exp2)-> ""
-												| AndCaretOp (exp1,exp2)-> ""
-												| OperandParenthesis (exp1)-> ""
-												| Indexexpr(exp1,exp2)-> ""
-												| Unaryexpr(exp1) -> ""
-												| Binaryexpr(exp1) -> ""
-												| FuncCallExpr(expr,exprs)-> ""
-												| UnaryPlus(exp1) -> ""
-												| UnaryMinus(exp1) -> ""
-												| UnaryNot(exp1) -> ""
-												| UnaryCaret(exp1) -> ""
-												| Value(value)-> ""
-												| Selectorexpr(exp1,Identifier(iden))-> ""
-												| TypeCastExpr (typename,exp1) -> ""
-												| Appendexpr (Identifier(iden),exp1)-> ""
+												| OperandName(value,linenum)-> value
+												| AndAndOp(exp1,exp2,linenum)-> ""
+												| OrOrOp(exp1,exp2,linenum)->""
+												| EqualEqualCmp(exp1,exp2,linenum)->""
+												| NotEqualCmp(exp1,exp2,linenum)-> ""
+												| LessThanCmp(exp1,exp2,linenum)-> ""
+												| GreaterThanCmp (exp1,exp2,linenum)-> ""
+												| LessThanOrEqualCmp(exp1,exp2,linenum)-> ""
+												| GreaterThanOrEqualCmp(exp1,exp2,linenum)-> ""
+												| AddOp(exp1,exp2,linenum)-> ""
+												| MinusOp(exp1,exp2,linenum)-> ""
+												| OrOp (exp1,exp2,linenum)-> ""
+												| CaretOp (exp1,exp2,linenum)-> ""
+												| MulOp (exp1,exp2,linenum)-> ""
+												| DivOp (exp1,exp2,linenum)-> ""
+												| ModuloOp (exp1,exp2,linenum)-> ""
+												| SrOp (exp1,exp2,linenum)-> ""
+												| SlOp (exp1,exp2,linenum)-> ""
+												| AndOp (exp1,exp2,linenum)-> ""
+												| AndCaretOp (exp1,exp2,linenum)-> ""
+												| OperandParenthesis (exp1,linenum)-> ""
+												| Indexexpr(exp1,exp2,linenum)-> ""
+												| Unaryexpr(exp1,linenum) -> ""
+												| Binaryexpr(exp1,linenum) -> ""
+												| FuncCallExpr(expr,exprs,linenum)-> ""
+												| UnaryPlus(exp1,linenum) -> ""
+												| UnaryMinus(exp1,linenum) -> ""
+												| UnaryNot(exp1,linenum) -> ""
+												| UnaryCaret(exp1,linenum) -> ""
+												| Value(value,linenum)-> ""
+												| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2)-> ""
+												| TypeCastExpr (typename,exp1,linenum) -> ""
+												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2)-> ""
 
 let rec weed_expressions exprlist = match exprlist with
 									| head::[] -> ""
 									| head::tail -> ""
 
 let weed_variable_declaration decl= match decl with
-									| VarSpecWithType (iden_list,typename,exprs) -> ""
-									| VarSpecWithoutType  (iden_list,exprs) -> ""
+									| VarSpecWithType (iden_list,typename,exprs,linenum) -> ""
+									| VarSpecWithoutType  (iden_list,exprs,linenum) -> ""
 
 let rec  weed_stmts stmts case = match stmts with
 									| [] -> ""
@@ -75,132 +75,132 @@ let rec  weed_stmts stmts case = match stmts with
 									| head::tail -> let _= weed_stmt head case in weed_stmts tail case
 and weed_stmts_without_break_continue stmts case= match stmts with
 									| [] -> ""
-									| Break::tail ->  ast_error "Break statement outside a loop"
-									| Continue::tail ->  ast_error "Continue statement outside a loop"
+									| Break(linenum)::tail ->  ast_error "Break statement outside a loop"
+									| Continue(linenum)::tail ->  ast_error "Continue statement outside a loop"
 									| head::[] -> weed_stmt head case
 									| head::tail -> let _= weed_stmt head case in weed_stmts_without_break_continue tail case
 
 and weed_stmts_without_continue stmts case= match stmts with
 									| [] -> ""
-									| Continue::tail ->  ast_error "Continue statement outside a loop"
+									| Continue(linenum)::tail ->  ast_error "Continue statement outside a loop"
 									| head::[] -> weed_stmt head case
 									| head::tail -> let _= weed_stmt head case in weed_stmts_without_continue tail case
 and weed_stmt stmt case=
 
 					match stmt with
-				    | Declaration(dcl)-> ""
-				    | Return(rt_stmt)-> ""
-				    | Break -> ""
-				    | Continue -> ""
-				    | Block(stmt_list)-> (match case with
+				    | Declaration(dcl,linenum)-> ""
+				    | Return(rt_stmt,linenum)-> ""
+				    | Break(linenum) -> ""
+				    | Continue(linenum) -> ""
+				    | Block(stmt_list,linenum)-> (match case with
 				    					| "withoutcontinue" -> weed_stmts_without_continue stmt_list case
 				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmt_list case
 				    					| _ -> weed_stmts stmt_list case)
-				    | Conditional(conditional)-> weed_conditional conditional case
-				    | Switch(switch_clause, switch_expr, switch_case_stmts)-> 
+				    | Conditional(conditional,linenum)-> weed_conditional conditional case
+				    | Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> 
 				    (match case with
 				    					| "withoutcontinue" -> weed_switch_case_stmt switch_case_stmts case
 				    					| "withoutbreakandcontinue"-> weed_switch_case_stmt switch_case_stmts "withoutcontinue"
 				    					| _ ->  weed_switch_case_stmt switch_case_stmts "withbreakandcontinue") 
-				    | For(for_stmt)-> ""
-				    | Simple(simple)-> weed_simple_stmt simple
-				    | Print(exprs)-> ""
-				    | Println(exprs)-> ""
+				    | For(for_stmt,linenum)-> ""
+				    | Simple(simple,linenum)-> weed_simple_stmt simple
+				    | Print(exprs,linenum)-> ""
+				    | Println(exprs,linenum)-> ""
 and weed_return_stmt stmt= match stmt with
 							| Empty -> ""
-							| ReturnStatement(expr)-> ""
+							| ReturnStatement(expr,linenum)-> ""
 and weed_conditional cond case = match cond with 
-							| IfStmt(if_stmt)-> weed_if_stmt if_stmt case
-							| ElseStmt(else_stmt)-> weed_else_stmt else_stmt case
+							| IfStmt(if_stmt,linenum)-> weed_if_stmt if_stmt case
+							| ElseStmt(else_stmt,linenum)-> weed_else_stmt else_stmt case
 and weed_if_stmt if_stmt case= match if_stmt with
-							| IfInit(if_init, condition, stmts)-> (match case with
+							| IfInit(if_init, condition, stmts,linenum)-> (match case with
 				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
 				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
 				    					| _ -> weed_stmts stmts case)
 and weed_if_init if_init = match if_init with
-							| IfInitSimple(simplestmt) -> ""
+							| IfInitSimple(simplestmt,linenum) -> ""
 							| Empty -> ""
 and weed_simple_stmt stmt = match stmt with 
-							| SimpleExpression(expr)-> ""
-							| IncDec(incdec)-> weed_inc_dec_stmt incdec
-							| Assignment(assignment_stmt)-> weed_assignment_stmt assignment_stmt
-							| ShortVardecl(short_var_decl)-> ""
+							| SimpleExpression(expr,linenum)-> ""
+							| IncDec(incdec,linenum)-> weed_inc_dec_stmt incdec
+							| Assignment(assignment_stmt,linenum)-> weed_assignment_stmt assignment_stmt
+							| ShortVardecl(short_var_decl,linenum)-> ""
 							| Empty -> ""
 and  weed_condition cond = match cond with 
-							| ConditionExpression (expr)-> ""
+							| ConditionExpression (expr,linenum)-> ""
 							| Empty -> ""
 
 and weed_else_stmt stmt case=  match stmt with 
-							| ElseSingle(if_stmt,stmts)->  (match case with
+							| ElseSingle(if_stmt,stmts,linenum)->  (match case with
 				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
 				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
 				    					| _ -> weed_stmts stmts case)
-						    | ElseIFMultiple(if_stmt,else_stmt)-> let _=(weed_if_stmt if_stmt case) in weed_else_stmt else_stmt case
-						    | ElseIFSingle(if_stmt1,if_stmt2)-> let _=(weed_if_stmt if_stmt1 case) in weed_if_stmt if_stmt2 case
+						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let _=(weed_if_stmt if_stmt case) in weed_else_stmt else_stmt case
+						    | ElseIFSingle(if_stmt1,if_stmt2,linenum)-> let _=(weed_if_stmt if_stmt1 case) in weed_if_stmt if_stmt2 case
 and weed_for_stmt stmt = match stmt with 
-				    | Forstmt(stmts)-> ""
-				    | ForCondition(condition, stmts)-> ""
-				    | ForClause (for_clause, stmts)-> ""
+				    | Forstmt(stmts,linenum)-> ""
+				    | ForCondition(condition, stmts,linenum)-> ""
+				    | ForClause (for_clause, stmts,linenum)-> ""
 and weed_clause clause= match clause with 
-						 | ForClauseCond(simple1,condition,simple2)->""
+						 | ForClauseCond(simple1,condition,simple2,linenum)->""
 
 
 and weed_switch_clause clause = match clause with
-								| SwitchClause(simple_stmt) -> ""
+								| SwitchClause(simple_stmt,linenum) -> ""
 								| Empty -> ""
 and weed_switch_expression expr = match expr with 
-								| SwitchExpr(expr)-> ""
+								| SwitchExpr(expr,linenum)-> ""
 								| Empty -> ""
 and count_switch_case_defaults switchcaseclauses count= match switchcaseclauses with
 											| [] -> if count>1 then ast_error "more than one default case" else count
-											| SwitchCaseClause(exprs, stmts)::tail -> (match exprs with
+											| SwitchCaseClause(exprs, stmts,linenum)::tail -> (match exprs with
 																	| []->	count_switch_case_defaults tail (count+1)
 																	| head::tail2 -> count_switch_case_defaults tail count
 																	)
 											| Empty::tail -> count_switch_case_defaults tail count
 and weed_switch_case_clause case clause= match clause with 
-								| SwitchCaseClause(exprs, stmts)-> (match case with
+								| SwitchCaseClause(exprs, stmts,linenum)-> (match case with
 				    					| "withoutcontinue" -> weed_stmts_without_continue stmts case
 				    					| "withoutbreakandcontinue"-> weed_stmts_without_break_continue stmts case
 				    					| _ -> weed_stmts stmts case)
 								| Empty -> ""	
 
 and weed_switch_case_stmt stmts case= match stmts with
-								| SwitchCasestmt(switch_case_clauses)-> 
+								| SwitchCasestmt(switch_case_clauses,linenum)-> 
 												let defaults_count= count_switch_case_defaults switch_case_clauses 0 in 
 												let _= (List.map (weed_switch_case_clause case) switch_case_clauses ) in ""
 
 and lvalue_eval expr = match expr with 
-						| OperandName(iden)-> ""
-						| Indexexpr(expr1,expr2)-> ""
+						| OperandName(iden,linenum)-> ""
+						| Indexexpr(expr1,expr2,linenum)-> ""
 						(* | FuncCallExpr(expr,exprs)-> ""
 						| Appendexpr (Identifier(iden),exp1)-> "" *)
-						| Selectorexpr(exp1,Identifier(iden))-> ""
+						| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2)-> ""
 						| _ -> ast_error "Lvalue error"
 and weed_inc_dec_stmt stmt = match stmt with 
-						 | Increment(expr)->  let _= ( lvalue_eval expr) in ""
-   						 | Decrement(expr)->  let _= ( lvalue_eval expr) in ""
+						 | Increment(expr,linenum)->  let _= ( lvalue_eval expr) in ""
+   						 | Decrement(expr,linenum)->  let _= ( lvalue_eval expr) in ""
 
 and weed_assignment_stmt stmt = match stmt with 
-						    | AssignmentBare(exprs1,exprs2)-> let _= (List.map lvalue_eval exprs1) in ""
-   						    | AssignmentOp(exprs1, assign_op, exprs2)-> lvalue_eval exprs1
+						    | AssignmentBare(exprs1,exprs2,linenum)-> let _= (List.map lvalue_eval exprs1) in ""
+   						    | AssignmentOp(exprs1, assign_op, exprs2,linenum)-> lvalue_eval exprs1
 
 and weed_short_var_decl dcl = match dcl with
-							| ShortVarDecl(idens, exprs)-> ""
+							| ShortVarDecl(idens, exprs,linenum)-> ""
 
 
 
 and weed_declaration decl = match decl with 
-								| TypeDcl(value)-> List.map weed_type_declaration value
-								| VarDcl(value)->  List.map weed_variable_declaration value
-								| Function(func_name,signature,stmts)->  weed_function_declaration func_name signature stmts
+								| TypeDcl(value,linenum)-> List.map weed_type_declaration value
+								| VarDcl(value,linenum)->  List.map weed_variable_declaration value
+								| Function(func_name,signature,stmts,linenum)->  weed_function_declaration func_name signature stmts
 
 and weed_signature_return_type return_type = match return_type with
-	| FuncReturnType(return_type_i) -> ""
+	| FuncReturnType(return_type_i,linenum) -> ""
 	| Empty -> ""
 
 and weed_signature signature = match signature with
-	FuncSig(FuncParams(func_params), return_type) -> ""
+	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> ""
 
 and weed_function_declaration func_name signature stmts = (weed_stmts stmts "withoutbreakandcontinue")::[]
 

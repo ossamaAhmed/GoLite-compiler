@@ -12,6 +12,7 @@ type y4 cool
 
 func main (x,y int){
 	print(1+3);
+	x=3;
 }
 
 
