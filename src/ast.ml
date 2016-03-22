@@ -1,3 +1,5 @@
+open Symboltbl
+
 exception AST_error of string
 
 let ast_error msg = raise (AST_error msg)
@@ -108,39 +110,39 @@ type func_return =
 	| Structtype of (identifier list * type_i) list* int
     and
     expression = 
-	| OperandName of string* int
-	| AndAndOp of expression * expression* int
-	| OrOrOp of expression * expression* int
-	| EqualEqualCmp of expression * expression* int
-	| NotEqualCmp of expression * expression* int
-	| LessThanCmp of expression * expression* int
-	| GreaterThanCmp of expression * expression* int
-	| LessThanOrEqualCmp of expression * expression* int
-	| GreaterThanOrEqualCmp of expression * expression* int
-	| AddOp of expression * expression* int
-	| MinusOp of expression * expression* int
-	| OrOp of expression * expression* int
-	| CaretOp of expression * expression* int
-	| MulOp of expression * expression* int
-	| DivOp of expression * expression* int
-	| ModuloOp of expression * expression* int
-	| SrOp of expression * expression* int
-	| SlOp of expression * expression * int
-	| AndOp of expression * expression * int
-	| AndCaretOp of expression * expression * int
-	| OperandParenthesis of expression* int
-	| Indexexpr of expression * expression * int
-	| Unaryexpr of expression * int
-	| Binaryexpr of expression * int
-	| FuncCallExpr of expression * expression list * int(*needs to be revised*)
-	| UnaryPlus of expression * int
-	| UnaryMinus of expression * int
-	| UnaryNot of expression * int
-	| UnaryCaret of expression * int
-	| Value of literal * int
-	| Selectorexpr of expression * identifier * int
-	| TypeCastExpr of type_i * expression * int
-	| Appendexpr of identifier * expression * int
+	| OperandName of string* int * symType
+	| AndAndOp of expression * expression* int * symType
+	| OrOrOp of expression * expression* int * symType
+	| EqualEqualCmp of expression * expression* int * symType
+	| NotEqualCmp of expression * expression* int * symType
+	| LessThanCmp of expression * expression* int * symType
+	| GreaterThanCmp of expression * expression* int * symType
+	| LessThanOrEqualCmp of expression * expression* int * symType
+	| GreaterThanOrEqualCmp of expression * expression* int * symType
+	| AddOp of expression * expression* int * symType
+	| MinusOp of expression * expression* int * symType
+	| OrOp of expression * expression* int * symType
+	| CaretOp of expression * expression* int * symType
+	| MulOp of expression * expression* int * symType
+	| DivOp of expression * expression* int * symType
+	| ModuloOp of expression * expression* int * symType
+	| SrOp of expression * expression* int * symType
+	| SlOp of expression * expression * int * symType
+	| AndOp of expression * expression * int * symType
+	| AndCaretOp of expression * expression * int * symType
+	| OperandParenthesis of expression* int * symType
+	| Indexexpr of expression * expression * int * symType
+	| Unaryexpr of expression * int * symType
+	| Binaryexpr of expression * int * symType
+	| FuncCallExpr of expression * expression list * int * symType (*needs to be revised*)
+	| UnaryPlus of expression * int * symType
+	| UnaryMinus of expression * int * symType
+	| UnaryNot of expression * int * symType
+	| UnaryCaret of expression * int * symType
+	| Value of literal * int * symType
+	| Selectorexpr of expression * identifier * int * symType
+	| TypeCastExpr of type_i * expression * int * symType
+	| Appendexpr of identifier * expression * int * symType
     and
     variablespec = 
 	| VarSpecWithType of identifier list * type_i * expression list * int

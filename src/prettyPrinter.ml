@@ -53,39 +53,39 @@ let rec pretty_print_expression exp =
                                     | head::[] -> pretty_print_expression head
                                     | head::tail -> ((pretty_print_expression head)^", "^(print_expressions tail) )in 
                                     match exp with 
-                                                | OperandName(value,linenum)-> value
-                                                | AndAndOp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" && "^(pretty_print_expression exp2 )^" )"
-                                                | OrOrOp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" || "^(pretty_print_expression exp2 )^" )"
-                                                | EqualEqualCmp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" == "^(pretty_print_expression exp2 )^" )"
-                                                | NotEqualCmp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" != "^(pretty_print_expression exp2 )^" )"
-                                                | LessThanCmp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" < "^(pretty_print_expression exp2 )^" )"
-                                                | GreaterThanCmp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" >"^(pretty_print_expression exp2 )^" )"
-                                                | LessThanOrEqualCmp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" <= "^(pretty_print_expression exp2 )^" )"
-                                                | GreaterThanOrEqualCmp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" >= "^(pretty_print_expression exp2 )^" )"
-                                                | AddOp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" + "^(pretty_print_expression exp2 )^" )"
-                                                | MinusOp(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" - "^(pretty_print_expression exp2 )^" )"
-                                                | OrOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" | "^(pretty_print_expression exp2 )^" )"
-                                                | CaretOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" ^ "^(pretty_print_expression exp2 )^" )"
-                                                | MulOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" * "^(pretty_print_expression exp2 )^" )"
-                                                | DivOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" / "^(pretty_print_expression exp2 )^" )"
-                                                | ModuloOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" % "^(pretty_print_expression exp2 )^" )"
-                                                | SrOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" >> "^(pretty_print_expression exp2 )^" )"
-                                                | SlOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" << "^(pretty_print_expression exp2 )^" )"
-                                                | AndOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" & "^(pretty_print_expression exp2 )^" )"
-                                                | AndCaretOp (exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^" &^ "^(pretty_print_expression exp2 )^" )"
-                                                | OperandParenthesis (exp1,linenum)-> (pretty_print_expression exp1)
-                                                | Indexexpr(exp1,exp2,linenum)-> "( "^(pretty_print_expression exp1)^"["^(pretty_print_expression exp2 )^"]"^")"
-                                                | Unaryexpr(exp1,linenum) -> (pretty_print_expression exp1)
-                                                | Binaryexpr(exp1,linenum) -> (pretty_print_expression exp1)
-                                                | FuncCallExpr(expr,exprs,linenum)-> "( "^(pretty_print_expression expr)^"("^(print_expressions exprs)^")"^")"
-                                                | UnaryPlus(exp1,linenum) -> "( +"^(pretty_print_expression exp1)^" )"
-                                                | UnaryMinus(exp1,linenum) -> "( -"^(pretty_print_expression exp1)^" )"
-                                                | UnaryNot(exp1,linenum) -> "( !"^(pretty_print_expression exp1)^" )"
-                                                | UnaryCaret(exp1,linenum) -> "( ^"^(pretty_print_expression exp1)^" )"
-                                                | Value(value,linenum)-> (print_literal value)
-                                                | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2)-> "("^(pretty_print_expression exp1)^"."^iden^")"
-                                                | TypeCastExpr (typename,exp1,linenum) -> "( "^(print_type_name typename)^"("^(pretty_print_expression exp1)^"))"
-                                                | Appendexpr (Identifier(iden,linenum1),exp1,linenum2)-> "( append("^iden^", "^(pretty_print_expression exp1)^"))"
+                                                | OperandName(value,linenum,ast_type)-> value
+                                                | AndAndOp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" && "^(pretty_print_expression exp2 )^" )"
+                                                | OrOrOp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" || "^(pretty_print_expression exp2 )^" )"
+                                                | EqualEqualCmp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" == "^(pretty_print_expression exp2 )^" )"
+                                                | NotEqualCmp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" != "^(pretty_print_expression exp2 )^" )"
+                                                | LessThanCmp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" < "^(pretty_print_expression exp2 )^" )"
+                                                | GreaterThanCmp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" >"^(pretty_print_expression exp2 )^" )"
+                                                | LessThanOrEqualCmp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" <= "^(pretty_print_expression exp2 )^" )"
+                                                | GreaterThanOrEqualCmp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" >= "^(pretty_print_expression exp2 )^" )"
+                                                | AddOp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" + "^(pretty_print_expression exp2 )^" )"
+                                                | MinusOp(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" - "^(pretty_print_expression exp2 )^" )"
+                                                | OrOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" | "^(pretty_print_expression exp2 )^" )"
+                                                | CaretOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" ^ "^(pretty_print_expression exp2 )^" )"
+                                                | MulOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" * "^(pretty_print_expression exp2 )^" )"
+                                                | DivOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" / "^(pretty_print_expression exp2 )^" )"
+                                                | ModuloOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" % "^(pretty_print_expression exp2 )^" )"
+                                                | SrOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" >> "^(pretty_print_expression exp2 )^" )"
+                                                | SlOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" << "^(pretty_print_expression exp2 )^" )"
+                                                | AndOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" & "^(pretty_print_expression exp2 )^" )"
+                                                | AndCaretOp (exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^" &^ "^(pretty_print_expression exp2 )^" )"
+                                                | OperandParenthesis (exp1,linenum,ast_type)-> (pretty_print_expression exp1)
+                                                | Indexexpr(exp1,exp2,linenum,ast_type)-> "( "^(pretty_print_expression exp1)^"["^(pretty_print_expression exp2 )^"]"^")"
+                                                | Unaryexpr(exp1,linenum,ast_type) -> (pretty_print_expression exp1)
+                                                | Binaryexpr(exp1,linenum,ast_type) -> (pretty_print_expression exp1)
+                                                | FuncCallExpr(expr,exprs,linenum,ast_type)-> "( "^(pretty_print_expression expr)^"("^(print_expressions exprs)^")"^")"
+                                                | UnaryPlus(exp1,linenum,ast_type) -> "( +"^(pretty_print_expression exp1)^" )"
+                                                | UnaryMinus(exp1,linenum,ast_type) -> "( -"^(pretty_print_expression exp1)^" )"
+                                                | UnaryNot(exp1,linenum,ast_type) -> "( !"^(pretty_print_expression exp1)^" )"
+                                                | UnaryCaret(exp1,linenum,ast_type) -> "( ^"^(pretty_print_expression exp1)^" )"
+                                                | Value(value,linenum,ast_type)-> (print_literal value)
+                                                | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)-> "("^(pretty_print_expression exp1)^"."^iden^")"
+                                                | TypeCastExpr (typename,exp1,linenum,ast_type) -> "( "^(print_type_name typename)^"("^(pretty_print_expression exp1)^"))"
+                                                | Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> "( append("^iden^", "^(pretty_print_expression exp1)^"))"
                                                 | _-> ast_error ("expression error")
 
 let rec print_expressions exprlist = match exprlist with

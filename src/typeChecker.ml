@@ -193,99 +193,99 @@ let rec pretty_typecheck_expression exp =
 									| head::[] -> pretty_typecheck_expression head
 									| head::tail -> ((pretty_typecheck_expression head)^", "^(typecheck_expressions tail) )in  *)
 									match exp with 
-												| OperandName(value,linenum)->  search_previous_scopes value !symbol_table  (*  value *)
-												| AndAndOp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| OperandName(value,linenum,ast_type)->  search_previous_scopes value !symbol_table  (*  value *)
+												| AndAndOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   bool_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" && "^(pretty_typecheck_expression exp2 )^" )" *)
-												| OrOrOp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| OrOrOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   bool_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" || "^(pretty_typecheck_expression exp2 )^" )" *)
-												| EqualEqualCmp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| EqualEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   comparable_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" == "^(pretty_typecheck_expression exp2 )^" )" *)
-												| NotEqualCmp(exp1,exp2,linenum)->let exp_type1= pretty_typecheck_expression exp1 in 
+												| NotEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= pretty_typecheck_expression exp1 in 
 																	   	let exp_type2= pretty_typecheck_expression exp2 in 
 																	   comparable_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" != "^(pretty_typecheck_expression exp2 )^" )" *)
-												| LessThanCmp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| LessThanCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	  		let exp_type2= pretty_typecheck_expression exp2 in 
 																	 	    ordered_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" < "^(pretty_typecheck_expression exp2 )^" )" *)
-												| GreaterThanCmp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| GreaterThanCmp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	 		  let exp_type2= pretty_typecheck_expression exp2 in 
 																	 		  ordered_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" >"^(pretty_typecheck_expression exp2 )^" )" *)
-												| LessThanOrEqualCmp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| LessThanOrEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	  			 let exp_type2= pretty_typecheck_expression exp2 in 
 																	  			 ordered_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" <= "^(pretty_typecheck_expression exp2 )^" )" *)
-												| GreaterThanOrEqualCmp(exp1,exp2,linenum)->let exp_type1= pretty_typecheck_expression exp1 in 
+												| GreaterThanOrEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   ordered_typecheck exp_type1 exp_type2(*  "( "^(pretty_typecheck_expression exp1)^" >= "^(pretty_typecheck_expression exp2 )^" )" *)
-												| AddOp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| AddOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   numeric_string_typecheck exp_type1 exp_type2
 												 					 (* "( "^(pretty_typecheck_expression exp1)^" + "^(pretty_typecheck_expression exp2 )^" )" *)
-												| MinusOp(exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| MinusOp(exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" - "^(pretty_typecheck_expression exp2 )^" )" *)
-												| OrOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| OrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" | "^(pretty_typecheck_expression exp2 )^" )" *)
-												| CaretOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| CaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" ^ "^(pretty_typecheck_expression exp2 )^" )" *)
-												| MulOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| MulOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" * "^(pretty_typecheck_expression exp2 )^" )" *)
-												| DivOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| DivOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" / "^(pretty_typecheck_expression exp2 )^" )" *)
-												| ModuloOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| ModuloOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   numeric_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" % "^(pretty_typecheck_expression exp2 )^" )" *)
-												| SrOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| SrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" >> "^(pretty_typecheck_expression exp2 )^" )" *)
-												| SlOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| SlOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" << "^(pretty_typecheck_expression exp2 )^" )" *)
-												| AndOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| AndOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" & "^(pretty_typecheck_expression exp2 )^" )" *)
-												| AndCaretOp (exp1,exp2,linenum)-> let exp_type1= pretty_typecheck_expression exp1 in 
+												| AndCaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= pretty_typecheck_expression exp1 in 
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" &^ "^(pretty_typecheck_expression exp2 )^" )" *)
-												| OperandParenthesis (exp1,linenum)-> pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| Indexexpr(exp1,exp2,linenum)-> SymInt  (* "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")" *)
-												| Unaryexpr(exp1,linenum) -> pretty_typecheck_expression exp1
-												| Binaryexpr(exp1,linenum) ->  pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum)-> SymInt (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
-												| UnaryPlus(exp1,linenum) -> let exp_type= pretty_typecheck_expression exp1 in 
+												| OperandParenthesis (exp1,linenum,ast_type)-> pretty_typecheck_expression exp1
+						(*    NOT DONE*)		| Indexexpr(exp1,exp2,linenum,ast_type)-> SymInt  (* "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")" *)
+												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
+												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
+						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> SymInt (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
+												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymInt-> SymInt
 																	 | SymFloat64-> SymFloat64
 																	 | SymRune -> SymRune
 																	 | _ -> type_checking_error "Unary Plus should be done on a numeric value"
 																		)(* "( +"^(pretty_typecheck_expression exp1)^" )" *)
-												| UnaryMinus(exp1,linenum) -> let exp_type= pretty_typecheck_expression exp1 in 
+												| UnaryMinus(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymInt-> SymInt
 																	 | SymFloat64-> SymFloat64
 																	 | SymRune -> SymRune
 																	 | _ -> type_checking_error "Unary Negation should be done on a numeric value"
 																		)(*  "( -"^(pretty_typecheck_expression exp1)^" )" *)
-												| UnaryNot(exp1,linenum) -> let exp_type= pretty_typecheck_expression exp1 in 
+												| UnaryNot(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymBool-> SymBool
 																	 | _ -> type_checking_error "Unary Logical Negation should be done on a bool value"
 																		)(* "( !"^(pretty_typecheck_expression exp1)^" )" *)
-												| UnaryCaret(exp1,linenum) -> let exp_type= pretty_typecheck_expression exp1 in 
+												| UnaryCaret(exp1,linenum,ast_type) -> let exp_type= pretty_typecheck_expression exp1 in 
 																	 (match exp_type with 
 																	 | SymInt-> SymInt
 																	 | SymRune -> SymRune
 																	 | _ -> type_checking_error "Unary Bitwise should be done on an integer value"
 																		)(* "( ^"^(pretty_typecheck_expression exp1)^" )" *)
-												| Value(value,linenum)-> (typecheck_literal value) 
-						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2)->SymInt (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
-						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum) -> SymInt(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
-						(*    NOT DONE*)		| Appendexpr (Identifier(iden,linenum1),exp1,linenum2)->SymInt (* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
+												| Value(value,linenum,ast_type)-> (typecheck_literal value) 
+						(*    NOT DONE*)		| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)->SymInt (* "("^(pretty_typecheck_expression exp1)^"."^iden^")" *)
+						(*    NOT DONE*)		| TypeCastExpr (typename,exp1,linenum,ast_type) -> SymInt(* "( "^(typecheck_type_name typename)^"("^(pretty_typecheck_expression exp1)^"))" *)
+						(*    NOT DONE*)		| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)->SymInt (* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 (*
 let rec typecheck_expressions exprlist = match exprlist with
@@ -322,11 +322,11 @@ and typecheck_stmt stmt = match stmt with
 				    | Simple(simple,linenum)-> typecheck_simple_stmt simple 
 				    | Print(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
 				    				  if (is_exprs_of_base_type expr_list_types) then ()
-				    				  else type_checking_error "print only accepts base types" 
+				    				  else type_checking_error ("print only accepts base types linenum:="^(Printf.sprintf "%i" linenum)) 
 				    				  (* "print ("^(typecheck_expressions exprs)^") " (*DONE*) *)
 				    | Println(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
 				    				  if (is_exprs_of_base_type expr_list_types) then ()
-				    				  else type_checking_error "print only accepts base types" 
+				    				  else type_checking_error ("print only accepts base types linenum:="^(Printf.sprintf "%i" linenum))
 				    				  (* "println ("^(typecheck_expressions exprs)^") " (*DONE*) *)
 (* and typecheck_return_stmt stmt= match stmt with
 							| Empty -> "return "
@@ -348,7 +348,7 @@ and typecheck_simple_stmt stmt = match stmt with
 and  typecheck_condition cond = match cond with 
 							| ConditionExpression (expr,linenum)->let cond_type= pretty_typecheck_expression expr in 
 														   if cond_type == SymBool then ()
-														   else type_checking_error "condition has to be bool" 
+														   else type_checking_error ("condition has to be bool linenum:="^(Printf.sprintf "%i" linenum))
 							| Empty -> ()
 (* and typecheck_else_stmt stmt =  match stmt with 
 							| ElseSingle(if_stmt,stmts)-> (typecheck_if_stmt if_stmt)^" else {\n "^(typecheck_stmts stmts)^"}"
