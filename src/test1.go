@@ -3,7 +3,7 @@ package main
 // this tests for simple declaration of array and slice
 
 var x int
-var z int = 1
+var z[] int = 1
 var x1, x2 int
 var z1, z2 int = 1, 2
 var x3 bool
@@ -11,7 +11,7 @@ type cool int
 type y4 cool
 
 func main (x,y int){
-	print(2);
+	print(x[2]);
 	x=/*hi*/3+/**/5;
 }
 
@@ -20,7 +20,5 @@ func main (x,y int){
 func foo (a int, b int) int{
     {
         var a = 6;
-        return a+b;
     }
-    return a+b;
 }

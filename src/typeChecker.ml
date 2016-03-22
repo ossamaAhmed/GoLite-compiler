@@ -253,7 +253,14 @@ let rec pretty_typecheck_expression exp =
 																	   let exp_type2= pretty_typecheck_expression exp2 in 
 																	   integer_typecheck exp_type1 exp_type2(* "( "^(pretty_typecheck_expression exp1)^" &^ "^(pretty_typecheck_expression exp2 )^" )" *)
 												| OperandParenthesis (exp1,linenum,ast_type)-> pretty_typecheck_expression exp1
-						(*    NOT DONE*)		| Indexexpr(exp1,exp2,linenum,ast_type)-> type_checking_error ("index expression not yet implemented linenum:="^(Printf.sprintf "%i" linenum))  (* "( "^(pretty_typecheck_expression exp1)^"["^(pretty_typecheck_expression exp2 )^"]"^")" *)
+												| Indexexpr(exp1,exp2,linenum,ast_type)-> let index_name_type= pretty_typecheck_expression exp1 in 
+																						  let indexing= pretty_typecheck_expression exp2 in 
+																						  if indexing!= SymInt then type_checking_error ("indexing should have an int expression linenum:="^(Printf.sprintf "%i" linenum))
+																						  else (match index_name_type with 
+																						  	| SymArray(symtype)-> symtype
+																						  	| SymSlice(symtype)-> symtype
+																						  	| _-> type_checking_error ("indexing should be done on an array or a slice linenum:="^(Printf.sprintf "%i" linenum))
+																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> pretty_typecheck_expression exp1
 												| Binaryexpr(exp1,linenum,ast_type) ->  pretty_typecheck_expression exp1
 						(*    NOT DONE*)		| FuncCallExpr(expr,exprs,linenum,ast_type)-> type_checking_error ("function call not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "( "^(pretty_typecheck_expression expr)^"("^(typecheck_expressions exprs)^")"^")" *)
