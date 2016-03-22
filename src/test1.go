@@ -11,4 +11,15 @@ type cool int
 type y4 cool
 
 func main (x,y int){
+	print(1+3);
+}
+
+
+//this is allowed
+func foo (a int, b int) int{
+    {
+        var a = 6;
+        return a+b;
+    }
+    return a+b;
 }

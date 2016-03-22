@@ -309,12 +309,7 @@ let rec  typecheck_stmts stmts = match stmts with
 									| [] -> ()
 									| head::tail -> let _=typecheck_stmt head in (typecheck_stmts tail)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl)-> let _=typecheck_declaration in ()(* (match dcl with 
-				    			| TypeDcl([])->  ""
-								| TypeDcl(value)-> typecheck_list(List.map typecheck_type_declaration value)
-								| VarDcl([])->  ""
-								| VarDcl(value)->   typecheck_list(List.map typecheck_variable_declaration value)
-								| Function(func_name,signature,stmts)->  typecheck_function_declaration func_name signature stmts) *)
+				    | Declaration(dcl)-> let _=typecheck_declaration in ()
 	(*NOT DONE*)	| Return(rt_stmt)->() (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break -> ()(* "break "  *)
 				    | Continue -> ()(* "continue " *)
@@ -348,7 +343,7 @@ and typecheck_simple_stmt stmt = match stmt with
 							| Empty -> ()
 							| SimpleExpression(expr)-> let _=pretty_typecheck_expression expr in ()
 				(*NOT DONE*)| IncDec(incdec)-> ()(* typecheck_inc_dec_stmt incdec  *)
-				(*NOT DONE*)| Assignment(assignment_stmt)->() (* typecheck_assignment_stmt assignment_stmt *)
+							| Assignment(assignment_stmt)-> typecheck_assignment_stmt assignment_stmt 
 				(*NOT DONE*)| ShortVardecl(short_var_decl)->() (* typecheck_short_var_decl short_var_decl *)
 and  typecheck_condition cond = match cond with 
 							| ConditionExpression (expr)->let cond_type= pretty_typecheck_expression expr in 
@@ -374,7 +369,7 @@ and typecheck_for_stmt stmt = match stmt with
 								    				  let _= end_scope() in 
 								    				  end_scope()(* "for "^(typecheck_clause for_clause)^"{\n"^(typecheck_stmts stmts)^"}" *)
 and typecheck_clause clause= match clause with (*NEEDS REVISION*)
-						 | ForClauseCond(simple1,condition,simple2)-> let _= start_scope()
+						 | ForClauseCond(simple1,condition,simple2)-> let _= start_scope() in
 						 											  let _= typecheck_simple_stmt simple1 in 
 						 											  let _= typecheck_condition condition in
 						 											  typecheck_simple_stmt simple2
@@ -401,10 +396,52 @@ and typecheck_switch_case_stmt stmts = match stmts with
 						 | Increment(expr)->(pretty_typecheck_expression expr)^"++"
    						 | Decrement(expr)->(pretty_typecheck_expression expr)^"--" *)
 
-(* and typecheck_assignment_stmt stmt = match stmt with 
-						    | AssignmentBare(exprs1,exprs2)-> (typecheck_expressions exprs1)^" = "^(typecheck_expressions exprs2)
-   						    | AssignmentOp(exprs1, assign_op, exprs2)-> (pretty_typecheck_expression exprs1)^assign_op^(pretty_typecheck_expression exprs2)
- *)
+and type_check_assignment_exprs exprs1 exprs2= match exprs1,exprs2 with
+											| [] ,[] -> () 
+											| head1::tail1, head2::tail2 -> let lhsexpr_type= pretty_typecheck_expression head1 in
+																			let rhsexprs_type= pretty_typecheck_expression head2 in 
+																			if lhsexpr_type==rhsexprs_type then type_check_assignment_exprs tail1 tail2
+																			else type_checking_error "assignment should have the same types" 
+and type_check_assignment_op exp1 exp2 assign_op = match assign_op with 
+													    | "+="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_string_typecheck exp_type1 exp_type2
+													    | "-="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "|="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																 let exp_type2= pretty_typecheck_expression exp2 in 
+															     integer_typecheck exp_type1 exp_type2
+													    | "^="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 integer_typecheck exp_type1 exp_type2
+													    | "*="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "/="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | "%="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 numeric_typecheck exp_type1 exp_type2
+													    | ">>="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
+													    | "<<="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
+													    | "&="-> let exp_type1= pretty_typecheck_expression exp1 in 
+															     let exp_type2= pretty_typecheck_expression exp2 in 
+																 integer_typecheck exp_type1 exp_type2
+													    | "&^="-> let exp_type1= pretty_typecheck_expression exp1 in 
+																  let exp_type2= pretty_typecheck_expression exp2 in 
+																  integer_typecheck exp_type1 exp_type2
+
+and typecheck_assignment_stmt stmt = match stmt with 
+						    | AssignmentBare(exprs1,exprs2)-> type_check_assignment_exprs exprs1 exprs2
+   						    | AssignmentOp(exprs1, assign_op, exprs2)-> let _=type_check_assignment_op exprs1 exprs2 assign_op in ()
+
+
 (* and typecheck_short_var_decl dcl = match dcl with
 							| ShortVarDecl(idens, exprs)-> (typecheck_identifiers idens)^" := "^(typecheck_expressions exprs)
 
