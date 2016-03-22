@@ -3,7 +3,7 @@ open Ast
 
 let print program filedir filename =
     let Prog(package_name, decl_list) = program in
-    let output_filename = filedir^(Filename.dir_sep)^filename^".pretty.go" in
+    let output_filename = filedir^(Filename.dir_sep)^filename^".pptype.go" in
     let output_file = open_out output_filename in 
     let print_string s = output_string output_file s in
     let print_char c = output_char output_file c in
