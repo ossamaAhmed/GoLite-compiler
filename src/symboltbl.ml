@@ -1,3 +1,5 @@
+let dumpsymtab = ref false
+
 type symType =
 	| SymInt 
 	| SymFloat64
