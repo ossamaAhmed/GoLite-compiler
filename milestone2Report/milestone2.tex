@@ -62,10 +62,19 @@ All invalid programs pertaining to type checking can be found in the folder /TES
 \section{Features}
 
 \subsection{Weeding Phases}
-The first feature implemented in this milestone was the weeder phase. In the weeder phase we've implemented 
+The first feature implemented in this milestone was the weeder phase. In the weeder phase we've implemented the following checks:
+\begin{itemize}
+\item break statements inside loops
+\item continue statements inside loops
+\item checking all function paths have a return value
+\item checking that switch cases have only one default case
+\item checking that assignments have LHS matching RHS
+\end{itemize}
+
+The weeder was designed to follow the tree search of the pretty printer. It goes through every kkk
 
 \subsection{Type checking Phase}
-The main feature 
+The biggest feature for this milestone was the type checking. We've implemented the type checking based on the specification on the sable course page as well as the reference compiler. 
 
 
 \section{Team Contribution}
@@ -75,7 +84,10 @@ In the last milestone we lost a considerable amount of points due to our program
 
 
 \subsection{Ossama Ahmed}
+For this milestone I worked on the weeder and the type checking. The weeder was designed by following the tree search of the pretty printer. 
+
 \subsection{Michael Ho}
+In this milestone I worked on the type checking phase. I implemented type checking for statements and expressions. Ex
 
 
 
