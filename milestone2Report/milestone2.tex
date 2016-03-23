@@ -60,6 +60,7 @@ Members: & Shabbir Hussain \\ % Date the experiment was performed
 All invalid programs pertaining to type checking can be found in the folder /TEST\_ PROGRAMS/INVALID\_ TYPECHECK. All tests are commented to describe the type check rule under test. The type checking test cases were based on the specification located at: http://www.sable.mcgill.ca/~hendren/520/2016/assignments/typechecker.pdf. To test invalid programs we run the program and expect an error. To test for valid programs we look run the program and expect to see no error. For test programs which are valid we force a situation that will cause an error to occur if our test case fails. For example, after a binary expression, we put the result on the right hand side of an assignment to check of the correct type is resolved by the binary expression. If the expression is not well typed then the assignment will fail. We've also first tested our assignment type checking in order to validate binary expressions. Our error handling does not include column number for now; this will be done in a later phase.
 
 
+
 \section{Features}
 
 \subsection{Weeding Phases}
@@ -77,6 +78,8 @@ We decided to place these syntactic checks in the weeding phase as opposed to th
 
 \subsection{Type checking Phase}
 The biggest feature for this milestone was the type checking. We've implemented the type checking based on the specification on the sable course page as well as the reference compiler. We initially implemented the type checking as a two pass compiler in order to have function declarations with global scope since the go language allows it. We later removed this feature when verifying with the reference compiler. For better type checking we put the line number in the nodes in the AST. This allows us to have better error messages and no need to search the AST for line numbers.  We added types to expressions in the AST such that we can print them for debugging purposes. We decided to create constructors for each type to be included in the symbol table; this allows us to have a common interface for the symbol table. We also created a recursive type called symType. This allows us to create a "type" for structs which have structs in them.
+
+For Pretty Printing, we decided to rewrite the PrettyPrinter using OCaml's imperative style (begin / end statements) and printing to stdout. Instead of printing as one large string as we did in milestone 1, now with imperative printing, it became super easy to implement -pptype and soon code generation should be easier as well.
 
 
 \section{Team Contribution}
