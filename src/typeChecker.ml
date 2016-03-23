@@ -112,10 +112,6 @@ let numeric_typecheck a b= match a,b with
 						| SymInt, SymFloat64 ->SymInt
 						| SymFloat64, SymInt -> SymFloat64
 						| SymRune, SymRune->SymRune
-						| SymRune, SymInt->SymRune
-						| SymRune, SymFloat64-> SymRune
-						| SymInt, SymRune->SymInt
-						| SymFloat64, SymRune-> SymFloat64
 						| _ ,_ -> type_checking_error "arithmetic operation should be done on a numeric value"
 let comparable_typecheck a b= match a,b with 
 						| SymInt, SymInt -> SymBool
@@ -144,17 +140,7 @@ let numeric_string_typecheck a b= match a,b with
 						| SymInt, SymFloat64 ->SymInt
 						| SymFloat64, SymInt -> SymFloat64
 						| SymRune, SymRune->SymRune
-						| SymRune, SymInt->SymRune
-						| SymRune, SymFloat64-> SymRune
-						| SymInt, SymRune->SymInt
-						| SymFloat64, SymRune-> SymFloat64
 						| SymString, SymString -> SymString
-						| SymInt, SymString -> SymInt
-						| SymString, SymInt -> SymString
-						| SymFloat64, SymString -> SymFloat64
-						| SymString, SymFloat64-> SymString
-						| SymString, SymRune->SymString
-						| SymRune, SymString-> SymRune
 						| _ ,_ -> type_checking_error "plus operation should be done on a numeric value or string"
 
 let integer_typecheck a b= match a,b with 
@@ -301,7 +287,7 @@ and pretty_typecheck_expression exp =
 																	 					(DivOp (exp1,exp2,linenum,mytype),mytype)
 												| ModuloOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 					  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
-																	  					  let mytype= numeric_typecheck exp_type1 exp_type2 in 
+																	  					  let mytype= integer_typecheck exp_type1 exp_type2 in 
 																	  					  (ModuloOp (exp1,exp2,linenum,mytype), mytype)
 												| SrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																				  	  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
