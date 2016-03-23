@@ -674,16 +674,16 @@ and typecheck_signature signature func_name= match signature with
 																	let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
 																	let _= start_scope () in 
 																	let _= typecheck_identifiers_with_type_new_scope func_params in 
-																	let _= start_scope() in 
-																	mytype
+(* 																	let _= start_scope() in 
+ *)																	mytype
 													 
 
 and typecheck_function_declaration func_name signature stmts linenum= let ret= typecheck_signature signature func_name in 
 															   let new_stmts=typecheck_stmts stmts  ret in 
 															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
-															   let _= print_stack symbol_table linenum in 
-															   let _= end_scope() in 
+															  (*  let _= print_stack symbol_table linenum in 
+															   let _= end_scope() in  *)
 															   new_stmts
 
 (* 
