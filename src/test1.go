@@ -9,7 +9,7 @@ func plus(a int, b int) int {
     // Go requires explicit returns, i.e. it won't
     // automatically return the value of the last
     // expression.
-    // return a + b
+    return a + b
 }
 
 // When you have multiple consecutive parameters of
@@ -17,15 +17,16 @@ func plus(a int, b int) int {
 // like-typed parameters up to the final parameter that
 // declares the type.
 func plusPlus(a, b, c int) int {
-    // return a + b + c
+    return a + b + c
 }
 
 func sum(a []int, count int) int {
     var total = 0;
+    var nj= true;
     for i := 0; i < count; i++ {
         total++;
     }
-    // return total;
+    return nj;
 }
 
 func main() {
@@ -35,14 +36,9 @@ func main() {
     res := plus(1, 2)
     println("1+2 =", res)
 
-    if res:=1; a<0{
-
-    }
-
     res = plusPlus(1, 2, 3)
     println("1+2+3 =", res)
 
     // Function call
     plusPlus(1,5,6);
-
-}           
+}

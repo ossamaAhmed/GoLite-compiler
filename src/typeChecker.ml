@@ -79,7 +79,8 @@ let print_table tbl= match tbl with
 
 
 
-let print_stack s linenum= scope_counter:= 0 ; 
+let print_stack s linenum= if (!dumpsymtab)=false then ()
+						   else scope_counter:= 0 ; 
 						   let _= write_message ("\n\nsymbol table at line number :"^(Printf.sprintf "%i" linenum)^"\n\n") 
 						   in List.iter print_table !s
 
@@ -416,34 +417,36 @@ let search_current_scope_for_return mytype = match !symbol_table with
 let typecheck_return_stmt rt_stmt = match rt_stmt with
     | ReturnStatement(exp1, _) -> let mytype = pretty_typecheck_expression exp1 in
 									let mytype_name = extract_type_from_expr_tuple mytype in
-										search_current_scope_for_return mytype_name
-    | Empty -> ()
+								    mytype_name
+    | Empty -> Void
 
 (*DONE*)
-let rec typecheck_stmts stmts = match stmts with
+let rec typecheck_stmts stmts ret = match stmts with
 									| [] -> []
-									| head::tail -> let head_result= (typecheck_stmt head) in 
-													head_result::(typecheck_stmts tail)
+									| head::tail -> let head_result= (typecheck_stmt head ret) in 
+													head_result::(typecheck_stmts tail ret)
 
 (*DONE*)
-and typecheck_stmt stmt = match stmt with
+and typecheck_stmt stmt ret = match stmt with
 				    | Declaration(dcl,linenum)-> let _ = typecheck_declaration dcl in stmt
-	(*NOT DONE*)	| Return(rt_stmt,linenum) -> let _ = typecheck_return_stmt rt_stmt in stmt (* typecheck_return_stmt rt_stmt (*DONE*) *)
+	(*NOT DONE*)	| Return(rt_stmt,linenum) -> let mytype = typecheck_return_stmt rt_stmt in 
+												  if mytype!=ret then type_checking_error ("return stmt doesnt have the same type at linenum:="^(Printf.sprintf "%i" linenum))
+												  else stmt (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> stmt(* "break "  *)
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
-				    					 		 let result= typecheck_stmts stmt_list in
+				    					 		 let result= typecheck_stmts stmt_list ret in
 				    					 		 let _= print_stack symbol_table linenum in 
 				    							 let _= end_scope()  in Block(result,linenum)
-				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
+				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional ret in Conditional(result,linenum)
 					| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
 																					   let my_switch_type= typecheck_switch_expression switch_expr in 
 																					   let my_switch_type_name= extract_type_from_expr_tuple my_switch_type in 
 																					   let my_switch_type_node= extract_node_from_expr_tuple my_switch_type in 
-																					   let switch_stmts= typecheck_switch_case_stmt switch_case_stmts my_switch_type_name in
+																					   let switch_stmts= typecheck_switch_case_stmt switch_case_stmts my_switch_type_name ret in
 																					   Switch(my_init_type, my_switch_type_node, switch_stmts,linenum)
 																					   (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
-				    | For(for_stmt,linenum)-> let result= typecheck_for_stmt for_stmt in For(result,linenum) (*DONE*) 
+				    | For(for_stmt,linenum)-> let result= typecheck_for_stmt for_stmt ret in For(result,linenum) (*DONE*) 
 				    | Simple(simple,linenum)-> let result= typecheck_simple_stmt simple in Simple(result,linenum)
 				    | Print(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
 				    				  if (is_exprs_of_base_type expr_list_types) then Print((List.map extract_node_from_expr_tuple expr_list_types),linenum)
@@ -456,21 +459,21 @@ and typecheck_stmt stmt = match stmt with
 (* and typecheck_return_stmt stmt= match stmt with
 							| Empty -> "return "
 							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr) *)
-and typecheck_conditional cond = match cond with 
-							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt in 
+and typecheck_conditional cond ret = match cond with 
+							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt ret in 
 														let _= print_stack symbol_table linenum in 
 														let _= end_scope() in 
 														IfStmt(result,linenum)
-							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt in
+							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt ret in
 															let _= print_stack symbol_table linenum in 
 															let _= end_scope() in 
 															ElseStmt(result,linenum)
-and typecheck_if_stmt if_stmt = match if_stmt with
+and typecheck_if_stmt if_stmt ret = match if_stmt with
 							| IfInit(if_init, condition, stmts,linenum)-> let _= start_scope() in 
 																  let result1= typecheck_if_init if_init in 
 																  let result2= typecheck_condition condition in 
 																  let _ = start_scope() in 
-																  let result3= typecheck_stmts stmts in 
+																  let result3= typecheck_stmts stmts ret in 
 																  let _= print_stack symbol_table linenum in 
 																  let _= end_scope() in 
 																  IfInit(result1, result2, result3,linenum)
@@ -494,37 +497,37 @@ and  typecheck_condition cond = match cond with
 														   if (extract_type_from_expr_tuple cond_type) == SymBool then ConditionExpression ((extract_node_from_expr_tuple cond_type),linenum)
 														   else type_checking_error ("condition has to be bool linenum:="^(Printf.sprintf "%i" linenum))
 							| Empty -> Empty
-and typecheck_else_stmt stmt =  match stmt with 
-							| ElseSingle(if_stmt,stmts,linenum)-> let result1= typecheck_if_stmt if_stmt in 
+and typecheck_else_stmt stmt ret=  match stmt with 
+							| ElseSingle(if_stmt,stmts,linenum)-> let result1= typecheck_if_stmt if_stmt ret in 
 														 		 let _= start_scope() in 
-														  		let result2= typecheck_stmts stmts in
+														  		let result2= typecheck_stmts stmts ret  in
 														  		let _= print_stack symbol_table linenum in  
 														  		let _= end_scope() in 
 														  		ElseSingle(result1,result2,linenum)
-						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let result1= typecheck_if_stmt if_stmt in 
-																  		  let result2 =typecheck_else_stmt else_stmt in 
+						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let result1= typecheck_if_stmt if_stmt ret in 
+																  		  let result2 =typecheck_else_stmt else_stmt ret in 
 																  		  ElseIFMultiple(result1,result2,linenum)
-						    | ElseIFSingle(if_stmt1,if_stmt2,linenum)-> let result1= typecheck_if_stmt if_stmt1 in 
-						    											 let result2=typecheck_if_stmt if_stmt2 in 
+						    | ElseIFSingle(if_stmt1,if_stmt2,linenum)-> let result1= typecheck_if_stmt if_stmt1 ret in 
+						    											 let result2=typecheck_if_stmt if_stmt2 ret in 
 						    											 ElseIFSingle(result1,result2,linenum)
 
 
-and typecheck_for_stmt stmt = match stmt with 
+and typecheck_for_stmt stmt ret = match stmt with 
 				    | Forstmt(stmts,linenum)-> let _= start_scope() in 
-				    				  		 let result= typecheck_stmts stmts in 
+				    				  		 let result= typecheck_stmts stmts ret in 
 				    				  		 let _= print_stack symbol_table linenum in 
 				    						 let _= end_scope() in 
 				    						 Forstmt(result,linenum)(* "for {\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForCondition(condition, stmts,linenum)-> let result1= typecheck_condition condition in 
 				    								   let _= start_scope() in 
-								    				   let result2= typecheck_stmts stmts in
+								    				   let result2= typecheck_stmts stmts ret in
 								    				   let _= print_stack symbol_table linenum in  
 								    					let _= end_scope() in 
 								    					ForCondition(result1, result2,linenum)
 				    							    	(* "for "^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForClause (for_clause, stmts,linenum)-> let result1 = typecheck_clause for_clause in 
 				    										  let _= start_scope() in 
-								    						  let result2= typecheck_stmts stmts in 
+								    						  let result2= typecheck_stmts stmts ret in 
 								    						  let _= print_stack symbol_table linenum in 
 								    				 		 let _= end_scope() in 
 								    				 		 let _= print_stack symbol_table linenum in 
@@ -546,19 +549,19 @@ and typecheck_switch_expression expr = match expr with
 								| Empty -> (Empty,SymBool)
 								| SwitchExpr(expr,linenum)-> let mytype= (pretty_typecheck_expression expr) in 
 													 (SwitchExpr((extract_node_from_expr_tuple mytype),linenum),(extract_type_from_expr_tuple mytype))	
-and typecheck_switch_case_clause typename clause= match clause with 
+and typecheck_switch_case_clause typename ret clause= match clause with 
 								| SwitchCaseClause(exprs, stmts,linenum)-> (match exprs with
-																	| []->	let new_stmts = typecheck_stmts stmts in 
+																	| []->	let new_stmts = typecheck_stmts stmts ret in 
 																			SwitchCaseClause(exprs, new_stmts,linenum)
 																	| head::tail -> let new_exprs= typecheck_exprs_of_type exprs typename linenum in 
-																					let new_stmts = typecheck_stmts stmts in 
+																					let new_stmts = typecheck_stmts stmts ret in 
 																					SwitchCaseClause(new_exprs, new_stmts,linenum)
 																	)
 								| Empty -> Empty	
 
-and typecheck_switch_case_stmt stmts typename= match stmts with
+and typecheck_switch_case_stmt stmts typename ret= match stmts with
 								| SwitchCasestmt([],linenum) -> SwitchCasestmt([],linenum) 
-								| SwitchCasestmt(switch_case_clauses,linenum)->let result= (List.map (typecheck_switch_case_clause typename) switch_case_clauses) in SwitchCasestmt(result,linenum)
+								| SwitchCasestmt(switch_case_clauses,linenum)->let result= (List.map (typecheck_switch_case_clause typename ret) switch_case_clauses) in SwitchCasestmt(result,linenum)
 
 
 
@@ -670,11 +673,13 @@ and typecheck_signature signature func_name= match signature with
 																	let params= typecheck_identifiers_with_type func_params in  
 																	let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
 																	let _= start_scope () in 
-																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
+																	let _= typecheck_identifiers_with_type_new_scope func_params in 
+																	let _= start_scope() in 
+																	mytype
 													 
 
-and typecheck_function_declaration func_name signature stmts linenum= let _= typecheck_signature signature func_name in 
-															   let new_stmts=typecheck_stmts stmts  in 
+and typecheck_function_declaration func_name signature stmts linenum= let ret= typecheck_signature signature func_name in 
+															   let new_stmts=typecheck_stmts stmts  ret in 
 															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
 															   let _= print_stack symbol_table linenum in 
