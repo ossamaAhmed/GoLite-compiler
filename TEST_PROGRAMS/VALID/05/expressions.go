@@ -23,10 +23,10 @@ func h() {
 func main() {
 	a[i] = x
 
-	+x
-	23 + 3 * a[i]
-	x <= f()
-	^b >> c
-	g() || h()
-	x == y+1 && c > 0
+	x= x
+	x =23 + 3 * a[i]
+	x = x <= f()
+	x= ^b >> c
+	x= g() || h()
+	x= x == y+1 && c > 0
 }

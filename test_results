@@ -1,0 +1,2196 @@
+./TEST_PROGRAMS/VALID/12/derivation.go
+./TEST_PROGRAMS/VALID/12/derivation.go:12:10: error: cannot use + operator with int and float64
+
+./TEST_PROGRAMS/VALID/12/catalan.go
+OK
+
+./TEST_PROGRAMS/VALID/04/cmd.go
+./TEST_PROGRAMS/VALID/04/cmd.go:5:0: error: expected instruction, found int
+
+./TEST_PROGRAMS/VALID/04/brainfuck.go
+./TEST_PROGRAMS/VALID/04/brainfuck.go:14:0: error: undeclared identifier: int32
+
+./TEST_PROGRAMS/VALID/04/tricky-identifiers.go
+OK
+
+./TEST_PROGRAMS/VALID/04/helloworld.go
+OK
+
+./TEST_PROGRAMS/VALID/04/fib.go
+./TEST_PROGRAMS/VALID/04/fib.go:9:4: error: no new variables on left side of :=
+
+./TEST_PROGRAMS/VALID/04/tricky-emptiness.go
+OK
+
+./TEST_PROGRAMS/VALID/04/tricky-emptiness2.go
+OK
+
+./TEST_PROGRAMS/VALID/04/lol.go
+./TEST_PROGRAMS/VALID/04/lol.go:3:0: error: undeclared identifier: int32
+
+./TEST_PROGRAMS/VALID/04/tricky-comments.go
+OK
+
+./TEST_PROGRAMS/VALID/04/tricky-comments2.go
+OK
+
+./TEST_PROGRAMS/VALID/04/tricky-chained.go
+OK
+
+./TEST_PROGRAMS/VALID/04/conditions.go
+OK
+
+./TEST_PROGRAMS/VALID/04/fact.go
+OK
+
+./TEST_PROGRAMS/VALID/01/#27.1.go
+./TEST_PROGRAMS/VALID/01/#27.1.go:16:9: error: expected bool, found int
+
+./TEST_PROGRAMS/VALID/01/#16.1.go
+OK
+
+./TEST_PROGRAMS/VALID/01/#26.2.go
+OK
+
+./TEST_PROGRAMS/VALID/01/#26.1.go
+OK
+
+./TEST_PROGRAMS/VALID/13/test3.go
+OK
+
+./TEST_PROGRAMS/VALID/15/over.go
+./TEST_PROGRAMS/VALID/15/over.go:8:13: error: undeclared identifier: k
+
+./TEST_PROGRAMS/VALID/15/full2.go
+OK
+
+./TEST_PROGRAMS/VALID/15/roots.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_else_rob_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/prime_count.go
+./TEST_PROGRAMS/VALID/05/prime_count.go:7:0: error: expected float64, found int
+
+./TEST_PROGRAMS/VALID/05/structs.go
+OK
+
+./TEST_PROGRAMS/VALID/05/arithmetic_add_unary_plus.go
+OK
+
+./TEST_PROGRAMS/VALID/05/binary_shift_left.go
+OK
+
+./TEST_PROGRAMS/VALID/05/in-line_comments.go
+OK
+
+./TEST_PROGRAMS/VALID/05/multi-multi-line_comments.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_elifstar_else_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/2d_array_type_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/arithmetic_add_unary_minus.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_struct.go
+OK
+
+./TEST_PROGRAMS/VALID/05/switchs.go
+OK
+
+./TEST_PROGRAMS/VALID/05/func_decs_long.go
+OK
+
+./TEST_PROGRAMS/VALID/05/loop_miss_2nd_part.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_elif_else_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/distributive_var.go
+./TEST_PROGRAMS/VALID/05/distributive_var.go:11:0: error: expected float64, found int
+
+./TEST_PROGRAMS/VALID/05/anon_struct_array_type_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/top_var_int_single_no_init_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/underscore_id.go
+./TEST_PROGRAMS/VALID/05/underscore_id.go:11:1: error: not a lvalue
+
+./TEST_PROGRAMS/VALID/05/anon_struct_array_var_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/2d_slice_type_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/semi_terminators.go
+./TEST_PROGRAMS/VALID/05/semi_terminators.go:5:22: error: undeclared identifier: fibonacci
+
+./TEST_PROGRAMS/VALID/05/append.go
+./TEST_PROGRAMS/VALID/05/append.go:6:1: error: invalid type: []int
+
+./TEST_PROGRAMS/VALID/05/square_root.go
+./TEST_PROGRAMS/VALID/05/square_root.go:6:2: error: expected float64, found int
+
+./TEST_PROGRAMS/VALID/05/if_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/anonymous_struct.go
+OK
+
+./TEST_PROGRAMS/VALID/05/arithmetic_sub_unary_minus.go
+OK
+
+./TEST_PROGRAMS/VALID/05/bitwise_clear.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_interpreted_string.go
+OK
+
+./TEST_PROGRAMS/VALID/05/anon_struct_within_struct.go
+OK
+
+./TEST_PROGRAMS/VALID/05/slice_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_stmt_else_rob_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/top_var_bool_single_no_init_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_func.go
+OK
+
+./TEST_PROGRAMS/VALID/05/type_decs.go
+OK
+
+./TEST_PROGRAMS/VALID/05/fibonacci.go
+./TEST_PROGRAMS/VALID/05/fibonacci.go:9:10: error: undeclared identifier: fibonacci
+
+./TEST_PROGRAMS/VALID/05/array.go
+OK
+
+./TEST_PROGRAMS/VALID/05/array_access_on_func_call.go
+./TEST_PROGRAMS/VALID/05/array_access_on_func_call.go:20:3: error: expected , found []int
+
+./TEST_PROGRAMS/VALID/05/if_stmt_else_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/multiple_unary_minus_with_paren.go
+OK
+
+./TEST_PROGRAMS/VALID/05/odd_even.go
+OK
+
+./TEST_PROGRAMS/VALID/05/loop_miss_3rd_part.go
+OK
+
+./TEST_PROGRAMS/VALID/05/func_call_no_trailing_comma.go
+OK
+
+./TEST_PROGRAMS/VALID/05/capital_x_in_hex.go
+OK
+
+./TEST_PROGRAMS/VALID/05/top_var_string_single_no_init_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/single_line_prog.go
+./TEST_PROGRAMS/VALID/05/single_line_prog.go:1:100: error: undeclared identifier: fibonacci
+
+./TEST_PROGRAMS/VALID/05/extra_terminating_whitespace.go
+./TEST_PROGRAMS/VALID/05/extra_terminating_whitespace.go:17:1: error: expected x, found int
+
+./TEST_PROGRAMS/VALID/05/array_of_slices_of_arrays.go
+OK
+
+./TEST_PROGRAMS/VALID/05/loop_miss_1st_part.go
+OK
+
+./TEST_PROGRAMS/VALID/05/ops.go
+OK
+
+./TEST_PROGRAMS/VALID/05/bitwise_and.go
+OK
+
+./TEST_PROGRAMS/VALID/05/op_precedence.go
+./TEST_PROGRAMS/VALID/05/op_precedence.go:5:1: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/05/leading_zeroes_in_octal.go
+OK
+
+./TEST_PROGRAMS/VALID/05/acessing_field_of_field.go
+OK
+
+./TEST_PROGRAMS/VALID/05/top_var_rune_single_no_init_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_elif_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/hello_world.go
+OK
+
+./TEST_PROGRAMS/VALID/05/top_var_float_single_no_init_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/multiple_unary_plus_with_paren.go
+OK
+
+./TEST_PROGRAMS/VALID/05/array_of_slices_of_arrays_of_slices.go
+OK
+
+./TEST_PROGRAMS/VALID/05/crazy_multi-line_comment.go
+OK
+
+./TEST_PROGRAMS/VALID/05/for_loop.go
+OK
+
+./TEST_PROGRAMS/VALID/05/2d_array_var_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/braceless_case_block.go
+OK
+
+./TEST_PROGRAMS/VALID/05/unary_minus.go
+OK
+
+./TEST_PROGRAMS/VALID/05/func_decs_short.go
+OK
+
+./TEST_PROGRAMS/VALID/05/arithmetic_sub_unary_plus.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_elif_else_rob_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_stmt_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/for_inf_loop.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_three_part_loop.go
+OK
+
+./TEST_PROGRAMS/VALID/05/expressions.go
+./TEST_PROGRAMS/VALID/05/expressions.go:10:1: error: expected , found int
+
+./TEST_PROGRAMS/VALID/05/inline_multiple_array_dec.go
+OK
+
+./TEST_PROGRAMS/VALID/05/var_decs.go
+OK
+
+./TEST_PROGRAMS/VALID/05/sort_search.go
+./TEST_PROGRAMS/VALID/05/sort_search.go:22:2: error: undeclared identifier: selectionSort
+
+./TEST_PROGRAMS/VALID/05/distributive_type.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_raw_string.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_else_reg_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/05/time_struct.go
+./TEST_PROGRAMS/VALID/05/time_struct.go:11:18: error: invalid number of arguments to cast expression
+
+./TEST_PROGRAMS/VALID/05/project_euler_1.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_reg_brace.go
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_reg_brace.go:7:14: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/05/field_access_on_func_call.go
+./TEST_PROGRAMS/VALID/05/field_access_on_func_call.go:20:1: error: expected , found PolarPoint3D
+
+./TEST_PROGRAMS/VALID/05/leading_zeroes_in_hex.go
+OK
+
+./TEST_PROGRAMS/VALID/05/type_casts.go
+OK
+
+./TEST_PROGRAMS/VALID/05/infinite_loop.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_elifstar_reg_brace.go
+./TEST_PROGRAMS/VALID/05/if_elifstar_reg_brace.go:8:4: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/05/binary_shift_right.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_else_reg_brace.go
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_else_reg_brace.go:7:14: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/05/3d_array_access.go
+OK
+
+./TEST_PROGRAMS/VALID/05/empty_multi-line_comment.go
+OK
+
+./TEST_PROGRAMS/VALID/05/for_while_loop.go
+OK
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_else_rob_brace.go
+OK
+
+./TEST_PROGRAMS/VALID/03/arrayheap.go
+./TEST_PROGRAMS/VALID/03/arrayheap.go:5:6: error: undeclared identifier: len
+
+./TEST_PROGRAMS/VALID/03/varDeclAndAssign.go
+./TEST_PROGRAMS/VALID/03/varDeclAndAssign.go:12:1: error: x1 redeclared in this block
+
+./TEST_PROGRAMS/VALID/03/squareroot.go
+./TEST_PROGRAMS/VALID/03/squareroot.go:5:0: error: undeclared identifier: float
+
+./TEST_PROGRAMS/VALID/03/bubblesort.go
+./TEST_PROGRAMS/VALID/03/bubblesort.go:5:6: error: undeclared identifier: len
+
+./TEST_PROGRAMS/VALID/03/factors.go
+OK
+
+./TEST_PROGRAMS/VALID/03/power.go
+OK
+
+./TEST_PROGRAMS/VALID/03/sum.go
+./TEST_PROGRAMS/VALID/03/sum.go:6:6: error: undeclared identifier: len
+
+./TEST_PROGRAMS/VALID/03/expressions.go
+./TEST_PROGRAMS/VALID/03/expressions.go:15:1: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/03/func.go
+./TEST_PROGRAMS/VALID/03/func.go:10:0: error: f redeclared in this block
+
+./TEST_PROGRAMS/VALID/03/typeDeclAndStruct.go
+./TEST_PROGRAMS/VALID/03/typeDeclAndStruct.go:10:0: error: point redeclared in this block
+
+./TEST_PROGRAMS/VALID/06/values.go
+OK
+
+./TEST_PROGRAMS/VALID/06/var_decl.go
+OK
+
+./TEST_PROGRAMS/VALID/06/only_package.go
+OK
+
+./TEST_PROGRAMS/VALID/06/valid2.go
+./TEST_PROGRAMS/VALID/06/valid2.go:6:7: error: undeclared identifier: gcd
+
+./TEST_PROGRAMS/VALID/06/type_decl.go
+OK
+
+./TEST_PROGRAMS/VALID/06/valid1.go
+./TEST_PROGRAMS/VALID/06/valid1.go:7:7: error: undeclared identifier: fac
+
+./TEST_PROGRAMS/VALID/06/valid3.go
+./TEST_PROGRAMS/VALID/06/valid3.go:10:1: error: undeclared identifier: fibo
+
+./TEST_PROGRAMS/VALID/02/structs.go
+OK
+
+./TEST_PROGRAMS/VALID/02/values.go
+./TEST_PROGRAMS/VALID/02/values.go:17:31: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/02/vardecls.go
+OK
+
+./TEST_PROGRAMS/VALID/02/typedeclsimple.go
+OK
+
+./TEST_PROGRAMS/VALID/02/vardeclmul.go
+OK
+
+./TEST_PROGRAMS/VALID/02/runes.go
+OK
+
+./TEST_PROGRAMS/VALID/02/for.go
+OK
+
+./TEST_PROGRAMS/VALID/02/switch.go
+OK
+
+./TEST_PROGRAMS/VALID/02/arrays.go
+./TEST_PROGRAMS/VALID/02/arrays.go:10:4: error: invalid type: [5]int
+
+./TEST_PROGRAMS/VALID/02/variables.go
+OK
+
+./TEST_PROGRAMS/VALID/02/shortvarDecl.go
+OK
+
+./TEST_PROGRAMS/VALID/02/comments2.go
+OK
+
+./TEST_PROGRAMS/VALID/02/slices.go
+./TEST_PROGRAMS/VALID/02/slices.go:5:4: error: undeclared identifier: s
+
+./TEST_PROGRAMS/VALID/02/helloworld.go
+./TEST_PROGRAMS/VALID/02/helloworld.go:19:0: error: main must not take parameters nor have a return type
+
+./TEST_PROGRAMS/VALID/02/print.go
+OK
+
+./TEST_PROGRAMS/VALID/02/rawstringlit.go
+OK
+
+./TEST_PROGRAMS/VALID/02/comments1.go
+OK
+
+./TEST_PROGRAMS/VALID/02/stupid.go
+OK
+
+./TEST_PROGRAMS/VALID/02/conditionals.go
+OK
+
+./TEST_PROGRAMS/VALID/02/typedeclcomp.go
+OK
+
+./TEST_PROGRAMS/VALID/02/shortformfunction.go
+OK
+
+./TEST_PROGRAMS/VALID/02/longformfunction.go
+OK
+
+./TEST_PROGRAMS/VALID/02/validExpressions.go
+OK
+
+./TEST_PROGRAMS/VALID/02/functions.go
+./TEST_PROGRAMS/VALID/02/functions.go:42:4: error: number of actual parameters (2) different from number of formal parameters (3)
+
+./TEST_PROGRAMS/VALID/09/switch_stmt.go
+./TEST_PROGRAMS/VALID/09/switch_stmt.go:5:8: error: undeclared identifier: i
+
+./TEST_PROGRAMS/VALID/09/return_in_ifelse.go
+./TEST_PROGRAMS/VALID/09/return_in_ifelse.go:4:4: error: undeclared identifier: plus
+
+./TEST_PROGRAMS/VALID/09/runes.go
+OK
+
+./TEST_PROGRAMS/VALID/09/return_in_switch.go
+./TEST_PROGRAMS/VALID/09/return_in_switch.go:4:4: error: undeclared identifier: plus
+
+./TEST_PROGRAMS/VALID/09/append.go
+./TEST_PROGRAMS/VALID/09/append.go:4:4: error: no new variables on left side of :=
+
+./TEST_PROGRAMS/VALID/09/funccall.go
+./TEST_PROGRAMS/VALID/09/funccall.go:4:4: error: undeclared identifier: a
+
+./TEST_PROGRAMS/VALID/09/v1.go
+./TEST_PROGRAMS/VALID/09/v1.go:4:7: error: undeclared identifier: a
+
+./TEST_PROGRAMS/VALID/09/var_decl.go
+./TEST_PROGRAMS/VALID/09/var_decl.go:10:0: error: undeclared identifier: float
+
+./TEST_PROGRAMS/VALID/09/set2square.go
+./TEST_PROGRAMS/VALID/09/set2square.go:50:18: error: syntax error
+
+./TEST_PROGRAMS/VALID/09/blank_ids.go
+./TEST_PROGRAMS/VALID/09/blank_ids.go:4:4: error: undeclared identifier: a
+
+./TEST_PROGRAMS/VALID/09/exp_statements.go
+./TEST_PROGRAMS/VALID/09/exp_statements.go:4:4: error: undeclared identifier: f
+
+./TEST_PROGRAMS/VALID/09/type_decl.go
+./TEST_PROGRAMS/VALID/09/type_decl.go:11:6: error: syntax error
+
+./TEST_PROGRAMS/VALID/09/index_exp.go
+./TEST_PROGRAMS/VALID/09/index_exp.go:4:9: error: undeclared identifier: b
+
+./TEST_PROGRAMS/VALID/09/for_loops.go
+./TEST_PROGRAMS/VALID/09/for_loops.go:5:12: error: undeclared identifier: i
+
+./TEST_PROGRAMS/VALID/09/inner_scope.go
+./TEST_PROGRAMS/VALID/09/inner_scope.go:9:14: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/09/if_statements.go
+OK
+
+./TEST_PROGRAMS/VALID/09/return_in_while.go
+./TEST_PROGRAMS/VALID/09/return_in_while.go:4:4: error: undeclared identifier: plus
+
+./TEST_PROGRAMS/VALID/09/strings.go
+OK
+
+./TEST_PROGRAMS/VALID/09/calc.go
+./TEST_PROGRAMS/VALID/09/calc.go:15:8: error: undeclared identifier: compute
+
+./TEST_PROGRAMS/VALID/09/expressions.go
+./TEST_PROGRAMS/VALID/09/expressions.go:6:4: error: undeclared identifier: _
+
+./TEST_PROGRAMS/VALID/09/func_decl.go
+./TEST_PROGRAMS/VALID/09/func_decl.go:8:0: error: undeclared identifier: float
+
+./TEST_PROGRAMS/VALID/09/assignments.go
+./TEST_PROGRAMS/VALID/09/assignments.go:5:4: error: undeclared identifier: a
+
+./TEST_PROGRAMS/VALID/09/sorting.go
+./TEST_PROGRAMS/VALID/09/sorting.go:23:2: error: undeclared identifier: heapSort
+
+./TEST_PROGRAMS/VALID/09/return_in_block.go
+./TEST_PROGRAMS/VALID/09/return_in_block.go:4:4: error: undeclared identifier: plus
+
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets.go
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets.go:5:0: error: y redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/nested_ifelse.go
+./TEST_PROGRAMS/VALID/07/nested_ifelse.go:4:4: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/07/inderjot.go
+./TEST_PROGRAMS/VALID/07/inderjot.go:27:7: error: undeclared identifier: maxValue
+
+./TEST_PROGRAMS/VALID/07/if_valid.go
+./TEST_PROGRAMS/VALID/07/if_valid.go:4:4: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/07/array_spec.go
+./TEST_PROGRAMS/VALID/07/array_spec.go:7:1: error: x redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/struct.go
+./TEST_PROGRAMS/VALID/07/struct.go:5:0: error: undeclared identifier: point
+
+./TEST_PROGRAMS/VALID/07/runes.go
+./TEST_PROGRAMS/VALID/07/runes.go:3:0: error: p redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/floating_point.go
+./TEST_PROGRAMS/VALID/07/floating_point.go:4:0: error: expected int, found float64
+
+./TEST_PROGRAMS/VALID/07/struct_spec.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_both.go
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_both.go:5:0: error: expected float64, found int
+
+./TEST_PROGRAMS/VALID/07/var_decl_exp.go
+OK
+
+./TEST_PROGRAMS/VALID/07/switch.go
+./TEST_PROGRAMS/VALID/07/switch.go:7:7: error: undeclared identifier: tag
+
+./TEST_PROGRAMS/VALID/07/valid_inc.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_function.go
+./TEST_PROGRAMS/VALID/07/var_decl_function.go:2:8: error: undeclared identifier: math
+
+./TEST_PROGRAMS/VALID/07/valid_goLiteArrayIndexing.go
+./TEST_PROGRAMS/VALID/07/valid_goLiteArrayIndexing.go:4:1: error: undeclared identifier: y
+
+./TEST_PROGRAMS/VALID/07/type_intarray.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_type_just_vars.go
+OK
+
+./TEST_PROGRAMS/VALID/07/decl_decassign.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var.go
+./TEST_PROGRAMS/VALID/07/var.go:12:1: error: x1 redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/type_treenode.go
+./TEST_PROGRAMS/VALID/07/type_treenode.go:3:0: error: undeclared identifier: TreeNode
+
+./TEST_PROGRAMS/VALID/07/array.go
+./TEST_PROGRAMS/VALID/07/array.go:8:1: error: x redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/type.go
+./TEST_PROGRAMS/VALID/07/type.go:10:1: error: num redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/func_just_signature.go
+OK
+
+./TEST_PROGRAMS/VALID/07/bool.go
+OK
+
+./TEST_PROGRAMS/VALID/07/if_else.go
+./TEST_PROGRAMS/VALID/07/if_else.go:4:4: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/07/casper.go
+./TEST_PROGRAMS/VALID/07/casper.go:22:8: error: undeclared identifier: callSwitch
+
+./TEST_PROGRAMS/VALID/07/func_decl_spec.go
+OK
+
+./TEST_PROGRAMS/VALID/07/type_decl.go
+./TEST_PROGRAMS/VALID/07/type_decl.go:10:0: error: undeclared identifier: TreeNode
+
+./TEST_PROGRAMS/VALID/07/typecast.go
+./TEST_PROGRAMS/VALID/07/typecast.go:4:1: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/07/decl_valid_2.go
+OK
+
+./TEST_PROGRAMS/VALID/07/valid1.go
+OK
+
+./TEST_PROGRAMS/VALID/07/decl.go
+OK
+
+./TEST_PROGRAMS/VALID/07/generalComments.go
+OK
+
+./TEST_PROGRAMS/VALID/07/type_distribute.go
+OK
+
+./TEST_PROGRAMS/VALID/07/just_var_declaration.go
+OK
+
+./TEST_PROGRAMS/VALID/07/slice_append.go
+OK
+
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets2.go
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets2.go:5:0: error: y redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/var_decl_exp_just_vars.go
+OK
+
+./TEST_PROGRAMS/VALID/07/comments_and_semicolons_tricky_bug.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_nil_illegal.go
+./TEST_PROGRAMS/VALID/07/var_decl_nil_illegal.go:2:8: error: undeclared identifier: nil
+
+./TEST_PROGRAMS/VALID/07/valid_decassing.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_both.go
+OK
+
+./TEST_PROGRAMS/VALID/07/slice.go
+./TEST_PROGRAMS/VALID/07/slice.go:11:1: error: expected string, found int
+
+./TEST_PROGRAMS/VALID/07/anderson.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_exp.go
+OK
+
+./TEST_PROGRAMS/VALID/07/lvalue.go
+./TEST_PROGRAMS/VALID/07/lvalue.go:10:1: error: expected string, found int
+
+./TEST_PROGRAMS/VALID/07/func_decl.go
+./TEST_PROGRAMS/VALID/07/func_decl.go:7:0: error: f redeclared in this block
+
+./TEST_PROGRAMS/VALID/07/comments.go
+OK
+
+./TEST_PROGRAMS/VALID/07/valid_just_package.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_type.go
+OK
+
+./TEST_PROGRAMS/VALID/07/var_decl_type.go
+OK
+
+./TEST_PROGRAMS/VALID/07/func_decl_spec_acc.go
+./TEST_PROGRAMS/VALID/07/func_decl_spec_acc.go:3:0: error: missing return at end of function: x
+
+./TEST_PROGRAMS/VALID/07/forloop.go
+./TEST_PROGRAMS/VALID/07/forloop.go:6:14: error: undeclared identifier: n
+
+./TEST_PROGRAMS/VALID/07/array_valid_2.go
+./TEST_PROGRAMS/VALID/07/array_valid_2.go:7:1: error: expected [5]int, found int
+
+./TEST_PROGRAMS/VALID/07/var_decl_gospec.go
+./TEST_PROGRAMS/VALID/07/var_decl_gospec.go:5:0: error: expected float64, found int
+
+./TEST_PROGRAMS/VALID/07/functions.go
+./TEST_PROGRAMS/VALID/07/functions.go:8:0: error: f redeclared in this block
+
+./TEST_PROGRAMS/VALID/11/prime.go
+./TEST_PROGRAMS/VALID/11/prime.go:18:0: error: missing return at end of function: nextPrime
+
+./TEST_PROGRAMS/VALID/11/atoi.go
+./TEST_PROGRAMS/VALID/11/atoi.go:6:8: error: undeclared identifier: atoi_implementation
+
+./TEST_PROGRAMS/VALID/08/structs.go
+OK
+
+./TEST_PROGRAMS/VALID/08/blankType.go
+./TEST_PROGRAMS/VALID/08/blankType.go:4:8: error: syntax error
+
+./TEST_PROGRAMS/VALID/08/forLoops.go
+OK
+
+./TEST_PROGRAMS/VALID/08/emptyStatement.go
+OK
+
+./TEST_PROGRAMS/VALID/08/ifStatements.go
+./TEST_PROGRAMS/VALID/08/ifStatements.go:7:8: error: undeclared identifier: x
+
+./TEST_PROGRAMS/VALID/08/switch.go
+OK
+
+./TEST_PROGRAMS/VALID/08/complexExpression.go
+OK
+
+./TEST_PROGRAMS/VALID/08/validProgram2.go
+OK
+
+./TEST_PROGRAMS/VALID/08/shortDec.go
+OK
+
+./TEST_PROGRAMS/VALID/08/incDecStatemnet.go
+OK
+
+./TEST_PROGRAMS/VALID/08/testLessThan.go
+OK
+
+./TEST_PROGRAMS/VALID/08/arrays.go
+OK
+
+./TEST_PROGRAMS/VALID/08/validProgram3.go
+OK
+
+./TEST_PROGRAMS/VALID/08/breakContinue.go
+OK
+
+./TEST_PROGRAMS/VALID/08/nestedStruct.go
+OK
+
+./TEST_PROGRAMS/VALID/08/slices.go
+OK
+
+./TEST_PROGRAMS/VALID/08/semicolon.go
+OK
+
+./TEST_PROGRAMS/VALID/08/literals.go
+OK
+
+./TEST_PROGRAMS/VALID/08/skeleton.go
+OK
+
+./TEST_PROGRAMS/VALID/08/blankidentifier.go
+OK
+
+./TEST_PROGRAMS/VALID/08/noNewlineAtEOF.go
+OK
+
+./TEST_PROGRAMS/VALID/08/semicolons.go
+./TEST_PROGRAMS/VALID/08/semicolons.go:10:4: error: undeclared identifier: nosemis
+
+./TEST_PROGRAMS/VALID/08/plusEquals.go
+OK
+
+./TEST_PROGRAMS/VALID/08/prints.go
+OK
+
+./TEST_PROGRAMS/VALID/08/typeDecls.go
+OK
+
+./TEST_PROGRAMS/VALID/08/topLevelDecs.go
+OK
+
+./TEST_PROGRAMS/VALID/08/comments.go
+OK
+
+./TEST_PROGRAMS/VALID/08/validProgram1.go
+OK
+
+./TEST_PROGRAMS/VALID/08/blankFieldsStruct.go
+./TEST_PROGRAMS/VALID/08/blankFieldsStruct.go:6:4: error: syntax error
+
+./TEST_PROGRAMS/VALID_TYPECHECK/var_redecl2.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2bool.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_booland.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_strings.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/mult_int.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/or_ints.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/append.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/function_variable_redef.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_eq.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lt.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/mod_ints.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_ints.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/func_func_redef.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2float.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gt.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lteq.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/trivial_typechek.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/sub_ints.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_neq.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/div_ints.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/variable_redeclaration.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2rune.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/funcdeclbelow.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_floats.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/func_formalwithfuncname.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_boolor.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing2.go
+OK
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gteq.go
+OK
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_runes.go
+OK
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type.go:7:4: error: expected float64, found int
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_notenoughargs.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_notenoughargs.go:9:10: error: number of actual parameters (1) different from number of formal parameters (2)
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_runes.go
+OK
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_strings.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_strings.go:7:19: error: cannot use - operator with string and string
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_variable_redef.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_variable_redef.go:5:4: error: a redeclared in this block
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_redefinition.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_redefinition.go:7:0: error: foo redeclared in this block
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_undefined.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_undefined.go:5:10: error: undeclared identifier: x
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_undefined.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_undefined.go:6:10: error: undeclared identifier: foo
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/nested_function_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/nested_function_decl.go:5:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/or_floats.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/or_floats.go:6:4: error: expected float64, found int
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringrune.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringrune.go:7:18: error: cannot use + operator with string and rune
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl2.go:6:6: error: undeclared identifier: y
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_runes.go
+OK
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl.go:7:4: error: no new variables on left side of :=
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/typecast_inttostring.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/typecast_inttostring.go:7:19: error: invalid type: string
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bar_assign_type.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bar_assign_type.go:7:4: error: expected float64, found int
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/mod_floats.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/mod_floats.go:7:13: error: cannot use % operator with float64 and float64
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type2.go:4:4: error: expected float64, found int
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_strings.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_strings.go:7:19: error: cannot use * operator with string and string
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_recursion_withformal.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_recursion_withformal.go:4:11: error: expression is not a function
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_runeint.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_runeint.go:7:12: error: cannot use + operator with int and rune
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_varredef.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_varredef.go:5:4: error: foo redeclared in this block
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringsandints.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringsandints.go:7:16: error: cannot use + operator with int and string
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_redeclaration.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_redeclaration.go:6:4: error: x redeclared in this block
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl.go:7:4: error: expected string, found int
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/div_runes.go
+OK
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_params_same_name.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_params_same_name.go:4:0: error: a redeclared in this block
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl2.go:6:4: error: expected int, found string
+
+./TEST_PROGRAMS/valid/01/#13.1.go
+OK
+
+./TEST_PROGRAMS/INVALID/14/0053rune_package.go
+./TEST_PROGRAMS/INVALID/14/0053rune_package.go:1:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/4051_if_double_empty.go
+./TEST_PROGRAMS/INVALID/14/4051_if_double_empty.go:4:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0632_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0632_unsupported_kw.go:1:3: error: map is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0303_string_escape_octal.go
+./TEST_PROGRAMS/INVALID/14/0303_string_escape_octal.go:1:3: error: invalid escape sequence \\0
+
+./TEST_PROGRAMS/INVALID/14/0402_rawstring_escaped_bquote.go
+./TEST_PROGRAMS/INVALID/14/0402_rawstring_escaped_bquote.go:1:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0401_rawstring_backquote.go
+./TEST_PROGRAMS/INVALID/14/0401_rawstring_backquote.go:1:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0350_array_type_parens.go
+OK
+
+./TEST_PROGRAMS/INVALID/14/5151_funcion_call_array.go
+./TEST_PROGRAMS/INVALID/14/5151_funcion_call_array.go:3:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0630_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0630_unsupported_kw.go:1:6: error: select is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0204_rune_many_char.go
+./TEST_PROGRAMS/INVALID/14/0204_rune_many_char.go:1:1: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/14/0202_rune_few_octal.go
+./TEST_PROGRAMS/INVALID/14/0202_rune_few_octal.go:1:3: error: invalid rune escape sequence '\\0
+
+./TEST_PROGRAMS/INVALID/14/0638_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0638_unsupported_kw.go:1:5: error: defer is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0251_runes_backslash.go
+./TEST_PROGRAMS/INVALID/14/0251_runes_backslash.go:1:3: error: invalid rune escape sequence '\\'
+
+./TEST_PROGRAMS/INVALID/14/0150_one_line_multiple_decl.go
+./TEST_PROGRAMS/INVALID/14/0150_one_line_multiple_decl.go:3:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0635_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0635_unsupported_kw.go:1:4: error: goto is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/2051_expression_stmt_parens.go
+./TEST_PROGRAMS/INVALID/14/2051_expression_stmt_parens.go:4:6: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0636_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0636_unsupported_kw.go:1:2: error: go is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0701_nested_block_comment.go
+./TEST_PROGRAMS/INVALID/14/0701_nested_block_comment.go:1:40: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/4050_if_triple_empty.go
+./TEST_PROGRAMS/INVALID/14/4050_if_triple_empty.go:4:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0050_int_package.go
+./TEST_PROGRAMS/INVALID/14/0050_int_package.go:1:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0631_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0631_unsupported_kw.go:1:5: error: range is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0250_runes_single_quote.go
+./TEST_PROGRAMS/INVALID/14/0250_runes_single_quote.go:1:3: error: single quote cannot appear in a rune literal
+
+./TEST_PROGRAMS/INVALID/14/0639_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0639_unsupported_kw.go:1:5: error: const is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0303_expr_array_decl.go
+./TEST_PROGRAMS/INVALID/14/0303_expr_array_decl.go:4:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0634_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0634_unsupported_kw.go:1:6: error: import is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0302_string_escape.go
+./TEST_PROGRAMS/INVALID/14/0302_string_escape.go:1:3: error: invalid escape sequence \\p
+
+./TEST_PROGRAMS/INVALID/14/0640_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0640_unsupported_kw.go:1:4: error: chan is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0637_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0637_unsupported_kw.go:1:11: error: fallthrough is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/0002_semicolons.go
+./TEST_PROGRAMS/INVALID/14/0002_semicolons.go:1:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0054_float64_package.go
+./TEST_PROGRAMS/INVALID/14/0054_float64_package.go:1:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0051_bool_package.go
+./TEST_PROGRAMS/INVALID/14/0051_bool_package.go:1:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0052_string_package.go
+./TEST_PROGRAMS/INVALID/14/0052_string_package.go:1:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/14/0203_rune_few_hexadecimal.go
+./TEST_PROGRAMS/INVALID/14/0203_rune_few_hexadecimal.go:1:3: error: invalid rune escape sequence '\\x
+
+./TEST_PROGRAMS/INVALID/14/0633_unsupported_kw.go
+./TEST_PROGRAMS/INVALID/14/0633_unsupported_kw.go:1:9: error: interface is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/14/2050_expression_stmt_id.go
+./TEST_PROGRAMS/INVALID/14/2050_expression_stmt_id.go:4:0: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid2.go
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid2.go:6:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid1.go
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid1.go:5:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/0.go
+./TEST_PROGRAMS/INVALID/04/0.go:5:14: error: malformed octal literal: 08
+
+./TEST_PROGRAMS/INVALID/04/79.go
+./TEST_PROGRAMS/INVALID/04/79.go:4:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/7.go
+./TEST_PROGRAMS/INVALID/04/7.go:5:15: error: invalid rune escape sequence '\\x
+
+./TEST_PROGRAMS/INVALID/04/27.go
+./TEST_PROGRAMS/INVALID/04/27.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/37.go
+./TEST_PROGRAMS/INVALID/04/37.go:5:22: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/68.go
+./TEST_PROGRAMS/INVALID/04/68.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/51.go
+./TEST_PROGRAMS/INVALID/04/51.go:7:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/53.go
+./TEST_PROGRAMS/INVALID/04/53.go:7:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/48.go
+./TEST_PROGRAMS/INVALID/04/48.go:5:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/65.go
+./TEST_PROGRAMS/INVALID/04/65.go:8:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/82.go
+./TEST_PROGRAMS/INVALID/04/82.go:5:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/17.go
+./TEST_PROGRAMS/INVALID/04/17.go:5:15: error: invalid escape sequence \\'
+
+./TEST_PROGRAMS/INVALID/04/34.go
+./TEST_PROGRAMS/INVALID/04/34.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/102.go
+./TEST_PROGRAMS/INVALID/04/102.go:7:11: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/22.go
+./TEST_PROGRAMS/INVALID/04/22.go:5:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/75.go
+./TEST_PROGRAMS/INVALID/04/75.go:5:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/85.go
+./TEST_PROGRAMS/INVALID/04/85.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/40.go
+./TEST_PROGRAMS/INVALID/04/40.go:5:22: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/100.go
+./TEST_PROGRAMS/INVALID/04/100.go:7:19: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/93.go
+./TEST_PROGRAMS/INVALID/04/93.go:4:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/83.go
+./TEST_PROGRAMS/INVALID/04/83.go:6:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/54.go
+./TEST_PROGRAMS/INVALID/04/54.go:7:29: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/92.go
+./TEST_PROGRAMS/INVALID/04/92.go:4:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/39.go
+./TEST_PROGRAMS/INVALID/04/39.go:5:24: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/1.go
+./TEST_PROGRAMS/INVALID/04/1.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/49.go
+./TEST_PROGRAMS/INVALID/04/49.go:5:30: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/77.go
+./TEST_PROGRAMS/INVALID/04/77.go:4:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/57.go
+./TEST_PROGRAMS/INVALID/04/57.go:7:8: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/50.go
+./TEST_PROGRAMS/INVALID/04/50.go:7:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/73.go
+./TEST_PROGRAMS/INVALID/04/73.go:9:4: error: not a lvalue
+
+./TEST_PROGRAMS/INVALID/04/8.go
+./TEST_PROGRAMS/INVALID/04/8.go:5:13: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/04/52.go
+./TEST_PROGRAMS/INVALID/04/52.go:7:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/15.go
+./TEST_PROGRAMS/INVALID/04/15.go:5:15: error: invalid rune escape sequence '\\\"
+
+./TEST_PROGRAMS/INVALID/04/12.go
+./TEST_PROGRAMS/INVALID/04/12.go:5:13: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/04/60.go
+./TEST_PROGRAMS/INVALID/04/60.go:7:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/87.go
+./TEST_PROGRAMS/INVALID/04/87.go:4:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/10.go
+./TEST_PROGRAMS/INVALID/04/10.go:5:15: error: newline cannot appear in a rune literal
+
+./TEST_PROGRAMS/INVALID/04/13.go
+./TEST_PROGRAMS/INVALID/04/13.go:5:13: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/04/35.go
+./TEST_PROGRAMS/INVALID/04/35.go:7:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/29.go
+./TEST_PROGRAMS/INVALID/04/29.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/61.go
+./TEST_PROGRAMS/INVALID/04/61.go:7:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/104.go
+./TEST_PROGRAMS/INVALID/04/104.go:5:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/38.go
+./TEST_PROGRAMS/INVALID/04/38.go:5:27: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/59.go
+./TEST_PROGRAMS/INVALID/04/59.go:7:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/24.go
+./TEST_PROGRAMS/INVALID/04/24.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/74.go
+./TEST_PROGRAMS/INVALID/04/74.go:9:14: error: not a lvalue
+
+./TEST_PROGRAMS/INVALID/04/25.go
+./TEST_PROGRAMS/INVALID/04/25.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/46.go
+./TEST_PROGRAMS/INVALID/04/46.go:7:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/99.go
+./TEST_PROGRAMS/INVALID/04/99.go:7:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/4.go
+./TEST_PROGRAMS/INVALID/04/4.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/47.go
+./TEST_PROGRAMS/INVALID/04/47.go:5:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/45.go
+./TEST_PROGRAMS/INVALID/04/45.go:5:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/78.go
+./TEST_PROGRAMS/INVALID/04/78.go:4:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/43.go
+./TEST_PROGRAMS/INVALID/04/43.go:5:27: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/41.go
+./TEST_PROGRAMS/INVALID/04/41.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/3.go
+./TEST_PROGRAMS/INVALID/04/3.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/21.go
+./TEST_PROGRAMS/INVALID/04/21.go:5:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/95.go
+./TEST_PROGRAMS/INVALID/04/95.go:4:0: error: unterminated comment
+
+./TEST_PROGRAMS/INVALID/04/89.go
+./TEST_PROGRAMS/INVALID/04/89.go:4:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/56.go
+./TEST_PROGRAMS/INVALID/04/56.go:7:8: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/30.go
+./TEST_PROGRAMS/INVALID/04/30.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/86.go
+./TEST_PROGRAMS/INVALID/04/86.go:4:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/5.go
+./TEST_PROGRAMS/INVALID/04/5.go:5:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/44.go
+./TEST_PROGRAMS/INVALID/04/44.go:5:26: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/55.go
+./TEST_PROGRAMS/INVALID/04/55.go:7:8: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/33.go
+./TEST_PROGRAMS/INVALID/04/33.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/90.go
+./TEST_PROGRAMS/INVALID/04/90.go:5:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/80.go
+./TEST_PROGRAMS/INVALID/04/80.go:5:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/98.go
+./TEST_PROGRAMS/INVALID/04/98.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/81.go
+./TEST_PROGRAMS/INVALID/04/81.go:5:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/64.go
+./TEST_PROGRAMS/INVALID/04/64.go:8:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/11.go
+./TEST_PROGRAMS/INVALID/04/11.go:5:13: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/04/19.go
+./TEST_PROGRAMS/INVALID/04/19.go:5:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/76.go
+./TEST_PROGRAMS/INVALID/04/76.go:7:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/62.go
+./TEST_PROGRAMS/INVALID/04/62.go:7:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/18.go
+./TEST_PROGRAMS/INVALID/04/18.go:5:16: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/04/97.go
+./TEST_PROGRAMS/INVALID/04/97.go:7:0: error: unterminated raw string literal
+
+./TEST_PROGRAMS/INVALID/04/67.go
+./TEST_PROGRAMS/INVALID/04/67.go:7:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/91.go
+./TEST_PROGRAMS/INVALID/04/91.go:4:9: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/04/70.go
+./TEST_PROGRAMS/INVALID/04/70.go:5:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/14.go
+./TEST_PROGRAMS/INVALID/04/14.go:5:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/9.go
+./TEST_PROGRAMS/INVALID/04/9.go:5:15: error: single quote cannot appear in a rune literal
+
+./TEST_PROGRAMS/INVALID/04/2.go
+./TEST_PROGRAMS/INVALID/04/2.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/96.go
+./TEST_PROGRAMS/INVALID/04/96.go:4:28: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/04/103.go
+./TEST_PROGRAMS/INVALID/04/103.go:5:15: error: fallthrough is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/04/72.go
+./TEST_PROGRAMS/INVALID/04/72.go:6:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/31.go
+./TEST_PROGRAMS/INVALID/04/31.go:5:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/66.go
+./TEST_PROGRAMS/INVALID/04/66.go:7:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/88.go
+./TEST_PROGRAMS/INVALID/04/88.go:4:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/20.go
+./TEST_PROGRAMS/INVALID/04/20.go:5:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/26.go
+./TEST_PROGRAMS/INVALID/04/26.go:5:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/42.go
+./TEST_PROGRAMS/INVALID/04/42.go:5:29: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/16.go
+./TEST_PROGRAMS/INVALID/04/16.go:5:15: error: invalid escape sequence \\x
+
+./TEST_PROGRAMS/INVALID/04/32.go
+./TEST_PROGRAMS/INVALID/04/32.go:5:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/36.go
+./TEST_PROGRAMS/INVALID/04/36.go:5:19: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/94.go
+./TEST_PROGRAMS/INVALID/04/94.go:5:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/28.go
+./TEST_PROGRAMS/INVALID/04/28.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/6.go
+./TEST_PROGRAMS/INVALID/04/6.go:5:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/23.go
+./TEST_PROGRAMS/INVALID/04/23.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/58.go
+./TEST_PROGRAMS/INVALID/04/58.go:7:23: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/71.go
+./TEST_PROGRAMS/INVALID/04/71.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/63.go
+./TEST_PROGRAMS/INVALID/04/63.go:9:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/84.go
+./TEST_PROGRAMS/INVALID/04/84.go:6:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/04/101.go
+./TEST_PROGRAMS/INVALID/04/101.go:7:11: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/04/69.go
+./TEST_PROGRAMS/INVALID/04/69.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/01/#19.1.go
+./TEST_PROGRAMS/INVALID/01/#19.1.go:6:2: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/01/#28.1.go
+./TEST_PROGRAMS/INVALID/01/#28.1.go:4:17: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/01/#16.3.go
+./TEST_PROGRAMS/INVALID/01/#16.3.go:6:29: error: syntax error
+
+./TEST_PROGRAMS/INVALID/01/#32.1.go
+./TEST_PROGRAMS/INVALID/01/#32.1.go:7:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/01/#16.2.go
+./TEST_PROGRAMS/INVALID/01/#16.2.go:7:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/semicolon1.go
+./TEST_PROGRAMS/INVALID/15/semicolon1.go:5:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/assignment1.go
+./TEST_PROGRAMS/INVALID/15/assignment1.go:6:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/15/anonymous.go
+./TEST_PROGRAMS/INVALID/15/anonymous.go:4:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/weeding4.go
+./TEST_PROGRAMS/INVALID/15/weeding4.go:5:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/15/weeding2.go
+./TEST_PROGRAMS/INVALID/15/weeding2.go:4:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/15/lexer2.go
+./TEST_PROGRAMS/INVALID/15/lexer2.go:1:1: error: unrecognized character: \207
+
+./TEST_PROGRAMS/INVALID/15/weeding1.go
+./TEST_PROGRAMS/INVALID/15/weeding1.go:6:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/weeding5.go
+./TEST_PROGRAMS/INVALID/15/weeding5.go:5:4: error: switch statement may have at most one default branch
+
+./TEST_PROGRAMS/INVALID/15/semicolon2.go
+./TEST_PROGRAMS/INVALID/15/semicolon2.go:3:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/declaration2.go
+./TEST_PROGRAMS/INVALID/15/declaration2.go:4:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/id.go
+./TEST_PROGRAMS/INVALID/15/id.go:3:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/operators1.go
+./TEST_PROGRAMS/INVALID/15/operators1.go:5:22: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/lexer3.go
+./TEST_PROGRAMS/INVALID/15/lexer3.go:4:12: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/15/keyword2.go
+./TEST_PROGRAMS/INVALID/15/keyword2.go:5:7: error: map is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/15/weeding3.go
+./TEST_PROGRAMS/INVALID/15/weeding3.go:4:4: error: break may only occur within a loop or a switch
+
+./TEST_PROGRAMS/INVALID/15/declaration1.go
+./TEST_PROGRAMS/INVALID/15/declaration1.go:3:23: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/literal1.go
+./TEST_PROGRAMS/INVALID/15/literal1.go:4:37: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/assignment3.5.go
+./TEST_PROGRAMS/INVALID/15/assignment3.5.go:6:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/assignment2.go
+./TEST_PROGRAMS/INVALID/15/assignment2.go:8:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/15/semicolon3.go
+./TEST_PROGRAMS/INVALID/15/semicolon3.go:4:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/15/lexer1.go
+./TEST_PROGRAMS/INVALID/15/lexer1.go:8:0: error: unterminated comment
+
+./TEST_PROGRAMS/INVALID/15/keyword1.go
+./TEST_PROGRAMS/INVALID/15/keyword1.go:4:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/switch_with_fallthrough.go
+./TEST_PROGRAMS/INVALID/05/switch_with_fallthrough.go:10:33: error: fallthrough is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_no_comma.go
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_no_comma.go:5:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/if_else_rob_brace.go
+./TEST_PROGRAMS/INVALID/05/if_else_rob_brace.go:8:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/05/multicharacter_rune.go
+./TEST_PROGRAMS/INVALID/05/multicharacter_rune.go:5:14: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/05/empty_three_part_loop_missing_semi.go
+./TEST_PROGRAMS/INVALID/05/empty_three_part_loop_missing_semi.go:6:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_with_init_stmt.go
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_with_init_stmt.go:7:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/global_short_assign.go
+./TEST_PROGRAMS/INVALID/05/global_short_assign.go:6:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_closing_bracket_not_on_own_line.go
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_closing_bracket_not_on_own_line.go:7:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/global_inc_stmt.go
+./TEST_PROGRAMS/INVALID/05/global_inc_stmt.go:7:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/no_package.go
+./TEST_PROGRAMS/INVALID/05/no_package.go:6:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/multi_packages.go
+./TEST_PROGRAMS/INVALID/05/multi_packages.go:4:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/nested_multi-line_comment.go
+./TEST_PROGRAMS/INVALID/05/nested_multi-line_comment.go:6:25: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/expr_as_field_access.go
+./TEST_PROGRAMS/INVALID/05/expr_as_field_access.go:12:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_no_init_stmt.go
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_no_init_stmt.go:9:8: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/05/array_size_dec_after_type.go
+./TEST_PROGRAMS/INVALID/05/array_size_dec_after_type.go:6:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/func_arg_type_before.go
+./TEST_PROGRAMS/INVALID/05/func_arg_type_before.go:10:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/loop_with_robillard_braces.go
+./TEST_PROGRAMS/INVALID/05/loop_with_robillard_braces.go:9:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/non-int_in_array_var_dec.go
+./TEST_PROGRAMS/INVALID/05/non-int_in_array_var_dec.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/multiple_same_types_for_var.go
+./TEST_PROGRAMS/INVALID/05/multiple_same_types_for_var.go:5:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/if_rob_brace.go
+./TEST_PROGRAMS/INVALID/05/if_rob_brace.go:7:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_one_dec_on_single_line.go
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_one_dec_on_single_line.go:5:21: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/array_var_dec_with_missing_type.go
+./TEST_PROGRAMS/INVALID/05/array_var_dec_with_missing_type.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/dangling_top_expr.go
+./TEST_PROGRAMS/INVALID/05/dangling_top_expr.go:7:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/imbalanced_if_parens.go
+./TEST_PROGRAMS/INVALID/05/imbalanced_if_parens.go:7:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/2d_array_with_conflicting_types_in_var_dec.go
+./TEST_PROGRAMS/INVALID/05/2d_array_with_conflicting_types_in_var_dec.go:5:20: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/leading_zeroes_in_int.go
+./TEST_PROGRAMS/INVALID/05/leading_zeroes_in_int.go:5:14: error: malformed octal literal: 09
+
+./TEST_PROGRAMS/INVALID/05/squote_string.go
+./TEST_PROGRAMS/INVALID/05/squote_string.go:5:9: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/05/func_args_ending_in_comma.go
+./TEST_PROGRAMS/INVALID/05/func_args_ending_in_comma.go:5:30: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size_type.go
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size_type.go:6:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/invalid_num_args_to_append.go
+./TEST_PROGRAMS/INVALID/05/invalid_num_args_to_append.go:8:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/2d_array_var_dec_with_missing_type.go
+./TEST_PROGRAMS/INVALID/05/2d_array_var_dec_with_missing_type.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/global_loop.go
+./TEST_PROGRAMS/INVALID/05/global_loop.go:7:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size.go
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size.go:6:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/escaped_dquote_rune.go
+./TEST_PROGRAMS/INVALID/05/escaped_dquote_rune.go:5:16: error: invalid rune escape sequence '\\\"
+
+./TEST_PROGRAMS/INVALID/05/multi-var_assign_with_sep_types.go
+./TEST_PROGRAMS/INVALID/05/multi-var_assign_with_sep_types.go:5:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/no_if_block_braces.go
+./TEST_PROGRAMS/INVALID/05/no_if_block_braces.go:9:5: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/05/multiple_unary_plus_no_paren.go
+./TEST_PROGRAMS/INVALID/05/multiple_unary_plus_no_paren.go:5:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/interpreted_string_closed_with_squote.go
+./TEST_PROGRAMS/INVALID/05/interpreted_string_closed_with_squote.go:7:22: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/05/multiple_distinct_types_for_var.go
+./TEST_PROGRAMS/INVALID/05/multiple_distinct_types_for_var.go:5:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/missing_var_type.go
+./TEST_PROGRAMS/INVALID/05/missing_var_type.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/blank_package.go
+./TEST_PROGRAMS/INVALID/05/blank_package.go:5:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/func_within_func.go
+./TEST_PROGRAMS/INVALID/05/func_within_func.go:6:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_with_comma.go
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_with_comma.go:5:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/loop_with_parentheses.go
+./TEST_PROGRAMS/INVALID/05/loop_with_parentheses.go:6:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/multiline_interpreted_string_lit.go
+./TEST_PROGRAMS/INVALID/05/multiline_interpreted_string_lit.go:5:41: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/05/missin_closing_brace_at_end.go
+./TEST_PROGRAMS/INVALID/05/missin_closing_brace_at_end.go:8:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/empty_var_dec.go
+./TEST_PROGRAMS/INVALID/05/empty_var_dec.go:7:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/global_dec_stmt.go
+./TEST_PROGRAMS/INVALID/05/global_dec_stmt.go:7:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/if_elif_else_rob_brace.go
+./TEST_PROGRAMS/INVALID/05/if_elif_else_rob_brace.go:10:11: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/05/invalid_hex_digit.go
+./TEST_PROGRAMS/INVALID/05/invalid_hex_digit.go:5:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/struct_dec_within_struct.go
+./TEST_PROGRAMS/INVALID/05/struct_dec_within_struct.go:7:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/lhs_expression_in_var_dec.go
+./TEST_PROGRAMS/INVALID/05/lhs_expression_in_var_dec.go:6:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_one_type_on_single_line.go
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_one_type_on_single_line.go:5:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/fallthrough_id.go
+./TEST_PROGRAMS/INVALID/05/fallthrough_id.go:5:15: error: fallthrough is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/05/raw_string_closed_with_dquote.go
+./TEST_PROGRAMS/INVALID/05/raw_string_closed_with_dquote.go:7:8: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/05/func_call_trailing_comma.go
+./TEST_PROGRAMS/INVALID/05/func_call_trailing_comma.go:9:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/empty_rune.go
+./TEST_PROGRAMS/INVALID/05/empty_rune.go:6:15: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/05/multiple_unary_minus_no_paren.go
+./TEST_PROGRAMS/INVALID/05/multiple_unary_minus_no_paren.go:6:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_closing_bracket_not_on_own_line.go
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_closing_bracket_not_on_own_line.go:7:23: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for3.go
+./TEST_PROGRAMS/INVALID/03/invalid_for3.go:10:5: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl3.go
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl3.go:10:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for6.go
+./TEST_PROGRAMS/INVALID/03/invalid_for6.go:10:5: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_types2.go
+./TEST_PROGRAMS/INVALID/03/invalid_types2.go:10:6: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch4.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch4.go:10:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_return1.go
+./TEST_PROGRAMS/INVALID/03/invalid_return1.go:10:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch7.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch7.go:10:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_print4.go
+./TEST_PROGRAMS/INVALID/03/invalid_print4.go:10:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch2.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch2.go:10:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_10.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_10.go:7:19: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl1.go
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl1.go:10:25: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch6.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch6.go:10:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_print5.go
+./TEST_PROGRAMS/INVALID/03/invalid_print5.go:11:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch8.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch8.go:10:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_typecast.go
+./TEST_PROGRAMS/INVALID/03/invalid_typecast.go:8:6: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/s1.go
+./TEST_PROGRAMS/INVALID/03/s1.go:5:23: error: invalid escape sequence \\g
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch9.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch9.go:10:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_types3.go
+./TEST_PROGRAMS/INVALID/03/invalid_types3.go:10:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_if4.go
+./TEST_PROGRAMS/INVALID/03/invalid_if4.go:10:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_8.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_8.go:10:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_5.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_5.go:10:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_1.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_1.go:10:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for9.go
+./TEST_PROGRAMS/INVALID/03/invalid_for9.go:10:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_4.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_4.go:10:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for8.go
+./TEST_PROGRAMS/INVALID/03/invalid_for8.go:10:21: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch3.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch3.go:10:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl2.go
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl2.go:10:22: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch10.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch10.go:3:8: error: undeclared identifier: tag
+
+./TEST_PROGRAMS/INVALID/03/invalid_print1.go
+./TEST_PROGRAMS/INVALID/03/invalid_print1.go:10:31: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_11.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_11.go:10:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for7.go
+./TEST_PROGRAMS/INVALID/03/invalid_for7.go:9:5: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_funccall1.go
+./TEST_PROGRAMS/INVALID/03/invalid_funccall1.go:4:1: error: undeclared identifier: x
+
+./TEST_PROGRAMS/INVALID/03/s3.go
+./TEST_PROGRAMS/INVALID/03/s3.go:5:17: error: invalid rune escape sequence '\\g
+
+./TEST_PROGRAMS/INVALID/03/invalid_if5.go
+./TEST_PROGRAMS/INVALID/03/invalid_if5.go:10:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt2.go
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt2.go:10:1: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_2.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_2.go:10:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl.go
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl.go:5:0: error: f redeclared in this block
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt3.go
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt3.go:10:1: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt1.go
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt1.go:8:6: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_return2.go
+./TEST_PROGRAMS/INVALID/03/invalid_return2.go:10:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_9.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_9.go:10:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_7.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_7.go:12:1: error: expected , found string
+
+./TEST_PROGRAMS/INVALID/03/invalid_for4.go
+./TEST_PROGRAMS/INVALID/03/invalid_for4.go:10:21: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/03/invalid_funccall2.go
+./TEST_PROGRAMS/INVALID/03/invalid_funccall2.go:11:3: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/03/invalid_for2.go
+./TEST_PROGRAMS/INVALID/03/invalid_for2.go:10:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch5.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch5.go:10:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_if2.go
+./TEST_PROGRAMS/INVALID/03/invalid_if2.go:10:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_if1.go
+./TEST_PROGRAMS/INVALID/03/invalid_if1.go:10:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_3.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_3.go:10:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/s2.go
+./TEST_PROGRAMS/INVALID/03/s2.go:5:15: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/03/invalid_print3.go
+./TEST_PROGRAMS/INVALID/03/invalid_print3.go:10:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for5.go
+./TEST_PROGRAMS/INVALID/03/invalid_for5.go:10:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_for1.go
+./TEST_PROGRAMS/INVALID/03/invalid_for1.go:10:25: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_6.go
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_6.go:10:1: error: no new variables on left side of :=
+
+./TEST_PROGRAMS/INVALID/03/invalid_types1.go
+./TEST_PROGRAMS/INVALID/03/invalid_types1.go:10:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_return3.go
+./TEST_PROGRAMS/INVALID/03/invalid_return3.go:10:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch1.go
+./TEST_PROGRAMS/INVALID/03/invalid_switch1.go:10:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_if3.go
+./TEST_PROGRAMS/INVALID/03/invalid_if3.go:10:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/03/invalid_print2.go
+./TEST_PROGRAMS/INVALID/03/invalid_print2.go:10:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/06/invalid2.go
+./TEST_PROGRAMS/INVALID/06/invalid2.go:2:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/06/invalid3.go
+./TEST_PROGRAMS/INVALID/06/invalid3.go:2:34: error: syntax error
+
+./TEST_PROGRAMS/INVALID/06/invalid1.go
+./TEST_PROGRAMS/INVALID/06/invalid1.go:3:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/missingpackage.go
+./TEST_PROGRAMS/INVALID/02/missingpackage.go:2:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/badeqsigns.go
+./TEST_PROGRAMS/INVALID/02/badeqsigns.go:8:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/invalidfunctionkeyword.go
+./TEST_PROGRAMS/INVALID/02/invalidfunctionkeyword.go:1:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/multipleReturnsFunction.go
+./TEST_PROGRAMS/INVALID/02/multipleReturnsFunction.go:4:32: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/invalid_var_assign.go
+./TEST_PROGRAMS/INVALID/02/invalid_var_assign.go:10:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/02/for1.go
+./TEST_PROGRAMS/INVALID/02/for1.go:11:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/notallpathshavereturns.go
+./TEST_PROGRAMS/INVALID/02/notallpathshavereturns.go:3:0: error: missing return at end of function: foo
+
+./TEST_PROGRAMS/INVALID/02/badrunes.go
+./TEST_PROGRAMS/INVALID/02/badrunes.go:4:11: error: unrecognized character: \'
+
+./TEST_PROGRAMS/INVALID/02/badbreakstmt.go
+./TEST_PROGRAMS/INVALID/02/badbreakstmt.go:10:8: error: break may only occur within a loop or a switch
+
+./TEST_PROGRAMS/INVALID/02/comments1.go
+./TEST_PROGRAMS/INVALID/02/comments1.go:6:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/multipleReturns.go
+./TEST_PROGRAMS/INVALID/02/multipleReturns.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/02/exprlist.go
+./TEST_PROGRAMS/INVALID/02/exprlist.go:5:25: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/unclosed_blockcomment.go
+./TEST_PROGRAMS/INVALID/09/unclosed_blockcomment.go:3:0: error: unterminated comment
+
+./TEST_PROGRAMS/INVALID/09/blank_append.go
+./TEST_PROGRAMS/INVALID/09/blank_append.go:4:17: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_print.go
+./TEST_PROGRAMS/INVALID/09/blank_print.go:4:10: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/nested_blockcomment.go
+./TEST_PROGRAMS/INVALID/09/nested_blockcomment.go:3:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/break_not_in_loop.go
+./TEST_PROGRAMS/INVALID/09/break_not_in_loop.go:5:8: error: break may only occur within a loop or a switch
+
+./TEST_PROGRAMS/INVALID/09/blank_field.go
+./TEST_PROGRAMS/INVALID/09/blank_field.go:4:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_returns.go
+./TEST_PROGRAMS/INVALID/09/blank_returns.go:8:11: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/non-name.go
+./TEST_PROGRAMS/INVALID/09/non-name.go:4:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/unclosed_rawstring.go
+./TEST_PROGRAMS/INVALID/09/unclosed_rawstring.go:4:0: error: unterminated raw string literal
+
+./TEST_PROGRAMS/INVALID/09/missing_package_id.go
+./TEST_PROGRAMS/INVALID/09/missing_package_id.go:3:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/unclosed_string.go
+./TEST_PROGRAMS/INVALID/09/unclosed_string.go:3:8: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/09/blank_index.go
+./TEST_PROGRAMS/INVALID/09/blank_index.go:4:9: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/blank_exp.go
+./TEST_PROGRAMS/INVALID/09/blank_exp.go:5:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_selector.go
+./TEST_PROGRAMS/INVALID/09/blank_selector.go:4:9: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/blank_funccall_arg.go
+./TEST_PROGRAMS/INVALID/09/blank_funccall_arg.go:4:6: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/continue_outside_loop.go
+./TEST_PROGRAMS/INVALID/09/continue_outside_loop.go:6:8: error: continue may only occur within a loop
+
+./TEST_PROGRAMS/INVALID/09/for_clause_errors.go
+./TEST_PROGRAMS/INVALID/09/for_clause_errors.go:4:26: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_funcsign.go
+./TEST_PROGRAMS/INVALID/09/blank_funcsign.go:3:45: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_package.go
+./TEST_PROGRAMS/INVALID/09/blank_package.go:1:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/missing_typecast.go
+./TEST_PROGRAMS/INVALID/09/missing_typecast.go:4:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/newline_string.go
+./TEST_PROGRAMS/INVALID/09/newline_string.go:3:9: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch.go
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch.go:9:8: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/09/blank_conversion.go
+./TEST_PROGRAMS/INVALID/09/blank_conversion.go:4:13: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch_short.go
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch_short.go:5:4: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/09/blank_println.go
+./TEST_PROGRAMS/INVALID/09/blank_println.go:4:10: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/missing_return.go
+./TEST_PROGRAMS/INVALID/09/missing_return.go:9:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/09/unary_ops.go
+./TEST_PROGRAMS/INVALID/09/unary_ops.go:5:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/unknown_escape.go
+./TEST_PROGRAMS/INVALID/09/unknown_escape.go:4:20: error: invalid escape sequence \\i
+
+./TEST_PROGRAMS/INVALID/09/blanktype.go
+./TEST_PROGRAMS/INVALID/09/blanktype.go:8:20: error: syntax error
+
+./TEST_PROGRAMS/INVALID/09/blank_index_int.go
+./TEST_PROGRAMS/INVALID/09/blank_index_int.go:4:10: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/blank_assignements.go
+./TEST_PROGRAMS/INVALID/09/blank_assignements.go:4:14: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/09/blank_funccall.go
+./TEST_PROGRAMS/INVALID/09/blank_funccall.go:4:4: error: cannot use _ as value
+
+./TEST_PROGRAMS/INVALID/07/struct.go
+./TEST_PROGRAMS/INVALID/07/struct.go:5:35: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_ifexp.go
+./TEST_PROGRAMS/INVALID/07/invalid_ifexp.go:4:18: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/struct_spec_anonymous.go
+./TEST_PROGRAMS/INVALID/07/struct_spec_anonymous.go:5:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/func_just_id.go
+./TEST_PROGRAMS/INVALID/07/func_just_id.go:3:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/var_decl_struct_all_in_one_line.go
+./TEST_PROGRAMS/INVALID/07/var_decl_struct_all_in_one_line.go:4:28: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_else.go
+./TEST_PROGRAMS/INVALID/07/invalid_else.go:4:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/decl_decassign.go
+./TEST_PROGRAMS/INVALID/07/decl_decassign.go:4:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/type.go
+./TEST_PROGRAMS/INVALID/07/type.go:16:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/periodInsteadOfComma.go
+./TEST_PROGRAMS/INVALID/07/periodInsteadOfComma.go:11:39: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/struct_literal.go
+./TEST_PROGRAMS/INVALID/07/struct_literal.go:6:21: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_ass.go
+./TEST_PROGRAMS/INVALID/07/invalid_ass.go:2:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/switch_invalid_default_exp.go
+./TEST_PROGRAMS/INVALID/07/switch_invalid_default_exp.go:6:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_goLiteArrayDeclIndexing.go
+./TEST_PROGRAMS/INVALID/07/invalid_goLiteArrayDeclIndexing.go:2:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/2packages.go
+./TEST_PROGRAMS/INVALID/07/2packages.go:2:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/generalComments.go
+./TEST_PROGRAMS/INVALID/07/generalComments.go:6:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/forloop_curly_down.go
+./TEST_PROGRAMS/INVALID/07/forloop_curly_down.go:6:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/slice_append.go
+./TEST_PROGRAMS/INVALID/07/slice_append.go:5:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/typecast_string.go
+./TEST_PROGRAMS/INVALID/07/typecast_string.go:4:1: error: undeclared identifier: x
+
+./TEST_PROGRAMS/INVALID/07/break_invalid.go
+./TEST_PROGRAMS/INVALID/07/break_invalid.go:6:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/goKeywordFollowedByNewLine.go
+./TEST_PROGRAMS/INVALID/07/goKeywordFollowedByNewLine.go:2:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/slice.go
+./TEST_PROGRAMS/INVALID/07/slice.go:7:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/func_decl_spec_noacc.go
+./TEST_PROGRAMS/INVALID/07/func_decl_spec_noacc.go:3:30: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_index_decl.go
+./TEST_PROGRAMS/INVALID/07/invalid_index_decl.go:3:6: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/comments.go
+./TEST_PROGRAMS/INVALID/07/comments.go:3:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/switch_invalid_case_exp.go
+./TEST_PROGRAMS/INVALID/07/switch_invalid_case_exp.go:7:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/dangling_else.go
+./TEST_PROGRAMS/INVALID/07/dangling_else.go:10:5: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid1.go
+./TEST_PROGRAMS/INVALID/07/invalid1.go:1:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/invalid_only_intconst_array_decl.go
+./TEST_PROGRAMS/INVALID/07/invalid_only_intconst_array_decl.go:6:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/07/string_unclosed.go
+./TEST_PROGRAMS/INVALID/07/string_unclosed.go:2:71: error: newline not allowed in string literal
+
+./TEST_PROGRAMS/INVALID/07/functions.go
+./TEST_PROGRAMS/INVALID/07/functions.go:12:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test17.go
+./TEST_PROGRAMS/INVALID/11/test17.go:21:39: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test16.go
+./TEST_PROGRAMS/INVALID/11/test16.go:21:39: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test10.go
+./TEST_PROGRAMS/INVALID/11/test10.go:4:10: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test7.go
+./TEST_PROGRAMS/INVALID/11/test7.go:15:12: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test5.go
+./TEST_PROGRAMS/INVALID/11/test5.go:6:4: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test9.go
+./TEST_PROGRAMS/INVALID/11/test9.go:6:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test13.go
+./TEST_PROGRAMS/INVALID/11/test13.go:5:6: error: import is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/11/test19.go
+./TEST_PROGRAMS/INVALID/11/test19.go:17:23: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/11/test3.go
+./TEST_PROGRAMS/INVALID/11/test3.go:2:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test20.go
+./TEST_PROGRAMS/INVALID/11/test20.go:17:23: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/11/test4.go
+./TEST_PROGRAMS/INVALID/11/test4.go:6:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test8.go
+./TEST_PROGRAMS/INVALID/11/test8.go:1:28: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test11.go
+Fatal error: exception Failure("int_of_string")
+
+./TEST_PROGRAMS/INVALID/11/test18.go
+./TEST_PROGRAMS/INVALID/11/test18.go:17:23: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/11/test1.go
+./TEST_PROGRAMS/INVALID/11/test1.go:1:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/11/test15.go
+./TEST_PROGRAMS/INVALID/11/test15.go:18:4: error: not a valid expression statement
+
+./TEST_PROGRAMS/INVALID/08/arrayLit.go
+./TEST_PROGRAMS/INVALID/08/arrayLit.go:2:16: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/nestedVarBlock.go
+./TEST_PROGRAMS/INVALID/08/nestedVarBlock.go:4:7: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badShortDecl.go
+./TEST_PROGRAMS/INVALID/08/badShortDecl.go:4:2: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/noFunctionBody.go
+./TEST_PROGRAMS/INVALID/08/noFunctionBody.go:3:0: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/twoReturns.go
+./TEST_PROGRAMS/INVALID/08/twoReturns.go:3:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badIncDec.go
+./TEST_PROGRAMS/INVALID/08/badIncDec.go:4:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badPackage.go
+./TEST_PROGRAMS/INVALID/08/badPackage.go:1:19: error: fallthrough is not supported in GoLite
+
+./TEST_PROGRAMS/INVALID/08/badAssign.go
+./TEST_PROGRAMS/INVALID/08/badAssign.go:4:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badDecl.go
+./TEST_PROGRAMS/INVALID/08/badDecl.go:5:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badNumberofIds.go
+./TEST_PROGRAMS/INVALID/08/badNumberofIds.go:4:6: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/08/nestedTypeBlock.go
+./TEST_PROGRAMS/INVALID/08/nestedTypeBlock.go:4:8: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badLvalue.go
+./TEST_PROGRAMS/INVALID/08/badLvalue.go:6:13: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badAssignNumberofIds.go
+./TEST_PROGRAMS/INVALID/08/badAssignNumberofIds.go:6:2: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/08/badShortDeclNumberOfIds.go
+./TEST_PROGRAMS/INVALID/08/badShortDeclNumberOfIds.go:4:2: error: number of ids does not match number of expressions
+
+./TEST_PROGRAMS/INVALID/08/badLvalueIncDec.go
+./TEST_PROGRAMS/INVALID/08/badLvalueIncDec.go:4:4: error: not a lvalue
+
+./TEST_PROGRAMS/INVALID/08/nestedBlockComment.go
+./TEST_PROGRAMS/INVALID/08/nestedBlockComment.go:5:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badForPostStmt.go
+./TEST_PROGRAMS/INVALID/08/badForPostStmt.go:4:26: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/structLit.go
+./TEST_PROGRAMS/INVALID/08/structLit.go:5:14: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/topLevelShortDecl.go
+./TEST_PROGRAMS/INVALID/08/topLevelShortDecl.go:2:1: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/multipleAssign.go
+./TEST_PROGRAMS/INVALID/08/multipleAssign.go:4:11: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/noPackage.go
+./TEST_PROGRAMS/INVALID/08/noPackage.go:1:3: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badArrayDec.go
+./TEST_PROGRAMS/INVALID/08/badArrayDec.go:2:9: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/sliceLiteral.go
+./TEST_PROGRAMS/INVALID/08/sliceLiteral.go:2:15: error: syntax error
+
+./TEST_PROGRAMS/INVALID/08/badFunctioncall.go
+./TEST_PROGRAMS/INVALID/08/badFunctioncall.go:5:11: error: syntax error
+
+./TEST_PROGRAMS/invalid/01/#1.7.go
+./TEST_PROGRAMS/invalid/01/#1.7.go:8:13: error: syntax error
+

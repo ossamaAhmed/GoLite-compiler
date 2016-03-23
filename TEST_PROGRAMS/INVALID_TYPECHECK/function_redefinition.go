@@ -1,10 +1,5 @@
 package main;
 
-func main() {
-    var x = 5;
-    print(foo(x,x));
-}
-
 func foo (a int, b int) int{
     return a+b;
 }
@@ -12,3 +7,8 @@ func foo (a int, b int) int{
 func foo (a int, b int,c int) int{
     return a+b+c;
 }
+func main() {
+    var x = 5;
+    print(foo(x,x));
+}
+
