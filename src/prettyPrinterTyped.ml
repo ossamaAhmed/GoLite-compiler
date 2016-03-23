@@ -12,7 +12,7 @@ let print program filedir filename =
     let print_tab (level) = print_string (String.make level '\t') in
     let rec string_of_sym_type y = match y with 
         | SymInt -> "int"
-        | SymFloat64 -> "float"
+        | SymFloat64 -> "float64"
         | SymRune -> "rune"
         | SymString -> "string"
         | SymBool -> "bool" 
@@ -337,8 +337,8 @@ let print program filedir filename =
             end
         | TypeCastExpr(typename, exp1, _, sym_type) ->
             begin
-                print_string "( ";
                 print_type_name 0 typename;
+                print_string "( ";
                 print_expr exp1;
                 print_string " )";
                 print_sym_type sym_type;
