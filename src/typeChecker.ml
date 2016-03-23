@@ -34,6 +34,13 @@ let search_current_scope key = match !symbol_table with
 	else 
 		symbol_table_error ("variable is not defined in current_scope")
 
+let search_not_find_current_scope x= match !symbol_table with 
+							| Scope(current_scope)::tail -> 
+							if (Hashtbl.mem current_scope x) then 
+									true
+							else 
+								    false
+
 let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
 							| []-> symbol_table_error ("variable is not defined in current and previous scopes")
 							| Scope(current_scope)::tail -> 
@@ -41,7 +48,6 @@ let rec search_previous_scopes x table= match table with (*called with !symbol_t
 									Hashtbl.find current_scope x
 							else 
 								    search_previous_scopes x tail
-
 
 let add_variable_to_current_scope mytype myvar=  match myvar with
 											| Identifier(myvariable,linenum)-> 
@@ -382,7 +388,7 @@ and pretty_typecheck_expression exp =
 												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
 																												  let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																												  (match iden_type_check with 
-																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp1,linenum2,symtype),symtype)
+																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp1,linenum2,iden_type_check),iden_type_check)
 																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 
@@ -493,7 +499,7 @@ and typecheck_simple_stmt stmt = match stmt with
 							| SimpleExpression(expr,linenum)-> let result=pretty_typecheck_expression expr in SimpleExpression((extract_node_from_expr_tuple result),linenum)
 							| IncDec(incdec,linenum)-> let result = typecheck_inc_dec_stmt incdec in IncDec(result,linenum)
 							| Assignment(assignment_stmt,linenum)-> let result= typecheck_assignment_stmt assignment_stmt in Assignment(result,linenum)
-				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->type_checking_error ("shortvar decl not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_short_var_decl short_var_decl *)
+				(*NOT DONE*)| ShortVardecl(short_var_decl,linenum)->let result= typecheck_short_var_decl short_var_decl in ShortVardecl(result,linenum)
 
 
 and  typecheck_condition cond = match cond with 
@@ -636,11 +642,29 @@ and typecheck_assignment_stmt stmt = match stmt with
    						    											 AssignmentOp((extract_node_from_expr_tuple result),assign_op, (extract_type_from_expr_tuple result),linenum)
 
 
-(* and typecheck_short_var_decl dcl = match dcl with
-							| ShortVarDecl(idens, exprs)-> (typecheck_identifiers idens)^" := "^(typecheck_expressions exprs)
+and count_iden_list_declared_in_current_scope idens count= match idens with 
+												| []-> count
+												| Identifier(head,linenum)::tail -> if (search_not_find_current_scope head) then count_iden_list_declared_in_current_scope tail count+1
+																else count_iden_list_declared_in_current_scope tail count
 
+and short_decl_type_checking idens exprstypes linenum= match idens,exprstypes with 
+												| [],[]-> ()
+												| Identifier(head,linenum)::tail,head1::tail1 -> if (search_not_find_current_scope head) 
+																	then let mytype= search_current_scope head in 
+																	  (if mytype!=head1 then type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum))
+																	   else  short_decl_type_checking tail tail1 linenum)
+																else let _= add_variable_to_current_scope head1 (Identifier(head,linenum))
+																			in short_decl_type_checking tail tail1 linenum
+and typecheck_short_var_decl dcl = match dcl with
+							| ShortVarDecl(idens, exprs,linenum)-> let new_exprs_nodes= (List.map pretty_typecheck_expression exprs) in 
+														   let new_exprs= List.map extract_node_from_expr_tuple new_exprs_nodes in 
+														   let count_number_declared= count_iden_list_declared_in_current_scope idens 0 in 
+														   if List.length idens > count_number_declared then 
+														 	  let new_types= List.map extract_type_from_expr_tuple new_exprs_nodes in 
+														   		let _= short_decl_type_checking idens new_types linenum in ShortVarDecl(idens, new_exprs,linenum)
+														   	else type_checking_error ("short var decl should have at least one variable not defined in same scope linenum:="^(Printf.sprintf "%i" linenum))
+										
 
- *)
 and typecheck_declaration decl = match decl with 
 								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts linenum in Function(func_name,signature,result,linenum)
 								| TypeDcl([],linenum)->  decl
