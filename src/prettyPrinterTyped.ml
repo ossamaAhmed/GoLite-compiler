@@ -337,8 +337,8 @@ let print program filedir filename =
             end
         | TypeCastExpr(typename, exp1, _, sym_type) ->
             begin
-                print_string "( ";
                 print_type_name 0 typename;
+                print_string "( ";
                 print_expr exp1;
                 print_string " )";
                 print_sym_type sym_type;

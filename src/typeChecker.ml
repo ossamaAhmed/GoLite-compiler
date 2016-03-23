@@ -431,7 +431,13 @@ and typecheck_stmt stmt = match stmt with
 				    					 		 let _= print_stack symbol_table linenum in 
 				    							 let _= end_scope()  in Block(result,linenum)
 				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
-	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
+	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
+																					   let my_switch_type= typecheck_switch_expression switch_expr in 
+																					   let my_switch_type_name= extract_type_from_expr_tuple my_switch_type in 
+																					   let my_switch_type_node= extract_node_from_expr_tuple my_switch_type in 
+																					   let switch_stmts= typecheck_switch_case_stmt switch_case_stmts my_switch_type_name in
+																					   Switch(my_init_type, my_switch_type_node, switch_stmts,linenum)
+																					   (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
 				    | For(for_stmt,linenum)-> let result= typecheck_for_stmt for_stmt in For(result,linenum) (*DONE*) 
 				    | Simple(simple,linenum)-> let result= typecheck_simple_stmt simple in Simple(result,linenum)
 				    | Print(exprs,linenum)-> let expr_list_types= List.map pretty_typecheck_expression exprs in
@@ -525,25 +531,32 @@ and typecheck_clause clause= match clause with (*NEEDS REVISION*)
 						 											  let result2= typecheck_condition condition in
 						 											  let result3 = typecheck_simple_stmt simple2 in 
 						 											  ForClauseCond(result1,result2,result3,linenum)
-						 (* " "^(typecheck_simple_stmt simple1)^"; "^(typecheck_condition condition)^"; "^(typecheck_simple_stmt simple2)^" " *)
+						
 
 
-(* and typecheck_switch_clause clause = match clause with
-								| Empty -> ""
-								| SwitchClause(simple_stmt) -> (typecheck_simple_stmt simple_stmt)^";"
+and typecheck_switch_clause clause = match clause with
+								| Empty -> Empty
+								| SwitchClause(simple_stmt,linenum) -> let mystmt= typecheck_simple_stmt simple_stmt in SwitchClause(mystmt,linenum)
 and typecheck_switch_expression expr = match expr with 
-								| Empty -> ""
-								| SwitchExpr(expr)-> (pretty_typecheck_expression expr)	
-and typecheck_switch_case_clause clause = match clause with 
-								| SwitchCaseClause(exprs, stmts)-> (match exprs with
-																	| []->	"default : "^(typecheck_stmts stmts)
-																	| head::tail -> "case "^(typecheck_expressions exprs)^" : "^(typecheck_stmts stmts)
+								| Empty -> (Empty,SymBool)
+								| SwitchExpr(expr,linenum)-> let mytype= (pretty_typecheck_expression expr) in 
+													 (SwitchExpr((extract_node_from_expr_tuple mytype),linenum),(extract_type_from_expr_tuple mytype))	
+and typecheck_switch_case_clause typename clause= match clause with 
+								| SwitchCaseClause(exprs, stmts,linenum)-> (match exprs with
+																	| []->	let new_stmts = typecheck_stmts stmts in 
+																			SwitchCaseClause(exprs, new_stmts,linenum)
+																	| head::tail -> let new_exprs= typecheck_exprs_of_type exprs typename linenum in 
+																					let new_stmts = typecheck_stmts stmts in 
+																					SwitchCaseClause(new_exprs, new_stmts,linenum)
 																	)
-								| Empty -> ""	
+								| Empty -> Empty	
 
-and typecheck_switch_case_stmt stmts = match stmts with
-								| SwitchCasestmt([]) -> ""
-								| SwitchCasestmt(switch_case_clauses)->(typecheck_list(List.map typecheck_switch_case_clause switch_case_clauses))						 *)
+and typecheck_switch_case_stmt stmts typename= match stmts with
+								| SwitchCasestmt([],linenum) -> SwitchCasestmt([],linenum) 
+								| SwitchCasestmt(switch_case_clauses,linenum)->let result= (List.map (typecheck_switch_case_clause typename) switch_case_clauses) in SwitchCasestmt(result,linenum)
+
+
+
 and typecheck_inc_dec_stmt stmt = match stmt with 
 						 | Increment(expr,linenum)->let result= type_check_assignment_op expr expr "+=" in Increment((extract_type_from_expr_tuple result),linenum)
    						 | Decrement(expr,linenum)->let result= type_check_assignment_op expr expr "-=" in Decrement((extract_type_from_expr_tuple result),linenum)
