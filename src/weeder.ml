@@ -261,7 +261,7 @@ and weed_function_declaration func_name signature stmts =
         if 0 < weed_stmts_for_return stmts 0 then begin
             (weed_stmts stmts "withoutbreakandcontinue")::[];
         end else begin
-            ("Not all paths have return")::[]
+            ast_error "Not all paths have return"
         end
     end else begin
         (weed_stmts stmts "withoutbreakandcontinue")::[];
