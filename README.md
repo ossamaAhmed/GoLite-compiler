@@ -1,5 +1,5 @@
 #Milestone 2 writeup
-The milestone 2 writeup can be found in /milestone2Report/milestone2.pdf
+The milestone 2 writeup can be found in /doc/milestone2.pdf
 
 # comp520-2016-02
 Many code examples taken from:
