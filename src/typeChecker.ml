@@ -328,11 +328,13 @@ and pretty_typecheck_expression exp =
 																						let mytype_name= extract_type_from_expr_tuple mytype in 
 																						let mytype_node = extract_node_from_expr_tuple mytype in
 																					 	(Binaryexpr(mytype_node,linenum,mytype_name),mytype_name)
-												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression expr) in
-																							  ( match exp_type, expr,exprs with 
-																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(expr,exprs,linenum,symType) ,symType)
-																							  	| _ ,OperandName(iden,l,t),head::[] -> let mytype = extract_type_from_expr_tuple(pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))) in 
-																							  											(FuncCallExpr(expr,exprs,linenum,mytype),mytype )
+												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+																							  let mytype_name= extract_type_from_expr_tuple exp_type in 
+																							  let mytype_node = extract_node_from_expr_tuple exp_type in
+																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
+																							  ( match mytype_name, expr,exprs with 
+																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
