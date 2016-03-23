@@ -27,12 +27,12 @@ symbol_table :=Scope(basic_table)::!symbol_table;;
 let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
 let end_scope ()= match !symbol_table with 
 				| head::tail -> symbol_table:= tail
-let search_current_scope x= match !symbol_table with 
-							| Scope(current_scope)::tail -> 
-							if (Hashtbl.mem current_scope x) then 
-									Hashtbl.find current_scope x
-							else 
-								    symbol_table_error ("variable is not defined in current_scope")
+let search_current_scope key = match !symbol_table with 
+	| Scope(current_scope)::tail -> 
+	if (Hashtbl.mem current_scope key) then 
+		Hashtbl.find current_scope key
+	else 
+		symbol_table_error ("variable is not defined in current_scope")
 
 let search_not_find_current_scope x= match !symbol_table with 
 							| Scope(current_scope)::tail -> 
@@ -69,7 +69,7 @@ let rec print_type y= match y with
 				| SymStruct (fieldlst)-> "struct" (*doesn't print out the fields*)
 				| SymFunc(symType,argslist)->"function" (*doesn't print out the function args*) 
 				| SymType(symType)-> print_type symType				
-				| Void -> "void"			 
+				| Void -> "void"		 
 
 let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
 let print_table tbl= match tbl with 
@@ -112,10 +112,6 @@ let numeric_typecheck a b= match a,b with
 						| SymInt, SymFloat64 ->SymInt
 						| SymFloat64, SymInt -> SymFloat64
 						| SymRune, SymRune->SymRune
-						| SymRune, SymInt->SymRune
-						| SymRune, SymFloat64-> SymRune
-						| SymInt, SymRune->SymInt
-						| SymFloat64, SymRune-> SymFloat64
 						| _ ,_ -> type_checking_error "arithmetic operation should be done on a numeric value"
 let comparable_typecheck a b= match a,b with 
 						| SymInt, SymInt -> SymBool
@@ -144,17 +140,7 @@ let numeric_string_typecheck a b= match a,b with
 						| SymInt, SymFloat64 ->SymInt
 						| SymFloat64, SymInt -> SymFloat64
 						| SymRune, SymRune->SymRune
-						| SymRune, SymInt->SymRune
-						| SymRune, SymFloat64-> SymRune
-						| SymInt, SymRune->SymInt
-						| SymFloat64, SymRune-> SymFloat64
 						| SymString, SymString -> SymString
-						| SymInt, SymString -> SymInt
-						| SymString, SymInt -> SymString
-						| SymFloat64, SymString -> SymFloat64
-						| SymString, SymFloat64-> SymString
-						| SymString, SymRune->SymString
-						| SymRune, SymString-> SymRune
 						| _ ,_ -> type_checking_error "plus operation should be done on a numeric value or string"
 
 let integer_typecheck a b= match a,b with 
@@ -301,7 +287,7 @@ and pretty_typecheck_expression exp =
 																	 					(DivOp (exp1,exp2,linenum,mytype),mytype)
 												| ModuloOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 					  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
-																	  					  let mytype= numeric_typecheck exp_type1 exp_type2 in 
+																	  					  let mytype= integer_typecheck exp_type1 exp_type2 in 
 																	  					  (ModuloOp (exp1,exp2,linenum,mytype), mytype)
 												| SrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																				  	  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
@@ -418,18 +404,31 @@ and typecheck_variable_declaration decl= match decl with
 
 									| VarSpecWithoutType  (iden_list,exprs,linenum) -> let result= typecheck_var_decl_without_type iden_list exprs linenum in VarSpecWithoutType(iden_list,result,linenum)
 									| _ -> ast_error ("var_dcl error")
- 
+
+let search_current_scope_for_return mytype = match !symbol_table with
+	| Scope(current_scope)::tail -> 
+		let find_value k v = match v with
+			| SymFunc(return_type, linenum) -> if return_type = mytype then () else ast_error "return type does not match function declared return type"
+			| _ -> () 
+		in
+		Hashtbl.iter find_value current_scope
+
+let typecheck_return_stmt rt_stmt = match rt_stmt with
+    | ReturnStatement(exp1, _) -> let mytype = pretty_typecheck_expression exp1 in
+									let mytype_name = extract_type_from_expr_tuple mytype in
+										search_current_scope_for_return mytype_name
+    | Empty -> ()
 
 (*DONE*)
-let rec  typecheck_stmts stmts = match stmts with
+let rec typecheck_stmts stmts = match stmts with
 									| [] -> []
 									| head::tail -> let head_result= (typecheck_stmt head) in 
 													head_result::(typecheck_stmts tail)
 
 (*DONE*)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl,linenum)-> let _=typecheck_declaration dcl in stmt
-	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
+				    | Declaration(dcl,linenum)-> let _ = typecheck_declaration dcl in stmt
+	(*NOT DONE*)	| Return(rt_stmt,linenum) -> let _ = typecheck_return_stmt rt_stmt in stmt (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> stmt(* "break "  *)
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
@@ -437,7 +436,7 @@ and typecheck_stmt stmt = match stmt with
 				    					 		 let _= print_stack symbol_table linenum in 
 				    							 let _= end_scope()  in Block(result,linenum)
 				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
-	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
+					| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
 																					   let my_switch_type= typecheck_switch_expression switch_expr in 
 																					   let my_switch_type_name= extract_type_from_expr_tuple my_switch_type in 
 																					   let my_switch_type_node= extract_node_from_expr_tuple my_switch_type in 
