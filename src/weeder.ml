@@ -56,6 +56,12 @@ let rec weed_expression exp = match exp with
     | TypeCastExpr (typename,exp1,linenum,ast_type) -> ""
     | Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type) -> ""
 
+(* Check if function return exists in function *)
+
+(* let func_return_in_stmts stmts = () in
+let func_return_in_if_block stmts = () in *)
+let weed_func_return stmts = ""
+
 let rec weed_expressions exprlist = match exprlist with
     | head::[] -> ""
     | head::tail -> ""
@@ -194,8 +200,6 @@ and weed_for_stmt stmt = match stmt with
     | ForClause (for_clause, stmts,linenum) -> ""
 and weed_clause clause= match clause with 
     | ForClauseCond(simple1,condition,simple2,linenum) -> ""
-
-
 and weed_switch_clause clause = match clause with
     | SwitchClause(simple_stmt,linenum) -> ""
     | Empty -> ""
@@ -261,6 +265,7 @@ and weed_function_declaration func_name signature stmts =
         end
     end else begin
         (weed_stmts stmts "withoutbreakandcontinue")::[];
+        (weed_func_return stmts)::[];
     end
     
 let weed program = match program with

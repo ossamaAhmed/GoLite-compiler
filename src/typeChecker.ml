@@ -67,11 +67,15 @@ let rec print_type y= match y with
 
 let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
 let print_table tbl= match tbl with 
-					| Scope(table)->let _= write_message ("\n\nscope number"^(Printf.sprintf "%i" !scope_counter)^"\n\n") 
-									in let _= Hashtbl.iter print_tuple table 
-									in scope_counter:= !scope_counter+1
+					| Scope(table)->  let _= write_message ("\n\nscope number"^(Printf.sprintf "%i" !scope_counter)^"\n\n") 
+										in let _= Hashtbl.iter print_tuple table 
+										in scope_counter:= !scope_counter+1
 
-let print_stack s= List.iter print_table !symbol_table
+
+
+let print_stack s linenum= scope_counter:= 0 ; 
+						   let _= write_message ("\n\nsymbol table at line number :"^(Printf.sprintf "%i" linenum)^"\n\n") 
+						   in List.iter print_table !s
 
 
 let is_basetype_typecheck a= match a with 
@@ -199,8 +203,7 @@ and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
 									| [] -> []
 									| TypeSpec(value,return_type,linenum)::tail -> let mytype = typecheck_type_name return_type in 
 																		    let _= add_variable_to_current_scope mytype value in
-																			let _= typecheck_identifiers_with_type_new_scope tail in 
-																			TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope idenlist)
+																			TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope tail)
 and typecheck_type_declaration decl = match decl with
 								| TypeSpec(value, typename,linenum)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in TypeSpec(value, typename,linenum)
 								| _-> type_checking_error ("type_dcl error")
@@ -263,7 +266,10 @@ and pretty_typecheck_expression exp =
 												| AddOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  				  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  				  let mytype= numeric_string_typecheck exp_type1 exp_type2 in 
-																	  				  (AddOp(exp1,exp2,linenum,mytype), mytype)
+																	  				  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in 
+															
+																	  				  (AddOp(exp_type1_node,exp_type2_node,linenum,mytype), mytype)
 												 					 
 												| MinusOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
@@ -307,8 +313,10 @@ and pretty_typecheck_expression exp =
 																	 						 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  						let mytype= integer_typecheck exp_type1 exp_type2 in 
 																	  						(AndCaretOp (exp1,exp2,linenum,mytype),mytype)
-												| OperandParenthesis (exp1,linenum,ast_type)-> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																							   (OperandParenthesis (exp1,linenum,mytype),mytype)
+												| OperandParenthesis (exp1,linenum,ast_type)-> let mytype= pretty_typecheck_expression exp1 in
+																							   let mytype_name=  extract_type_from_expr_tuple mytype in
+																							   let mytype_node= extract_node_from_expr_tuple mytype in 
+																							   (OperandParenthesis (mytype_node,linenum,mytype_name),mytype_name)
 
 												| Indexexpr(exp1,exp2,linenum,ast_type)-> let index_name_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																						  let indexing= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
@@ -320,13 +328,17 @@ and pretty_typecheck_expression exp =
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					 (Unaryexpr(exp1,linenum,mytype),mytype)
-												| Binaryexpr(exp1,linenum,ast_type) ->  let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																					 (Binaryexpr(exp1,linenum,mytype),mytype)
-												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression expr) in
-																							  ( match exp_type, expr,exprs with 
-																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(expr,exprs,linenum,symType) ,symType)
-																							  	| _ ,OperandName(iden,l,t),head::[] -> let mytype = extract_type_from_expr_tuple(pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))) in 
-																							  											(FuncCallExpr(expr,exprs,linenum,mytype),mytype )
+												| Binaryexpr(exp1,linenum,ast_type) ->  let mytype= pretty_typecheck_expression exp1 in 
+																						let mytype_name= extract_type_from_expr_tuple mytype in 
+																						let mytype_node = extract_node_from_expr_tuple mytype in
+																					 	(Binaryexpr(mytype_node,linenum,mytype_name),mytype_name)
+												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+																							  let mytype_name= extract_type_from_expr_tuple exp_type in 
+																							  let mytype_node = extract_node_from_expr_tuple exp_type in
+																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
+																							  ( match mytype_name, expr,exprs with 
+																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
@@ -416,7 +428,8 @@ and typecheck_stmt stmt = match stmt with
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
 				    					 		 let result= typecheck_stmts stmt_list in
-				    							 let _= end_scope() in Block(result,linenum)
+				    					 		 let _= print_stack symbol_table linenum in 
+				    							 let _= end_scope()  in Block(result,linenum)
 				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
 	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
 				    | For(for_stmt,linenum)-> let result= typecheck_for_stmt for_stmt in For(result,linenum) (*DONE*) 
@@ -433,11 +446,13 @@ and typecheck_stmt stmt = match stmt with
 							| Empty -> "return "
 							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr) *)
 and typecheck_conditional cond = match cond with 
-							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt 
-														in let _= end_scope() in 
+							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt in 
+														let _= print_stack symbol_table linenum in 
+														let _= end_scope() in 
 														IfStmt(result,linenum)
-							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt 
-															in let _= end_scope() in 
+							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt in
+															let _= print_stack symbol_table linenum in 
+															let _= end_scope() in 
 															ElseStmt(result,linenum)
 and typecheck_if_stmt if_stmt = match if_stmt with
 							| IfInit(if_init, condition, stmts,linenum)-> let _= start_scope() in 
@@ -445,6 +460,7 @@ and typecheck_if_stmt if_stmt = match if_stmt with
 																  let result2= typecheck_condition condition in 
 																  let _ = start_scope() in 
 																  let result3= typecheck_stmts stmts in 
+																  let _= print_stack symbol_table linenum in 
 																  let _= end_scope() in 
 																  IfInit(result1, result2, result3,linenum)
 																
@@ -470,7 +486,8 @@ and  typecheck_condition cond = match cond with
 and typecheck_else_stmt stmt =  match stmt with 
 							| ElseSingle(if_stmt,stmts,linenum)-> let result1= typecheck_if_stmt if_stmt in 
 														 		 let _= start_scope() in 
-														  		let result2= typecheck_stmts stmts in 
+														  		let result2= typecheck_stmts stmts in
+														  		let _= print_stack symbol_table linenum in  
 														  		let _= end_scope() in 
 														  		ElseSingle(result1,result2,linenum)
 						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let result1= typecheck_if_stmt if_stmt in 
@@ -484,18 +501,22 @@ and typecheck_else_stmt stmt =  match stmt with
 and typecheck_for_stmt stmt = match stmt with 
 				    | Forstmt(stmts,linenum)-> let _= start_scope() in 
 				    				  		 let result= typecheck_stmts stmts in 
+				    				  		 let _= print_stack symbol_table linenum in 
 				    						 let _= end_scope() in 
 				    						 Forstmt(result,linenum)(* "for {\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForCondition(condition, stmts,linenum)-> let result1= typecheck_condition condition in 
 				    								   let _= start_scope() in 
-								    				   let result2= typecheck_stmts stmts in 
+								    				   let result2= typecheck_stmts stmts in
+								    				   let _= print_stack symbol_table linenum in  
 								    					let _= end_scope() in 
 								    					ForCondition(result1, result2,linenum)
 				    							    	(* "for "^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForClause (for_clause, stmts,linenum)-> let result1 = typecheck_clause for_clause in 
 				    										  let _= start_scope() in 
 								    						  let result2= typecheck_stmts stmts in 
+								    						  let _= print_stack symbol_table linenum in 
 								    				 		 let _= end_scope() in 
+								    				 		 let _= print_stack symbol_table linenum in 
 								    				  		let _= end_scope() in 
 								    				  		ForClause (result1, result2,linenum)(* "for "^(typecheck_clause for_clause)^"{\n"^(typecheck_stmts stmts)^"}" *)
 and typecheck_clause clause= match clause with (*NEEDS REVISION*)
@@ -595,7 +616,7 @@ and typecheck_assignment_stmt stmt = match stmt with
 
  *)
 and typecheck_declaration decl = match decl with 
-								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts in Function(func_name,signature,result,linenum)
+								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts linenum in Function(func_name,signature,result,linenum)
 								| TypeDcl([],linenum)->  decl
 								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in  TypeDcl(result,linenum)(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
 								| VarDcl([],linenum)-> decl
@@ -616,29 +637,31 @@ and typecheck_signature signature func_name= match signature with
 																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
 													 
 
-and typecheck_function_declaration func_name signature stmts = let _= typecheck_signature signature func_name in 
+and typecheck_function_declaration func_name signature stmts linenum= let _= typecheck_signature signature func_name in 
 															   let new_stmts=typecheck_stmts stmts  in 
+															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
+															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
 															   new_stmts
 
-
+(* 
 and firstpass_typecheck_signature signature func_name= match signature with
 	FuncSig(FuncParams(func_params,linenum1), return_type,linenum2) -> let mytype=typecheck_signature_return_type return_type in 
 																	   let params= typecheck_identifiers_with_type func_params in  
 																	   let _= add_variable_to_current_scope (SymFunc(mytype,params)) (Identifier(func_name,linenum1)) in 
-																	   signature
+																	   signature *)
 																	   
 
-and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
-																		 
-and firstpass_function_declaration decl = match decl with
+(* and firstpass_typecheck_function_declaration func_name signature = let _= firstpass_typecheck_signature signature func_name in ()
+ *)																		 
+(* and firstpass_function_declaration decl = match decl with
 								| TypeDcl([],linenum)->  decl
 								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in  TypeDcl(result,linenum)(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
 								| VarDcl([],linenum)-> decl
 								| VarDcl(value,linenum)-> let result= (List.map typecheck_variable_declaration value) in VarDcl(result,linenum)
 								| Function(func_name,signature,stmts,linenum)->let result=  firstpass_typecheck_function_declaration func_name signature in decl
-								| _ -> decl
+								| _ -> decl *)
 
 
 let type_check_program program filename= 

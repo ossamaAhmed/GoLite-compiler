@@ -13,7 +13,4 @@ type symType =
 	| SymType of symType
 	| Void
 	| NotDefined
-
-	and 
-	symTable = 
-	| Scope of (string , symType) Hashtbl.t
+and symTable = Scope of (string , symType) Hashtbl.t
