@@ -4,7 +4,7 @@ open Symboltbl
 
 let file = ref "../your_program.go"
 let oc = ref stdout
-let set_file filename = (file := "../"^filename^".symboltable"); oc:= (open_out (!file))
+let set_file filename = (file := "./"^filename^".symtab"); oc:= (open_out (!file))
 let write_message message = fprintf (!oc) "%s" message   (* write something *)   
 let close oc = close_out oc
 let scope_counter = ref 1

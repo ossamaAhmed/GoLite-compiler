@@ -1,4 +1,4 @@
-#Milestone 2 writeup
+# Milestone 2 writeup
 The milestone 2 writeup can be found in /doc/milestone2.pdf
 
 # comp520-2016-02
@@ -7,19 +7,19 @@ Many code examples taken from:
 * http://caml.inria.fr/pub/docs/manual-ocaml-4.00/manual026.html
 * https://realworldocaml.org/v1/en/html/parsing-with-ocamllex-and-menhir.html
 
-##Valid Programs found in: 
+## Valid Programs found in: 
 * TEST\_PROGRAMS/VALID/conditionals.go
 * TEST\_PROGRAMS/VALID/variables.go
 * TEST\_PROGRAMS/VALID/hellowolrd.go
 
-#To Compile:
+# To Compile:
 * cd src
-* make golite
+* make
 
-#To run:
+# To run:
 * ./run [filename]
 
-#To test
+# To test
 * ./test
 * cat test\_results.txt
 

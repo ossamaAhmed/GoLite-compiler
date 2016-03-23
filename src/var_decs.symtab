@@ -1,0 +1,77 @@
+
+
+symbol table at line number :21
+
+
+
+scope number0
+
+var: y ,type:int 
+var: x ,type:int 
+
+
+scope number1
+
+var: b1 ,type:int 
+var: c2 ,type:int 
+var: c1 ,type:int 
+var: z3 ,type:int 
+var: z1 ,type:int 
+var: add ,type:function 
+var: a1 ,type:int 
+var: z2 ,type:int 
+var: y1 ,type:int 
+var: a2 ,type:int 
+var: x2 ,type:int 
+var: b3 ,type:int 
+var: z ,type:int 
+var: x1 ,type:int 
+var: y2 ,type:int 
+var: y ,type:int 
+var: b2 ,type:int 
+var: x ,type:int 
+
+
+scope number2
+
+var: false ,type:bool 
+var: true ,type:bool 
+
+
+symbol table at line number :27
+
+
+
+scope number0
+
+var: z ,type:int 
+var: x ,type:int 
+
+
+scope number1
+
+var: b1 ,type:int 
+var: c2 ,type:int 
+var: c1 ,type:int 
+var: main ,type:function 
+var: z3 ,type:int 
+var: z1 ,type:int 
+var: add ,type:function 
+var: a1 ,type:int 
+var: z2 ,type:int 
+var: y1 ,type:int 
+var: a2 ,type:int 
+var: x2 ,type:int 
+var: b3 ,type:int 
+var: z ,type:int 
+var: x1 ,type:int 
+var: y2 ,type:int 
+var: y ,type:int 
+var: b2 ,type:int 
+var: x ,type:int 
+
+
+scope number2
+
+var: false ,type:bool 
+var: true ,type:bool 
