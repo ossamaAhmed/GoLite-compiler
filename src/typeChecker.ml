@@ -67,11 +67,15 @@ let rec print_type y= match y with
 
 let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
 let print_table tbl= match tbl with 
-					| Scope(table)->let _= write_message ("\n\nscope number"^(Printf.sprintf "%i" !scope_counter)^"\n\n") 
-									in let _= Hashtbl.iter print_tuple table 
-									in scope_counter:= !scope_counter+1
+					| Scope(table)->  let _= write_message ("\n\nscope number"^(Printf.sprintf "%i" !scope_counter)^"\n\n") 
+										in let _= Hashtbl.iter print_tuple table 
+										in scope_counter:= !scope_counter+1
 
-let print_stack s= List.iter print_table !symbol_table
+
+
+let print_stack s linenum= scope_counter:= 0 ; 
+						   let _= write_message ("\n\nsymbol table at line number :"^(Printf.sprintf "%i" linenum)^"\n\n") 
+						   in List.iter print_table !s
 
 
 let is_basetype_typecheck a= match a with 
@@ -424,7 +428,8 @@ and typecheck_stmt stmt = match stmt with
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
 				    					 		 let result= typecheck_stmts stmt_list in
-				    							 let _= end_scope() in Block(result,linenum)
+				    					 		 let _= print_stack symbol_table linenum in 
+				    							 let _= end_scope()  in Block(result,linenum)
 				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
 	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)->type_checking_error ("switch stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* "switch "^(typecheck_switch_clause switch_clause)^" "^(typecheck_switch_expression switch_expr)^" {\n"^(typecheck_switch_case_stmt switch_case_stmts)^"}" *)
 				    | For(for_stmt,linenum)-> let result= typecheck_for_stmt for_stmt in For(result,linenum) (*DONE*) 
@@ -441,11 +446,13 @@ and typecheck_stmt stmt = match stmt with
 							| Empty -> "return "
 							| ReturnStatement(expr)-> "return "^(pretty_typecheck_expression expr) *)
 and typecheck_conditional cond = match cond with 
-							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt 
-														in let _= end_scope() in 
+							| IfStmt(if_stmt,linenum)-> let result= typecheck_if_stmt if_stmt in 
+														let _= print_stack symbol_table linenum in 
+														let _= end_scope() in 
 														IfStmt(result,linenum)
-							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt 
-															in let _= end_scope() in 
+							| ElseStmt(else_stmt,linenum)-> let result= typecheck_else_stmt else_stmt in
+															let _= print_stack symbol_table linenum in 
+															let _= end_scope() in 
 															ElseStmt(result,linenum)
 and typecheck_if_stmt if_stmt = match if_stmt with
 							| IfInit(if_init, condition, stmts,linenum)-> let _= start_scope() in 
@@ -453,6 +460,7 @@ and typecheck_if_stmt if_stmt = match if_stmt with
 																  let result2= typecheck_condition condition in 
 																  let _ = start_scope() in 
 																  let result3= typecheck_stmts stmts in 
+																  let _= print_stack symbol_table linenum in 
 																  let _= end_scope() in 
 																  IfInit(result1, result2, result3,linenum)
 																
@@ -478,7 +486,8 @@ and  typecheck_condition cond = match cond with
 and typecheck_else_stmt stmt =  match stmt with 
 							| ElseSingle(if_stmt,stmts,linenum)-> let result1= typecheck_if_stmt if_stmt in 
 														 		 let _= start_scope() in 
-														  		let result2= typecheck_stmts stmts in 
+														  		let result2= typecheck_stmts stmts in
+														  		let _= print_stack symbol_table linenum in  
 														  		let _= end_scope() in 
 														  		ElseSingle(result1,result2,linenum)
 						    | ElseIFMultiple(if_stmt,else_stmt,linenum)-> let result1= typecheck_if_stmt if_stmt in 
@@ -492,18 +501,22 @@ and typecheck_else_stmt stmt =  match stmt with
 and typecheck_for_stmt stmt = match stmt with 
 				    | Forstmt(stmts,linenum)-> let _= start_scope() in 
 				    				  		 let result= typecheck_stmts stmts in 
+				    				  		 let _= print_stack symbol_table linenum in 
 				    						 let _= end_scope() in 
 				    						 Forstmt(result,linenum)(* "for {\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForCondition(condition, stmts,linenum)-> let result1= typecheck_condition condition in 
 				    								   let _= start_scope() in 
-								    				   let result2= typecheck_stmts stmts in 
+								    				   let result2= typecheck_stmts stmts in
+								    				   let _= print_stack symbol_table linenum in  
 								    					let _= end_scope() in 
 								    					ForCondition(result1, result2,linenum)
 				    							    	(* "for "^(typecheck_condition condition)^"{\n"^(typecheck_stmts stmts)^"}" *)
 				    | ForClause (for_clause, stmts,linenum)-> let result1 = typecheck_clause for_clause in 
 				    										  let _= start_scope() in 
 								    						  let result2= typecheck_stmts stmts in 
+								    						  let _= print_stack symbol_table linenum in 
 								    				 		 let _= end_scope() in 
+								    				 		 let _= print_stack symbol_table linenum in 
 								    				  		let _= end_scope() in 
 								    				  		ForClause (result1, result2,linenum)(* "for "^(typecheck_clause for_clause)^"{\n"^(typecheck_stmts stmts)^"}" *)
 and typecheck_clause clause= match clause with (*NEEDS REVISION*)
@@ -603,7 +616,7 @@ and typecheck_assignment_stmt stmt = match stmt with
 
  *)
 and typecheck_declaration decl = match decl with 
-								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts in Function(func_name,signature,result,linenum)
+								| Function(func_name,signature,stmts,linenum)->let result=  typecheck_function_declaration func_name signature stmts linenum in Function(func_name,signature,result,linenum)
 								| TypeDcl([],linenum)->  decl
 								| TypeDcl(value,linenum)-> let result= (List.map typecheck_type_declaration value) in  TypeDcl(result,linenum)(* write_message(typecheck_list(List.map typecheck_type_declaration value)) *)
 								| VarDcl([],linenum)-> decl
@@ -624,9 +637,11 @@ and typecheck_signature signature func_name= match signature with
 																	let _= typecheck_identifiers_with_type_new_scope func_params in start_scope()
 													 
 
-and typecheck_function_declaration func_name signature stmts = let _= typecheck_signature signature func_name in 
+and typecheck_function_declaration func_name signature stmts linenum= let _= typecheck_signature signature func_name in 
 															   let new_stmts=typecheck_stmts stmts  in 
+															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
+															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
 															   new_stmts
 
