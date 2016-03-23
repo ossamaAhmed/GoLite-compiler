@@ -388,7 +388,7 @@ and pretty_typecheck_expression exp =
 												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
 																												  let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																												  (match iden_type_check with 
-																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp1,linenum2,symtype),symtype)
+																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp1,linenum2,iden_type_check),iden_type_check)
 																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 
