@@ -12,8 +12,8 @@ for root, dirnames, filenames in os.walk('./TEST_PROGRAMS'):
 
 for files in matches:
     f.write(files+'\n')
-    #cmd = "./src/goLite.native "+files
-    cmd = "./golitec typecheck "+files
+    cmd = "./src/goLite.native "+files
+    #cmd = "./golitec typecheck "+files
     proc = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     out, err = proc.communicate()
     f.write(out)
