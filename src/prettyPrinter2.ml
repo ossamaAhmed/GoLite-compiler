@@ -432,7 +432,7 @@ let print program filedir filename =
                 | TypeDcl([], _) -> ()
                 | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
                 | VarDcl([], _) ->  ()
-                | VarDcl(decl_list, _) -> ()
+                | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, signature, stmt_list, _) ->
                     begin
                         print_string "func ";
