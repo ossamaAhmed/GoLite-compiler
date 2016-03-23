@@ -1,3 +1,6 @@
+#Milestone 2 writeup
+The milestone 2 writeup can be found in /milestone2Report/milestone2.pdf
+
 # comp520-2016-02
 Many code examples taken from:
 * https://gobyexample.com
@@ -28,7 +31,7 @@ Many code examples taken from:
 * Abstract syntax tree
 * Pretty Printer
 
-## Design Choices
+## Design Choices For Milestone 1
 ### Team
 We found dividing the labor fairly a challenge. This is because a compiler is a sequential program and all parts are interdependant. For the lexer we were able to divide the distinct tokens among three partners. The parser was much more challenging because the grammer rules all depend on each other. We divided the grammar such that all three partners implement leaf nodes of the grammer when considering the grammer as a CST. For the AST, we each implemented the parts of the tree that corresponded to the grammar that we wrote
 

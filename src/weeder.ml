@@ -70,7 +70,66 @@ let weed_variable_declaration decl = match decl with
     | VarSpecWithType (iden_list,typename,exprs,linenum) -> ""
     | VarSpecWithoutType (iden_list,exprs,linenum) -> ""
 
-let rec weed_stmts stmts case = match stmts with
+let rec weed_stmts_for_return stmts acc = match stmts with
+    | [] -> acc
+    | head::tail -> let tempAcc = weed_stmt_for_return head acc in weed_stmts_for_return tail tempAcc
+
+and  weed_stmt_for_return stmt acc = 
+    if acc<0 then begin
+        -1
+    end else begin 
+        match stmt with
+        | Return(rt_stmt,linenum) -> acc+1
+        | Block(stmt_list,linenum) -> weed_stmts_for_return stmt_list acc
+        | Conditional(conditional,linenum) -> (match conditional with
+            |IfStmt(IfInit(init,cond,stmt_list,lines),lineno) -> weed_stmts_for_return stmt_list acc
+            |ElseStmt(elseStmt,lineno) -> weed_stmts_for_else elseStmt acc)
+        | Switch(switch_clause, switch_expr,SwitchCasestmt(switch_case_stmts,lines) ,linenum) ->
+                let returns = weed_switch_clauses_return switch_case_stmts in
+                let cases = List.length switch_case_stmts in 
+                if returns==cases || returns == 0 then begin
+                    returns
+                end else begin
+                   -1 
+                end
+        | For(for_stmt,linenum) -> (match for_stmt with
+            | Forstmt(stmt_list,lineno) -> weed_stmts_for_return stmt_list acc
+            | ForCondition(cond,stmt_list,lineno) -> weed_stmts_for_return stmt_list acc
+            | ForClause(clause,stmt_list,lineno) -> weed_stmts_for_return stmt_list acc
+        )
+
+        | _ -> acc
+    end
+
+and weed_stmts_for_else elseStmt acc = match elseStmt with
+    |ElseSingle(IfInit(init,cond,if_stmt_list,lines),stmt_list,lineno) -> weed_else_return stmt_list if_stmt_list acc
+    |ElseIFMultiple(IfInit(init,cond,if_stmt_list,lines),else_stmt,lineno) -> let else_returns = weed_stmts_for_else else_stmt acc in
+                                                                              let if_returns= weed_stmts_for_return if_stmt_list acc in
+                                                                                if if_returns = else_returns then begin
+                                                                                    if_returns
+                                                                                end else begin
+                                                                                    -1
+                                                                                end
+    |ElseIFSingle(IfInit(init,cond,if_stmt_list,lines),IfInit(init2,cond2,if_stmt_list2,lines2),lineno) -> weed_else_return if_stmt_list if_stmt_list2 acc
+
+and weed_else_return stmt_list if_stmt_list acc = 
+    let if_returns = weed_stmts_for_return if_stmt_list acc in
+            let else_returns = weed_stmts_for_return stmt_list acc in
+            if if_returns == else_returns then begin
+                if_returns
+            end else begin
+                -1
+            end
+
+and weed_switch_clauses_return clauses = match clauses with 
+    | [] -> 0
+    | head::tail -> weed_switch_return head + weed_switch_clauses_return tail
+
+and weed_switch_return clause = match clause with 
+    | SwitchCaseClause(exprlist,stmtlist,linenum) -> weed_stmts_for_return stmtlist 0
+    | _ -> 0
+
+and weed_stmts stmts case = match stmts with
     | [] -> ""
     | head::[] -> weed_stmt head case
     | head::tail -> let _ = weed_stmt head case in weed_stmts tail case
@@ -199,7 +258,11 @@ and weed_signature signature = match signature with
 and weed_function_declaration func_name signature stmts =
     if weed_signature signature then begin
         (*look for all paths with return *)
-        []
+        if 0 < weed_stmts_for_return stmts 0 then begin
+            (weed_stmts stmts "withoutbreakandcontinue")::[];
+        end else begin
+            ast_error "Not all paths have return"
+        end
     end else begin
         (weed_stmts stmts "withoutbreakandcontinue")::[];
         (weed_func_return stmts)::[];
