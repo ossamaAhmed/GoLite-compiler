@@ -27,12 +27,12 @@ symbol_table :=Scope(basic_table)::!symbol_table;;
 let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
 let end_scope ()= match !symbol_table with 
 				| head::tail -> symbol_table:= tail
-let search_current_scope x= match !symbol_table with 
-							| Scope(current_scope)::tail -> 
-							if (Hashtbl.mem current_scope x) then 
-									Hashtbl.find current_scope x
-							else 
-								    symbol_table_error ("variable is not defined in current_scope")
+let search_current_scope key = match !symbol_table with 
+	| Scope(current_scope)::tail -> 
+	if (Hashtbl.mem current_scope key) then 
+		Hashtbl.find current_scope key
+	else 
+		symbol_table_error ("variable is not defined in current_scope")
 
 let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
 							| []-> symbol_table_error ("variable is not defined in current and previous scopes")
@@ -63,7 +63,7 @@ let rec print_type y= match y with
 				| SymStruct (fieldlst)-> "struct" (*doesn't print out the fields*)
 				| SymFunc(symType,argslist)->"function" (*doesn't print out the function args*) 
 				| SymType(symType)-> print_type symType				
-				| Void -> "void"			 
+				| Void -> "void"		 
 
 let print_tuple x y= write_message ("var: "^x^" ,type:"^(print_type y)^" \n")
 let print_table tbl= match tbl with 
@@ -412,18 +412,31 @@ and typecheck_variable_declaration decl= match decl with
 
 									| VarSpecWithoutType  (iden_list,exprs,linenum) -> let result= typecheck_var_decl_without_type iden_list exprs linenum in VarSpecWithoutType(iden_list,result,linenum)
 									| _ -> ast_error ("var_dcl error")
- 
+
+let search_current_scope_for_return mytype = match !symbol_table with
+	| Scope(current_scope)::tail -> 
+		let find_value k v = match v with
+			| SymFunc(return_type, linenum) -> if return_type = mytype then () else ast_error "return type does not match function declared return type"
+			| _ -> () 
+		in
+		Hashtbl.iter find_value current_scope
+
+let typecheck_return_stmt rt_stmt = match rt_stmt with
+    | ReturnStatement(exp1, _) -> let mytype = pretty_typecheck_expression exp1 in
+									let mytype_name = extract_type_from_expr_tuple mytype in
+										search_current_scope_for_return mytype_name
+    | Empty -> ()
 
 (*DONE*)
-let rec  typecheck_stmts stmts = match stmts with
+let rec typecheck_stmts stmts = match stmts with
 									| [] -> []
 									| head::tail -> let head_result= (typecheck_stmt head) in 
 													head_result::(typecheck_stmts tail)
 
 (*DONE*)
 and typecheck_stmt stmt = match stmt with
-				    | Declaration(dcl,linenum)-> let _=typecheck_declaration dcl in stmt
-	(*NOT DONE*)	| Return(rt_stmt,linenum)->type_checking_error ("return stmt not yet implemented linenum:="^(Printf.sprintf "%i" linenum)) (* typecheck_return_stmt rt_stmt (*DONE*) *)
+				    | Declaration(dcl,linenum)-> let _ = typecheck_declaration dcl in stmt
+	(*NOT DONE*)	| Return(rt_stmt,linenum) -> let _ = typecheck_return_stmt rt_stmt in stmt (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> stmt(* "break "  *)
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
@@ -431,7 +444,7 @@ and typecheck_stmt stmt = match stmt with
 				    					 		 let _= print_stack symbol_table linenum in 
 				    							 let _= end_scope()  in Block(result,linenum)
 				    | Conditional(conditional,linenum)->let result= typecheck_conditional conditional in Conditional(result,linenum)
-	(*NOT DONE*)	| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
+					| Switch(switch_clause, switch_expr, switch_case_stmts,linenum)-> let my_init_type= typecheck_switch_clause switch_clause in 
 																					   let my_switch_type= typecheck_switch_expression switch_expr in 
 																					   let my_switch_type_name= extract_type_from_expr_tuple my_switch_type in 
 																					   let my_switch_type_node= extract_node_from_expr_tuple my_switch_type in 
