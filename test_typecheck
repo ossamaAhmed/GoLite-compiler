@@ -1,0 +1,17 @@
+#!/bin/bash
+for validinvalid in ./TEST_PROGRAMS/VALID_TYPECHECK/*; do
+        for filename in $validinvalid; do 
+            echo "$filename" 
+            #./src/goLite.native $filename 
+            ./golitec typecheck $filename
+        done
+done
+for validinvalid in ./TEST_PROGRAMS/INVALID_TYPECHECK/*; do
+        for filename in $validinvalid; do 
+            echo "$filename" 
+            #./src/goLite.native $filename 
+            ./golitec typecheck $filename
+        done
+done
+        
+# done

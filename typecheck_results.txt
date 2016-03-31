@@ -1,0 +1,104 @@
+./TEST_PROGRAMS/VALID_TYPECHECK/add_floats.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/add_ints.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/add_strings.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/append.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_booland.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_boolor.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_eq.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_neq.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/div_ints.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/funcdeclbelow.go
+./TEST_PROGRAMS/VALID_TYPECHECK/funcdeclbelow.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/VALID_TYPECHECK/func_formalwithfuncname.go
+./TEST_PROGRAMS/VALID_TYPECHECK/func_formalwithfuncname.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/VALID_TYPECHECK/func_func_redef.go
+./TEST_PROGRAMS/VALID_TYPECHECK/func_func_redef.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/VALID_TYPECHECK/function_variable_redef.go
+./TEST_PROGRAMS/VALID_TYPECHECK/function_variable_redef.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/VALID_TYPECHECK/mod_ints.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/mult_int.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gteq.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gt.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lteq.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lt.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/or_ints.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing2.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/sub_ints.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/trivial_typechek.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2bool.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2float.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2rune.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/variable_redeclaration.go
+OK
+./TEST_PROGRAMS/VALID_TYPECHECK/var_redecl2.go
+OK
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringsandints.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringsandints.go:7:16: error: cannot use + operator with int and string
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type2.go:4:4: error: expected float64, found int
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type.go:7:4: error: expected float64, found int
+./TEST_PROGRAMS/INVALID_TYPECHECK/bar_assign_type.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/bar_assign_type.go:7:4: error: expected float64, found int
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_recursion_withformal.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_recursion_withformal.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_notenoughargs.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_notenoughargs.go:6:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_params_same_name.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_params_same_name.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_redefinition.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_redefinition.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_undefined.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_undefined.go:6:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_variable_redef.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_variable_redef.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_varredef.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_varredef.go:5:10: error: undeclared identifier: foo
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_strings.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_strings.go:7:19: error: cannot use * operator with string and string
+./TEST_PROGRAMS/INVALID_TYPECHECK/nested_function_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/nested_function_decl.go:5:8: error: syntax error
+./TEST_PROGRAMS/INVALID_TYPECHECK/or_floats.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/or_floats.go:6:4: error: expected float64, found int
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl2.go:6:4: error: expected int, found string
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl.go:7:4: error: no new variables on left side of :=
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_strings.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_strings.go:7:19: error: cannot use - operator with string and string
+./TEST_PROGRAMS/INVALID_TYPECHECK/typecast_inttostring.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/typecast_inttostring.go:7:19: error: invalid type: string
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl2.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl2.go:6:6: error: undeclared identifier: y
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl.go:7:4: error: expected string, found int
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_redeclaration.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_redeclaration.go:6:4: error: x redeclared in this block
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_undefined.go
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_undefined.go:5:10: error: undeclared identifier: x

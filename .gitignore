@@ -4,3 +4,4 @@ src/_build/
 test_results.txt
 *.pretty.go
 *.symboltable
+*.pprint.go

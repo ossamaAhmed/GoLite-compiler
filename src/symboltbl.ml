@@ -1,3 +1,5 @@
+let dumpsymtab = ref false
+
 type symType =
 	| SymInt 
 	| SymFloat64
@@ -10,7 +12,5 @@ type symType =
 	| SymFunc of symType * (string * symType) list (*resturn, args*)
 	| SymType of symType
 	| Void
-
-	and 
-	symTable = 
-	| Scope of (string , symType) Hashtbl.t
+	| NotDefined
+and symTable = Scope of (string , symType) Hashtbl.t

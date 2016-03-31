@@ -24,10 +24,10 @@ func main() {
 	var array []int
 	size := 4
 
-	append(array, 23)
-	append(array, 62)
-	append(array, 80)
-	append(array, 17)
+	array = append(array, 23)
+	array = append(array, 62)
+	array = append(array, 80)
+	array = append(array, 17)
 
 	print("Min.: ")
 	println(selectionSort(array, size)[0])

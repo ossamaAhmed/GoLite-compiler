@@ -1,0 +1,2196 @@
+./TEST_PROGRAMS/VALID/12/derivation.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=12")
+
+./TEST_PROGRAMS/VALID/12/catalan.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/cmd.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/04/brainfuck.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/04/tricky-identifiers.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/helloworld.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/fib.go
+Fatal error: exception TypeChecker.Type_checking_error("short var decl should have at least one variable not defined in same scope linenum:=8")
+
+./TEST_PROGRAMS/VALID/04/tricky-emptiness.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/tricky-emptiness2.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/lol.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/04/tricky-comments.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/tricky-comments2.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/tricky-chained.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/conditions.go
+Valid
+
+./TEST_PROGRAMS/VALID/04/fact.go
+Valid
+
+./TEST_PROGRAMS/VALID/01/#27.1.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/01/#16.1.go
+Valid
+
+./TEST_PROGRAMS/VALID/01/#26.2.go
+Valid
+
+./TEST_PROGRAMS/VALID/01/#26.1.go
+Valid
+
+./TEST_PROGRAMS/VALID/13/test3.go
+Valid
+
+./TEST_PROGRAMS/VALID/15/over.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/15/full2.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=42")
+
+./TEST_PROGRAMS/VALID/15/roots.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=20")
+
+./TEST_PROGRAMS/VALID/05/if_else_rob_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/prime_count.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=6")
+
+./TEST_PROGRAMS/VALID/05/structs.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/arithmetic_add_unary_plus.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/binary_shift_left.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/in-line_comments.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/multi-multi-line_comments.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_elifstar_else_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/2d_array_type_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/arithmetic_add_unary_minus.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_struct.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/switchs.go
+Fatal error: exception TypeChecker.Type_checking_error("short var decl should have at least one variable not defined in same scope linenum:=16")
+
+./TEST_PROGRAMS/VALID/05/func_decs_long.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/loop_miss_2nd_part.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_elif_else_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/distributive_var.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=13")
+
+./TEST_PROGRAMS/VALID/05/anon_struct_array_type_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/top_var_int_single_no_init_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/underscore_id.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/anon_struct_array_var_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/2d_slice_type_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/semi_terminators.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/append.go
+Fatal error: exception TypeChecker.Type_checking_error("print only accepts base types linenum:=6")
+
+./TEST_PROGRAMS/VALID/05/square_root.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=8")
+
+./TEST_PROGRAMS/VALID/05/if_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/anonymous_struct.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/arithmetic_sub_unary_minus.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/bitwise_clear.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_interpreted_string.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/anon_struct_within_struct.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/slice_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_stmt_else_rob_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/top_var_bool_single_no_init_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_func.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/type_decs.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/fibonacci.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/array.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/array_access_on_func_call.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=20")
+
+./TEST_PROGRAMS/VALID/05/if_stmt_else_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/multiple_unary_minus_with_paren.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/odd_even.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/VALID/05/loop_miss_3rd_part.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/func_call_no_trailing_comma.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/capital_x_in_hex.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/top_var_string_single_no_init_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/single_line_prog.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/extra_terminating_whitespace.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/05/array_of_slices_of_arrays.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/loop_miss_1st_part.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/ops.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/bitwise_and.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/op_precedence.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/leading_zeroes_in_octal.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/acessing_field_of_field.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/05/top_var_rune_single_no_init_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_elif_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/hello_world.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/top_var_float_single_no_init_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/multiple_unary_plus_with_paren.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/array_of_slices_of_arrays_of_slices.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/crazy_multi-line_comment.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/for_loop.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/2d_array_var_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/braceless_case_block.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/unary_minus.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/func_decs_short.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/arithmetic_sub_unary_plus.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_elif_else_rob_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_stmt_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/for_inf_loop.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_three_part_loop.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/expressions.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=10")
+
+./TEST_PROGRAMS/VALID/05/inline_multiple_array_dec.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/var_decs.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/sort_search.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+./TEST_PROGRAMS/VALID/05/distributive_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_raw_string.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_else_reg_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/time_struct.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/05/project_euler_1.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_reg_brace.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/field_access_on_func_call.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/05/leading_zeroes_in_hex.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/type_casts.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/infinite_loop.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_elifstar_reg_brace.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/binary_shift_right.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_else_reg_brace.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/05/3d_array_access.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/empty_multi-line_comment.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/for_while_loop.go
+Valid
+
+./TEST_PROGRAMS/VALID/05/if_stmt_elif_else_rob_brace.go
+Valid
+
+./TEST_PROGRAMS/VALID/03/arrayheap.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/03/varDeclAndAssign.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/03/squareroot.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/03/bubblesort.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/03/factors.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/VALID/03/power.go
+Valid
+
+./TEST_PROGRAMS/VALID/03/sum.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/03/expressions.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/03/func.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/03/typeDeclAndStruct.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/06/values.go
+Valid
+
+./TEST_PROGRAMS/VALID/06/var_decl.go
+Valid
+
+./TEST_PROGRAMS/VALID/06/only_package.go
+Valid
+
+./TEST_PROGRAMS/VALID/06/valid2.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/06/type_decl.go
+Valid
+
+./TEST_PROGRAMS/VALID/06/valid1.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/06/valid3.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/02/structs.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/values.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/02/vardecls.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/typedeclsimple.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/vardeclmul.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/runes.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/for.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/switch.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/arrays.go
+Fatal error: exception TypeChecker.Type_checking_error("print only accepts base types linenum:=10")
+
+./TEST_PROGRAMS/VALID/02/variables.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/shortvarDecl.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/comments2.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/slices.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/02/helloworld.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=22")
+
+./TEST_PROGRAMS/VALID/02/print.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/rawstringlit.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/comments1.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/stupid.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/conditionals.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/VALID/02/typedeclcomp.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/shortformfunction.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/longformfunction.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/validExpressions.go
+Valid
+
+./TEST_PROGRAMS/VALID/02/functions.go
+Fatal error: exception TypeChecker.Type_checking_error("function call and argument list length mismatch linenum:=41")
+
+./TEST_PROGRAMS/VALID/09/switch_stmt.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/return_in_ifelse.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/runes.go
+Valid
+
+./TEST_PROGRAMS/VALID/09/return_in_switch.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/append.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/funccall.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/v1.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/var_decl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/09/set2square.go
+Fatal error: exception Error.GoliteError("Syntax Error at 51")
+
+./TEST_PROGRAMS/VALID/09/blank_ids.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/exp_statements.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/type_decl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/09/index_exp.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/for_loops.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/inner_scope.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/if_statements.go
+Valid
+
+./TEST_PROGRAMS/VALID/09/return_in_while.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/strings.go
+Valid
+
+./TEST_PROGRAMS/VALID/09/calc.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+./TEST_PROGRAMS/VALID/09/expressions.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/func_decl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/09/assignments.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/sorting.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/09/return_in_block.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/nested_ifelse.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/inderjot.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/if_valid.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/array_spec.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/struct.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/runes.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/floating_point.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=6")
+
+./TEST_PROGRAMS/VALID/07/struct_spec.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_both.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=5")
+
+./TEST_PROGRAMS/VALID/07/var_decl_exp.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/switch.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/valid_inc.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_function.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/valid_goLiteArrayIndexing.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/type_intarray.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_type_just_vars.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/decl_decassign.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/type_treenode.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/array.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/type.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/func_just_signature.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/bool.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/if_else.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/casper.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/func_decl_spec.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/type_decl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/07/typecast.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/decl_valid_2.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/valid1.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/decl.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/generalComments.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/type_distribute.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/just_var_declaration.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/slice_append.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/valid_acess_exp_within_brackets2.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/var_decl_exp_just_vars.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/comments_and_semicolons_tricky_bug.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_nil_illegal.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/valid_decassing.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_both.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/slice.go
+Fatal error: exception TypeChecker.Type_checking_error("assignment should have the same type linenum:=11")
+
+./TEST_PROGRAMS/VALID/07/anderson.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a numeric value")
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_exp.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/lvalue.go
+Fatal error: exception TypeChecker.Type_checking_error("assignment should have the same type linenum:=10")
+
+./TEST_PROGRAMS/VALID/07/func_decl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/07/comments.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/valid_just_package.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_multiple_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/var_decl_type.go
+Valid
+
+./TEST_PROGRAMS/VALID/07/func_decl_spec_acc.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+./TEST_PROGRAMS/VALID/07/forloop.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/07/array_valid_2.go
+Fatal error: exception TypeChecker.Type_checking_error("assignment should have the same type linenum:=7")
+
+./TEST_PROGRAMS/VALID/07/var_decl_gospec.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=5")
+
+./TEST_PROGRAMS/VALID/07/functions.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/11/prime.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/11/atoi.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+./TEST_PROGRAMS/VALID/08/structs.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/08/blankType.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/08/forLoops.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/emptyStatement.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/ifStatements.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/08/switch.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/complexExpression.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/validProgram2.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/shortDec.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/incDecStatemnet.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/testLessThan.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/arrays.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/validProgram3.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/breakContinue.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/nestedStruct.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/08/slices.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/semicolon.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/literals.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/skeleton.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/blankidentifier.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/VALID/08/noNewlineAtEOF.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/semicolons.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/VALID/08/plusEquals.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/prints.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/typeDecls.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/VALID/08/topLevelDecs.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/comments.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/validProgram1.go
+Valid
+
+./TEST_PROGRAMS/VALID/08/blankFieldsStruct.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/var_redecl2.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_runes.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2bool.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_booland.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_strings.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/mult_int.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/or_ints.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/append.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/mult_runes.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/function_variable_redef.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_eq.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lt.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/mod_ints.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_ints.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/func_func_redef.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/sub_runes.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2float.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gt.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_lteq.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/trivial_typechek.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/sub_ints.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/comparable_neq.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/div_ints.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/variable_redeclaration.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/type_cast_int2rune.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/funcdeclbelow.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/div_runes.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/add_floats.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/func_formalwithfuncname.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/binaryop_boolor.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/slices_indexing2.go
+Valid
+
+./TEST_PROGRAMS/VALID_TYPECHECK/ordered_gteq.go
+Valid
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=7")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_notenoughargs.go
+Fatal error: exception TypeChecker.Type_checking_error("function call and argument list length mismatch linenum:=8")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/sub_strings.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a numeric value")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_variable_redef.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_redefinition.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_undefined.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_undefined.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/nested_function_decl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/or_floats.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=5")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringrune.go
+Fatal error: exception TypeChecker.Type_checking_error("plus operation should be done on a numeric value or string")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl2.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl.go
+Fatal error: exception TypeChecker.Type_checking_error("short var decl should have at least one variable not defined in same scope linenum:=6")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/typecast_inttostring.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bar_assign_type.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=7")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/mod_floats.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/bad_assign_type2.go
+Fatal error: exception TypeChecker.Type_checking_error("expressions have to be the same as variable declaration at linenum:=4")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/mult_strings.go
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a numeric value")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_recursion_withformal.go
+Fatal error: exception Match_failure("typeChecker.ml", 181, 97)
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_runeint.go
+Fatal error: exception TypeChecker.Type_checking_error("plus operation should be done on a numeric value or string")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/func_varredef.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/add_stringsandints.go
+Fatal error: exception TypeChecker.Type_checking_error("plus operation should be done on a numeric value or string")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_redeclaration.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/variable_list_decl.go
+Fatal error: exception TypeChecker.Type_checking_error("assignment should have the same type linenum:=6")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/function_params_same_name.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID_TYPECHECK/short_var_decl2.go
+Fatal error: exception TypeChecker.Type_checking_error("assignment should have the same type linenum:=5")
+
+./TEST_PROGRAMS/valid/01/#13.1.go
+Valid
+
+./TEST_PROGRAMS/INVALID/14/0053rune_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/4051_if_double_empty.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/14/0632_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0303_string_escape_octal.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0402_rawstring_escaped_bquote.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0401_rawstring_backquote.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0350_array_type_parens.go
+Valid
+
+./TEST_PROGRAMS/INVALID/14/5151_funcion_call_array.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/14/0630_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0204_rune_many_char.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0202_rune_few_octal.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0638_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0251_runes_backslash.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0150_one_line_multiple_decl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/14/0635_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/2051_expression_stmt_parens.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/14/0636_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0701_nested_block_comment.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/4050_if_triple_empty.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/14/0050_int_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0631_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0250_runes_single_quote.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0639_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0303_expr_array_decl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/14/0634_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0302_string_escape.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0640_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0637_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0002_semicolons.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0054_float64_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0051_bool_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0052_string_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/0203_rune_few_hexadecimal.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/14/0633_unsupported_kw.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/14/2050_expression_stmt_id.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/12/parser_declaration_invalid1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/0.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/79.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/7.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:62")
+
+./TEST_PROGRAMS/INVALID/04/27.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/37.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/68.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/04/51.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/04/53.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/04/48.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/65.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/82.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/17.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:84")
+
+./TEST_PROGRAMS/INVALID/04/34.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/102.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/22.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/75.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/85.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/40.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/100.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/93.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/83.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/54.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/92.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/39.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/49.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/77.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/57.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/50.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/04/73.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/04/8.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:58")
+
+./TEST_PROGRAMS/INVALID/04/52.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/04/15.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:70")
+
+./TEST_PROGRAMS/INVALID/04/12.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:78")
+
+./TEST_PROGRAMS/INVALID/04/60.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/87.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/04/10.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:73")
+
+./TEST_PROGRAMS/INVALID/04/13.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:78")
+
+./TEST_PROGRAMS/INVALID/04/35.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/29.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/61.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/104.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/38.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/59.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/24.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/74.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/04/25.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/46.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/99.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/47.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/45.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/78.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/43.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/41.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/21.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/95.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/04/89.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/04/56.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/30.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/86.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/04/5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/44.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/55.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/33.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/90.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/80.go
+Fatal error: exception Error.GoliteError("Parser Error at 5: Number of variables must match number of expressions in shortvar declaration")
+
+./TEST_PROGRAMS/INVALID/04/98.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/81.go
+Fatal error: exception Error.GoliteError("Parser Error at 5: Number of variables must match number of expressions in shortvar declaration")
+
+./TEST_PROGRAMS/INVALID/04/64.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/11.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:78")
+
+./TEST_PROGRAMS/INVALID/04/19.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/76.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/62.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/18.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:86")
+
+./TEST_PROGRAMS/INVALID/04/97.go
+Fatal error: exception Error.GoliteError("Unknown token on line 4:41")
+
+./TEST_PROGRAMS/INVALID/04/67.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/91.go
+Fatal error: exception Error.GoliteError("Parser Error at 4: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/04/70.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/04/14.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/9.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:76")
+
+./TEST_PROGRAMS/INVALID/04/2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/96.go
+Fatal error: exception Error.GoliteError("Unknown token on line 4:41")
+
+./TEST_PROGRAMS/INVALID/04/103.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/72.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/04/31.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/66.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/04/88.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/04/20.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/26.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/42.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/16.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:84")
+
+./TEST_PROGRAMS/INVALID/04/32.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/36.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/94.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/28.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/6.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/23.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/58.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/71.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/04/63.go
+Fatal error: exception Error.GoliteError("Syntax Error at 8")
+
+./TEST_PROGRAMS/INVALID/04/84.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/04/101.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/04/69.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/01/#19.1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/01/#28.1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/01/#16.3.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/01/#32.1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/01/#16.2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/15/semicolon1.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/15/assignment1.go
+Fatal error: exception Error.GoliteError("Parser Error at 6: Number of variables must match number of expressions in shortvar declaration")
+
+./TEST_PROGRAMS/INVALID/15/anonymous.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/15/weeding4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/15/weeding2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/15/lexer2.go
+Fatal error: exception Error.GoliteError("Unknown token on line 1:1")
+
+./TEST_PROGRAMS/INVALID/15/weeding1.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/15/weeding5.go
+Fatal error: exception Ast.AST_error("more than one default case")
+
+./TEST_PROGRAMS/INVALID/15/semicolon2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/15/declaration2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/15/id.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/15/operators1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/15/lexer3.go
+Fatal error: exception Error.GoliteError("Unknown token on line 4:41")
+
+./TEST_PROGRAMS/INVALID/15/keyword2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/15/weeding3.go
+Valid
+
+./TEST_PROGRAMS/INVALID/15/declaration1.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/15/literal1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/15/assignment3.5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/15/assignment2.go
+Fatal error: exception Error.GoliteError("Parser Error at 8: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/15/semicolon3.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/15/lexer1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/15/keyword1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/05/switch_with_fallthrough.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_no_comma.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/if_else_rob_brace.go
+Fatal error: exception Error.GoliteError("Syntax Error at 8")
+
+./TEST_PROGRAMS/INVALID/05/multicharacter_rune.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:57")
+
+./TEST_PROGRAMS/INVALID/05/empty_three_part_loop_missing_semi.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_with_init_stmt.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/global_short_assign.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_closing_bracket_not_on_own_line.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/global_inc_stmt.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/no_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/multi_packages.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/05/nested_multi-line_comment.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/expr_as_field_access.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/05/switch_rob_brace_no_init_stmt.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/05/array_size_dec_after_type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/func_arg_type_before.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/05/loop_with_robillard_braces.go
+Fatal error: exception Error.GoliteError("Syntax Error at 8")
+
+./TEST_PROGRAMS/INVALID/05/non-int_in_array_var_dec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/multiple_same_types_for_var.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/if_rob_brace.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_one_dec_on_single_line.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/array_var_dec_with_missing_type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/dangling_top_expr.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/imbalanced_if_parens.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/2d_array_with_conflicting_types_in_var_dec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/leading_zeroes_in_int.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/squote_string.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:63")
+
+./TEST_PROGRAMS/INVALID/05/func_args_ending_in_comma.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size_type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/invalid_num_args_to_append.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/05/2d_array_var_dec_with_missing_type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/global_loop.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/inline_multiple_array_dec_with_separate_size.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/escaped_dquote_rune.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:62")
+
+./TEST_PROGRAMS/INVALID/05/multi-var_assign_with_sep_types.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/no_if_block_braces.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/05/multiple_unary_plus_no_paren.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/interpreted_string_closed_with_squote.go
+Fatal error: exception Error.GoliteError("Unknown token on line 7:148")
+
+./TEST_PROGRAMS/INVALID/05/multiple_distinct_types_for_var.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/missing_var_type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/blank_package.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/func_within_func.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/distributed_type_same_line_with_comma.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/loop_with_parentheses.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/multiline_interpreted_string_lit.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:103")
+
+./TEST_PROGRAMS/INVALID/05/missin_closing_brace_at_end.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/05/empty_var_dec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/global_dec_stmt.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/if_elif_else_rob_brace.go
+Fatal error: exception Error.GoliteError("Syntax Error at 10")
+
+./TEST_PROGRAMS/INVALID/05/invalid_hex_digit.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/struct_dec_within_struct.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/05/lhs_expression_in_var_dec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/distributive_type_with_one_type_on_single_line.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/fallthrough_id.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/05/raw_string_closed_with_dquote.go
+Fatal error: exception Error.GoliteError("Unknown token on line 7:132")
+
+./TEST_PROGRAMS/INVALID/05/func_call_trailing_comma.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/05/empty_rune.go
+Fatal error: exception Error.GoliteError("Unknown token on line 6:62")
+
+./TEST_PROGRAMS/INVALID/05/multiple_unary_minus_no_paren.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/05/distributive_var_with_closing_bracket_not_on_own_line.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl3.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/03/invalid_for6.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_types2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch4.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/03/invalid_return1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch7.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_print4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_10.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl1.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch6.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_print5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 10")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch8.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_typecast.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/03/s1.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:92")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch9.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_types3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_if4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_8.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for9.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for8.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl2.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch10.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/03/invalid_print1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_11.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for7.go
+Fatal error: exception Error.GoliteError("Syntax Error at 8")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funccall1.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/03/s3.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:90")
+
+./TEST_PROGRAMS/INVALID/03/invalid_if5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is defined more than one time")
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_expstmt1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/03/invalid_return2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_9.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_7.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=12")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_funccall2.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_if2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_if1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/s2.go
+Fatal error: exception Error.GoliteError("Unknown token on line 5:90")
+
+./TEST_PROGRAMS/INVALID/03/invalid_print3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_for1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_6.go
+Fatal error: exception TypeChecker.Type_checking_error("return stmt doesnt have the same type at linenum:=12")
+
+./TEST_PROGRAMS/INVALID/03/invalid_types1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_return3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_if3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/03/invalid_print2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/06/invalid2.go
+Fatal error: exception Error.GoliteError("Parser Error at 2: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/06/invalid3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/06/invalid1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/02/missingpackage.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/02/badeqsigns.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
+./TEST_PROGRAMS/INVALID/02/invalidfunctionkeyword.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/02/multipleReturnsFunction.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/02/invalid_var_assign.go
+Fatal error: exception Error.GoliteError("Parser Error at 10: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/02/for1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 10")
+
+./TEST_PROGRAMS/INVALID/02/notallpathshavereturns.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+./TEST_PROGRAMS/INVALID/02/badrunes.go
+Fatal error: exception Error.GoliteError("Unknown token on line 4:38")
+
+./TEST_PROGRAMS/INVALID/02/badbreakstmt.go
+Fatal error: exception Ast.AST_error("Break statement outside a loop")
+
+./TEST_PROGRAMS/INVALID/02/comments1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/02/multipleReturns.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/02/exprlist.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/09/unclosed_blockcomment.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/09/blank_append.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_print.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/nested_blockcomment.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/09/break_not_in_loop.go
+Fatal error: exception Ast.AST_error("Break statement outside a loop")
+
+./TEST_PROGRAMS/INVALID/09/blank_field.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_returns.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/non-name.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/09/unclosed_rawstring.go
+Fatal error: exception Error.GoliteError("Unknown token on line 3:15")
+
+./TEST_PROGRAMS/INVALID/09/missing_package_id.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/09/unclosed_string.go
+Fatal error: exception Error.GoliteError("Unknown token on line 3:15")
+
+./TEST_PROGRAMS/INVALID/09/blank_index.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_exp.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/INVALID/09/blank_selector.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_funccall_arg.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/continue_outside_loop.go
+Fatal error: exception Ast.AST_error("Continue statement outside a loop")
+
+./TEST_PROGRAMS/INVALID/09/for_clause_errors.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/09/blank_funcsign.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/INVALID/09/blank_package.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/missing_typecast.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/09/newline_string.go
+Fatal error: exception Error.GoliteError("Unknown token on line 3:15")
+
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch.go
+Fatal error: exception Error.GoliteError("Parser Error at 9: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/09/blank_conversion.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/assignment_mismatch_short.go
+Fatal error: exception Error.GoliteError("Parser Error at 5: Number of variables must match number of expressions in shortvar declaration")
+
+./TEST_PROGRAMS/INVALID/09/blank_println.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/missing_return.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/09/unary_ops.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/09/unknown_escape.go
+Fatal error: exception Error.GoliteError("Unknown token on line 4:39")
+
+./TEST_PROGRAMS/INVALID/09/blanktype.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/INVALID/09/blank_index_int.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_assignements.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/09/blank_funccall.go
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current and previous scopes")
+
+./TEST_PROGRAMS/INVALID/07/struct.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/07/invalid_ifexp.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/07/struct_spec_anonymous.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/07/func_just_id.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/07/var_decl_struct_all_in_one_line.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/07/invalid_else.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/07/decl_decassign.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/07/type.go
+Fatal error: exception Error.GoliteError("Syntax Error at 15")
+
+./TEST_PROGRAMS/INVALID/07/periodInsteadOfComma.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/07/struct_literal.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/invalid_ass.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/07/switch_invalid_default_exp.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/invalid_goLiteArrayDeclIndexing.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/07/2packages.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/07/generalComments.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/forloop_curly_down.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/slice_append.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/07/typecast_string.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/07/break_invalid.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/goKeywordFollowedByNewLine.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/07/slice.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/07/func_decl_spec_noacc.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/07/invalid_index_decl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/07/comments.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/07/switch_invalid_case_exp.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/INVALID/07/dangling_else.go
+Fatal error: exception Error.GoliteError("Syntax Error at 9")
+
+./TEST_PROGRAMS/INVALID/07/invalid1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/07/invalid_only_intconst_array_decl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/07/string_unclosed.go
+Fatal error: exception Error.GoliteError("Unknown token on line 2:22")
+
+./TEST_PROGRAMS/INVALID/07/functions.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/11/test17.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/11/test16.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/11/test10.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/11/test7.go
+Fatal error: exception Error.GoliteError("Syntax Error at 14")
+
+./TEST_PROGRAMS/INVALID/11/test5.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/11/test9.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/11/test13.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/11/test19.go
+Fatal error: exception Error.GoliteError("Syntax Error at 17")
+
+./TEST_PROGRAMS/INVALID/11/test3.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/11/test20.go
+Fatal error: exception Error.GoliteError("Syntax Error at 17")
+
+./TEST_PROGRAMS/INVALID/11/test4.go
+Fatal error: exception Error.GoliteError("Syntax Error at 5")
+
+./TEST_PROGRAMS/INVALID/11/test8.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/11/test11.go
+Fatal error: exception Failure("int_of_string")
+
+./TEST_PROGRAMS/INVALID/11/test18.go
+Fatal error: exception Error.GoliteError("Syntax Error at 17")
+
+./TEST_PROGRAMS/INVALID/11/test1.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/11/test15.go
+Fatal error: exception Error.GoliteError("Syntax Error at 18")
+
+./TEST_PROGRAMS/INVALID/08/arrayLit.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/nestedVarBlock.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/badShortDecl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/noFunctionBody.go
+Invalid grammar
+
+./TEST_PROGRAMS/INVALID/08/twoReturns.go
+Fatal error: exception Error.GoliteError("Syntax Error at 2")
+
+./TEST_PROGRAMS/INVALID/08/badIncDec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/badPackage.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/badAssign.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/08/badDecl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/08/badNumberofIds.go
+Fatal error: exception Error.GoliteError("Parser Error at 3: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/08/nestedTypeBlock.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/badLvalue.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/08/badAssignNumberofIds.go
+Fatal error: exception Error.GoliteError("Parser Error at 5: Number of variables must match number of expressions in assignment")
+
+./TEST_PROGRAMS/INVALID/08/badShortDeclNumberOfIds.go
+Fatal error: exception Error.GoliteError("Parser Error at 3: Number of variables must match number of expressions in shortvar declaration")
+
+./TEST_PROGRAMS/INVALID/08/badLvalueIncDec.go
+Fatal error: exception Ast.AST_error("Lvalue error")
+
+./TEST_PROGRAMS/INVALID/08/nestedBlockComment.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/badForPostStmt.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/structLit.go
+Fatal error: exception Error.GoliteError("Syntax Error at 4")
+
+./TEST_PROGRAMS/INVALID/08/topLevelShortDecl.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/multipleAssign.go
+Fatal error: exception Error.GoliteError("Syntax Error at 3")
+
+./TEST_PROGRAMS/INVALID/08/noPackage.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/badArrayDec.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/sliceLiteral.go
+Fatal error: exception Error.GoliteError("Syntax Error at 1")
+
+./TEST_PROGRAMS/INVALID/08/badFunctioncall.go
+Invalid grammar
+
+./TEST_PROGRAMS/invalid/01/#1.7.go
+Fatal error: exception Error.GoliteError("Syntax Error at 7")
+
