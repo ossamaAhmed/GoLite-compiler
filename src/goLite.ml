@@ -31,6 +31,7 @@ let _ =
         let _ = PrettyPrinter.print tokens filedir out in
         let typecheckedProg = TypeChecker.check tokens out in
         let _ = if !pptype = true then PrettyPrinterTyped.print typecheckedProg filedir out in
+        let codeGeneratedProg = CodeGen.generate tokens filedir out in
         print_string ("Valid\n"); 
     with 
         | Parser.Error -> print_string("Invalid grammar\n"); exit 0;
