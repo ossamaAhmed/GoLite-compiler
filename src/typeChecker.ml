@@ -705,7 +705,7 @@ and firstpass_typecheck_signature signature func_name= match signature with
 								| _ -> decl *)
 
 
-let type_check_program program filename= 
+let check program filename= 
 							let _= set_file filename in let _= start_scope () in 
 								 (match program with
 									  | Prog(packagename,dcllist)->

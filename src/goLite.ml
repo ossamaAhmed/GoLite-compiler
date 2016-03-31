@@ -28,8 +28,8 @@ let _ =
         (* Lexer.print_tokens lexbuf; *)
         let tokens = Parser.parse Lexer.golite lexbuf in
         let weededProg = Weeder.weed tokens in 
-        let _ = PrettyPrinter2.print tokens filedir out in
-        let typecheckedProg = TypeChecker.type_check_program tokens out in
+        let _ = PrettyPrinter.print tokens filedir out in
+        let typecheckedProg = TypeChecker.check tokens out in
         let _ = if !pptype = true then PrettyPrinterTyped.print typecheckedProg filedir out in
         print_string ("Valid\n"); 
     with 
