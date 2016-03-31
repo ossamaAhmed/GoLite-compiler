@@ -5,3 +5,5 @@ test_results.txt
 *.pretty.go
 *.symboltable
 *.pprint.go
+*.j
+*.symtab
