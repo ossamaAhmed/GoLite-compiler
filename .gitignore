@@ -4,6 +4,7 @@ src/_build/
 test_results.txt
 *.pretty.go
 *.symboltable
+*.symtab
 *.pprint.go
 *.j
-*.symtab
+*.class
