@@ -312,7 +312,7 @@ let generate program filedir filename =
                 print_expr exp1;
                 print_string " )";
             end
-        | Value(value, _, _)-> print_literal value
+        | Value(value, _, _) -> print_literal value
         | Selectorexpr(exp1, Identifier(iden, _), _, _) ->
             begin
                 print_string "( ";
@@ -573,17 +573,19 @@ let generate program filedir filename =
             end
         | Print(exprs, _) -> 
             begin
-                print_tab level;
-                print_string "print(";
+                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                print_string_with_tab level "ldc ";
                 print_expr_list exprs;
-                print_string ")\n"
+                print_string "\n";
+                print_string_with_tab level "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n";
             end
         | Println(exprs, _) -> 
             begin
-                print_tab level;
-                print_string "println(";
+                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                print_string_with_tab level "ldc ";
                 print_expr_list exprs;
-                print_string ")\n";
+                print_string "\n";
+                print_string_with_tab level "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n";
             end
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
@@ -697,14 +699,16 @@ let generate program filedir filename =
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, _) ->
-            begin
-                print_string "func ";
-                print_string func_name;
-                print_func_sig signature;
-                print_string " {\n";
-                print_stmt_list (level+1) stmt_list;
-                print_string "}\n";
-            end
+            match func_name with
+            | "main" ->
+                begin
+                    print_string ".method public static main([Ljava/lang/String;)V\n";
+                    print_string_with_tab (level+1) ".limit stack 2\n";
+                    print_stmt_list (level+1) stmt_list;
+                    print_string_with_tab (level+1) "return\n";
+                    print_string ".end method\n";
+                end
+            | _ -> ()
         | _ -> ()
     and print_decl_list level decl_list = 
         List.iter (print_decl level) decl_list
