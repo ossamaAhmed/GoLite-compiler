@@ -1,6 +1,8 @@
 open Printf
 open Ast
 
+exception Code_generation_error of string
+
 let generate program filedir filename =
 
     (* Program AST unpacking *)
@@ -10,11 +12,18 @@ let generate program filedir filename =
 
     (* Utilities *)
     let print_string s = output_string output_file s in
+    let println_string s = output_string output_file (s^"\n") in
     let print_tab (level) = print_string (String.make level '\t') in
     let print_string_with_tab (level) s =
         begin
             print_tab (level);
             print_string s
+        end
+    in
+    let println_string_with_tab (level) s =
+        begin
+            print_tab (level);
+            println_string s
         end
     in
     let print_int value = print_string (string_of_int value) in
@@ -59,7 +68,16 @@ let generate program filedir filename =
     in
     let rec print_type_name level type_name = match type_name with
         | Definedtype(Identifier(value, _), _) -> print_string value
-        | Primitivetype(value, _) -> print_string value 
+        | Primitivetype(value, _) -> ()
+(*
+            let _ = match value with
+                | "int" -> print_string "I"
+                | "rune" -> print_string "C"
+                | "bool" -> print_string "B"
+                | "string" -> print_string "[Ljava/lang/String;"
+                | "float64" -> print_string "F"
+                | _ -> print_string "V"
+*)
         | Arraytype(len, type_name2, _)-> 
             begin
                 print_string "[ ";
@@ -347,21 +365,30 @@ let generate program filedir filename =
                 print_expr_list tail;
             end
     in
-    let print_func_return_type return_type = match return_type with
-        | FuncReturnType(return_type_i, _) -> 
-            begin
-                print_string " ";
-                print_type_name 0 return_type_i;
-            end
-        | Empty -> ()
+    let string_return_type type_i = match type_i with
+        | Primitivetype(value, _) -> match value with
+            | "int" -> "I"
+            | "rune" -> "C"
+            | "bool" -> "B"
+            | "string" -> "[Ljava/lang/String;"
+            | "float64" -> "F"
+            | _ -> "V"
+        | _ -> "V"
     in
-    let print_func_sig signature = match signature with
+    let string_method_decl_return_type return_type = match return_type with
+        | FuncReturnType(return_type_i, _) -> string_return_type return_type_i
+        | Empty -> "V"
+    in
+    let print_method_decl level func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
-                print_string "(";
-                print_identifier_list_with_type func_params;
-                print_string ")";
-                print_func_return_type return_type;
+                (* print_identifier_list_with_type func_params; *)
+                println_string_with_tab level (Printf.sprintf ".method public %s(%s)%s" func_name "" (string_method_decl_return_type return_type));
+                println_string_with_tab (level+1) ".limit stack 99";
+                println_string_with_tab (level+1) ".limit locals 99";
+(*                 print_method_decl_return_type return_type; *)
+                println_string_with_tab (level+1) "return";
+                println_string_with_tab level ".end method\n";
             end
     in
     let print_var_decl level decl = match decl with
@@ -471,12 +498,6 @@ let generate program filedir filename =
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, signature, stmt_list, _) ->
                     begin
-                        print_string "func ";
-                        print_string func_name;
-                        print_func_sig signature;
-                        print_string " {\n";
-                        List.iter (print_stmt (level+1)) stmt_list;
-                        print_string "}\n";
                     end
                 | _ -> ()
             )
@@ -702,13 +723,18 @@ let generate program filedir filename =
             match func_name with
             | "main" ->
                 begin
-                    print_string ".method public static main([Ljava/lang/String;)V\n";
-                    print_string_with_tab (level+1) ".limit stack 2\n";
+                    println_string ".method public static main([Ljava/lang/String;)V";
+                    println_string_with_tab (level+1) ".limit stack 99";
+                    println_string_with_tab (level+1) ".limit locals 99";
+                    println_string_with_tab (level+1) ("new "^(filename)^"");
+                    println_string_with_tab (level+1) "dup";
+                    println_string_with_tab (level+1) ("invokespecial "^(filename)^"/<init>()V\n");
                     print_stmt_list (level+1) stmt_list;
-                    print_string_with_tab (level+1) "return\n";
-                    print_string ".end method\n";
+                    println_string "";
+                    println_string_with_tab (level+1) "return";
+                    println_string ".end method";
                 end
-            | _ -> ()
+            | _ -> print_method_decl level func_name signature stmt_list
         | _ -> ()
     and print_decl_list level decl_list = 
         List.iter (print_decl level) decl_list

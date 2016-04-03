@@ -1,5 +1,9 @@
 package main;
 
+func hello() {
+
+}
+
 func main() {
-    println("Hello World!");
+    
 }
