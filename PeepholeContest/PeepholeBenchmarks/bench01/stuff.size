@@ -1,0 +1,19 @@
+Generated: BacktrackSolver.class
+Generated: Benchmark.class
+Generated: SudokuSolver.class
+----- Method code sizes ----
+BacktrackSolver.dump:;         code_length 5
+BacktrackSolver.dump:;         code_length 45
+BacktrackSolver.dump:;         code_length 42
+BacktrackSolver.dump:;         code_length 50
+BacktrackSolver.dump:;         code_length 50
+BacktrackSolver.dump:;         code_length 105
+BacktrackSolver.dump:;         code_length 77
+BacktrackSolver.dump:;         code_length 145
+BacktrackSolver.dump:;         code_length 34
+BacktrackSolver.dump:;         code_length 7
+Benchmark.dump:;         code_length 5
+Benchmark.dump:;         code_length 96
+SudokuSolver.dump:;         code_length 5
+SudokuSolver.dump:;         code_length 136
+SudokuSolver.dump:;         code_length 346

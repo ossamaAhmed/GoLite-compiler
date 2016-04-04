@@ -1,0 +1,2 @@
+all:
+	$(PEEPDIR)/joosc *.java

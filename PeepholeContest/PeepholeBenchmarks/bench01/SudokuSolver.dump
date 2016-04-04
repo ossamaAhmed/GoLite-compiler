@@ -1,0 +1,428 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 59
+; cp[1] (offset 0xf) -> CONSTANT_Methodref 38, 3
+; cp[2] (offset 0x17) -> CONSTANT_Utf8 "solve"
+; cp[3] (offset 0x1c) -> CONSTANT_NameAndType 47, 6
+; cp[4] (offset 0x21) -> CONSTANT_NameAndType 42, 39
+; cp[5] (offset 0x38) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[6] (offset 0x50) -> CONSTANT_Utf8 "(Ljava/lang/Object;)V"
+; cp[7] (offset 0x56) -> CONSTANT_Utf8 "()V"
+; cp[8] (offset 0x5b) -> CONSTANT_Integer 13
+; cp[9] (offset 0x60) -> CONSTANT_Integer 12
+; cp[10] (offset 0x6b) -> CONSTANT_Utf8 "toString"
+; cp[11] (offset 0x70) -> CONSTANT_NameAndType 49, 55
+; cp[12] (offset 0x75) -> CONSTANT_Fieldref 44, 52
+; cp[13] (offset 0x88) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[14] (offset 0x9c) -> CONSTANT_Utf8 "java/lang/Integer"
+; cp[15] (offset 0x9f) -> CONSTANT_String 50
+; cp[16] (offset 0xa4) -> CONSTANT_Methodref 23, 30
+; cp[17] (offset 0xa9) -> CONSTANT_Integer 9
+; cp[18] (offset 0xae) -> CONSTANT_Integer 8
+; cp[19] (offset 0xb3) -> CONSTANT_NameAndType 27, 20
+; cp[20] (offset 0xb9) -> CONSTANT_Utf8 "()I"
+; cp[21] (offset 0xbe) -> CONSTANT_Methodref 23, 4
+; cp[22] (offset 0xc1) -> CONSTANT_Class 13
+; cp[23] (offset 0xc4) -> CONSTANT_Class 14
+; cp[24] (offset 0xc7) -> CONSTANT_Class 31
+; cp[25] (offset 0xdc) -> CONSTANT_Utf8 "Ljava/util/Vector;"
+; cp[26] (offset 0xed) -> CONSTANT_Utf8 "SudokuSolver.j"
+; cp[27] (offset 0xf7) -> CONSTANT_Utf8 "readInt"
+; cp[28] (offset 0xff) -> CONSTANT_Utf8 "parse"
+; cp[29] (offset 0x104) -> CONSTANT_Methodref 38, 4
+; cp[30] (offset 0x109) -> CONSTANT_NameAndType 10, 5
+; cp[31] (offset 0x11b) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[32] (offset 0x12a) -> CONSTANT_Utf8 "SudokuSolver"
+; cp[33] (offset 0x13d) -> CONSTANT_Utf8 "java/util/Vector"
+; cp[34] (offset 0x149) -> CONSTANT_Utf8 "elementAt"
+; cp[35] (offset 0x14e) -> CONSTANT_NameAndType 42, 7
+; cp[36] (offset 0x165) -> CONSTANT_Utf8 "(Ljoos/lib/JoosIO;)V"
+; cp[37] (offset 0x169) -> CONSTANT_Utf8 " "
+; cp[38] (offset 0x16c) -> CONSTANT_Class 33
+; cp[39] (offset 0x173) -> CONSTANT_Utf8 "(I)V"
+; cp[40] (offset 0x180) -> CONSTANT_Utf8 "SourceFile"
+; cp[41] (offset 0x184) -> CONSTANT_Utf8 "|"
+; cp[42] (offset 0x18d) -> CONSTANT_Utf8 "<init>"
+; cp[43] (offset 0x1a5) -> CONSTANT_Utf8 "(I)Ljava/lang/Object;"
+; cp[44] (offset 0x1a8) -> CONSTANT_Class 32
+; cp[45] (offset 0x1af) -> CONSTANT_Utf8 "grid"
+; cp[46] (offset 0x1b4) -> CONSTANT_Methodref 22, 35
+; cp[47] (offset 0x1c1) -> CONSTANT_Utf8 "addElement"
+; cp[48] (offset 0x1c6) -> CONSTANT_NameAndType 34, 43
+; cp[49] (offset 0x1ce) -> CONSTANT_Utf8 "print"
+; cp[50] (offset 0x1d2) -> CONSTANT_Utf8 "\n"
+; cp[51] (offset 0x1d7) -> CONSTANT_Methodref 24, 11
+; cp[52] (offset 0x1dc) -> CONSTANT_NameAndType 45, 25
+; cp[53] (offset 0x1e1) -> CONSTANT_Methodref 38, 48
+; cp[54] (offset 0x1e4) -> CONSTANT_String 37
+; cp[55] (offset 0x1fc) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[56] (offset 0x203) -> CONSTANT_Utf8 "Code"
+; cp[57] (offset 0x206) -> CONSTANT_String 41
+; cp[58] (offset 0x20b) -> CONSTANT_Methodref 24, 19
+
+; access flags = 0x421 [ ACC_ABSTRACT ACC_SUPER ACC_PUBLIC ]
+; this_class index = 44
+; super_class index = 22
+
+; interfaces_count = 0
+
+
+; fields_count = 1
+
+; fields[0] (offset 0x215) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 45 (grid)
+;     descriptor_index 25 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; methods_count 4
+
+; methods[0] (offset 0x21f) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 42 (<init>)
+;     descriptor_index 7 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 56 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 46 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x23e) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 28 (parse)
+;     descriptor_index 36 ((Ljoos/lib/JoosIO;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 56 (Code)
+;         attribute_length 148
+;         max_stack 4
+;         max_locals 8
+;         code_length 136
+;         code :
+;                0: new 38 (java/util/Vector) 
+;                3: dup 
+;                4: ldc 17 (9) 
+;                6: invokespecial 29 (java/util/Vector/<init> (I)V) 
+;                9: dup 
+;               10: aload_0 
+;               11: swap 
+;               12: putfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               15: pop 
+;               16: iconst_0 
+;               17: dup 
+;               18: istore_2 
+;               19: pop 
+;               20: iload_2 
+;               21: ldc 17 (9) 
+;               23: if_icmplt 7 
+;               26: iconst_0 
+;               27: goto 4 
+;               30: iconst_1 
+;               31: ifeq 104 
+;               34: aload_0 
+;               35: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               38: new 38 (java/util/Vector) 
+;               41: dup 
+;               42: ldc 17 (9) 
+;               44: invokespecial 29 (java/util/Vector/<init> (I)V) 
+;               47: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;               50: iconst_0 
+;               51: dup 
+;               52: istore_3 
+;               53: pop 
+;               54: iload_3 
+;               55: ldc 17 (9) 
+;               57: if_icmplt 7 
+;               60: iconst_0 
+;               61: goto 4 
+;               64: iconst_1 
+;               65: ifeq 61 
+;               68: aload_0 
+;               69: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               72: iload_2 
+;               73: invokevirtual 53 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               76: dup 
+;               77: astore 4 
+;               79: pop 
+;               80: aload 4 
+;               82: checkcast 38 (java/util/Vector) 
+;               85: dup 
+;               86: astore 5 
+;               88: pop 
+;               89: aload_1 
+;               90: invokevirtual 58 (joos/lib/JoosIO/readInt ()I) 
+;               93: dup 
+;               94: istore 6 
+;               96: pop 
+;               97: new 23 (java/lang/Integer) 
+;              100: dup 
+;              101: iload 6 
+;              103: invokespecial 21 (java/lang/Integer/<init> (I)V) 
+;              106: dup 
+;              107: astore 7 
+;              109: pop 
+;              110: aload 5 
+;              112: aload 7 
+;              114: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              117: iload_3 
+;              118: iconst_1 
+;              119: iadd 
+;              120: dup 
+;              121: istore_3 
+;              122: pop 
+;              123: goto -69 
+;              126: iload_2 
+;              127: iconst_1 
+;              128: iadd 
+;              129: dup 
+;              130: istore_2 
+;              131: pop 
+;              132: goto -112 
+;              135: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x2e0) :
+;     access_flags 0x401 [ ACC_ABSTRACT ACC_PUBLIC ]
+;     name_index 2 (solve)
+;     descriptor_index 7 (()V)
+;     attributes_count 0
+
+
+; methods[3] (offset 0x2e8) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 49 (print)
+;     descriptor_index 36 ((Ljoos/lib/JoosIO;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 56 (Code)
+;         attribute_length 358
+;         max_stack 3
+;         max_locals 12
+;         code_length 346
+;         code :
+;                0: iconst_0 
+;                1: dup 
+;                2: istore 4 
+;                4: pop 
+;                5: iconst_0 
+;                6: dup 
+;                7: istore_2 
+;                8: pop 
+;                9: iload_2 
+;               10: ldc 9 (12) 
+;               12: if_icmplt 7 
+;               15: iconst_0 
+;               16: goto 4 
+;               19: iconst_1 
+;               20: ifeq 325 
+;               23: iconst_0 
+;               24: dup 
+;               25: istore 5 
+;               27: pop 
+;               28: iconst_0 
+;               29: dup 
+;               30: istore_3 
+;               31: pop 
+;               32: iload_3 
+;               33: ldc 8 (13) 
+;               35: if_icmplt 7 
+;               38: iconst_0 
+;               39: goto 4 
+;               42: iconst_1 
+;               43: ifeq 235 
+;               46: iload_2 
+;               47: iconst_0 
+;               48: if_icmpeq 7 
+;               51: iconst_0 
+;               52: goto 4 
+;               55: iconst_1 
+;               56: dup 
+;               57: ifne 14 
+;               60: pop 
+;               61: iload_2 
+;               62: iconst_4 
+;               63: if_icmpeq 7 
+;               66: iconst_0 
+;               67: goto 4 
+;               70: iconst_1 
+;               71: dup 
+;               72: ifne 15 
+;               75: pop 
+;               76: iload_2 
+;               77: ldc 18 (8) 
+;               79: if_icmpeq 7 
+;               82: iconst_0 
+;               83: goto 4 
+;               86: iconst_1 
+;               87: ifeq 12 
+;               90: aload_1 
+;               91: ldc 57 ("|") 
+;               93: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;               96: goto 173 
+;               99: iload_3 
+;              100: iconst_0 
+;              101: if_icmpeq 7 
+;              104: iconst_0 
+;              105: goto 4 
+;              108: iconst_1 
+;              109: dup 
+;              110: ifne 14 
+;              113: pop 
+;              114: iload_3 
+;              115: iconst_4 
+;              116: if_icmpeq 7 
+;              119: iconst_0 
+;              120: goto 4 
+;              123: iconst_1 
+;              124: dup 
+;              125: ifne 15 
+;              128: pop 
+;              129: iload_3 
+;              130: ldc 18 (8) 
+;              132: if_icmpeq 7 
+;              135: iconst_0 
+;              136: goto 4 
+;              139: iconst_1 
+;              140: dup 
+;              141: ifne 15 
+;              144: pop 
+;              145: iload_3 
+;              146: ldc 9 (12) 
+;              148: if_icmpeq 7 
+;              151: iconst_0 
+;              152: goto 4 
+;              155: iconst_1 
+;              156: ifeq 12 
+;              159: aload_1 
+;              160: ldc 57 ("|") 
+;              162: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              165: goto 104 
+;              168: aload_0 
+;              169: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;              172: iload 4 
+;              174: invokevirtual 53 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              177: dup 
+;              178: astore 10 
+;              180: pop 
+;              181: aload 10 
+;              183: checkcast 38 (java/util/Vector) 
+;              186: dup 
+;              187: astore 11 
+;              189: pop 
+;              190: aload 11 
+;              192: iload 5 
+;              194: invokevirtual 53 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              197: dup 
+;              198: astore 6 
+;              200: pop 
+;              201: iload 5 
+;              203: iconst_1 
+;              204: iadd 
+;              205: dup 
+;              206: istore 5 
+;              208: pop 
+;              209: new 23 (java/lang/Integer) 
+;              212: dup 
+;              213: iconst_0 
+;              214: invokespecial 21 (java/lang/Integer/<init> (I)V) 
+;              217: dup 
+;              218: astore 8 
+;              220: pop 
+;              221: aload 6 
+;              223: checkcast 23 (java/lang/Integer) 
+;              226: dup 
+;              227: astore 7 
+;              229: pop 
+;              230: aload 7 
+;              232: aload 8 
+;              234: if_acmpne 7 
+;              237: iconst_0 
+;              238: goto 4 
+;              241: iconst_1 
+;              242: ifeq 21 
+;              245: aload 7 
+;              247: invokevirtual 16 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              250: dup 
+;              251: astore 9 
+;              253: pop 
+;              254: aload_1 
+;              255: aload 9 
+;              257: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              260: goto 9 
+;              263: aload_1 
+;              264: ldc 54 (" ") 
+;              266: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              269: iload_3 
+;              270: iconst_1 
+;              271: iadd 
+;              272: dup 
+;              273: istore_3 
+;              274: pop 
+;              275: goto -243 
+;              278: iload_2 
+;              279: iconst_0 
+;              280: if_icmpne 7 
+;              283: iconst_0 
+;              284: goto 4 
+;              287: iconst_1 
+;              288: dup 
+;              289: ifeq 14 
+;              292: pop 
+;              293: iload_2 
+;              294: iconst_4 
+;              295: if_icmpne 7 
+;              298: iconst_0 
+;              299: goto 4 
+;              302: iconst_1 
+;              303: dup 
+;              304: ifeq 15 
+;              307: pop 
+;              308: iload_2 
+;              309: ldc 18 (8) 
+;              311: if_icmpne 7 
+;              314: iconst_0 
+;              315: goto 4 
+;              318: iconst_1 
+;              319: ifeq 11 
+;              322: iload 4 
+;              324: iconst_1 
+;              325: iadd 
+;              326: dup 
+;              327: istore 4 
+;              329: pop 
+;              330: aload_1 
+;              331: ldc 15 ("\n") 
+;              333: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              336: iload_2 
+;              337: iconst_1 
+;              338: iadd 
+;              339: dup 
+;              340: istore_2 
+;              341: pop 
+;              342: goto -333 
+;              345: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x45e) :
+;     name_index 40 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 26
+
+; End of file reached successfully. Enjoy :)

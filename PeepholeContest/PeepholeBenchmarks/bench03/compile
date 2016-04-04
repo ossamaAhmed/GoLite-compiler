@@ -1,0 +1,2 @@
+#!/bin/sh
+$PEEPDIR/joosc *.java *.joos
