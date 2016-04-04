@@ -1,0 +1,153 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 40
+; cp[1] (offset 0x12) -> CONSTANT_Utf8 "solve"
+; cp[2] (offset 0x29) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[3] (offset 0x2c) -> CONSTANT_String 20
+; cp[4] (offset 0x32) -> CONSTANT_Utf8 "()V"
+; cp[5] (offset 0x39) -> CONSTANT_Utf8 "main"
+; cp[6] (offset 0x45) -> CONSTANT_Utf8 "Benchmark"
+; cp[7] (offset 0x58) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[8] (offset 0x64) -> CONSTANT_Utf8 "backtrack"
+; cp[9] (offset 0x67) -> CONSTANT_Class 7
+; cp[10] (offset 0x6c) -> CONSTANT_Methodref 31, 28
+; cp[11] (offset 0x6f) -> CONSTANT_String 8
+; cp[12] (offset 0x72) -> CONSTANT_Class 18
+; cp[13] (offset 0x77) -> CONSTANT_Methodref 12, 26
+; cp[14] (offset 0x7c) -> CONSTANT_Methodref 31, 16
+; cp[15] (offset 0x84) -> CONSTANT_Utf8 "parse"
+; cp[16] (offset 0x89) -> CONSTANT_NameAndType 1, 4
+; cp[17] (offset 0x8e) -> CONSTANT_Methodref 25, 22
+; cp[18] (offset 0xa0) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[19] (offset 0xaf) -> CONSTANT_Utf8 "SudokuSolver"
+; cp[20] (offset 0xbc) -> CONSTANT_Utf8 "bruteforce"
+; cp[21] (offset 0xd5) -> CONSTANT_Utf8 "([Ljava/lang/String;)V"
+; cp[22] (offset 0xda) -> CONSTANT_NameAndType 30, 4
+; cp[23] (offset 0xf1) -> CONSTANT_Utf8 "(Ljoos/lib/JoosIO;)V"
+; cp[24] (offset 0xff) -> CONSTANT_Utf8 "Benchmark.j"
+; cp[25] (offset 0x102) -> CONSTANT_Class 34
+; cp[26] (offset 0x107) -> CONSTANT_NameAndType 37, 2
+; cp[27] (offset 0x114) -> CONSTANT_Utf8 "SourceFile"
+; cp[28] (offset 0x119) -> CONSTANT_NameAndType 35, 23
+; cp[29] (offset 0x11e) -> CONSTANT_NameAndType 15, 23
+; cp[30] (offset 0x127) -> CONSTANT_Utf8 "<init>"
+; cp[31] (offset 0x12a) -> CONSTANT_Class 19
+; cp[32] (offset 0x12d) -> CONSTANT_Class 6
+; cp[33] (offset 0x132) -> CONSTANT_Methodref 9, 22
+; cp[34] (offset 0x144) -> CONSTANT_Utf8 "BacktrackSolver"
+; cp[35] (offset 0x14c) -> CONSTANT_Utf8 "print"
+; cp[36] (offset 0x151) -> CONSTANT_Methodref 12, 22
+; cp[37] (offset 0x15c) -> CONSTANT_Utf8 "readLine"
+; cp[38] (offset 0x163) -> CONSTANT_Utf8 "Code"
+; cp[39] (offset 0x168) -> CONSTANT_Methodref 31, 29
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 32
+; super_class index = 9
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 2
+
+; methods[0] (offset 0x174) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 30 (<init>)
+;     descriptor_index 4 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 33 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x193) :
+;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
+;     name_index 5 (main)
+;     descriptor_index 21 (([Ljava/lang/String;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 108
+;         max_stack 2
+;         max_locals 4
+;         code_length 96
+;         code :
+;                0: new 12 (joos/lib/JoosIO) 
+;                3: dup 
+;                4: invokespecial 36 (joos/lib/JoosIO/<init> ()V) 
+;                7: dup 
+;                8: astore_1 
+;                9: pop 
+;               10: aload_1 
+;               11: invokevirtual 13 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               14: dup 
+;               15: astore_2 
+;               16: pop 
+;               17: aload_2 
+;               18: ldc 11 ("backtrack") 
+;               20: if_acmpeq 7 
+;               23: iconst_0 
+;               24: goto 4 
+;               27: iconst_1 
+;               28: ifeq 16 
+;               31: new 25 (BacktrackSolver) 
+;               34: dup 
+;               35: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               38: dup 
+;               39: astore_3 
+;               40: pop 
+;               41: goto 40 
+;               44: aload_2 
+;               45: ldc 3 ("bruteforce") 
+;               47: if_acmpeq 7 
+;               50: iconst_0 
+;               51: goto 4 
+;               54: iconst_1 
+;               55: ifeq 16 
+;               58: new 25 (BacktrackSolver) 
+;               61: dup 
+;               62: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               65: dup 
+;               66: astore_3 
+;               67: pop 
+;               68: goto 13 
+;               71: new 25 (BacktrackSolver) 
+;               74: dup 
+;               75: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               78: dup 
+;               79: astore_3 
+;               80: pop 
+;               81: aload_3 
+;               82: aload_1 
+;               83: invokevirtual 39 (SudokuSolver/parse (Ljoos/lib/JoosIO;)V) 
+;               86: aload_3 
+;               87: invokevirtual 14 (SudokuSolver/solve ()V) 
+;               90: aload_3 
+;               91: aload_1 
+;               92: invokevirtual 10 (SudokuSolver/print (Ljoos/lib/JoosIO;)V) 
+;               95: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x20f) :
+;     name_index 27 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 24
+
+; End of file reached successfully. Enjoy :)
