@@ -1,0 +1,121 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 28
+; cp[1] (offset 0x13) -> CONSTANT_Utf8 "Main.j"
+; cp[2] (offset 0x16) -> CONSTANT_Class 17
+; cp[3] (offset 0x2f) -> CONSTANT_Utf8 "([Ljava/lang/String;)V"
+; cp[4] (offset 0x42) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[5] (offset 0x47) -> CONSTANT_NameAndType 11, 23
+; cp[6] (offset 0x50) -> CONSTANT_Utf8 "<init>"
+; cp[7] (offset 0x53) -> CONSTANT_Class 4
+; cp[8] (offset 0x58) -> CONSTANT_NameAndType 6, 10
+; cp[9] (offset 0x6a) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[10] (offset 0x70) -> CONSTANT_Utf8 "()V"
+; cp[11] (offset 0x7c) -> CONSTANT_Utf8 "interpret"
+; cp[12] (offset 0x83) -> CONSTANT_Utf8 "Code"
+; cp[13] (offset 0x8a) -> CONSTANT_Utf8 "main"
+; cp[14] (offset 0x8f) -> CONSTANT_Methodref 15, 26
+; cp[15] (offset 0x92) -> CONSTANT_Class 9
+; cp[16] (offset 0x9f) -> CONSTANT_Utf8 "SourceFile"
+; cp[17] (offset 0xa6) -> CONSTANT_Utf8 "Main"
+; cp[18] (offset 0xab) -> CONSTANT_Methodref 27, 5
+; cp[19] (offset 0xb0) -> CONSTANT_Methodref 7, 8
+; cp[20] (offset 0xbb) -> CONSTANT_Utf8 "readLine"
+; cp[21] (offset 0xc0) -> CONSTANT_Methodref 27, 8
+; cp[22] (offset 0xc5) -> CONSTANT_Methodref 15, 8
+; cp[23] (offset 0xdd) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[24] (offset 0xeb) -> CONSTANT_Utf8 "Interpretor"
+; cp[25] (offset 0x102) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[26] (offset 0x107) -> CONSTANT_NameAndType 20, 25
+; cp[27] (offset 0x10a) -> CONSTANT_Class 24
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 2
+; super_class index = 7
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 2
+
+; methods[0] (offset 0x116) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 6 (<init>)
+;     descriptor_index 10 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 12 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 19 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x135) :
+;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
+;     name_index 13 (main)
+;     descriptor_index 3 (([Ljava/lang/String;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 12 (Code)
+;         attribute_length 68
+;         max_stack 2
+;         max_locals 4
+;         code_length 56
+;         code :
+;                0: new 15 (joos/lib/JoosIO) 
+;                3: dup 
+;                4: invokespecial 22 (joos/lib/JoosIO/<init> ()V) 
+;                7: dup 
+;                8: astore_1 
+;                9: pop 
+;               10: new 27 (Interpretor) 
+;               13: dup 
+;               14: invokespecial 21 (Interpretor/<init> ()V) 
+;               17: dup 
+;               18: astore_2 
+;               19: pop 
+;               20: aload_1 
+;               21: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               24: dup 
+;               25: astore_3 
+;               26: pop 
+;               27: aload_3 
+;               28: aconst_null 
+;               29: if_acmpne 7 
+;               32: iconst_0 
+;               33: goto 4 
+;               36: iconst_1 
+;               37: ifeq 18 
+;               40: aload_2 
+;               41: aload_3 
+;               42: invokevirtual 18 (Interpretor/interpret (Ljava/lang/String;)V) 
+;               45: aload_1 
+;               46: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               49: dup 
+;               50: astore_3 
+;               51: pop 
+;               52: goto -25 
+;               55: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x189) :
+;     name_index 16 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 1
+
+; End of file reached successfully. Enjoy :)

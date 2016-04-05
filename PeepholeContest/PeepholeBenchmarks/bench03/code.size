@@ -1,0 +1,7 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java 
+*** type identifier JoosBitwise not declared at line 8 of file Decoder.java
+*** identifier JoosBitwise not declared at line 13 of file Decoder.java
+*** type identifier JoosBitwise not declared at line 8 of file Encoder.java
+*** identifier JoosBitwise not declared at line 13 of file Encoder.java
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'

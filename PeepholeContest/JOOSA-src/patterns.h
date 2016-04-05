@@ -34,39 +34,6 @@ int simplify_multiplication_right(CODE **c)
   return 0;
 }
 
-/* iload 0        iload 1        iload 2    iload 3
- * ------>        ------>        ------>    ------>
- * iload_0        iload_1        iload_2    iload_3
- */
-
-int simplify_iload(CODE **c)
-{ int x,k;
-  if (is_iload(*c,&x)){
-        switch(x){
-            case 0:
-                return replace(c,1,makeCODEiload(1,NULL);
-                break;
-            case 1:
-            break;
-            case 2:
-            break;
-            case 3:
-            break;
-            default:
-        }
-  }
-      is_ldc_int(next(*c),&k) && 
-      is_imul(next(next(*c)))) {
-     if (k==0) return replace(c,3,makeCODEldc_int(0,NULL));
-     else if (k==1) return replace(c,3,makeCODEiload(x,NULL));
-     else if (k==2) return replace(c,3,makeCODEiload(x,
-                                       makeCODEdup(
-                                       makeCODEiadd(NULL))));
-     return 0;
-  }
-  return 0;
-}
-
 /* dup
  * astore x
  * pop
@@ -140,6 +107,5 @@ int init_patterns()
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
-    ADD_PATTERN(simplify_iload);
     return 1;
 }

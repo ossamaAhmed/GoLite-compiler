@@ -1,6 +1,6 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/PeepholeContest/PeepholeBenchmarks/bench01'
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench01'
 rm -rf *.class *.j *~
-/home/shabbir/code/compilers/PeepholeContest/joosc BacktrackSolver.java SudokuSolver.java Benchmark.java
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc BacktrackSolver.java SudokuSolver.java Benchmark.java
 Generated: BacktrackSolver.class
 Generated: SudokuSolver.class
 Generated: Benchmark.class
@@ -20,4 +20,4 @@ Benchmark.dump:;         code_length 96
 SudokuSolver.dump:;         code_length 5
 SudokuSolver.dump:;         code_length 136
 SudokuSolver.dump:;         code_length 346
-make[1]: Leaving directory `/home/shabbir/code/compilers/PeepholeContest/PeepholeBenchmarks/bench01'
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench01'

@@ -1,2 +1,2 @@
-awk '{sum += $3} END {print sum}' $*
+awk '{sum += $3} END {print sum}' PeepholeBenchmarks/bench01/code.size PeepholeBenchmarks/bench02/code.size PeepholeBenchmarks/bench03/code.size PeepholeBenchmarks/bench04/code.size PeepholeBenchmarks/bench05/code.size PeepholeBenchmarks/bench06/code.size PeepholeBenchmarks/bench07/code.size
 

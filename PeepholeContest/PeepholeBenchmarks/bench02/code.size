@@ -1,0 +1,19 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench02'
+rm -rf *.class *.j
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java
+Generated: Interpretor.class
+Generated: Main.class
+Generated: StringEscapeUtils.class
+----- Method code sizes ----
+Interpretor.dump:;         code_length 50
+Interpretor.dump:;         code_length 38
+Interpretor.dump:;         code_length 36
+Interpretor.dump:;         code_length 13
+Interpretor.dump:;         code_length 10
+Interpretor.dump:;         code_length 108
+Interpretor.dump:;         code_length 52
+Interpretor.dump:;         code_length 32
+Main.dump:;         code_length 5
+Main.dump:;         code_length 56
+Binary file StringEscapeUtils.dump matches
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench02'

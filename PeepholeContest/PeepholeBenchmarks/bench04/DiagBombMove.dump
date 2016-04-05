@@ -1,0 +1,288 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 35
+; cp[1] (offset 0xf) -> CONSTANT_Methodref 2, 28
+; cp[2] (offset 0x12) -> CONSTANT_Class 22
+; cp[3] (offset 0x1c) -> CONSTANT_Utf8 "inRange"
+; cp[4] (offset 0x24) -> CONSTANT_Utf8 "(II)V"
+; cp[5] (offset 0x2d) -> CONSTANT_Utf8 "<init>"
+; cp[6] (offset 0x38) -> CONSTANT_Utf8 "getWidth"
+; cp[7] (offset 0x3d) -> CONSTANT_NameAndType 5, 8
+; cp[8] (offset 0x43) -> CONSTANT_Utf8 "()V"
+; cp[9] (offset 0x4a) -> CONSTANT_Utf8 "Code"
+; cp[10] (offset 0x59) -> CONSTANT_Utf8 "DiagBombMove"
+; cp[11] (offset 0x5e) -> CONSTANT_Methodref 2, 21
+; cp[12] (offset 0x61) -> CONSTANT_Class 30
+; cp[13] (offset 0x99) -> CONSTANT_Utf8 "Diagonal Bomb: clears the contents of diagonal cells."
+; cp[14] (offset 0x9e) -> CONSTANT_Methodref 2, 34
+; cp[15] (offset 0xaf) -> CONSTANT_Utf8 "DiagBombMove.j"
+; cp[16] (offset 0xbc) -> CONSTANT_Utf8 "SourceFile"
+; cp[17] (offset 0xc8) -> CONSTANT_Utf8 "getHeight"
+; cp[18] (offset 0xcd) -> CONSTANT_Methodref 2, 27
+; cp[19] (offset 0xd3) -> CONSTANT_Utf8 "()I"
+; cp[20] (offset 0xd8) -> CONSTANT_Methodref 12, 7
+; cp[21] (offset 0xdd) -> CONSTANT_NameAndType 6, 19
+; cp[22] (offset 0xe5) -> CONSTANT_Utf8 "Board"
+; cp[23] (offset 0x109) -> CONSTANT_Utf8 "(IILBoard;Ljava/lang/Character;)V"
+; cp[24] (offset 0x111) -> CONSTANT_Utf8 "clear"
+; cp[25] (offset 0x119) -> CONSTANT_Utf8 "apply"
+; cp[26] (offset 0x124) -> CONSTANT_Utf8 "toString"
+; cp[27] (offset 0x129) -> CONSTANT_NameAndType 24, 4
+; cp[28] (offset 0x12e) -> CONSTANT_NameAndType 3, 33
+; cp[29] (offset 0x131) -> CONSTANT_String 13
+; cp[30] (offset 0x138) -> CONSTANT_Utf8 "Move"
+; cp[31] (offset 0x14f) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[32] (offset 0x152) -> CONSTANT_Class 10
+; cp[33] (offset 0x15a) -> CONSTANT_Utf8 "(II)Z"
+; cp[34] (offset 0x15f) -> CONSTANT_NameAndType 17, 19
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 32
+; super_class index = 12
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0x16b) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 5 (<init>)
+;     descriptor_index 8 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 20 (Move/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x18a) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 25 (apply)
+;     descriptor_index 23 ((IILBoard;Ljava/lang/Character;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 295
+;         max_stack 3
+;         max_locals 9
+;         code_length 283
+;         code :
+;                0: aload_3 
+;                1: invokevirtual 11 (Board/getWidth ()I) 
+;                4: dup 
+;                5: istore 7 
+;                7: pop 
+;                8: aload_3 
+;                9: invokevirtual 14 (Board/getHeight ()I) 
+;               12: dup 
+;               13: istore 8 
+;               15: pop 
+;               16: iload_2 
+;               17: iconst_1 
+;               18: isub 
+;               19: dup 
+;               20: istore 6 
+;               22: pop 
+;               23: iload_1 
+;               24: iconst_1 
+;               25: isub 
+;               26: dup 
+;               27: istore 5 
+;               29: pop 
+;               30: iload 5 
+;               32: iconst_0 
+;               33: if_icmpge 7 
+;               36: iconst_0 
+;               37: goto 4 
+;               40: iconst_1 
+;               41: ifeq 41 
+;               44: aload_3 
+;               45: iload 5 
+;               47: iload 6 
+;               49: invokevirtual 1 (Board/inRange (II)Z) 
+;               52: ifeq 11 
+;               55: aload_3 
+;               56: iload 5 
+;               58: iload 6 
+;               60: invokevirtual 18 (Board/clear (II)V) 
+;               63: iload 6 
+;               65: iconst_1 
+;               66: isub 
+;               67: dup 
+;               68: istore 6 
+;               70: pop 
+;               71: iload 5 
+;               73: iconst_1 
+;               74: isub 
+;               75: dup 
+;               76: istore 5 
+;               78: pop 
+;               79: goto -49 
+;               82: iload_2 
+;               83: iconst_1 
+;               84: isub 
+;               85: dup 
+;               86: istore 6 
+;               88: pop 
+;               89: iload_1 
+;               90: iconst_1 
+;               91: iadd 
+;               92: dup 
+;               93: istore 5 
+;               95: pop 
+;               96: iload 5 
+;               98: iload 7 
+;              100: if_icmplt 7 
+;              103: iconst_0 
+;              104: goto 4 
+;              107: iconst_1 
+;              108: ifeq 41 
+;              111: aload_3 
+;              112: iload 5 
+;              114: iload 6 
+;              116: invokevirtual 1 (Board/inRange (II)Z) 
+;              119: ifeq 11 
+;              122: aload_3 
+;              123: iload 5 
+;              125: iload 6 
+;              127: invokevirtual 18 (Board/clear (II)V) 
+;              130: iload 6 
+;              132: iconst_1 
+;              133: isub 
+;              134: dup 
+;              135: istore 6 
+;              137: pop 
+;              138: iload 5 
+;              140: iconst_1 
+;              141: iadd 
+;              142: dup 
+;              143: istore 5 
+;              145: pop 
+;              146: goto -50 
+;              149: iload_2 
+;              150: iconst_1 
+;              151: iadd 
+;              152: dup 
+;              153: istore 6 
+;              155: pop 
+;              156: iload_1 
+;              157: iconst_1 
+;              158: isub 
+;              159: dup 
+;              160: istore 5 
+;              162: pop 
+;              163: iload 5 
+;              165: iconst_0 
+;              166: if_icmpge 7 
+;              169: iconst_0 
+;              170: goto 4 
+;              173: iconst_1 
+;              174: ifeq 41 
+;              177: aload_3 
+;              178: iload 5 
+;              180: iload 6 
+;              182: invokevirtual 1 (Board/inRange (II)Z) 
+;              185: ifeq 11 
+;              188: aload_3 
+;              189: iload 5 
+;              191: iload 6 
+;              193: invokevirtual 18 (Board/clear (II)V) 
+;              196: iload 6 
+;              198: iconst_1 
+;              199: iadd 
+;              200: dup 
+;              201: istore 6 
+;              203: pop 
+;              204: iload 5 
+;              206: iconst_1 
+;              207: isub 
+;              208: dup 
+;              209: istore 5 
+;              211: pop 
+;              212: goto -49 
+;              215: iload_2 
+;              216: iconst_1 
+;              217: iadd 
+;              218: dup 
+;              219: istore 6 
+;              221: pop 
+;              222: iload_1 
+;              223: iconst_1 
+;              224: iadd 
+;              225: dup 
+;              226: istore 5 
+;              228: pop 
+;              229: iload 5 
+;              231: iload 7 
+;              233: if_icmplt 7 
+;              236: iconst_0 
+;              237: goto 4 
+;              240: iconst_1 
+;              241: ifeq 41 
+;              244: aload_3 
+;              245: iload 5 
+;              247: iload 6 
+;              249: invokevirtual 1 (Board/inRange (II)Z) 
+;              252: ifeq 11 
+;              255: aload_3 
+;              256: iload 5 
+;              258: iload 6 
+;              260: invokevirtual 18 (Board/clear (II)V) 
+;              263: iload 6 
+;              265: iconst_1 
+;              266: iadd 
+;              267: dup 
+;              268: istore 6 
+;              270: pop 
+;              271: iload 5 
+;              273: iconst_1 
+;              274: iadd 
+;              275: dup 
+;              276: istore 5 
+;              278: pop 
+;              279: goto -50 
+;              282: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x2bf) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 26 (toString)
+;     descriptor_index 31 (()Ljava/lang/String;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 16
+;         max_stack 1
+;         max_locals 1
+;         code_length 4
+;         code :
+;                0: ldc 29 ("Diagonal Bomb: clears the contents of diagonal cells.") 
+;                2: areturn 
+;                3: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x2df) :
+;     name_index 16 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 15
+
+; End of file reached successfully. Enjoy :)
