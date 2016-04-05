@@ -1,6 +1,8 @@
 
 compiler:
 	cd JOOSA-src && $(MAKE)
+compiler_mac:
+	cd JOOSA-src && $(MAKE) main_mac
 bench01:
 	cd PeepholeBenchmarks/bench01 && $(MAKE) >  code.size 
 bench02:
@@ -17,3 +19,7 @@ bench07:
 	cd PeepholeBenchmarks/bench07 && $(MAKE) >  code.size 
 all: compiler bench01 bench02 bench03 bench04 bench05 bench06 bench07
 	./codesize
+mac: compiler_mac bench01 bench02 bench03 bench04 bench05 bench06 bench07
+	./codesize
+clean: 
+	cd JOOSA-src && $(MAKE) clean

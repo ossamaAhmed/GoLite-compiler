@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java 
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc *.java 
 Generated: Board.class
 Generated: BombMove.class
 Generated: ClassicMove.class
@@ -69,4 +68,3 @@ KillRowMove.dump:;         code_length 41
 KillRowMove.dump:;         code_length 4
 Move.dump:;         code_length 5
 Strategy.dump:;         code_length 5
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'

@@ -1,0 +1,4 @@
+*.o
+lex.*
+y.tab.*
+code.size

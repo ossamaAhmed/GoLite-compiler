@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
 Generated: RoomAction.class
 Generated: BFRoomAction.class
 Generated: FeastRoomAction.class
@@ -49,10 +48,6 @@ JokeRoomAction.dump:;         code_length 5
 JokeRoomAction.dump:;         code_length 10
 JokeRoomAction.dump:;         code_length 178
 JokeRoomAction.dump:;         code_length 316
-RoomAction.dump:;         code_length 33
-RoomAction.dump:;         code_length 10
-RoomAction.dump:;         code_length 162
-RoomAction.dump:;         code_length 33
 Room.dump:;         code_length 683
 Room.dump:;         code_length 38
 Room.dump:;         code_length 12
@@ -63,7 +58,10 @@ Room.dump:;         code_length 6
 Room.dump:;         code_length 6
 Room.dump:;         code_length 139
 Room.dump:;         code_length 258
+RoomAction.dump:;         code_length 33
+RoomAction.dump:;         code_length 10
+RoomAction.dump:;         code_length 162
+RoomAction.dump:;         code_length 33
 TreasureRoomAction.dump:;         code_length 13
 TreasureRoomAction.dump:;         code_length 37
 TreasureRoomAction.dump:;         code_length 153
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'

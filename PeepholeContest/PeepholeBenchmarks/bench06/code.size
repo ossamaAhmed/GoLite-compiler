@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc *.java
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
 Generated: FemaleBoss.class
@@ -24,4 +23,3 @@ Main.dump:;         code_length 5
 Main.dump:;         code_length 563
 Woman.dump:;         code_length 5
 Woman.dump:;         code_length 9
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'
