@@ -15,4 +15,5 @@ bench06:
 	cd PeepholeBenchmarks/bench06 && $(MAKE) >  code.size 
 bench07:
 	cd PeepholeBenchmarks/bench07 && $(MAKE) >  code.size 
-all: bench01 bench02 bench03 bench04 bench05 bench06 bench07
+all: compiler bench01 bench02 bench03 bench04 bench05 bench06 bench07
+	./codesize
