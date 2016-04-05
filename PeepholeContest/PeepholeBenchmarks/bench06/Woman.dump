@@ -1,0 +1,99 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 20
+; cp[1] (offset 0x1d) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[2] (offset 0x26) -> CONSTANT_Utf8 "<init>"
+; cp[3] (offset 0x29) -> CONSTANT_Class 1
+; cp[4] (offset 0x2e) -> CONSTANT_NameAndType 2, 6
+; cp[5] (offset 0x36) -> CONSTANT_Utf8 "Woman"
+; cp[6] (offset 0x3c) -> CONSTANT_Utf8 "()V"
+; cp[7] (offset 0x9b) -> CONSTANT_Utf8 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+; cp[8] (offset 0xa2) -> CONSTANT_Utf8 "Code"
+; cp[9] (offset 0xaa) -> CONSTANT_Utf8 "react"
+; cp[10] (offset 0xb7) -> CONSTANT_Utf8 "SourceFile"
+; cp[11] (offset 0xbb) -> CONSTANT_Utf8 "I"
+; cp[12] (offset 0xc2) -> CONSTANT_Utf8 "(I)V"
+; cp[13] (offset 0xc7) -> CONSTANT_Methodref 3, 4
+; cp[14] (offset 0xca) -> CONSTANT_Class 5
+; cp[15] (offset 0xe0) -> CONSTANT_Utf8 "setComplementNumber"
+; cp[16] (offset 0xe5) -> CONSTANT_Fieldref 14, 17
+; cp[17] (offset 0xea) -> CONSTANT_NameAndType 19, 11
+; cp[18] (offset 0xf4) -> CONSTANT_Utf8 "Woman.j"
+; cp[19] (offset 0x107) -> CONSTANT_Utf8 "complementNumber"
+
+; access flags = 0x421 [ ACC_ABSTRACT ACC_SUPER ACC_PUBLIC ]
+; this_class index = 14
+; super_class index = 3
+
+; interfaces_count = 0
+
+
+; fields_count = 1
+
+; fields[0] (offset 0x111) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 19 (complementNumber)
+;     descriptor_index 11 (I)
+;     attributes_count 0
+
+; methods_count 3
+
+; methods[0] (offset 0x11b) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 2 (<init>)
+;     descriptor_index 6 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 13 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x13a) :
+;     access_flags 0x11 [ ACC_FINAL ACC_PUBLIC ]
+;     name_index 15 (setComplementNumber)
+;     descriptor_index 12 ((I)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 21
+;         max_stack 3
+;         max_locals 2
+;         code_length 9
+;         code :
+;                0: iload_1 
+;                1: dup 
+;                2: aload_0 
+;                3: swap 
+;                4: putfield 16 (Woman/complementNumber I) 
+;                7: pop 
+;                8: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x15d) :
+;     access_flags 0x401 [ ACC_ABSTRACT ACC_PUBLIC ]
+;     name_index 9 (react)
+;     descriptor_index 7 ((Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;)
+;     attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x167) :
+;     name_index 10 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 18
+
+; End of file reached successfully. Enjoy :)

@@ -1,0 +1,176 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 51
+; cp[1] (offset 0xd) -> CONSTANT_String 28
+; cp[2] (offset 0x10) -> CONSTANT_String 10
+; cp[3] (offset 0x16) -> CONSTANT_Utf8 "()V"
+; cp[4] (offset 0x2e) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[5] (offset 0x36) -> CONSTANT_Utf8 "fight"
+; cp[6] (offset 0x3b) -> CONSTANT_NameAndType 44, 48
+; cp[7] (offset 0x3e) -> CONSTANT_String 5
+; cp[8] (offset 0x41) -> CONSTANT_String 25
+; cp[9] (offset 0x45) -> CONSTANT_Utf8 "O"
+; cp[10] (offset 0x4e) -> CONSTANT_Utf8 "defend"
+; cp[11] (offset 0x51) -> CONSTANT_String 14
+; cp[12] (offset 0x54) -> CONSTANT_Class 22
+; cp[13] (offset 0x57) -> CONSTANT_String 41
+; cp[14] (offset 0x8d) -> CONSTANT_Utf8 "You have nothing with which to lighten up the room."
+; cp[15] (offset 0x92) -> CONSTANT_Fieldref 20, 30
+; cp[16] (offset 0x9c) -> CONSTANT_Utf8 "indexOf"
+; cp[17] (offset 0xa1) -> CONSTANT_Methodref 20, 31
+; cp[18] (offset 0xb4) -> CONSTANT_Utf8 "GrueRoomAction.j"
+; cp[19] (offset 0xc8) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[20] (offset 0xcb) -> CONSTANT_Class 43
+; cp[21] (offset 0xd0) -> CONSTANT_NameAndType 16, 45
+; cp[22] (offset 0xe2) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[23] (offset 0xe7) -> CONSTANT_Methodref 39, 21
+; cp[24] (offset 0xea) -> CONSTANT_Class 32
+; cp[25] (offset 0xf0) -> CONSTANT_Utf8 "run"
+; cp[26] (offset 0xf8) -> CONSTANT_Utf8 "light"
+; cp[27] (offset 0xfb) -> CONSTANT_String 50
+; cp[28] (offset 0x10f) -> CONSTANT_Utf8 "You are too slow."
+; cp[29] (offset 0x112) -> CONSTANT_String 26
+; cp[30] (offset 0x117) -> CONSTANT_NameAndType 9, 19
+; cp[31] (offset 0x11c) -> CONSTANT_NameAndType 38, 3
+; cp[32] (offset 0x12d) -> CONSTANT_Utf8 "GrueRoomAction"
+; cp[33] (offset 0x140) -> CONSTANT_Utf8 "java/lang/String"
+; cp[34] (offset 0x143) -> CONSTANT_String 40
+; cp[35] (offset 0x150) -> CONSTANT_Utf8 "SourceFile"
+; cp[36] (offset 0x15a) -> CONSTANT_Utf8 "println"
+; cp[37] (offset 0x15f) -> CONSTANT_Methodref 12, 42
+; cp[38] (offset 0x168) -> CONSTANT_Utf8 "<init>"
+; cp[39] (offset 0x16b) -> CONSTANT_Class 33
+; cp[40] (offset 0x18e) -> CONSTANT_Utf8 "You die from lack of sustenance."
+; cp[41] (offset 0x1a2) -> CONSTANT_Utf8 "You are ambushed."
+; cp[42] (offset 0x1a7) -> CONSTANT_NameAndType 36, 48
+; cp[43] (offset 0x1b4) -> CONSTANT_Utf8 "RoomAction"
+; cp[44] (offset 0x1bc) -> CONSTANT_Utf8 "print"
+; cp[45] (offset 0x1d5) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[46] (offset 0x1da) -> CONSTANT_Methodref 12, 6
+; cp[47] (offset 0x1ea) -> CONSTANT_Utf8 "performAction"
+; cp[48] (offset 0x202) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[49] (offset 0x209) -> CONSTANT_Utf8 "Code"
+; cp[50] (offset 0x225) -> CONSTANT_Utf8 "You are eaten by a grue. "
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 24
+; super_class index = 20
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 2
+
+; methods[0] (offset 0x231) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 38 (<init>)
+;     descriptor_index 3 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 49 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 17 (RoomAction/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x250) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 47 (performAction)
+;     descriptor_index 4 ((Ljava/lang/String;)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 49 (Code)
+;         attribute_length 145
+;         max_stack 3
+;         max_locals 2
+;         code_length 133
+;         code :
+;                0: aload_1 
+;                1: ldc 7 ("fight") 
+;                3: iconst_0 
+;                4: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                7: iconst_0 
+;                8: if_icmpge 7 
+;               11: iconst_0 
+;               12: goto 4 
+;               15: iconst_1 
+;               16: ifeq 15 
+;               19: aload_0 
+;               20: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               23: ldc 13 ("You are ambushed.") 
+;               25: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               28: goto 93 
+;               31: aload_1 
+;               32: ldc 2 ("defend") 
+;               34: iconst_0 
+;               35: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               38: iconst_0 
+;               39: if_icmpge 7 
+;               42: iconst_0 
+;               43: goto 4 
+;               46: iconst_1 
+;               47: ifeq 15 
+;               50: aload_0 
+;               51: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               54: ldc 34 ("You die from lack of sustenance.") 
+;               56: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               59: goto 62 
+;               62: aload_1 
+;               63: ldc 29 ("light") 
+;               65: iconst_0 
+;               66: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               69: iconst_0 
+;               70: if_icmpge 7 
+;               73: iconst_0 
+;               74: goto 4 
+;               77: iconst_1 
+;               78: ifeq 15 
+;               81: aload_0 
+;               82: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               85: ldc 11 ("You have nothing with which to lighten up the room.") 
+;               87: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               90: goto 31 
+;               93: aload_1 
+;               94: ldc 8 ("run") 
+;               96: iconst_0 
+;               97: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              100: iconst_0 
+;              101: if_icmpge 7 
+;              104: iconst_0 
+;              105: goto 4 
+;              108: iconst_1 
+;              109: ifeq 12 
+;              112: aload_0 
+;              113: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              116: ldc 1 ("You are too slow.") 
+;              118: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              121: aload_0 
+;              122: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              125: ldc 27 ("You are eaten by a grue. ") 
+;              127: invokevirtual 46 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              130: iconst_1 
+;              131: ireturn 
+;              132: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x2f1) :
+;     name_index 35 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 18
+
+; End of file reached successfully. Enjoy :)

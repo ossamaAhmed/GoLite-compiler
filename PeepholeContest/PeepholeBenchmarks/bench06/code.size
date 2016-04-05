@@ -1,0 +1,27 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java
+Generated: AmazingCalculator.class
+Generated: ComplementsGenerator.class
+Generated: FemaleBoss.class
+Generated: GirlFriend.class
+Generated: Main.class
+Generated: Woman.class
+----- Method code sizes ----
+AmazingCalculator.dump:;         code_length 5
+AmazingCalculator.dump:;         code_length 29
+AmazingCalculator.dump:;         code_length 1
+ComplementsGenerator.dump:;         code_length 20
+ComplementsGenerator.dump:;         code_length 1583
+ComplementsGenerator.dump:;         code_length 6
+ComplementsGenerator.dump:;         code_length 218
+ComplementsGenerator.dump:;         code_length 198
+ComplementsGenerator.dump:;         code_length 218
+FemaleBoss.dump:;         code_length 5
+FemaleBoss.dump:;         code_length 498
+GirlFriend.dump:;         code_length 5
+GirlFriend.dump:;         code_length 980
+Main.dump:;         code_length 5
+Main.dump:;         code_length 563
+Woman.dump:;         code_length 5
+Woman.dump:;         code_length 9
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'

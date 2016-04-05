@@ -1,0 +1,115 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 30
+; cp[1] (offset 0xf) -> CONSTANT_NameAndType 9, 21
+; cp[2] (offset 0x18) -> CONSTANT_Utf8 "<init>"
+; cp[3] (offset 0x1d) -> CONSTANT_NameAndType 2, 7
+; cp[4] (offset 0x35) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[5] (offset 0x47) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[6] (offset 0x4c) -> CONSTANT_Methodref 24, 3
+; cp[7] (offset 0x52) -> CONSTANT_Utf8 "()V"
+; cp[8] (offset 0x59) -> CONSTANT_Utf8 "Code"
+; cp[9] (offset 0x5d) -> CONSTANT_Utf8 "O"
+; cp[10] (offset 0x68) -> CONSTANT_Utf8 "describe"
+; cp[11] (offset 0x6b) -> CONSTANT_Class 5
+; cp[12] (offset 0x78) -> CONSTANT_Utf8 "SourceFile"
+; cp[13] (offset 0x7b) -> CONSTANT_String 18
+; cp[14] (offset 0x80) -> CONSTANT_NameAndType 16, 27
+; cp[15] (offset 0x94) -> CONSTANT_Utf8 "EmptyRoomAction.j"
+; cp[16] (offset 0x9e) -> CONSTANT_Utf8 "println"
+; cp[17] (offset 0xb0) -> CONSTANT_Utf8 "EmptyRoomAction"
+; cp[18] (offset 0xe0) -> CONSTANT_Utf8 "There doesn't seem to be anything to do here."
+; cp[19] (offset 0xe5) -> CONSTANT_Methodref 11, 14
+; cp[20] (offset 0xf9) -> CONSTANT_Utf8 "performBaseAction"
+; cp[21] (offset 0x10d) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[22] (offset 0x112) -> CONSTANT_NameAndType 20, 4
+; cp[23] (offset 0x122) -> CONSTANT_Utf8 "performAction"
+; cp[24] (offset 0x125) -> CONSTANT_Class 29
+; cp[25] (offset 0x128) -> CONSTANT_Class 17
+; cp[26] (offset 0x12d) -> CONSTANT_Methodref 24, 22
+; cp[27] (offset 0x145) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[28] (offset 0x14a) -> CONSTANT_Fieldref 24, 1
+; cp[29] (offset 0x157) -> CONSTANT_Utf8 "RoomAction"
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 25
+; super_class index = 24
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0x163) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 2 (<init>)
+;     descriptor_index 7 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 6 (RoomAction/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x182) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 10 (describe)
+;     descriptor_index 7 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 22
+;         max_stack 2
+;         max_locals 1
+;         code_length 10
+;         code :
+;                0: aload_0 
+;                1: getfield 28 (RoomAction/O Ljoos/lib/JoosIO;) 
+;                4: ldc 13 ("There doesn't seem to be anything to do here.") 
+;                6: invokevirtual 19 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;                9: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x1a6) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 23 (performAction)
+;     descriptor_index 4 ((Ljava/lang/String;)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 19
+;         max_stack 2
+;         max_locals 2
+;         code_length 7
+;         code :
+;                0: aload_0 
+;                1: aload_1 
+;                2: invokevirtual 26 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;                5: ireturn 
+;                6: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x1c9) :
+;     name_index 12 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 15
+
+; End of file reached successfully. Enjoy :)

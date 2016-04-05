@@ -1,0 +1,699 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 153
+; cp[1] (offset 0xd) -> CONSTANT_String 21
+; cp[2] (offset 0x10) -> CONSTANT_String 99
+; cp[3] (offset 0x1d) -> CONSTANT_Utf8 "be-pleased"
+; cp[4] (offset 0x20) -> CONSTANT_String 10
+; cp[5] (offset 0x3f) -> CONSTANT_Utf8 "that don't impresse me much."
+; cp[6] (offset 0x47) -> CONSTANT_Utf8 "niece"
+; cp[7] (offset 0x4f) -> CONSTANT_Utf8 "react"
+; cp[8] (offset 0x52) -> CONSTANT_String 147
+; cp[9] (offset 0x57) -> CONSTANT_NameAndType 13, 93
+; cp[10] (offset 0x5d) -> CONSTANT_Utf8 "cry"
+; cp[11] (offset 0x83) -> CONSTANT_Utf8 "You'll have to do better than that."
+; cp[12] (offset 0x86) -> CONSTANT_String 100
+; cp[13] (offset 0x8f) -> CONSTANT_Utf8 "equals"
+; cp[14] (offset 0x97) -> CONSTANT_Utf8 "sleep"
+; cp[15] (offset 0x9a) -> CONSTANT_Class 140
+; cp[16] (offset 0xa0) -> CONSTANT_Utf8 "()V"
+; cp[17] (offset 0xaf) -> CONSTANT_Utf8 "Grose, dude."
+; cp[18] (offset 0xc7) -> CONSTANT_Utf8 "I'm calling the cops."
+; cp[19] (offset 0xca) -> CONSTANT_Class 61
+; cp[20] (offset 0xcd) -> CONSTANT_String 6
+; cp[21] (offset 0xd4) -> CONSTANT_Utf8 "dead"
+; cp[22] (offset 0xd7) -> CONSTANT_String 5
+; cp[23] (offset 0xdf) -> CONSTANT_Utf8 "blind"
+; cp[24] (offset 0xe2) -> CONSTANT_String 87
+; cp[25] (offset 0xe5) -> CONSTANT_String 143
+; cp[26] (offset 0xea) -> CONSTANT_Integer 9
+; cp[27] (offset 0xef) -> CONSTANT_Integer 8
+; cp[28] (offset 0xfc) -> CONSTANT_Utf8 "GirlFriend"
+; cp[29] (offset 0x101) -> CONSTANT_Integer 7
+; cp[30] (offset 0x106) -> CONSTANT_Integer 6
+; cp[31] (offset 0x109) -> CONSTANT_String 47
+; cp[32] (offset 0x113) -> CONSTANT_Utf8 "raccoon"
+; cp[33] (offset 0x116) -> CONSTANT_String 14
+; cp[34] (offset 0x119) -> CONSTANT_String 17
+; cp[35] (offset 0x128) -> CONSTANT_Utf8 "summer's-day"
+; cp[36] (offset 0x12b) -> CONSTANT_String 92
+; cp[37] (offset 0x153) -> CONSTANT_Utf8 "that's a bit weird, but good enough.."
+; cp[38] (offset 0x156) -> CONSTANT_String 134
+; cp[39] (offset 0x17c) -> CONSTANT_Utf8 "man, you are not making any sence.."
+; cp[40] (offset 0x17f) -> CONSTANT_String 53
+; cp[41] (offset 0x182) -> CONSTANT_String 152
+; cp[42] (offset 0x185) -> CONSTANT_String 141
+; cp[43] (offset 0x1af) -> CONSTANT_Utf8 "'rot'? you stink at giving complements!"
+; cp[44] (offset 0x1be) -> CONSTANT_Utf8 "no way, man."
+; cp[45] (offset 0x1c1) -> CONSTANT_String 23
+; cp[46] (offset 0x1c6) -> CONSTANT_Integer 10
+; cp[47] (offset 0x1f2) -> CONSTANT_Utf8 "damn, you are god. take me home with you."
+; cp[48] (offset 0x1f5) -> CONSTANT_String 18
+; cp[49] (offset 0x1f8) -> CONSTANT_String 35
+; cp[50] (offset 0x200) -> CONSTANT_Utf8 "happy"
+; cp[51] (offset 0x21f) -> CONSTANT_Utf8 "My oh my, what a gentelmen.."
+; cp[52] (offset 0x243) -> CONSTANT_Utf8 "you are out of line here, mister."
+; cp[53] (offset 0x271) -> CONSTANT_Utf8 "you sick bastard, stay away from my family."
+; cp[54] (offset 0x274) -> CONSTANT_String 63
+; cp[55] (offset 0x277) -> CONSTANT_String 44
+; cp[56] (offset 0x27a) -> CONSTANT_String 80
+; cp[57] (offset 0x27d) -> CONSTANT_String 68
+; cp[58] (offset 0x282) -> CONSTANT_Fieldref 15, 77
+; cp[59] (offset 0x298) -> CONSTANT_Utf8 "move along, mister."
+; cp[60] (offset 0x29b) -> CONSTANT_String 76
+; cp[61] (offset 0x2ae) -> CONSTANT_Utf8 "java/lang/String"
+; cp[62] (offset 0x2b1) -> CONSTANT_String 120
+; cp[63] (offset 0x2e5) -> CONSTANT_Utf8 "that's the most disgusting thing I've ever heard."
+; cp[64] (offset 0x2e8) -> CONSTANT_String 118
+; cp[65] (offset 0x2f1) -> CONSTANT_Utf8 "better"
+; cp[66] (offset 0x2f4) -> CONSTANT_String 50
+; cp[67] (offset 0x303) -> CONSTANT_Utf8 "Go to hell!!"
+; cp[68] (offset 0x310) -> CONSTANT_Utf8 "work-ethic"
+; cp[69] (offset 0x31e) -> CONSTANT_Utf8 "eat-bananas"
+; cp[70] (offset 0x334) -> CONSTANT_Utf8 "take me, I'm yours!"
+; cp[71] (offset 0x34a) -> CONSTANT_Utf8 "Try again, mister.."
+; cp[72] (offset 0x34d) -> CONSTANT_String 150
+; cp[73] (offset 0x352) -> CONSTANT_Methodref 15, 98
+; cp[74] (offset 0x355) -> CONSTANT_String 59
+; cp[75] (offset 0x378) -> CONSTANT_Utf8 "A strange proposal, but whu not!"
+; cp[76] (offset 0x38c) -> CONSTANT_Utf8 "I don't think so."
+; cp[77] (offset 0x391) -> CONSTANT_NameAndType 144, 131
+; cp[78] (offset 0x3b1) -> CONSTANT_Utf8 "you are a complement mechine!"
+; cp[79] (offset 0x3b4) -> CONSTANT_String 135
+; cp[80] (offset 0x3bb) -> CONSTANT_Utf8 "sexy"
+; cp[81] (offset 0x3c0) -> CONSTANT_Methodref 19, 9
+; cp[82] (offset 0x3c3) -> CONSTANT_String 124
+; cp[83] (offset 0x3c6) -> CONSTANT_String 70
+; cp[84] (offset 0x3c9) -> CONSTANT_String 67
+; cp[85] (offset 0x3cc) -> CONSTANT_String 51
+; cp[86] (offset 0x3cf) -> CONSTANT_String 32
+; cp[87] (offset 0x3f3) -> CONSTANT_Utf8 "You are the man of my dreams (-: "
+; cp[88] (offset 0x3f6) -> CONSTANT_String 137
+; cp[89] (offset 0x3f9) -> CONSTANT_String 108
+; cp[90] (offset 0x3fc) -> CONSTANT_String 71
+; cp[91] (offset 0x3ff) -> CONSTANT_String 122
+; cp[92] (offset 0x40a) -> CONSTANT_Utf8 "flourish"
+; cp[93] (offset 0x422) -> CONSTANT_Utf8 "(Ljava/lang/Object;)Z"
+; cp[94] (offset 0x42a) -> CONSTANT_Utf8 "fruit"
+; cp[95] (offset 0x42d) -> CONSTANT_String 75
+; cp[96] (offset 0x43d) -> CONSTANT_Utf8 "You are good!"
+; cp[97] (offset 0x450) -> CONSTANT_Utf8 "you are amazing!"
+; cp[98] (offset 0x455) -> CONSTANT_NameAndType 119, 16
+; cp[99] (offset 0x461) -> CONSTANT_Utf8 "beautiful"
+; cp[100] (offset 0x46a) -> CONSTANT_Utf8 "lovely"
+; cp[101] (offset 0x46d) -> CONSTANT_String 112
+; cp[102] (offset 0x470) -> CONSTANT_String 125
+; cp[103] (offset 0x473) -> CONSTANT_String 110
+; cp[104] (offset 0x476) -> CONSTANT_String 78
+; cp[105] (offset 0x479) -> CONSTANT_String 126
+; cp[106] (offset 0x47c) -> CONSTANT_String 116
+; cp[107] (offset 0x483) -> CONSTANT_Utf8 "Code"
+; cp[108] (offset 0x48a) -> CONSTANT_Utf8 "skin"
+; cp[109] (offset 0x48d) -> CONSTANT_String 94
+; cp[110] (offset 0x493) -> CONSTANT_Utf8 "rot"
+; cp[111] (offset 0x496) -> CONSTANT_String 96
+; cp[112] (offset 0x4a3) -> CONSTANT_Utf8 "eat-banana"
+; cp[113] (offset 0x4c2) -> CONSTANT_Utf8 "you pervert, leave me alone!"
+; cp[114] (offset 0x4c5) -> CONSTANT_String 43
+; cp[115] (offset 0x4c8) -> CONSTANT_String 37
+; cp[116] (offset 0x4fd) -> CONSTANT_Utf8 "that's the best complement a man has ever gave me!"
+; cp[117] (offset 0x515) -> CONSTANT_Utf8 "na, I don't think so."
+; cp[118] (offset 0x53a) -> CONSTANT_Utf8 "ahm, I think you should try again."
+; cp[119] (offset 0x543) -> CONSTANT_Utf8 "<init>"
+; cp[120] (offset 0x54e) -> CONSTANT_Utf8 "enormous"
+; cp[121] (offset 0x551) -> CONSTANT_String 97
+; cp[122] (offset 0x578) -> CONSTANT_Utf8 "that's a bit wierd, but not to bad.."
+; cp[123] (offset 0x585) -> CONSTANT_Utf8 "SourceFile"
+; cp[124] (offset 0x590) -> CONSTANT_Utf8 "sunshine"
+; cp[125] (offset 0x597) -> CONSTANT_Utf8 "work"
+; cp[126] (offset 0x59e) -> CONSTANT_Utf8 "puke"
+; cp[127] (offset 0x5ad) -> CONSTANT_Utf8 "GirlFriend.j"
+; cp[128] (offset 0x5b0) -> CONSTANT_String 69
+; cp[129] (offset 0x5b3) -> CONSTANT_String 11
+; cp[130] (offset 0x5b6) -> CONSTANT_String 113
+; cp[131] (offset 0x5ba) -> CONSTANT_Utf8 "I"
+; cp[132] (offset 0x5bd) -> CONSTANT_String 65
+; cp[133] (offset 0x5c0) -> CONSTANT_String 151
+; cp[134] (offset 0x5f3) -> CONSTANT_Utf8 "are you trying to insult me or to complement me?"
+; cp[135] (offset 0x61c) -> CONSTANT_Utf8 "you are a freak. you know that, right?"
+; cp[136] (offset 0x61f) -> CONSTANT_String 3
+; cp[137] (offset 0x64a) -> CONSTANT_Utf8 "you touched the very botttom of my soul."
+; cp[138] (offset 0x6a9) -> CONSTANT_Utf8 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+; cp[139] (offset 0x6ac) -> CONSTANT_String 146
+; cp[140] (offset 0x6b4) -> CONSTANT_Utf8 "Woman"
+; cp[141] (offset 0x6be) -> CONSTANT_Utf8 "tragedy"
+; cp[142] (offset 0x6c1) -> CONSTANT_String 117
+; cp[143] (offset 0x6d9) -> CONSTANT_Utf8 "ah, I don't think so."
+; cp[144] (offset 0x6ec) -> CONSTANT_Utf8 "complementNumber"
+; cp[145] (offset 0x6ef) -> CONSTANT_String 52
+; cp[146] (offset 0x703) -> CONSTANT_Utf8 "When hell frizes."
+; cp[147] (offset 0x70b) -> CONSTANT_Utf8 "dream"
+; cp[148] (offset 0x70e) -> CONSTANT_Class 28
+; cp[149] (offset 0x711) -> CONSTANT_String 39
+; cp[150] (offset 0x71a) -> CONSTANT_Utf8 "crappy"
+; cp[151] (offset 0x727) -> CONSTANT_Utf8 "beautifull"
+; cp[152] (offset 0x74a) -> CONSTANT_Utf8 "nice try, but that won't cut it."
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 148
+; super_class index = 15
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 2
+
+; methods[0] (offset 0x756) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 119 (<init>)
+;     descriptor_index 16 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 107 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 73 (Woman/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x775) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 7 (react)
+;     descriptor_index 138 ((Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 107 (Code)
+;         attribute_length 992
+;         max_stack 2
+;         max_locals 5
+;         code_length 980
+;         code :
+;                0: aload_0 
+;                1: getfield 58 (Woman/complementNumber I) 
+;                4: iconst_0 
+;                5: if_icmpeq 7 
+;                8: iconst_0 
+;                9: goto 4 
+;               12: iconst_1 
+;               13: ifeq 104 
+;               16: aload_2 
+;               17: ldc 2 ("beautiful") 
+;               19: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               22: dup 
+;               23: ifne 10 
+;               26: pop 
+;               27: aload_2 
+;               28: ldc 56 ("sexy") 
+;               30: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               33: dup 
+;               34: ifeq 21 
+;               37: pop 
+;               38: aload_3 
+;               39: ldc 8 ("dream") 
+;               41: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               44: dup 
+;               45: ifne 10 
+;               48: pop 
+;               49: aload_3 
+;               50: ldc 82 ("sunshine") 
+;               52: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               55: dup 
+;               56: ifeq 19 
+;               59: pop 
+;               60: aload 4 
+;               62: ldc 105 ("puke") 
+;               64: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               67: ifeq 7 
+;               70: iconst_0 
+;               71: goto 4 
+;               74: iconst_1 
+;               75: ifeq 9 
+;               78: ldc 106 ("that's the best complement a man has ever gave me!") 
+;               80: areturn 
+;               81: goto 33 
+;               84: aload_3 
+;               85: ldc 86 ("raccoon") 
+;               87: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               90: dup 
+;               91: ifne 11 
+;               94: pop 
+;               95: aload 4 
+;               97: ldc 105 ("puke") 
+;               99: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              102: ifeq 9 
+;              105: ldc 54 ("that's the most disgusting thing I've ever heard.") 
+;              107: areturn 
+;              108: goto 6 
+;              111: ldc 129 ("You'll have to do better than that.") 
+;              113: areturn 
+;              114: goto 865 
+;              117: aload_0 
+;              118: getfield 58 (Woman/complementNumber I) 
+;              121: iconst_1 
+;              122: if_icmpeq 7 
+;              125: iconst_0 
+;              126: goto 4 
+;              129: iconst_1 
+;              130: ifeq 63 
+;              133: aload_3 
+;              134: ldc 89 ("skin") 
+;              136: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              139: dup 
+;              140: ifeq 23 
+;              143: pop 
+;              144: aload 4 
+;              146: ldc 33 ("sleep") 
+;              148: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              151: dup 
+;              152: ifne 11 
+;              155: pop 
+;              156: aload 4 
+;              158: ldc 101 ("eat-banana") 
+;              160: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              163: ifeq 9 
+;              166: ldc 88 ("you touched the very botttom of my soul.") 
+;              168: areturn 
+;              169: goto 21 
+;              172: aload_3 
+;              173: ldc 20 ("niece") 
+;              175: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              178: ifeq 9 
+;              181: ldc 40 ("you sick bastard, stay away from my family.") 
+;              183: areturn 
+;              184: goto 6 
+;              187: ldc 22 ("that don't impresse me much.") 
+;              189: areturn 
+;              190: goto 789 
+;              193: aload_0 
+;              194: getfield 58 (Woman/complementNumber I) 
+;              197: iconst_2 
+;              198: if_icmpeq 7 
+;              201: iconst_0 
+;              202: goto 4 
+;              205: iconst_1 
+;              206: ifeq 72 
+;              209: aload_3 
+;              210: ldc 8 ("dream") 
+;              212: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              215: dup 
+;              216: ifeq 21 
+;              219: pop 
+;              220: aload_2 
+;              221: ldc 2 ("beautiful") 
+;              223: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              226: dup 
+;              227: ifne 10 
+;              230: pop 
+;              231: aload_2 
+;              232: ldc 56 ("sexy") 
+;              234: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              237: ifeq 9 
+;              240: ldc 85 ("My oh my, what a gentelmen..") 
+;              242: areturn 
+;              243: goto 32 
+;              246: aload_3 
+;              247: ldc 86 ("raccoon") 
+;              249: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              252: dup 
+;              253: ifne 10 
+;              256: pop 
+;              257: aload_2 
+;              258: ldc 62 ("enormous") 
+;              260: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              263: ifeq 9 
+;              266: ldc 84 ("Go to hell!!") 
+;              268: areturn 
+;              269: goto 6 
+;              272: ldc 90 ("Try again, mister..") 
+;              274: areturn 
+;              275: goto 704 
+;              278: aload_0 
+;              279: getfield 58 (Woman/complementNumber I) 
+;              282: iconst_3 
+;              283: if_icmpeq 7 
+;              286: iconst_0 
+;              287: goto 4 
+;              290: iconst_1 
+;              291: ifeq 110 
+;              294: aload_2 
+;              295: ldc 1 ("dead") 
+;              297: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              300: dup 
+;              301: ifne 10 
+;              304: pop 
+;              305: aload_2 
+;              306: ldc 45 ("blind") 
+;              308: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              311: dup 
+;              312: ifne 10 
+;              315: pop 
+;              316: aload_2 
+;              317: ldc 72 ("crappy") 
+;              319: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              322: dup 
+;              323: ifeq 35 
+;              326: pop 
+;              327: aload 4 
+;              329: ldc 4 ("cry") 
+;              331: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              334: dup 
+;              335: ifne 11 
+;              338: pop 
+;              339: aload 4 
+;              341: ldc 102 ("work") 
+;              343: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              346: dup 
+;              347: ifne 11 
+;              350: pop 
+;              351: aload 4 
+;              353: ldc 33 ("sleep") 
+;              355: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              358: ifeq 9 
+;              361: ldc 24 ("You are the man of my dreams (-: ") 
+;              363: areturn 
+;              364: goto 34 
+;              367: aload 4 
+;              369: ldc 128 ("eat-bananas") 
+;              371: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              374: dup 
+;              375: ifne 11 
+;              378: pop 
+;              379: aload 4 
+;              381: ldc 105 ("puke") 
+;              383: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              386: ifeq 9 
+;              389: ldc 79 ("you are a freak. you know that, right?") 
+;              391: areturn 
+;              392: goto 6 
+;              395: ldc 41 ("nice try, but that won't cut it.") 
+;              397: areturn 
+;              398: goto 581 
+;              401: aload_0 
+;              402: getfield 58 (Woman/complementNumber I) 
+;              405: iconst_4 
+;              406: if_icmpeq 7 
+;              409: iconst_0 
+;              410: goto 4 
+;              413: iconst_1 
+;              414: ifeq 85 
+;              417: aload_3 
+;              418: ldc 20 ("niece") 
+;              420: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              423: dup 
+;              424: ifne 10 
+;              427: pop 
+;              428: aload_3 
+;              429: ldc 8 ("dream") 
+;              431: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              434: dup 
+;              435: ifne 10 
+;              438: pop 
+;              439: aload_3 
+;              440: ldc 89 ("skin") 
+;              442: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              445: dup 
+;              446: ifeq 23 
+;              449: pop 
+;              450: aload 4 
+;              452: ldc 4 ("cry") 
+;              454: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              457: dup 
+;              458: ifne 11 
+;              461: pop 
+;              462: aload 4 
+;              464: ldc 136 ("be-pleased") 
+;              466: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              469: ifeq 9 
+;              472: ldc 83 ("take me, I'm yours!") 
+;              474: areturn 
+;              475: goto 21 
+;              478: aload_3 
+;              479: ldc 109 ("fruit") 
+;              481: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              484: ifeq 9 
+;              487: ldc 130 ("you pervert, leave me alone!") 
+;              489: areturn 
+;              490: goto 6 
+;              493: ldc 60 ("I don't think so.") 
+;              495: areturn 
+;              496: goto 483 
+;              499: aload_0 
+;              500: getfield 58 (Woman/complementNumber I) 
+;              503: iconst_5 
+;              504: if_icmpeq 7 
+;              507: iconst_0 
+;              508: goto 4 
+;              511: iconst_1 
+;              512: ifeq 65 
+;              515: aload_3 
+;              516: ldc 42 ("tragedy") 
+;              518: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              521: ifeq 24 
+;              524: aload_2 
+;              525: ldc 1 ("dead") 
+;              527: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              530: ifeq 9 
+;              533: ldc 106 ("that's the best complement a man has ever gave me!") 
+;              535: areturn 
+;              536: goto 6 
+;              539: ldc 115 ("that's a bit weird, but good enough..") 
+;              541: areturn 
+;              542: goto 32 
+;              545: aload_3 
+;              546: ldc 109 ("fruit") 
+;              548: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              551: dup 
+;              552: ifne 10 
+;              555: pop 
+;              556: aload_3 
+;              557: ldc 57 ("work-ethic") 
+;              559: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              562: ifeq 9 
+;              565: ldc 149 ("man, you are not making any sence..") 
+;              567: areturn 
+;              568: goto 6 
+;              571: ldc 74 ("move along, mister.") 
+;              573: areturn 
+;              574: goto 405 
+;              577: aload_0 
+;              578: getfield 58 (Woman/complementNumber I) 
+;              581: ldc 30 (6) 
+;              583: if_icmpeq 7 
+;              586: iconst_0 
+;              587: goto 4 
+;              590: iconst_1 
+;              591: ifeq 85 
+;              594: aload_2 
+;              595: ldc 133 ("beautifull") 
+;              597: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              600: dup 
+;              601: ifne 10 
+;              604: pop 
+;              605: aload_2 
+;              606: ldc 12 ("lovely") 
+;              608: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              611: dup 
+;              612: ifeq 11 
+;              615: pop 
+;              616: aload 4 
+;              618: ldc 36 ("flourish") 
+;              620: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              623: dup 
+;              624: ifeq 21 
+;              627: pop 
+;              628: aload_3 
+;              629: ldc 8 ("dream") 
+;              631: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              634: dup 
+;              635: ifne 10 
+;              638: pop 
+;              639: aload_3 
+;              640: ldc 49 ("summer's-day") 
+;              642: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              645: ifeq 9 
+;              648: ldc 31 ("damn, you are god. take me home with you.") 
+;              650: areturn 
+;              651: goto 22 
+;              654: aload 4 
+;              656: ldc 103 ("rot") 
+;              658: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              661: ifeq 9 
+;              664: ldc 114 ("'rot'? you stink at giving complements!") 
+;              666: areturn 
+;              667: goto 6 
+;              670: ldc 139 ("When hell frizes.") 
+;              672: areturn 
+;              673: goto 306 
+;              676: aload_0 
+;              677: getfield 58 (Woman/complementNumber I) 
+;              680: ldc 29 (7) 
+;              682: if_icmpeq 7 
+;              685: iconst_0 
+;              686: goto 4 
+;              689: iconst_1 
+;              690: ifeq 50 
+;              693: aload_2 
+;              694: ldc 132 ("better") 
+;              696: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              699: ifeq 9 
+;              702: ldc 91 ("that's a bit wierd, but not to bad..") 
+;              704: areturn 
+;              705: goto 32 
+;              708: aload_2 
+;              709: ldc 1 ("dead") 
+;              711: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              714: dup 
+;              715: ifne 10 
+;              718: pop 
+;              719: aload_2 
+;              720: ldc 45 ("blind") 
+;              722: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              725: ifeq 9 
+;              728: ldc 38 ("are you trying to insult me or to complement me?") 
+;              730: areturn 
+;              731: goto 6 
+;              734: ldc 142 ("na, I don't think so.") 
+;              736: areturn 
+;              737: goto 242 
+;              740: aload_0 
+;              741: getfield 58 (Woman/complementNumber I) 
+;              744: ldc 27 (8) 
+;              746: if_icmpeq 7 
+;              749: iconst_0 
+;              750: goto 4 
+;              753: iconst_1 
+;              754: ifeq 72 
+;              757: aload_2 
+;              758: ldc 62 ("enormous") 
+;              760: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              763: dup 
+;              764: ifne 10 
+;              767: pop 
+;              768: aload_2 
+;              769: ldc 2 ("beautiful") 
+;              771: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              774: dup 
+;              775: ifeq 10 
+;              778: pop 
+;              779: aload_3 
+;              780: ldc 89 ("skin") 
+;              782: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              785: ifeq 9 
+;              788: ldc 121 ("you are amazing!") 
+;              790: areturn 
+;              791: goto 32 
+;              794: aload_3 
+;              795: ldc 86 ("raccoon") 
+;              797: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              800: dup 
+;              801: ifne 10 
+;              804: pop 
+;              805: aload_3 
+;              806: ldc 109 ("fruit") 
+;              808: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              811: ifeq 9 
+;              814: ldc 34 ("Grose, dude.") 
+;              816: areturn 
+;              817: goto 6 
+;              820: ldc 55 ("no way, man.") 
+;              822: areturn 
+;              823: goto 156 
+;              826: aload_0 
+;              827: getfield 58 (Woman/complementNumber I) 
+;              830: ldc 26 (9) 
+;              832: if_icmpeq 7 
+;              835: iconst_0 
+;              836: goto 4 
+;              839: iconst_1 
+;              840: ifeq 35 
+;              843: aload_2 
+;              844: ldc 2 ("beautiful") 
+;              846: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              849: dup 
+;              850: ifne 10 
+;              853: pop 
+;              854: aload_2 
+;              855: ldc 56 ("sexy") 
+;              857: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              860: ifeq 9 
+;              863: ldc 95 ("A strange proposal, but whu not!") 
+;              865: areturn 
+;              866: goto 6 
+;              869: ldc 145 ("you are out of line here, mister.") 
+;              871: areturn 
+;              872: goto 107 
+;              875: aload_0 
+;              876: getfield 58 (Woman/complementNumber I) 
+;              879: ldc 46 (10) 
+;              881: if_icmpeq 7 
+;              884: iconst_0 
+;              885: goto 4 
+;              888: iconst_1 
+;              889: ifeq 61 
+;              892: aload_2 
+;              893: ldc 89 ("skin") 
+;              895: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              898: dup 
+;              899: ifne 10 
+;              902: pop 
+;              903: aload_2 
+;              904: ldc 82 ("sunshine") 
+;              906: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              909: ifeq 9 
+;              912: ldc 104 ("you are a complement mechine!") 
+;              914: areturn 
+;              915: goto 32 
+;              918: aload_3 
+;              919: ldc 86 ("raccoon") 
+;              921: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              924: dup 
+;              925: ifne 10 
+;              928: pop 
+;              929: aload_3 
+;              930: ldc 109 ("fruit") 
+;              932: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              935: ifeq 9 
+;              938: ldc 48 ("I'm calling the cops.") 
+;              940: areturn 
+;              941: goto 6 
+;              944: ldc 25 ("ah, I don't think so.") 
+;              946: areturn 
+;              947: goto 32 
+;              950: aload_3 
+;              951: ldc 82 ("sunshine") 
+;              953: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              956: dup 
+;              957: ifeq 10 
+;              960: pop 
+;              961: aload_2 
+;              962: ldc 66 ("happy") 
+;              964: invokevirtual 81 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              967: ifeq 9 
+;              970: ldc 111 ("You are good!") 
+;              972: areturn 
+;              973: goto 6 
+;              976: ldc 64 ("ahm, I think you should try again.") 
+;              978: areturn 
+;              979: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0xb65) :
+;     name_index 123 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 127
+
+; End of file reached successfully. Enjoy :)

@@ -1,0 +1,69 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
+Generated: RoomAction.class
+Generated: BFRoomAction.class
+Generated: FeastRoomAction.class
+Generated: CoinRoomAction.class
+Generated: EmptyRoomAction.class
+Generated: GrueRoomAction.class
+Generated: TreasureRoomAction.class
+Generated: FactorialRoomAction.class
+Generated: HuntRoomAction.class
+Generated: ExitRoomAction.class
+Generated: JokeRoomAction.class
+Generated: Room.class
+Generated: GrueHunt.class
+Generated: InGenerate.class
+----- Method code sizes ----
+BFRoomAction.dump:;         code_length 5
+BFRoomAction.dump:;         code_length 10
+BFRoomAction.dump:;         code_length 124
+CoinRoomAction.dump:;         code_length 13
+CoinRoomAction.dump:;         code_length 37
+CoinRoomAction.dump:;         code_length 240
+EmptyRoomAction.dump:;         code_length 5
+EmptyRoomAction.dump:;         code_length 10
+EmptyRoomAction.dump:;         code_length 7
+ExitRoomAction.dump:;         code_length 5
+ExitRoomAction.dump:;         code_length 10
+ExitRoomAction.dump:;         code_length 83
+FactorialRoomAction.dump:;         code_length 5
+FactorialRoomAction.dump:;         code_length 10
+FactorialRoomAction.dump:;         code_length 262
+FactorialRoomAction.dump:;         code_length 44
+FeastRoomAction.dump:;         code_length 5
+FeastRoomAction.dump:;         code_length 10
+FeastRoomAction.dump:;         code_length 205
+GrueHunt.dump:;         code_length 5
+GrueHunt.dump:;         code_length 26
+GrueHunt.dump:;         code_length 1631
+GrueRoomAction.dump:;         code_length 5
+GrueRoomAction.dump:;         code_length 133
+HuntRoomAction.dump:;         code_length 130
+HuntRoomAction.dump:;         code_length 141
+HuntRoomAction.dump:;         code_length 788
+InGenerate.dump:;         code_length 19
+InGenerate.dump:;         code_length 261
+InGenerate.dump:;         code_length 33
+JokeRoomAction.dump:;         code_length 5
+JokeRoomAction.dump:;         code_length 10
+JokeRoomAction.dump:;         code_length 178
+JokeRoomAction.dump:;         code_length 316
+RoomAction.dump:;         code_length 33
+RoomAction.dump:;         code_length 10
+RoomAction.dump:;         code_length 162
+RoomAction.dump:;         code_length 33
+Room.dump:;         code_length 683
+Room.dump:;         code_length 38
+Room.dump:;         code_length 12
+Room.dump:;         code_length 6
+Room.dump:;         code_length 6
+Room.dump:;         code_length 6
+Room.dump:;         code_length 6
+Room.dump:;         code_length 6
+Room.dump:;         code_length 139
+Room.dump:;         code_length 258
+TreasureRoomAction.dump:;         code_length 13
+TreasureRoomAction.dump:;         code_length 37
+TreasureRoomAction.dump:;         code_length 153
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'

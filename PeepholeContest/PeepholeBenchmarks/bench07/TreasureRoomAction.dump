@@ -1,0 +1,247 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 57
+; cp[1] (offset 0xe) -> CONSTANT_Utf8 "Z"
+; cp[2] (offset 0x11) -> CONSTANT_String 45
+; cp[3] (offset 0x17) -> CONSTANT_Utf8 "()V"
+; cp[4] (offset 0x2f) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[5] (offset 0x43) -> CONSTANT_Utf8 "performBaseAction"
+; cp[6] (offset 0x48) -> CONSTANT_NameAndType 49, 54
+; cp[7] (offset 0x4c) -> CONSTANT_Utf8 "O"
+; cp[8] (offset 0x94) -> CONSTANT_Utf8 "You open the treasure box and finds a treasure! Your treasure count: "
+; cp[9] (offset 0x97) -> CONSTANT_String 11
+; cp[10] (offset 0xa1) -> CONSTANT_Utf8 "pick up"
+; cp[11] (offset 0xd6) -> CONSTANT_Utf8 "There is a treasure box at the center of the room."
+; cp[12] (offset 0xd9) -> CONSTANT_String 22
+; cp[13] (offset 0xdc) -> CONSTANT_String 23
+; cp[14] (offset 0xf1) -> CONSTANT_Utf8 "TreasureRoomAction"
+; cp[15] (offset 0xf6) -> CONSTANT_Fieldref 39, 20
+; cp[16] (offset 0xf9) -> CONSTANT_Class 27
+; cp[17] (offset 0xfc) -> CONSTANT_String 31
+; cp[18] (offset 0x106) -> CONSTANT_Utf8 "indexOf"
+; cp[19] (offset 0x10b) -> CONSTANT_Fieldref 25, 33
+; cp[20] (offset 0x110) -> CONSTANT_NameAndType 32, 1
+; cp[21] (offset 0x115) -> CONSTANT_Methodref 25, 35
+; cp[22] (offset 0x11c) -> CONSTANT_Utf8 "get "
+; cp[23] (offset 0x123) -> CONSTANT_Utf8 "take"
+; cp[24] (offset 0x137) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[25] (offset 0x13a) -> CONSTANT_Class 47
+; cp[26] (offset 0x13f) -> CONSTANT_NameAndType 18, 50
+; cp[27] (offset 0x151) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[28] (offset 0x168) -> CONSTANT_Utf8 "TreasureRoomAction.j"
+; cp[29] (offset 0x16d) -> CONSTANT_Methodref 44, 26
+; cp[30] (offset 0x170) -> CONSTANT_String 10
+; cp[31] (offset 0x177) -> CONSTANT_Utf8 "open"
+; cp[32] (offset 0x17f) -> CONSTANT_Utf8 "taken"
+; cp[33] (offset 0x184) -> CONSTANT_NameAndType 7, 24
+; cp[34] (offset 0x1a1) -> CONSTANT_Utf8 "The treasure box is empty."
+; cp[35] (offset 0x1a6) -> CONSTANT_NameAndType 42, 3
+; cp[36] (offset 0x1b9) -> CONSTANT_Utf8 "java/lang/String"
+; cp[37] (offset 0x1c6) -> CONSTANT_Utf8 "SourceFile"
+; cp[38] (offset 0x1d0) -> CONSTANT_Utf8 "println"
+; cp[39] (offset 0x1d3) -> CONSTANT_Class 14
+; cp[40] (offset 0x1d8) -> CONSTANT_NameAndType 5, 4
+; cp[41] (offset 0x1dd) -> CONSTANT_Methodref 16, 46
+; cp[42] (offset 0x1e6) -> CONSTANT_Utf8 "<init>"
+; cp[43] (offset 0x1e9) -> CONSTANT_String 8
+; cp[44] (offset 0x1ec) -> CONSTANT_Class 36
+; cp[45] (offset 0x1f7) -> CONSTANT_Utf8 "interact"
+; cp[46] (offset 0x1fc) -> CONSTANT_NameAndType 38, 54
+; cp[47] (offset 0x209) -> CONSTANT_Utf8 "RoomAction"
+; cp[48] (offset 0x20e) -> CONSTANT_Methodref 25, 40
+; cp[49] (offset 0x216) -> CONSTANT_Utf8 "print"
+; cp[50] (offset 0x22f) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[51] (offset 0x234) -> CONSTANT_Methodref 16, 6
+; cp[52] (offset 0x244) -> CONSTANT_Utf8 "performAction"
+; cp[53] (offset 0x24f) -> CONSTANT_Utf8 "describe"
+; cp[54] (offset 0x267) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[55] (offset 0x26e) -> CONSTANT_Utf8 "Code"
+; cp[56] (offset 0x271) -> CONSTANT_String 34
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 39
+; super_class index = 25
+
+; interfaces_count = 0
+
+
+; fields_count = 1
+
+; fields[0] (offset 0x27b) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 32 (taken)
+;     descriptor_index 1 (Z)
+;     attributes_count 0
+
+; methods_count 3
+
+; methods[0] (offset 0x285) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 42 (<init>)
+;     descriptor_index 3 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 55 (Code)
+;         attribute_length 25
+;         max_stack 3
+;         max_locals 1
+;         code_length 13
+;         code :
+;                0: aload_0 
+;                1: invokespecial 21 (RoomAction/<init> ()V) 
+;                4: iconst_0 
+;                5: dup 
+;                6: aload_0 
+;                7: swap 
+;                8: putfield 15 (TreasureRoomAction/taken Z) 
+;               11: pop 
+;               12: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x2ac) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 53 (describe)
+;     descriptor_index 3 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 55 (Code)
+;         attribute_length 49
+;         max_stack 2
+;         max_locals 1
+;         code_length 37
+;         code :
+;                0: aload_0 
+;                1: getfield 15 (TreasureRoomAction/taken Z) 
+;                4: ifeq 7 
+;                7: iconst_0 
+;                8: goto 4 
+;               11: iconst_1 
+;               12: ifeq 15 
+;               15: aload_0 
+;               16: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               19: ldc 9 ("There is a treasure box at the center of the room.") 
+;               21: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               24: goto 12 
+;               27: aload_0 
+;               28: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               31: ldc 56 ("The treasure box is empty.") 
+;               33: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               36: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x2eb) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 52 (performAction)
+;     descriptor_index 4 ((Ljava/lang/String;)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 55 (Code)
+;         attribute_length 165
+;         max_stack 3
+;         max_locals 2
+;         code_length 153
+;         code :
+;                0: aload_1 
+;                1: ldc 30 ("pick up") 
+;                3: iconst_0 
+;                4: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                7: iconst_0 
+;                8: if_icmpge 7 
+;               11: iconst_0 
+;               12: goto 4 
+;               15: iconst_1 
+;               16: dup 
+;               17: ifne 20 
+;               20: pop 
+;               21: aload_1 
+;               22: ldc 2 ("interact") 
+;               24: iconst_0 
+;               25: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               28: iconst_0 
+;               29: if_icmpge 7 
+;               32: iconst_0 
+;               33: goto 4 
+;               36: iconst_1 
+;               37: dup 
+;               38: ifne 20 
+;               41: pop 
+;               42: aload_1 
+;               43: ldc 13 ("take") 
+;               45: iconst_0 
+;               46: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               49: iconst_0 
+;               50: if_icmpge 7 
+;               53: iconst_0 
+;               54: goto 4 
+;               57: iconst_1 
+;               58: dup 
+;               59: ifne 20 
+;               62: pop 
+;               63: aload_1 
+;               64: ldc 17 ("open") 
+;               66: iconst_0 
+;               67: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               70: iconst_0 
+;               71: if_icmpge 7 
+;               74: iconst_0 
+;               75: goto 4 
+;               78: iconst_1 
+;               79: dup 
+;               80: ifne 20 
+;               83: pop 
+;               84: aload_1 
+;               85: ldc 12 ("get ") 
+;               87: iconst_0 
+;               88: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               91: iconst_0 
+;               92: if_icmpge 7 
+;               95: iconst_0 
+;               96: goto 4 
+;               99: iconst_1 
+;              100: ifeq 46 
+;              103: aload_0 
+;              104: getfield 15 (TreasureRoomAction/taken Z) 
+;              107: ifeq 17 
+;              110: aload_0 
+;              111: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              114: ldc 56 ("The treasure box is empty.") 
+;              116: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              119: iconst_0 
+;              120: ireturn 
+;              121: goto 22 
+;              124: aload_0 
+;              125: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              128: ldc 43 ("You open the treasure box and finds a treasure! Your treasure count: ") 
+;              130: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              133: iconst_1 
+;              134: dup 
+;              135: aload_0 
+;              136: swap 
+;              137: putfield 15 (TreasureRoomAction/taken Z) 
+;              140: pop 
+;              141: iconst_3 
+;              142: ireturn 
+;              143: goto 9 
+;              146: aload_0 
+;              147: aload_1 
+;              148: invokevirtual 48 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              151: ireturn 
+;              152: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x3a0) :
+;     name_index 37 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 28
+
+; End of file reached successfully. Enjoy :)

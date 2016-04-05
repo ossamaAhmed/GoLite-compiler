@@ -1,7 +1,14 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java 
-*** type identifier JoosBitwise not declared at line 8 of file Decoder.java
-*** identifier JoosBitwise not declared at line 13 of file Decoder.java
-*** type identifier JoosBitwise not declared at line 8 of file Encoder.java
-*** identifier JoosBitwise not declared at line 13 of file Encoder.java
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'
+Generated: Conversion.class
+Generated: Decoder.class
+Generated: Encoder.class
+Generated: Main.class
+----- Method code sizes ----
+Conversion.dump:;         code_length 1726
+Conversion.dump:;         code_length 21
+Conversion.dump:;         code_length 28
+Decoder.dump:;         code_length 33
+Decoder.dump:;         code_length 754
+Encoder.dump:;         code_length 33
+Encoder.dump:;         code_length 699
+Main.dump:;         code_length 5
+Main.dump:;         code_length 83

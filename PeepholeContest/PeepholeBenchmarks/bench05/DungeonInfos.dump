@@ -1,0 +1,493 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 88
+; cp[1] (offset 0xf) -> CONSTANT_NameAndType 42, 81
+; cp[2] (offset 0x12) -> CONSTANT_String 44
+; cp[3] (offset 0x17) -> CONSTANT_Methodref 74, 10
+; cp[4] (offset 0x24) -> CONSTANT_Utf8 "SourceFile"
+; cp[5] (offset 0x2f) -> CONSTANT_Utf8 "getHeros"
+; cp[6] (offset 0x41) -> CONSTANT_Utf8 "()LCustomPoint;"
+; cp[7] (offset 0x4a) -> CONSTANT_Utf8 "<init>"
+; cp[8] (offset 0x51) -> CONSTANT_Utf8 "Room"
+; cp[9] (offset 0x54) -> CONSTANT_String 14
+; cp[10] (offset 0x59) -> CONSTANT_NameAndType 60, 11
+; cp[11] (offset 0x70) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[12] (offset 0x73) -> CONSTANT_String 78
+; cp[13] (offset 0x80) -> CONSTANT_Utf8 "Downstairs"
+; cp[14] (offset 0x8a) -> CONSTANT_Utf8 "Monster"
+; cp[15] (offset 0x8d) -> CONSTANT_Class 32
+; cp[16] (offset 0x92) -> CONSTANT_NameAndType 7, 85
+; cp[17] (offset 0x97) -> CONSTANT_NameAndType 69, 45
+; cp[18] (offset 0x9c) -> CONSTANT_NameAndType 73, 65
+; cp[19] (offset 0xb4) -> CONSTANT_Utf8 "(Ljava/lang/Object;)Z"
+; cp[20] (offset 0xcc) -> CONSTANT_Utf8 "(Ljava/lang/Object;)V"
+; cp[21] (offset 0xd1) -> CONSTANT_Methodref 52, 17
+; cp[22] (offset 0xd6) -> CONSTANT_NameAndType 41, 65
+; cp[23] (offset 0xe7) -> CONSTANT_Utf8 "DungeonInfos.j"
+; cp[24] (offset 0xf0) -> CONSTANT_Utf8 "equals"
+; cp[25] (offset 0xfb) -> CONSTANT_Utf8 "monsters"
+; cp[26] (offset 0x100) -> CONSTANT_NameAndType 24, 19
+; cp[27] (offset 0x105) -> CONSTANT_NameAndType 68, 65
+; cp[28] (offset 0x113) -> CONSTANT_Utf8 "getUpstairs"
+; cp[29] (offset 0x118) -> CONSTANT_NameAndType 39, 20
+; cp[30] (offset 0x127) -> CONSTANT_Utf8 "getTreasures"
+; cp[31] (offset 0x12c) -> CONSTANT_Methodref 74, 72
+; cp[32] (offset 0x13f) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[33] (offset 0x14e) -> CONSTANT_Utf8 "getDimension"
+; cp[34] (offset 0x153) -> CONSTANT_Methodref 56, 72
+; cp[35] (offset 0x156) -> CONSTANT_String 8
+; cp[36] (offset 0x15b) -> CONSTANT_NameAndType 25, 65
+; cp[37] (offset 0x160) -> CONSTANT_Fieldref 52, 18
+; cp[38] (offset 0x167) -> CONSTANT_Utf8 "Code"
+; cp[39] (offset 0x174) -> CONSTANT_Utf8 "addElement"
+; cp[40] (offset 0x179) -> CONSTANT_Fieldref 52, 36
+; cp[41] (offset 0x185) -> CONSTANT_Utf8 "treasures"
+; cp[42] (offset 0x191) -> CONSTANT_Utf8 "dimension"
+; cp[43] (offset 0x196) -> CONSTANT_Methodref 63, 26
+; cp[44] (offset 0x19d) -> CONSTANT_Utf8 "Hero"
+; cp[45] (offset 0x1a3) -> CONSTANT_Utf8 "()V"
+; cp[46] (offset 0x1a8) -> CONSTANT_NameAndType 86, 53
+; cp[47] (offset 0x1b3) -> CONSTANT_Utf8 "Treasure"
+; cp[48] (offset 0x1b8) -> CONSTANT_NameAndType 84, 65
+; cp[49] (offset 0x1c6) -> CONSTANT_Utf8 "CustomPoint"
+; cp[50] (offset 0x1cb) -> CONSTANT_Fieldref 52, 27
+; cp[51] (offset 0x1db) -> CONSTANT_Utf8 "getDownstairs"
+; cp[52] (offset 0x1de) -> CONSTANT_Class 55
+; cp[53] (offset 0x1e4) -> CONSTANT_Utf8 "()I"
+; cp[54] (offset 0x1e9) -> CONSTANT_Methodref 74, 46
+; cp[55] (offset 0x1f8) -> CONSTANT_Utf8 "DungeonInfos"
+; cp[56] (offset 0x1fb) -> CONSTANT_Class 67
+; cp[57] (offset 0x1fe) -> CONSTANT_Class 49
+; cp[58] (offset 0x203) -> CONSTANT_Methodref 57, 72
+; cp[59] (offset 0x208) -> CONSTANT_Methodref 56, 29
+; cp[60] (offset 0x213) -> CONSTANT_Utf8 "readLine"
+; cp[61] (offset 0x218) -> CONSTANT_Fieldref 52, 22
+; cp[62] (offset 0x22a) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[63] (offset 0x22d) -> CONSTANT_Class 76
+; cp[64] (offset 0x232) -> CONSTANT_Methodref 57, 16
+; cp[65] (offset 0x247) -> CONSTANT_Utf8 "Ljava/util/Vector;"
+; cp[66] (offset 0x25d) -> CONSTANT_Utf8 "initializeFromStdIn"
+; cp[67] (offset 0x270) -> CONSTANT_Utf8 "java/util/Vector"
+; cp[68] (offset 0x278) -> CONSTANT_Utf8 "heros"
+; cp[69] (offset 0x288) -> CONSTANT_Utf8 "initializeTo0"
+; cp[70] (offset 0x296) -> CONSTANT_Utf8 "getMonsters"
+; cp[71] (offset 0x29b) -> CONSTANT_Fieldref 52, 48
+; cp[72] (offset 0x2a0) -> CONSTANT_NameAndType 7, 45
+; cp[73] (offset 0x2ab) -> CONSTANT_Utf8 "upstairs"
+; cp[74] (offset 0x2ae) -> CONSTANT_Class 62
+; cp[75] (offset 0x2c5) -> CONSTANT_Utf8 "()Ljava/util/Vector;"
+; cp[76] (offset 0x2d8) -> CONSTANT_Utf8 "java/lang/String"
+; cp[77] (offset 0x2db) -> CONSTANT_String 13
+; cp[78] (offset 0x2e6) -> CONSTANT_Utf8 "Upstairs"
+; cp[79] (offset 0x2e9) -> CONSTANT_String 47
+; cp[80] (offset 0x2ee) -> CONSTANT_Fieldref 52, 1
+; cp[81] (offset 0x2fe) -> CONSTANT_Utf8 "LCustomPoint;"
+; cp[82] (offset 0x301) -> CONSTANT_String 87
+; cp[83] (offset 0x306) -> CONSTANT_Methodref 15, 72
+; cp[84] (offset 0x313) -> CONSTANT_Utf8 "downstairs"
+; cp[85] (offset 0x31b) -> CONSTANT_Utf8 "(II)V"
+; cp[86] (offset 0x325) -> CONSTANT_Utf8 "readInt"
+; cp[87] (offset 0x328) -> CONSTANT_Utf8 ""
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 52
+; super_class index = 15
+
+; interfaces_count = 0
+
+
+; fields_count = 6
+
+; fields[0] (offset 0x332) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 42 (dimension)
+;     descriptor_index 81 (LCustomPoint;)
+;     attributes_count 0
+
+; fields[1] (offset 0x33a) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 25 (monsters)
+;     descriptor_index 65 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; fields[2] (offset 0x342) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 73 (upstairs)
+;     descriptor_index 65 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; fields[3] (offset 0x34a) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 84 (downstairs)
+;     descriptor_index 65 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; fields[4] (offset 0x352) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 41 (treasures)
+;     descriptor_index 65 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; fields[5] (offset 0x35a) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 68 (heros)
+;     descriptor_index 65 (Ljava/util/Vector;)
+;     attributes_count 0
+
+; methods_count 9
+
+; methods[0] (offset 0x364) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 7 (<init>)
+;     descriptor_index 45 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 21
+;         max_stack 1
+;         max_locals 1
+;         code_length 9
+;         code :
+;                0: aload_0 
+;                1: invokespecial 83 (java/lang/Object/<init> ()V) 
+;                4: aload_0 
+;                5: invokevirtual 21 (DungeonInfos/initializeTo0 ()V) 
+;                8: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x387) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 69 (initializeTo0)
+;     descriptor_index 45 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 97
+;         max_stack 3
+;         max_locals 1
+;         code_length 85
+;         code :
+;                0: new 57 (CustomPoint) 
+;                3: dup 
+;                4: invokespecial 58 (CustomPoint/<init> ()V) 
+;                7: dup 
+;                8: aload_0 
+;                9: swap 
+;               10: putfield 80 (DungeonInfos/dimension LCustomPoint;) 
+;               13: pop 
+;               14: new 56 (java/util/Vector) 
+;               17: dup 
+;               18: invokespecial 34 (java/util/Vector/<init> ()V) 
+;               21: dup 
+;               22: aload_0 
+;               23: swap 
+;               24: putfield 40 (DungeonInfos/monsters Ljava/util/Vector;) 
+;               27: pop 
+;               28: new 56 (java/util/Vector) 
+;               31: dup 
+;               32: invokespecial 34 (java/util/Vector/<init> ()V) 
+;               35: dup 
+;               36: aload_0 
+;               37: swap 
+;               38: putfield 37 (DungeonInfos/upstairs Ljava/util/Vector;) 
+;               41: pop 
+;               42: new 56 (java/util/Vector) 
+;               45: dup 
+;               46: invokespecial 34 (java/util/Vector/<init> ()V) 
+;               49: dup 
+;               50: aload_0 
+;               51: swap 
+;               52: putfield 71 (DungeonInfos/downstairs Ljava/util/Vector;) 
+;               55: pop 
+;               56: new 56 (java/util/Vector) 
+;               59: dup 
+;               60: invokespecial 34 (java/util/Vector/<init> ()V) 
+;               63: dup 
+;               64: aload_0 
+;               65: swap 
+;               66: putfield 61 (DungeonInfos/treasures Ljava/util/Vector;) 
+;               69: pop 
+;               70: new 56 (java/util/Vector) 
+;               73: dup 
+;               74: invokespecial 34 (java/util/Vector/<init> ()V) 
+;               77: dup 
+;               78: aload_0 
+;               79: swap 
+;               80: putfield 50 (DungeonInfos/heros Ljava/util/Vector;) 
+;               83: pop 
+;               84: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x3f6) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 66 (initializeFromStdIn)
+;     descriptor_index 45 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 255
+;         max_stack 5
+;         max_locals 5
+;         code_length 243
+;         code :
+;                0: new 74 (joos/lib/JoosIO) 
+;                3: dup 
+;                4: invokespecial 31 (joos/lib/JoosIO/<init> ()V) 
+;                7: dup 
+;                8: astore_1 
+;                9: pop 
+;               10: aload_1 
+;               11: invokevirtual 3 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               14: dup 
+;               15: astore_2 
+;               16: pop 
+;               17: aload_2 
+;               18: aconst_null 
+;               19: if_acmpne 7 
+;               22: iconst_0 
+;               23: goto 4 
+;               26: iconst_1 
+;               27: dup 
+;               28: ifeq 18 
+;               31: pop 
+;               32: aload_2 
+;               33: ldc 82 ("") 
+;               35: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               38: ifeq 7 
+;               41: iconst_0 
+;               42: goto 4 
+;               45: iconst_1 
+;               46: ifeq 196 
+;               49: aload_1 
+;               50: invokevirtual 54 (joos/lib/JoosIO/readInt ()I) 
+;               53: dup 
+;               54: istore_3 
+;               55: pop 
+;               56: aload_1 
+;               57: invokevirtual 54 (joos/lib/JoosIO/readInt ()I) 
+;               60: dup 
+;               61: istore 4 
+;               63: pop 
+;               64: aload_2 
+;               65: ldc 35 ("Room") 
+;               67: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               70: ifeq 20 
+;               73: new 57 (CustomPoint) 
+;               76: dup 
+;               77: iload_3 
+;               78: iload 4 
+;               80: invokespecial 64 (CustomPoint/<init> (II)V) 
+;               83: dup 
+;               84: aload_0 
+;               85: swap 
+;               86: putfield 80 (DungeonInfos/dimension LCustomPoint;) 
+;               89: pop 
+;               90: aload_2 
+;               91: ldc 9 ("Monster") 
+;               93: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               96: ifeq 23 
+;               99: aload_0 
+;              100: getfield 40 (DungeonInfos/monsters Ljava/util/Vector;) 
+;              103: new 57 (CustomPoint) 
+;              106: dup 
+;              107: iload_3 
+;              108: iload 4 
+;              110: invokespecial 64 (CustomPoint/<init> (II)V) 
+;              113: invokevirtual 59 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              116: goto 116 
+;              119: aload_2 
+;              120: ldc 12 ("Upstairs") 
+;              122: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              125: ifeq 23 
+;              128: aload_0 
+;              129: getfield 37 (DungeonInfos/upstairs Ljava/util/Vector;) 
+;              132: new 57 (CustomPoint) 
+;              135: dup 
+;              136: iload_3 
+;              137: iload 4 
+;              139: invokespecial 64 (CustomPoint/<init> (II)V) 
+;              142: invokevirtual 59 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              145: goto 87 
+;              148: aload_2 
+;              149: ldc 77 ("Downstairs") 
+;              151: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              154: ifeq 23 
+;              157: aload_0 
+;              158: getfield 71 (DungeonInfos/downstairs Ljava/util/Vector;) 
+;              161: new 57 (CustomPoint) 
+;              164: dup 
+;              165: iload_3 
+;              166: iload 4 
+;              168: invokespecial 64 (CustomPoint/<init> (II)V) 
+;              171: invokevirtual 59 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              174: goto 58 
+;              177: aload_2 
+;              178: ldc 79 ("Treasure") 
+;              180: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              183: ifeq 23 
+;              186: aload_0 
+;              187: getfield 61 (DungeonInfos/treasures Ljava/util/Vector;) 
+;              190: new 57 (CustomPoint) 
+;              193: dup 
+;              194: iload_3 
+;              195: iload 4 
+;              197: invokespecial 64 (CustomPoint/<init> (II)V) 
+;              200: invokevirtual 59 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              203: goto 29 
+;              206: aload_2 
+;              207: ldc 2 ("Hero") 
+;              209: invokevirtual 43 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              212: ifeq 20 
+;              215: aload_0 
+;              216: getfield 50 (DungeonInfos/heros Ljava/util/Vector;) 
+;              219: new 57 (CustomPoint) 
+;              222: dup 
+;              223: iload_3 
+;              224: iload 4 
+;              226: invokespecial 64 (CustomPoint/<init> (II)V) 
+;              229: invokevirtual 59 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              232: aload_1 
+;              233: invokevirtual 3 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;              236: dup 
+;              237: astore_2 
+;              238: pop 
+;              239: goto -222 
+;              242: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[3] (offset 0x503) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 33 (getDimension)
+;     descriptor_index 6 (()LCustomPoint;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 80 (DungeonInfos/dimension LCustomPoint;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[4] (offset 0x523) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 70 (getMonsters)
+;     descriptor_index 75 (()Ljava/util/Vector;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 40 (DungeonInfos/monsters Ljava/util/Vector;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[5] (offset 0x543) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 28 (getUpstairs)
+;     descriptor_index 75 (()Ljava/util/Vector;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 37 (DungeonInfos/upstairs Ljava/util/Vector;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[6] (offset 0x563) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 51 (getDownstairs)
+;     descriptor_index 75 (()Ljava/util/Vector;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 71 (DungeonInfos/downstairs Ljava/util/Vector;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[7] (offset 0x583) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 30 (getTreasures)
+;     descriptor_index 75 (()Ljava/util/Vector;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 61 (DungeonInfos/treasures Ljava/util/Vector;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[8] (offset 0x5a3) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 5 (getHeros)
+;     descriptor_index 75 (()Ljava/util/Vector;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 38 (Code)
+;         attribute_length 18
+;         max_stack 1
+;         max_locals 1
+;         code_length 6
+;         code :
+;                0: aload_0 
+;                1: getfield 50 (DungeonInfos/heros Ljava/util/Vector;) 
+;                4: areturn 
+;                5: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x5c5) :
+;     name_index 4 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 23
+
+; End of file reached successfully. Enjoy :)

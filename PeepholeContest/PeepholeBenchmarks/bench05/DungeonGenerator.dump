@@ -1,0 +1,114 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 31
+; cp[1] (offset 0x1e) -> CONSTANT_Utf8 "(LDungeonInfos;)V"
+; cp[2] (offset 0x37) -> CONSTANT_Utf8 "([Ljava/lang/String;)V"
+; cp[3] (offset 0x4a) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[4] (offset 0x5f) -> CONSTANT_Utf8 "DungeonGenerator.j"
+; cp[5] (offset 0x68) -> CONSTANT_Utf8 "<init>"
+; cp[6] (offset 0x6b) -> CONSTANT_Class 3
+; cp[7] (offset 0x70) -> CONSTANT_NameAndType 5, 10
+; cp[8] (offset 0x82) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[9] (offset 0x95) -> CONSTANT_Utf8 "DungeonGenerator"
+; cp[10] (offset 0x9b) -> CONSTANT_Utf8 "()V"
+; cp[11] (offset 0xaa) -> CONSTANT_Utf8 "DungeonInfos"
+; cp[12] (offset 0xb1) -> CONSTANT_Utf8 "Code"
+; cp[13] (offset 0xb8) -> CONSTANT_Utf8 "main"
+; cp[14] (offset 0xbd) -> CONSTANT_NameAndType 26, 10
+; cp[15] (offset 0xc2) -> CONSTANT_Methodref 28, 7
+; cp[16] (offset 0xc7) -> CONSTANT_Methodref 28, 14
+; cp[17] (offset 0xca) -> CONSTANT_Class 8
+; cp[18] (offset 0xcd) -> CONSTANT_Class 21
+; cp[19] (offset 0xda) -> CONSTANT_Utf8 "SourceFile"
+; cp[20] (offset 0xe1) -> CONSTANT_Utf8 "draw"
+; cp[21] (offset 0xeb) -> CONSTANT_Utf8 "Dungeon"
+; cp[22] (offset 0xf0) -> CONSTANT_Methodref 6, 7
+; cp[23] (offset 0xf5) -> CONSTANT_NameAndType 5, 1
+; cp[24] (offset 0xfa) -> CONSTANT_NameAndType 20, 10
+; cp[25] (offset 0xff) -> CONSTANT_Methodref 17, 7
+; cp[26] (offset 0x115) -> CONSTANT_Utf8 "initializeFromStdIn"
+; cp[27] (offset 0x118) -> CONSTANT_Class 9
+; cp[28] (offset 0x11b) -> CONSTANT_Class 11
+; cp[29] (offset 0x120) -> CONSTANT_Methodref 18, 24
+; cp[30] (offset 0x125) -> CONSTANT_Methodref 18, 23
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 27
+; super_class index = 6
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 2
+
+; methods[0] (offset 0x131) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 5 (<init>)
+;     descriptor_index 10 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 12 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 22 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x150) :
+;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
+;     name_index 13 (main)
+;     descriptor_index 2 (([Ljava/lang/String;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 12 (Code)
+;         attribute_length 52
+;         max_stack 3
+;         max_locals 4
+;         code_length 40
+;         code :
+;                0: new 28 (DungeonInfos) 
+;                3: dup 
+;                4: invokespecial 15 (DungeonInfos/<init> ()V) 
+;                7: dup 
+;                8: astore_1 
+;                9: pop 
+;               10: aload_1 
+;               11: invokevirtual 16 (DungeonInfos/initializeFromStdIn ()V) 
+;               14: new 18 (Dungeon) 
+;               17: dup 
+;               18: aload_1 
+;               19: invokespecial 30 (Dungeon/<init> (LDungeonInfos;)V) 
+;               22: dup 
+;               23: astore_2 
+;               24: pop 
+;               25: new 17 (joos/lib/JoosIO) 
+;               28: dup 
+;               29: invokespecial 25 (joos/lib/JoosIO/<init> ()V) 
+;               32: dup 
+;               33: astore_3 
+;               34: pop 
+;               35: aload_2 
+;               36: invokevirtual 29 (Dungeon/draw ()V) 
+;               39: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x194) :
+;     name_index 19 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 4
+
+; End of file reached successfully. Enjoy :)

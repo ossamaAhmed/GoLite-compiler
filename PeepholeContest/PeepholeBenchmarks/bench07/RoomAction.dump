@@ -1,0 +1,317 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 71
+; cp[1] (offset 0x22) -> CONSTANT_Utf8 "Ljoos/lib/JoosRandom;"
+; cp[2] (offset 0x28) -> CONSTANT_Utf8 "()V"
+; cp[3] (offset 0x40) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[4] (offset 0x48) -> CONSTANT_Utf8 "leave"
+; cp[5] (offset 0x4d) -> CONSTANT_NameAndType 9, 1
+; cp[6] (offset 0x52) -> CONSTANT_NameAndType 59, 68
+; cp[7] (offset 0x57) -> CONSTANT_Integer 11
+; cp[8] (offset 0x6b) -> CONSTANT_Utf8 "performBaseAction"
+; cp[9] (offset 0x6f) -> CONSTANT_Utf8 "R"
+; cp[10] (offset 0x72) -> CONSTANT_String 4
+; cp[11] (offset 0x85) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[12] (offset 0x89) -> CONSTANT_Utf8 "O"
+; cp[13] (offset 0x8e) -> CONSTANT_Integer 6
+; cp[14] (offset 0x94) -> CONSTANT_Utf8 "()I"
+; cp[15] (offset 0x99) -> CONSTANT_Utf8 "go"
+; cp[16] (offset 0x9c) -> CONSTANT_Class 11
+; cp[17] (offset 0x9f) -> CONSTANT_Class 28
+; cp[18] (offset 0xa4) -> CONSTANT_Fieldref 26, 5
+; cp[19] (offset 0xb3) -> CONSTANT_Utf8 "RoomAction.j"
+; cp[20] (offset 0xb8) -> CONSTANT_Methodref 32, 40
+; cp[21] (offset 0xc7) -> CONSTANT_Utf8 "targetString"
+; cp[22] (offset 0xd1) -> CONSTANT_Utf8 "indexOf"
+; cp[23] (offset 0xd6) -> CONSTANT_Fieldref 26, 35
+; cp[24] (offset 0xd9) -> CONSTANT_String 34
+; cp[25] (offset 0xed) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[26] (offset 0xf0) -> CONSTANT_Class 55
+; cp[27] (offset 0xf5) -> CONSTANT_NameAndType 22, 62
+; cp[28] (offset 0x107) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[29] (offset 0x113) -> CONSTANT_Utf8 "show coin"
+; cp[30] (offset 0x118) -> CONSTANT_Methodref 49, 27
+; cp[31] (offset 0x122) -> CONSTANT_Utf8 "fortune"
+; cp[32] (offset 0x125) -> CONSTANT_Class 57
+; cp[33] (offset 0x128) -> CONSTANT_String 29
+; cp[34] (offset 0x14f) -> CONSTANT_Utf8 "I'm afraid I can't let you do that, "
+; cp[35] (offset 0x154) -> CONSTANT_NameAndType 12, 25
+; cp[36] (offset 0x15e) -> CONSTANT_Utf8 "nextInt"
+; cp[37] (offset 0x168) -> CONSTANT_Utf8 "show hp"
+; cp[38] (offset 0x16f) -> CONSTANT_Utf8 "rand"
+; cp[39] (offset 0x172) -> CONSTANT_String 70
+; cp[40] (offset 0x177) -> CONSTANT_NameAndType 47, 2
+; cp[41] (offset 0x17c) -> CONSTANT_NameAndType 36, 14
+; cp[42] (offset 0x18f) -> CONSTANT_Utf8 "java/lang/String"
+; cp[43] (offset 0x19c) -> CONSTANT_Utf8 "SourceFile"
+; cp[44] (offset 0x19f) -> CONSTANT_String 31
+; cp[45] (offset 0x1a9) -> CONSTANT_Utf8 "println"
+; cp[46] (offset 0x1ae) -> CONSTANT_Methodref 17, 53
+; cp[47] (offset 0x1b7) -> CONSTANT_Utf8 "<init>"
+; cp[48] (offset 0x1bc) -> CONSTANT_Methodref 32, 41
+; cp[49] (offset 0x1bf) -> CONSTANT_Class 42
+; cp[50] (offset 0x1c2) -> CONSTANT_String 15
+; cp[51] (offset 0x1c7) -> CONSTANT_Methodref 16, 40
+; cp[52] (offset 0x1d7) -> CONSTANT_Utf8 "show treasure"
+; cp[53] (offset 0x1dc) -> CONSTANT_NameAndType 45, 68
+; cp[54] (offset 0x1e3) -> CONSTANT_Utf8 "(I)I"
+; cp[55] (offset 0x1f0) -> CONSTANT_Utf8 "RoomAction"
+; cp[56] (offset 0x1f3) -> CONSTANT_String 37
+; cp[57] (offset 0x209) -> CONSTANT_Utf8 "joos/lib/JoosRandom"
+; cp[58] (offset 0x20c) -> CONSTANT_String 64
+; cp[59] (offset 0x214) -> CONSTANT_Utf8 "print"
+; cp[60] (offset 0x217) -> CONSTANT_String 52
+; cp[61] (offset 0x22c) -> CONSTANT_Utf8 "Ljava/lang/String;"
+; cp[62] (offset 0x245) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[63] (offset 0x24a) -> CONSTANT_Methodref 17, 6
+; cp[64] (offset 0x25d) -> CONSTANT_Utf8 "Which direction?"
+; cp[65] (offset 0x26d) -> CONSTANT_Utf8 "performAction"
+; cp[66] (offset 0x272) -> CONSTANT_Methodref 17, 40
+; cp[67] (offset 0x27d) -> CONSTANT_Utf8 "describe"
+; cp[68] (offset 0x295) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[69] (offset 0x29c) -> CONSTANT_Utf8 "Code"
+; cp[70] (offset 0x29f) -> CONSTANT_Utf8 ""
+
+; access flags = 0x421 [ ACC_ABSTRACT ACC_SUPER ACC_PUBLIC ]
+; this_class index = 26
+; super_class index = 16
+
+; interfaces_count = 0
+
+
+; fields_count = 3
+
+; fields[0] (offset 0x2a9) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 12 (O)
+;     descriptor_index 25 (Ljoos/lib/JoosIO;)
+;     attributes_count 0
+
+; fields[1] (offset 0x2b1) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 9 (R)
+;     descriptor_index 1 (Ljoos/lib/JoosRandom;)
+;     attributes_count 0
+
+; fields[2] (offset 0x2b9) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 21 (targetString)
+;     descriptor_index 61 (Ljava/lang/String;)
+;     attributes_count 0
+
+; methods_count 5
+
+; methods[0] (offset 0x2c3) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 47 (<init>)
+;     descriptor_index 2 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 69 (Code)
+;         attribute_length 45
+;         max_stack 3
+;         max_locals 1
+;         code_length 33
+;         code :
+;                0: aload_0 
+;                1: invokespecial 51 (java/lang/Object/<init> ()V) 
+;                4: new 17 (joos/lib/JoosIO) 
+;                7: dup 
+;                8: invokespecial 66 (joos/lib/JoosIO/<init> ()V) 
+;               11: dup 
+;               12: aload_0 
+;               13: swap 
+;               14: putfield 23 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               17: pop 
+;               18: new 32 (joos/lib/JoosRandom) 
+;               21: dup 
+;               22: invokespecial 20 (joos/lib/JoosRandom/<init> ()V) 
+;               25: dup 
+;               26: aload_0 
+;               27: swap 
+;               28: putfield 18 (RoomAction/R Ljoos/lib/JoosRandom;) 
+;               31: pop 
+;               32: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x2fe) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 67 (describe)
+;     descriptor_index 2 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 69 (Code)
+;         attribute_length 22
+;         max_stack 2
+;         max_locals 1
+;         code_length 10
+;         code :
+;                0: aload_0 
+;                1: getfield 23 (RoomAction/O Ljoos/lib/JoosIO;) 
+;                4: ldc 39 ("") 
+;                6: invokevirtual 46 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;                9: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x322) :
+;     access_flags 0x401 [ ACC_ABSTRACT ACC_PUBLIC ]
+;     name_index 65 (performAction)
+;     descriptor_index 3 ((Ljava/lang/String;)I)
+;     attributes_count 0
+
+
+; methods[3] (offset 0x32a) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 8 (performBaseAction)
+;     descriptor_index 3 ((Ljava/lang/String;)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 69 (Code)
+;         attribute_length 174
+;         max_stack 3
+;         max_locals 2
+;         code_length 162
+;         code :
+;                0: aload_1 
+;                1: ldc 44 ("fortune") 
+;                3: iconst_0 
+;                4: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                7: iconst_0 
+;                8: if_icmpge 7 
+;               11: iconst_0 
+;               12: goto 4 
+;               15: iconst_1 
+;               16: ifeq 6 
+;               19: goto 140 
+;               22: aload_1 
+;               23: ldc 56 ("show hp") 
+;               25: iconst_0 
+;               26: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               29: iconst_0 
+;               30: if_icmpge 7 
+;               33: iconst_0 
+;               34: goto 4 
+;               37: iconst_1 
+;               38: ifeq 9 
+;               41: ldc 7 (11) 
+;               43: ireturn 
+;               44: goto 115 
+;               47: aload_1 
+;               48: ldc 60 ("show treasure") 
+;               50: iconst_0 
+;               51: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               54: iconst_0 
+;               55: if_icmpge 7 
+;               58: iconst_0 
+;               59: goto 4 
+;               62: iconst_1 
+;               63: ifeq 8 
+;               66: iconst_4 
+;               67: ireturn 
+;               68: goto 91 
+;               71: aload_1 
+;               72: ldc 33 ("show coin") 
+;               74: iconst_0 
+;               75: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               78: iconst_0 
+;               79: if_icmpge 7 
+;               82: iconst_0 
+;               83: goto 4 
+;               86: iconst_1 
+;               87: ifeq 9 
+;               90: ldc 13 (6) 
+;               92: ireturn 
+;               93: goto 66 
+;               96: aload_1 
+;               97: ldc 10 ("leave") 
+;               99: iconst_0 
+;              100: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              103: iconst_0 
+;              104: if_icmpge 7 
+;              107: iconst_0 
+;              108: goto 4 
+;              111: iconst_1 
+;              112: dup 
+;              113: ifne 20 
+;              116: pop 
+;              117: aload_1 
+;              118: ldc 50 ("go") 
+;              120: iconst_0 
+;              121: invokevirtual 30 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              124: iconst_0 
+;              125: if_icmpge 7 
+;              128: iconst_0 
+;              129: goto 4 
+;              132: iconst_1 
+;              133: ifeq 15 
+;              136: aload_0 
+;              137: getfield 23 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              140: ldc 58 ("Which direction?") 
+;              142: invokevirtual 46 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              145: goto 14 
+;              148: aload_0 
+;              149: getfield 23 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              152: ldc 24 ("I'm afraid I can't let you do that, ") 
+;              154: invokevirtual 63 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              157: iconst_2 
+;              158: ireturn 
+;              159: iconst_0 
+;              160: ireturn 
+;              161: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[4] (offset 0x3e6) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 38 (rand)
+;     descriptor_index 54 ((I)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 69 (Code)
+;         attribute_length 45
+;         max_stack 2
+;         max_locals 3
+;         code_length 33
+;         code :
+;                0: aload_0 
+;                1: getfield 18 (RoomAction/R Ljoos/lib/JoosRandom;) 
+;                4: invokevirtual 48 (joos/lib/JoosRandom/nextInt ()I) 
+;                7: dup 
+;                8: istore_2 
+;                9: pop 
+;               10: iload_2 
+;               11: iconst_0 
+;               12: if_icmplt 7 
+;               15: iconst_0 
+;               16: goto 4 
+;               19: iconst_1 
+;               20: ifeq 8 
+;               23: iload_2 
+;               24: ineg 
+;               25: dup 
+;               26: istore_2 
+;               27: pop 
+;               28: iload_2 
+;               29: iload_1 
+;               30: irem 
+;               31: ireturn 
+;               32: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x423) :
+;     name_index 43 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 19
+
+; End of file reached successfully. Enjoy :)

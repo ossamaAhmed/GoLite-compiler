@@ -1,0 +1,27 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench05'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java 
+Generated: CustomPoint.class
+Generated: Dungeon.class
+Generated: DungeonGenerator.class
+Generated: DungeonInfos.class
+----- Method code sizes ----
+CustomPoint.dump:;         code_length 21
+CustomPoint.dump:;         code_length 21
+CustomPoint.dump:;         code_length 6
+CustomPoint.dump:;         code_length 6
+Dungeon.dump:;         code_length 27
+Dungeon.dump:;         code_length 398
+Dungeon.dump:;         code_length 334
+Dungeon.dump:;         code_length 27
+DungeonGenerator.dump:;         code_length 5
+DungeonGenerator.dump:;         code_length 40
+DungeonInfos.dump:;         code_length 9
+DungeonInfos.dump:;         code_length 85
+DungeonInfos.dump:;         code_length 243
+DungeonInfos.dump:;         code_length 6
+DungeonInfos.dump:;         code_length 6
+DungeonInfos.dump:;         code_length 6
+DungeonInfos.dump:;         code_length 6
+DungeonInfos.dump:;         code_length 6
+DungeonInfos.dump:;         code_length 6
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench05'

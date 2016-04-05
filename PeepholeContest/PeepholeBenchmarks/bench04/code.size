@@ -1,0 +1,72 @@
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc *.java 
+Generated: Board.class
+Generated: BombMove.class
+Generated: ClassicMove.class
+Generated: DiagBombMove.class
+Generated: FlipBoardMove.class
+Generated: Game.class
+Generated: KillColumnMove.class
+Generated: KillRowAndColumnMove.class
+Generated: KillRowMove.class
+Generated: Move.class
+Generated: Strategy.class
+----- Method code sizes ----
+Board.dump:;         code_length 150
+Board.dump:;         code_length 6
+Board.dump:;         code_length 6
+Board.dump:;         code_length 24
+Board.dump:;         code_length 84
+Board.dump:;         code_length 63
+Board.dump:;         code_length 26
+Board.dump:;         code_length 20
+Board.dump:;         code_length 11
+Board.dump:;         code_length 162
+Board.dump:;         code_length 103
+Board.dump:;         code_length 52
+Board.dump:;         code_length 184
+Board.dump:;         code_length 687
+Board.dump:;         code_length 74
+BombMove.dump:;         code_length 5
+BombMove.dump:;         code_length 77
+BombMove.dump:;         code_length 4
+ClassicMove.dump:;         code_length 5
+ClassicMove.dump:;         code_length 8
+ClassicMove.dump:;         code_length 4
+DiagBombMove.dump:;         code_length 5
+DiagBombMove.dump:;         code_length 283
+DiagBombMove.dump:;         code_length 4
+FlipBoardMove.dump:;         code_length 5
+FlipBoardMove.dump:;         code_length 196
+FlipBoardMove.dump:;         code_length 4
+Game.dump:;         code_length 106
+Game.dump:;         code_length 45
+Game.dump:;         code_length 78
+Game.dump:;         code_length 122
+Game.dump:;         code_length 6
+Game.dump:;         code_length 6
+Game.dump:;         code_length 6
+Game.dump:;         code_length 30
+Game.dump:;         code_length 27
+Game.dump:;         code_length 45
+Game.dump:;         code_length 30
+Game.dump:;         code_length 117
+Game.dump:;         code_length 176
+Game.dump:;         code_length 213
+Game.dump:;         code_length 83
+Game.dump:;         code_length 17
+Game.dump:;         code_length 158
+Game.dump:;         code_length 95
+Game.dump:;         code_length 94
+KillColumnMove.dump:;         code_length 5
+KillColumnMove.dump:;         code_length 41
+KillColumnMove.dump:;         code_length 4
+KillRowAndColumnMove.dump:;         code_length 5
+KillRowAndColumnMove.dump:;         code_length 81
+KillRowAndColumnMove.dump:;         code_length 4
+KillRowMove.dump:;         code_length 5
+KillRowMove.dump:;         code_length 41
+KillRowMove.dump:;         code_length 4
+Move.dump:;         code_length 5
+Strategy.dump:;         code_length 5
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'
