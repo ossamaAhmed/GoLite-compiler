@@ -1,25 +1,33 @@
-/Users/michaelho/comp520-2016-02/PeepholeContest/joosc *.java 
+/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java 
+
+Frequencies:
+simplify_multiplication_right: 0
+simplify_astore: 16
+positive_increment: 0
+simplify_goto_goto: 0
+simplify_aload_after_astore: 0
+
 Generated: CustomPoint.class
 Generated: Dungeon.class
 Generated: DungeonGenerator.class
 Generated: DungeonInfos.class
 ----- Method code sizes ----
-CustomPoint.dump:;         code_length 21
-CustomPoint.dump:;         code_length 21
-CustomPoint.dump:;         code_length 6
-CustomPoint.dump:;         code_length 6
-Dungeon.dump:;         code_length 27
-Dungeon.dump:;         code_length 398
-Dungeon.dump:;         code_length 334
-Dungeon.dump:;         code_length 27
-DungeonGenerator.dump:;         code_length 5
-DungeonGenerator.dump:;         code_length 40
-DungeonInfos.dump:;         code_length 9
-DungeonInfos.dump:;         code_length 85
-DungeonInfos.dump:;         code_length 243
-DungeonInfos.dump:;         code_length 6
-DungeonInfos.dump:;         code_length 6
-DungeonInfos.dump:;         code_length 6
-DungeonInfos.dump:;         code_length 6
-DungeonInfos.dump:;         code_length 6
-DungeonInfos.dump:;         code_length 6
+CustomPoint.optdump:;         code_length 21
+CustomPoint.optdump:;         code_length 21
+CustomPoint.optdump:;         code_length 6
+CustomPoint.optdump:;         code_length 6
+Dungeon.optdump:;         code_length 27
+Dungeon.optdump:;         code_length 384
+Dungeon.optdump:;         code_length 330
+Dungeon.optdump:;         code_length 25
+DungeonGenerator.optdump:;         code_length 5
+DungeonGenerator.optdump:;         code_length 34
+DungeonInfos.optdump:;         code_length 9
+DungeonInfos.optdump:;         code_length 85
+DungeonInfos.optdump:;         code_length 237
+DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 6

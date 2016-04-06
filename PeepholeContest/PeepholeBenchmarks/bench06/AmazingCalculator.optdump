@@ -1,0 +1,112 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 17
+; cp[1] (offset 0x16) -> CONSTANT_Utf8 "factorial"
+; cp[2] (offset 0x1b) -> CONSTANT_Methodref 15, 8
+; cp[3] (offset 0x2e) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[4] (offset 0x3b) -> CONSTANT_Utf8 "SourceFile"
+; cp[5] (offset 0x44) -> CONSTANT_Utf8 "<init>"
+; cp[6] (offset 0x47) -> CONSTANT_Class 9
+; cp[7] (offset 0x4c) -> CONSTANT_NameAndType 1, 16
+; cp[8] (offset 0x51) -> CONSTANT_NameAndType 5, 12
+; cp[9] (offset 0x65) -> CONSTANT_Utf8 "AmazingCalculator"
+; cp[10] (offset 0x6c) -> CONSTANT_Utf8 "Code"
+; cp[11] (offset 0x72) -> CONSTANT_Utf8 "bla"
+; cp[12] (offset 0x78) -> CONSTANT_Utf8 "()V"
+; cp[13] (offset 0x8e) -> CONSTANT_Utf8 "AmazingCalculator.j"
+; cp[14] (offset 0x93) -> CONSTANT_Methodref 6, 7
+; cp[15] (offset 0x96) -> CONSTANT_Class 3
+; cp[16] (offset 0x9d) -> CONSTANT_Utf8 "(I)I"
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 6
+; super_class index = 15
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0xa9) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 5 (<init>)
+;     descriptor_index 12 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 10 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 2 (java/lang/Object/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0xc8) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 1 (factorial)
+;     descriptor_index 16 ((I)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 10 (Code)
+;         attribute_length 41
+;         max_stack 4
+;         max_locals 2
+;         code_length 29
+;         code :
+;                0: iload_1 
+;                1: iconst_0 
+;                2: if_icmpeq 7 
+;                5: iconst_0 
+;                6: goto 4 
+;                9: iconst_1 
+;               10: ifeq 8 
+;               13: iconst_1 
+;               14: ireturn 
+;               15: goto 13 
+;               18: iload_1 
+;               19: aload_0 
+;               20: iload_1 
+;               21: iconst_1 
+;               22: isub 
+;               23: invokevirtual 14 (AmazingCalculator/factorial (I)I) 
+;               26: imul 
+;               27: ireturn 
+;               28: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0xff) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 11 (bla)
+;     descriptor_index 12 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 10 (Code)
+;         attribute_length 13
+;         max_stack 0
+;         max_locals 1
+;         code_length 1
+;         code :
+;                0: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x11c) :
+;     name_index 4 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 13
+
+; End of file reached successfully. Enjoy :)

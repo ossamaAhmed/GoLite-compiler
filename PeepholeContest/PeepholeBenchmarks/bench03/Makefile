@@ -1,5 +1,5 @@
 all:
-	$(PEEPDIR)/joosc *.java 
+	$(PEEPDIR)/joosc -O *.java *.joos
 
 clean:
 	rm -f *.j *.class

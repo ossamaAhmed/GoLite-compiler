@@ -69,6 +69,7 @@ int positive_increment(CODE **c)
   return 0;
 }
 
+
 /* goto L1
  * ...
  * L1:
@@ -93,6 +94,28 @@ int simplify_goto_goto(CODE **c)
   return 0;
 }
 
+/* dup
+ * astore x
+ * pop
+ * -------->
+ * astore x
+ */
+
+int simplify_aload_after_astore(CODE **c)
+{ int x;
+  int y;
+  if(is_astore(*c,&x) &&
+     is_aload(next(*c),&y) &&
+     (x==y)&&
+     is_dup(next(next(*c)))
+    ){
+    return replace(c,3,makeCODEdup(
+                                    makeCODEdup(
+                                    makeCODEastore(x,NULL))));
+  }
+  return 0;
+}
+
 /*
 #define OPTS 4
 
@@ -103,9 +126,11 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 */
 
 int init_patterns()
-{ ADD_PATTERN(simplify_multiplication_right);
+{ 
+  ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
+    ADD_PATTERN(simplify_aload_after_astore);
     return 1;
 }

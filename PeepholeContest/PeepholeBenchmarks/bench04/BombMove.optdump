@@ -1,0 +1,151 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 24
+; cp[1] (offset 0xd) -> CONSTANT_Class 15
+; cp[2] (offset 0x18) -> CONSTANT_Utf8 "BombMove"
+; cp[3] (offset 0x1b) -> CONSTANT_Class 2
+; cp[4] (offset 0x23) -> CONSTANT_Utf8 "(II)V"
+; cp[5] (offset 0x2c) -> CONSTANT_Utf8 "<init>"
+; cp[6] (offset 0x31) -> CONSTANT_NameAndType 5, 8
+; cp[7] (offset 0x34) -> CONSTANT_String 10
+; cp[8] (offset 0x3a) -> CONSTANT_Utf8 "()V"
+; cp[9] (offset 0x41) -> CONSTANT_Utf8 "Code"
+; cp[10] (offset 0x7b) -> CONSTANT_Utf8 "Bomb: eliminates the contents of all surrounding cells."
+; cp[11] (offset 0x7e) -> CONSTANT_Class 22
+; cp[12] (offset 0x8b) -> CONSTANT_Utf8 "SourceFile"
+; cp[13] (offset 0x90) -> CONSTANT_Methodref 1, 21
+; cp[14] (offset 0x95) -> CONSTANT_Methodref 11, 6
+; cp[15] (offset 0x9d) -> CONSTANT_Utf8 "Board"
+; cp[16] (offset 0xc1) -> CONSTANT_Utf8 "(IILBoard;Ljava/lang/Character;)V"
+; cp[17] (offset 0xce) -> CONSTANT_Utf8 "BombMove.j"
+; cp[18] (offset 0xd6) -> CONSTANT_Utf8 "clear"
+; cp[19] (offset 0xde) -> CONSTANT_Utf8 "apply"
+; cp[20] (offset 0xe9) -> CONSTANT_Utf8 "toString"
+; cp[21] (offset 0xee) -> CONSTANT_NameAndType 18, 4
+; cp[22] (offset 0xf5) -> CONSTANT_Utf8 "Move"
+; cp[23] (offset 0x10c) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 3
+; super_class index = 11
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0x118) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 5 (<init>)
+;     descriptor_index 8 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 14 (Move/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x137) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 19 (apply)
+;     descriptor_index 16 ((IILBoard;Ljava/lang/Character;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 89
+;         max_stack 3
+;         max_locals 7
+;         code_length 77
+;         code :
+;                0: iload_1 
+;                1: iconst_1 
+;                2: isub 
+;                3: dup 
+;                4: istore 5 
+;                6: pop 
+;                7: iload 5 
+;                9: iload_1 
+;               10: iconst_1 
+;               11: iadd 
+;               12: if_icmple 7 
+;               15: iconst_0 
+;               16: goto 4 
+;               19: iconst_1 
+;               20: ifeq 56 
+;               23: iload_2 
+;               24: iconst_1 
+;               25: isub 
+;               26: dup 
+;               27: istore 6 
+;               29: pop 
+;               30: iload 6 
+;               32: iload_2 
+;               33: iconst_1 
+;               34: iadd 
+;               35: if_icmple 7 
+;               38: iconst_0 
+;               39: goto 4 
+;               42: iconst_1 
+;               43: ifeq 22 
+;               46: aload_3 
+;               47: iload 5 
+;               49: iload 6 
+;               51: invokevirtual 13 (Board/clear (II)V) 
+;               54: iload 6 
+;               56: iconst_1 
+;               57: iadd 
+;               58: dup 
+;               59: istore 6 
+;               61: pop 
+;               62: goto -32 
+;               65: iload 5 
+;               67: iconst_1 
+;               68: iadd 
+;               69: dup 
+;               70: istore 5 
+;               72: pop 
+;               73: goto -66 
+;               76: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x19e) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 20 (toString)
+;     descriptor_index 23 (()Ljava/lang/String;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 9 (Code)
+;         attribute_length 16
+;         max_stack 1
+;         max_locals 1
+;         code_length 4
+;         code :
+;                0: ldc 7 ("Bomb: eliminates the contents of all surrounding cells.") 
+;                2: areturn 
+;                3: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x1be) :
+;     name_index 12 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 17
+
+; End of file reached successfully. Enjoy :)

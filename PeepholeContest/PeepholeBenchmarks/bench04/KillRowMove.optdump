@@ -1,0 +1,130 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 28
+; cp[1] (offset 0xd) -> CONSTANT_Class 18
+; cp[2] (offset 0x15) -> CONSTANT_Utf8 "(II)V"
+; cp[3] (offset 0x25) -> CONSTANT_Utf8 "KillRowMove.j"
+; cp[4] (offset 0x2e) -> CONSTANT_Utf8 "<init>"
+; cp[5] (offset 0x39) -> CONSTANT_Utf8 "getWidth"
+; cp[6] (offset 0x3e) -> CONSTANT_NameAndType 4, 7
+; cp[7] (offset 0x44) -> CONSTANT_Utf8 "()V"
+; cp[8] (offset 0x4b) -> CONSTANT_Utf8 "Code"
+; cp[9] (offset 0x50) -> CONSTANT_Methodref 1, 17
+; cp[10] (offset 0x82) -> CONSTANT_Utf8 "Kill Row: clears the row where the token lands."
+; cp[11] (offset 0x85) -> CONSTANT_Class 26
+; cp[12] (offset 0x92) -> CONSTANT_Utf8 "SourceFile"
+; cp[13] (offset 0x95) -> CONSTANT_String 10
+; cp[14] (offset 0x9a) -> CONSTANT_Methodref 1, 24
+; cp[15] (offset 0xa0) -> CONSTANT_Utf8 "()I"
+; cp[16] (offset 0xa5) -> CONSTANT_Methodref 11, 6
+; cp[17] (offset 0xaa) -> CONSTANT_NameAndType 5, 15
+; cp[18] (offset 0xb2) -> CONSTANT_Utf8 "Board"
+; cp[19] (offset 0xd6) -> CONSTANT_Utf8 "(IILBoard;Ljava/lang/Character;)V"
+; cp[20] (offset 0xde) -> CONSTANT_Utf8 "clear"
+; cp[21] (offset 0xe6) -> CONSTANT_Utf8 "apply"
+; cp[22] (offset 0xf1) -> CONSTANT_Utf8 "toString"
+; cp[23] (offset 0xff) -> CONSTANT_Utf8 "KillRowMove"
+; cp[24] (offset 0x104) -> CONSTANT_NameAndType 20, 2
+; cp[25] (offset 0x107) -> CONSTANT_Class 23
+; cp[26] (offset 0x10e) -> CONSTANT_Utf8 "Move"
+; cp[27] (offset 0x125) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 25
+; super_class index = 11
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0x131) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 4 (<init>)
+;     descriptor_index 7 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 16 (Move/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x150) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 21 (apply)
+;     descriptor_index 19 ((IILBoard;Ljava/lang/Character;)V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 53
+;         max_stack 3
+;         max_locals 6
+;         code_length 41
+;         code :
+;                0: iconst_0 
+;                1: dup 
+;                2: istore 5 
+;                4: pop 
+;                5: iload 5 
+;                7: aload_3 
+;                8: invokevirtual 9 (Board/getWidth ()I) 
+;               11: if_icmplt 7 
+;               14: iconst_0 
+;               15: goto 4 
+;               18: iconst_1 
+;               19: ifeq 21 
+;               22: aload_3 
+;               23: iload 5 
+;               25: iload_2 
+;               26: invokevirtual 14 (Board/clear (II)V) 
+;               29: iload 5 
+;               31: iconst_1 
+;               32: iadd 
+;               33: dup 
+;               34: istore 5 
+;               36: pop 
+;               37: goto -32 
+;               40: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x193) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 22 (toString)
+;     descriptor_index 27 (()Ljava/lang/String;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 8 (Code)
+;         attribute_length 16
+;         max_stack 1
+;         max_locals 1
+;         code_length 4
+;         code :
+;                0: ldc 13 ("Kill Row: clears the row where the token lands.") 
+;                2: areturn 
+;                3: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x1b3) :
+;     name_index 12 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 3
+
+; End of file reached successfully. Enjoy :)

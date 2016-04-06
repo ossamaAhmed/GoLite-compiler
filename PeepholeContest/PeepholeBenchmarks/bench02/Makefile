@@ -2,7 +2,7 @@
 
 # to compile the code
 joosc: clean
-	$(PEEPDIR)/joosc *.java
+	$(PEEPDIR)/joosc -O *.java
 
 java: clean
 	javac *.java

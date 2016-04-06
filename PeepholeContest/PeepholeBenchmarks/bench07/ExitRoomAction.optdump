@@ -1,0 +1,171 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 45
+; cp[1] (offset 0x10) -> CONSTANT_Utf8 "()V"
+; cp[2] (offset 0x28) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[3] (offset 0x2b) -> CONSTANT_String 32
+; cp[4] (offset 0x30) -> CONSTANT_Integer 12
+; cp[5] (offset 0x44) -> CONSTANT_Utf8 "performBaseAction"
+; cp[6] (offset 0x48) -> CONSTANT_Utf8 "O"
+; cp[7] (offset 0x4b) -> CONSTANT_String 24
+; cp[8] (offset 0x4e) -> CONSTANT_String 44
+; cp[9] (offset 0x51) -> CONSTANT_Class 18
+; cp[10] (offset 0x54) -> CONSTANT_Class 20
+; cp[11] (offset 0x59) -> CONSTANT_Fieldref 15, 22
+; cp[12] (offset 0x63) -> CONSTANT_Utf8 "indexOf"
+; cp[13] (offset 0x68) -> CONSTANT_Methodref 15, 23
+; cp[14] (offset 0x7c) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[15] (offset 0x7f) -> CONSTANT_Class 34
+; cp[16] (offset 0xa0) -> CONSTANT_Utf8 "A trapdoor closes behind you. "
+; cp[17] (offset 0xa5) -> CONSTANT_NameAndType 12, 37
+; cp[18] (offset 0xb7) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[19] (offset 0xbc) -> CONSTANT_Methodref 31, 17
+; cp[20] (offset 0xcd) -> CONSTANT_Utf8 "ExitRoomAction"
+; cp[21] (offset 0xd0) -> CONSTANT_String 35
+; cp[22] (offset 0xd5) -> CONSTANT_NameAndType 6, 14
+; cp[23] (offset 0xda) -> CONSTANT_NameAndType 30, 1
+; cp[24] (offset 0xdf) -> CONSTANT_Utf8 "up"
+; cp[25] (offset 0xf2) -> CONSTANT_Utf8 "java/lang/String"
+; cp[26] (offset 0xff) -> CONSTANT_Utf8 "SourceFile"
+; cp[27] (offset 0x109) -> CONSTANT_Utf8 "println"
+; cp[28] (offset 0x10e) -> CONSTANT_NameAndType 5, 2
+; cp[29] (offset 0x113) -> CONSTANT_Methodref 9, 33
+; cp[30] (offset 0x11c) -> CONSTANT_Utf8 "<init>"
+; cp[31] (offset 0x11f) -> CONSTANT_Class 25
+; cp[32] (offset 0x12a) -> CONSTANT_Utf8 "interact"
+; cp[33] (offset 0x12f) -> CONSTANT_NameAndType 27, 42
+; cp[34] (offset 0x13c) -> CONSTANT_Utf8 "RoomAction"
+; cp[35] (offset 0x142) -> CONSTANT_Utf8 "use"
+; cp[36] (offset 0x147) -> CONSTANT_Methodref 15, 28
+; cp[37] (offset 0x160) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[38] (offset 0x173) -> CONSTANT_Utf8 "ExitRoomAction.j"
+; cp[39] (offset 0x183) -> CONSTANT_Utf8 "performAction"
+; cp[40] (offset 0x186) -> CONSTANT_String 16
+; cp[41] (offset 0x191) -> CONSTANT_Utf8 "describe"
+; cp[42] (offset 0x1a9) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[43] (offset 0x1b0) -> CONSTANT_Utf8 "Code"
+; cp[44] (offset 0x1d6) -> CONSTANT_Utf8 "You see light shining from the top."
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 10
+; super_class index = 15
+
+; interfaces_count = 0
+
+
+; fields_count = 0
+
+; methods_count 3
+
+; methods[0] (offset 0x1e2) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 30 (<init>)
+;     descriptor_index 1 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 43 (Code)
+;         attribute_length 17
+;         max_stack 1
+;         max_locals 1
+;         code_length 5
+;         code :
+;                0: aload_0 
+;                1: invokespecial 13 (RoomAction/<init> ()V) 
+;                4: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x201) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 41 (describe)
+;     descriptor_index 1 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 43 (Code)
+;         attribute_length 22
+;         max_stack 2
+;         max_locals 1
+;         code_length 10
+;         code :
+;                0: aload_0 
+;                1: getfield 11 (RoomAction/O Ljoos/lib/JoosIO;) 
+;                4: ldc 8 ("You see light shining from the top.") 
+;                6: invokevirtual 29 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;                9: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[2] (offset 0x225) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 39 (performAction)
+;     descriptor_index 2 ((Ljava/lang/String;)I)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 43 (Code)
+;         attribute_length 95
+;         max_stack 3
+;         max_locals 2
+;         code_length 83
+;         code :
+;                0: aload_1 
+;                1: ldc 7 ("up") 
+;                3: iconst_0 
+;                4: invokevirtual 19 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                7: iconst_0 
+;                8: if_icmpge 7 
+;               11: iconst_0 
+;               12: goto 4 
+;               15: iconst_1 
+;               16: dup 
+;               17: ifne 20 
+;               20: pop 
+;               21: aload_1 
+;               22: ldc 3 ("interact") 
+;               24: iconst_0 
+;               25: invokevirtual 19 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               28: iconst_0 
+;               29: if_icmpge 7 
+;               32: iconst_0 
+;               33: goto 4 
+;               36: iconst_1 
+;               37: dup 
+;               38: ifne 20 
+;               41: pop 
+;               42: aload_1 
+;               43: ldc 21 ("use") 
+;               45: iconst_0 
+;               46: invokevirtual 19 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               49: iconst_0 
+;               50: if_icmpge 7 
+;               53: iconst_0 
+;               54: goto 4 
+;               57: iconst_1 
+;               58: ifeq 18 
+;               61: aload_0 
+;               62: getfield 11 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               65: ldc 40 ("A trapdoor closes behind you. ") 
+;               67: invokevirtual 29 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               70: ldc 4 (12) 
+;               72: ireturn 
+;               73: goto 9 
+;               76: aload_0 
+;               77: aload_1 
+;               78: invokevirtual 36 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;               81: ireturn 
+;               82: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x294) :
+;     name_index 26 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 38
+
+; End of file reached successfully. Enjoy :)

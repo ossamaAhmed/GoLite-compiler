@@ -1,14 +1,23 @@
+/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java *.joos
+
+Frequencies:
+simplify_multiplication_right: 0
+simplify_astore: 25
+positive_increment: 0
+simplify_goto_goto: 2
+simplify_aload_after_astore: 7
+
 Generated: Conversion.class
 Generated: Decoder.class
 Generated: Encoder.class
 Generated: Main.class
 ----- Method code sizes ----
-Conversion.dump:;         code_length 1726
-Conversion.dump:;         code_length 21
-Conversion.dump:;         code_length 28
-Decoder.dump:;         code_length 33
-Decoder.dump:;         code_length 754
-Encoder.dump:;         code_length 33
-Encoder.dump:;         code_length 699
-Main.dump:;         code_length 5
-Main.dump:;         code_length 83
+Conversion.optdump:;         code_length 1726
+Conversion.optdump:;         code_length 19
+Conversion.optdump:;         code_length 26
+Decoder.optdump:;         code_length 33
+Decoder.optdump:;         code_length 737
+Encoder.optdump:;         code_length 33
+Encoder.optdump:;         code_length 675
+Main.optdump:;         code_length 5
+Main.optdump:;         code_length 71

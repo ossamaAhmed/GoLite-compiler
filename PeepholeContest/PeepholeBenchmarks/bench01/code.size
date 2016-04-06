@@ -1,21 +1,29 @@
 rm -rf *.class *.j *~
-/Users/michaelho/comp520-2016-02/PeepholeContest/joosc BacktrackSolver.java SudokuSolver.java Benchmark.java
+/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
+
+Frequencies:
+simplify_multiplication_right: 0
+simplify_astore: 21
+positive_increment: 0
+simplify_goto_goto: 0
+simplify_aload_after_astore: 0
+
 Generated: BacktrackSolver.class
-Generated: SudokuSolver.class
 Generated: Benchmark.class
+Generated: SudokuSolver.class
 ----- Method code sizes ----
-BacktrackSolver.dump:;         code_length 5
-BacktrackSolver.dump:;         code_length 45
-BacktrackSolver.dump:;         code_length 42
-BacktrackSolver.dump:;         code_length 50
-BacktrackSolver.dump:;         code_length 50
-BacktrackSolver.dump:;         code_length 105
-BacktrackSolver.dump:;         code_length 77
-BacktrackSolver.dump:;         code_length 145
-BacktrackSolver.dump:;         code_length 34
-BacktrackSolver.dump:;         code_length 7
-Benchmark.dump:;         code_length 5
-Benchmark.dump:;         code_length 96
-SudokuSolver.dump:;         code_length 5
-SudokuSolver.dump:;         code_length 136
-SudokuSolver.dump:;         code_length 346
+BacktrackSolver.optdump:;         code_length 5
+BacktrackSolver.optdump:;         code_length 37
+BacktrackSolver.optdump:;         code_length 36
+BacktrackSolver.optdump:;         code_length 50
+BacktrackSolver.optdump:;         code_length 50
+BacktrackSolver.optdump:;         code_length 105
+BacktrackSolver.optdump:;         code_length 77
+BacktrackSolver.optdump:;         code_length 145
+BacktrackSolver.optdump:;         code_length 34
+BacktrackSolver.optdump:;         code_length 7
+Benchmark.optdump:;         code_length 5
+Benchmark.optdump:;         code_length 86
+SudokuSolver.optdump:;         code_length 5
+SudokuSolver.optdump:;         code_length 130
+SudokuSolver.optdump:;         code_length 334

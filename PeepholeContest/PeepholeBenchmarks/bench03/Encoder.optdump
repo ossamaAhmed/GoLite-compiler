@@ -1,0 +1,507 @@
+; magic number 0xCAFEBABE
+; bytecode version 45.3
+
+; constant pool count 77
+; cp[1] (offset 0xf) -> CONSTANT_NameAndType 70, 4
+; cp[2] (offset 0x14) -> CONSTANT_Methodref 22, 35
+; cp[3] (offset 0x19) -> CONSTANT_NameAndType 73, 11
+; cp[4] (offset 0x21) -> CONSTANT_Utf8 "(II)I"
+; cp[5] (offset 0x2e) -> CONSTANT_Utf8 "SourceFile"
+; cp[6] (offset 0x37) -> CONSTANT_Utf8 "<init>"
+; cp[7] (offset 0x3c) -> CONSTANT_Methodref 62, 34
+; cp[8] (offset 0x45) -> CONSTANT_Utf8 "length"
+; cp[9] (offset 0x5c) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[10] (offset 0x63) -> CONSTANT_Utf8 "null"
+; cp[11] (offset 0x77) -> CONSTANT_Utf8 "Llib/JoosBitwise;"
+; cp[12] (offset 0x84) -> CONSTANT_Utf8 "Conversion"
+; cp[13] (offset 0x93) -> CONSTANT_Utf8 "LConversion;"
+; cp[14] (offset 0x98) -> CONSTANT_Methodref 54, 59
+; cp[15] (offset 0x9b) -> CONSTANT_Class 31
+; cp[16] (offset 0xa0) -> CONSTANT_Methodref 56, 66
+; cp[17] (offset 0xa5) -> CONSTANT_Integer 8
+; cp[18] (offset 0xaa) -> CONSTANT_Integer 6
+; cp[19] (offset 0xbc) -> CONSTANT_Utf8 "lib/JoosBitwise"
+; cp[20] (offset 0xc2) -> CONSTANT_Utf8 "con"
+; cp[21] (offset 0xc7) -> CONSTANT_NameAndType 6, 64
+; cp[22] (offset 0xca) -> CONSTANT_Class 19
+; cp[23] (offset 0xcf) -> CONSTANT_Methodref 22, 1
+; cp[24] (offset 0xd4) -> CONSTANT_Fieldref 33, 25
+; cp[25] (offset 0xd9) -> CONSTANT_NameAndType 20, 13
+; cp[26] (offset 0xde) -> CONSTANT_Utf8 "or"
+; cp[27] (offset 0xe3) -> CONSTANT_Methodref 62, 44
+; cp[28] (offset 0xe8) -> CONSTANT_Integer 18
+; cp[29] (offset 0xed) -> CONSTANT_NameAndType 41, 57
+; cp[30] (offset 0xf2) -> CONSTANT_Integer 16
+; cp[31] (offset 0x105) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[32] (offset 0x10a) -> CONSTANT_Integer 12
+; cp[33] (offset 0x10d) -> CONSTANT_Class 69
+; cp[34] (offset 0x112) -> CONSTANT_NameAndType 8, 53
+; cp[35] (offset 0x117) -> CONSTANT_NameAndType 26, 4
+; cp[36] (offset 0x11e) -> CONSTANT_Utf8 "Code"
+; cp[37] (offset 0x123) -> CONSTANT_Methodref 22, 66
+; cp[38] (offset 0x126) -> CONSTANT_String 10
+; cp[39] (offset 0x132) -> CONSTANT_Utf8 "Encoder.j"
+; cp[40] (offset 0x142) -> CONSTANT_Utf8 "base64_encode"
+; cp[41] (offset 0x14a) -> CONSTANT_Utf8 "get64"
+; cp[42] (offset 0x150) -> CONSTANT_Utf8 "and"
+; cp[43] (offset 0x155) -> CONSTANT_NameAndType 42, 4
+; cp[44] (offset 0x15a) -> CONSTANT_NameAndType 71, 60
+; cp[45] (offset 0x15f) -> CONSTANT_Integer 63
+; cp[46] (offset 0x164) -> CONSTANT_Integer 61
+; cp[47] (offset 0x169) -> CONSTANT_Methodref 22, 43
+; cp[48] (offset 0x16e) -> CONSTANT_Fieldref 33, 3
+; cp[49] (offset 0x177) -> CONSTANT_Utf8 "charAt"
+; cp[50] (offset 0x17d) -> CONSTANT_Utf8 "()V"
+; cp[51] (offset 0x182) -> CONSTANT_NameAndType 49, 57
+; cp[52] (offset 0x18d) -> CONSTANT_Utf8 "toString"
+; cp[53] (offset 0x193) -> CONSTANT_Utf8 "()I"
+; cp[54] (offset 0x196) -> CONSTANT_Class 63
+; cp[55] (offset 0x19b) -> CONSTANT_Methodref 54, 21
+; cp[56] (offset 0x19e) -> CONSTANT_Class 12
+; cp[57] (offset 0x1a5) -> CONSTANT_Utf8 "(I)C"
+; cp[58] (offset 0x1aa) -> CONSTANT_Methodref 62, 51
+; cp[59] (offset 0x1af) -> CONSTANT_NameAndType 52, 9
+; cp[60] (offset 0x1d8) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
+; cp[61] (offset 0x1dd) -> CONSTANT_NameAndType 72, 4
+; cp[62] (offset 0x1e0) -> CONSTANT_Class 68
+; cp[63] (offset 0x1f6) -> CONSTANT_Utf8 "java/lang/Character"
+; cp[64] (offset 0x1fd) -> CONSTANT_Utf8 "(C)V"
+; cp[65] (offset 0x202) -> CONSTANT_Methodref 56, 29
+; cp[66] (offset 0x207) -> CONSTANT_NameAndType 6, 50
+; cp[67] (offset 0x20c) -> CONSTANT_Methodref 22, 61
+; cp[68] (offset 0x21f) -> CONSTANT_Utf8 "java/lang/String"
+; cp[69] (offset 0x229) -> CONSTANT_Utf8 "Encoder"
+; cp[70] (offset 0x22f) -> CONSTANT_Utf8 "shr"
+; cp[71] (offset 0x238) -> CONSTANT_Utf8 "concat"
+; cp[72] (offset 0x23e) -> CONSTANT_Utf8 "shl"
+; cp[73] (offset 0x244) -> CONSTANT_Utf8 "uti"
+; cp[74] (offset 0x247) -> CONSTANT_String 76
+; cp[75] (offset 0x24c) -> CONSTANT_Methodref 15, 66
+; cp[76] (offset 0x24f) -> CONSTANT_Utf8 ""
+
+; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
+; this_class index = 33
+; super_class index = 15
+
+; interfaces_count = 0
+
+
+; fields_count = 2
+
+; fields[0] (offset 0x259) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 20 (con)
+;     descriptor_index 13 (LConversion;)
+;     attributes_count 0
+
+; fields[1] (offset 0x261) :
+;     access_flags 0x4 [ ACC_PROTECTED ]
+;     name_index 73 (uti)
+;     descriptor_index 11 (Llib/JoosBitwise;)
+;     attributes_count 0
+
+; methods_count 2
+
+; methods[0] (offset 0x26b) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 6 (<init>)
+;     descriptor_index 50 (()V)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 36 (Code)
+;         attribute_length 45
+;         max_stack 3
+;         max_locals 1
+;         code_length 33
+;         code :
+;                0: aload_0 
+;                1: invokespecial 75 (java/lang/Object/<init> ()V) 
+;                4: new 56 (Conversion) 
+;                7: dup 
+;                8: invokespecial 16 (Conversion/<init> ()V) 
+;               11: dup 
+;               12: aload_0 
+;               13: swap 
+;               14: putfield 24 (Encoder/con LConversion;) 
+;               17: pop 
+;               18: new 22 (lib/JoosBitwise) 
+;               21: dup 
+;               22: invokespecial 37 (lib/JoosBitwise/<init> ()V) 
+;               25: dup 
+;               26: aload_0 
+;               27: swap 
+;               28: putfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;               31: pop 
+;               32: return 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+; methods[1] (offset 0x2a6) :
+;     access_flags 0x1 [ ACC_PUBLIC ]
+;     name_index 40 (base64_encode)
+;     descriptor_index 60 ((Ljava/lang/String;)Ljava/lang/String;)
+;     attributes_count 1
+;     method_attributes[0] :
+;         name_index 36 (Code)
+;         attribute_length 687
+;         max_stack 8
+;         max_locals 7
+;         code_length 675
+;         code :
+;                0: ldc 74 ("") 
+;                2: astore 6 
+;                4: iconst_0 
+;                5: dup 
+;                6: istore_2 
+;                7: pop 
+;                8: aload_1 
+;                9: invokevirtual 7 (java/lang/String/length ()I) 
+;               12: dup 
+;               13: istore_3 
+;               14: pop 
+;               15: iload_3 
+;               16: iconst_3 
+;               17: irem 
+;               18: dup 
+;               19: istore 4 
+;               21: pop 
+;               22: iconst_0 
+;               23: dup 
+;               24: istore 5 
+;               26: pop 
+;               27: iload 5 
+;               29: iload_3 
+;               30: if_icmplt 7 
+;               33: iconst_0 
+;               34: goto 4 
+;               37: iconst_1 
+;               38: ifeq 633 
+;               41: iconst_0 
+;               42: dup 
+;               43: istore_2 
+;               44: pop 
+;               45: iload_3 
+;               46: iload 5 
+;               48: isub 
+;               49: iload 4 
+;               51: if_icmpeq 7 
+;               54: iconst_0 
+;               55: goto 4 
+;               58: iconst_1 
+;               59: ifeq 316 
+;               62: iload 4 
+;               64: iconst_2 
+;               65: if_icmpeq 7 
+;               68: iconst_0 
+;               69: goto 4 
+;               72: iconst_1 
+;               73: ifeq 31 
+;               76: aload_0 
+;               77: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;               80: iload_2 
+;               81: aload_0 
+;               82: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;               85: aload_1 
+;               86: iload 5 
+;               88: iconst_1 
+;               89: iadd 
+;               90: invokevirtual 58 (java/lang/String/charAt (I)C) 
+;               93: ldc 17 (8) 
+;               95: invokevirtual 67 (lib/JoosBitwise/shl (II)I) 
+;               98: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              101: dup 
+;              102: istore_2 
+;              103: pop 
+;              104: aload_0 
+;              105: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              108: iload_2 
+;              109: aload_0 
+;              110: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              113: aload_1 
+;              114: iload 5 
+;              116: invokevirtual 58 (java/lang/String/charAt (I)C) 
+;              119: ldc 30 (16) 
+;              121: invokevirtual 67 (lib/JoosBitwise/shl (II)I) 
+;              124: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              127: dup 
+;              128: istore_2 
+;              129: pop 
+;              130: aload 6 
+;              132: dup 
+;              133: ifnull 6 
+;              136: goto 6 
+;              139: pop 
+;              140: ldc 38 ("null") 
+;              142: new 54 (java/lang/Character) 
+;              145: dup 
+;              146: aload_0 
+;              147: getfield 24 (Encoder/con LConversion;) 
+;              150: aload_0 
+;              151: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              154: aload_0 
+;              155: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              158: iload_2 
+;              159: ldc 28 (18) 
+;              161: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              164: ldc 45 (63) 
+;              166: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              169: invokevirtual 65 (Conversion/get64 (I)C) 
+;              172: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              175: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              178: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              181: dup 
+;              182: dup 
+;              183: astore 6 
+;              185: ifnull 6 
+;              188: goto 6 
+;              191: pop 
+;              192: ldc 38 ("null") 
+;              194: new 54 (java/lang/Character) 
+;              197: dup 
+;              198: aload_0 
+;              199: getfield 24 (Encoder/con LConversion;) 
+;              202: aload_0 
+;              203: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              206: aload_0 
+;              207: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              210: iload_2 
+;              211: ldc 32 (12) 
+;              213: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              216: ldc 45 (63) 
+;              218: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              221: invokevirtual 65 (Conversion/get64 (I)C) 
+;              224: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              227: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              230: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              233: astore 6 
+;              235: iload 4 
+;              237: iconst_2 
+;              238: if_icmpeq 7 
+;              241: iconst_0 
+;              242: goto 4 
+;              245: iconst_1 
+;              246: ifeq 59 
+;              249: aload 6 
+;              251: dup 
+;              252: ifnull 6 
+;              255: goto 6 
+;              258: pop 
+;              259: ldc 38 ("null") 
+;              261: new 54 (java/lang/Character) 
+;              264: dup 
+;              265: aload_0 
+;              266: getfield 24 (Encoder/con LConversion;) 
+;              269: aload_0 
+;              270: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              273: aload_0 
+;              274: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              277: iload_2 
+;              278: ldc 18 (6) 
+;              280: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              283: ldc 45 (63) 
+;              285: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              288: invokevirtual 65 (Conversion/get64 (I)C) 
+;              291: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              294: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              297: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              300: astore 6 
+;              302: goto 32 
+;              305: aload 6 
+;              307: dup 
+;              308: ifnull 6 
+;              311: goto 6 
+;              314: pop 
+;              315: ldc 38 ("null") 
+;              317: new 54 (java/lang/Character) 
+;              320: dup 
+;              321: ldc 46 (61) 
+;              323: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              326: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              329: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              332: astore 6 
+;              334: aload 6 
+;              336: dup 
+;              337: ifnull 6 
+;              340: goto 6 
+;              343: pop 
+;              344: ldc 38 ("null") 
+;              346: new 54 (java/lang/Character) 
+;              349: dup 
+;              350: ldc 46 (61) 
+;              352: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              355: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              358: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              361: astore 6 
+;              363: iload 5 
+;              365: iload 4 
+;              367: iadd 
+;              368: dup 
+;              369: istore 5 
+;              371: pop 
+;              372: goto -345 
+;              375: aload_0 
+;              376: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              379: iload_2 
+;              380: aload_0 
+;              381: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              384: aload_1 
+;              385: iload 5 
+;              387: invokevirtual 58 (java/lang/String/charAt (I)C) 
+;              390: ldc 30 (16) 
+;              392: invokevirtual 67 (lib/JoosBitwise/shl (II)I) 
+;              395: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              398: dup 
+;              399: istore_2 
+;              400: pop 
+;              401: iload 5 
+;              403: iconst_1 
+;              404: iadd 
+;              405: dup 
+;              406: istore 5 
+;              408: pop 
+;              409: aload_0 
+;              410: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              413: iload_2 
+;              414: aload_0 
+;              415: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              418: aload_1 
+;              419: iload 5 
+;              421: invokevirtual 58 (java/lang/String/charAt (I)C) 
+;              424: ldc 17 (8) 
+;              426: invokevirtual 67 (lib/JoosBitwise/shl (II)I) 
+;              429: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              432: dup 
+;              433: istore_2 
+;              434: pop 
+;              435: iload 5 
+;              437: iconst_1 
+;              438: iadd 
+;              439: dup 
+;              440: istore 5 
+;              442: pop 
+;              443: aload_0 
+;              444: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              447: iload_2 
+;              448: aload_1 
+;              449: iload 5 
+;              451: invokevirtual 58 (java/lang/String/charAt (I)C) 
+;              454: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              457: dup 
+;              458: istore_2 
+;              459: pop 
+;              460: iload 5 
+;              462: iconst_1 
+;              463: iadd 
+;              464: dup 
+;              465: istore 5 
+;              467: pop 
+;              468: aload 6 
+;              470: dup 
+;              471: ifnull 6 
+;              474: goto 6 
+;              477: pop 
+;              478: ldc 38 ("null") 
+;              480: new 54 (java/lang/Character) 
+;              483: dup 
+;              484: aload_0 
+;              485: getfield 24 (Encoder/con LConversion;) 
+;              488: aload_0 
+;              489: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              492: aload_0 
+;              493: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              496: iload_2 
+;              497: ldc 28 (18) 
+;              499: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              502: ldc 45 (63) 
+;              504: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              507: invokevirtual 65 (Conversion/get64 (I)C) 
+;              510: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              513: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              516: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              519: dup 
+;              520: dup 
+;              521: astore 6 
+;              523: ifnull 6 
+;              526: goto 6 
+;              529: pop 
+;              530: ldc 38 ("null") 
+;              532: new 54 (java/lang/Character) 
+;              535: dup 
+;              536: aload_0 
+;              537: getfield 24 (Encoder/con LConversion;) 
+;              540: aload_0 
+;              541: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              544: aload_0 
+;              545: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              548: iload_2 
+;              549: ldc 32 (12) 
+;              551: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              554: ldc 45 (63) 
+;              556: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              559: invokevirtual 65 (Conversion/get64 (I)C) 
+;              562: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              565: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              568: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              571: dup 
+;              572: dup 
+;              573: astore 6 
+;              575: ifnull 6 
+;              578: goto 6 
+;              581: pop 
+;              582: ldc 38 ("null") 
+;              584: new 54 (java/lang/Character) 
+;              587: dup 
+;              588: aload_0 
+;              589: getfield 24 (Encoder/con LConversion;) 
+;              592: aload_0 
+;              593: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              596: aload_0 
+;              597: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              600: iload_2 
+;              601: ldc 18 (6) 
+;              603: invokevirtual 23 (lib/JoosBitwise/shr (II)I) 
+;              606: ldc 45 (63) 
+;              608: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              611: invokevirtual 65 (Conversion/get64 (I)C) 
+;              614: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              617: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              620: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              623: dup 
+;              624: dup 
+;              625: astore 6 
+;              627: ifnull 6 
+;              630: goto 6 
+;              633: pop 
+;              634: ldc 38 ("null") 
+;              636: new 54 (java/lang/Character) 
+;              639: dup 
+;              640: aload_0 
+;              641: getfield 24 (Encoder/con LConversion;) 
+;              644: aload_0 
+;              645: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;              648: iload_2 
+;              649: ldc 45 (63) 
+;              651: invokevirtual 47 (lib/JoosBitwise/and (II)I) 
+;              654: invokevirtual 65 (Conversion/get64 (I)C) 
+;              657: invokespecial 55 (java/lang/Character/<init> (C)V) 
+;              660: invokevirtual 14 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              663: invokevirtual 27 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              666: astore 6 
+;              668: goto -641 
+;              671: aload 6 
+;              673: areturn 
+;              674: nop 
+;         exception_table_length 0
+;         attributes_count 0
+
+
+
+; attributes_count 1
+
+; class_attributes[0] (offset 0x565) :
+;     name_index 5 (SourceFile)
+;     attribute_length 2
+;     sourcefile_index 39
+
+; End of file reached successfully. Enjoy :)

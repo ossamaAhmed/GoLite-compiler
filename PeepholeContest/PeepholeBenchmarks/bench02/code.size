@@ -1,17 +1,25 @@
 rm -rf *.class *.j
-/Users/michaelho/comp520-2016-02/PeepholeContest/joosc *.java
+/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
+
+Frequencies:
+simplify_multiplication_right: 0
+simplify_astore: 11
+positive_increment: 0
+simplify_goto_goto: 0
+simplify_aload_after_astore: 0
+
 Generated: Interpretor.class
 Generated: Main.class
 Generated: StringEscapeUtils.class
 ----- Method code sizes ----
-Interpretor.dump:;         code_length 50
-Interpretor.dump:;         code_length 38
-Interpretor.dump:;         code_length 36
-Interpretor.dump:;         code_length 13
-Interpretor.dump:;         code_length 10
-Interpretor.dump:;         code_length 108
-Interpretor.dump:;         code_length 52
-Interpretor.dump:;         code_length 32
-Main.dump:;         code_length 5
-Main.dump:;         code_length 56
-Binary file StringEscapeUtils.dump matches
+Interpretor.optdump:;         code_length 50
+Interpretor.optdump:;         code_length 38
+Interpretor.optdump:;         code_length 36
+Interpretor.optdump:;         code_length 13
+Interpretor.optdump:;         code_length 10
+Interpretor.optdump:;         code_length 108
+Interpretor.optdump:;         code_length 50
+Interpretor.optdump:;         code_length 32
+Main.optdump:;         code_length 5
+Main.optdump:;         code_length 48
+Binary file StringEscapeUtils.optdump matches

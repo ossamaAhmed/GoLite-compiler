@@ -3,7 +3,7 @@ ROOMACTIONS = RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAct
 SRC = $(ROOMACTIONS) Room.java GrueHunt.java InGenerate.java
 
 joos: $(SRC)
-	$(PEEPDIR)/joosc $(SRC)
+	$(PEEPDIR)/joosc -O $(SRC)
 
 GrueHunt: $(SRC)
 	javac $(SRC)

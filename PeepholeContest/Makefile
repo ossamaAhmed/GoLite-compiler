@@ -8,7 +8,7 @@ bench01:
 bench02:
 	cd PeepholeBenchmarks/bench02 && $(MAKE) >  code.size 
 bench03:
-	cd PeepholeBenchmarks/bench03 && ./compile >  code.size 
+	cd PeepholeBenchmarks/bench03 && $(MAKE) >  code.size 
 bench04:
 	cd PeepholeBenchmarks/bench04 && $(MAKE) >  code.size 
 bench05:
