@@ -8,6 +8,8 @@ simplify_goto_goto: 3
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_istore: 119
+simplify_iload_after_istore2: 3
+simplify_aload_after_astore2: 8
 
 Generated: Board.class
 Generated: BombMove.class
@@ -24,7 +26,7 @@ Generated: Strategy.class
 Board.optdump:;         code_length 142
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 6
-Board.optdump:;         code_length 22
+Board.optdump:;         code_length 21
 Board.optdump:;         code_length 80
 Board.optdump:;         code_length 63
 Board.optdump:;         code_length 26
@@ -35,7 +37,7 @@ Board.optdump:;         code_length 99
 Board.optdump:;         code_length 52
 Board.optdump:;         code_length 172
 Board.optdump:;         code_length 637
-Board.optdump:;         code_length 70
+Board.optdump:;         code_length 65
 BombMove.optdump:;         code_length 5
 BombMove.optdump:;         code_length 69
 BombMove.optdump:;         code_length 4
@@ -60,13 +62,13 @@ Game.optdump:;         code_length 27
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 30
 Game.optdump:;         code_length 109
-Game.optdump:;         code_length 164
-Game.optdump:;         code_length 201
-Game.optdump:;         code_length 75
-Game.optdump:;         code_length 15
-Game.optdump:;         code_length 148
+Game.optdump:;         code_length 162
+Game.optdump:;         code_length 200
+Game.optdump:;         code_length 71
+Game.optdump:;         code_length 13
+Game.optdump:;         code_length 147
 Game.optdump:;         code_length 89
-Game.optdump:;         code_length 88
+Game.optdump:;         code_length 84
 KillColumnMove.optdump:;         code_length 5
 KillColumnMove.optdump:;         code_length 37
 KillColumnMove.optdump:;         code_length 4

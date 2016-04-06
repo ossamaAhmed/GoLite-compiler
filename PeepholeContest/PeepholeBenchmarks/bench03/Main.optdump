@@ -22,7 +22,7 @@
 ; cp[18] (offset 0xb6) -> CONSTANT_Utf8 "([Ljava/lang/String;)V"
 ; cp[19] (offset 0xbb) -> CONSTANT_Methodref 29, 32
 ; cp[20] (offset 0xc0) -> CONSTANT_NameAndType 28, 5
-; cp[21] (offset 0xc5) -> CONSTANT_NameAndType 36, 4
+; cp[21] (offset 0xc5) -> CONSTANT_NameAndType 35, 4
 ; cp[22] (offset 0xd8) -> CONSTANT_Utf8 "java/lang/String"
 ; cp[23] (offset 0xe5) -> CONSTANT_Utf8 "SourceFile"
 ; cp[24] (offset 0xef) -> CONSTANT_Utf8 "println"
@@ -32,12 +32,12 @@
 ; cp[28] (offset 0x10c) -> CONSTANT_Utf8 "<init>"
 ; cp[29] (offset 0x10f) -> CONSTANT_Class 22
 ; cp[30] (offset 0x114) -> CONSTANT_Methodref 8, 20
-; cp[31] (offset 0x119) -> CONSTANT_NameAndType 24, 35
+; cp[31] (offset 0x119) -> CONSTANT_NameAndType 24, 36
 ; cp[32] (offset 0x11e) -> CONSTANT_NameAndType 1, 4
 ; cp[33] (offset 0x121) -> CONSTANT_Class 25
 ; cp[34] (offset 0x126) -> CONSTANT_Methodref 10, 20
-; cp[35] (offset 0x13e) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
-; cp[36] (offset 0x149) -> CONSTANT_Utf8 "readLine"
+; cp[35] (offset 0x131) -> CONSTANT_Utf8 "readLine"
+; cp[36] (offset 0x149) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
 ; cp[37] (offset 0x150) -> CONSTANT_Utf8 "Main"
 ; cp[38] (offset 0x157) -> CONSTANT_Utf8 "Code"
 ; cp[39] (offset 0x180) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
@@ -79,10 +79,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 83
+;         attribute_length 80
 ;         max_stack 2
 ;         max_locals 7
-;         code_length 71
+;         code_length 68
 ;         code :
 ;                0: new 33 (Encoder) 
 ;                3: dup 
@@ -95,30 +95,29 @@
 ;               16: new 10 (joos/lib/JoosIO) 
 ;               19: dup 
 ;               20: invokespecial 34 (joos/lib/JoosIO/<init> ()V) 
-;               23: astore_3 
-;               24: aload_3 
-;               25: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               28: astore 4 
-;               30: aload 4 
-;               32: aconst_null 
-;               33: if_acmpne 7 
-;               36: iconst_0 
-;               37: goto 4 
-;               40: iconst_1 
-;               41: ifeq 29 
-;               44: aload_2 
-;               45: aload 4 
-;               47: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
-;               50: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
-;               53: astore 6 
-;               55: aload_3 
-;               56: aload 6 
-;               58: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               61: aload_3 
-;               62: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               65: astore 4 
-;               67: goto -37 
-;               70: return 
+;               23: dup 
+;               24: astore_3 
+;               25: astore 4 
+;               27: aload 4 
+;               29: aconst_null 
+;               30: if_acmpne 7 
+;               33: iconst_0 
+;               34: goto 4 
+;               37: iconst_1 
+;               38: ifeq 29 
+;               41: aload_2 
+;               42: aload 4 
+;               44: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
+;               47: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
+;               50: astore 6 
+;               52: aload_3 
+;               53: aload 6 
+;               55: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               58: aload_3 
+;               59: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               62: astore 4 
+;               64: goto -37 
+;               67: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -126,7 +125,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x20e) :
+; class_attributes[0] (offset 0x20b) :
 ;     name_index 23 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 13

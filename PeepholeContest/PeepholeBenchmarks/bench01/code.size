@@ -9,14 +9,16 @@ simplify_goto_goto: 0
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_istore: 29
+simplify_iload_after_istore2: 0
+simplify_aload_after_astore2: 11
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class
 Generated: SudokuSolver.class
 ----- Method code sizes ----
 BacktrackSolver.optdump:;         code_length 5
-BacktrackSolver.optdump:;         code_length 37
-BacktrackSolver.optdump:;         code_length 36
+BacktrackSolver.optdump:;         code_length 24
+BacktrackSolver.optdump:;         code_length 32
 BacktrackSolver.optdump:;         code_length 48
 BacktrackSolver.optdump:;         code_length 48
 BacktrackSolver.optdump:;         code_length 93
@@ -25,7 +27,7 @@ BacktrackSolver.optdump:;         code_length 143
 BacktrackSolver.optdump:;         code_length 34
 BacktrackSolver.optdump:;         code_length 7
 Benchmark.optdump:;         code_length 5
-Benchmark.optdump:;         code_length 86
+Benchmark.optdump:;         code_length 81
 SudokuSolver.optdump:;         code_length 5
-SudokuSolver.optdump:;         code_length 124
-SudokuSolver.optdump:;         code_length 322
+SudokuSolver.optdump:;         code_length 120
+SudokuSolver.optdump:;         code_length 312

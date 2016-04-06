@@ -8,6 +8,8 @@ simplify_goto_goto: 0
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_istore: 20
+simplify_iload_after_istore2: 0
+simplify_aload_after_astore2: 3
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
@@ -21,12 +23,12 @@ CustomPoint.optdump:;         code_length 6
 Dungeon.optdump:;         code_length 27
 Dungeon.optdump:;         code_length 370
 Dungeon.optdump:;         code_length 326
-Dungeon.optdump:;         code_length 25
+Dungeon.optdump:;         code_length 24
 DungeonGenerator.optdump:;         code_length 5
-DungeonGenerator.optdump:;         code_length 34
+DungeonGenerator.optdump:;         code_length 31
 DungeonInfos.optdump:;         code_length 9
 DungeonInfos.optdump:;         code_length 85
-DungeonInfos.optdump:;         code_length 233
+DungeonInfos.optdump:;         code_length 230
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6

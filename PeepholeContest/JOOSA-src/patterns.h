@@ -136,6 +136,27 @@ int simplify_aload_after_astore(CODE **c)
   return 0;
 }
 
+/* astore x
+ * aload x
+ * -------->
+ * dup
+ * astore 6
+ * ADDED BY OSSAMA this had 20077 to 20044
+ */
+
+int simplify_aload_after_astore2(CODE **c)
+{ int x;
+  int y;
+  if(is_astore(*c,&x) &&
+     is_aload(next(*c),&y) &&
+     (x==y)
+    ){
+    return replace(c,3, makeCODEdup(
+                        makeCODEastore(x,NULL)));
+  }
+  return 0;
+}
+
 /* istore x
  * iload x
  * dup
@@ -161,6 +182,27 @@ int simplify_iload_after_istore(CODE **c)
   return 0;
 }
 
+/* istore x
+ * iload x
+ * -------->
+ * dup
+ * istore 6
+ * ADDED BY OSSAMA this had 20077 to 20044
+ */
+
+int simplify_iload_after_istore2(CODE **c)
+{ int x;
+  int y;
+  if(is_istore(*c,&x) &&
+     is_iload(next(*c),&y) &&
+     (x==y)
+    ){
+    return replace(c,3, makeCODEdup(
+                        makeCODEistore(x,NULL)));
+  }
+  return 0;
+}
+
 /*
 #define OPTS 4
 
@@ -179,5 +221,7 @@ int init_patterns()
     ADD_PATTERN(simplify_aload_after_astore);
     ADD_PATTERN(simplify_iload_after_istore);
     ADD_PATTERN(simplify_istore);
+    ADD_PATTERN(simplify_iload_after_istore2);
+    ADD_PATTERN(simplify_aload_after_astore2);
     return 1;
 }

@@ -8,6 +8,8 @@ simplify_goto_goto: 19
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_istore: 14
+simplify_iload_after_istore2: 6
+simplify_aload_after_astore2: 3
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -20,16 +22,16 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 29
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 20
-ComplementsGenerator.optdump:;         code_length 1579
+ComplementsGenerator.optdump:;         code_length 1574
 ComplementsGenerator.optdump:;         code_length 6
-ComplementsGenerator.optdump:;         code_length 212
-ComplementsGenerator.optdump:;         code_length 192
-ComplementsGenerator.optdump:;         code_length 212
+ComplementsGenerator.optdump:;         code_length 211
+ComplementsGenerator.optdump:;         code_length 191
+ComplementsGenerator.optdump:;         code_length 211
 FemaleBoss.optdump:;         code_length 5
 FemaleBoss.optdump:;         code_length 498
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 980
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 515
+Main.optdump:;         code_length 504
 Woman.optdump:;         code_length 5
 Woman.optdump:;         code_length 9

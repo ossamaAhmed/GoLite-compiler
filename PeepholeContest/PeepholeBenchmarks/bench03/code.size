@@ -8,6 +8,8 @@ simplify_goto_goto: 2
 simplify_aload_after_astore: 7
 simplify_iload_after_istore: 0
 simplify_istore: 36
+simplify_iload_after_istore2: 2
+simplify_aload_after_astore2: 3
 
 Generated: Conversion.class
 Generated: Decoder.class
@@ -15,11 +17,11 @@ Generated: Encoder.class
 Generated: Main.class
 ----- Method code sizes ----
 Conversion.optdump:;         code_length 1726
-Conversion.optdump:;         code_length 19
-Conversion.optdump:;         code_length 26
+Conversion.optdump:;         code_length 18
+Conversion.optdump:;         code_length 23
 Decoder.optdump:;         code_length 33
-Decoder.optdump:;         code_length 693
+Decoder.optdump:;         code_length 692
 Encoder.optdump:;         code_length 33
-Encoder.optdump:;         code_length 647
+Encoder.optdump:;         code_length 646
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 71
+Main.optdump:;         code_length 68

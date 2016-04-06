@@ -288,28 +288,27 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 34
+;         attribute_length 33
 ;         max_stack 2
 ;         max_locals 4
-;         code_length 22
+;         code_length 21
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 73 (Board/columns Ljava/util/Vector;) 
 ;                4: iload_1 
 ;                5: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
 ;                8: checkcast 79 (java/util/Vector) 
-;               11: astore_3 
-;               12: aload_3 
-;               13: iload_2 
-;               14: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               17: checkcast 77 (java/lang/Character) 
-;               20: areturn 
-;               21: nop 
+;               11: dup 
+;               12: astore_3 
+;               13: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               16: checkcast 77 (java/lang/Character) 
+;               19: areturn 
+;               20: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x542) :
+; methods[4] (offset 0x541) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 106 (full)
 ;     descriptor_index 60 (()Z)
@@ -365,7 +364,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x5ac) :
+; methods[5] (offset 0x5ab) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 100 (inRange)
 ;     descriptor_index 110 ((II)Z)
@@ -418,7 +417,7 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x605) :
+; methods[6] (offset 0x604) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 43 (set)
 ;     descriptor_index 50 ((IILjava/lang/Character;)V)
@@ -448,7 +447,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x639) :
+; methods[7] (offset 0x638) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 8 (place)
 ;     descriptor_index 29 ((ILjava/lang/Character;)V)
@@ -476,7 +475,7 @@
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x667) :
+; methods[8] (offset 0x666) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 68 (clear)
 ;     descriptor_index 115 ((II)V)
@@ -499,7 +498,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x68c) :
+; methods[9] (offset 0x68b) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 104 (normalize)
 ;     descriptor_index 64 (()V)
@@ -598,7 +597,7 @@
 ;         attributes_count 0
 
 
-; methods[10] (offset 0x742) :
+; methods[10] (offset 0x741) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 86 (expectedRow)
 ;     descriptor_index 76 ((I)I)
@@ -673,7 +672,7 @@
 ;         attributes_count 0
 
 
-; methods[11] (offset 0x7bf) :
+; methods[11] (offset 0x7be) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (isValidColumn)
 ;     descriptor_index 63 ((I)Z)
@@ -719,7 +718,7 @@
 ;         attributes_count 0
 
 
-; methods[12] (offset 0x80d) :
+; methods[12] (offset 0x80c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 13 (print)
 ;     descriptor_index 64 (()V)
@@ -821,7 +820,7 @@
 ;         attributes_count 0
 
 
-; methods[13] (offset 0x8d3) :
+; methods[13] (offset 0x8d2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 108 (getWinner)
 ;     descriptor_index 65 (()Ljava/lang/Character;)
@@ -1179,17 +1178,17 @@
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xb6a) :
+; methods[14] (offset 0xb69) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 17 (main)
 ;     descriptor_index 67 (([Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 82
+;         attribute_length 77
 ;         max_stack 6
 ;         max_locals 3
-;         code_length 70
+;         code_length 65
 ;         code :
 ;                0: new 101 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -1200,32 +1199,30 @@
 ;               12: ldc 33 (7) 
 ;               14: ldc 33 (7) 
 ;               16: invokespecial 1 (Board/<init> (II)V) 
-;               19: astore_1 
-;               20: aload_1 
-;               21: invokevirtual 61 (Board/print ()V) 
-;               24: aload_1 
-;               25: ldc 34 (6) 
-;               27: ldc 34 (6) 
-;               29: new 77 (java/lang/Character) 
-;               32: dup 
-;               33: ldc 30 (88) 
-;               35: invokespecial 78 (java/lang/Character/<init> (C)V) 
-;               38: invokevirtual 19 (Board/set (IILjava/lang/Character;)V) 
-;               41: aload_1 
-;               42: ldc 34 (6) 
-;               44: iconst_5 
-;               45: new 77 (java/lang/Character) 
-;               48: dup 
-;               49: ldc 47 (79) 
-;               51: invokespecial 78 (java/lang/Character/<init> (C)V) 
-;               54: invokevirtual 19 (Board/set (IILjava/lang/Character;)V) 
-;               57: aload_1 
-;               58: invokevirtual 61 (Board/print ()V) 
-;               61: aload_1 
-;               62: invokevirtual 36 (Board/normalize ()V) 
-;               65: aload_1 
-;               66: invokevirtual 61 (Board/print ()V) 
-;               69: return 
+;               19: dup 
+;               20: dup 
+;               21: astore_1 
+;               22: ldc 34 (6) 
+;               24: new 77 (java/lang/Character) 
+;               27: dup 
+;               28: ldc 30 (88) 
+;               30: invokespecial 78 (java/lang/Character/<init> (C)V) 
+;               33: invokevirtual 19 (Board/set (IILjava/lang/Character;)V) 
+;               36: aload_1 
+;               37: ldc 34 (6) 
+;               39: iconst_5 
+;               40: new 77 (java/lang/Character) 
+;               43: dup 
+;               44: ldc 47 (79) 
+;               46: invokespecial 78 (java/lang/Character/<init> (C)V) 
+;               49: invokevirtual 19 (Board/set (IILjava/lang/Character;)V) 
+;               52: aload_1 
+;               53: invokevirtual 61 (Board/print ()V) 
+;               56: aload_1 
+;               57: invokevirtual 36 (Board/normalize ()V) 
+;               60: aload_1 
+;               61: invokevirtual 61 (Board/print ()V) 
+;               64: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -1233,7 +1230,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xbcc) :
+; class_attributes[0] (offset 0xbc6) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 12

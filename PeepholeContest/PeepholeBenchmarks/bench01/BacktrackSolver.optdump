@@ -1,79 +1,75 @@
 ; magic number 0xCAFEBABE
 ; bytecode version 45.3
 
-; constant pool count 69
+; constant pool count 65
 ; cp[1] (offset 0x12) -> CONSTANT_Utf8 "solve"
 ; cp[2] (offset 0x18) -> CONSTANT_Utf8 "()Z"
-; cp[3] (offset 0x1d) -> CONSTANT_NameAndType 46, 44
-; cp[4] (offset 0x22) -> CONSTANT_Methodref 50, 39
+; cp[3] (offset 0x1d) -> CONSTANT_NameAndType 43, 41
+; cp[4] (offset 0x22) -> CONSTANT_Methodref 47, 36
 ; cp[5] (offset 0x29) -> CONSTANT_Utf8 "next"
 ; cp[6] (offset 0x2f) -> CONSTANT_Utf8 "()V"
-; cp[7] (offset 0x34) -> CONSTANT_Methodref 43, 8
-; cp[8] (offset 0x39) -> CONSTANT_NameAndType 11, 25
+; cp[7] (offset 0x34) -> CONSTANT_Methodref 40, 8
+; cp[8] (offset 0x39) -> CONSTANT_NameAndType 11, 23
 ; cp[9] (offset 0x3e) -> CONSTANT_Integer 10
-; cp[10] (offset 0x43) -> CONSTANT_Fieldref 50, 61
+; cp[10] (offset 0x43) -> CONSTANT_Fieldref 47, 57
 ; cp[11] (offset 0x52) -> CONSTANT_Utf8 "setElementAt"
 ; cp[12] (offset 0x66) -> CONSTANT_Utf8 "java/lang/Integer"
 ; cp[13] (offset 0x6b) -> CONSTANT_Integer 9
 ; cp[14] (offset 0x70) -> CONSTANT_Integer 8
-; cp[15] (offset 0x75) -> CONSTANT_Methodref 42, 26
-; cp[16] (offset 0x7a) -> CONSTANT_NameAndType 68, 19
-; cp[17] (offset 0x80) -> CONSTANT_Utf8 "()I"
-; cp[18] (offset 0x85) -> CONSTANT_Methodref 20, 3
-; cp[19] (offset 0x8d) -> CONSTANT_Utf8 "(II)Z"
-; cp[20] (offset 0x90) -> CONSTANT_Class 12
-; cp[21] (offset 0x98) -> CONSTANT_Utf8 "(II)V"
-; cp[22] (offset 0xad) -> CONSTANT_Utf8 "Ljava/util/Vector;"
-; cp[23] (offset 0xb2) -> CONSTANT_Methodref 20, 31
-; cp[24] (offset 0xb7) -> CONSTANT_NameAndType 40, 21
-; cp[25] (offset 0xd0) -> CONSTANT_Utf8 "(Ljava/lang/Object;I)V"
-; cp[26] (offset 0xd5) -> CONSTANT_NameAndType 41, 2
-; cp[27] (offset 0xde) -> CONSTANT_Utf8 "getVal"
-; cp[28] (offset 0xe6) -> CONSTANT_Utf8 "(II)I"
-; cp[29] (offset 0xfa) -> CONSTANT_Utf8 "BacktrackSolver.j"
-; cp[30] (offset 0xff) -> CONSTANT_NameAndType 35, 59
-; cp[31] (offset 0x104) -> CONSTANT_NameAndType 60, 17
-; cp[32] (offset 0x113) -> CONSTANT_Utf8 "SudokuSolver"
-; cp[33] (offset 0x118) -> CONSTANT_Methodref 42, 67
-; cp[34] (offset 0x11d) -> CONSTANT_NameAndType 54, 56
-; cp[35] (offset 0x126) -> CONSTANT_Utf8 "setVal"
-; cp[36] (offset 0x12b) -> CONSTANT_Methodref 42, 16
-; cp[37] (offset 0x13e) -> CONSTANT_Utf8 "java/util/Vector"
-; cp[38] (offset 0x14a) -> CONSTANT_Utf8 "elementAt"
-; cp[39] (offset 0x14f) -> CONSTANT_NameAndType 46, 6
-; cp[40] (offset 0x15b) -> CONSTANT_Utf8 "solveCell"
-; cp[41] (offset 0x169) -> CONSTANT_Utf8 "checkFinish"
-; cp[42] (offset 0x16c) -> CONSTANT_Class 53
-; cp[43] (offset 0x16f) -> CONSTANT_Class 37
-; cp[44] (offset 0x176) -> CONSTANT_Utf8 "(I)V"
-; cp[45] (offset 0x183) -> CONSTANT_Utf8 "SourceFile"
-; cp[46] (offset 0x18c) -> CONSTANT_Utf8 "<init>"
-; cp[47] (offset 0x191) -> CONSTANT_Methodref 42, 24
-; cp[48] (offset 0x1a9) -> CONSTANT_Utf8 "(I)Ljava/lang/Object;"
-; cp[49] (offset 0x1ae) -> CONSTANT_Methodref 42, 55
-; cp[50] (offset 0x1b1) -> CONSTANT_Class 32
-; cp[51] (offset 0x1b8) -> CONSTANT_Utf8 "grid"
-; cp[52] (offset 0x1bd) -> CONSTANT_Methodref 42, 64
-; cp[53] (offset 0x1cf) -> CONSTANT_Utf8 "BacktrackSolver"
-; cp[54] (offset 0x1da) -> CONSTANT_Utf8 "checkBox"
-; cp[55] (offset 0x1df) -> CONSTANT_NameAndType 57, 19
-; cp[56] (offset 0x1e8) -> CONSTANT_Utf8 "(III)Z"
-; cp[57] (offset 0x1f3) -> CONSTANT_Utf8 "checkCol"
-; cp[58] (offset 0x1f8) -> CONSTANT_NameAndType 38, 48
-; cp[59] (offset 0x201) -> CONSTANT_Utf8 "(III)V"
-; cp[60] (offset 0x20c) -> CONSTANT_Utf8 "intValue"
-; cp[61] (offset 0x211) -> CONSTANT_NameAndType 51, 22
-; cp[62] (offset 0x216) -> CONSTANT_Methodref 42, 30
-; cp[63] (offset 0x21b) -> CONSTANT_Methodref 43, 58
-; cp[64] (offset 0x220) -> CONSTANT_NameAndType 5, 21
-; cp[65] (offset 0x225) -> CONSTANT_Methodref 42, 34
-; cp[66] (offset 0x22c) -> CONSTANT_Utf8 "Code"
-; cp[67] (offset 0x231) -> CONSTANT_NameAndType 27, 28
-; cp[68] (offset 0x23c) -> CONSTANT_Utf8 "checkRow"
+; cp[15] (offset 0x75) -> CONSTANT_Methodref 39, 24
+; cp[16] (offset 0x7a) -> CONSTANT_NameAndType 64, 18
+; cp[17] (offset 0x7f) -> CONSTANT_Methodref 19, 3
+; cp[18] (offset 0x87) -> CONSTANT_Utf8 "(II)Z"
+; cp[19] (offset 0x8a) -> CONSTANT_Class 12
+; cp[20] (offset 0x92) -> CONSTANT_Utf8 "(II)V"
+; cp[21] (offset 0xa7) -> CONSTANT_Utf8 "Ljava/util/Vector;"
+; cp[22] (offset 0xac) -> CONSTANT_NameAndType 37, 20
+; cp[23] (offset 0xc5) -> CONSTANT_Utf8 "(Ljava/lang/Object;I)V"
+; cp[24] (offset 0xca) -> CONSTANT_NameAndType 38, 2
+; cp[25] (offset 0xd3) -> CONSTANT_Utf8 "getVal"
+; cp[26] (offset 0xdb) -> CONSTANT_Utf8 "(II)I"
+; cp[27] (offset 0xef) -> CONSTANT_Utf8 "BacktrackSolver.j"
+; cp[28] (offset 0xf4) -> CONSTANT_NameAndType 32, 56
+; cp[29] (offset 0x103) -> CONSTANT_Utf8 "SudokuSolver"
+; cp[30] (offset 0x108) -> CONSTANT_Methodref 39, 63
+; cp[31] (offset 0x10d) -> CONSTANT_NameAndType 51, 53
+; cp[32] (offset 0x116) -> CONSTANT_Utf8 "setVal"
+; cp[33] (offset 0x11b) -> CONSTANT_Methodref 39, 16
+; cp[34] (offset 0x12e) -> CONSTANT_Utf8 "java/util/Vector"
+; cp[35] (offset 0x13a) -> CONSTANT_Utf8 "elementAt"
+; cp[36] (offset 0x13f) -> CONSTANT_NameAndType 43, 6
+; cp[37] (offset 0x14b) -> CONSTANT_Utf8 "solveCell"
+; cp[38] (offset 0x159) -> CONSTANT_Utf8 "checkFinish"
+; cp[39] (offset 0x15c) -> CONSTANT_Class 50
+; cp[40] (offset 0x15f) -> CONSTANT_Class 34
+; cp[41] (offset 0x166) -> CONSTANT_Utf8 "(I)V"
+; cp[42] (offset 0x173) -> CONSTANT_Utf8 "SourceFile"
+; cp[43] (offset 0x17c) -> CONSTANT_Utf8 "<init>"
+; cp[44] (offset 0x181) -> CONSTANT_Methodref 39, 22
+; cp[45] (offset 0x199) -> CONSTANT_Utf8 "(I)Ljava/lang/Object;"
+; cp[46] (offset 0x19e) -> CONSTANT_Methodref 39, 52
+; cp[47] (offset 0x1a1) -> CONSTANT_Class 29
+; cp[48] (offset 0x1a8) -> CONSTANT_Utf8 "grid"
+; cp[49] (offset 0x1ad) -> CONSTANT_Methodref 39, 60
+; cp[50] (offset 0x1bf) -> CONSTANT_Utf8 "BacktrackSolver"
+; cp[51] (offset 0x1ca) -> CONSTANT_Utf8 "checkBox"
+; cp[52] (offset 0x1cf) -> CONSTANT_NameAndType 54, 18
+; cp[53] (offset 0x1d8) -> CONSTANT_Utf8 "(III)Z"
+; cp[54] (offset 0x1e3) -> CONSTANT_Utf8 "checkCol"
+; cp[55] (offset 0x1e8) -> CONSTANT_NameAndType 35, 45
+; cp[56] (offset 0x1f1) -> CONSTANT_Utf8 "(III)V"
+; cp[57] (offset 0x1f6) -> CONSTANT_NameAndType 48, 21
+; cp[58] (offset 0x1fb) -> CONSTANT_Methodref 39, 28
+; cp[59] (offset 0x200) -> CONSTANT_Methodref 40, 55
+; cp[60] (offset 0x205) -> CONSTANT_NameAndType 5, 20
+; cp[61] (offset 0x20a) -> CONSTANT_Methodref 39, 31
+; cp[62] (offset 0x211) -> CONSTANT_Utf8 "Code"
+; cp[63] (offset 0x216) -> CONSTANT_NameAndType 25, 26
+; cp[64] (offset 0x221) -> CONSTANT_Utf8 "checkRow"
 
 ; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
-; this_class index = 42
-; super_class index = 50
+; this_class index = 39
+; super_class index = 47
 
 ; interfaces_count = 0
 
@@ -82,13 +78,13 @@
 
 ; methods_count 10
 
-; methods[0] (offset 0x248) :
+; methods[0] (offset 0x22d) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 46 (<init>)
+;     name_index 43 (<init>)
 ;     descriptor_index 6 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
@@ -101,82 +97,77 @@
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x267) :
+; methods[1] (offset 0x24c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 27 (getVal)
-;     descriptor_index 28 ((II)I)
+;     name_index 25 (getVal)
+;     descriptor_index 26 ((II)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
-;         attribute_length 49
+;         name_index 62 (Code)
+;         attribute_length 36
 ;         max_stack 2
 ;         max_locals 8
-;         code_length 37
+;         code_length 24
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 10 (SudokuSolver/grid Ljava/util/Vector;) 
 ;                4: iload_1 
-;                5: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;                8: astore_3 
-;                9: aload_3 
-;               10: checkcast 43 (java/util/Vector) 
-;               13: astore 5 
-;               15: aload 5 
-;               17: iload_2 
-;               18: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               21: astore 4 
-;               23: aload 4 
-;               25: checkcast 20 (java/lang/Integer) 
-;               28: astore 6 
-;               30: aload 6 
-;               32: invokevirtual 23 (java/lang/Integer/intValue ()I) 
-;               35: ireturn 
-;               36: nop 
+;                5: invokevirtual 59 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;                8: dup 
+;                9: astore_3 
+;               10: dup 
+;               11: astore 5 
+;               13: invokevirtual 59 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               16: dup 
+;               17: astore 4 
+;               19: dup 
+;               20: astore 6 
+;               22: ireturn 
+;               23: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2a6) :
+; methods[2] (offset 0x27e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 35 (setVal)
-;     descriptor_index 59 ((III)V)
+;     name_index 32 (setVal)
+;     descriptor_index 56 ((III)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
-;         attribute_length 48
+;         name_index 62 (Code)
+;         attribute_length 44
 ;         max_stack 3
 ;         max_locals 9
-;         code_length 36
+;         code_length 32
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 10 (SudokuSolver/grid Ljava/util/Vector;) 
 ;                4: iload_1 
-;                5: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;                8: astore 4 
-;               10: aload 4 
-;               12: checkcast 43 (java/util/Vector) 
-;               15: astore 7 
-;               17: new 20 (java/lang/Integer) 
-;               20: dup 
-;               21: iload_3 
-;               22: invokespecial 18 (java/lang/Integer/<init> (I)V) 
-;               25: astore 6 
-;               27: aload 7 
-;               29: aload 6 
-;               31: iload_2 
-;               32: invokevirtual 7 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
-;               35: return 
+;                5: invokevirtual 59 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;                8: dup 
+;                9: astore 4 
+;               11: astore 7 
+;               13: new 19 (java/lang/Integer) 
+;               16: dup 
+;               17: iload_3 
+;               18: invokespecial 17 (java/lang/Integer/<init> (I)V) 
+;               21: astore 6 
+;               23: aload 7 
+;               25: aload 6 
+;               27: iload_2 
+;               28: invokevirtual 7 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
+;               31: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x2e4) :
+; methods[3] (offset 0x2b8) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 68 (checkRow)
-;     descriptor_index 19 ((II)Z)
+;     name_index 64 (checkRow)
+;     descriptor_index 18 ((II)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 60
 ;         max_stack 3
 ;         max_locals 4
@@ -194,7 +185,7 @@
 ;               16: aload_0 
 ;               17: iload_1 
 ;               18: iload_3 
-;               19: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               19: invokevirtual 30 (BacktrackSolver/getVal (II)I) 
 ;               22: iload_2 
 ;               23: if_icmpeq 7 
 ;               26: iconst_0 
@@ -212,13 +203,13 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x32e) :
+; methods[4] (offset 0x302) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 57 (checkCol)
-;     descriptor_index 19 ((II)Z)
+;     name_index 54 (checkCol)
+;     descriptor_index 18 ((II)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 60
 ;         max_stack 3
 ;         max_locals 4
@@ -236,7 +227,7 @@
 ;               16: aload_0 
 ;               17: iload_3 
 ;               18: iload_1 
-;               19: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               19: invokevirtual 30 (BacktrackSolver/getVal (II)I) 
 ;               22: iload_2 
 ;               23: if_icmpeq 7 
 ;               26: iconst_0 
@@ -254,13 +245,13 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x378) :
+; methods[5] (offset 0x34c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 54 (checkBox)
-;     descriptor_index 56 ((III)Z)
+;     name_index 51 (checkBox)
+;     descriptor_index 53 ((III)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 105
 ;         max_stack 4
 ;         max_locals 6
@@ -303,7 +294,7 @@
 ;               51: iload_2 
 ;               52: iload 5 
 ;               54: iadd 
-;               55: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               55: invokevirtual 30 (BacktrackSolver/getVal (II)I) 
 ;               58: iload_3 
 ;               59: if_icmpeq 7 
 ;               62: iconst_0 
@@ -323,13 +314,13 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x3ef) :
+; methods[6] (offset 0x3c3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 41 (checkFinish)
+;     name_index 38 (checkFinish)
 ;     descriptor_index 2 (()Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 85
 ;         max_stack 3
 ;         max_locals 3
@@ -356,7 +347,7 @@
 ;               32: aload_0 
 ;               33: iload_1 
 ;               34: iload_2 
-;               35: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               35: invokevirtual 30 (BacktrackSolver/getVal (II)I) 
 ;               38: iconst_0 
 ;               39: if_icmpeq 7 
 ;               42: iconst_0 
@@ -376,13 +367,13 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x452) :
+; methods[7] (offset 0x426) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 40 (solveCell)
-;     descriptor_index 21 ((II)V)
+;     name_index 37 (solveCell)
+;     descriptor_index 20 ((II)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 155
 ;         max_stack 4
 ;         max_locals 4
@@ -395,7 +386,7 @@
 ;                8: aload_0 
 ;                9: iload_1 
 ;               10: iload_2 
-;               11: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               11: invokevirtual 30 (BacktrackSolver/getVal (II)I) 
 ;               14: iconst_0 
 ;               15: if_icmpne 7 
 ;               18: iconst_0 
@@ -405,7 +396,7 @@
 ;               26: aload_0 
 ;               27: iload_1 
 ;               28: iload_2 
-;               29: invokevirtual 52 (BacktrackSolver/next (II)V) 
+;               29: invokevirtual 49 (BacktrackSolver/next (II)V) 
 ;               32: goto 110 
 ;               35: iconst_1 
 ;               36: istore_3 
@@ -419,14 +410,14 @@
 ;               51: aload_0 
 ;               52: iload_1 
 ;               53: iload_3 
-;               54: invokevirtual 36 (BacktrackSolver/checkRow (II)Z) 
+;               54: invokevirtual 33 (BacktrackSolver/checkRow (II)Z) 
 ;               57: dup 
 ;               58: ifeq 10 
 ;               61: pop 
 ;               62: aload_0 
 ;               63: iload_2 
 ;               64: iload_3 
-;               65: invokevirtual 49 (BacktrackSolver/checkCol (II)Z) 
+;               65: invokevirtual 46 (BacktrackSolver/checkCol (II)Z) 
 ;               68: dup 
 ;               69: ifeq 11 
 ;               72: pop 
@@ -434,7 +425,7 @@
 ;               74: iload_1 
 ;               75: iload_2 
 ;               76: iload_3 
-;               77: invokevirtual 65 (BacktrackSolver/checkBox (III)Z) 
+;               77: invokevirtual 61 (BacktrackSolver/checkBox (III)Z) 
 ;               80: ifeq 31 
 ;               83: aload_0 
 ;               84: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
@@ -447,11 +438,11 @@
 ;               99: iload_1 
 ;              100: iload_2 
 ;              101: iload_3 
-;              102: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;              102: invokevirtual 58 (BacktrackSolver/setVal (III)V) 
 ;              105: aload_0 
 ;              106: iload_1 
 ;              107: iload_2 
-;              108: invokevirtual 52 (BacktrackSolver/next (II)V) 
+;              108: invokevirtual 49 (BacktrackSolver/next (II)V) 
 ;              111: wide iinc 3 1 
 ;              117: goto -80 
 ;              120: aload_0 
@@ -465,19 +456,19 @@
 ;              136: iload_1 
 ;              137: iload_2 
 ;              138: iconst_0 
-;              139: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;              139: invokevirtual 58 (BacktrackSolver/setVal (III)V) 
 ;              142: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x4fb) :
+; methods[8] (offset 0x4cf) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 5 (next)
-;     descriptor_index 21 ((II)V)
+;     descriptor_index 20 ((II)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 46
 ;         max_stack 4
 ;         max_locals 3
@@ -495,26 +486,26 @@
 ;               16: iload_2 
 ;               17: iconst_1 
 ;               18: iadd 
-;               19: invokevirtual 47 (BacktrackSolver/solveCell (II)V) 
+;               19: invokevirtual 44 (BacktrackSolver/solveCell (II)V) 
 ;               22: goto 11 
 ;               25: aload_0 
 ;               26: iload_1 
 ;               27: iconst_1 
 ;               28: iadd 
 ;               29: iconst_0 
-;               30: invokevirtual 47 (BacktrackSolver/solveCell (II)V) 
+;               30: invokevirtual 44 (BacktrackSolver/solveCell (II)V) 
 ;               33: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x537) :
+; methods[9] (offset 0x50b) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (solve)
 ;     descriptor_index 6 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 66 (Code)
+;         name_index 62 (Code)
 ;         attribute_length 19
 ;         max_stack 3
 ;         max_locals 1
@@ -523,7 +514,7 @@
 ;                0: aload_0 
 ;                1: iconst_0 
 ;                2: iconst_0 
-;                3: invokevirtual 47 (BacktrackSolver/solveCell (II)V) 
+;                3: invokevirtual 44 (BacktrackSolver/solveCell (II)V) 
 ;                6: return 
 ;         exception_table_length 0
 ;         attributes_count 0
@@ -532,9 +523,9 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x55a) :
-;     name_index 45 (SourceFile)
+; class_attributes[0] (offset 0x52e) :
+;     name_index 42 (SourceFile)
 ;     attribute_length 2
-;     sourcefile_index 29
+;     sourcefile_index 27
 
 ; End of file reached successfully. Enjoy :)
