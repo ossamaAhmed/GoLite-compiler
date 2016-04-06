@@ -3,9 +3,11 @@
 Frequencies:
 simplify_multiplication_right: 0
 simplify_astore: 16
-positive_increment: 0
+positive_increment: 9
 simplify_goto_goto: 0
 simplify_aload_after_astore: 0
+simplify_iload_after_istore: 0
+simplify_istore: 20
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
@@ -17,14 +19,14 @@ CustomPoint.optdump:;         code_length 21
 CustomPoint.optdump:;         code_length 6
 CustomPoint.optdump:;         code_length 6
 Dungeon.optdump:;         code_length 27
-Dungeon.optdump:;         code_length 384
-Dungeon.optdump:;         code_length 330
+Dungeon.optdump:;         code_length 370
+Dungeon.optdump:;         code_length 326
 Dungeon.optdump:;         code_length 25
 DungeonGenerator.optdump:;         code_length 5
 DungeonGenerator.optdump:;         code_length 34
 DungeonInfos.optdump:;         code_length 9
 DungeonInfos.optdump:;         code_length 85
-DungeonInfos.optdump:;         code_length 237
+DungeonInfos.optdump:;         code_length 233
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6

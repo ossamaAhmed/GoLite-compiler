@@ -177,10 +177,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 396
+;         attribute_length 382
 ;         max_stack 4
 ;         max_locals 6
-;         code_length 384
+;         code_length 370
 ;         code :
 ;                0: aload_0 
 ;                1: invokevirtual 39 (Dungeon/createRoom ()V) 
@@ -189,426 +189,363 @@
 ;                8: invokevirtual 79 (DungeonInfos/getMonsters ()Ljava/util/Vector;) 
 ;               11: astore 5 
 ;               13: iconst_0 
-;               14: dup 
-;               15: istore_2 
-;               16: pop 
-;               17: iload_2 
-;               18: aload 5 
-;               20: invokevirtual 17 (java/util/Vector/size ()I) 
-;               23: if_icmplt 7 
-;               26: iconst_0 
-;               27: goto 4 
-;               30: iconst_1 
-;               31: ifeq 27 
-;               34: aload_0 
-;               35: ldc 56 ("M") 
-;               37: aload 5 
-;               39: iload_2 
-;               40: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               43: checkcast 88 (CustomPoint) 
-;               46: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
-;               49: iload_2 
-;               50: iconst_1 
-;               51: iadd 
-;               52: dup 
-;               53: istore_2 
-;               54: pop 
-;               55: goto -38 
-;               58: aload_0 
-;               59: getfield 2 (Dungeon/infos LDungeonInfos;) 
-;               62: invokevirtual 65 (DungeonInfos/getUpstairs ()Ljava/util/Vector;) 
-;               65: astore 5 
-;               67: iconst_0 
-;               68: dup 
-;               69: istore_2 
-;               70: pop 
-;               71: iload_2 
-;               72: aload 5 
-;               74: invokevirtual 17 (java/util/Vector/size ()I) 
-;               77: if_icmplt 7 
-;               80: iconst_0 
-;               81: goto 4 
-;               84: iconst_1 
-;               85: ifeq 27 
-;               88: aload_0 
-;               89: ldc 52 ("U") 
-;               91: aload 5 
-;               93: iload_2 
-;               94: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               97: checkcast 88 (CustomPoint) 
-;              100: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
-;              103: iload_2 
-;              104: iconst_1 
-;              105: iadd 
-;              106: dup 
-;              107: istore_2 
-;              108: pop 
-;              109: goto -38 
-;              112: aload_0 
-;              113: getfield 2 (Dungeon/infos LDungeonInfos;) 
-;              116: invokevirtual 35 (DungeonInfos/getDownstairs ()Ljava/util/Vector;) 
-;              119: astore 5 
-;              121: iconst_0 
-;              122: dup 
-;              123: istore_2 
-;              124: pop 
-;              125: iload_2 
-;              126: aload 5 
-;              128: invokevirtual 17 (java/util/Vector/size ()I) 
-;              131: if_icmplt 7 
-;              134: iconst_0 
-;              135: goto 4 
-;              138: iconst_1 
-;              139: ifeq 27 
-;              142: aload_0 
-;              143: ldc 60 ("D") 
-;              145: aload 5 
-;              147: iload_2 
-;              148: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;              151: checkcast 88 (CustomPoint) 
-;              154: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
-;              157: iload_2 
-;              158: iconst_1 
-;              159: iadd 
-;              160: dup 
-;              161: istore_2 
-;              162: pop 
-;              163: goto -38 
-;              166: aload_0 
-;              167: getfield 2 (Dungeon/infos LDungeonInfos;) 
-;              170: invokevirtual 16 (DungeonInfos/getTreasures ()Ljava/util/Vector;) 
-;              173: astore 5 
-;              175: iconst_0 
-;              176: dup 
-;              177: istore_2 
-;              178: pop 
-;              179: iload_2 
-;              180: aload 5 
-;              182: invokevirtual 17 (java/util/Vector/size ()I) 
-;              185: if_icmplt 7 
-;              188: iconst_0 
-;              189: goto 4 
-;              192: iconst_1 
-;              193: ifeq 27 
-;              196: aload_0 
-;              197: ldc 53 ("T") 
-;              199: aload 5 
-;              201: iload_2 
-;              202: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;              205: checkcast 88 (CustomPoint) 
-;              208: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
-;              211: iload_2 
-;              212: iconst_1 
-;              213: iadd 
-;              214: dup 
-;              215: istore_2 
-;              216: pop 
-;              217: goto -38 
-;              220: aload_0 
-;              221: getfield 2 (Dungeon/infos LDungeonInfos;) 
-;              224: invokevirtual 69 (DungeonInfos/getHeros ()Ljava/util/Vector;) 
-;              227: astore 5 
-;              229: iconst_0 
-;              230: dup 
-;              231: istore_2 
-;              232: pop 
-;              233: iload_2 
-;              234: aload 5 
-;              236: invokevirtual 17 (java/util/Vector/size ()I) 
-;              239: if_icmplt 7 
-;              242: iconst_0 
-;              243: goto 4 
-;              246: iconst_1 
-;              247: ifeq 27 
-;              250: aload_0 
-;              251: ldc 58 ("H") 
-;              253: aload 5 
-;              255: iload_2 
-;              256: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;              259: checkcast 88 (CustomPoint) 
-;              262: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
-;              265: iload_2 
-;              266: iconst_1 
-;              267: iadd 
-;              268: dup 
-;              269: istore_2 
-;              270: pop 
-;              271: goto -38 
-;              274: new 103 (joos/lib/JoosIO) 
-;              277: dup 
-;              278: invokespecial 43 (joos/lib/JoosIO/<init> ()V) 
-;              281: astore_1 
-;              282: aload_0 
-;              283: getfield 2 (Dungeon/infos LDungeonInfos;) 
-;              286: invokevirtual 106 (DungeonInfos/getDimension ()LCustomPoint;) 
-;              289: astore 4 
-;              291: iconst_0 
-;              292: dup 
-;              293: istore_2 
-;              294: pop 
-;              295: iload_2 
-;              296: aload 4 
-;              298: invokevirtual 46 (CustomPoint/getY ()I) 
-;              301: iconst_2 
-;              302: iadd 
-;              303: if_icmplt 7 
-;              306: iconst_0 
-;              307: goto 4 
-;              310: iconst_1 
-;              311: ifeq 72 
-;              314: iconst_0 
-;              315: dup 
-;              316: istore_3 
-;              317: pop 
-;              318: iload_3 
-;              319: aload 4 
-;              321: invokevirtual 105 (CustomPoint/getX ()I) 
-;              324: iconst_2 
-;              325: iadd 
-;              326: if_icmplt 7 
-;              329: iconst_0 
-;              330: goto 4 
-;              333: iconst_1 
-;              334: ifeq 34 
-;              337: aload_1 
-;              338: aload_0 
-;              339: getfield 77 (Dungeon/output Ljava/util/Vector;) 
-;              342: iload_2 
-;              343: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;              346: checkcast 86 (java/util/Vector) 
-;              349: iload_3 
-;              350: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;              353: invokevirtual 8 (java/lang/Object/toString ()Ljava/lang/String;) 
-;              356: invokevirtual 21 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
-;              359: iload_3 
-;              360: iconst_1 
-;              361: iadd 
-;              362: dup 
-;              363: istore_3 
-;              364: pop 
-;              365: goto -47 
-;              368: aload_1 
-;              369: ldc 107 ("") 
-;              371: invokevirtual 67 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              374: iload_2 
-;              375: iconst_1 
-;              376: iadd 
-;              377: dup 
-;              378: istore_2 
-;              379: pop 
-;              380: goto -85 
-;              383: return 
+;               14: istore_2 
+;               15: iload_2 
+;               16: aload 5 
+;               18: invokevirtual 17 (java/util/Vector/size ()I) 
+;               21: if_icmplt 7 
+;               24: iconst_0 
+;               25: goto 4 
+;               28: iconst_1 
+;               29: ifeq 27 
+;               32: aload_0 
+;               33: ldc 56 ("M") 
+;               35: aload 5 
+;               37: iload_2 
+;               38: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               41: checkcast 88 (CustomPoint) 
+;               44: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
+;               47: wide iinc 2 1 
+;               53: goto -38 
+;               56: aload_0 
+;               57: getfield 2 (Dungeon/infos LDungeonInfos;) 
+;               60: invokevirtual 65 (DungeonInfos/getUpstairs ()Ljava/util/Vector;) 
+;               63: astore 5 
+;               65: iconst_0 
+;               66: istore_2 
+;               67: iload_2 
+;               68: aload 5 
+;               70: invokevirtual 17 (java/util/Vector/size ()I) 
+;               73: if_icmplt 7 
+;               76: iconst_0 
+;               77: goto 4 
+;               80: iconst_1 
+;               81: ifeq 27 
+;               84: aload_0 
+;               85: ldc 52 ("U") 
+;               87: aload 5 
+;               89: iload_2 
+;               90: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               93: checkcast 88 (CustomPoint) 
+;               96: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
+;               99: wide iinc 2 1 
+;              105: goto -38 
+;              108: aload_0 
+;              109: getfield 2 (Dungeon/infos LDungeonInfos;) 
+;              112: invokevirtual 35 (DungeonInfos/getDownstairs ()Ljava/util/Vector;) 
+;              115: astore 5 
+;              117: iconst_0 
+;              118: istore_2 
+;              119: iload_2 
+;              120: aload 5 
+;              122: invokevirtual 17 (java/util/Vector/size ()I) 
+;              125: if_icmplt 7 
+;              128: iconst_0 
+;              129: goto 4 
+;              132: iconst_1 
+;              133: ifeq 27 
+;              136: aload_0 
+;              137: ldc 60 ("D") 
+;              139: aload 5 
+;              141: iload_2 
+;              142: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              145: checkcast 88 (CustomPoint) 
+;              148: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
+;              151: wide iinc 2 1 
+;              157: goto -38 
+;              160: aload_0 
+;              161: getfield 2 (Dungeon/infos LDungeonInfos;) 
+;              164: invokevirtual 16 (DungeonInfos/getTreasures ()Ljava/util/Vector;) 
+;              167: astore 5 
+;              169: iconst_0 
+;              170: istore_2 
+;              171: iload_2 
+;              172: aload 5 
+;              174: invokevirtual 17 (java/util/Vector/size ()I) 
+;              177: if_icmplt 7 
+;              180: iconst_0 
+;              181: goto 4 
+;              184: iconst_1 
+;              185: ifeq 27 
+;              188: aload_0 
+;              189: ldc 53 ("T") 
+;              191: aload 5 
+;              193: iload_2 
+;              194: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              197: checkcast 88 (CustomPoint) 
+;              200: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
+;              203: wide iinc 2 1 
+;              209: goto -38 
+;              212: aload_0 
+;              213: getfield 2 (Dungeon/infos LDungeonInfos;) 
+;              216: invokevirtual 69 (DungeonInfos/getHeros ()Ljava/util/Vector;) 
+;              219: astore 5 
+;              221: iconst_0 
+;              222: istore_2 
+;              223: iload_2 
+;              224: aload 5 
+;              226: invokevirtual 17 (java/util/Vector/size ()I) 
+;              229: if_icmplt 7 
+;              232: iconst_0 
+;              233: goto 4 
+;              236: iconst_1 
+;              237: ifeq 27 
+;              240: aload_0 
+;              241: ldc 58 ("H") 
+;              243: aload 5 
+;              245: iload_2 
+;              246: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              249: checkcast 88 (CustomPoint) 
+;              252: invokevirtual 33 (Dungeon/createItem (Ljava/lang/String;LCustomPoint;)V) 
+;              255: wide iinc 2 1 
+;              261: goto -38 
+;              264: new 103 (joos/lib/JoosIO) 
+;              267: dup 
+;              268: invokespecial 43 (joos/lib/JoosIO/<init> ()V) 
+;              271: astore_1 
+;              272: aload_0 
+;              273: getfield 2 (Dungeon/infos LDungeonInfos;) 
+;              276: invokevirtual 106 (DungeonInfos/getDimension ()LCustomPoint;) 
+;              279: astore 4 
+;              281: iconst_0 
+;              282: istore_2 
+;              283: iload_2 
+;              284: aload 4 
+;              286: invokevirtual 46 (CustomPoint/getY ()I) 
+;              289: iconst_2 
+;              290: iadd 
+;              291: if_icmplt 7 
+;              294: iconst_0 
+;              295: goto 4 
+;              298: iconst_1 
+;              299: ifeq 70 
+;              302: iconst_0 
+;              303: istore_3 
+;              304: iload_3 
+;              305: aload 4 
+;              307: invokevirtual 105 (CustomPoint/getX ()I) 
+;              310: iconst_2 
+;              311: iadd 
+;              312: if_icmplt 7 
+;              315: iconst_0 
+;              316: goto 4 
+;              319: iconst_1 
+;              320: ifeq 34 
+;              323: aload_1 
+;              324: aload_0 
+;              325: getfield 77 (Dungeon/output Ljava/util/Vector;) 
+;              328: iload_2 
+;              329: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              332: checkcast 86 (java/util/Vector) 
+;              335: iload_3 
+;              336: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;              339: invokevirtual 8 (java/lang/Object/toString ()Ljava/lang/String;) 
+;              342: invokevirtual 21 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              345: wide iinc 3 1 
+;              351: goto -47 
+;              354: aload_1 
+;              355: ldc 107 ("") 
+;              357: invokevirtual 67 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              360: wide iinc 2 1 
+;              366: goto -83 
+;              369: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x593) :
+; methods[2] (offset 0x585) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 90 (createRoom)
 ;     descriptor_index 70 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 342
+;         attribute_length 338
 ;         max_stack 3
 ;         max_locals 5
-;         code_length 330
+;         code_length 326
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 2 (Dungeon/infos LDungeonInfos;) 
 ;                4: invokevirtual 106 (DungeonInfos/getDimension ()LCustomPoint;) 
 ;                7: astore_3 
 ;                8: iconst_0 
-;                9: dup 
-;               10: istore_1 
-;               11: pop 
-;               12: iload_1 
-;               13: aload_3 
-;               14: invokevirtual 46 (CustomPoint/getY ()I) 
-;               17: iconst_2 
-;               18: iadd 
-;               19: if_icmplt 7 
-;               22: iconst_0 
-;               23: goto 4 
-;               26: iconst_1 
-;               27: ifeq 302 
-;               30: new 86 (java/util/Vector) 
-;               33: dup 
-;               34: invokespecial 49 (java/util/Vector/<init> ()V) 
-;               37: astore 4 
-;               39: iconst_0 
-;               40: dup 
-;               41: istore_2 
-;               42: pop 
-;               43: iload_2 
-;               44: aload_3 
-;               45: invokevirtual 105 (CustomPoint/getX ()I) 
-;               48: iconst_2 
-;               49: iadd 
-;               50: if_icmplt 7 
-;               53: iconst_0 
-;               54: goto 4 
-;               57: iconst_1 
-;               58: ifeq 253 
-;               61: iload_1 
+;                9: istore_1 
+;               10: iload_1 
+;               11: aload_3 
+;               12: invokevirtual 46 (CustomPoint/getY ()I) 
+;               15: iconst_2 
+;               16: iadd 
+;               17: if_icmplt 7 
+;               20: iconst_0 
+;               21: goto 4 
+;               24: iconst_1 
+;               25: ifeq 300 
+;               28: new 86 (java/util/Vector) 
+;               31: dup 
+;               32: invokespecial 49 (java/util/Vector/<init> ()V) 
+;               35: astore 4 
+;               37: iconst_0 
+;               38: istore_2 
+;               39: iload_2 
+;               40: aload_3 
+;               41: invokevirtual 105 (CustomPoint/getX ()I) 
+;               44: iconst_2 
+;               45: iadd 
+;               46: if_icmplt 7 
+;               49: iconst_0 
+;               50: goto 4 
+;               53: iconst_1 
+;               54: ifeq 253 
+;               57: iload_1 
+;               58: iconst_0 
+;               59: if_icmpeq 7 
 ;               62: iconst_0 
-;               63: if_icmpeq 7 
-;               66: iconst_0 
-;               67: goto 4 
-;               70: iconst_1 
-;               71: dup 
-;               72: ifeq 14 
-;               75: pop 
-;               76: iload_2 
+;               63: goto 4 
+;               66: iconst_1 
+;               67: dup 
+;               68: ifeq 14 
+;               71: pop 
+;               72: iload_2 
+;               73: iconst_0 
+;               74: if_icmpeq 7 
 ;               77: iconst_0 
-;               78: if_icmpeq 7 
-;               81: iconst_0 
-;               82: goto 4 
-;               85: iconst_1 
-;               86: dup 
-;               87: ifne 34 
-;               90: pop 
-;               91: iload_1 
-;               92: aload_3 
-;               93: invokevirtual 46 (CustomPoint/getY ()I) 
-;               96: iconst_1 
-;               97: iadd 
-;               98: if_icmpeq 7 
-;              101: iconst_0 
-;              102: goto 4 
-;              105: iconst_1 
-;              106: dup 
-;              107: ifeq 14 
-;              110: pop 
-;              111: iload_2 
+;               78: goto 4 
+;               81: iconst_1 
+;               82: dup 
+;               83: ifne 34 
+;               86: pop 
+;               87: iload_1 
+;               88: aload_3 
+;               89: invokevirtual 46 (CustomPoint/getY ()I) 
+;               92: iconst_1 
+;               93: iadd 
+;               94: if_icmpeq 7 
+;               97: iconst_0 
+;               98: goto 4 
+;              101: iconst_1 
+;              102: dup 
+;              103: ifeq 14 
+;              106: pop 
+;              107: iload_2 
+;              108: iconst_0 
+;              109: if_icmpeq 7 
 ;              112: iconst_0 
-;              113: if_icmpeq 7 
-;              116: iconst_0 
-;              117: goto 4 
-;              120: iconst_1 
-;              121: dup 
-;              122: ifne 34 
-;              125: pop 
-;              126: iload_1 
+;              113: goto 4 
+;              116: iconst_1 
+;              117: dup 
+;              118: ifne 34 
+;              121: pop 
+;              122: iload_1 
+;              123: iconst_0 
+;              124: if_icmpeq 7 
 ;              127: iconst_0 
-;              128: if_icmpeq 7 
-;              131: iconst_0 
-;              132: goto 4 
-;              135: iconst_1 
-;              136: dup 
-;              137: ifeq 19 
-;              140: pop 
-;              141: iload_2 
-;              142: aload_3 
-;              143: invokevirtual 105 (CustomPoint/getX ()I) 
-;              146: iconst_1 
-;              147: iadd 
-;              148: if_icmpeq 7 
-;              151: iconst_0 
-;              152: goto 4 
-;              155: iconst_1 
-;              156: dup 
-;              157: ifne 39 
-;              160: pop 
-;              161: iload_1 
-;              162: aload_3 
-;              163: invokevirtual 46 (CustomPoint/getY ()I) 
-;              166: iconst_1 
-;              167: iadd 
-;              168: if_icmpeq 7 
-;              171: iconst_0 
-;              172: goto 4 
-;              175: iconst_1 
-;              176: dup 
-;              177: ifeq 19 
-;              180: pop 
-;              181: iload_2 
-;              182: aload_3 
-;              183: invokevirtual 105 (CustomPoint/getX ()I) 
-;              186: iconst_1 
-;              187: iadd 
-;              188: if_icmpeq 7 
-;              191: iconst_0 
-;              192: goto 4 
-;              195: iconst_1 
-;              196: ifeq 13 
-;              199: aload 4 
-;              201: ldc 76 ("+") 
-;              203: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              206: goto 96 
-;              209: iload_1 
+;              128: goto 4 
+;              131: iconst_1 
+;              132: dup 
+;              133: ifeq 19 
+;              136: pop 
+;              137: iload_2 
+;              138: aload_3 
+;              139: invokevirtual 105 (CustomPoint/getX ()I) 
+;              142: iconst_1 
+;              143: iadd 
+;              144: if_icmpeq 7 
+;              147: iconst_0 
+;              148: goto 4 
+;              151: iconst_1 
+;              152: dup 
+;              153: ifne 39 
+;              156: pop 
+;              157: iload_1 
+;              158: aload_3 
+;              159: invokevirtual 46 (CustomPoint/getY ()I) 
+;              162: iconst_1 
+;              163: iadd 
+;              164: if_icmpeq 7 
+;              167: iconst_0 
+;              168: goto 4 
+;              171: iconst_1 
+;              172: dup 
+;              173: ifeq 19 
+;              176: pop 
+;              177: iload_2 
+;              178: aload_3 
+;              179: invokevirtual 105 (CustomPoint/getX ()I) 
+;              182: iconst_1 
+;              183: iadd 
+;              184: if_icmpeq 7 
+;              187: iconst_0 
+;              188: goto 4 
+;              191: iconst_1 
+;              192: ifeq 13 
+;              195: aload 4 
+;              197: ldc 76 ("+") 
+;              199: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              202: goto 96 
+;              205: iload_1 
+;              206: iconst_0 
+;              207: if_icmpeq 7 
 ;              210: iconst_0 
-;              211: if_icmpeq 7 
-;              214: iconst_0 
-;              215: goto 4 
-;              218: iconst_1 
-;              219: dup 
-;              220: ifne 19 
-;              223: pop 
-;              224: iload_1 
-;              225: aload_3 
-;              226: invokevirtual 46 (CustomPoint/getY ()I) 
-;              229: iconst_1 
-;              230: iadd 
-;              231: if_icmpeq 7 
-;              234: iconst_0 
-;              235: goto 4 
-;              238: iconst_1 
-;              239: ifeq 13 
-;              242: aload 4 
-;              244: ldc 73 ("-") 
-;              246: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              249: goto 53 
-;              252: iload_2 
+;              211: goto 4 
+;              214: iconst_1 
+;              215: dup 
+;              216: ifne 19 
+;              219: pop 
+;              220: iload_1 
+;              221: aload_3 
+;              222: invokevirtual 46 (CustomPoint/getY ()I) 
+;              225: iconst_1 
+;              226: iadd 
+;              227: if_icmpeq 7 
+;              230: iconst_0 
+;              231: goto 4 
+;              234: iconst_1 
+;              235: ifeq 13 
+;              238: aload 4 
+;              240: ldc 73 ("-") 
+;              242: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              245: goto 53 
+;              248: iload_2 
+;              249: iconst_0 
+;              250: if_icmpeq 7 
 ;              253: iconst_0 
-;              254: if_icmpeq 7 
-;              257: iconst_0 
-;              258: goto 4 
-;              261: iconst_1 
-;              262: dup 
-;              263: ifne 19 
-;              266: pop 
-;              267: iload_2 
-;              268: aload_3 
-;              269: invokevirtual 105 (CustomPoint/getX ()I) 
-;              272: iconst_1 
-;              273: iadd 
-;              274: if_icmpeq 7 
-;              277: iconst_0 
-;              278: goto 4 
-;              281: iconst_1 
-;              282: ifeq 13 
-;              285: aload 4 
-;              287: ldc 29 ("|") 
-;              289: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              292: goto 10 
-;              295: aload 4 
-;              297: ldc 87 (" ") 
-;              299: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              302: iload_2 
-;              303: iconst_1 
-;              304: iadd 
-;              305: dup 
-;              306: istore_2 
-;              307: pop 
-;              308: goto -265 
-;              311: aload_0 
-;              312: getfield 77 (Dungeon/output Ljava/util/Vector;) 
-;              315: aload 4 
-;              317: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              320: iload_1 
-;              321: iconst_1 
-;              322: iadd 
-;              323: dup 
-;              324: istore_1 
-;              325: pop 
-;              326: goto -314 
-;              329: return 
+;              254: goto 4 
+;              257: iconst_1 
+;              258: dup 
+;              259: ifne 19 
+;              262: pop 
+;              263: iload_2 
+;              264: aload_3 
+;              265: invokevirtual 105 (CustomPoint/getX ()I) 
+;              268: iconst_1 
+;              269: iadd 
+;              270: if_icmpeq 7 
+;              273: iconst_0 
+;              274: goto 4 
+;              277: iconst_1 
+;              278: ifeq 13 
+;              281: aload 4 
+;              283: ldc 29 ("|") 
+;              285: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              288: goto 10 
+;              291: aload 4 
+;              293: ldc 87 (" ") 
+;              295: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              298: wide iinc 2 1 
+;              304: goto -265 
+;              307: aload_0 
+;              308: getfield 77 (Dungeon/output Ljava/util/Vector;) 
+;              311: aload 4 
+;              313: invokevirtual 94 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              316: wide iinc 1 1 
+;              322: goto -312 
+;              325: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x6f7) :
+; methods[3] (offset 0x6e5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 109 (createItem)
 ;     descriptor_index 50 ((Ljava/lang/String;LCustomPoint;)V)
@@ -640,7 +577,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x72c) :
+; class_attributes[0] (offset 0x71a) :
 ;     name_index 3 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 36

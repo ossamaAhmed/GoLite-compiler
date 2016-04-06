@@ -177,262 +177,216 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 62
+;         attribute_length 60
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 50
+;         code_length 48
 ;         code :
 ;                0: iconst_0 
-;                1: dup 
-;                2: istore_3 
-;                3: pop 
-;                4: iload_3 
-;                5: ldc 13 (9) 
-;                7: if_icmplt 7 
-;               10: iconst_0 
-;               11: goto 4 
-;               14: iconst_1 
-;               15: ifeq 32 
-;               18: aload_0 
-;               19: iload_1 
-;               20: iload_3 
-;               21: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
-;               24: iload_2 
-;               25: if_icmpeq 7 
-;               28: iconst_0 
-;               29: goto 4 
-;               32: iconst_1 
-;               33: ifeq 5 
-;               36: iconst_0 
-;               37: ireturn 
-;               38: iload_3 
-;               39: iconst_1 
-;               40: iadd 
-;               41: dup 
-;               42: istore_3 
-;               43: pop 
-;               44: goto -40 
-;               47: iconst_1 
-;               48: ireturn 
-;               49: nop 
+;                1: istore_3 
+;                2: iload_3 
+;                3: ldc 13 (9) 
+;                5: if_icmplt 7 
+;                8: iconst_0 
+;                9: goto 4 
+;               12: iconst_1 
+;               13: ifeq 32 
+;               16: aload_0 
+;               17: iload_1 
+;               18: iload_3 
+;               19: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               22: iload_2 
+;               23: if_icmpeq 7 
+;               26: iconst_0 
+;               27: goto 4 
+;               30: iconst_1 
+;               31: ifeq 5 
+;               34: iconst_0 
+;               35: ireturn 
+;               36: wide iinc 3 1 
+;               42: goto -40 
+;               45: iconst_1 
+;               46: ireturn 
+;               47: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x330) :
+; methods[4] (offset 0x32e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 57 (checkCol)
 ;     descriptor_index 19 ((II)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 62
+;         attribute_length 60
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 50
+;         code_length 48
 ;         code :
 ;                0: iconst_0 
-;                1: dup 
-;                2: istore_3 
-;                3: pop 
-;                4: iload_3 
-;                5: ldc 13 (9) 
-;                7: if_icmplt 7 
-;               10: iconst_0 
-;               11: goto 4 
-;               14: iconst_1 
-;               15: ifeq 32 
-;               18: aload_0 
-;               19: iload_3 
-;               20: iload_1 
-;               21: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
-;               24: iload_2 
-;               25: if_icmpeq 7 
-;               28: iconst_0 
-;               29: goto 4 
-;               32: iconst_1 
-;               33: ifeq 5 
-;               36: iconst_0 
-;               37: ireturn 
-;               38: iload_3 
-;               39: iconst_1 
-;               40: iadd 
-;               41: dup 
-;               42: istore_3 
-;               43: pop 
-;               44: goto -40 
-;               47: iconst_1 
-;               48: ireturn 
-;               49: nop 
+;                1: istore_3 
+;                2: iload_3 
+;                3: ldc 13 (9) 
+;                5: if_icmplt 7 
+;                8: iconst_0 
+;                9: goto 4 
+;               12: iconst_1 
+;               13: ifeq 32 
+;               16: aload_0 
+;               17: iload_3 
+;               18: iload_1 
+;               19: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               22: iload_2 
+;               23: if_icmpeq 7 
+;               26: iconst_0 
+;               27: goto 4 
+;               30: iconst_1 
+;               31: ifeq 5 
+;               34: iconst_0 
+;               35: ireturn 
+;               36: wide iinc 3 1 
+;               42: goto -40 
+;               45: iconst_1 
+;               46: ireturn 
+;               47: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x37c) :
+; methods[5] (offset 0x378) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 54 (checkBox)
 ;     descriptor_index 56 ((III)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 117
+;         attribute_length 105
 ;         max_stack 4
 ;         max_locals 6
-;         code_length 105
+;         code_length 93
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_3 
 ;                2: idiv 
 ;                3: iconst_3 
 ;                4: imul 
-;                5: dup 
-;                6: istore_1 
-;                7: pop 
-;                8: iload_2 
+;                5: istore_1 
+;                6: iload_2 
+;                7: iconst_3 
+;                8: idiv 
 ;                9: iconst_3 
-;               10: idiv 
-;               11: iconst_3 
-;               12: imul 
-;               13: dup 
-;               14: istore_2 
-;               15: pop 
-;               16: iconst_0 
-;               17: dup 
-;               18: istore 4 
-;               20: pop 
-;               21: iload 4 
-;               23: iconst_3 
-;               24: if_icmplt 7 
-;               27: iconst_0 
-;               28: goto 4 
-;               31: iconst_1 
-;               32: ifeq 70 
-;               35: iconst_0 
-;               36: dup 
-;               37: istore 5 
-;               39: pop 
-;               40: iload 5 
-;               42: iconst_3 
-;               43: if_icmplt 7 
-;               46: iconst_0 
-;               47: goto 4 
-;               50: iconst_1 
-;               51: ifeq 40 
-;               54: aload_0 
-;               55: iload_1 
-;               56: iload 4 
-;               58: iadd 
-;               59: iload_2 
-;               60: iload 5 
-;               62: iadd 
-;               63: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
-;               66: iload_3 
-;               67: if_icmpeq 7 
+;               10: imul 
+;               11: istore_2 
+;               12: iconst_0 
+;               13: istore 4 
+;               15: iload 4 
+;               17: iconst_3 
+;               18: if_icmplt 7 
+;               21: iconst_0 
+;               22: goto 4 
+;               25: iconst_1 
+;               26: ifeq 64 
+;               29: iconst_0 
+;               30: istore 5 
+;               32: iload 5 
+;               34: iconst_3 
+;               35: if_icmplt 7 
+;               38: iconst_0 
+;               39: goto 4 
+;               42: iconst_1 
+;               43: ifeq 38 
+;               46: aload_0 
+;               47: iload_1 
+;               48: iload 4 
+;               50: iadd 
+;               51: iload_2 
+;               52: iload 5 
+;               54: iadd 
+;               55: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               58: iload_3 
+;               59: if_icmpeq 7 
+;               62: iconst_0 
+;               63: goto 4 
+;               66: iconst_1 
+;               67: ifeq 5 
 ;               70: iconst_0 
-;               71: goto 4 
-;               74: iconst_1 
-;               75: ifeq 5 
-;               78: iconst_0 
-;               79: ireturn 
-;               80: iload 5 
-;               82: iconst_1 
-;               83: iadd 
-;               84: dup 
-;               85: istore 5 
-;               87: pop 
-;               88: goto -48 
-;               91: iload 4 
-;               93: iconst_1 
-;               94: iadd 
-;               95: dup 
-;               96: istore 4 
-;               98: pop 
-;               99: goto -78 
-;              102: iconst_1 
-;              103: ireturn 
-;              104: nop 
+;               71: ireturn 
+;               72: wide iinc 5 1 
+;               78: goto -46 
+;               81: wide iinc 4 1 
+;               87: goto -72 
+;               90: iconst_1 
+;               91: ireturn 
+;               92: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x3ff) :
+; methods[6] (offset 0x3ef) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (checkFinish)
 ;     descriptor_index 2 (()Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 89
+;         attribute_length 85
 ;         max_stack 3
 ;         max_locals 3
-;         code_length 77
+;         code_length 73
 ;         code :
 ;                0: iconst_0 
-;                1: dup 
-;                2: istore_1 
-;                3: pop 
-;                4: iload_1 
-;                5: ldc 13 (9) 
-;                7: if_icmplt 7 
-;               10: iconst_0 
-;               11: goto 4 
-;               14: iconst_1 
-;               15: ifeq 59 
-;               18: iconst_0 
-;               19: dup 
-;               20: istore_2 
-;               21: pop 
-;               22: iload_2 
-;               23: ldc 13 (9) 
-;               25: if_icmplt 7 
-;               28: iconst_0 
-;               29: goto 4 
-;               32: iconst_1 
-;               33: ifeq 32 
-;               36: aload_0 
-;               37: iload_1 
-;               38: iload_2 
-;               39: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;                1: istore_1 
+;                2: iload_1 
+;                3: ldc 13 (9) 
+;                5: if_icmplt 7 
+;                8: iconst_0 
+;                9: goto 4 
+;               12: iconst_1 
+;               13: ifeq 57 
+;               16: iconst_0 
+;               17: istore_2 
+;               18: iload_2 
+;               19: ldc 13 (9) 
+;               21: if_icmplt 7 
+;               24: iconst_0 
+;               25: goto 4 
+;               28: iconst_1 
+;               29: ifeq 32 
+;               32: aload_0 
+;               33: iload_1 
+;               34: iload_2 
+;               35: invokevirtual 33 (BacktrackSolver/getVal (II)I) 
+;               38: iconst_0 
+;               39: if_icmpeq 7 
 ;               42: iconst_0 
-;               43: if_icmpeq 7 
-;               46: iconst_0 
-;               47: goto 4 
-;               50: iconst_1 
-;               51: ifeq 5 
-;               54: iconst_0 
-;               55: ireturn 
-;               56: iload_2 
-;               57: iconst_1 
-;               58: iadd 
-;               59: dup 
-;               60: istore_2 
-;               61: pop 
-;               62: goto -40 
-;               65: iload_1 
-;               66: iconst_1 
-;               67: iadd 
-;               68: dup 
-;               69: istore_1 
-;               70: pop 
-;               71: goto -67 
-;               74: iconst_1 
-;               75: ireturn 
-;               76: nop 
+;               43: goto 4 
+;               46: iconst_1 
+;               47: ifeq 5 
+;               50: iconst_0 
+;               51: ireturn 
+;               52: wide iinc 2 1 
+;               58: goto -40 
+;               61: wide iinc 1 1 
+;               67: goto -65 
+;               70: iconst_1 
+;               71: ireturn 
+;               72: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x466) :
+; methods[7] (offset 0x452) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 40 (solveCell)
 ;     descriptor_index 21 ((II)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 157
+;         attribute_length 155
 ;         max_stack 4
 ;         max_locals 4
-;         code_length 145
+;         code_length 143
 ;         code :
 ;                0: aload_0 
 ;                1: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
@@ -452,79 +406,72 @@
 ;               27: iload_1 
 ;               28: iload_2 
 ;               29: invokevirtual 52 (BacktrackSolver/next (II)V) 
-;               32: goto 112 
+;               32: goto 110 
 ;               35: iconst_1 
-;               36: dup 
-;               37: istore_3 
-;               38: pop 
-;               39: iload_3 
-;               40: ldc 9 (10) 
-;               42: if_icmplt 7 
-;               45: iconst_0 
-;               46: goto 4 
-;               49: iconst_1 
-;               50: ifeq 72 
-;               53: aload_0 
-;               54: iload_1 
-;               55: iload_3 
-;               56: invokevirtual 36 (BacktrackSolver/checkRow (II)Z) 
-;               59: dup 
-;               60: ifeq 10 
-;               63: pop 
-;               64: aload_0 
-;               65: iload_2 
-;               66: iload_3 
-;               67: invokevirtual 49 (BacktrackSolver/checkCol (II)Z) 
-;               70: dup 
-;               71: ifeq 11 
-;               74: pop 
-;               75: aload_0 
-;               76: iload_1 
-;               77: iload_2 
-;               78: iload_3 
-;               79: invokevirtual 65 (BacktrackSolver/checkBox (III)Z) 
-;               82: ifeq 31 
-;               85: aload_0 
-;               86: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
-;               89: ifeq 7 
-;               92: iconst_0 
-;               93: goto 4 
-;               96: iconst_1 
-;               97: ifeq 10 
-;              100: aload_0 
-;              101: iload_1 
-;              102: iload_2 
-;              103: iload_3 
-;              104: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
-;              107: aload_0 
-;              108: iload_1 
-;              109: iload_2 
-;              110: invokevirtual 52 (BacktrackSolver/next (II)V) 
-;              113: iload_3 
-;              114: iconst_1 
-;              115: iadd 
-;              116: dup 
-;              117: istore_3 
-;              118: pop 
-;              119: goto -80 
-;              122: aload_0 
-;              123: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
-;              126: ifeq 7 
-;              129: iconst_0 
-;              130: goto 4 
-;              133: iconst_1 
-;              134: ifeq 10 
-;              137: aload_0 
-;              138: iload_1 
-;              139: iload_2 
-;              140: iconst_0 
-;              141: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
-;              144: return 
+;               36: istore_3 
+;               37: iload_3 
+;               38: ldc 9 (10) 
+;               40: if_icmplt 7 
+;               43: iconst_0 
+;               44: goto 4 
+;               47: iconst_1 
+;               48: ifeq 72 
+;               51: aload_0 
+;               52: iload_1 
+;               53: iload_3 
+;               54: invokevirtual 36 (BacktrackSolver/checkRow (II)Z) 
+;               57: dup 
+;               58: ifeq 10 
+;               61: pop 
+;               62: aload_0 
+;               63: iload_2 
+;               64: iload_3 
+;               65: invokevirtual 49 (BacktrackSolver/checkCol (II)Z) 
+;               68: dup 
+;               69: ifeq 11 
+;               72: pop 
+;               73: aload_0 
+;               74: iload_1 
+;               75: iload_2 
+;               76: iload_3 
+;               77: invokevirtual 65 (BacktrackSolver/checkBox (III)Z) 
+;               80: ifeq 31 
+;               83: aload_0 
+;               84: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
+;               87: ifeq 7 
+;               90: iconst_0 
+;               91: goto 4 
+;               94: iconst_1 
+;               95: ifeq 10 
+;               98: aload_0 
+;               99: iload_1 
+;              100: iload_2 
+;              101: iload_3 
+;              102: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;              105: aload_0 
+;              106: iload_1 
+;              107: iload_2 
+;              108: invokevirtual 52 (BacktrackSolver/next (II)V) 
+;              111: wide iinc 3 1 
+;              117: goto -80 
+;              120: aload_0 
+;              121: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
+;              124: ifeq 7 
+;              127: iconst_0 
+;              128: goto 4 
+;              131: iconst_1 
+;              132: ifeq 10 
+;              135: aload_0 
+;              136: iload_1 
+;              137: iload_2 
+;              138: iconst_0 
+;              139: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;              142: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x511) :
+; methods[8] (offset 0x4fb) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 5 (next)
 ;     descriptor_index 21 ((II)V)
@@ -561,7 +508,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x54d) :
+; methods[9] (offset 0x537) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (solve)
 ;     descriptor_index 6 (()V)
@@ -585,7 +532,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x570) :
+; class_attributes[0] (offset 0x55a) :
 ;     name_index 45 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 29

@@ -50,6 +50,23 @@ int simplify_astore(CODE **c)
   return 0;
 }
 
+/* dup
+ * istore x
+ * pop
+ * -------->
+ * istore x
+ * Added by OSSAMA this reduces the benchmark from 20537 to 20077
+ */
+int simplify_istore(CODE **c)
+{ int x;
+  if (is_dup(*c) &&
+      is_istore(next(*c),&x) &&
+      is_pop(next(next(*c)))) {
+     return replace(c,3,makeCODEistore(x,NULL));
+  }
+  return 0;
+}
+
 /* iload x
  * ldc k   (0<=k<=127)
  * iadd
@@ -94,11 +111,14 @@ int simplify_goto_goto(CODE **c)
   return 0;
 }
 
-/* dup
- * astore x
- * pop
+/* astore x
+ * aload x
+ * dup
  * -------->
- * astore x
+ * dup
+ * dup
+ * astore 6
+ * ADDED BY OSSAMA this reduces the benchmark from 20544 to 20537
  */
 
 int simplify_aload_after_astore(CODE **c)
@@ -112,6 +132,31 @@ int simplify_aload_after_astore(CODE **c)
     return replace(c,3,makeCODEdup(
                                     makeCODEdup(
                                     makeCODEastore(x,NULL))));
+  }
+  return 0;
+}
+
+/* istore x
+ * iload x
+ * dup
+ * -------->
+ * dup
+ * dup
+ * istore 6
+ * ADDED BY OSSAMA this had no effect for the benchmark
+ */
+
+int simplify_iload_after_istore(CODE **c)
+{ int x;
+  int y;
+  if(is_istore(*c,&x) &&
+     is_iload(next(*c),&y) &&
+     (x==y)&&
+     is_dup(next(next(*c)))
+    ){
+    return replace(c,3,makeCODEdup(
+                                    makeCODEdup(
+                                    makeCODEistore(x,NULL))));
   }
   return 0;
 }
@@ -132,5 +177,7 @@ int init_patterns()
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
     ADD_PATTERN(simplify_aload_after_astore);
+    ADD_PATTERN(simplify_iload_after_istore);
+    ADD_PATTERN(simplify_istore);
     return 1;
 }

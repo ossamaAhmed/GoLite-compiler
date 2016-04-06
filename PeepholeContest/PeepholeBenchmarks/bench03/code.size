@@ -3,9 +3,11 @@
 Frequencies:
 simplify_multiplication_right: 0
 simplify_astore: 25
-positive_increment: 0
+positive_increment: 10
 simplify_goto_goto: 2
 simplify_aload_after_astore: 7
+simplify_iload_after_istore: 0
+simplify_istore: 36
 
 Generated: Conversion.class
 Generated: Decoder.class
@@ -16,8 +18,8 @@ Conversion.optdump:;         code_length 1726
 Conversion.optdump:;         code_length 19
 Conversion.optdump:;         code_length 26
 Decoder.optdump:;         code_length 33
-Decoder.optdump:;         code_length 737
+Decoder.optdump:;         code_length 693
 Encoder.optdump:;         code_length 33
-Encoder.optdump:;         code_length 675
+Encoder.optdump:;         code_length 647
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 71

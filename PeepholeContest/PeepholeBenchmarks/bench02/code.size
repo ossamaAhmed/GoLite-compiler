@@ -7,6 +7,8 @@ simplify_astore: 11
 positive_increment: 0
 simplify_goto_goto: 0
 simplify_aload_after_astore: 0
+simplify_iload_after_istore: 0
+simplify_istore: 1
 
 Generated: Interpretor.class
 Generated: Main.class
