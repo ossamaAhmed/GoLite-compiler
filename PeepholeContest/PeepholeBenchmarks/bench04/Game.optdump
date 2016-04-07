@@ -303,80 +303,64 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 147 (Code)
-;         attribute_length 118
+;         attribute_length 102
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 106
+;         code_length 90
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 75 (java/lang/Object/<init> ()V) 
 ;                4: aload_1 
-;                5: dup 
-;                6: aload_0 
-;                7: swap 
-;                8: putfield 157 (Game/board LBoard;) 
-;               11: pop 
-;               12: new 86 (java/lang/Character) 
-;               15: dup 
-;               16: ldc 152 (88) 
-;               18: invokespecial 104 (java/lang/Character/<init> (C)V) 
-;               21: dup 
-;               22: aload_0 
-;               23: swap 
-;               24: putfield 38 (Game/X Ljava/lang/Character;) 
-;               27: pop 
-;               28: new 86 (java/lang/Character) 
-;               31: dup 
-;               32: ldc 165 (79) 
-;               34: invokespecial 104 (java/lang/Character/<init> (C)V) 
-;               37: dup 
+;                5: aload_0 
+;                6: swap 
+;                7: putfield 157 (Game/board LBoard;) 
+;               10: new 86 (java/lang/Character) 
+;               13: dup 
+;               14: ldc 152 (88) 
+;               16: invokespecial 104 (java/lang/Character/<init> (C)V) 
+;               19: aload_0 
+;               20: swap 
+;               21: putfield 38 (Game/X Ljava/lang/Character;) 
+;               24: new 86 (java/lang/Character) 
+;               27: dup 
+;               28: ldc 165 (79) 
+;               30: invokespecial 104 (java/lang/Character/<init> (C)V) 
+;               33: aload_0 
+;               34: swap 
+;               35: putfield 117 (Game/O Ljava/lang/Character;) 
 ;               38: aload_0 
-;               39: swap 
-;               40: putfield 117 (Game/O Ljava/lang/Character;) 
-;               43: pop 
-;               44: aload_0 
-;               45: getfield 38 (Game/X Ljava/lang/Character;) 
-;               48: dup 
-;               49: aload_0 
-;               50: swap 
-;               51: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
-;               54: pop 
-;               55: new 141 (java/util/Vector) 
-;               58: dup 
-;               59: invokespecial 201 (java/util/Vector/<init> ()V) 
+;               39: getfield 38 (Game/X Ljava/lang/Character;) 
+;               42: aload_0 
+;               43: swap 
+;               44: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
+;               47: new 141 (java/util/Vector) 
+;               50: dup 
+;               51: invokespecial 201 (java/util/Vector/<init> ()V) 
+;               54: aload_0 
+;               55: swap 
+;               56: putfield 209 (Game/moves Ljava/util/Vector;) 
+;               59: new 141 (java/util/Vector) 
 ;               62: dup 
-;               63: aload_0 
-;               64: swap 
-;               65: putfield 209 (Game/moves Ljava/util/Vector;) 
-;               68: pop 
-;               69: new 141 (java/util/Vector) 
-;               72: dup 
-;               73: invokespecial 201 (java/util/Vector/<init> ()V) 
-;               76: dup 
-;               77: aload_0 
-;               78: swap 
-;               79: putfield 196 (Game/playerXMoves Ljava/util/Vector;) 
-;               82: pop 
-;               83: new 141 (java/util/Vector) 
-;               86: dup 
-;               87: invokespecial 201 (java/util/Vector/<init> ()V) 
-;               90: dup 
-;               91: aload_0 
-;               92: swap 
-;               93: putfield 49 (Game/playerOMoves Ljava/util/Vector;) 
-;               96: pop 
-;               97: iconst_3 
-;               98: dup 
-;               99: aload_0 
-;              100: swap 
-;              101: putfield 111 (Game/maxSpecialtyMoves I) 
-;              104: pop 
-;              105: return 
+;               63: invokespecial 201 (java/util/Vector/<init> ()V) 
+;               66: aload_0 
+;               67: swap 
+;               68: putfield 196 (Game/playerXMoves Ljava/util/Vector;) 
+;               71: new 141 (java/util/Vector) 
+;               74: dup 
+;               75: invokespecial 201 (java/util/Vector/<init> ()V) 
+;               78: aload_0 
+;               79: swap 
+;               80: putfield 49 (Game/playerOMoves Ljava/util/Vector;) 
+;               83: iconst_3 
+;               84: aload_0 
+;               85: swap 
+;               86: putfield 111 (Game/maxSpecialtyMoves I) 
+;               89: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x9c1) :
+; methods[1] (offset 0x9b1) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 185 (fillPlayerMovesNormalMode)
 ;     descriptor_index 230 ((Ljava/util/Vector;)V)
@@ -413,7 +397,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xa08) :
+; methods[2] (offset 0x9f8) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 234 (fillMoves)
 ;     descriptor_index 230 ((Ljava/util/Vector;)V)
@@ -465,7 +449,7 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0xa70) :
+; methods[3] (offset 0xa60) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 155 (setSpecialtyMoves)
 ;     descriptor_index 230 ((Ljava/util/Vector;)V)
@@ -535,7 +519,7 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0xaf8) :
+; methods[4] (offset 0xae8) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 69 (getX)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -555,7 +539,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xb18) :
+; methods[5] (offset 0xb08) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 77 (getO)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -575,7 +559,7 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0xb38) :
+; methods[6] (offset 0xb28) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 90 (getCurrentPlayer)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -595,7 +579,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0xb58) :
+; methods[7] (offset 0xb48) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 125 (getOtherPlayer)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -608,8 +592,8 @@
 ;         code_length 30
 ;         code :
 ;                0: aload_0 
-;                1: getfield 181 (Game/currentPlayer Ljava/lang/Character;) 
-;                4: aload_0 
+;                1: dup 
+;                2: getfield 181 (Game/currentPlayer Ljava/lang/Character;) 
 ;                5: getfield 38 (Game/X Ljava/lang/Character;) 
 ;                8: if_acmpeq 7 
 ;               11: iconst_0 
@@ -627,7 +611,7 @@
 ;         attributes_count 0
 
 
-; methods[8] (offset 0xb90) :
+; methods[8] (offset 0xb80) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 189 (getOpponent)
 ;     descriptor_index 222 ((Ljava/lang/Character;)Ljava/lang/Character;)
@@ -658,48 +642,44 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0xbc5) :
+; methods[9] (offset 0xbb5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 163 (togglePlayer)
 ;     descriptor_index 19 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 147 (Code)
-;         attribute_length 57
-;         max_stack 3
+;         attribute_length 53
+;         max_stack 2
 ;         max_locals 1
-;         code_length 45
+;         code_length 41
 ;         code :
 ;                0: aload_0 
-;                1: getfield 181 (Game/currentPlayer Ljava/lang/Character;) 
-;                4: aload_0 
+;                1: dup 
+;                2: getfield 181 (Game/currentPlayer Ljava/lang/Character;) 
 ;                5: getfield 38 (Game/X Ljava/lang/Character;) 
 ;                8: if_acmpeq 7 
 ;               11: iconst_0 
 ;               12: goto 4 
 ;               15: iconst_1 
-;               16: ifeq 17 
+;               16: ifeq 15 
 ;               19: aload_0 
 ;               20: getfield 117 (Game/O Ljava/lang/Character;) 
-;               23: dup 
-;               24: aload_0 
-;               25: swap 
-;               26: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
-;               29: pop 
-;               30: goto 14 
-;               33: aload_0 
-;               34: getfield 38 (Game/X Ljava/lang/Character;) 
-;               37: dup 
-;               38: aload_0 
-;               39: swap 
-;               40: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
-;               43: pop 
-;               44: return 
+;               23: aload_0 
+;               24: swap 
+;               25: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
+;               28: goto 12 
+;               31: aload_0 
+;               32: getfield 38 (Game/X Ljava/lang/Character;) 
+;               35: aload_0 
+;               36: swap 
+;               37: putfield 181 (Game/currentPlayer Ljava/lang/Character;) 
+;               40: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[10] (offset 0xc0c) :
+; methods[10] (offset 0xbf8) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 228 (getCurrPlayerMoves)
 ;     descriptor_index 11 (()Ljava/util/Vector;)
@@ -731,7 +711,7 @@
 ;         attributes_count 0
 
 
-; methods[11] (offset 0xc44) :
+; methods[11] (offset 0xc30) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 14 (printMenu)
 ;     descriptor_index 19 (()V)
@@ -800,7 +780,7 @@
 ;         attributes_count 0
 
 
-; methods[12] (offset 0xccb) :
+; methods[12] (offset 0xcb7) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 187 (doMove)
 ;     descriptor_index 19 (()V)
@@ -898,7 +878,7 @@
 ;         attributes_count 0
 
 
-; methods[13] (offset 0xd87) :
+; methods[13] (offset 0xd73) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 221 (getColumnChoice)
 ;     descriptor_index 33 (()I)
@@ -1017,7 +997,7 @@
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xe69) :
+; methods[14] (offset 0xe55) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 178 (applyMove)
 ;     descriptor_index 218 ((I)V)
@@ -1070,7 +1050,7 @@
 ;         attributes_count 0
 
 
-; methods[15] (offset 0xeca) :
+; methods[15] (offset 0xeb6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 92 (printGameModeMenu)
 ;     descriptor_index 19 (()V)
@@ -1093,7 +1073,7 @@
 ;         attributes_count 0
 
 
-; methods[16] (offset 0xef1) :
+; methods[16] (offset 0xedd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 220 (initGameMode)
 ;     descriptor_index 19 (()V)
@@ -1187,7 +1167,7 @@
 ;         attributes_count 0
 
 
-; methods[17] (offset 0xf9e) :
+; methods[17] (offset 0xf8a) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 29 (play)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -1249,7 +1229,7 @@
 ;         attributes_count 0
 
 
-; methods[18] (offset 0x1011) :
+; methods[18] (offset 0xffd) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 101 (main)
 ;     descriptor_index 160 (([Ljava/lang/String;)V)
@@ -1310,7 +1290,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1081) :
+; class_attributes[0] (offset 0x106d) :
 ;     name_index 168 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 57

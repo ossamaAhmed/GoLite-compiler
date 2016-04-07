@@ -109,35 +109,31 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 36 (Code)
-;         attribute_length 45
-;         max_stack 3
+;         attribute_length 41
+;         max_stack 2
 ;         max_locals 1
-;         code_length 33
+;         code_length 29
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 75 (java/lang/Object/<init> ()V) 
 ;                4: new 56 (Conversion) 
 ;                7: dup 
 ;                8: invokespecial 16 (Conversion/<init> ()V) 
-;               11: dup 
-;               12: aload_0 
-;               13: swap 
-;               14: putfield 24 (Encoder/con LConversion;) 
-;               17: pop 
-;               18: new 22 (lib/JoosBitwise) 
-;               21: dup 
-;               22: invokespecial 37 (lib/JoosBitwise/<init> ()V) 
-;               25: dup 
-;               26: aload_0 
-;               27: swap 
-;               28: putfield 48 (Encoder/uti Llib/JoosBitwise;) 
-;               31: pop 
-;               32: return 
+;               11: aload_0 
+;               12: swap 
+;               13: putfield 24 (Encoder/con LConversion;) 
+;               16: new 22 (lib/JoosBitwise) 
+;               19: dup 
+;               20: invokespecial 37 (lib/JoosBitwise/<init> ()V) 
+;               23: aload_0 
+;               24: swap 
+;               25: putfield 48 (Encoder/uti Llib/JoosBitwise;) 
+;               28: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x2a6) :
+; methods[1] (offset 0x2a2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 40 (base64_encode)
 ;     descriptor_index 60 ((Ljava/lang/String;)Ljava/lang/String;)
@@ -221,8 +217,8 @@
 ;              127: new 54 (java/lang/Character) 
 ;              130: dup 
 ;              131: aload_0 
-;              132: getfield 24 (Encoder/con LConversion;) 
-;              135: aload_0 
+;              132: dup 
+;              133: getfield 24 (Encoder/con LConversion;) 
 ;              136: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              139: aload_0 
 ;              140: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -245,8 +241,8 @@
 ;              179: new 54 (java/lang/Character) 
 ;              182: dup 
 ;              183: aload_0 
-;              184: getfield 24 (Encoder/con LConversion;) 
-;              187: aload_0 
+;              184: dup 
+;              185: getfield 24 (Encoder/con LConversion;) 
 ;              188: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              191: aload_0 
 ;              192: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -276,8 +272,8 @@
 ;              246: new 54 (java/lang/Character) 
 ;              249: dup 
 ;              250: aload_0 
-;              251: getfield 24 (Encoder/con LConversion;) 
-;              254: aload_0 
+;              251: dup 
+;              252: getfield 24 (Encoder/con LConversion;) 
 ;              255: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              258: aload_0 
 ;              259: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -367,8 +363,8 @@
 ;              451: new 54 (java/lang/Character) 
 ;              454: dup 
 ;              455: aload_0 
-;              456: getfield 24 (Encoder/con LConversion;) 
-;              459: aload_0 
+;              456: dup 
+;              457: getfield 24 (Encoder/con LConversion;) 
 ;              460: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              463: aload_0 
 ;              464: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -391,8 +387,8 @@
 ;              503: new 54 (java/lang/Character) 
 ;              506: dup 
 ;              507: aload_0 
-;              508: getfield 24 (Encoder/con LConversion;) 
-;              511: aload_0 
+;              508: dup 
+;              509: getfield 24 (Encoder/con LConversion;) 
 ;              512: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              515: aload_0 
 ;              516: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -415,8 +411,8 @@
 ;              555: new 54 (java/lang/Character) 
 ;              558: dup 
 ;              559: aload_0 
-;              560: getfield 24 (Encoder/con LConversion;) 
-;              563: aload_0 
+;              560: dup 
+;              561: getfield 24 (Encoder/con LConversion;) 
 ;              564: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              567: aload_0 
 ;              568: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
@@ -439,8 +435,8 @@
 ;              607: new 54 (java/lang/Character) 
 ;              610: dup 
 ;              611: aload_0 
-;              612: getfield 24 (Encoder/con LConversion;) 
-;              615: aload_0 
+;              612: dup 
+;              613: getfield 24 (Encoder/con LConversion;) 
 ;              616: getfield 48 (Encoder/uti Llib/JoosBitwise;) 
 ;              619: iload_2 
 ;              620: ldc 45 (63) 
@@ -461,7 +457,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x548) :
+; class_attributes[0] (offset 0x544) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 39

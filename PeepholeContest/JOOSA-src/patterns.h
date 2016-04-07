@@ -86,6 +86,25 @@ int positive_increment(CODE **c)
   return 0;
 }
 
+/* 
+ * ldc k   (0<=k<=127)
+ * iload x 
+ * iadd
+ * istore x
+ * --------->
+ * iinc x k
+ */ 
+int positive_increment1(CODE **c)
+{ int x,y,k;
+  if ( is_ldc_int(*c,&k) &&
+      is_iload(next(*c),&x) &&
+      is_iadd(next(next(*c))) &&
+      is_istore(next(next(next(*c))),&y) &&
+      x==y && 0<=k && k<=127) {
+     return replace(c,4,makeCODEiinc(x,k,NULL));
+  }
+  return 0;
+}
 
 /* goto L1
  * ...
@@ -110,6 +129,45 @@ int simplify_goto_goto(CODE **c)
   }
   return 0;
 }
+
+/* goto L1
+ * ...
+ * L1: (refrence count equals 1)
+ * L2:
+ * --------->
+ * goto L2
+ * ....
+ * L1:
+ * L2:    (reference count increased by 1)  
+ */
+int simplify_goto_label(CODE **c)
+{ int l1,l2;
+  if (is_goto(*c,&l1) && is_label(next(destination(l1)),&l2) && l1>l2) {
+     droplabel(l1);
+     copylabel(l2);
+     return replace(c,1,makeCODEgoto(l2,NULL));
+  }
+  return 0;
+}
+
+/* goto L1
+ * ...
+ * L1: (refrence count equals 1)
+ * L2:
+ * --------->
+ * goto L2
+ * ....
+ * L2:    (reference count increased by 1)  
+ */
+int delete_dead_goto_label(CODE **c)
+{ int l1;
+  if (is_label(*c,&l1) && deadlabel(l1)) {
+     return replace(c,1,NULL);
+  }
+  return 0;
+}
+
+
 
 /* astore x
  * aload x
@@ -203,6 +261,161 @@ int simplify_iload_after_istore2(CODE **c)
   return 0;
 }
 
+/*iconst_0
+  *istore_2
+  *iconst_0
+  *istore 5
+ * -------->
+ * iconst_0
+ * dup
+  *istore_2
+  *istore 5
+ * istore 6
+ * TO BE IMPLEMENTED
+ */
+
+/* iinc x 0
+ * --------->
+ * null
+ */ 
+int positive_increment_0(CODE **c)
+{ int x,k;
+  if (is_iinc(*c,&x, &k) &&
+      (k==0)) {
+     return replace(c,1,NULL);
+  }
+  return 0;
+}
+
+/* iload x       
+ * ldc 0       
+ * iadd          
+ * ------>       
+ * iload x         
+ *                        
+ *                             
+ */
+
+int simplify_addition_right(CODE **c)
+{ int x,k;
+  if (is_iload(*c,&x) && 
+      is_ldc_int(next(*c),&k) && 
+      is_iadd(next(next(*c)))) {
+     if (k==0) return replace(c,3,makeCODEiload(x,NULL));
+  }
+  return 0;
+}
+
+ /* aload_0
+  * getfield Decoder/uti Llib/JoosBitwise;
+  * aload_0
+  * getfield Decoder/con LConversion;       
+ * ------>       
+  * aload_0
+  * dup
+  * getfield Decoder/uti Llib/JoosBitwise;
+  * getfield Decoder/con LConversion;        
+ *                        
+ *                             
+ */
+
+int simplify_aload_severalgetfield(CODE **c)
+{ int x,y;
+  char *field1;
+  char *field2;
+  if (is_aload(*c,&x) && 
+      is_getfield(next(*c), &field1) &&
+      is_aload(next(next(*c)),&y) &&
+      is_getfield(next(next(next(*c))), &field2)){
+     if (x==y) return replace(c,4,makeCODEaload(x,
+                                       makeCODEdup(
+                                       makeCODEgetfield(field1, makeCODEgetfield(field2,NULL)))));
+  }
+  return 0;
+}
+
+
+ /* getfield Decoder/uti Llib/JoosBitwise;
+  * getfield Decoder/uti Llib/JoosBitwise;       
+ * ------>       
+  * getfield Decoder/uti Llib/JoosBitwise;
+ *  dup                         
+ *                             
+ */
+
+int simplify_severalgetfield(CODE **c)
+{ char *field1;
+  char *field2;
+  if ( is_getfield(*c, &field1) &&
+      is_getfield(next(*c), &field2) &&
+      (field1==field2) ){
+     return replace(c,2, makeCODEgetfield(field1, makeCODEdup(NULL)));
+  }
+  return 0;
+}
+
+ /*  invokenonvirtual java/util/Vector/<init>(I)V
+ *    dup
+ *    aload_0
+ *    swap
+ *    putfield SudokuSolver/grid Ljava/util/Vector;
+*     pop 
+ * ------>       
+*     invokenonvirtual java/util/Vector/<init>(I)V
+ *    aload_0
+ *    swap
+ *    putfield SudokuSolver/grid Ljava/util/Vector;
+ */
+
+int simplify_pop_afterinvokenonvirtual(CODE **c)
+{ int x;
+  char *virtualmethod;
+  char *field;
+  if(is_invokenonvirtual(*c,&virtualmethod) &&
+     is_dup(next(*c))  &&
+     is_aload(next(next(*c)),&x)   &&
+     is_swap(next(next(next(*c)))) &&
+     is_putfield(next(next(next(next(*c)))), &field) &&
+     is_pop(next(next(next(next(next(*c))))))
+    ) {
+    return replace(c,6,makeCODEinvokenonvirtual(virtualmethod,
+                                       makeCODEaload(x, 
+                                       makeCODEswap(
+                                       makeCODEputfield(field , NULL)))));
+  }
+  return 0;
+}
+
+ /*  
+ *    dup
+ *    aload_0
+ *    swap
+ *    putfield SudokuSolver/grid Ljava/util/Vector;
+*     pop 
+ * ------>       
+ *    aload_0
+ *    swap
+ *    putfield SudokuSolver/grid Ljava/util/Vector;
+ */
+
+int simplify_pop_afterinvokevirtual(CODE **c)
+{ int x;
+  char *virtualmethod;
+  char *field;
+  if(
+     is_dup(*c)  &&
+     is_aload(next(*c),&x)   &&
+     is_swap(next(next(*c))) &&
+     is_putfield(next(next(next(*c))), &field) &&
+     is_pop(next(next(next(next(*c)))))
+    ) {
+    return replace(c,5,
+                                       makeCODEaload(x, 
+                                       makeCODEswap(
+                                       makeCODEputfield(field , NULL))));
+  }
+  return 0;
+}
 /*
 #define OPTS 4
 
@@ -214,7 +427,7 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
-  ADD_PATTERN(simplify_multiplication_right);
+    ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
@@ -223,5 +436,14 @@ int init_patterns()
     ADD_PATTERN(simplify_istore);
     ADD_PATTERN(simplify_iload_after_istore2);
     ADD_PATTERN(simplify_aload_after_astore2);
+    ADD_PATTERN(positive_increment_0);
+    ADD_PATTERN(positive_increment1);
+    ADD_PATTERN(simplify_addition_right);
+    ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!
+    ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD
+    ADD_PATTERN(simplify_aload_severalgetfield);
+    // ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
+    ADD_PATTERN(simplify_pop_afterinvokevirtual);
+    ADD_PATTERN(simplify_severalgetfield);
     return 1;
 }

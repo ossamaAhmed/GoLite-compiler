@@ -85,27 +85,25 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 57 (Code)
-;         attribute_length 31
-;         max_stack 3
+;         attribute_length 29
+;         max_stack 2
 ;         max_locals 1
-;         code_length 19
+;         code_length 17
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 48 (java/lang/Object/<init> ()V) 
 ;                4: new 30 (joos/lib/JoosRandom) 
 ;                7: dup 
 ;                8: invokespecial 19 (joos/lib/JoosRandom/<init> ()V) 
-;               11: dup 
-;               12: aload_0 
-;               13: swap 
-;               14: putfield 18 (InGenerate/rand Ljoos/lib/JoosRandom;) 
-;               17: pop 
-;               18: return 
+;               11: aload_0 
+;               12: swap 
+;               13: putfield 18 (InGenerate/rand Ljoos/lib/JoosRandom;) 
+;               16: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x227) :
+; methods[1] (offset 0x225) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 6 (main)
 ;     descriptor_index 35 (([Ljava/lang/String;)V)
@@ -240,7 +238,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x33b) :
+; methods[2] (offset 0x339) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (randRange)
 ;     descriptor_index 51 ((I)I)
@@ -277,7 +275,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x373) :
+; class_attributes[0] (offset 0x371) :
 ;     name_index 40 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 5

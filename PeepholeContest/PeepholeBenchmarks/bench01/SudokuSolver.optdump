@@ -104,80 +104,78 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 56 (Code)
-;         attribute_length 132
+;         attribute_length 130
 ;         max_stack 4
 ;         max_locals 8
-;         code_length 120
+;         code_length 118
 ;         code :
 ;                0: new 38 (java/util/Vector) 
 ;                3: dup 
 ;                4: ldc 17 (9) 
 ;                6: invokespecial 29 (java/util/Vector/<init> (I)V) 
-;                9: dup 
-;               10: aload_0 
-;               11: swap 
-;               12: putfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
-;               15: pop 
-;               16: iconst_0 
-;               17: istore_2 
-;               18: iload_2 
-;               19: ldc 17 (9) 
-;               21: if_icmplt 7 
-;               24: iconst_0 
-;               25: goto 4 
-;               28: iconst_1 
-;               29: ifeq 90 
-;               32: aload_0 
-;               33: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
-;               36: new 38 (java/util/Vector) 
-;               39: dup 
-;               40: ldc 17 (9) 
-;               42: invokespecial 29 (java/util/Vector/<init> (I)V) 
-;               45: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;               48: iconst_0 
-;               49: istore_3 
-;               50: iload_3 
-;               51: ldc 17 (9) 
-;               53: if_icmplt 7 
-;               56: iconst_0 
-;               57: goto 4 
-;               60: iconst_1 
-;               61: ifeq 49 
-;               64: aload_0 
-;               65: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
-;               68: iload_2 
-;               69: invokevirtual 53 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               72: dup 
-;               73: astore 4 
-;               75: astore 5 
-;               77: aload_1 
-;               78: invokevirtual 58 (joos/lib/JoosIO/readInt ()I) 
-;               81: istore 6 
-;               83: new 23 (java/lang/Integer) 
-;               86: dup 
-;               87: iload 6 
-;               89: invokespecial 21 (java/lang/Integer/<init> (I)V) 
-;               92: astore 7 
-;               94: aload 5 
-;               96: aload 7 
-;               98: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              101: wide iinc 3 1 
-;              107: goto -57 
-;              110: wide iinc 2 1 
-;              116: goto -98 
-;              119: return 
+;                9: aload_0 
+;               10: swap 
+;               11: putfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               14: iconst_0 
+;               15: istore_2 
+;               16: iload_2 
+;               17: ldc 17 (9) 
+;               19: if_icmplt 7 
+;               22: iconst_0 
+;               23: goto 4 
+;               26: iconst_1 
+;               27: ifeq 90 
+;               30: aload_0 
+;               31: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               34: new 38 (java/util/Vector) 
+;               37: dup 
+;               38: ldc 17 (9) 
+;               40: invokespecial 29 (java/util/Vector/<init> (I)V) 
+;               43: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;               46: iconst_0 
+;               47: istore_3 
+;               48: iload_3 
+;               49: ldc 17 (9) 
+;               51: if_icmplt 7 
+;               54: iconst_0 
+;               55: goto 4 
+;               58: iconst_1 
+;               59: ifeq 49 
+;               62: aload_0 
+;               63: getfield 12 (SudokuSolver/grid Ljava/util/Vector;) 
+;               66: iload_2 
+;               67: invokevirtual 53 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               70: dup 
+;               71: astore 4 
+;               73: astore 5 
+;               75: aload_1 
+;               76: invokevirtual 58 (joos/lib/JoosIO/readInt ()I) 
+;               79: istore 6 
+;               81: new 23 (java/lang/Integer) 
+;               84: dup 
+;               85: iload 6 
+;               87: invokespecial 21 (java/lang/Integer/<init> (I)V) 
+;               90: astore 7 
+;               92: aload 5 
+;               94: aload 7 
+;               96: invokevirtual 1 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;               99: wide iinc 3 1 
+;              105: goto -57 
+;              108: wide iinc 2 1 
+;              114: goto -98 
+;              117: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2d0) :
+; methods[2] (offset 0x2ce) :
 ;     access_flags 0x401 [ ACC_ABSTRACT ACC_PUBLIC ]
 ;     name_index 2 (solve)
 ;     descriptor_index 7 (()V)
 ;     attributes_count 0
 
 
-; methods[3] (offset 0x2d8) :
+; methods[3] (offset 0x2d6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 49 (print)
 ;     descriptor_index 36 ((Ljoos/lib/JoosIO;)V)
@@ -354,7 +352,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x42c) :
+; class_attributes[0] (offset 0x42a) :
 ;     name_index 40 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 26

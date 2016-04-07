@@ -83,25 +83,23 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 25
-;         max_stack 3
+;         attribute_length 23
+;         max_stack 2
 ;         max_locals 1
-;         code_length 13
+;         code_length 11
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 21 (RoomAction/<init> ()V) 
 ;                4: iconst_0 
-;                5: dup 
-;                6: aload_0 
-;                7: swap 
-;                8: putfield 15 (TreasureRoomAction/taken Z) 
-;               11: pop 
-;               12: return 
+;                5: aload_0 
+;                6: swap 
+;                7: putfield 15 (TreasureRoomAction/taken Z) 
+;               10: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x2ac) :
+; methods[1] (offset 0x2aa) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 53 (describe)
 ;     descriptor_index 3 (()V)
@@ -134,17 +132,17 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2eb) :
+; methods[2] (offset 0x2e9) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 52 (performAction)
 ;     descriptor_index 4 ((Ljava/lang/String;)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 165
+;         attribute_length 163
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 153
+;         code_length 151
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 30 ("pick up") 
@@ -203,7 +201,7 @@
 ;               95: iconst_0 
 ;               96: goto 4 
 ;               99: iconst_1 
-;              100: ifeq 46 
+;              100: ifeq 44 
 ;              103: aload_0 
 ;              104: getfield 15 (TreasureRoomAction/taken Z) 
 ;              107: ifeq 17 
@@ -213,25 +211,23 @@
 ;              116: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              119: iconst_0 
 ;              120: ireturn 
-;              121: goto 31 
+;              121: goto 29 
 ;              124: aload_0 
 ;              125: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
 ;              128: ldc 43 ("You open the treasure box and finds a treasure! Your treasure count: ") 
 ;              130: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
 ;              133: iconst_1 
-;              134: dup 
-;              135: aload_0 
-;              136: swap 
-;              137: putfield 15 (TreasureRoomAction/taken Z) 
-;              140: pop 
-;              141: iconst_3 
-;              142: ireturn 
-;              143: goto 9 
-;              146: aload_0 
-;              147: aload_1 
-;              148: invokevirtual 48 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              151: ireturn 
-;              152: nop 
+;              134: aload_0 
+;              135: swap 
+;              136: putfield 15 (TreasureRoomAction/taken Z) 
+;              139: iconst_3 
+;              140: ireturn 
+;              141: goto 9 
+;              144: aload_0 
+;              145: aload_1 
+;              146: invokevirtual 48 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              149: ireturn 
+;              150: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -239,7 +235,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x3a0) :
+; class_attributes[0] (offset 0x39c) :
 ;     name_index 37 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 28

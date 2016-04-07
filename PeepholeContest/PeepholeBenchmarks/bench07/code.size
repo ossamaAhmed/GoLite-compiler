@@ -4,12 +4,20 @@ Frequencies:
 simplify_multiplication_right: 0
 simplify_astore: 23
 positive_increment: 5
-simplify_goto_goto: 8
+simplify_goto_goto: 10
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_istore: 51
 simplify_iload_after_istore2: 12
 simplify_aload_after_astore2: 9
+positive_increment_0: 0
+positive_increment1: 0
+simplify_addition_right: 0
+simplify_goto_label: 336
+delete_dead_goto_label: 117
+simplify_aload_severalgetfield: 1
+simplify_pop_afterinvokevirtual: 39
+simplify_severalgetfield: 0
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -29,9 +37,9 @@ Generated: InGenerate.class
 BFRoomAction.optdump:;         code_length 5
 BFRoomAction.optdump:;         code_length 10
 BFRoomAction.optdump:;         code_length 124
-CoinRoomAction.optdump:;         code_length 13
+CoinRoomAction.optdump:;         code_length 11
 CoinRoomAction.optdump:;         code_length 37
-CoinRoomAction.optdump:;         code_length 240
+CoinRoomAction.optdump:;         code_length 238
 EmptyRoomAction.optdump:;         code_length 5
 EmptyRoomAction.optdump:;         code_length 10
 EmptyRoomAction.optdump:;         code_length 7
@@ -50,17 +58,17 @@ GrueHunt.optdump:;         code_length 22
 GrueHunt.optdump:;         code_length 1542
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 133
-HuntRoomAction.optdump:;         code_length 127
+HuntRoomAction.optdump:;         code_length 115
 HuntRoomAction.optdump:;         code_length 141
-HuntRoomAction.optdump:;         code_length 788
-InGenerate.optdump:;         code_length 19
+HuntRoomAction.optdump:;         code_length 784
+InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 250
 InGenerate.optdump:;         code_length 28
 JokeRoomAction.optdump:;         code_length 5
 JokeRoomAction.optdump:;         code_length 10
 JokeRoomAction.optdump:;         code_length 178
 JokeRoomAction.optdump:;         code_length 306
-Room.optdump:;         code_length 657
+Room.optdump:;         code_length 609
 Room.optdump:;         code_length 30
 Room.optdump:;         code_length 12
 Room.optdump:;         code_length 6
@@ -70,10 +78,10 @@ Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
 Room.optdump:;         code_length 139
 Room.optdump:;         code_length 258
-RoomAction.optdump:;         code_length 33
+RoomAction.optdump:;         code_length 29
 RoomAction.optdump:;         code_length 10
 RoomAction.optdump:;         code_length 162
 RoomAction.optdump:;         code_length 28
-TreasureRoomAction.optdump:;         code_length 13
+TreasureRoomAction.optdump:;         code_length 11
 TreasureRoomAction.optdump:;         code_length 37
-TreasureRoomAction.optdump:;         code_length 153
+TreasureRoomAction.optdump:;         code_length 151
