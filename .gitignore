@@ -8,3 +8,5 @@ test_results.txt
 *.pprint.go
 *.j
 *.class
+*.optdump
+*.dump
