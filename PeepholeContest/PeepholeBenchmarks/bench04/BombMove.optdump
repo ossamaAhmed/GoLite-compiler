@@ -63,65 +63,51 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 9 (Code)
-;         attribute_length 89
+;         attribute_length 81
 ;         max_stack 3
 ;         max_locals 7
-;         code_length 77
+;         code_length 69
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_1 
 ;                2: isub 
-;                3: dup 
-;                4: istore 5 
-;                6: pop 
-;                7: iload 5 
-;                9: iload_1 
-;               10: iconst_1 
-;               11: iadd 
-;               12: if_icmple 7 
-;               15: iconst_0 
-;               16: goto 4 
-;               19: iconst_1 
-;               20: ifeq 56 
-;               23: iload_2 
-;               24: iconst_1 
-;               25: isub 
-;               26: dup 
-;               27: istore 6 
-;               29: pop 
-;               30: iload 6 
-;               32: iload_2 
-;               33: iconst_1 
-;               34: iadd 
-;               35: if_icmple 7 
-;               38: iconst_0 
-;               39: goto 4 
-;               42: iconst_1 
-;               43: ifeq 22 
-;               46: aload_3 
-;               47: iload 5 
-;               49: iload 6 
-;               51: invokevirtual 13 (Board/clear (II)V) 
-;               54: iload 6 
-;               56: iconst_1 
-;               57: iadd 
-;               58: dup 
-;               59: istore 6 
-;               61: pop 
-;               62: goto -32 
-;               65: iload 5 
-;               67: iconst_1 
-;               68: iadd 
-;               69: dup 
-;               70: istore 5 
-;               72: pop 
-;               73: goto -66 
-;               76: return 
+;                3: istore 5 
+;                5: iload 5 
+;                7: iload_1 
+;                8: iconst_1 
+;                9: iadd 
+;               10: if_icmple 7 
+;               13: iconst_0 
+;               14: goto 4 
+;               17: iconst_1 
+;               18: ifeq 50 
+;               21: iload_2 
+;               22: iconst_1 
+;               23: isub 
+;               24: istore 6 
+;               26: iload 6 
+;               28: iload_2 
+;               29: iconst_1 
+;               30: iadd 
+;               31: if_icmple 7 
+;               34: iconst_0 
+;               35: goto 4 
+;               38: iconst_1 
+;               39: ifeq 20 
+;               42: aload_3 
+;               43: iload 5 
+;               45: iload 6 
+;               47: invokevirtual 13 (Board/clear (II)V) 
+;               50: wide iinc 6 1 
+;               56: goto -30 
+;               59: wide iinc 5 1 
+;               65: goto -60 
+;               68: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x19e) :
+; methods[2] (offset 0x196) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 20 (toString)
 ;     descriptor_index 23 (()Ljava/lang/String;)
@@ -143,7 +129,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1be) :
+; class_attributes[0] (offset 0x1b6) :
 ;     name_index 12 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 17

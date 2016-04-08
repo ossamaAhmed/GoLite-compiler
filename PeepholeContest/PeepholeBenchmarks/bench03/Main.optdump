@@ -79,54 +79,44 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 91
+;         attribute_length 81
 ;         max_stack 2
 ;         max_locals 7
-;         code_length 79
+;         code_length 69
 ;         code :
 ;                0: new 33 (Encoder) 
 ;                3: dup 
 ;                4: invokespecial 17 (Encoder/<init> ()V) 
-;                7: dup 
-;                8: astore_1 
-;                9: pop 
-;               10: new 9 (Decoder) 
-;               13: dup 
-;               14: invokespecial 12 (Decoder/<init> ()V) 
-;               17: dup 
-;               18: astore_2 
-;               19: pop 
-;               20: new 10 (joos/lib/JoosIO) 
-;               23: dup 
-;               24: invokespecial 34 (joos/lib/JoosIO/<init> ()V) 
-;               27: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               30: dup 
-;               31: astore 4 
-;               33: pop 
-;               34: aload 4 
-;               36: aconst_null 
-;               37: if_acmpne 7 
-;               40: iconst_0 
-;               41: goto 4 
-;               44: iconst_1 
-;               45: ifeq 33 
-;               48: aload_2 
-;               49: aload 4 
-;               51: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
-;               54: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
-;               57: dup 
-;               58: astore 6 
-;               60: pop 
-;               61: aload_3 
-;               62: aload 6 
-;               64: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               67: aload_3 
-;               68: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               71: dup 
-;               72: astore 4 
-;               74: pop 
-;               75: goto -41 
-;               78: return 
+;                7: astore_1 
+;                8: new 9 (Decoder) 
+;               11: dup 
+;               12: invokespecial 12 (Decoder/<init> ()V) 
+;               15: astore_2 
+;               16: new 10 (joos/lib/JoosIO) 
+;               19: dup 
+;               20: invokespecial 34 (joos/lib/JoosIO/<init> ()V) 
+;               23: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               26: astore 4 
+;               28: aload 4 
+;               30: aconst_null 
+;               31: if_acmpne 7 
+;               34: iconst_0 
+;               35: goto 4 
+;               38: iconst_1 
+;               39: ifeq 29 
+;               42: aload_2 
+;               43: aload 4 
+;               45: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
+;               48: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
+;               51: astore 6 
+;               53: aload_3 
+;               54: aload 6 
+;               56: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               59: aload_3 
+;               60: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               63: astore 4 
+;               65: goto -37 
+;               68: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -134,7 +124,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x216) :
+; class_attributes[0] (offset 0x20c) :
 ;     name_index 23 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 13

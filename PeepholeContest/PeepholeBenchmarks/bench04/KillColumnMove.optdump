@@ -67,40 +67,33 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 8 (Code)
-;         attribute_length 53
+;         attribute_length 49
 ;         max_stack 3
 ;         max_locals 6
-;         code_length 41
+;         code_length 37
 ;         code :
 ;                0: iconst_0 
-;                1: dup 
-;                2: istore 5 
-;                4: pop 
-;                5: iload 5 
-;                7: aload_3 
-;                8: invokevirtual 11 (Board/getHeight ()I) 
-;               11: if_icmplt 7 
-;               14: iconst_0 
-;               15: goto 4 
-;               18: iconst_1 
-;               19: ifeq 21 
-;               22: aload_3 
-;               23: iload_1 
-;               24: iload 5 
-;               26: invokevirtual 15 (Board/clear (II)V) 
-;               29: iload 5 
-;               31: iconst_1 
-;               32: iadd 
-;               33: dup 
-;               34: istore 5 
-;               36: pop 
-;               37: goto -32 
-;               40: return 
+;                1: istore 5 
+;                3: iload 5 
+;                5: aload_3 
+;                6: invokevirtual 11 (Board/getHeight ()I) 
+;                9: if_icmplt 7 
+;               12: iconst_0 
+;               13: goto 4 
+;               16: iconst_1 
+;               17: ifeq 19 
+;               20: aload_3 
+;               21: iload_1 
+;               22: iload 5 
+;               24: invokevirtual 15 (Board/clear (II)V) 
+;               27: wide iinc 5 1 
+;               33: goto -30 
+;               36: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x1a0) :
+; methods[2] (offset 0x19c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 23 (toString)
 ;     descriptor_index 26 (()Ljava/lang/String;)
@@ -122,7 +115,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1c0) :
+; class_attributes[0] (offset 0x1bc) :
 ;     name_index 12 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 22

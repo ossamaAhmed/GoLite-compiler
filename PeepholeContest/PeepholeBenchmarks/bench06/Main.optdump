@@ -191,290 +191,246 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 65 (Code)
-;         attribute_length 557
+;         attribute_length 511
 ;         max_stack 6
 ;         max_locals 19
-;         code_length 545
+;         code_length 499
 ;         code :
 ;                0: new 60 (joos/lib/JoosRandom) 
 ;                3: dup 
 ;                4: iconst_1 
 ;                5: invokespecial 1 (joos/lib/JoosRandom/<init> (I)V) 
-;                8: dup 
-;                9: astore 15 
-;               11: pop 
-;               12: new 89 (ComplementsGenerator) 
-;               15: dup 
-;               16: invokespecial 42 (ComplementsGenerator/<init> ()V) 
-;               19: dup 
-;               20: astore 16 
-;               22: pop 
-;               23: new 90 (AmazingCalculator) 
-;               26: dup 
-;               27: invokespecial 10 (AmazingCalculator/<init> ()V) 
-;               30: dup 
-;               31: astore 17 
-;               33: pop 
-;               34: new 115 (joos/lib/JoosIO) 
-;               37: dup 
-;               38: invokespecial 55 (joos/lib/JoosIO/<init> ()V) 
-;               41: ldc 14 ("Please enter your input.\n") 
-;               43: invokevirtual 77 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               46: aload 11 
-;               48: invokevirtual 3 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               51: dup 
-;               52: astore 12 
-;               54: pop 
-;               55: new 123 (java/util/StringTokenizer) 
-;               58: dup 
-;               59: aload 12 
-;               61: invokespecial 106 (java/util/StringTokenizer/<init> (Ljava/lang/String;)V) 
-;               64: ldc 88 (",") 
-;               66: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
-;               69: ldc 119 ("random") 
-;               71: invokevirtual 74 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               74: ifeq 7 
-;               77: iconst_0 
-;               78: goto 4 
-;               81: iconst_1 
-;               82: ifeq 45 
-;               85: aload 14 
-;               87: dup 
-;               88: astore 4 
-;               90: pop 
-;               91: aload 13 
-;               93: ldc 88 (",") 
-;               95: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
-;               98: dup 
-;               99: astore 5 
-;              101: pop 
-;              102: aload 13 
-;              104: ldc 88 (",") 
-;              106: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
-;              109: dup 
-;              110: astore 6 
-;              112: pop 
-;              113: aload 13 
-;              115: ldc 88 (",") 
-;              117: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
-;              120: dup 
-;              121: astore 18 
-;              123: pop 
-;              124: goto 41 
-;              127: aload 16 
-;              129: invokevirtual 80 (ComplementsGenerator/generateAdjective ()Ljava/lang/String;) 
-;              132: dup 
-;              133: astore 4 
-;              135: pop 
-;              136: aload 16 
-;              138: invokevirtual 7 (ComplementsGenerator/generateNoun ()Ljava/lang/String;) 
-;              141: dup 
-;              142: astore 5 
-;              144: pop 
-;              145: aload 16 
-;              147: invokevirtual 124 (ComplementsGenerator/generateVerb ()Ljava/lang/String;) 
-;              150: dup 
-;              151: astore 6 
-;              153: pop 
-;              154: aload 13 
-;              156: ldc 88 (",") 
-;              158: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
-;              161: dup 
-;              162: astore 18 
-;              164: pop 
-;              165: new 108 (java/lang/Integer) 
-;              168: dup 
-;              169: aload 18 
-;              171: invokespecial 117 (java/lang/Integer/<init> (Ljava/lang/String;)V) 
-;              174: invokevirtual 94 (java/lang/Integer/intValue ()I) 
-;              177: dup 
-;              178: istore 9 
-;              180: pop 
-;              181: aload 16 
-;              183: aload 4 
-;              185: aload 6 
-;              187: aload 5 
-;              189: invokevirtual 27 (ComplementsGenerator/generateComment (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;) 
+;                8: astore 15 
+;               10: new 89 (ComplementsGenerator) 
+;               13: dup 
+;               14: invokespecial 42 (ComplementsGenerator/<init> ()V) 
+;               17: astore 16 
+;               19: new 90 (AmazingCalculator) 
+;               22: dup 
+;               23: invokespecial 10 (AmazingCalculator/<init> ()V) 
+;               26: astore 17 
+;               28: new 115 (joos/lib/JoosIO) 
+;               31: dup 
+;               32: invokespecial 55 (joos/lib/JoosIO/<init> ()V) 
+;               35: ldc 14 ("Please enter your input.\n") 
+;               37: invokevirtual 77 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               40: aload 11 
+;               42: invokevirtual 3 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               45: astore 12 
+;               47: new 123 (java/util/StringTokenizer) 
+;               50: dup 
+;               51: aload 12 
+;               53: invokespecial 106 (java/util/StringTokenizer/<init> (Ljava/lang/String;)V) 
+;               56: ldc 88 (",") 
+;               58: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
+;               61: ldc 119 ("random") 
+;               63: invokevirtual 74 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               66: ifeq 7 
+;               69: iconst_0 
+;               70: goto 4 
+;               73: iconst_1 
+;               74: ifeq 37 
+;               77: aload 14 
+;               79: astore 4 
+;               81: aload 13 
+;               83: ldc 88 (",") 
+;               85: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
+;               88: astore 5 
+;               90: aload 13 
+;               92: ldc 88 (",") 
+;               94: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
+;               97: astore 6 
+;               99: aload 13 
+;              101: ldc 88 (",") 
+;              103: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
+;              106: astore 18 
+;              108: goto 33 
+;              111: aload 16 
+;              113: invokevirtual 80 (ComplementsGenerator/generateAdjective ()Ljava/lang/String;) 
+;              116: astore 4 
+;              118: aload 16 
+;              120: invokevirtual 7 (ComplementsGenerator/generateNoun ()Ljava/lang/String;) 
+;              123: astore 5 
+;              125: aload 16 
+;              127: invokevirtual 124 (ComplementsGenerator/generateVerb ()Ljava/lang/String;) 
+;              130: astore 6 
+;              132: aload 13 
+;              134: ldc 88 (",") 
+;              136: invokevirtual 36 (java/util/StringTokenizer/nextToken (Ljava/lang/String;)Ljava/lang/String;) 
+;              139: astore 18 
+;              141: new 108 (java/lang/Integer) 
+;              144: dup 
+;              145: aload 18 
+;              147: invokespecial 117 (java/lang/Integer/<init> (Ljava/lang/String;)V) 
+;              150: invokevirtual 94 (java/lang/Integer/intValue ()I) 
+;              153: istore 9 
+;              155: aload 16 
+;              157: aload 4 
+;              159: aload 6 
+;              161: aload 5 
+;              163: invokevirtual 27 (ComplementsGenerator/generateComment (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;) 
+;              166: astore 7 
+;              168: iconst_2 
+;              169: istore_1 
+;              170: aload 15 
+;              172: invokevirtual 111 (joos/lib/JoosRandom/nextInt ()I) 
+;              175: iload_1 
+;              176: irem 
+;              177: iconst_0 
+;              178: if_icmpeq 7 
+;              181: iconst_0 
+;              182: goto 4 
+;              185: iconst_1 
+;              186: ifeq 17 
+;              189: new 132 (GirlFriend) 
 ;              192: dup 
-;              193: astore 7 
-;              195: pop 
-;              196: iconst_2 
-;              197: dup 
-;              198: istore_1 
-;              199: pop 
-;              200: aload 15 
-;              202: invokevirtual 111 (joos/lib/JoosRandom/nextInt ()I) 
-;              205: iload_1 
-;              206: irem 
-;              207: dup 
-;              208: istore 10 
-;              210: pop 
-;              211: iload 10 
-;              213: iconst_0 
-;              214: if_icmpeq 7 
-;              217: iconst_0 
-;              218: goto 4 
-;              221: iconst_1 
-;              222: ifeq 21 
-;              225: new 132 (GirlFriend) 
-;              228: dup 
-;              229: invokespecial 113 (GirlFriend/<init> ()V) 
-;              232: dup 
-;              233: astore_3 
-;              234: pop 
-;              235: ldc 110 ("girl-friend") 
-;              237: dup 
-;              238: astore_2 
-;              239: pop 
-;              240: goto 18 
-;              243: new 53 (FemaleBoss) 
-;              246: dup 
-;              247: invokespecial 38 (FemaleBoss/<init> ()V) 
-;              250: dup 
-;              251: astore_3 
-;              252: pop 
-;              253: ldc 30 ("boss") 
-;              255: dup 
-;              256: astore_2 
-;              257: pop 
-;              258: aload_3 
-;              259: aload 16 
-;              261: invokevirtual 76 (ComplementsGenerator/getComplementNumber ()I) 
-;              264: invokevirtual 85 (Woman/setComplementNumber (I)V) 
-;              267: aload_3 
-;              268: aload 7 
-;              270: aload 4 
-;              272: aload 5 
-;              274: aload 6 
-;              276: invokevirtual 69 (Woman/react (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;) 
-;              279: dup 
-;              280: astore 8 
-;              282: pop 
-;              283: aload 11 
-;              285: ldc 49 ("You have just told your ") 
-;              287: dup 
-;              288: ifnull 6 
-;              291: goto 6 
-;              294: pop 
-;              295: ldc 67 ("null") 
-;              297: aload_2 
-;              298: dup 
-;              299: ifnull 6 
-;              302: goto 6 
-;              305: pop 
-;              306: ldc 67 ("null") 
-;              308: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              311: dup 
-;              312: ifnull 6 
-;              315: goto 6 
-;              318: pop 
-;              319: ldc 67 ("null") 
-;              321: ldc 75 (":\n\n") 
-;              323: dup 
-;              324: ifnull 6 
-;              327: goto 6 
-;              330: pop 
-;              331: ldc 67 ("null") 
-;              333: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              336: dup 
-;              337: ifnull 6 
-;              340: goto 6 
-;              343: pop 
-;              344: ldc 67 ("null") 
-;              346: aload 7 
-;              348: dup 
-;              349: ifnull 6 
-;              352: goto 6 
-;              355: pop 
-;              356: ldc 67 ("null") 
-;              358: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              361: dup 
-;              362: ifnull 6 
-;              365: goto 6 
-;              368: pop 
-;              369: ldc 67 ("null") 
-;              371: ldc 101 ("\n\nher response is: ") 
-;              373: dup 
-;              374: ifnull 6 
-;              377: goto 6 
-;              380: pop 
-;              381: ldc 67 ("null") 
-;              383: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              386: dup 
-;              387: ifnull 6 
-;              390: goto 6 
-;              393: pop 
-;              394: ldc 67 ("null") 
-;              396: aload 8 
-;              398: dup 
-;              399: ifnull 6 
-;              402: goto 6 
-;              405: pop 
-;              406: ldc 67 ("null") 
-;              408: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              411: dup 
-;              412: ifnull 6 
-;              415: goto 6 
-;              418: pop 
-;              419: ldc 67 ("null") 
-;              421: ldc 122 ("\n\n") 
-;              423: dup 
-;              424: ifnull 6 
-;              427: goto 6 
-;              430: pop 
-;              431: ldc 67 ("null") 
-;              433: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              436: dup 
-;              437: ifnull 6 
-;              440: goto 6 
-;              443: pop 
-;              444: ldc 67 ("null") 
-;              446: ldc 83 ("(also, the factorial of ") 
-;              448: dup 
-;              449: ifnull 6 
-;              452: goto 6 
-;              455: pop 
-;              456: ldc 67 ("null") 
-;              458: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              461: dup 
-;              462: ifnull 6 
-;              465: goto 6 
-;              468: pop 
-;              469: ldc 67 ("null") 
-;              471: ldc 25 ("the number you have entered is ") 
-;              473: dup 
-;              474: ifnull 6 
-;              477: goto 6 
-;              480: pop 
-;              481: ldc 67 ("null") 
-;              483: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              486: dup 
-;              487: ifnull 6 
-;              490: goto 6 
-;              493: pop 
-;              494: ldc 67 ("null") 
-;              496: new 108 (java/lang/Integer) 
-;              499: dup 
-;              500: aload 17 
-;              502: iload 9 
-;              504: invokevirtual 31 (AmazingCalculator/factorial (I)I) 
-;              507: invokespecial 46 (java/lang/Integer/<init> (I)V) 
-;              510: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              513: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              516: dup 
-;              517: ifnull 6 
-;              520: goto 6 
-;              523: pop 
-;              524: ldc 67 ("null") 
-;              526: ldc 116 (")\n") 
-;              528: dup 
-;              529: ifnull 6 
-;              532: goto 6 
-;              535: pop 
-;              536: ldc 67 ("null") 
-;              538: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              541: invokevirtual 77 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              544: return 
+;              193: invokespecial 113 (GirlFriend/<init> ()V) 
+;              196: astore_3 
+;              197: ldc 110 ("girl-friend") 
+;              199: astore_2 
+;              200: goto 14 
+;              203: new 53 (FemaleBoss) 
+;              206: dup 
+;              207: invokespecial 38 (FemaleBoss/<init> ()V) 
+;              210: astore_3 
+;              211: ldc 30 ("boss") 
+;              213: astore_2 
+;              214: aload_3 
+;              215: aload 16 
+;              217: invokevirtual 76 (ComplementsGenerator/getComplementNumber ()I) 
+;              220: invokevirtual 85 (Woman/setComplementNumber (I)V) 
+;              223: aload_3 
+;              224: aload 7 
+;              226: aload 4 
+;              228: aload 5 
+;              230: aload 6 
+;              232: invokevirtual 69 (Woman/react (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;) 
+;              235: astore 8 
+;              237: aload 11 
+;              239: ldc 49 ("You have just told your ") 
+;              241: dup 
+;              242: ifnull 6 
+;              245: goto 6 
+;              248: pop 
+;              249: ldc 67 ("null") 
+;              251: aload_2 
+;              252: dup 
+;              253: ifnull 6 
+;              256: goto 6 
+;              259: pop 
+;              260: ldc 67 ("null") 
+;              262: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              265: dup 
+;              266: ifnull 6 
+;              269: goto 6 
+;              272: pop 
+;              273: ldc 67 ("null") 
+;              275: ldc 75 (":\n\n") 
+;              277: dup 
+;              278: ifnull 6 
+;              281: goto 6 
+;              284: pop 
+;              285: ldc 67 ("null") 
+;              287: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              290: dup 
+;              291: ifnull 6 
+;              294: goto 6 
+;              297: pop 
+;              298: ldc 67 ("null") 
+;              300: aload 7 
+;              302: dup 
+;              303: ifnull 6 
+;              306: goto 6 
+;              309: pop 
+;              310: ldc 67 ("null") 
+;              312: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              315: dup 
+;              316: ifnull 6 
+;              319: goto 6 
+;              322: pop 
+;              323: ldc 67 ("null") 
+;              325: ldc 101 ("\n\nher response is: ") 
+;              327: dup 
+;              328: ifnull 6 
+;              331: goto 6 
+;              334: pop 
+;              335: ldc 67 ("null") 
+;              337: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              340: dup 
+;              341: ifnull 6 
+;              344: goto 6 
+;              347: pop 
+;              348: ldc 67 ("null") 
+;              350: aload 8 
+;              352: dup 
+;              353: ifnull 6 
+;              356: goto 6 
+;              359: pop 
+;              360: ldc 67 ("null") 
+;              362: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              365: dup 
+;              366: ifnull 6 
+;              369: goto 6 
+;              372: pop 
+;              373: ldc 67 ("null") 
+;              375: ldc 122 ("\n\n") 
+;              377: dup 
+;              378: ifnull 6 
+;              381: goto 6 
+;              384: pop 
+;              385: ldc 67 ("null") 
+;              387: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              390: dup 
+;              391: ifnull 6 
+;              394: goto 6 
+;              397: pop 
+;              398: ldc 67 ("null") 
+;              400: ldc 83 ("(also, the factorial of ") 
+;              402: dup 
+;              403: ifnull 6 
+;              406: goto 6 
+;              409: pop 
+;              410: ldc 67 ("null") 
+;              412: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              415: dup 
+;              416: ifnull 6 
+;              419: goto 6 
+;              422: pop 
+;              423: ldc 67 ("null") 
+;              425: ldc 25 ("the number you have entered is ") 
+;              427: dup 
+;              428: ifnull 6 
+;              431: goto 6 
+;              434: pop 
+;              435: ldc 67 ("null") 
+;              437: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              440: dup 
+;              441: ifnull 6 
+;              444: goto 6 
+;              447: pop 
+;              448: ldc 67 ("null") 
+;              450: new 108 (java/lang/Integer) 
+;              453: dup 
+;              454: aload 17 
+;              456: iload 9 
+;              458: invokevirtual 31 (AmazingCalculator/factorial (I)I) 
+;              461: invokespecial 46 (java/lang/Integer/<init> (I)V) 
+;              464: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              467: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              470: dup 
+;              471: ifnull 6 
+;              474: goto 6 
+;              477: pop 
+;              478: ldc 67 ("null") 
+;              480: ldc 116 (")\n") 
+;              482: dup 
+;              483: ifnull 6 
+;              486: goto 6 
+;              489: pop 
+;              490: ldc 67 ("null") 
+;              492: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              495: invokevirtual 77 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              498: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -482,7 +438,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x7fc) :
+; class_attributes[0] (offset 0x7ce) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 129

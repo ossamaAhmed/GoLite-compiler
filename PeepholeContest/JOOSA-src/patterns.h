@@ -11,6 +11,50 @@
  */
 
 /**
+ * ifeq true_1
+ * iconst_0
+ * goto stop_2
+ * true_1
+ * iconst_1
+ * stop_2
+ * ifeq stop_0
+ * ----------->
+ *  ifneq stop_0
+ */
+
+/**
+ * aload x
+ * aload k
+ * swap
+ * ------>
+ *  aload k
+ *  aload x
+ *
+ * removes swaps
+ * removes73 bytes
+ * ADDED BY SHABBIR
+ */
+
+int removeSwap(CODE **c){
+  int x,k;
+  char * arg;
+  if(is_aload(*c,&x) || is_iload(*c,&x) || is_ldc_int(*c,&x) || is_ldc_string(*c,&arg) ){
+    if(is_aload(next(*c),&k) || is_iload(next(*c),&k) || is_ldc_int(next(*c),&k)|| is_ldc_string(next(*c),&arg)){
+        if(is_swap(next(next(*c)))){
+                CODE *i1 = *c;
+                CODE *i2 = i1->next;
+                i1 = i2;
+                i2 = *c;
+                *c= i1->next->next;
+        }
+
+    }
+  }
+  return 0;
+}
+
+
+/**
  * dup
  * astore x
  * pop
@@ -21,6 +65,7 @@
  *  if local x is not accessed again
  *
  *  removes 226 bytes
+ *  ADDED BY SHABBIR
  */
 int removeSavesAstore(CODE **c){
   int x,k;
@@ -52,6 +97,51 @@ int removeSavesAstore(CODE **c){
   }
   return 0;
 }
+
+/**
+ * dup
+ * istore x
+ * pop
+ * iload x
+ * -------->
+ *  (blank)
+ *
+ *  if local x is not accessed again
+ *
+ *  removes 114 bytes
+ *  ADDED BY SHABBIR 
+ */
+int removeSavesIstore(CODE **c){
+  int x,k;
+  if (is_dup(*c) &&
+      is_istore(next(*c),&x) && 
+      is_pop(next(next(*c))) &&
+      is_iload(next(next(next(*c))),&k) &&
+      x==k
+     ){
+        CODE * cursor = *c;
+        cursor = next(*c);
+        while(cursor!=NULL){
+            /*if not a basic block then exit*/
+            if(uses_label(cursor,&k)){
+                return 0;
+            }
+            else if(is_iload(cursor,&k)){
+                /*can't replace because variable is read again*/
+                return 0;
+            }
+            /*local not accessed*/
+            else if(is_return(cursor) || is_areturn(cursor) || is_ireturn(cursor)|| (is_istore(cursor,&k) && k==x)){
+                /*can replace*/
+                return replace(c,4,NULL);
+            }
+            cursor = next(cursor);
+        }
+     return 0;
+  }
+  return 0;
+}
+
 /* iload x        iload x        iload x
  * ldc 0          ldc 1          ldc 2
  * imul           imul           imul
@@ -469,24 +559,25 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
+    ADD_PATTERN(removeSavesIstore);
     ADD_PATTERN(removeSavesAstore);
-    /*ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_astore);
+    ADD_PATTERN(simplify_istore);
     ADD_PATTERN(positive_increment);
+    ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_goto_goto);
     ADD_PATTERN(simplify_aload_after_astore);
     ADD_PATTERN(simplify_iload_after_istore);
-    ADD_PATTERN(simplify_istore);
     ADD_PATTERN(simplify_iload_after_istore2);
     ADD_PATTERN(simplify_aload_after_astore2);
     ADD_PATTERN(positive_increment_0);
     ADD_PATTERN(positive_increment1);
-    ADD_PATTERN(simplify_addition_right);*/
-/*    ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!*/
-/*    ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD*/
-/*    ADD_PATTERN(simplify_aload_severalgetfield);
+    ADD_PATTERN(simplify_addition_right);
+    ADD_PATTERN(simplify_goto_label); 
+    ADD_PATTERN(simplify_aload_severalgetfield);
      ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
-    ADD_PATTERN(simplify_severalgetfield);*/
+    ADD_PATTERN(simplify_severalgetfield);
+    ADD_PATTERN(removeSwap);
     return 1;
 }

@@ -2,7 +2,25 @@ make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeCon
 /home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java
 
 Frequencies:
+removeSavesIstore: 6
 removeSavesAstore: 3
+simplify_astore: 18
+simplify_istore: 8
+positive_increment: 0
+simplify_multiplication_right: 0
+simplify_goto_goto: 29
+simplify_aload_after_astore: 0
+simplify_iload_after_istore: 0
+simplify_iload_after_istore2: 0
+simplify_aload_after_astore2: 0
+positive_increment_0: 0
+positive_increment1: 0
+simplify_addition_right: 0
+simplify_goto_label: 433
+simplify_aload_severalgetfield: 0
+simplify_pop_afterinvokenonvirtual: 1
+simplify_pop_afterinvokevirtual: 3
+simplify_severalgetfield: 0
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -14,18 +32,18 @@ Generated: Woman.class
 AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 29
 AmazingCalculator.optdump:;         code_length 1
-ComplementsGenerator.optdump:;         code_length 20
-ComplementsGenerator.optdump:;         code_length 1583
+ComplementsGenerator.optdump:;         code_length 18
+ComplementsGenerator.optdump:;         code_length 1567
 ComplementsGenerator.optdump:;         code_length 6
-ComplementsGenerator.optdump:;         code_length 218
-ComplementsGenerator.optdump:;         code_length 198
-ComplementsGenerator.optdump:;         code_length 218
+ComplementsGenerator.optdump:;         code_length 210
+ComplementsGenerator.optdump:;         code_length 190
+ComplementsGenerator.optdump:;         code_length 210
 FemaleBoss.optdump:;         code_length 5
 FemaleBoss.optdump:;         code_length 498
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 980
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 545
+Main.optdump:;         code_length 499
 Woman.optdump:;         code_length 5
-Woman.optdump:;         code_length 9
+Woman.optdump:;         code_length 7
 make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'

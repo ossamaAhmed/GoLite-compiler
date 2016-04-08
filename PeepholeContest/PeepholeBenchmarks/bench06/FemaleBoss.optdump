@@ -166,7 +166,7 @@
 ;               79: ifeq 9 
 ;               82: ldc 62 ("I feel a promotion coming your way!!") 
 ;               84: areturn 
-;               85: goto 6 
+;               85: goto 412 
 ;               88: ldc 13 ("get out of my office.") 
 ;               90: areturn 
 ;               91: goto 406 
@@ -216,7 +216,7 @@
 ;              179: ifeq 9 
 ;              182: ldc 23 ("I'm impressed, you are hired.") 
 ;              184: areturn 
-;              185: goto 6 
+;              185: goto 312 
 ;              188: ldc 74 ("get out of my office, you sick sick man.") 
 ;              190: areturn 
 ;              191: goto 306 
@@ -280,7 +280,7 @@
 ;              308: ifeq 9 
 ;              311: ldc 39 ("you have a slippery tongue..well done") 
 ;              313: areturn 
-;              314: goto 6 
+;              314: goto 183 
 ;              317: ldc 13 ("get out of my office.") 
 ;              319: areturn 
 ;              320: goto 177 
@@ -298,7 +298,7 @@
 ;              346: ifeq 9 
 ;              349: ldc 59 ("that's a strange proposal, but Ive heard worse..") 
 ;              351: areturn 
-;              352: goto 6 
+;              352: goto 145 
 ;              355: ldc 78 ("you are going to have hard time keeping your job like that.") 
 ;              357: areturn 
 ;              358: goto 139 
@@ -334,7 +334,7 @@
 ;              419: ifeq 9 
 ;              422: ldc 45 ("let's indeed! you are a very talented young man..") 
 ;              424: areturn 
-;              425: goto 6 
+;              425: goto 72 
 ;              428: ldc 34 ("are you familiar with the term sexual harassment?") 
 ;              430: areturn 
 ;              431: goto 66 
@@ -364,7 +364,7 @@
 ;              479: ifeq 9 
 ;              482: ldc 46 ("I don't understand exactly what you want, but whatever.") 
 ;              484: areturn 
-;              485: goto 6 
+;              485: goto 12 
 ;              488: ldc 8 ("get out of my office, you pervert.") 
 ;              490: areturn 
 ;              491: goto 6 

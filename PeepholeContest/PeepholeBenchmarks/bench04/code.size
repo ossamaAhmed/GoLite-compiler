@@ -2,7 +2,25 @@ make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeCon
 /home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java 
 
 Frequencies:
+removeSavesIstore: 3
 removeSavesAstore: 7
+simplify_astore: 17
+simplify_istore: 116
+positive_increment: 36
+simplify_multiplication_right: 0
+simplify_goto_goto: 3
+simplify_aload_after_astore: 0
+simplify_iload_after_istore: 0
+simplify_iload_after_istore2: 0
+simplify_aload_after_astore2: 0
+positive_increment_0: 0
+positive_increment1: 0
+simplify_addition_right: 0
+simplify_goto_label: 15
+simplify_aload_severalgetfield: 2
+simplify_pop_afterinvokenonvirtual: 7
+simplify_pop_afterinvokevirtual: 7
+simplify_severalgetfield: 0
 
 Generated: Board.class
 Generated: BombMove.class
@@ -16,60 +34,60 @@ Generated: KillRowMove.class
 Generated: Move.class
 Generated: Strategy.class
 ----- Method code sizes ----
-Board.optdump:;         code_length 150
+Board.optdump:;         code_length 134
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 20
-Board.optdump:;         code_length 84
+Board.optdump:;         code_length 80
 Board.optdump:;         code_length 63
 Board.optdump:;         code_length 26
 Board.optdump:;         code_length 20
 Board.optdump:;         code_length 11
-Board.optdump:;         code_length 162
-Board.optdump:;         code_length 103
+Board.optdump:;         code_length 156
+Board.optdump:;         code_length 99
 Board.optdump:;         code_length 52
-Board.optdump:;         code_length 184
-Board.optdump:;         code_length 687
-Board.optdump:;         code_length 70
+Board.optdump:;         code_length 172
+Board.optdump:;         code_length 637
+Board.optdump:;         code_length 68
 BombMove.optdump:;         code_length 5
-BombMove.optdump:;         code_length 77
+BombMove.optdump:;         code_length 69
 BombMove.optdump:;         code_length 4
 ClassicMove.optdump:;         code_length 5
 ClassicMove.optdump:;         code_length 8
 ClassicMove.optdump:;         code_length 4
 DiagBombMove.optdump:;         code_length 5
-DiagBombMove.optdump:;         code_length 283
+DiagBombMove.optdump:;         code_length 247
 DiagBombMove.optdump:;         code_length 4
 FlipBoardMove.optdump:;         code_length 5
-FlipBoardMove.optdump:;         code_length 196
+FlipBoardMove.optdump:;         code_length 172
 FlipBoardMove.optdump:;         code_length 4
-Game.optdump:;         code_length 106
+Game.optdump:;         code_length 90
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 78
-Game.optdump:;         code_length 122
+Game.optdump:;         code_length 110
 Game.optdump:;         code_length 6
 Game.optdump:;         code_length 6
 Game.optdump:;         code_length 6
 Game.optdump:;         code_length 30
 Game.optdump:;         code_length 27
-Game.optdump:;         code_length 45
+Game.optdump:;         code_length 41
 Game.optdump:;         code_length 30
-Game.optdump:;         code_length 117
-Game.optdump:;         code_length 176
-Game.optdump:;         code_length 213
-Game.optdump:;         code_length 71
+Game.optdump:;         code_length 109
+Game.optdump:;         code_length 160
+Game.optdump:;         code_length 199
+Game.optdump:;         code_length 67
 Game.optdump:;         code_length 13
-Game.optdump:;         code_length 158
-Game.optdump:;         code_length 95
-Game.optdump:;         code_length 86
+Game.optdump:;         code_length 146
+Game.optdump:;         code_length 89
+Game.optdump:;         code_length 84
 KillColumnMove.optdump:;         code_length 5
-KillColumnMove.optdump:;         code_length 41
+KillColumnMove.optdump:;         code_length 37
 KillColumnMove.optdump:;         code_length 4
 KillRowAndColumnMove.optdump:;         code_length 5
-KillRowAndColumnMove.optdump:;         code_length 81
+KillRowAndColumnMove.optdump:;         code_length 73
 KillRowAndColumnMove.optdump:;         code_length 4
 KillRowMove.optdump:;         code_length 5
-KillRowMove.optdump:;         code_length 41
+KillRowMove.optdump:;         code_length 37
 KillRowMove.optdump:;         code_length 4
 Move.optdump:;         code_length 5
 Strategy.optdump:;         code_length 5
