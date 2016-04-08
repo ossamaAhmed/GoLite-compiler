@@ -67,37 +67,45 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 12 (Code)
-;         attribute_length 60
+;         attribute_length 68
 ;         max_stack 2
 ;         max_locals 4
-;         code_length 48
+;         code_length 56
 ;         code :
 ;                0: new 15 (joos/lib/JoosIO) 
 ;                3: dup 
 ;                4: invokespecial 22 (joos/lib/JoosIO/<init> ()V) 
-;                7: astore_1 
-;                8: new 27 (Interpretor) 
-;               11: dup 
-;               12: invokespecial 21 (Interpretor/<init> ()V) 
-;               15: astore_2 
-;               16: aload_1 
-;               17: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               20: astore_3 
-;               21: aload_3 
-;               22: aconst_null 
-;               23: if_acmpne 7 
-;               26: iconst_0 
-;               27: goto 4 
-;               30: iconst_1 
-;               31: ifeq 16 
-;               34: aload_2 
-;               35: aload_3 
-;               36: invokevirtual 18 (Interpretor/interpret (Ljava/lang/String;)V) 
-;               39: aload_1 
-;               40: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               43: astore_3 
-;               44: goto -23 
-;               47: return 
+;                7: dup 
+;                8: astore_1 
+;                9: pop 
+;               10: new 27 (Interpretor) 
+;               13: dup 
+;               14: invokespecial 21 (Interpretor/<init> ()V) 
+;               17: dup 
+;               18: astore_2 
+;               19: pop 
+;               20: aload_1 
+;               21: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               24: dup 
+;               25: astore_3 
+;               26: pop 
+;               27: aload_3 
+;               28: aconst_null 
+;               29: if_acmpne 7 
+;               32: iconst_0 
+;               33: goto 4 
+;               36: iconst_1 
+;               37: ifeq 18 
+;               40: aload_2 
+;               41: aload_3 
+;               42: invokevirtual 18 (Interpretor/interpret (Ljava/lang/String;)V) 
+;               45: aload_1 
+;               46: invokevirtual 14 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               49: dup 
+;               50: astore_3 
+;               51: pop 
+;               52: goto -25 
+;               55: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -105,7 +113,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x181) :
+; class_attributes[0] (offset 0x189) :
 ;     name_index 16 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 1

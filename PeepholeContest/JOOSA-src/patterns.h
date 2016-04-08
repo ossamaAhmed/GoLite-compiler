@@ -10,6 +10,48 @@
  * email: hendren@cs.mcgill.ca, mis@brics.dk
  */
 
+/**
+ * dup
+ * astore x
+ * pop
+ * aload x
+ * -------->
+ *  (blank)
+ *
+ *  if local x is not accessed again
+ *
+ *  removes 226 bytes
+ */
+int removeSavesAstore(CODE **c){
+  int x,k;
+  if (is_dup(*c) &&
+      is_astore(next(*c),&x) && 
+      is_pop(next(next(*c))) &&
+      is_aload(next(next(next(*c))),&k) &&
+      x==k
+     ){
+        CODE * cursor = *c;
+        cursor = next(*c);
+        while(cursor!=NULL){
+            /*if not a basic block then exit*/
+            if(uses_label(cursor,&k)){
+                return 0;
+            }
+            else if(is_aload(cursor,&k)){
+                /*can't replace because variable is read again*/
+                return 0;
+            }
+            /*local not accessed*/
+            else if(is_return(cursor) || is_areturn(cursor) || is_ireturn(cursor)|| (is_astore(cursor,&k) && k==x)){
+                /*can replace*/
+                return replace(c,4,NULL);
+            }
+            cursor = next(cursor);
+        }
+     return 0;
+  }
+  return 0;
+}
 /* iload x        iload x        iload x
  * ldc 0          ldc 1          ldc 2
  * imul           imul           imul
@@ -427,7 +469,8 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
-    ADD_PATTERN(simplify_multiplication_right);
+    ADD_PATTERN(removeSavesAstore);
+    /*ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
@@ -438,12 +481,12 @@ int init_patterns()
     ADD_PATTERN(simplify_aload_after_astore2);
     ADD_PATTERN(positive_increment_0);
     ADD_PATTERN(positive_increment1);
-    ADD_PATTERN(simplify_addition_right);
-    ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!
-    ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD
-    ADD_PATTERN(simplify_aload_severalgetfield);
-    // ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
+    ADD_PATTERN(simplify_addition_right);*/
+/*    ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!*/
+/*    ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD*/
+/*    ADD_PATTERN(simplify_aload_severalgetfield);
+     ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
-    ADD_PATTERN(simplify_severalgetfield);
+    ADD_PATTERN(simplify_severalgetfield);*/
     return 1;
 }

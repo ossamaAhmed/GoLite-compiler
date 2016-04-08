@@ -1,23 +1,8 @@
-/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
+make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'
+/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
 
 Frequencies:
-simplify_multiplication_right: 0
-simplify_astore: 23
-positive_increment: 5
-simplify_goto_goto: 10
-simplify_aload_after_astore: 0
-simplify_iload_after_istore: 0
-simplify_istore: 51
-simplify_iload_after_istore2: 12
-simplify_aload_after_astore2: 9
-positive_increment_0: 0
-positive_increment1: 0
-simplify_addition_right: 0
-simplify_goto_label: 336
-delete_dead_goto_label: 117
-simplify_aload_severalgetfield: 1
-simplify_pop_afterinvokevirtual: 39
-simplify_severalgetfield: 0
+removeSavesAstore: 9
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -37,9 +22,9 @@ Generated: InGenerate.class
 BFRoomAction.optdump:;         code_length 5
 BFRoomAction.optdump:;         code_length 10
 BFRoomAction.optdump:;         code_length 124
-CoinRoomAction.optdump:;         code_length 11
+CoinRoomAction.optdump:;         code_length 13
 CoinRoomAction.optdump:;         code_length 37
-CoinRoomAction.optdump:;         code_length 238
+CoinRoomAction.optdump:;         code_length 240
 EmptyRoomAction.optdump:;         code_length 5
 EmptyRoomAction.optdump:;         code_length 10
 EmptyRoomAction.optdump:;         code_length 7
@@ -48,28 +33,32 @@ ExitRoomAction.optdump:;         code_length 10
 ExitRoomAction.optdump:;         code_length 83
 FactorialRoomAction.optdump:;         code_length 5
 FactorialRoomAction.optdump:;         code_length 10
-FactorialRoomAction.optdump:;         code_length 252
+FactorialRoomAction.optdump:;         code_length 258
 FactorialRoomAction.optdump:;         code_length 44
 FeastRoomAction.optdump:;         code_length 5
 FeastRoomAction.optdump:;         code_length 10
-FeastRoomAction.optdump:;         code_length 195
+FeastRoomAction.optdump:;         code_length 201
 GrueHunt.optdump:;         code_length 5
-GrueHunt.optdump:;         code_length 22
-GrueHunt.optdump:;         code_length 1542
+GrueHunt.optdump:;         code_length 26
+GrueHunt.optdump:;         code_length 1601
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 133
-HuntRoomAction.optdump:;         code_length 115
+HuntRoomAction.optdump:;         code_length 130
 HuntRoomAction.optdump:;         code_length 141
-HuntRoomAction.optdump:;         code_length 784
-InGenerate.optdump:;         code_length 17
-InGenerate.optdump:;         code_length 250
-InGenerate.optdump:;         code_length 28
+HuntRoomAction.optdump:;         code_length 788
+InGenerate.optdump:;         code_length 19
+InGenerate.optdump:;         code_length 261
+InGenerate.optdump:;         code_length 33
 JokeRoomAction.optdump:;         code_length 5
 JokeRoomAction.optdump:;         code_length 10
 JokeRoomAction.optdump:;         code_length 178
-JokeRoomAction.optdump:;         code_length 306
-Room.optdump:;         code_length 609
-Room.optdump:;         code_length 30
+JokeRoomAction.optdump:;         code_length 312
+RoomAction.optdump:;         code_length 33
+RoomAction.optdump:;         code_length 10
+RoomAction.optdump:;         code_length 162
+RoomAction.optdump:;         code_length 33
+Room.optdump:;         code_length 683
+Room.optdump:;         code_length 34
 Room.optdump:;         code_length 12
 Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
@@ -78,10 +67,7 @@ Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
 Room.optdump:;         code_length 139
 Room.optdump:;         code_length 258
-RoomAction.optdump:;         code_length 29
-RoomAction.optdump:;         code_length 10
-RoomAction.optdump:;         code_length 162
-RoomAction.optdump:;         code_length 28
-TreasureRoomAction.optdump:;         code_length 11
+TreasureRoomAction.optdump:;         code_length 13
 TreasureRoomAction.optdump:;         code_length 37
-TreasureRoomAction.optdump:;         code_length 151
+TreasureRoomAction.optdump:;         code_length 153
+make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench07'

@@ -95,23 +95,25 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 65 (Code)
-;         attribute_length 23
-;         max_stack 2
+;         attribute_length 25
+;         max_stack 3
 ;         max_locals 1
-;         code_length 11
+;         code_length 13
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 26 (RoomAction/<init> ()V) 
 ;                4: iconst_0 
-;                5: aload_0 
-;                6: swap 
-;                7: putfield 66 (CoinRoomAction/taken Z) 
-;               10: return 
+;                5: dup 
+;                6: aload_0 
+;                7: swap 
+;                8: putfield 66 (CoinRoomAction/taken Z) 
+;               11: pop 
+;               12: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x2dc) :
+; methods[1] (offset 0x2de) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (describe)
 ;     descriptor_index 5 (()V)
@@ -144,17 +146,17 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x31b) :
+; methods[2] (offset 0x31d) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 61 (performAction)
 ;     descriptor_index 6 ((Ljava/lang/String;)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 65 (Code)
-;         attribute_length 250
+;         attribute_length 252
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 238
+;         code_length 240
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 35 ("pick up") 
@@ -201,7 +203,7 @@
 ;               74: iconst_0 
 ;               75: goto 4 
 ;               78: iconst_1 
-;               79: ifeq 44 
+;               79: ifeq 46 
 ;               82: aload_0 
 ;               83: getfield 66 (CoinRoomAction/taken Z) 
 ;               86: ifeq 17 
@@ -211,81 +213,83 @@
 ;               95: invokevirtual 60 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
 ;               98: iconst_0 
 ;               99: ireturn 
-;              100: goto 137 
+;              100: goto 22 
 ;              103: aload_0 
 ;              104: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
 ;              107: ldc 39 ("You picked up a gold coin! Your coin count: ") 
 ;              109: invokevirtual 60 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
 ;              112: iconst_1 
-;              113: aload_0 
-;              114: swap 
-;              115: putfield 66 (CoinRoomAction/taken Z) 
-;              118: iconst_5 
-;              119: ireturn 
-;              120: goto 117 
-;              123: aload_1 
-;              124: ldc 62 ("examin") 
-;              126: iconst_0 
-;              127: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              130: iconst_0 
-;              131: if_icmpge 7 
-;              134: iconst_0 
-;              135: goto 4 
-;              138: iconst_1 
-;              139: dup 
-;              140: ifne 20 
-;              143: pop 
-;              144: aload_1 
-;              145: ldc 67 ("look") 
-;              147: iconst_0 
-;              148: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              151: iconst_0 
-;              152: if_icmpge 7 
-;              155: iconst_0 
-;              156: goto 4 
-;              159: iconst_1 
-;              160: dup 
-;              161: ifne 20 
-;              164: pop 
-;              165: aload_1 
-;              166: ldc 36 ("inspect") 
-;              168: iconst_0 
-;              169: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              172: iconst_0 
-;              173: if_icmpge 7 
-;              176: iconst_0 
-;              177: goto 4 
-;              180: iconst_1 
-;              181: ifeq 17 
-;              184: aload_0 
-;              185: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              188: ldc 40 ("It's a coin!") 
-;              190: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              193: iconst_0 
-;              194: ireturn 
-;              195: goto 42 
-;              198: aload_1 
-;              199: ldc 20 ("drink") 
-;              201: iconst_0 
-;              202: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              205: iconst_0 
-;              206: if_icmpge 7 
-;              209: iconst_0 
-;              210: goto 4 
-;              213: iconst_1 
-;              214: ifeq 17 
-;              217: aload_0 
-;              218: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              221: ldc 56 ("You feel flesh being torn from your body. ") 
-;              223: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              226: iconst_1 
-;              227: ireturn 
-;              228: goto 9 
-;              231: aload_0 
-;              232: aload_1 
-;              233: invokevirtual 55 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              236: ireturn 
-;              237: nop 
+;              113: dup 
+;              114: aload_0 
+;              115: swap 
+;              116: putfield 66 (CoinRoomAction/taken Z) 
+;              119: pop 
+;              120: iconst_5 
+;              121: ireturn 
+;              122: goto 117 
+;              125: aload_1 
+;              126: ldc 62 ("examin") 
+;              128: iconst_0 
+;              129: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              132: iconst_0 
+;              133: if_icmpge 7 
+;              136: iconst_0 
+;              137: goto 4 
+;              140: iconst_1 
+;              141: dup 
+;              142: ifne 20 
+;              145: pop 
+;              146: aload_1 
+;              147: ldc 67 ("look") 
+;              149: iconst_0 
+;              150: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              153: iconst_0 
+;              154: if_icmpge 7 
+;              157: iconst_0 
+;              158: goto 4 
+;              161: iconst_1 
+;              162: dup 
+;              163: ifne 20 
+;              166: pop 
+;              167: aload_1 
+;              168: ldc 36 ("inspect") 
+;              170: iconst_0 
+;              171: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              174: iconst_0 
+;              175: if_icmpge 7 
+;              178: iconst_0 
+;              179: goto 4 
+;              182: iconst_1 
+;              183: ifeq 17 
+;              186: aload_0 
+;              187: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              190: ldc 40 ("It's a coin!") 
+;              192: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              195: iconst_0 
+;              196: ireturn 
+;              197: goto 42 
+;              200: aload_1 
+;              201: ldc 20 ("drink") 
+;              203: iconst_0 
+;              204: invokevirtual 34 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              207: iconst_0 
+;              208: if_icmpge 7 
+;              211: iconst_0 
+;              212: goto 4 
+;              215: iconst_1 
+;              216: ifeq 17 
+;              219: aload_0 
+;              220: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              223: ldc 56 ("You feel flesh being torn from your body. ") 
+;              225: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              228: iconst_1 
+;              229: ireturn 
+;              230: goto 9 
+;              233: aload_0 
+;              234: aload_1 
+;              235: invokevirtual 55 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              238: ireturn 
+;              239: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -293,7 +297,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x425) :
+; class_attributes[0] (offset 0x429) :
 ;     name_index 44 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 17

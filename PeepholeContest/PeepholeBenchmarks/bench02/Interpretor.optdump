@@ -152,39 +152,47 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 54
-;         max_stack 2
+;         attribute_length 62
+;         max_stack 3
 ;         max_locals 1
-;         code_length 42
+;         code_length 50
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 107 (java/lang/Object/<init> ()V) 
 ;                4: ldc 4 ("init") 
-;                6: aload_0 
-;                7: swap 
-;                8: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;               11: new 96 (joos/lib/JoosIO) 
-;               14: dup 
-;               15: invokespecial 46 (joos/lib/JoosIO/<init> ()V) 
-;               18: aload_0 
-;               19: swap 
-;               20: putfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
-;               23: iconst_0 
-;               24: aload_0 
-;               25: swap 
-;               26: putfield 104 (Interpretor/ioImported Z) 
-;               29: new 48 (StringEscapeUtils) 
-;               32: dup 
-;               33: invokespecial 13 (StringEscapeUtils/<init> ()V) 
-;               36: aload_0 
-;               37: swap 
-;               38: putfield 73 (Interpretor/escape LStringEscapeUtils;) 
-;               41: return 
+;                6: dup 
+;                7: aload_0 
+;                8: swap 
+;                9: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;               12: pop 
+;               13: new 96 (joos/lib/JoosIO) 
+;               16: dup 
+;               17: invokespecial 46 (joos/lib/JoosIO/<init> ()V) 
+;               20: dup 
+;               21: aload_0 
+;               22: swap 
+;               23: putfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               26: pop 
+;               27: iconst_0 
+;               28: dup 
+;               29: aload_0 
+;               30: swap 
+;               31: putfield 104 (Interpretor/ioImported Z) 
+;               34: pop 
+;               35: new 48 (StringEscapeUtils) 
+;               38: dup 
+;               39: invokespecial 13 (StringEscapeUtils/<init> ()V) 
+;               42: dup 
+;               43: aload_0 
+;               44: swap 
+;               45: putfield 73 (Interpretor/escape LStringEscapeUtils;) 
+;               48: pop 
+;               49: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x441) :
+; methods[1] (offset 0x449) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 50 (interpret)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -218,17 +226,17 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x481) :
+; methods[2] (offset 0x489) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 78 (init)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 46
-;         max_stack 2
+;         attribute_length 48
+;         max_stack 3
 ;         max_locals 2
-;         code_length 34
+;         code_length 36
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 102 ("HAI") 
@@ -241,17 +249,19 @@
 ;               17: aload_0 
 ;               18: ldc 81 ("Program must start with 'HAI'") 
 ;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               23: goto 10 
+;               23: goto 12 
 ;               26: ldc 29 ("running") 
-;               28: aload_0 
-;               29: swap 
-;               30: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;               33: return 
+;               28: dup 
+;               29: aload_0 
+;               30: swap 
+;               31: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;               34: pop 
+;               35: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x4bd) :
+; methods[3] (offset 0x4c7) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 79 (crashed)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -274,28 +284,30 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x4e4) :
+; methods[4] (offset 0x4ee) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 26 (exit)
 ;     descriptor_index 77 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 20
-;         max_stack 2
+;         attribute_length 22
+;         max_stack 3
 ;         max_locals 1
-;         code_length 8
+;         code_length 10
 ;         code :
 ;                0: ldc 76 ("exit") 
-;                2: aload_0 
-;                3: swap 
-;                4: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;                7: return 
+;                2: dup 
+;                3: aload_0 
+;                4: swap 
+;                5: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;                8: pop 
+;                9: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x506) :
+; methods[5] (offset 0x512) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 94 (run)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -364,17 +376,17 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x58c) :
+; methods[6] (offset 0x598) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (visible)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 62
+;         attribute_length 64
 ;         max_stack 4
 ;         max_locals 3
-;         code_length 50
+;         code_length 52
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 104 (Interpretor/ioImported Z) 
@@ -393,30 +405,32 @@
 ;               28: iconst_1 
 ;               29: isub 
 ;               30: invokevirtual 71 (java/lang/String/substring (II)Ljava/lang/String;) 
-;               33: astore_2 
-;               34: aload_0 
-;               35: dup 
-;               36: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
-;               39: getfield 73 (Interpretor/escape LStringEscapeUtils;) 
-;               42: aload_2 
-;               43: invokevirtual 97 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
-;               46: invokevirtual 74 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               49: return 
+;               33: dup 
+;               34: astore_2 
+;               35: pop 
+;               36: aload_0 
+;               37: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               40: aload_0 
+;               41: getfield 73 (Interpretor/escape LStringEscapeUtils;) 
+;               44: aload_2 
+;               45: invokevirtual 97 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
+;               48: invokevirtual 74 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               51: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x5d8) :
+; methods[7] (offset 0x5e6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (openMod)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 42
-;         max_stack 2
+;         attribute_length 44
+;         max_stack 3
 ;         max_locals 2
-;         code_length 30
+;         code_length 32
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 11 ("CAN HAS STDIO?") 
@@ -430,10 +444,12 @@
 ;               18: ldc 72 ("Only module 'STDIO' is supported") 
 ;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
 ;               23: iconst_1 
-;               24: aload_0 
-;               25: swap 
-;               26: putfield 104 (Interpretor/ioImported Z) 
-;               29: return 
+;               24: dup 
+;               25: aload_0 
+;               26: swap 
+;               27: putfield 104 (Interpretor/ioImported Z) 
+;               30: pop 
+;               31: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -441,7 +457,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x612) :
+; class_attributes[0] (offset 0x622) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 34
