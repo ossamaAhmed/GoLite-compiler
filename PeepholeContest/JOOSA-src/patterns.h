@@ -1039,7 +1039,7 @@ int simplify_if_nonnull(CODE **c) {
 
 
 /* nop
- * ------->
+   ------->
  */
 int remove_nop(CODE **c) {
   if (is_nop(*c)) {
@@ -1048,6 +1048,41 @@ int remove_nop(CODE **c) {
   return 0;
 }
 
+/*
+  aload x
+  aload k
+  swap
+  ------>
+  aload k
+  aload x
+*/
+int remove_aload_swap(CODE **c){
+  int x, k;
+  if (is_aload(*c, &x) &&
+      is_aload(next(*c), &k) &&
+      is_swap(next(next(*c)))){
+    return replace(c, 3, makeCODEaload(k, makeCODEaload(x, NULL)));
+  }
+  return 0;
+}
+
+/*
+  iload x
+  iload k
+  swap
+  ------>
+  iload k
+  iload x
+*/
+int remove_iload_swap(CODE **c){
+  int x, k;
+  if (is_iload(*c, &x) &&
+      is_iload(next(*c), &k) &&
+      is_swap(next(next(*c)))){
+    return replace(c, 3, makeCODEiload(k, makeCODEiload(x, NULL)));
+  }
+  return 0;
+}
 
 /*
 #define OPTS 4
@@ -1096,5 +1131,7 @@ int init_patterns()
     ADD_PATTERN(delete_dead_goto_label);
     // ADD_PATTERN(remove_swap);
     // ADD_PATTERN(remove_nop);
+    ADD_PATTERN(remove_aload_swap);
+    ADD_PATTERN(remove_iload_swap);
     return 1;
 }

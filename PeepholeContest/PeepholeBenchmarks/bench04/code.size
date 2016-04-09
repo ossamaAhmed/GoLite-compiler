@@ -1,4 +1,4 @@
-/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java 
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java 
 
 Frequencies:
 simplify_if_else_with_icmpeq_ne: 0
@@ -30,6 +30,8 @@ simplify_goto_label: 15
 simplify_pop_afterinvokenonvirtual: 7
 simplify_pop_afterinvokevirtual: 7
 delete_dead_goto_label: 18
+remove_aload_swap: 1
+remove_iload_swap: 0
 
 Generated: Board.class
 Generated: BombMove.class
@@ -70,7 +72,7 @@ DiagBombMove.optdump:;         code_length 4
 FlipBoardMove.optdump:;         code_length 5
 FlipBoardMove.optdump:;         code_length 140
 FlipBoardMove.optdump:;         code_length 4
-Game.optdump:;         code_length 90
+Game.optdump:;         code_length 89
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 78
 Game.optdump:;         code_length 94

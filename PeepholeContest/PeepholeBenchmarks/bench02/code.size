@@ -1,5 +1,5 @@
 rm -rf *.class *.j
-/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
 simplify_if_else_with_icmpeq_ne: 0
@@ -31,6 +31,8 @@ simplify_goto_label: 3
 simplify_pop_afterinvokenonvirtual: 2
 simplify_pop_afterinvokevirtual: 5
 delete_dead_goto_label: 2
+remove_aload_swap: 0
+remove_iload_swap: 0
 
 Generated: Interpretor.class
 Generated: Main.class
