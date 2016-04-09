@@ -38,17 +38,16 @@
 int removeSwap(CODE **c){
   int x,k;
   char * arg;
-  if(is_aload(*c,&x) || is_iload(*c,&x) || is_ldc_int(*c,&x) || is_ldc_string(*c,&arg) ){
-    if(is_aload(next(*c),&k) || is_iload(next(*c),&k) || is_ldc_int(next(*c),&k)|| is_ldc_string(next(*c),&arg)){
-        if(is_swap(next(next(*c)))){
-                CODE *i1 = *c;
-                CODE *i2 = i1->next;
-                i1 = i2;
-                i2 = *c;
-                *c= i1->next->next;
-        }
-
-    }
+  if (is_aload(*c,&x) || is_iload(*c,&x) || is_ldc_int(*c,&x) || is_ldc_string(*c,&arg) ){
+    if (is_aload(next(*c),&k) || is_iload(next(*c),&k) || is_ldc_int(next(*c),&k)|| is_ldc_string(next(*c),&arg)){
+      if (is_swap(next(next(*c)))){
+        CODE *i1 = *c;
+        CODE *i2 = i1->next;
+        i1 = i2;
+        i2 = *c;
+        *c= i1->next->next;
+      }
+  }
   }
   return 0;
 }
@@ -507,18 +506,17 @@ int simplify_severalgetfield(CODE **c)
  ADDED BY OSSAMA
  */
 
-int simplify_pop_afterinvokenonvirtual(CODE **c)
-{ int x;
+int simplify_pop_afterinvokenonvirtual(CODE **c){
+  int x;
   char *virtualmethod;
   char *field;
-  if(is_invokenonvirtual(*c,&virtualmethod) &&
-     is_dup(next(*c))  &&
-     is_aload(next(next(*c)),&x)   &&
-     is_swap(next(next(next(*c)))) &&
-     is_putfield(next(next(next(next(*c)))), &field) &&
-     is_pop(next(next(next(next(next(*c))))))
-    ) {
-    return replace(c,6,makeCODEinvokenonvirtual(virtualmethod,
+  if (is_invokenonvirtual(*c,&virtualmethod) &&
+      is_dup(next(*c))  &&
+      is_aload(next(next(*c)),&x)   &&
+      is_swap(next(next(next(*c)))) &&
+      is_putfield(next(next(next(next(*c)))), &field) &&
+      is_pop(next(next(next(next(next(*c))))))) {
+      return replace(c,6,makeCODEinvokenonvirtual(virtualmethod,
                                        makeCODEaload(x, 
                                        makeCODEswap(
                                        makeCODEputfield(field , NULL)))));
@@ -539,25 +537,20 @@ int simplify_pop_afterinvokenonvirtual(CODE **c)
  ADDED BY OSSAMA
  */
 
-int simplify_pop_afterinvokevirtual(CODE **c)
-{ int x;
-  char *virtualmethod;
+int simplify_pop_afterinvokevirtual(CODE **c){
+  int x;
   char *field;
-  if(
-     is_dup(*c)  &&
-     is_aload(next(*c),&x)   &&
-     is_swap(next(next(*c))) &&
-     is_putfield(next(next(next(*c))), &field) &&
-     is_pop(next(next(next(next(*c)))))
-    ) {
-    return replace(c,5,
-                                       makeCODEaload(x, 
-                                       makeCODEswap(
-                                       makeCODEputfield(field , NULL))));
+  if (is_dup(*c) &&
+      is_aload(next(*c),&x)   &&
+      is_swap(next(next(*c))) &&
+      is_putfield(next(next(next(*c))), &field) &&
+      is_pop(next(next(next(next(*c)))))) {
+      return replace(c,5,makeCODEaload(x, makeCODEswap(makeCODEputfield(field , NULL))));
   }
   return 0;
 }
 
+<<<<<<< HEAD
 /**
   if( col >= 8 )
       this.solveCell( row, col + 1 ) ;
@@ -869,7 +862,6 @@ int init_patterns()
     ADD_PATTERN(simplify_if_else_with_icmpne);
     ADD_PATTERN(simplify_if_else_with_icmpeq);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
-
     ADD_PATTERN(removeSavesIstore);
     ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);

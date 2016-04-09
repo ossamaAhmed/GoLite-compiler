@@ -2,4 +2,6 @@
 lex.*
 y.tab.*
 code.size
-PeepholeBenchmarks/
+*.optdump
+*.dump
+code.size
