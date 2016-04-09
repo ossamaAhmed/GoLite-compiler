@@ -15,4 +15,6 @@ gen:
 
 clean:
 	rm *.class *.j
+run:
+	java GrueHunt < in1
 

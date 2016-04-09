@@ -3,3 +3,5 @@ all:
 
 clean:
 	rm -f *.j *.class
+run:
+	java Main < in1

@@ -12,3 +12,5 @@ check:
 
 clean:	
 	rm -rf *.class *.j
+run:
+	java Main < in1

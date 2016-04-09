@@ -29,3 +29,10 @@ clean_dump:
 	(cd PeepholeBenchmarks && find . -type f -name '*.dump' -exec rm {} +)
 clean_optdump:
 	(cd PeepholeBenchmarks && find . -type f -name '*.optdump' -exec rm {} +)
+runall:
+	cd PeepholeBenchmarks/bench01 && $ make run
+	cd PeepholeBenchmarks/bench02 && $ make run
+	cd PeepholeBenchmarks/bench04 && $ make run
+	cd PeepholeBenchmarks/bench05 && $ make run
+	cd PeepholeBenchmarks/bench06 && $ make run
+	cd PeepholeBenchmarks/bench07 && $ make run

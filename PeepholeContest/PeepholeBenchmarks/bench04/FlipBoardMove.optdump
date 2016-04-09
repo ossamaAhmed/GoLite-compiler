@@ -160,13 +160,14 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 41 (Code)
-;         attribute_length 15
+;         attribute_length 16
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 3
+;         code_length 4
 ;         code :
 ;                0: ldc 37 ("Flip Board: flips the board upside down.") 
 ;                2: areturn 
+;                3: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -174,7 +175,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x2a7) :
+; class_attributes[0] (offset 0x2a8) :
 ;     name_index 29 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 33

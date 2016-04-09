@@ -140,10 +140,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 37 (Code)
-;         attribute_length 654
+;         attribute_length 655
 ;         max_stack 7
 ;         max_locals 7
-;         code_length 642
+;         code_length 643
 ;         code :
 ;                0: ldc 74 ("") 
 ;                2: astore 6 
@@ -201,8 +201,8 @@
 ;               95: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;               98: iload_2 
 ;               99: aload_0 
-;              100: dup 
-;              101: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              100: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              103: aload_0 
 ;              104: getfield 40 (Decoder/con LConversion;) 
 ;              107: aload_1 
 ;              108: iload 4 
@@ -220,8 +220,8 @@
 ;              134: new 52 (java/lang/Character) 
 ;              137: dup 
 ;              138: aload_0 
-;              139: dup 
-;              140: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              139: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              142: aload_0 
 ;              143: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              146: iload_2 
 ;              147: ldc 32 (16) 
@@ -241,8 +241,8 @@
 ;              179: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              182: iload_2 
 ;              183: aload_0 
-;              184: dup 
-;              185: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              184: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              187: aload_0 
 ;              188: getfield 40 (Decoder/con LConversion;) 
 ;              191: aload_1 
 ;              192: iload 4 
@@ -257,8 +257,8 @@
 ;              216: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              219: iload_2 
 ;              220: aload_0 
-;              221: dup 
-;              222: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              221: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              224: aload_0 
 ;              225: getfield 40 (Decoder/con LConversion;) 
 ;              228: aload_1 
 ;              229: iload 4 
@@ -273,8 +273,8 @@
 ;              253: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              256: iload_2 
 ;              257: aload_0 
-;              258: dup 
-;              259: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              258: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              261: aload_0 
 ;              262: getfield 40 (Decoder/con LConversion;) 
 ;              265: aload_1 
 ;              266: iload 4 
@@ -292,8 +292,8 @@
 ;              292: new 52 (java/lang/Character) 
 ;              295: dup 
 ;              296: aload_0 
-;              297: dup 
-;              298: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              297: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              300: aload_0 
 ;              301: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              304: iload_2 
 ;              305: ldc 32 (16) 
@@ -313,8 +313,8 @@
 ;              335: new 52 (java/lang/Character) 
 ;              338: dup 
 ;              339: aload_0 
-;              340: dup 
-;              341: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              340: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              343: aload_0 
 ;              344: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              347: iload_2 
 ;              348: ldc 20 (8) 
@@ -333,8 +333,8 @@
 ;              377: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              380: iload_2 
 ;              381: aload_0 
-;              382: dup 
-;              383: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              382: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              385: aload_0 
 ;              386: getfield 40 (Decoder/con LConversion;) 
 ;              389: aload_1 
 ;              390: iload 4 
@@ -349,8 +349,8 @@
 ;              414: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              417: iload_2 
 ;              418: aload_0 
-;              419: dup 
-;              420: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              419: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              422: aload_0 
 ;              423: getfield 40 (Decoder/con LConversion;) 
 ;              426: aload_1 
 ;              427: iload 4 
@@ -365,8 +365,8 @@
 ;              451: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              454: iload_2 
 ;              455: aload_0 
-;              456: dup 
-;              457: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              456: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              459: aload_0 
 ;              460: getfield 40 (Decoder/con LConversion;) 
 ;              463: aload_1 
 ;              464: iload 4 
@@ -397,8 +397,8 @@
 ;              524: new 52 (java/lang/Character) 
 ;              527: dup 
 ;              528: aload_0 
-;              529: dup 
-;              530: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              529: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              532: aload_0 
 ;              533: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              536: iload_2 
 ;              537: ldc 32 (16) 
@@ -418,8 +418,8 @@
 ;              567: new 52 (java/lang/Character) 
 ;              570: dup 
 ;              571: aload_0 
-;              572: dup 
-;              573: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              572: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              575: aload_0 
 ;              576: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              579: iload_2 
 ;              580: ldc 20 (8) 
@@ -451,6 +451,7 @@
 ;              636: goto -588 
 ;              639: aload 6 
 ;              641: areturn 
+;              642: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -458,7 +459,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x540) :
+; class_attributes[0] (offset 0x541) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 63

@@ -108,10 +108,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 45
+;         attribute_length 46
 ;         max_stack 2
 ;         max_locals 8
-;         code_length 33
+;         code_length 34
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 10 (SudokuSolver/grid Ljava/util/Vector;) 
@@ -131,11 +131,12 @@
 ;               27: astore 6 
 ;               29: invokevirtual 23 (java/lang/Integer/intValue ()I) 
 ;               32: ireturn 
+;               33: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2a2) :
+; methods[2] (offset 0x2a3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 35 (setVal)
 ;     descriptor_index 59 ((III)V)
@@ -169,17 +170,17 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x2df) :
+; methods[3] (offset 0x2e0) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 68 (checkRow)
 ;     descriptor_index 19 ((II)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 43
+;         attribute_length 44
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 31
+;         code_length 32
 ;         code :
 ;                0: iconst_0 
 ;                1: istore_3 
@@ -198,21 +199,22 @@
 ;               26: goto -24 
 ;               29: iconst_1 
 ;               30: ireturn 
+;               31: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x318) :
+; methods[4] (offset 0x31a) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 57 (checkCol)
 ;     descriptor_index 19 ((II)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 43
+;         attribute_length 44
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 31
+;         code_length 32
 ;         code :
 ;                0: iconst_0 
 ;                1: istore_3 
@@ -231,21 +233,22 @@
 ;               26: goto -24 
 ;               29: iconst_1 
 ;               30: ireturn 
+;               31: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x351) :
+; methods[5] (offset 0x354) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 54 (checkBox)
 ;     descriptor_index 56 ((III)Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 80
+;         attribute_length 81
 ;         max_stack 4
 ;         max_locals 6
-;         code_length 68
+;         code_length 69
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_3 
@@ -287,21 +290,22 @@
 ;               63: goto -48 
 ;               66: iconst_1 
 ;               67: ireturn 
+;               68: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x3af) :
+; methods[6] (offset 0x3b3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (checkFinish)
 ;     descriptor_index 2 (()Z)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 60
+;         attribute_length 61
 ;         max_stack 3
 ;         max_locals 3
-;         code_length 48
+;         code_length 49
 ;         code :
 ;                0: iconst_0 
 ;                1: istore_1 
@@ -327,11 +331,12 @@
 ;               43: goto -41 
 ;               46: iconst_1 
 ;               47: ireturn 
+;               48: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x3f9) :
+; methods[7] (offset 0x3fe) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 40 (solveCell)
 ;     descriptor_index 21 ((II)V)
@@ -418,7 +423,7 @@
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x492) :
+; methods[8] (offset 0x497) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 5 (next)
 ;     descriptor_index 21 ((II)V)
@@ -451,7 +456,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x4c6) :
+; methods[9] (offset 0x4cb) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (solve)
 ;     descriptor_index 6 (()V)
@@ -475,7 +480,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4e9) :
+; class_attributes[0] (offset 0x4ee) :
 ;     name_index 45 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 29

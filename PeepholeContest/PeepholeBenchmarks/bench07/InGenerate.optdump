@@ -210,10 +210,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 57 (Code)
-;         attribute_length 32
+;         attribute_length 33
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 20
+;         code_length 21
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 18 (InGenerate/rand Ljoos/lib/JoosRandom;) 
@@ -229,6 +229,7 @@
 ;               17: iload_1 
 ;               18: irem 
 ;               19: ireturn 
+;               20: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -236,7 +237,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x322) :
+; class_attributes[0] (offset 0x323) :
 ;     name_index 40 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 5

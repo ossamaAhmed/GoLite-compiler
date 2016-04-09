@@ -462,55 +462,6 @@ int simplify_addition_right1(CODE **c)
   return 0;
 }
 
- /* aload_0
-  * getfield Decoder/uti Llib/JoosBitwise;
-  * aload_0
-  * getfield Decoder/con LConversion;       
- * ------>       
-  * aload_0
-  * dup
-  * getfield Decoder/uti Llib/JoosBitwise;
-  * getfield Decoder/con LConversion;      
-  ADDED BY OSSAMA  
- *                        
- *                             
- */
-
-int simplify_aload_severalgetfield(CODE **c)
-{ int x,y;
-  char *field1;
-  char *field2;
-  if (is_aload(*c,&x) && 
-      is_getfield(next(*c), &field1) &&
-      is_aload(next(next(*c)),&y) &&
-      is_getfield(next(next(next(*c))), &field2)){
-     if (x==y) return replace(c,4,makeCODEaload(x,
-                                       makeCODEdup(
-                                       makeCODEgetfield(field1, makeCODEgetfield(field2,NULL)))));
-  }
-  return 0;
-}
-
-
- /* getfield Decoder/uti Llib/JoosBitwise;
-  * getfield Decoder/uti Llib/JoosBitwise;       
- * ------>       
-  * getfield Decoder/uti Llib/JoosBitwise;
-  ADDED BY OSSAMA
- *  dup                         
- *                             
- */
-
-int simplify_severalgetfield(CODE **c)
-{ char *field1;
-  char *field2;
-  if ( is_getfield(*c, &field1) &&
-      is_getfield(next(*c), &field2) &&
-      (field1==field2) ){
-     return replace(c,2, makeCODEgetfield(field1, makeCODEdup(NULL)));
-  }
-  return 0;
-}
 
  /*  invokenonvirtual java/util/Vector/<init>(I)V
  *    dup
@@ -1104,8 +1055,8 @@ int init_patterns()
     ADD_PATTERN(simplify_if_null);
     ADD_PATTERN(simplify_if_nonnull);
 
-    // ADD_PATTERN(removeSavesIstore);
-    // ADD_PATTERN(removeSavesAstore);
+    // // ADD_PATTERN(removeSavesIstore);
+    // // ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(simplify_istore);
     ADD_PATTERN(positive_increment);
@@ -1119,12 +1070,10 @@ int init_patterns()
     ADD_PATTERN(positive_increment1);
     ADD_PATTERN(simplify_addition_right);
     ADD_PATTERN(simplify_goto_label); 
-    ADD_PATTERN(simplify_aload_severalgetfield);
     ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
-    ADD_PATTERN(simplify_severalgetfield);
     ADD_PATTERN(delete_dead_goto_label);
-    ADD_PATTERN(remove_swap);
-    ADD_PATTERN(remove_nop);
+    // ADD_PATTERN(remove_swap);
+    // ADD_PATTERN(remove_nop);
     return 1;
 }

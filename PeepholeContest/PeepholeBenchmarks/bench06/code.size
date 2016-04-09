@@ -27,13 +27,9 @@ positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
 simplify_goto_label: 433
-simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 3
-simplify_severalgetfield: 0
 delete_dead_goto_label: 84
-remove_swap: 0
-remove_nop: 9
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -43,19 +39,19 @@ Generated: Main.class
 Generated: Woman.class
 ----- Method code sizes ----
 AmazingCalculator.optdump:;         code_length 5
-AmazingCalculator.optdump:;         code_length 20
+AmazingCalculator.optdump:;         code_length 21
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 1160
-ComplementsGenerator.optdump:;         code_length 5
-ComplementsGenerator.optdump:;         code_length 131
-ComplementsGenerator.optdump:;         code_length 119
-ComplementsGenerator.optdump:;         code_length 131
+ComplementsGenerator.optdump:;         code_length 1165
+ComplementsGenerator.optdump:;         code_length 6
+ComplementsGenerator.optdump:;         code_length 132
+ComplementsGenerator.optdump:;         code_length 120
+ComplementsGenerator.optdump:;         code_length 132
 FemaleBoss.optdump:;         code_length 5
-FemaleBoss.optdump:;         code_length 409
+FemaleBoss.optdump:;         code_length 410
 GirlFriend.optdump:;         code_length 5
-GirlFriend.optdump:;         code_length 891
+GirlFriend.optdump:;         code_length 892
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 446
 Woman.optdump:;         code_length 5
-Woman.optdump:;         code_length 4
+Woman.optdump:;         code_length 7

@@ -90,10 +90,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 49 (Code)
-;         attribute_length 112
+;         attribute_length 113
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 100
+;         code_length 101
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 7 ("fight") 
@@ -144,6 +144,7 @@
 ;               95: invokevirtual 46 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
 ;               98: iconst_1 
 ;               99: ireturn 
+;              100: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -151,7 +152,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x2d0) :
+; class_attributes[0] (offset 0x2d1) :
 ;     name_index 35 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 18

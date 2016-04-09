@@ -96,13 +96,14 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 8 (Code)
-;         attribute_length 15
+;         attribute_length 16
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 3
+;         code_length 4
 ;         code :
 ;                0: ldc 13 ("Kill Row: clears the row where the token lands.") 
 ;                2: areturn 
+;                3: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -110,7 +111,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1a6) :
+; class_attributes[0] (offset 0x1a7) :
 ;     name_index 12 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 3

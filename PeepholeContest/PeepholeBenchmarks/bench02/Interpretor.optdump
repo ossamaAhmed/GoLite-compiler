@@ -1,29 +1,29 @@
 ; magic number 0xCAFEBABE
 ; bytecode version 45.3
 
-; constant pool count 107
+; constant pool count 108
 ; cp[1] (offset 0xf) -> CONSTANT_NameAndType 21, 62
 ; cp[2] (offset 0x24) -> CONSTANT_Utf8 "Ljava/lang/String;"
-; cp[3] (offset 0x27) -> CONSTANT_String 104
-; cp[4] (offset 0x2a) -> CONSTANT_String 77
+; cp[3] (offset 0x27) -> CONSTANT_String 105
+; cp[4] (offset 0x2a) -> CONSTANT_String 78
 ; cp[5] (offset 0x37) -> CONSTANT_Utf8 "SourceFile"
-; cp[6] (offset 0x3c) -> CONSTANT_Methodref 89, 97
+; cp[6] (offset 0x3c) -> CONSTANT_Methodref 90, 98
 ; cp[7] (offset 0x41) -> CONSTANT_NameAndType 19, 30
 ; cp[8] (offset 0x4a) -> CONSTANT_Utf8 "<init>"
-; cp[9] (offset 0x4f) -> CONSTANT_Methodref 89, 49
+; cp[9] (offset 0x4f) -> CONSTANT_Methodref 90, 49
 ; cp[10] (offset 0x58) -> CONSTANT_Utf8 "length"
 ; cp[11] (offset 0x5b) -> CONSTANT_String 41
 ; cp[12] (offset 0x5e) -> CONSTANT_String 33
-; cp[13] (offset 0x63) -> CONSTANT_Methodref 48, 94
+; cp[13] (offset 0x63) -> CONSTANT_Methodref 48, 95
 ; cp[14] (offset 0x6a) -> CONSTANT_Utf8 "null"
 ; cp[15] (offset 0x77) -> CONSTANT_Utf8 "startsWith"
 ; cp[16] (offset 0x7c) -> CONSTANT_NameAndType 25, 30
 ; cp[17] (offset 0x90) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
-; cp[18] (offset 0x95) -> CONSTANT_NameAndType 39, 79
+; cp[18] (offset 0x95) -> CONSTANT_NameAndType 39, 80
 ; cp[19] (offset 0x9f) -> CONSTANT_Utf8 "println"
-; cp[20] (offset 0xa4) -> CONSTANT_NameAndType 100, 86
+; cp[20] (offset 0xa4) -> CONSTANT_NameAndType 101, 87
 ; cp[21] (offset 0xb1) -> CONSTANT_Utf8 "ioImported"
-; cp[22] (offset 0xb6) -> CONSTANT_NameAndType 77, 30
+; cp[22] (offset 0xb6) -> CONSTANT_NameAndType 78, 30
 ; cp[23] (offset 0xbb) -> CONSTANT_Fieldref 75, 53
 ; cp[24] (offset 0xbe) -> CONSTANT_Class 47
 ; cp[25] (offset 0xc8) -> CONSTANT_Utf8 "visible"
@@ -33,28 +33,28 @@
 ; cp[29] (offset 0xef) -> CONSTANT_String 44
 ; cp[30] (offset 0x107) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
 ; cp[31] (offset 0x120) -> CONSTANT_Utf8 "(Ljava/lang/String;I)Z"
-; cp[32] (offset 0x125) -> CONSTANT_Methodref 75, 91
+; cp[32] (offset 0x125) -> CONSTANT_Methodref 75, 92
 ; cp[33] (offset 0x13f) -> CONSTANT_Utf8 "' can not be recognized"
 ; cp[34] (offset 0x14f) -> CONSTANT_Utf8 "Interpretor.j"
 ; cp[35] (offset 0x172) -> CONSTANT_Utf8 "Only module 'STDIO' is supported"
-; cp[36] (offset 0x175) -> CONSTANT_String 99
+; cp[36] (offset 0x175) -> CONSTANT_String 100
 ; cp[37] (offset 0x17e) -> CONSTANT_Utf8 "equals"
-; cp[38] (offset 0x183) -> CONSTANT_NameAndType 100, 54
+; cp[38] (offset 0x183) -> CONSTANT_NameAndType 101, 54
 ; cp[39] (offset 0x18f) -> CONSTANT_Utf8 "substring"
 ; cp[40] (offset 0x194) -> CONSTANT_NameAndType 37, 27
 ; cp[41] (offset 0x1a5) -> CONSTANT_Utf8 "CAN HAS STDIO?"
 ; cp[42] (offset 0x1aa) -> CONSTANT_Methodref 75, 51
 ; cp[43] (offset 0x1af) -> CONSTANT_Methodref 75, 22
 ; cp[44] (offset 0x1b9) -> CONSTANT_Utf8 "running"
-; cp[45] (offset 0x1be) -> CONSTANT_Methodref 89, 69
-; cp[46] (offset 0x1c3) -> CONSTANT_Methodref 95, 94
+; cp[45] (offset 0x1be) -> CONSTANT_Methodref 90, 69
+; cp[46] (offset 0x1c3) -> CONSTANT_Methodref 96, 95
 ; cp[47] (offset 0x1d6) -> CONSTANT_Utf8 "java/lang/Object"
 ; cp[48] (offset 0x1d9) -> CONSTANT_Class 61
-; cp[49] (offset 0x1de) -> CONSTANT_NameAndType 10, 81
+; cp[49] (offset 0x1de) -> CONSTANT_NameAndType 10, 82
 ; cp[50] (offset 0x1ea) -> CONSTANT_Utf8 "interpret"
 ; cp[51] (offset 0x1ef) -> CONSTANT_NameAndType 63, 30
 ; cp[52] (offset 0x1f2) -> CONSTANT_String 66
-; cp[53] (offset 0x1f7) -> CONSTANT_NameAndType 105, 2
+; cp[53] (offset 0x1f7) -> CONSTANT_NameAndType 106, 2
 ; cp[54] (offset 0x20d) -> CONSTANT_Utf8 "LStringEscapeUtils;"
 ; cp[55] (offset 0x211) -> CONSTANT_Utf8 "f"
 ; cp[56] (offset 0x216) -> CONSTANT_NameAndType 55, 17
@@ -70,44 +70,45 @@
 ; cp[66] (offset 0x263) -> CONSTANT_Utf8 "VISIBLE"
 ; cp[67] (offset 0x271) -> CONSTANT_Utf8 "Interpretor"
 ; cp[68] (offset 0x291) -> CONSTANT_Utf8 "Program must start with 'HAI'"
-; cp[69] (offset 0x296) -> CONSTANT_NameAndType 102, 86
-; cp[70] (offset 0x29b) -> CONSTANT_Methodref 89, 40
-; cp[71] (offset 0x2a0) -> CONSTANT_Methodref 89, 18
+; cp[69] (offset 0x296) -> CONSTANT_NameAndType 103, 87
+; cp[70] (offset 0x29b) -> CONSTANT_Methodref 90, 40
+; cp[71] (offset 0x2a0) -> CONSTANT_Methodref 90, 18
 ; cp[72] (offset 0x2a3) -> CONSTANT_String 35
 ; cp[73] (offset 0x2a8) -> CONSTANT_Fieldref 75, 38
-; cp[74] (offset 0x2ad) -> CONSTANT_Methodref 95, 7
+; cp[74] (offset 0x2ad) -> CONSTANT_Methodref 96, 7
 ; cp[75] (offset 0x2b0) -> CONSTANT_Class 67
-; cp[76] (offset 0x2b6) -> CONSTANT_Utf8 "()V"
-; cp[77] (offset 0x2bd) -> CONSTANT_Utf8 "init"
-; cp[78] (offset 0x2c7) -> CONSTANT_Utf8 "crashed"
-; cp[79] (offset 0x2e0) -> CONSTANT_Utf8 "(II)Ljava/lang/String;"
-; cp[80] (offset 0x2e3) -> CONSTANT_String 68
-; cp[81] (offset 0x2e9) -> CONSTANT_Utf8 "()I"
-; cp[82] (offset 0x2ec) -> CONSTANT_String 87
-; cp[83] (offset 0x2f1) -> CONSTANT_NameAndType 78, 30
-; cp[84] (offset 0x2f6) -> CONSTANT_NameAndType 93, 30
-; cp[85] (offset 0x2fb) -> CONSTANT_Methodref 75, 84
-; cp[86] (offset 0x324) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
-; cp[87] (offset 0x328) -> CONSTANT_Utf8 "'"
-; cp[88] (offset 0x33a) -> CONSTANT_Utf8 "joos/lib/JoosIO"
-; cp[89] (offset 0x33d) -> CONSTANT_Class 98
-; cp[90] (offset 0x343) -> CONSTANT_Utf8 "HAI"
-; cp[91] (offset 0x348) -> CONSTANT_NameAndType 26, 76
-; cp[92] (offset 0x34d) -> CONSTANT_Methodref 75, 83
-; cp[93] (offset 0x353) -> CONSTANT_Utf8 "run"
-; cp[94] (offset 0x358) -> CONSTANT_NameAndType 8, 76
-; cp[95] (offset 0x35b) -> CONSTANT_Class 88
-; cp[96] (offset 0x360) -> CONSTANT_Methodref 48, 20
-; cp[97] (offset 0x365) -> CONSTANT_NameAndType 15, 31
-; cp[98] (offset 0x378) -> CONSTANT_Utf8 "java/lang/String"
-; cp[99] (offset 0x3a1) -> CONSTANT_Utf8 "Can not execute VISIBLE with out stdio"
-; cp[100] (offset 0x3aa) -> CONSTANT_Utf8 "escape"
-; cp[101] (offset 0x3ad) -> CONSTANT_String 90
-; cp[102] (offset 0x3b6) -> CONSTANT_Utf8 "concat"
-; cp[103] (offset 0x3bb) -> CONSTANT_Fieldref 75, 1
-; cp[104] (offset 0x3c1) -> CONSTANT_Utf8 "CAN"
-; cp[105] (offset 0x3c9) -> CONSTANT_Utf8 "state"
-; cp[106] (offset 0x3ce) -> CONSTANT_Methodref 24, 94
+; cp[76] (offset 0x2b3) -> CONSTANT_String 26
+; cp[77] (offset 0x2b9) -> CONSTANT_Utf8 "()V"
+; cp[78] (offset 0x2c0) -> CONSTANT_Utf8 "init"
+; cp[79] (offset 0x2ca) -> CONSTANT_Utf8 "crashed"
+; cp[80] (offset 0x2e3) -> CONSTANT_Utf8 "(II)Ljava/lang/String;"
+; cp[81] (offset 0x2e6) -> CONSTANT_String 68
+; cp[82] (offset 0x2ec) -> CONSTANT_Utf8 "()I"
+; cp[83] (offset 0x2ef) -> CONSTANT_String 88
+; cp[84] (offset 0x2f4) -> CONSTANT_NameAndType 79, 30
+; cp[85] (offset 0x2f9) -> CONSTANT_NameAndType 94, 30
+; cp[86] (offset 0x2fe) -> CONSTANT_Methodref 75, 85
+; cp[87] (offset 0x327) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
+; cp[88] (offset 0x32b) -> CONSTANT_Utf8 "'"
+; cp[89] (offset 0x33d) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[90] (offset 0x340) -> CONSTANT_Class 99
+; cp[91] (offset 0x346) -> CONSTANT_Utf8 "HAI"
+; cp[92] (offset 0x34b) -> CONSTANT_NameAndType 26, 77
+; cp[93] (offset 0x350) -> CONSTANT_Methodref 75, 84
+; cp[94] (offset 0x356) -> CONSTANT_Utf8 "run"
+; cp[95] (offset 0x35b) -> CONSTANT_NameAndType 8, 77
+; cp[96] (offset 0x35e) -> CONSTANT_Class 89
+; cp[97] (offset 0x363) -> CONSTANT_Methodref 48, 20
+; cp[98] (offset 0x368) -> CONSTANT_NameAndType 15, 31
+; cp[99] (offset 0x37b) -> CONSTANT_Utf8 "java/lang/String"
+; cp[100] (offset 0x3a4) -> CONSTANT_Utf8 "Can not execute VISIBLE with out stdio"
+; cp[101] (offset 0x3ad) -> CONSTANT_Utf8 "escape"
+; cp[102] (offset 0x3b0) -> CONSTANT_String 91
+; cp[103] (offset 0x3b9) -> CONSTANT_Utf8 "concat"
+; cp[104] (offset 0x3be) -> CONSTANT_Fieldref 75, 1
+; cp[105] (offset 0x3c4) -> CONSTANT_Utf8 "CAN"
+; cp[106] (offset 0x3cc) -> CONSTANT_Utf8 "state"
+; cp[107] (offset 0x3d1) -> CONSTANT_Methodref 24, 95
 
 ; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
 ; this_class index = 75
@@ -118,66 +119,72 @@
 
 ; fields_count = 4
 
-; fields[0] (offset 0x3d8) :
+; fields[0] (offset 0x3db) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 105 (state)
+;     name_index 106 (state)
 ;     descriptor_index 2 (Ljava/lang/String;)
 ;     attributes_count 0
 
-; fields[1] (offset 0x3e0) :
+; fields[1] (offset 0x3e3) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
 ;     name_index 55 (f)
 ;     descriptor_index 17 (Ljoos/lib/JoosIO;)
 ;     attributes_count 0
 
-; fields[2] (offset 0x3e8) :
+; fields[2] (offset 0x3eb) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
 ;     name_index 21 (ioImported)
 ;     descriptor_index 62 (Z)
 ;     attributes_count 0
 
-; fields[3] (offset 0x3f0) :
+; fields[3] (offset 0x3f3) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 100 (escape)
+;     name_index 101 (escape)
 ;     descriptor_index 54 (LStringEscapeUtils;)
 ;     attributes_count 0
 
 ; methods_count 8
 
-; methods[0] (offset 0x3fa) :
+; methods[0] (offset 0x3fd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 8 (<init>)
-;     descriptor_index 76 (()V)
+;     descriptor_index 77 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 47
-;         max_stack 1
+;         attribute_length 54
+;         max_stack 2
 ;         max_locals 1
-;         code_length 35
+;         code_length 42
 ;         code :
 ;                0: aload_0 
-;                1: invokespecial 106 (java/lang/Object/<init> ()V) 
-;                4: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;                7: new 95 (joos/lib/JoosIO) 
-;               10: dup 
-;               11: invokespecial 46 (joos/lib/JoosIO/<init> ()V) 
-;               14: aload_0 
-;               15: swap 
-;               16: putfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
-;               19: putfield 103 (Interpretor/ioImported Z) 
-;               22: new 48 (StringEscapeUtils) 
-;               25: dup 
-;               26: invokespecial 13 (StringEscapeUtils/<init> ()V) 
-;               29: aload_0 
-;               30: swap 
-;               31: putfield 73 (Interpretor/escape LStringEscapeUtils;) 
-;               34: return 
+;                1: invokespecial 107 (java/lang/Object/<init> ()V) 
+;                4: ldc 4 ("init") 
+;                6: aload_0 
+;                7: swap 
+;                8: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;               11: new 96 (joos/lib/JoosIO) 
+;               14: dup 
+;               15: invokespecial 46 (joos/lib/JoosIO/<init> ()V) 
+;               18: aload_0 
+;               19: swap 
+;               20: putfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               23: iconst_0 
+;               24: aload_0 
+;               25: swap 
+;               26: putfield 104 (Interpretor/ioImported Z) 
+;               29: new 48 (StringEscapeUtils) 
+;               32: dup 
+;               33: invokespecial 13 (StringEscapeUtils/<init> ()V) 
+;               36: aload_0 
+;               37: swap 
+;               38: putfield 73 (Interpretor/escape LStringEscapeUtils;) 
+;               41: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x437) :
+; methods[1] (offset 0x441) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 50 (interpret)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -205,26 +212,26 @@
 ;               29: ifeq 8 
 ;               32: aload_0 
 ;               33: aload_1 
-;               34: invokevirtual 85 (Interpretor/run (Ljava/lang/String;)V) 
+;               34: invokevirtual 86 (Interpretor/run (Ljava/lang/String;)V) 
 ;               37: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x477) :
+; methods[2] (offset 0x481) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 77 (init)
+;     name_index 78 (init)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 42
+;         attribute_length 46
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 30
+;         code_length 34
 ;         code :
 ;                0: aload_1 
-;                1: ldc 101 ("HAI") 
+;                1: ldc 102 ("HAI") 
 ;                3: invokevirtual 70 (java/lang/String/equals (Ljava/lang/Object;)Z) 
 ;                6: ifeq 7 
 ;                9: iconst_0 
@@ -232,18 +239,21 @@
 ;               13: iconst_1 
 ;               14: ifeq 12 
 ;               17: aload_0 
-;               18: ldc 80 ("Program must start with 'HAI'") 
-;               20: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               23: goto 6 
-;               26: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;               29: return 
+;               18: ldc 81 ("Program must start with 'HAI'") 
+;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               23: goto 10 
+;               26: ldc 29 ("running") 
+;               28: aload_0 
+;               29: swap 
+;               30: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;               33: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x4af) :
+; methods[3] (offset 0x4bd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 78 (crashed)
+;     name_index 79 (crashed)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
@@ -264,27 +274,30 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x4d6) :
+; methods[4] (offset 0x4e4) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 26 (exit)
-;     descriptor_index 76 (()V)
+;     descriptor_index 77 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 16
-;         max_stack 0
+;         attribute_length 20
+;         max_stack 2
 ;         max_locals 1
-;         code_length 4
+;         code_length 8
 ;         code :
-;                0: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;                3: return 
+;                0: ldc 76 ("exit") 
+;                2: aload_0 
+;                3: swap 
+;                4: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;                7: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x4f4) :
+; methods[5] (offset 0x506) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 93 (run)
+;     name_index 94 (run)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
@@ -320,7 +333,7 @@
 ;               46: invokevirtual 32 (Interpretor/exit ()V) 
 ;               49: goto 46 
 ;               52: aload_0 
-;               53: ldc 82 ("'") 
+;               53: ldc 83 ("'") 
 ;               55: dup 
 ;               56: ifnonnull 6 
 ;               59: pop 
@@ -341,13 +354,13 @@
 ;               86: pop 
 ;               87: ldc 60 ("null") 
 ;               89: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               92: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               92: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
 ;               95: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x56e) :
+; methods[6] (offset 0x580) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (visible)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -360,7 +373,7 @@
 ;         code_length 50
 ;         code :
 ;                0: aload_0 
-;                1: getfield 103 (Interpretor/ioImported Z) 
+;                1: getfield 104 (Interpretor/ioImported Z) 
 ;                4: ifeq 7 
 ;                7: iconst_0 
 ;                8: goto 4 
@@ -368,7 +381,7 @@
 ;               12: ifeq 9 
 ;               15: aload_0 
 ;               16: ldc 36 ("Can not execute VISIBLE with out stdio") 
-;               18: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               18: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
 ;               21: aload_1 
 ;               22: ldc 28 (9) 
 ;               24: aload_1 
@@ -378,28 +391,28 @@
 ;               30: invokevirtual 71 (java/lang/String/substring (II)Ljava/lang/String;) 
 ;               33: astore_2 
 ;               34: aload_0 
-;               35: dup 
-;               36: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               35: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               38: aload_0 
 ;               39: getfield 73 (Interpretor/escape LStringEscapeUtils;) 
 ;               42: aload_2 
-;               43: invokevirtual 96 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
+;               43: invokevirtual 97 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
 ;               46: invokevirtual 74 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               49: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x5ba) :
+; methods[7] (offset 0x5cc) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (openMod)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 39
+;         attribute_length 42
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 27
+;         code_length 30
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 11 ("CAN HAS STDIO?") 
@@ -411,9 +424,12 @@
 ;               14: ifeq 9 
 ;               17: aload_0 
 ;               18: ldc 72 ("Only module 'STDIO' is supported") 
-;               20: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               23: putfield 103 (Interpretor/ioImported Z) 
-;               26: return 
+;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               23: iconst_1 
+;               24: aload_0 
+;               25: swap 
+;               26: putfield 104 (Interpretor/ioImported Z) 
+;               29: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -421,7 +437,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x5f1) :
+; class_attributes[0] (offset 0x606) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 34

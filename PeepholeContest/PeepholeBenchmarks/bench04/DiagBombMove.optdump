@@ -201,13 +201,14 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 9 (Code)
-;         attribute_length 15
+;         attribute_length 16
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 3
+;         code_length 4
 ;         code :
 ;                0: ldc 29 ("Diagonal Bomb: clears the contents of diagonal cells.") 
 ;                2: areturn 
+;                3: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -215,7 +216,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x29a) :
+; class_attributes[0] (offset 0x29b) :
 ;     name_index 16 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 15

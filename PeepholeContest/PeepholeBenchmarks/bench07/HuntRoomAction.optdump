@@ -1,296 +1,322 @@
 ; magic number 0xCAFEBABE
 ; bytecode version 45.3
 
-; constant pool count 130
-; cp[1] (offset 0xd) -> CONSTANT_Class 43
-; cp[2] (offset 0x12) -> CONSTANT_Fieldref 93, 41
-; cp[3] (offset 0x27) -> CONSTANT_Utf8 "Ljava/lang/String;"
-; cp[4] (offset 0x34) -> CONSTANT_Utf8 "SourceFile"
-; cp[5] (offset 0x39) -> CONSTANT_NameAndType 24, 34
-; cp[6] (offset 0x42) -> CONSTANT_Utf8 "<init>"
-; cp[7] (offset 0x47) -> CONSTANT_NameAndType 87, 45
-; cp[8] (offset 0x4d) -> CONSTANT_Utf8 "hit"
-; cp[9] (offset 0x50) -> CONSTANT_String 90
-; cp[10] (offset 0x56) -> CONSTANT_Utf8 "ram"
-; cp[11] (offset 0x5d) -> CONSTANT_Utf8 "null"
-; cp[12] (offset 0x76) -> CONSTANT_Utf8 "Your attack succeeded!"
-; cp[13] (offset 0x79) -> CONSTANT_String 112
-; cp[14] (offset 0x7e) -> CONSTANT_NameAndType 73, 15
-; cp[15] (offset 0x92) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
-; cp[16] (offset 0x97) -> CONSTANT_Integer 90
-; cp[17] (offset 0xa1) -> CONSTANT_Utf8 "indexOf"
-; cp[18] (offset 0xa4) -> CONSTANT_String 117
-; cp[19] (offset 0xa9) -> CONSTANT_Methodref 1, 109
-; cp[20] (offset 0xba) -> CONSTANT_Utf8 "HuntRoomAction"
-; cp[21] (offset 0xbf) -> CONSTANT_Methodref 1, 7
-; cp[22] (offset 0xc2) -> CONSTANT_String 116
-; cp[23] (offset 0xcd) -> CONSTANT_Utf8 "describe"
-; cp[24] (offset 0xd7) -> CONSTANT_Utf8 "println"
-; cp[25] (offset 0xda) -> CONSTANT_String 91
-; cp[26] (offset 0xdd) -> CONSTANT_String 66
-; cp[27] (offset 0xe0) -> CONSTANT_String 8
-; cp[28] (offset 0xe3) -> CONSTANT_String 10
-; cp[29] (offset 0xe6) -> CONSTANT_String 84
-; cp[30] (offset 0xfe) -> CONSTANT_Utf8 "(Ljava/lang/Object;)Z"
-; cp[31] (offset 0x101) -> CONSTANT_String 78
-; cp[32] (offset 0x106) -> CONSTANT_Integer 8
-; cp[33] (offset 0x109) -> CONSTANT_String 107
-; cp[34] (offset 0x121) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
-; cp[35] (offset 0x124) -> CONSTANT_String 111
-; cp[36] (offset 0x127) -> CONSTANT_String 56
-; cp[37] (offset 0x12c) -> CONSTANT_Integer 80
-; cp[38] (offset 0x163) -> CONSTANT_Utf8 "You rip out the heart of your prey and takes a bite."
-; cp[39] (offset 0x16c) -> CONSTANT_Utf8 "equals"
-; cp[40] (offset 0x171) -> CONSTANT_NameAndType 17, 48
-; cp[41] (offset 0x176) -> CONSTANT_NameAndType 44, 64
-; cp[42] (offset 0x179) -> CONSTANT_String 121
-; cp[43] (offset 0x186) -> CONSTANT_Utf8 "RoomAction"
-; cp[44] (offset 0x18e) -> CONSTANT_Utf8 "taken"
-; cp[45] (offset 0x1a6) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
-; cp[46] (offset 0x1bc) -> CONSTANT_Utf8 "You feel energized."
-; cp[47] (offset 0x1c1) -> CONSTANT_NameAndType 39, 30
-; cp[48] (offset 0x1da) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
-; cp[49] (offset 0x1e1) -> CONSTANT_Utf8 "The "
-; cp[50] (offset 0x1e4) -> CONSTANT_String 92
-; cp[51] (offset 0x1e9) -> CONSTANT_Methodref 101, 75
-; cp[52] (offset 0x1ec) -> CONSTANT_String 99
-; cp[53] (offset 0x200) -> CONSTANT_Utf8 "The carcass of a "
-; cp[54] (offset 0x205) -> CONSTANT_Integer 10
-; cp[55] (offset 0x218) -> CONSTANT_Utf8 "Which direction?"
-; cp[56] (offset 0x24b) -> CONSTANT_Utf8 "Your attack failed. The counter attack from the "
-; cp[57] (offset 0x252) -> CONSTANT_Utf8 "Code"
-; cp[58] (offset 0x266) -> CONSTANT_Utf8 " lies before you."
-; cp[59] (offset 0x269) -> CONSTANT_String 114
-; cp[60] (offset 0x26e) -> CONSTANT_Fieldref 1, 14
-; cp[61] (offset 0x271) -> CONSTANT_String 11
-; cp[62] (offset 0x274) -> CONSTANT_String 53
-; cp[63] (offset 0x277) -> CONSTANT_String 55
-; cp[64] (offset 0x27b) -> CONSTANT_Utf8 "Z"
-; cp[65] (offset 0x284) -> CONSTANT_Utf8 "charge"
-; cp[66] (offset 0x28c) -> CONSTANT_Utf8 "leave"
-; cp[67] (offset 0x28f) -> CONSTANT_String 122
-; cp[68] (offset 0x296) -> CONSTANT_Utf8 "rand"
-; cp[69] (offset 0x29b) -> CONSTANT_Integer 100
-; cp[70] (offset 0x2a4) -> CONSTANT_Utf8 "target"
-; cp[71] (offset 0x2a7) -> CONSTANT_String 105
-; cp[72] (offset 0x2db) -> CONSTANT_Utf8 "Your attack failed. But you managed to dodge the "
-; cp[73] (offset 0x2df) -> CONSTANT_Utf8 "O"
-; cp[74] (offset 0x2e6) -> CONSTANT_Utf8 "hunt"
-; cp[75] (offset 0x2eb) -> CONSTANT_NameAndType 120, 94
-; cp[76] (offset 0x2f0) -> CONSTANT_Methodref 101, 47
-; cp[77] (offset 0x2f9) -> CONSTANT_Utf8 "attack"
-; cp[78] (offset 0x301) -> CONSTANT_Utf8 "puppy"
-; cp[79] (offset 0x306) -> CONSTANT_Integer 60
-; cp[80] (offset 0x30b) -> CONSTANT_Methodref 110, 5
-; cp[81] (offset 0x310) -> CONSTANT_Methodref 101, 40
-; cp[82] (offset 0x315) -> CONSTANT_Methodref 1, 86
-; cp[83] (offset 0x31b) -> CONSTANT_Utf8 "()V"
-; cp[84] (offset 0x34c) -> CONSTANT_Utf8 " was startled by your indecision. It ran away."
-; cp[85] (offset 0x357) -> CONSTANT_Utf8 "interact"
-; cp[86] (offset 0x35c) -> CONSTANT_NameAndType 68, 88
-; cp[87] (offset 0x370) -> CONSTANT_Utf8 "performBaseAction"
-; cp[88] (offset 0x377) -> CONSTANT_Utf8 "(I)I"
-; cp[89] (offset 0x37a) -> CONSTANT_String 58
-; cp[90] (offset 0x389) -> CONSTANT_Utf8 "You monster!"
-; cp[91] (offset 0x3ae) -> CONSTANT_Utf8 "'s attack and avoid taking damage."
-; cp[92] (offset 0x3b6) -> CONSTANT_Utf8 "swing"
-; cp[93] (offset 0x3b9) -> CONSTANT_Class 20
-; cp[94] (offset 0x3e2) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
-; cp[95] (offset 0x3e5) -> CONSTANT_String 49
-; cp[96] (offset 0x3e8) -> CONSTANT_String 46
-; cp[97] (offset 0x3eb) -> CONSTANT_String 65
-; cp[98] (offset 0x3f0) -> CONSTANT_NameAndType 70, 3
-; cp[99] (offset 0x3f8) -> CONSTANT_Utf8 "fight"
-; cp[100] (offset 0x40a) -> CONSTANT_Utf8 "joos/lib/JoosIO"
-; cp[101] (offset 0x40d) -> CONSTANT_Class 115
-; cp[102] (offset 0x41d) -> CONSTANT_Utf8 "performAction"
-; cp[103] (offset 0x420) -> CONSTANT_String 123
-; cp[104] (offset 0x425) -> CONSTANT_Fieldref 93, 98
-; cp[105] (offset 0x431) -> CONSTANT_Utf8 " appears!"
-; cp[106] (offset 0x437) -> CONSTANT_Utf8 "run"
-; cp[107] (offset 0x43e) -> CONSTANT_Utf8 "grab"
-; cp[108] (offset 0x441) -> CONSTANT_String 77
-; cp[109] (offset 0x446) -> CONSTANT_NameAndType 6, 83
-; cp[110] (offset 0x449) -> CONSTANT_Class 100
-; cp[111] (offset 0x450) -> CONSTANT_Utf8 "kick"
-; cp[112] (offset 0x459) -> CONSTANT_Utf8 "strike"
-; cp[113] (offset 0x46d) -> CONSTANT_Utf8 " is already dead."
-; cp[114] (offset 0x475) -> CONSTANT_Utf8 "punch"
-; cp[115] (offset 0x488) -> CONSTANT_Utf8 "java/lang/String"
-; cp[116] (offset 0x49d) -> CONSTANT_Utf8 " left you wounded."
-; cp[117] (offset 0x4a6) -> CONSTANT_Utf8 "escape"
-; cp[118] (offset 0x4a9) -> CONSTANT_String 12
-; cp[119] (offset 0x4bc) -> CONSTANT_Utf8 "HuntRoomAction.j"
-; cp[120] (offset 0x4c5) -> CONSTANT_Utf8 "concat"
-; cp[121] (offset 0x4cc) -> CONSTANT_Utf8 "hurt"
-; cp[122] (offset 0x4d4) -> CONSTANT_Utf8 "shoot"
-; cp[123] (offset 0x4de) -> CONSTANT_Utf8 "A wild "
-; cp[124] (offset 0x4e1) -> CONSTANT_String 38
-; cp[125] (offset 0x4e4) -> CONSTANT_String 85
-; cp[126] (offset 0x4e7) -> CONSTANT_String 106
-; cp[127] (offset 0x4ea) -> CONSTANT_String 72
-; cp[128] (offset 0x4ed) -> CONSTANT_String 113
-; cp[129] (offset 0x4f0) -> CONSTANT_String 74
+; constant pool count 138
+; cp[1] (offset 0xd) -> CONSTANT_String 123
+; cp[2] (offset 0x10) -> CONSTANT_String 35
+; cp[3] (offset 0x13) -> CONSTANT_Class 48
+; cp[4] (offset 0x18) -> CONSTANT_Fieldref 100, 46
+; cp[5] (offset 0x2d) -> CONSTANT_Utf8 "Ljava/lang/String;"
+; cp[6] (offset 0x3a) -> CONSTANT_Utf8 "SourceFile"
+; cp[7] (offset 0x3f) -> CONSTANT_NameAndType 27, 39
+; cp[8] (offset 0x48) -> CONSTANT_Utf8 "<init>"
+; cp[9] (offset 0x4d) -> CONSTANT_NameAndType 94, 51
+; cp[10] (offset 0x53) -> CONSTANT_Utf8 "hit"
+; cp[11] (offset 0x61) -> CONSTANT_Utf8 "fierce ogre"
+; cp[12] (offset 0x64) -> CONSTANT_String 97
+; cp[13] (offset 0x6a) -> CONSTANT_Utf8 "ram"
+; cp[14] (offset 0x71) -> CONSTANT_Utf8 "null"
+; cp[15] (offset 0x8a) -> CONSTANT_Utf8 "Your attack succeeded!"
+; cp[16] (offset 0x8d) -> CONSTANT_String 119
+; cp[17] (offset 0x92) -> CONSTANT_NameAndType 80, 18
+; cp[18] (offset 0xa6) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
+; cp[19] (offset 0xab) -> CONSTANT_Integer 90
+; cp[20] (offset 0xb5) -> CONSTANT_Utf8 "indexOf"
+; cp[21] (offset 0xb8) -> CONSTANT_String 125
+; cp[22] (offset 0xbd) -> CONSTANT_Methodref 3, 116
+; cp[23] (offset 0xce) -> CONSTANT_Utf8 "HuntRoomAction"
+; cp[24] (offset 0xd3) -> CONSTANT_Methodref 3, 9
+; cp[25] (offset 0xd6) -> CONSTANT_String 124
+; cp[26] (offset 0xe1) -> CONSTANT_Utf8 "describe"
+; cp[27] (offset 0xeb) -> CONSTANT_Utf8 "println"
+; cp[28] (offset 0xee) -> CONSTANT_String 98
+; cp[29] (offset 0xf1) -> CONSTANT_String 72
+; cp[30] (offset 0xf4) -> CONSTANT_String 10
+; cp[31] (offset 0xf7) -> CONSTANT_String 13
+; cp[32] (offset 0xfa) -> CONSTANT_String 91
+; cp[33] (offset 0x112) -> CONSTANT_Utf8 "(Ljava/lang/Object;)Z"
+; cp[34] (offset 0x115) -> CONSTANT_String 87
+; cp[35] (offset 0x122) -> CONSTANT_Utf8 "dark demon"
+; cp[36] (offset 0x125) -> CONSTANT_String 11
+; cp[37] (offset 0x12a) -> CONSTANT_Integer 8
+; cp[38] (offset 0x12d) -> CONSTANT_String 114
+; cp[39] (offset 0x145) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[40] (offset 0x148) -> CONSTANT_String 118
+; cp[41] (offset 0x14b) -> CONSTANT_String 62
+; cp[42] (offset 0x150) -> CONSTANT_Integer 80
+; cp[43] (offset 0x187) -> CONSTANT_Utf8 "You rip out the heart of your prey and takes a bite."
+; cp[44] (offset 0x190) -> CONSTANT_Utf8 "equals"
+; cp[45] (offset 0x195) -> CONSTANT_NameAndType 20, 54
+; cp[46] (offset 0x19a) -> CONSTANT_NameAndType 50, 70
+; cp[47] (offset 0x19d) -> CONSTANT_String 129
+; cp[48] (offset 0x1aa) -> CONSTANT_Utf8 "RoomAction"
+; cp[49] (offset 0x1b3) -> CONSTANT_Utf8 "rabbit"
+; cp[50] (offset 0x1bb) -> CONSTANT_Utf8 "taken"
+; cp[51] (offset 0x1d3) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[52] (offset 0x1e9) -> CONSTANT_Utf8 "You feel energized."
+; cp[53] (offset 0x1ee) -> CONSTANT_NameAndType 44, 33
+; cp[54] (offset 0x207) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[55] (offset 0x20e) -> CONSTANT_Utf8 "The "
+; cp[56] (offset 0x211) -> CONSTANT_String 99
+; cp[57] (offset 0x216) -> CONSTANT_Methodref 108, 82
+; cp[58] (offset 0x219) -> CONSTANT_String 106
+; cp[59] (offset 0x22d) -> CONSTANT_Utf8 "The carcass of a "
+; cp[60] (offset 0x232) -> CONSTANT_Integer 10
+; cp[61] (offset 0x245) -> CONSTANT_Utf8 "Which direction?"
+; cp[62] (offset 0x278) -> CONSTANT_Utf8 "Your attack failed. The counter attack from the "
+; cp[63] (offset 0x27b) -> CONSTANT_String 121
+; cp[64] (offset 0x282) -> CONSTANT_Utf8 "Code"
+; cp[65] (offset 0x296) -> CONSTANT_Utf8 " lies before you."
+; cp[66] (offset 0x29b) -> CONSTANT_Fieldref 3, 17
+; cp[67] (offset 0x29e) -> CONSTANT_String 14
+; cp[68] (offset 0x2a1) -> CONSTANT_String 59
+; cp[69] (offset 0x2a4) -> CONSTANT_String 61
+; cp[70] (offset 0x2a8) -> CONSTANT_Utf8 "Z"
+; cp[71] (offset 0x2b1) -> CONSTANT_Utf8 "charge"
+; cp[72] (offset 0x2b9) -> CONSTANT_Utf8 "leave"
+; cp[73] (offset 0x2bc) -> CONSTANT_String 130
+; cp[74] (offset 0x2c3) -> CONSTANT_Utf8 "rand"
+; cp[75] (offset 0x2c8) -> CONSTANT_Integer 100
+; cp[76] (offset 0x2d1) -> CONSTANT_Utf8 "target"
+; cp[77] (offset 0x2d4) -> CONSTANT_String 112
+; cp[78] (offset 0x308) -> CONSTANT_Utf8 "Your attack failed. But you managed to dodge the "
+; cp[79] (offset 0x30b) -> CONSTANT_String 49
+; cp[80] (offset 0x30f) -> CONSTANT_Utf8 "O"
+; cp[81] (offset 0x316) -> CONSTANT_Utf8 "hunt"
+; cp[82] (offset 0x31b) -> CONSTANT_NameAndType 128, 101
+; cp[83] (offset 0x320) -> CONSTANT_Methodref 108, 53
+; cp[84] (offset 0x329) -> CONSTANT_Utf8 "attack"
+; cp[85] (offset 0x32e) -> CONSTANT_Integer 60
+; cp[86] (offset 0x333) -> CONSTANT_Methodref 117, 7
+; cp[87] (offset 0x33b) -> CONSTANT_Utf8 "puppy"
+; cp[88] (offset 0x340) -> CONSTANT_Methodref 108, 45
+; cp[89] (offset 0x345) -> CONSTANT_Methodref 3, 93
+; cp[90] (offset 0x34b) -> CONSTANT_Utf8 "()V"
+; cp[91] (offset 0x37c) -> CONSTANT_Utf8 " was startled by your indecision. It ran away."
+; cp[92] (offset 0x387) -> CONSTANT_Utf8 "interact"
+; cp[93] (offset 0x38c) -> CONSTANT_NameAndType 74, 95
+; cp[94] (offset 0x3a0) -> CONSTANT_Utf8 "performBaseAction"
+; cp[95] (offset 0x3a7) -> CONSTANT_Utf8 "(I)I"
+; cp[96] (offset 0x3aa) -> CONSTANT_String 65
+; cp[97] (offset 0x3b9) -> CONSTANT_Utf8 "You monster!"
+; cp[98] (offset 0x3de) -> CONSTANT_Utf8 "'s attack and avoid taking damage."
+; cp[99] (offset 0x3e6) -> CONSTANT_Utf8 "swing"
+; cp[100] (offset 0x3e9) -> CONSTANT_Class 23
+; cp[101] (offset 0x412) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
+; cp[102] (offset 0x415) -> CONSTANT_String 55
+; cp[103] (offset 0x418) -> CONSTANT_String 52
+; cp[104] (offset 0x41b) -> CONSTANT_String 71
+; cp[105] (offset 0x420) -> CONSTANT_NameAndType 76, 5
+; cp[106] (offset 0x428) -> CONSTANT_Utf8 "fight"
+; cp[107] (offset 0x43a) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[108] (offset 0x43d) -> CONSTANT_Class 122
+; cp[109] (offset 0x44d) -> CONSTANT_Utf8 "performAction"
+; cp[110] (offset 0x450) -> CONSTANT_String 131
+; cp[111] (offset 0x455) -> CONSTANT_Fieldref 100, 105
+; cp[112] (offset 0x461) -> CONSTANT_Utf8 " appears!"
+; cp[113] (offset 0x467) -> CONSTANT_Utf8 "run"
+; cp[114] (offset 0x46e) -> CONSTANT_Utf8 "grab"
+; cp[115] (offset 0x471) -> CONSTANT_String 84
+; cp[116] (offset 0x476) -> CONSTANT_NameAndType 8, 90
+; cp[117] (offset 0x479) -> CONSTANT_Class 107
+; cp[118] (offset 0x480) -> CONSTANT_Utf8 "kick"
+; cp[119] (offset 0x489) -> CONSTANT_Utf8 "strike"
+; cp[120] (offset 0x49d) -> CONSTANT_Utf8 " is already dead."
+; cp[121] (offset 0x4a5) -> CONSTANT_Utf8 "punch"
+; cp[122] (offset 0x4b8) -> CONSTANT_Utf8 "java/lang/String"
+; cp[123] (offset 0x4be) -> CONSTANT_Utf8 "wtf"
+; cp[124] (offset 0x4d3) -> CONSTANT_Utf8 " left you wounded."
+; cp[125] (offset 0x4dc) -> CONSTANT_Utf8 "escape"
+; cp[126] (offset 0x4df) -> CONSTANT_String 15
+; cp[127] (offset 0x4f2) -> CONSTANT_Utf8 "HuntRoomAction.j"
+; cp[128] (offset 0x4fb) -> CONSTANT_Utf8 "concat"
+; cp[129] (offset 0x502) -> CONSTANT_Utf8 "hurt"
+; cp[130] (offset 0x50a) -> CONSTANT_Utf8 "shoot"
+; cp[131] (offset 0x514) -> CONSTANT_Utf8 "A wild "
+; cp[132] (offset 0x517) -> CONSTANT_String 43
+; cp[133] (offset 0x51a) -> CONSTANT_String 92
+; cp[134] (offset 0x51d) -> CONSTANT_String 113
+; cp[135] (offset 0x520) -> CONSTANT_String 78
+; cp[136] (offset 0x523) -> CONSTANT_String 120
+; cp[137] (offset 0x526) -> CONSTANT_String 81
 
 ; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
-; this_class index = 93
-; super_class index = 1
+; this_class index = 100
+; super_class index = 3
 
 ; interfaces_count = 0
 
 
 ; fields_count = 2
 
-; fields[0] (offset 0x4fa) :
+; fields[0] (offset 0x530) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 44 (taken)
-;     descriptor_index 64 (Z)
+;     name_index 50 (taken)
+;     descriptor_index 70 (Z)
 ;     attributes_count 0
 
-; fields[1] (offset 0x502) :
+; fields[1] (offset 0x538) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 70 (target)
-;     descriptor_index 3 (Ljava/lang/String;)
+;     name_index 76 (target)
+;     descriptor_index 5 (Ljava/lang/String;)
 ;     attributes_count 0
 
 ; methods_count 3
 
-; methods[0] (offset 0x50c) :
+; methods[0] (offset 0x542) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 6 (<init>)
-;     descriptor_index 83 (()V)
+;     name_index 8 (<init>)
+;     descriptor_index 90 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 57 (Code)
-;         attribute_length 73
+;         name_index 64 (Code)
+;         attribute_length 96
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 61
+;         code_length 84
 ;         code :
 ;                0: aload_0 
-;                1: invokespecial 19 (RoomAction/<init> ()V) 
+;                1: invokespecial 22 (RoomAction/<init> ()V) 
 ;                4: aload_0 
 ;                5: iconst_4 
-;                6: invokevirtual 82 (RoomAction/rand (I)I) 
+;                6: invokevirtual 89 (RoomAction/rand (I)I) 
 ;                9: dup 
 ;               10: istore_1 
 ;               11: iconst_0 
-;               12: if_icmpne 9 
-;               15: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               18: goto 39 
-;               21: iload_1 
-;               22: iconst_1 
-;               23: if_icmpne 9 
-;               26: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               29: goto 28 
-;               32: iload_1 
-;               33: iconst_2 
-;               34: if_icmpne 9 
-;               37: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               40: goto 17 
-;               43: iload_1 
-;               44: iconst_3 
-;               45: if_icmpne 9 
-;               48: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               51: goto 6 
-;               54: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               57: putfield 2 (HuntRoomAction/taken Z) 
-;               60: return 
+;               12: if_icmpne 13 
+;               15: ldc 36 ("fierce ogre") 
+;               17: aload_0 
+;               18: swap 
+;               19: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               22: goto 55 
+;               25: iload_1 
+;               26: iconst_1 
+;               27: if_icmpne 13 
+;               30: ldc 79 ("rabbit") 
+;               32: aload_0 
+;               33: swap 
+;               34: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               37: goto 40 
+;               40: iload_1 
+;               41: iconst_2 
+;               42: if_icmpne 13 
+;               45: ldc 2 ("dark demon") 
+;               47: aload_0 
+;               48: swap 
+;               49: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               52: goto 25 
+;               55: iload_1 
+;               56: iconst_3 
+;               57: if_icmpne 13 
+;               60: ldc 34 ("puppy") 
+;               62: aload_0 
+;               63: swap 
+;               64: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               67: goto 10 
+;               70: ldc 1 ("wtf") 
+;               72: aload_0 
+;               73: swap 
+;               74: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               77: iconst_0 
+;               78: aload_0 
+;               79: swap 
+;               80: putfield 4 (HuntRoomAction/taken Z) 
+;               83: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x563) :
+; methods[1] (offset 0x5b0) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 23 (describe)
-;     descriptor_index 83 (()V)
+;     name_index 26 (describe)
+;     descriptor_index 90 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 57 (Code)
+;         name_index 64 (Code)
 ;         attribute_length 129
 ;         max_stack 4
 ;         max_locals 1
 ;         code_length 117
 ;         code :
 ;                0: aload_0 
-;                1: getfield 2 (HuntRoomAction/taken Z) 
+;                1: getfield 4 (HuntRoomAction/taken Z) 
 ;                4: ifeq 7 
 ;                7: iconst_0 
 ;                8: goto 4 
 ;               11: iconst_1 
 ;               12: ifeq 55 
 ;               15: aload_0 
-;               16: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               19: ldc 103 ("A wild ") 
+;               16: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               19: ldc 110 ("A wild ") 
 ;               21: dup 
 ;               22: ifnonnull 6 
 ;               25: pop 
-;               26: ldc 61 ("null") 
+;               26: ldc 67 ("null") 
 ;               28: aload_0 
-;               29: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               29: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
 ;               32: dup 
 ;               33: ifnonnull 6 
 ;               36: pop 
-;               37: ldc 61 ("null") 
-;               39: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               37: ldc 67 ("null") 
+;               39: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               42: dup 
 ;               43: ifnonnull 6 
 ;               46: pop 
-;               47: ldc 61 ("null") 
-;               49: ldc 71 (" appears!") 
+;               47: ldc 67 ("null") 
+;               49: ldc 77 (" appears!") 
 ;               51: dup 
 ;               52: ifnonnull 6 
 ;               55: pop 
-;               56: ldc 61 ("null") 
-;               58: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               61: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               56: ldc 67 ("null") 
+;               58: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               61: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               64: goto 52 
 ;               67: aload_0 
-;               68: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               71: ldc 62 ("The carcass of a ") 
+;               68: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               71: ldc 68 ("The carcass of a ") 
 ;               73: dup 
 ;               74: ifnonnull 6 
 ;               77: pop 
-;               78: ldc 61 ("null") 
+;               78: ldc 67 ("null") 
 ;               80: aload_0 
-;               81: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               81: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
 ;               84: dup 
 ;               85: ifnonnull 6 
 ;               88: pop 
-;               89: ldc 61 ("null") 
-;               91: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               89: ldc 67 ("null") 
+;               91: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               94: dup 
 ;               95: ifnonnull 6 
 ;               98: pop 
-;               99: ldc 61 ("null") 
-;              101: ldc 89 (" lies before you.") 
+;               99: ldc 67 ("null") 
+;              101: ldc 96 (" lies before you.") 
 ;              103: dup 
 ;              104: ifnonnull 6 
 ;              107: pop 
-;              108: ldc 61 ("null") 
-;              110: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              113: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              108: ldc 67 ("null") 
+;              110: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              113: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              116: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x5f2) :
+; methods[2] (offset 0x63f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 102 (performAction)
-;     descriptor_index 45 ((Ljava/lang/String;)I)
+;     name_index 109 (performAction)
+;     descriptor_index 51 ((Ljava/lang/String;)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 57 (Code)
-;         attribute_length 725
+;         name_index 64 (Code)
+;         attribute_length 732
 ;         max_stack 4
 ;         max_locals 2
-;         code_length 713
+;         code_length 720
 ;         code :
 ;                0: aload_1 
-;                1: ldc 13 ("strike") 
+;                1: ldc 16 ("strike") 
 ;                3: iconst_0 
-;                4: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                4: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;                7: iconst_0 
 ;                8: if_icmpge 7 
 ;               11: iconst_0 
@@ -300,9 +326,9 @@
 ;               17: ifne 20 
 ;               20: pop 
 ;               21: aload_1 
-;               22: ldc 108 ("attack") 
+;               22: ldc 115 ("attack") 
 ;               24: iconst_0 
-;               25: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               25: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               28: iconst_0 
 ;               29: if_icmpge 7 
 ;               32: iconst_0 
@@ -312,9 +338,9 @@
 ;               38: ifne 20 
 ;               41: pop 
 ;               42: aload_1 
-;               43: ldc 129 ("hunt") 
+;               43: ldc 137 ("hunt") 
 ;               45: iconst_0 
-;               46: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               46: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               49: iconst_0 
 ;               50: if_icmpge 7 
 ;               53: iconst_0 
@@ -324,9 +350,9 @@
 ;               59: ifne 20 
 ;               62: pop 
 ;               63: aload_1 
-;               64: ldc 125 ("interact") 
+;               64: ldc 133 ("interact") 
 ;               66: iconst_0 
-;               67: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               67: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               70: iconst_0 
 ;               71: if_icmpge 7 
 ;               74: iconst_0 
@@ -336,9 +362,9 @@
 ;               80: ifne 20 
 ;               83: pop 
 ;               84: aload_1 
-;               85: ldc 67 ("shoot") 
+;               85: ldc 73 ("shoot") 
 ;               87: iconst_0 
-;               88: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               88: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               91: iconst_0 
 ;               92: if_icmpge 7 
 ;               95: iconst_0 
@@ -348,9 +374,9 @@
 ;              101: ifne 20 
 ;              104: pop 
 ;              105: aload_1 
-;              106: ldc 27 ("hit") 
+;              106: ldc 30 ("hit") 
 ;              108: iconst_0 
-;              109: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              109: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              112: iconst_0 
 ;              113: if_icmpge 7 
 ;              116: iconst_0 
@@ -360,9 +386,9 @@
 ;              122: ifne 20 
 ;              125: pop 
 ;              126: aload_1 
-;              127: ldc 28 ("ram") 
+;              127: ldc 31 ("ram") 
 ;              129: iconst_0 
-;              130: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              130: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              133: iconst_0 
 ;              134: if_icmpge 7 
 ;              137: iconst_0 
@@ -372,9 +398,9 @@
 ;              143: ifne 20 
 ;              146: pop 
 ;              147: aload_1 
-;              148: ldc 97 ("charge") 
+;              148: ldc 104 ("charge") 
 ;              150: iconst_0 
-;              151: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              151: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              154: iconst_0 
 ;              155: if_icmpge 7 
 ;              158: iconst_0 
@@ -384,9 +410,9 @@
 ;              164: ifne 20 
 ;              167: pop 
 ;              168: aload_1 
-;              169: ldc 59 ("punch") 
+;              169: ldc 63 ("punch") 
 ;              171: iconst_0 
-;              172: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              172: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              175: iconst_0 
 ;              176: if_icmpge 7 
 ;              179: iconst_0 
@@ -396,9 +422,9 @@
 ;              185: ifne 20 
 ;              188: pop 
 ;              189: aload_1 
-;              190: ldc 52 ("fight") 
+;              190: ldc 58 ("fight") 
 ;              192: iconst_0 
-;              193: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              193: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              196: iconst_0 
 ;              197: if_icmpge 7 
 ;              200: iconst_0 
@@ -408,9 +434,9 @@
 ;              206: ifne 20 
 ;              209: pop 
 ;              210: aload_1 
-;              211: ldc 35 ("kick") 
+;              211: ldc 40 ("kick") 
 ;              213: iconst_0 
-;              214: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              214: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              217: iconst_0 
 ;              218: if_icmpge 7 
 ;              221: iconst_0 
@@ -420,9 +446,9 @@
 ;              227: ifne 20 
 ;              230: pop 
 ;              231: aload_1 
-;              232: ldc 33 ("grab") 
+;              232: ldc 38 ("grab") 
 ;              234: iconst_0 
-;              235: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              235: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              238: iconst_0 
 ;              239: if_icmpge 7 
 ;              242: iconst_0 
@@ -432,9 +458,9 @@
 ;              248: ifne 20 
 ;              251: pop 
 ;              252: aload_1 
-;              253: ldc 50 ("swing") 
+;              253: ldc 56 ("swing") 
 ;              255: iconst_0 
-;              256: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              256: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              259: iconst_0 
 ;              260: if_icmpge 7 
 ;              263: iconst_0 
@@ -444,227 +470,234 @@
 ;              269: ifne 20 
 ;              272: pop 
 ;              273: aload_1 
-;              274: ldc 42 ("hurt") 
+;              274: ldc 47 ("hurt") 
 ;              276: iconst_0 
-;              277: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              277: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              280: iconst_0 
 ;              281: if_icmpge 7 
 ;              284: iconst_0 
 ;              285: goto 4 
 ;              288: iconst_1 
-;              289: ifeq 255 
+;              289: ifeq 258 
 ;              292: aload_0 
-;              293: getfield 2 (HuntRoomAction/taken Z) 
+;              293: getfield 4 (HuntRoomAction/taken Z) 
 ;              296: ifeq 57 
 ;              299: aload_0 
-;              300: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              303: ldc 95 ("The ") 
+;              300: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              303: ldc 102 ("The ") 
 ;              305: dup 
 ;              306: ifnonnull 6 
 ;              309: pop 
-;              310: ldc 61 ("null") 
+;              310: ldc 67 ("null") 
 ;              312: aload_0 
-;              313: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;              313: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
 ;              316: dup 
 ;              317: ifnonnull 6 
 ;              320: pop 
-;              321: ldc 61 ("null") 
-;              323: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              321: ldc 67 ("null") 
+;              323: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              326: dup 
 ;              327: ifnonnull 6 
 ;              330: pop 
-;              331: ldc 61 ("null") 
-;              333: ldc 128 (" is already dead.") 
+;              331: ldc 67 ("null") 
+;              333: ldc 136 (" is already dead.") 
 ;              335: dup 
 ;              336: ifnonnull 6 
 ;              339: pop 
-;              340: ldc 61 ("null") 
-;              342: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              345: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              340: ldc 67 ("null") 
+;              342: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              345: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              348: iconst_0 
 ;              349: ireturn 
-;              350: goto 363 
+;              350: goto 369 
 ;              353: aload_0 
-;              354: ldc 69 (100) 
-;              356: invokevirtual 82 (RoomAction/rand (I)I) 
-;              359: ldc 79 (60) 
-;              361: if_icmple 63 
+;              354: ldc 75 (100) 
+;              356: invokevirtual 89 (RoomAction/rand (I)I) 
+;              359: ldc 85 (60) 
+;              361: if_icmple 66 
 ;              364: aload_0 
-;              365: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              368: ldc 118 ("Your attack succeeded!") 
-;              370: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              365: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              368: ldc 126 ("Your attack succeeded!") 
+;              370: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              373: aload_0 
-;              374: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              377: ldc 124 ("You rip out the heart of your prey and takes a bite.") 
-;              379: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              374: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              377: ldc 132 ("You rip out the heart of your prey and takes a bite.") 
+;              379: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              382: aload_0 
-;              383: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;              386: ldc 31 ("puppy") 
-;              388: invokevirtual 76 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              383: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;              386: ldc 34 ("puppy") 
+;              388: invokevirtual 83 (java/lang/String/equals (Ljava/lang/Object;)Z) 
 ;              391: ifeq 15 
 ;              394: aload_0 
-;              395: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              398: ldc 9 ("You monster!") 
-;              400: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              395: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              398: ldc 12 ("You monster!") 
+;              400: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              403: goto 12 
 ;              406: aload_0 
-;              407: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              410: ldc 96 ("You feel energized.") 
-;              412: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              415: putfield 2 (HuntRoomAction/taken Z) 
-;              418: ldc 32 (8) 
-;              420: ireturn 
-;              421: goto 292 
-;              424: aload_0 
-;              425: ldc 69 (100) 
-;              427: invokevirtual 82 (RoomAction/rand (I)I) 
-;              430: ldc 37 (80) 
-;              432: if_icmple 57 
-;              435: aload_0 
-;              436: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              439: ldc 127 ("Your attack failed. But you managed to dodge the ") 
-;              441: dup 
-;              442: ifnonnull 6 
-;              445: pop 
-;              446: ldc 61 ("null") 
-;              448: aload_0 
-;              449: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;              452: dup 
-;              453: ifnonnull 6 
-;              456: pop 
-;              457: ldc 61 ("null") 
-;              459: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              462: dup 
-;              463: ifnonnull 6 
-;              466: pop 
-;              467: ldc 61 ("null") 
-;              469: ldc 25 ("'s attack and avoid taking damage.") 
-;              471: dup 
-;              472: ifnonnull 6 
-;              475: pop 
-;              476: ldc 61 ("null") 
-;              478: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              481: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              484: iconst_0 
-;              485: ireturn 
-;              486: goto 227 
-;              489: aload_0 
-;              490: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              493: ldc 36 ("Your attack failed. The counter attack from the ") 
-;              495: dup 
-;              496: ifnonnull 6 
-;              499: pop 
-;              500: ldc 61 ("null") 
-;              502: aload_0 
-;              503: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;              506: dup 
-;              507: ifnonnull 6 
-;              510: pop 
-;              511: ldc 61 ("null") 
-;              513: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              516: dup 
-;              517: ifnonnull 6 
-;              520: pop 
-;              521: ldc 61 ("null") 
-;              523: ldc 22 (" left you wounded.") 
-;              525: dup 
-;              526: ifnonnull 6 
-;              529: pop 
-;              530: ldc 61 ("null") 
-;              532: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              535: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              538: ldc 54 (10) 
-;              540: ireturn 
-;              541: goto 172 
-;              544: aload_1 
-;              545: ldc 126 ("run") 
-;              547: iconst_0 
-;              548: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              551: iconst_0 
-;              552: if_icmpge 7 
-;              555: iconst_0 
-;              556: goto 4 
-;              559: iconst_1 
-;              560: dup 
-;              561: ifne 20 
-;              564: pop 
-;              565: aload_1 
-;              566: ldc 18 ("escape") 
-;              568: iconst_0 
-;              569: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              572: iconst_0 
-;              573: if_icmpge 7 
-;              576: iconst_0 
-;              577: goto 4 
-;              580: iconst_1 
-;              581: dup 
-;              582: ifne 20 
-;              585: pop 
-;              586: aload_1 
-;              587: ldc 26 ("leave") 
-;              589: iconst_0 
-;              590: invokevirtual 81 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              593: iconst_0 
-;              594: if_icmpge 7 
-;              597: iconst_0 
-;              598: goto 4 
-;              601: iconst_1 
-;              602: ifeq 105 
-;              605: aload_0 
-;              606: ldc 69 (100) 
-;              608: invokevirtual 82 (RoomAction/rand (I)I) 
-;              611: ldc 16 (90) 
-;              613: if_icmpgt 7 
-;              616: iconst_0 
-;              617: goto 4 
-;              620: iconst_1 
-;              621: dup 
-;              622: ifeq 16 
-;              625: pop 
-;              626: aload_0 
-;              627: getfield 2 (HuntRoomAction/taken Z) 
-;              630: ifeq 7 
-;              633: iconst_0 
-;              634: goto 4 
-;              637: iconst_1 
-;              638: ifeq 55 
-;              641: aload_0 
-;              642: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              645: ldc 95 ("The ") 
-;              647: dup 
-;              648: ifnonnull 6 
-;              651: pop 
-;              652: ldc 61 ("null") 
-;              654: aload_0 
-;              655: getfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;              658: dup 
-;              659: ifnonnull 6 
-;              662: pop 
-;              663: ldc 61 ("null") 
-;              665: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              668: dup 
-;              669: ifnonnull 6 
-;              672: pop 
-;              673: ldc 61 ("null") 
-;              675: ldc 29 (" was startled by your indecision. It ran away.") 
-;              677: dup 
-;              678: ifnonnull 6 
-;              681: pop 
-;              682: ldc 61 ("null") 
-;              684: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              687: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              690: putfield 2 (HuntRoomAction/taken Z) 
-;              693: aload_0 
-;              694: getfield 60 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              697: ldc 63 ("Which direction?") 
-;              699: invokevirtual 80 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              702: iconst_0 
-;              703: ireturn 
-;              704: goto 9 
-;              707: aload_0 
-;              708: aload_1 
-;              709: invokevirtual 21 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              712: ireturn 
+;              407: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              410: ldc 103 ("You feel energized.") 
+;              412: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              415: iconst_1 
+;              416: aload_0 
+;              417: swap 
+;              418: putfield 4 (HuntRoomAction/taken Z) 
+;              421: ldc 37 (8) 
+;              423: ireturn 
+;              424: goto 295 
+;              427: aload_0 
+;              428: ldc 75 (100) 
+;              430: invokevirtual 89 (RoomAction/rand (I)I) 
+;              433: ldc 42 (80) 
+;              435: if_icmple 57 
+;              438: aload_0 
+;              439: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              442: ldc 135 ("Your attack failed. But you managed to dodge the ") 
+;              444: dup 
+;              445: ifnonnull 6 
+;              448: pop 
+;              449: ldc 67 ("null") 
+;              451: aload_0 
+;              452: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;              455: dup 
+;              456: ifnonnull 6 
+;              459: pop 
+;              460: ldc 67 ("null") 
+;              462: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              465: dup 
+;              466: ifnonnull 6 
+;              469: pop 
+;              470: ldc 67 ("null") 
+;              472: ldc 28 ("'s attack and avoid taking damage.") 
+;              474: dup 
+;              475: ifnonnull 6 
+;              478: pop 
+;              479: ldc 67 ("null") 
+;              481: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              484: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              487: iconst_0 
+;              488: ireturn 
+;              489: goto 230 
+;              492: aload_0 
+;              493: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              496: ldc 41 ("Your attack failed. The counter attack from the ") 
+;              498: dup 
+;              499: ifnonnull 6 
+;              502: pop 
+;              503: ldc 67 ("null") 
+;              505: aload_0 
+;              506: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;              509: dup 
+;              510: ifnonnull 6 
+;              513: pop 
+;              514: ldc 67 ("null") 
+;              516: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              519: dup 
+;              520: ifnonnull 6 
+;              523: pop 
+;              524: ldc 67 ("null") 
+;              526: ldc 25 (" left you wounded.") 
+;              528: dup 
+;              529: ifnonnull 6 
+;              532: pop 
+;              533: ldc 67 ("null") 
+;              535: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              538: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              541: ldc 60 (10) 
+;              543: ireturn 
+;              544: goto 175 
+;              547: aload_1 
+;              548: ldc 134 ("run") 
+;              550: iconst_0 
+;              551: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              554: iconst_0 
+;              555: if_icmpge 7 
+;              558: iconst_0 
+;              559: goto 4 
+;              562: iconst_1 
+;              563: dup 
+;              564: ifne 20 
+;              567: pop 
+;              568: aload_1 
+;              569: ldc 21 ("escape") 
+;              571: iconst_0 
+;              572: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              575: iconst_0 
+;              576: if_icmpge 7 
+;              579: iconst_0 
+;              580: goto 4 
+;              583: iconst_1 
+;              584: dup 
+;              585: ifne 20 
+;              588: pop 
+;              589: aload_1 
+;              590: ldc 29 ("leave") 
+;              592: iconst_0 
+;              593: invokevirtual 88 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              596: iconst_0 
+;              597: if_icmpge 7 
+;              600: iconst_0 
+;              601: goto 4 
+;              604: iconst_1 
+;              605: ifeq 108 
+;              608: aload_0 
+;              609: ldc 75 (100) 
+;              611: invokevirtual 89 (RoomAction/rand (I)I) 
+;              614: ldc 19 (90) 
+;              616: if_icmpgt 7 
+;              619: iconst_0 
+;              620: goto 4 
+;              623: iconst_1 
+;              624: dup 
+;              625: ifeq 16 
+;              628: pop 
+;              629: aload_0 
+;              630: getfield 4 (HuntRoomAction/taken Z) 
+;              633: ifeq 7 
+;              636: iconst_0 
+;              637: goto 4 
+;              640: iconst_1 
+;              641: ifeq 58 
+;              644: aload_0 
+;              645: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              648: ldc 102 ("The ") 
+;              650: dup 
+;              651: ifnonnull 6 
+;              654: pop 
+;              655: ldc 67 ("null") 
+;              657: aload_0 
+;              658: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;              661: dup 
+;              662: ifnonnull 6 
+;              665: pop 
+;              666: ldc 67 ("null") 
+;              668: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              671: dup 
+;              672: ifnonnull 6 
+;              675: pop 
+;              676: ldc 67 ("null") 
+;              678: ldc 32 (" was startled by your indecision. It ran away.") 
+;              680: dup 
+;              681: ifnonnull 6 
+;              684: pop 
+;              685: ldc 67 ("null") 
+;              687: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              690: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              693: iconst_1 
+;              694: aload_0 
+;              695: swap 
+;              696: putfield 4 (HuntRoomAction/taken Z) 
+;              699: aload_0 
+;              700: getfield 66 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              703: ldc 69 ("Which direction?") 
+;              705: invokevirtual 86 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              708: iconst_0 
+;              709: ireturn 
+;              710: goto 9 
+;              713: aload_0 
+;              714: aload_1 
+;              715: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              718: ireturn 
+;              719: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -672,9 +705,9 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x8d7) :
-;     name_index 4 (SourceFile)
+; class_attributes[0] (offset 0x92b) :
+;     name_index 6 (SourceFile)
 ;     attribute_length 2
-;     sourcefile_index 119
+;     sourcefile_index 127
 
 ; End of file reached successfully. Enjoy :)

@@ -246,10 +246,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 498
+;         attribute_length 510
 ;         max_stack 5
 ;         max_locals 6
-;         code_length 486
+;         code_length 498
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 58 (java/lang/Object/<init> ()V) 
@@ -281,233 +281,245 @@
 ;               42: putfield 60 (Room/east LRoom;) 
 ;               45: iload_3 
 ;               46: iconst_0 
-;               47: if_icmple 171 
+;               47: if_icmple 183 
 ;               50: aload_2 
 ;               51: ldc 92 ("south") 
 ;               53: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               56: ifeq 9 
-;               59: putfield 20 (Room/north LRoom;) 
-;               62: goto 30 
-;               65: aload_0 
-;               66: ldc 50 (10) 
-;               68: invokevirtual 2 (Room/randomRange (I)I) 
-;               71: iload_3 
-;               72: if_icmpge 20 
-;               75: new 82 (Room) 
-;               78: dup 
-;               79: aload_0 
-;               80: ldc 80 ("north") 
-;               82: iload 5 
-;               84: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
-;               87: aload_0 
-;               88: swap 
-;               89: putfield 20 (Room/north LRoom;) 
-;               92: aload_2 
-;               93: ldc 80 ("north") 
-;               95: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               98: ifeq 9 
-;              101: putfield 96 (Room/south LRoom;) 
-;              104: goto 30 
-;              107: aload_0 
-;              108: ldc 50 (10) 
-;              110: invokevirtual 2 (Room/randomRange (I)I) 
-;              113: iload_3 
-;              114: if_icmpge 20 
-;              117: new 82 (Room) 
-;              120: dup 
-;              121: aload_0 
-;              122: ldc 92 ("south") 
-;              124: iload 5 
-;              126: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
-;              129: aload_0 
-;              130: swap 
-;              131: putfield 96 (Room/south LRoom;) 
-;              134: aload_2 
-;              135: ldc 113 ("west") 
-;              137: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              140: ifeq 9 
-;              143: putfield 60 (Room/east LRoom;) 
-;              146: goto 30 
-;              149: aload_0 
-;              150: ldc 50 (10) 
-;              152: invokevirtual 2 (Room/randomRange (I)I) 
-;              155: iload_3 
-;              156: if_icmpge 20 
-;              159: new 82 (Room) 
-;              162: dup 
-;              163: aload_0 
-;              164: ldc 137 ("east") 
-;              166: iload 5 
-;              168: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
-;              171: aload_0 
-;              172: swap 
-;              173: putfield 60 (Room/east LRoom;) 
-;              176: aload_2 
-;              177: ldc 137 ("east") 
-;              179: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              182: ifeq 9 
-;              185: putfield 25 (Room/west LRoom;) 
-;              188: goto 30 
-;              191: aload_0 
-;              192: ldc 50 (10) 
-;              194: invokevirtual 2 (Room/randomRange (I)I) 
-;              197: iload_3 
-;              198: if_icmpge 20 
-;              201: new 82 (Room) 
-;              204: dup 
-;              205: aload_0 
-;              206: ldc 113 ("west") 
-;              208: iload 5 
-;              210: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
-;              213: aload_0 
-;              214: swap 
-;              215: putfield 25 (Room/west LRoom;) 
-;              218: aload_0 
-;              219: ldc 105 (100) 
-;              221: invokevirtual 2 (Room/randomRange (I)I) 
-;              224: dup 
-;              225: istore 4 
-;              227: iconst_5 
-;              228: if_icmpge 21 
-;              231: new 102 (GrueRoomAction) 
-;              234: dup 
-;              235: invokespecial 57 (GrueRoomAction/<init> ()V) 
-;              238: aload_0 
-;              239: swap 
-;              240: putfield 100 (Room/action LRoomAction;) 
-;              243: iconst_0 
-;              244: istore 4 
-;              246: goto 228 
-;              249: iload 4 
-;              251: ldc 46 (15) 
-;              253: if_icmpge 21 
-;              256: new 177 (TreasureRoomAction) 
-;              259: dup 
-;              260: invokespecial 30 (TreasureRoomAction/<init> ()V) 
-;              263: aload_0 
-;              264: swap 
-;              265: putfield 100 (Room/action LRoomAction;) 
-;              268: iconst_1 
-;              269: istore 4 
-;              271: goto 203 
-;              274: iload 4 
-;              276: ldc 32 (23) 
-;              278: if_icmpge 21 
-;              281: new 163 (FactorialRoomAction) 
-;              284: dup 
-;              285: invokespecial 93 (FactorialRoomAction/<init> ()V) 
-;              288: aload_0 
-;              289: swap 
-;              290: putfield 100 (Room/action LRoomAction;) 
-;              293: iconst_2 
-;              294: istore 4 
-;              296: goto 178 
-;              299: iload 4 
-;              301: ldc 13 (31) 
-;              303: if_icmpge 21 
-;              306: new 103 (BFRoomAction) 
-;              309: dup 
-;              310: invokespecial 23 (BFRoomAction/<init> ()V) 
-;              313: aload_0 
-;              314: swap 
-;              315: putfield 100 (Room/action LRoomAction;) 
-;              318: iconst_3 
-;              319: istore 4 
-;              321: goto 153 
-;              324: iload 4 
-;              326: ldc 1 (40) 
-;              328: if_icmpge 21 
-;              331: new 181 (JokeRoomAction) 
-;              334: dup 
-;              335: invokespecial 43 (JokeRoomAction/<init> ()V) 
-;              338: aload_0 
-;              339: swap 
-;              340: putfield 100 (Room/action LRoomAction;) 
-;              343: iconst_4 
-;              344: istore 4 
-;              346: goto 128 
-;              349: iload 4 
-;              351: ldc 166 (50) 
-;              353: if_icmpge 21 
-;              356: new 164 (FeastRoomAction) 
-;              359: dup 
-;              360: invokespecial 110 (FeastRoomAction/<init> ()V) 
-;              363: aload_0 
-;              364: swap 
-;              365: putfield 100 (Room/action LRoomAction;) 
-;              368: iconst_5 
-;              369: istore 4 
-;              371: goto 103 
-;              374: iload 4 
-;              376: ldc 152 (62) 
-;              378: if_icmpge 22 
-;              381: new 160 (CoinRoomAction) 
-;              384: dup 
-;              385: invokespecial 10 (CoinRoomAction/<init> ()V) 
-;              388: aload_0 
-;              389: swap 
-;              390: putfield 100 (Room/action LRoomAction;) 
-;              393: ldc 36 (6) 
-;              395: istore 4 
-;              397: goto 77 
-;              400: iload 4 
-;              402: ldc 138 (72) 
-;              404: if_icmpge 22 
-;              407: new 175 (ExitRoomAction) 
-;              410: dup 
-;              411: invokespecial 27 (ExitRoomAction/<init> ()V) 
-;              414: aload_0 
-;              415: swap 
-;              416: putfield 100 (Room/action LRoomAction;) 
-;              419: ldc 35 (7) 
-;              421: istore 4 
-;              423: goto 51 
-;              426: iload 4 
-;              428: ldc 124 (85) 
-;              430: if_icmpge 22 
-;              433: new 66 (HuntRoomAction) 
-;              436: dup 
-;              437: invokespecial 79 (HuntRoomAction/<init> ()V) 
-;              440: aload_0 
-;              441: swap 
-;              442: putfield 100 (Room/action LRoomAction;) 
-;              445: ldc 34 (8) 
-;              447: istore 4 
-;              449: goto 25 
-;              452: new 77 (EmptyRoomAction) 
-;              455: dup 
-;              456: invokespecial 28 (EmptyRoomAction/<init> ()V) 
-;              459: aload_0 
-;              460: swap 
-;              461: putfield 100 (Room/action LRoomAction;) 
-;              464: aload_0 
-;              465: iconst_4 
-;              466: invokevirtual 2 (Room/randomRange (I)I) 
-;              469: ldc 33 (9) 
-;              471: iadd 
-;              472: istore 4 
-;              474: aload_0 
-;              475: iload 4 
-;              477: invokevirtual 41 (Room/generateDescription (I)Ljava/lang/String;) 
-;              480: aload_0 
-;              481: swap 
-;              482: putfield 126 (Room/description Ljava/lang/String;) 
-;              485: return 
+;               56: ifeq 12 
+;               59: aload_1 
+;               60: aload_0 
+;               61: swap 
+;               62: putfield 20 (Room/north LRoom;) 
+;               65: goto 30 
+;               68: aload_0 
+;               69: ldc 50 (10) 
+;               71: invokevirtual 2 (Room/randomRange (I)I) 
+;               74: iload_3 
+;               75: if_icmpge 20 
+;               78: new 82 (Room) 
+;               81: dup 
+;               82: aload_0 
+;               83: ldc 80 ("north") 
+;               85: iload 5 
+;               87: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
+;               90: aload_0 
+;               91: swap 
+;               92: putfield 20 (Room/north LRoom;) 
+;               95: aload_2 
+;               96: ldc 80 ("north") 
+;               98: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              101: ifeq 12 
+;              104: aload_1 
+;              105: aload_0 
+;              106: swap 
+;              107: putfield 96 (Room/south LRoom;) 
+;              110: goto 30 
+;              113: aload_0 
+;              114: ldc 50 (10) 
+;              116: invokevirtual 2 (Room/randomRange (I)I) 
+;              119: iload_3 
+;              120: if_icmpge 20 
+;              123: new 82 (Room) 
+;              126: dup 
+;              127: aload_0 
+;              128: ldc 92 ("south") 
+;              130: iload 5 
+;              132: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
+;              135: aload_0 
+;              136: swap 
+;              137: putfield 96 (Room/south LRoom;) 
+;              140: aload_2 
+;              141: ldc 113 ("west") 
+;              143: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              146: ifeq 12 
+;              149: aload_1 
+;              150: aload_0 
+;              151: swap 
+;              152: putfield 60 (Room/east LRoom;) 
+;              155: goto 30 
+;              158: aload_0 
+;              159: ldc 50 (10) 
+;              161: invokevirtual 2 (Room/randomRange (I)I) 
+;              164: iload_3 
+;              165: if_icmpge 20 
+;              168: new 82 (Room) 
+;              171: dup 
+;              172: aload_0 
+;              173: ldc 137 ("east") 
+;              175: iload 5 
+;              177: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
+;              180: aload_0 
+;              181: swap 
+;              182: putfield 60 (Room/east LRoom;) 
+;              185: aload_2 
+;              186: ldc 137 ("east") 
+;              188: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              191: ifeq 12 
+;              194: aload_1 
+;              195: aload_0 
+;              196: swap 
+;              197: putfield 25 (Room/west LRoom;) 
+;              200: goto 30 
+;              203: aload_0 
+;              204: ldc 50 (10) 
+;              206: invokevirtual 2 (Room/randomRange (I)I) 
+;              209: iload_3 
+;              210: if_icmpge 20 
+;              213: new 82 (Room) 
+;              216: dup 
+;              217: aload_0 
+;              218: ldc 113 ("west") 
+;              220: iload 5 
+;              222: invokespecial 130 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
+;              225: aload_0 
+;              226: swap 
+;              227: putfield 25 (Room/west LRoom;) 
+;              230: aload_0 
+;              231: ldc 105 (100) 
+;              233: invokevirtual 2 (Room/randomRange (I)I) 
+;              236: dup 
+;              237: istore 4 
+;              239: iconst_5 
+;              240: if_icmpge 21 
+;              243: new 102 (GrueRoomAction) 
+;              246: dup 
+;              247: invokespecial 57 (GrueRoomAction/<init> ()V) 
+;              250: aload_0 
+;              251: swap 
+;              252: putfield 100 (Room/action LRoomAction;) 
+;              255: iconst_0 
+;              256: istore 4 
+;              258: goto 228 
+;              261: iload 4 
+;              263: ldc 46 (15) 
+;              265: if_icmpge 21 
+;              268: new 177 (TreasureRoomAction) 
+;              271: dup 
+;              272: invokespecial 30 (TreasureRoomAction/<init> ()V) 
+;              275: aload_0 
+;              276: swap 
+;              277: putfield 100 (Room/action LRoomAction;) 
+;              280: iconst_1 
+;              281: istore 4 
+;              283: goto 203 
+;              286: iload 4 
+;              288: ldc 32 (23) 
+;              290: if_icmpge 21 
+;              293: new 163 (FactorialRoomAction) 
+;              296: dup 
+;              297: invokespecial 93 (FactorialRoomAction/<init> ()V) 
+;              300: aload_0 
+;              301: swap 
+;              302: putfield 100 (Room/action LRoomAction;) 
+;              305: iconst_2 
+;              306: istore 4 
+;              308: goto 178 
+;              311: iload 4 
+;              313: ldc 13 (31) 
+;              315: if_icmpge 21 
+;              318: new 103 (BFRoomAction) 
+;              321: dup 
+;              322: invokespecial 23 (BFRoomAction/<init> ()V) 
+;              325: aload_0 
+;              326: swap 
+;              327: putfield 100 (Room/action LRoomAction;) 
+;              330: iconst_3 
+;              331: istore 4 
+;              333: goto 153 
+;              336: iload 4 
+;              338: ldc 1 (40) 
+;              340: if_icmpge 21 
+;              343: new 181 (JokeRoomAction) 
+;              346: dup 
+;              347: invokespecial 43 (JokeRoomAction/<init> ()V) 
+;              350: aload_0 
+;              351: swap 
+;              352: putfield 100 (Room/action LRoomAction;) 
+;              355: iconst_4 
+;              356: istore 4 
+;              358: goto 128 
+;              361: iload 4 
+;              363: ldc 166 (50) 
+;              365: if_icmpge 21 
+;              368: new 164 (FeastRoomAction) 
+;              371: dup 
+;              372: invokespecial 110 (FeastRoomAction/<init> ()V) 
+;              375: aload_0 
+;              376: swap 
+;              377: putfield 100 (Room/action LRoomAction;) 
+;              380: iconst_5 
+;              381: istore 4 
+;              383: goto 103 
+;              386: iload 4 
+;              388: ldc 152 (62) 
+;              390: if_icmpge 22 
+;              393: new 160 (CoinRoomAction) 
+;              396: dup 
+;              397: invokespecial 10 (CoinRoomAction/<init> ()V) 
+;              400: aload_0 
+;              401: swap 
+;              402: putfield 100 (Room/action LRoomAction;) 
+;              405: ldc 36 (6) 
+;              407: istore 4 
+;              409: goto 77 
+;              412: iload 4 
+;              414: ldc 138 (72) 
+;              416: if_icmpge 22 
+;              419: new 175 (ExitRoomAction) 
+;              422: dup 
+;              423: invokespecial 27 (ExitRoomAction/<init> ()V) 
+;              426: aload_0 
+;              427: swap 
+;              428: putfield 100 (Room/action LRoomAction;) 
+;              431: ldc 35 (7) 
+;              433: istore 4 
+;              435: goto 51 
+;              438: iload 4 
+;              440: ldc 124 (85) 
+;              442: if_icmpge 22 
+;              445: new 66 (HuntRoomAction) 
+;              448: dup 
+;              449: invokespecial 79 (HuntRoomAction/<init> ()V) 
+;              452: aload_0 
+;              453: swap 
+;              454: putfield 100 (Room/action LRoomAction;) 
+;              457: ldc 34 (8) 
+;              459: istore 4 
+;              461: goto 25 
+;              464: new 77 (EmptyRoomAction) 
+;              467: dup 
+;              468: invokespecial 28 (EmptyRoomAction/<init> ()V) 
+;              471: aload_0 
+;              472: swap 
+;              473: putfield 100 (Room/action LRoomAction;) 
+;              476: aload_0 
+;              477: iconst_4 
+;              478: invokevirtual 2 (Room/randomRange (I)I) 
+;              481: ldc 33 (9) 
+;              483: iadd 
+;              484: istore 4 
+;              486: aload_0 
+;              487: iload 4 
+;              489: invokevirtual 41 (Room/generateDescription (I)Ljava/lang/String;) 
+;              492: aload_0 
+;              493: swap 
+;              494: putfield 126 (Room/description Ljava/lang/String;) 
+;              497: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0xf18) :
+; methods[1] (offset 0xf24) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 53 (randomRange)
 ;     descriptor_index 178 ((I)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 37
+;         attribute_length 38
 ;         max_stack 2
 ;         max_locals 4
-;         code_length 25
+;         code_length 26
 ;         code :
 ;                0: new 65 (joos/lib/JoosRandom) 
 ;                3: dup 
@@ -526,11 +538,12 @@
 ;               22: iload_2 
 ;               23: ineg 
 ;               24: ireturn 
+;               25: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xf4b) :
+; methods[2] (offset 0xf58) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 170 (getDescription)
 ;     descriptor_index 15 (()V)
@@ -543,8 +556,8 @@
 ;         code_length 12
 ;         code :
 ;                0: aload_0 
-;                1: dup 
-;                2: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;                1: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;                4: aload_0 
 ;                5: getfield 126 (Room/description Ljava/lang/String;) 
 ;                8: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               11: return 
@@ -552,102 +565,107 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0xf71) :
+; methods[3] (offset 0xf7e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 179 (getNorth)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 17
+;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 5
+;         code_length 6
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 20 (Room/north LRoom;) 
 ;                4: areturn 
+;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0xf90) :
+; methods[4] (offset 0xf9e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 9 (getSouth)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 17
+;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 5
+;         code_length 6
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 96 (Room/south LRoom;) 
 ;                4: areturn 
+;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xfaf) :
+; methods[5] (offset 0xfbe) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 156 (getWest)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 17
+;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 5
+;         code_length 6
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 25 (Room/west LRoom;) 
 ;                4: areturn 
+;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0xfce) :
+; methods[6] (offset 0xfde) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 180 (getEast)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 17
+;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 5
+;         code_length 6
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 60 (Room/east LRoom;) 
 ;                4: areturn 
+;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0xfed) :
+; methods[7] (offset 0xffe) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 154 (getRoomAction)
 ;     descriptor_index 118 (()LRoomAction;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 17
+;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 5
+;         code_length 6
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 100 (Room/action LRoomAction;) 
 ;                4: areturn 
+;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x100c) :
+; methods[8] (offset 0x101e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 55 (enterRoom)
 ;     descriptor_index 15 (()V)
@@ -713,17 +731,17 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x1091) :
+; methods[9] (offset 0x10a3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 52 (generateDescription)
 ;     descriptor_index 24 ((I)Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 165
+;         attribute_length 166
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 153
+;         code_length 154
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_0 
@@ -805,6 +823,7 @@
 ;              147: goto 6 
 ;              150: ldc 153 ("You are in a non-descript room. How did you get here?") 
 ;              152: areturn 
+;              153: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -812,7 +831,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1146) :
+; class_attributes[0] (offset 0x1159) :
 ;     name_index 139 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 73

@@ -124,10 +124,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 62 (Code)
-;         attribute_length 186
+;         attribute_length 187
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 174
+;         code_length 175
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 30 ("use") 
@@ -224,6 +224,7 @@
 ;              169: aload_1 
 ;              170: invokevirtual 54 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
 ;              173: ireturn 
+;              174: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -231,7 +232,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x3b9) :
+; class_attributes[0] (offset 0x3ba) :
 ;     name_index 39 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

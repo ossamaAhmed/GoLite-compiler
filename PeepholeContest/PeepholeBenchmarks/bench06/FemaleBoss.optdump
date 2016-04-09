@@ -118,10 +118,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 421
+;         attribute_length 422
 ;         max_stack 2
 ;         max_locals 5
-;         code_length 409
+;         code_length 410
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 48 (Woman/complementNumber I) 
@@ -326,6 +326,7 @@
 ;              403: goto 6 
 ;              406: ldc 56 ("WTF??") 
 ;              408: areturn 
+;              409: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -333,7 +334,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x668) :
+; class_attributes[0] (offset 0x669) :
 ;     name_index 2 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 70
