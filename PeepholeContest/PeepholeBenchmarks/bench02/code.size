@@ -1,5 +1,5 @@
 rm -rf *.class *.j
-/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 0
@@ -36,6 +36,7 @@ delete_dead_goto_label: 2
 remove_aload_swap: 0
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 2
+remove_string_concat_ifnonnull: 3
 
 Generated: Interpretor.class
 Generated: Main.class
@@ -46,11 +47,11 @@ Interpretor.optdump:;         code_length 38
 Interpretor.optdump:;         code_length 26
 Interpretor.optdump:;         code_length 13
 Interpretor.optdump:;         code_length 8
-Interpretor.optdump:;         code_length 82
+Interpretor.optdump:;         code_length 75
 Interpretor.optdump:;         code_length 42
 Interpretor.optdump:;         code_length 22
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 40
 StringEscapeUtils.optdump:;         code_length 5
 StringEscapeUtils.optdump:;         code_length 43
-StringEscapeUtils.optdump:;         code_length 88
+StringEscapeUtils.optdump:;         code_length 74

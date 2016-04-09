@@ -697,10 +697,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 97
+;         attribute_length 90
 ;         max_stack 4
 ;         max_locals 5
-;         code_length 85
+;         code_length 78
 ;         code :
 ;                0: new 81 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -714,7 +714,7 @@
 ;               16: iload_2 
 ;               17: aload 4 
 ;               19: invokevirtual 195 (java/util/Vector/size ()I) 
-;               22: if_icmpge 62 
+;               22: if_icmpge 55 
 ;               25: iload_2 
 ;               26: iconst_1 
 ;               27: iadd 
@@ -735,20 +735,16 @@
 ;               55: iload_2 
 ;               56: invokevirtual 73 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
 ;               59: invokevirtual 215 (java/lang/Object/toString ()Ljava/lang/String;) 
-;               62: dup 
-;               63: ifnonnull 6 
-;               66: pop 
-;               67: ldc 28 ("null") 
-;               69: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               72: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               75: wide iinc 2 1 
-;               81: goto -65 
-;               84: return 
+;               62: invokespecial 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               65: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               68: wide iinc 2 1 
+;               74: goto -58 
+;               77: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[12] (offset 0xcbc) :
+; methods[12] (offset 0xcb5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 191 (doMove)
 ;     descriptor_index 20 (()V)
@@ -832,7 +828,7 @@
 ;         attributes_count 0
 
 
-; methods[13] (offset 0xd5a) :
+; methods[13] (offset 0xd53) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 225 (getColumnChoice)
 ;     descriptor_index 34 (()I)
@@ -924,7 +920,7 @@
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xe04) :
+; methods[14] (offset 0xdfd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 181 (applyMove)
 ;     descriptor_index 222 ((I)V)
@@ -975,7 +971,7 @@
 ;         attributes_count 0
 
 
-; methods[15] (offset 0xe5f) :
+; methods[15] (offset 0xe58) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 94 (printGameModeMenu)
 ;     descriptor_index 20 (()V)
@@ -999,7 +995,7 @@
 ;         attributes_count 0
 
 
-; methods[16] (offset 0xe88) :
+; methods[16] (offset 0xe81) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 224 (initGameMode)
 ;     descriptor_index 20 (()V)
@@ -1086,7 +1082,7 @@
 ;         attributes_count 0
 
 
-; methods[17] (offset 0xf26) :
+; methods[17] (offset 0xf1f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 30 (play)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -1148,17 +1144,17 @@
 ;         attributes_count 0
 
 
-; methods[18] (offset 0xf99) :
+; methods[18] (offset 0xf92) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 103 (main)
 ;     descriptor_index 163 (([Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 79
+;         attribute_length 72
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 67
+;         code_length 60
 ;         code :
 ;                0: new 81 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -1182,18 +1178,14 @@
 ;               37: aload_1 
 ;               38: ldc 148 ("Stalemate!") 
 ;               40: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               43: goto 23 
+;               43: goto 16 
 ;               46: aload_1 
 ;               47: ldc 209 ("Winner: ") 
 ;               49: aload_3 
 ;               50: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
-;               53: dup 
-;               54: ifnonnull 6 
-;               57: pop 
-;               58: ldc 28 ("null") 
-;               60: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               63: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               66: return 
+;               53: invokespecial 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               56: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               59: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -1201,7 +1193,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xff8) :
+; class_attributes[0] (offset 0xfea) :
 ;     name_index 171 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 58

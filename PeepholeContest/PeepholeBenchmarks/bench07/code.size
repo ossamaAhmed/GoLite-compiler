@@ -1,4 +1,4 @@
-/Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 12
@@ -35,6 +35,7 @@ delete_dead_goto_label: 117
 remove_aload_swap: 4
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 36
+remove_string_concat_ifnonnull: 10
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -72,12 +73,12 @@ FeastRoomAction.optdump:;         code_length 10
 FeastRoomAction.optdump:;         code_length 168
 GrueHunt.optdump:;         code_length 5
 GrueHunt.optdump:;         code_length 14
-GrueHunt.optdump:;         code_length 1039
+GrueHunt.optdump:;         code_length 1011
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 101
 HuntRoomAction.optdump:;         code_length 84
-HuntRoomAction.optdump:;         code_length 81
-HuntRoomAction.optdump:;         code_length 650
+HuntRoomAction.optdump:;         code_length 67
+HuntRoomAction.optdump:;         code_length 622
 InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 179
 InGenerate.optdump:;         code_length 21

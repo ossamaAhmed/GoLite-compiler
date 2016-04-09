@@ -1220,8 +1220,46 @@ int remove_ldc_ifnonnull(CODE **c) {
   return 0;
 }
 
+/*
+  In beanch06/ComplementsGenerator.j
+  There are SEVERAL instances of:
 
+  ... (load 2 strings on operand stack)
+  dup
+  ifnonnull stop_21
+  pop
+  ldc "null"
+  stop_21:
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+  ...
 
+  Virtual calls to java/lang/String/concat can accept NULL values so there is no need to check ifnonull
+  This can be simple replaced by:
+
+  ... (load 2 strings on operand stack)
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  SHRINKS BY 308 !
+
+  ADDED BY MICHAEL
+*/
+
+int remove_string_concat_ifnonnull(CODE **c) {
+  int label1, label2;
+  char *useless, *virtualmethod;
+  if (is_dup(*c) && 
+      is_ifnonnull(next(*c), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(*c))) &&
+      is_ldc_string(next(next(next(*c))), &useless) &&
+      is_label(next(next(next(next(*c)))), &label2) &&
+      label1 == label2 &&
+      is_invokevirtual(next(next(next(next(next(*c))))), &virtualmethod) &&
+      strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
+      return replace(c, 6, makeCODEinvokenonvirtual(virtualmethod, NULL));
+  }
+  return 0;
+}
 
 /*
 #define OPTS 4
@@ -1275,5 +1313,6 @@ int init_patterns()
     ADD_PATTERN(remove_aload_swap);
     ADD_PATTERN(remove_iload_swap);
     ADD_PATTERN(remove_ldc_ifnonnull);
+    ADD_PATTERN(remove_string_concat_ifnonnull);
     return 1;
 }

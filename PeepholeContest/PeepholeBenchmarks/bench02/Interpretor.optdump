@@ -298,10 +298,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 94
-;         max_stack 4
+;         attribute_length 87
+;         max_stack 3
 ;         max_locals 2
-;         code_length 82
+;         code_length 75
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 3 ("CAN") 
@@ -311,7 +311,7 @@
 ;               10: aload_0 
 ;               11: aload_1 
 ;               12: invokevirtual 42 (Interpretor/openMod (Ljava/lang/String;)V) 
-;               15: goto 66 
+;               15: goto 59 
 ;               18: aload_1 
 ;               19: ldc 52 ("VISIBLE") 
 ;               21: iconst_0 
@@ -320,35 +320,31 @@
 ;               28: aload_0 
 ;               29: aload_1 
 ;               30: invokevirtual 58 (Interpretor/visible (Ljava/lang/String;)V) 
-;               33: goto 48 
+;               33: goto 41 
 ;               36: aload_1 
 ;               37: ldc 65 ("KTHXBYE") 
 ;               39: invokevirtual 70 (java/lang/String/equals (Ljava/lang/Object;)Z) 
 ;               42: ifeq 10 
 ;               45: aload_0 
 ;               46: invokevirtual 32 (Interpretor/exit ()V) 
-;               49: goto 32 
+;               49: goto 25 
 ;               52: aload_0 
 ;               53: ldc 83 ("'") 
 ;               55: aload_1 
-;               56: dup 
-;               57: ifnonnull 6 
-;               60: pop 
-;               61: ldc 60 ("null") 
-;               63: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               66: dup 
-;               67: ifnonnull 6 
-;               70: pop 
-;               71: ldc 60 ("null") 
-;               73: ldc 12 ("' can not be recognized") 
-;               75: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               78: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               81: return 
+;               56: invokespecial 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               59: dup 
+;               60: ifnonnull 6 
+;               63: pop 
+;               64: ldc 60 ("null") 
+;               66: ldc 12 ("' can not be recognized") 
+;               68: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               71: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               74: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x56a) :
+; methods[6] (offset 0x563) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (visible)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -386,7 +382,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x5ae) :
+; methods[7] (offset 0x5a7) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (openMod)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -417,7 +413,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x5e0) :
+; class_attributes[0] (offset 0x5d9) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 34
