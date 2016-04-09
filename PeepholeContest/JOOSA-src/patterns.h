@@ -422,6 +422,27 @@ int positive_increment_0(CODE **c)
   return 0;
 }
 
+ /*
+  iload_2
+  iconst_1
+  isub
+  istore_2
+  --------->
+  iinc 2 -1
+  ADDED BY MICHAEL
+*/
+int negative_increment(CODE **c)
+{ int x,y,k;
+  if ( is_iload(*c,&k) &&
+      is_ldc_int(next(*c),&x) &&
+      is_isub(next(next(*c))) &&
+      is_istore(next(next(next(*c))),&y) &&
+      k==y && 0<=x && x<=127) {
+     return replace(c,4,makeCODEiinc(k,x,NULL));
+  }
+  return 0;
+}
+
 /* iload x       
  * ldc 0       
  * iadd          
