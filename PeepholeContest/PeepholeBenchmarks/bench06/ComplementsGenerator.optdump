@@ -234,10 +234,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 1479
+;         attribute_length 1167
 ;         max_stack 2
 ;         max_locals 6
-;         code_length 1467
+;         code_length 1155
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
@@ -257,712 +257,608 @@
 ;               30: aload_0 
 ;               31: getfield 130 (ComplementsGenerator/complementNumber I) 
 ;               34: iconst_0 
-;               35: if_icmpne 156 
+;               35: if_icmpne 120 
 ;               38: ldc 96 ("I love how your hair smells like  a ") 
 ;               40: dup 
-;               41: ifnull 6 
-;               44: goto 6 
-;               47: pop 
-;               48: ldc 21 ("null") 
-;               50: aload_1 
-;               51: dup 
-;               52: ifnull 6 
-;               55: goto 6 
-;               58: pop 
-;               59: ldc 21 ("null") 
-;               61: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               64: dup 
-;               65: ifnull 6 
-;               68: goto 6 
+;               41: ifnonnull 6 
+;               44: pop 
+;               45: ldc 21 ("null") 
+;               47: aload_1 
+;               48: dup 
+;               49: ifnonnull 6 
+;               52: pop 
+;               53: ldc 21 ("null") 
+;               55: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               58: dup 
+;               59: ifnonnull 6 
+;               62: pop 
+;               63: ldc 21 ("null") 
+;               65: ldc 42 (" ") 
+;               67: dup 
+;               68: ifnonnull 6 
 ;               71: pop 
 ;               72: ldc 21 ("null") 
-;               74: ldc 42 (" ") 
-;               76: dup 
-;               77: ifnull 6 
-;               80: goto 6 
-;               83: pop 
-;               84: ldc 21 ("null") 
-;               86: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               89: dup 
-;               90: ifnull 6 
-;               93: goto 6 
-;               96: pop 
-;               97: ldc 21 ("null") 
-;               99: aload_3 
-;              100: dup 
-;              101: ifnull 6 
-;              104: goto 6 
-;              107: pop 
-;              108: ldc 21 ("null") 
-;              110: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              113: dup 
-;              114: ifnull 6 
-;              117: goto 6 
-;              120: pop 
-;              121: ldc 21 ("null") 
-;              123: ldc 150 (". It makes me want to ") 
-;              125: dup 
-;              126: ifnull 6 
-;              129: goto 6 
-;              132: pop 
-;              133: ldc 21 ("null") 
-;              135: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              138: dup 
-;              139: ifnull 6 
-;              142: goto 6 
+;               74: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               77: dup 
+;               78: ifnonnull 6 
+;               81: pop 
+;               82: ldc 21 ("null") 
+;               84: aload_3 
+;               85: dup 
+;               86: ifnonnull 6 
+;               89: pop 
+;               90: ldc 21 ("null") 
+;               92: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               95: dup 
+;               96: ifnonnull 6 
+;               99: pop 
+;              100: ldc 21 ("null") 
+;              102: ldc 150 (". It makes me want to ") 
+;              104: dup 
+;              105: ifnonnull 6 
+;              108: pop 
+;              109: ldc 21 ("null") 
+;              111: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              114: dup 
+;              115: ifnonnull 6 
+;              118: pop 
+;              119: ldc 21 ("null") 
+;              121: aload_2 
+;              122: dup 
+;              123: ifnonnull 6 
+;              126: pop 
+;              127: ldc 21 ("null") 
+;              129: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              132: dup 
+;              133: ifnonnull 6 
+;              136: pop 
+;              137: ldc 21 ("null") 
+;              139: ldc 38 (".") 
+;              141: dup 
+;              142: ifnonnull 6 
 ;              145: pop 
 ;              146: ldc 21 ("null") 
-;              148: aload_2 
-;              149: dup 
-;              150: ifnull 6 
-;              153: goto 6 
-;              156: pop 
-;              157: ldc 21 ("null") 
-;              159: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              162: dup 
-;              163: ifnull 6 
-;              166: goto 6 
+;              148: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              151: areturn 
+;              152: goto 1002 
+;              155: aload_0 
+;              156: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              159: iconst_1 
+;              160: if_icmpne 83 
+;              163: ldc 98 ("I always admired you're ") 
+;              165: dup 
+;              166: ifnonnull 6 
 ;              169: pop 
 ;              170: ldc 21 ("null") 
-;              172: ldc 38 (".") 
-;              174: dup 
-;              175: ifnull 6 
-;              178: goto 6 
-;              181: pop 
-;              182: ldc 21 ("null") 
-;              184: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              187: areturn 
-;              188: goto 1278 
-;              191: aload_0 
-;              192: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              195: iconst_1 
-;              196: if_icmpne 107 
-;              199: ldc 98 ("I always admired you're ") 
-;              201: dup 
-;              202: ifnull 6 
-;              205: goto 6 
-;              208: pop 
-;              209: ldc 21 ("null") 
-;              211: aload_3 
-;              212: dup 
-;              213: ifnull 6 
-;              216: goto 6 
-;              219: pop 
-;              220: ldc 21 ("null") 
-;              222: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              225: dup 
-;              226: ifnull 6 
-;              229: goto 6 
-;              232: pop 
-;              233: ldc 21 ("null") 
-;              235: ldc 40 (". I can't wait to ") 
-;              237: dup 
-;              238: ifnull 6 
-;              241: goto 6 
-;              244: pop 
-;              245: ldc 21 ("null") 
-;              247: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              250: dup 
-;              251: ifnull 6 
-;              254: goto 6 
+;              172: aload_3 
+;              173: dup 
+;              174: ifnonnull 6 
+;              177: pop 
+;              178: ldc 21 ("null") 
+;              180: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              183: dup 
+;              184: ifnonnull 6 
+;              187: pop 
+;              188: ldc 21 ("null") 
+;              190: ldc 40 (". I can't wait to ") 
+;              192: dup 
+;              193: ifnonnull 6 
+;              196: pop 
+;              197: ldc 21 ("null") 
+;              199: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              202: dup 
+;              203: ifnonnull 6 
+;              206: pop 
+;              207: ldc 21 ("null") 
+;              209: aload_2 
+;              210: dup 
+;              211: ifnonnull 6 
+;              214: pop 
+;              215: ldc 21 ("null") 
+;              217: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              220: dup 
+;              221: ifnonnull 6 
+;              224: pop 
+;              225: ldc 21 ("null") 
+;              227: ldc 125 (" with you.") 
+;              229: dup 
+;              230: ifnonnull 6 
+;              233: pop 
+;              234: ldc 21 ("null") 
+;              236: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              239: areturn 
+;              240: goto 914 
+;              243: aload_0 
+;              244: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              247: iconst_2 
+;              248: if_icmpne 83 
+;              251: ldc 65 ("You remind me of my ") 
+;              253: dup 
+;              254: ifnonnull 6 
 ;              257: pop 
 ;              258: ldc 21 ("null") 
-;              260: aload_2 
+;              260: aload_3 
 ;              261: dup 
-;              262: ifnull 6 
-;              265: goto 6 
-;              268: pop 
-;              269: ldc 21 ("null") 
-;              271: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              274: dup 
-;              275: ifnull 6 
-;              278: goto 6 
-;              281: pop 
-;              282: ldc 21 ("null") 
-;              284: ldc 125 (" with you.") 
-;              286: dup 
-;              287: ifnull 6 
-;              290: goto 6 
-;              293: pop 
-;              294: ldc 21 ("null") 
-;              296: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              299: areturn 
-;              300: goto 1166 
-;              303: aload_0 
-;              304: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              307: iconst_2 
-;              308: if_icmpne 107 
-;              311: ldc 65 ("You remind me of my ") 
-;              313: dup 
-;              314: ifnull 6 
-;              317: goto 6 
-;              320: pop 
-;              321: ldc 21 ("null") 
-;              323: aload_3 
-;              324: dup 
-;              325: ifnull 6 
-;              328: goto 6 
-;              331: pop 
-;              332: ldc 21 ("null") 
-;              334: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              337: dup 
-;              338: ifnull 6 
-;              341: goto 6 
-;              344: pop 
-;              345: ldc 21 ("null") 
-;              347: ldc 107 (". your ") 
+;              262: ifnonnull 6 
+;              265: pop 
+;              266: ldc 21 ("null") 
+;              268: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              271: dup 
+;              272: ifnonnull 6 
+;              275: pop 
+;              276: ldc 21 ("null") 
+;              278: ldc 107 (". your ") 
+;              280: dup 
+;              281: ifnonnull 6 
+;              284: pop 
+;              285: ldc 21 ("null") 
+;              287: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              290: dup 
+;              291: ifnonnull 6 
+;              294: pop 
+;              295: ldc 21 ("null") 
+;              297: aload_1 
+;              298: dup 
+;              299: ifnonnull 6 
+;              302: pop 
+;              303: ldc 21 ("null") 
+;              305: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              308: dup 
+;              309: ifnonnull 6 
+;              312: pop 
+;              313: ldc 21 ("null") 
+;              315: ldc 7 (" legs gives me the shivers.") 
+;              317: dup 
+;              318: ifnonnull 6 
+;              321: pop 
+;              322: ldc 21 ("null") 
+;              324: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              327: areturn 
+;              328: goto 826 
+;              331: aload_0 
+;              332: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              335: iconst_3 
+;              336: if_icmpne 83 
+;              339: ldc 41 ("I was ") 
+;              341: dup 
+;              342: ifnonnull 6 
+;              345: pop 
+;              346: ldc 21 ("null") 
+;              348: aload_1 
 ;              349: dup 
-;              350: ifnull 6 
-;              353: goto 6 
-;              356: pop 
-;              357: ldc 21 ("null") 
-;              359: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              362: dup 
-;              363: ifnull 6 
-;              366: goto 6 
-;              369: pop 
-;              370: ldc 21 ("null") 
-;              372: aload_1 
-;              373: dup 
-;              374: ifnull 6 
-;              377: goto 6 
-;              380: pop 
-;              381: ldc 21 ("null") 
-;              383: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              350: ifnonnull 6 
+;              353: pop 
+;              354: ldc 21 ("null") 
+;              356: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              359: dup 
+;              360: ifnonnull 6 
+;              363: pop 
+;              364: ldc 21 ("null") 
+;              366: ldc 68 (" until I met you - and i can't ") 
+;              368: dup 
+;              369: ifnonnull 6 
+;              372: pop 
+;              373: ldc 21 ("null") 
+;              375: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              378: dup 
+;              379: ifnonnull 6 
+;              382: pop 
+;              383: ldc 21 ("null") 
+;              385: aload_2 
 ;              386: dup 
-;              387: ifnull 6 
-;              390: goto 6 
-;              393: pop 
-;              394: ldc 21 ("null") 
-;              396: ldc 7 (" legs gives me the shivers.") 
-;              398: dup 
-;              399: ifnull 6 
-;              402: goto 6 
-;              405: pop 
-;              406: ldc 21 ("null") 
-;              408: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              411: areturn 
-;              412: goto 1054 
-;              415: aload_0 
-;              416: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              419: iconst_3 
-;              420: if_icmpne 107 
-;              423: ldc 41 ("I was ") 
-;              425: dup 
-;              426: ifnull 6 
-;              429: goto 6 
-;              432: pop 
-;              433: ldc 21 ("null") 
-;              435: aload_1 
-;              436: dup 
-;              437: ifnull 6 
-;              440: goto 6 
-;              443: pop 
-;              444: ldc 21 ("null") 
-;              446: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              449: dup 
-;              450: ifnull 6 
-;              453: goto 6 
-;              456: pop 
-;              457: ldc 21 ("null") 
-;              459: ldc 68 (" until I met you - and i can't ") 
-;              461: dup 
-;              462: ifnull 6 
-;              465: goto 6 
-;              468: pop 
-;              469: ldc 21 ("null") 
-;              471: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              387: ifnonnull 6 
+;              390: pop 
+;              391: ldc 21 ("null") 
+;              393: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              396: dup 
+;              397: ifnonnull 6 
+;              400: pop 
+;              401: ldc 21 ("null") 
+;              403: ldc 175 (" ever since.") 
+;              405: dup 
+;              406: ifnonnull 6 
+;              409: pop 
+;              410: ldc 21 ("null") 
+;              412: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              415: areturn 
+;              416: goto 738 
+;              419: aload_0 
+;              420: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              423: iconst_4 
+;              424: if_icmpne 83 
+;              427: ldc 84 ("I can't wait to show you my ") 
+;              429: dup 
+;              430: ifnonnull 6 
+;              433: pop 
+;              434: ldc 21 ("null") 
+;              436: aload_3 
+;              437: dup 
+;              438: ifnonnull 6 
+;              441: pop 
+;              442: ldc 21 ("null") 
+;              444: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              447: dup 
+;              448: ifnonnull 6 
+;              451: pop 
+;              452: ldc 21 ("null") 
+;              454: ldc 102 (". I have a feeling you will ") 
+;              456: dup 
+;              457: ifnonnull 6 
+;              460: pop 
+;              461: ldc 21 ("null") 
+;              463: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              466: dup 
+;              467: ifnonnull 6 
+;              470: pop 
+;              471: ldc 21 ("null") 
+;              473: aload_2 
 ;              474: dup 
-;              475: ifnull 6 
-;              478: goto 6 
-;              481: pop 
-;              482: ldc 21 ("null") 
-;              484: aload_2 
-;              485: dup 
-;              486: ifnull 6 
-;              489: goto 6 
-;              492: pop 
-;              493: ldc 21 ("null") 
-;              495: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              498: dup 
-;              499: ifnull 6 
-;              502: goto 6 
-;              505: pop 
-;              506: ldc 21 ("null") 
-;              508: ldc 175 (" ever since.") 
-;              510: dup 
-;              511: ifnull 6 
-;              514: goto 6 
-;              517: pop 
-;              518: ldc 21 ("null") 
-;              520: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              523: areturn 
-;              524: goto 942 
-;              527: aload_0 
-;              528: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              531: iconst_4 
-;              532: if_icmpne 107 
-;              535: ldc 84 ("I can't wait to show you my ") 
-;              537: dup 
-;              538: ifnull 6 
-;              541: goto 6 
-;              544: pop 
-;              545: ldc 21 ("null") 
-;              547: aload_3 
-;              548: dup 
-;              549: ifnull 6 
-;              552: goto 6 
-;              555: pop 
-;              556: ldc 21 ("null") 
-;              558: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              561: dup 
-;              562: ifnull 6 
-;              565: goto 6 
-;              568: pop 
-;              569: ldc 21 ("null") 
-;              571: ldc 102 (". I have a feeling you will ") 
-;              573: dup 
-;              574: ifnull 6 
-;              577: goto 6 
-;              580: pop 
-;              581: ldc 21 ("null") 
-;              583: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              586: dup 
-;              587: ifnull 6 
-;              590: goto 6 
-;              593: pop 
-;              594: ldc 21 ("null") 
-;              596: aload_2 
-;              597: dup 
-;              598: ifnull 6 
-;              601: goto 6 
-;              604: pop 
-;              605: ldc 21 ("null") 
-;              607: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              610: dup 
-;              611: ifnull 6 
-;              614: goto 6 
-;              617: pop 
-;              618: ldc 21 ("null") 
-;              620: ldc 38 (".") 
-;              622: dup 
-;              623: ifnull 6 
-;              626: goto 6 
-;              629: pop 
-;              630: ldc 21 ("null") 
-;              632: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              635: areturn 
-;              636: goto 830 
-;              639: aload_0 
-;              640: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              643: iconst_5 
-;              644: if_icmpne 107 
-;              647: ldc 54 ("If you'll leave me it will be a ") 
-;              649: dup 
-;              650: ifnull 6 
-;              653: goto 6 
-;              656: pop 
-;              657: ldc 21 ("null") 
-;              659: aload_3 
-;              660: dup 
-;              661: ifnull 6 
-;              664: goto 6 
-;              667: pop 
-;              668: ldc 21 ("null") 
-;              670: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              673: dup 
-;              674: ifnull 6 
-;              677: goto 6 
-;              680: pop 
-;              681: ldc 21 ("null") 
-;              683: ldc 119 (". I would rather be ") 
-;              685: dup 
-;              686: ifnull 6 
-;              689: goto 6 
+;              475: ifnonnull 6 
+;              478: pop 
+;              479: ldc 21 ("null") 
+;              481: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              484: dup 
+;              485: ifnonnull 6 
+;              488: pop 
+;              489: ldc 21 ("null") 
+;              491: ldc 38 (".") 
+;              493: dup 
+;              494: ifnonnull 6 
+;              497: pop 
+;              498: ldc 21 ("null") 
+;              500: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              503: areturn 
+;              504: goto 650 
+;              507: aload_0 
+;              508: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              511: iconst_5 
+;              512: if_icmpne 83 
+;              515: ldc 54 ("If you'll leave me it will be a ") 
+;              517: dup 
+;              518: ifnonnull 6 
+;              521: pop 
+;              522: ldc 21 ("null") 
+;              524: aload_3 
+;              525: dup 
+;              526: ifnonnull 6 
+;              529: pop 
+;              530: ldc 21 ("null") 
+;              532: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              535: dup 
+;              536: ifnonnull 6 
+;              539: pop 
+;              540: ldc 21 ("null") 
+;              542: ldc 119 (". I would rather be ") 
+;              544: dup 
+;              545: ifnonnull 6 
+;              548: pop 
+;              549: ldc 21 ("null") 
+;              551: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              554: dup 
+;              555: ifnonnull 6 
+;              558: pop 
+;              559: ldc 21 ("null") 
+;              561: aload_1 
+;              562: dup 
+;              563: ifnonnull 6 
+;              566: pop 
+;              567: ldc 21 ("null") 
+;              569: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              572: dup 
+;              573: ifnonnull 6 
+;              576: pop 
+;              577: ldc 21 ("null") 
+;              579: ldc 38 (".") 
+;              581: dup 
+;              582: ifnonnull 6 
+;              585: pop 
+;              586: ldc 21 ("null") 
+;              588: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              591: areturn 
+;              592: goto 562 
+;              595: aload_0 
+;              596: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              599: ldc 34 (6) 
+;              601: if_icmpne 120 
+;              604: ldc 23 ("I hope our ") 
+;              606: dup 
+;              607: ifnonnull 6 
+;              610: pop 
+;              611: ldc 21 ("null") 
+;              613: aload_1 
+;              614: dup 
+;              615: ifnonnull 6 
+;              618: pop 
+;              619: ldc 21 ("null") 
+;              621: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              624: dup 
+;              625: ifnonnull 6 
+;              628: pop 
+;              629: ldc 21 ("null") 
+;              631: ldc 166 (" relationship will ") 
+;              633: dup 
+;              634: ifnonnull 6 
+;              637: pop 
+;              638: ldc 21 ("null") 
+;              640: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              643: dup 
+;              644: ifnonnull 6 
+;              647: pop 
+;              648: ldc 21 ("null") 
+;              650: aload_2 
+;              651: dup 
+;              652: ifnonnull 6 
+;              655: pop 
+;              656: ldc 21 ("null") 
+;              658: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              661: dup 
+;              662: ifnonnull 6 
+;              665: pop 
+;              666: ldc 21 ("null") 
+;              668: ldc 75 (" like a ") 
+;              670: dup 
+;              671: ifnonnull 6 
+;              674: pop 
+;              675: ldc 21 ("null") 
+;              677: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              680: dup 
+;              681: ifnonnull 6 
+;              684: pop 
+;              685: ldc 21 ("null") 
+;              687: aload_3 
+;              688: dup 
+;              689: ifnonnull 6 
 ;              692: pop 
 ;              693: ldc 21 ("null") 
 ;              695: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              698: dup 
-;              699: ifnull 6 
-;              702: goto 6 
-;              705: pop 
-;              706: ldc 21 ("null") 
-;              708: aload_1 
-;              709: dup 
-;              710: ifnull 6 
-;              713: goto 6 
-;              716: pop 
-;              717: ldc 21 ("null") 
-;              719: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              722: dup 
-;              723: ifnull 6 
-;              726: goto 6 
-;              729: pop 
-;              730: ldc 21 ("null") 
-;              732: ldc 38 (".") 
-;              734: dup 
-;              735: ifnull 6 
-;              738: goto 6 
-;              741: pop 
-;              742: ldc 21 ("null") 
-;              744: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              747: areturn 
-;              748: goto 718 
-;              751: aload_0 
-;              752: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              755: ldc 34 (6) 
-;              757: if_icmpne 156 
-;              760: ldc 23 ("I hope our ") 
-;              762: dup 
-;              763: ifnull 6 
-;              766: goto 6 
-;              769: pop 
-;              770: ldc 21 ("null") 
-;              772: aload_1 
-;              773: dup 
-;              774: ifnull 6 
-;              777: goto 6 
-;              780: pop 
-;              781: ldc 21 ("null") 
-;              783: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              786: dup 
-;              787: ifnull 6 
-;              790: goto 6 
-;              793: pop 
-;              794: ldc 21 ("null") 
-;              796: ldc 166 (" relationship will ") 
-;              798: dup 
-;              799: ifnull 6 
-;              802: goto 6 
-;              805: pop 
-;              806: ldc 21 ("null") 
-;              808: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              811: dup 
-;              812: ifnull 6 
-;              815: goto 6 
-;              818: pop 
-;              819: ldc 21 ("null") 
-;              821: aload_2 
-;              822: dup 
-;              823: ifnull 6 
-;              826: goto 6 
-;              829: pop 
-;              830: ldc 21 ("null") 
-;              832: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              835: dup 
-;              836: ifnull 6 
-;              839: goto 6 
-;              842: pop 
-;              843: ldc 21 ("null") 
-;              845: ldc 75 (" like a ") 
-;              847: dup 
-;              848: ifnull 6 
-;              851: goto 6 
-;              854: pop 
-;              855: ldc 21 ("null") 
-;              857: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              860: dup 
-;              861: ifnull 6 
-;              864: goto 6 
-;              867: pop 
-;              868: ldc 21 ("null") 
-;              870: aload_3 
-;              871: dup 
-;              872: ifnull 6 
-;              875: goto 6 
-;              878: pop 
-;              879: ldc 21 ("null") 
-;              881: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              884: dup 
-;              885: ifnull 6 
-;              888: goto 6 
-;              891: pop 
-;              892: ldc 21 ("null") 
-;              894: ldc 38 (".") 
-;              896: dup 
-;              897: ifnull 6 
-;              900: goto 6 
-;              903: pop 
-;              904: ldc 21 ("null") 
-;              906: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              909: areturn 
-;              910: goto 556 
-;              913: aload_0 
-;              914: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              917: ldc 33 (7) 
-;              919: if_icmpne 107 
-;              922: ldc 35 ("You make me want to be a ") 
-;              924: dup 
-;              925: ifnull 6 
-;              928: goto 6 
-;              931: pop 
-;              932: ldc 21 ("null") 
-;              934: aload_1 
-;              935: dup 
-;              936: ifnull 6 
-;              939: goto 6 
-;              942: pop 
-;              943: ldc 21 ("null") 
-;              945: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              948: dup 
-;              949: ifnull 6 
-;              952: goto 6 
-;              955: pop 
-;              956: ldc 21 ("null") 
-;              958: ldc 15 (" man. from now on I'll ") 
-;              960: dup 
-;              961: ifnull 6 
-;              964: goto 6 
-;              967: pop 
-;              968: ldc 21 ("null") 
-;              970: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              973: dup 
-;              974: ifnull 6 
-;              977: goto 6 
-;              980: pop 
-;              981: ldc 21 ("null") 
-;              983: aload_2 
-;              984: dup 
-;              985: ifnull 6 
-;              988: goto 6 
-;              991: pop 
-;              992: ldc 21 ("null") 
-;              994: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              997: dup 
-;              998: ifnull 6 
-;             1001: goto 6 
-;             1004: pop 
-;             1005: ldc 21 ("null") 
-;             1007: ldc 135 (" harder.") 
-;             1009: dup 
-;             1010: ifnull 6 
-;             1013: goto 6 
-;             1016: pop 
-;             1017: ldc 21 ("null") 
-;             1019: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1022: areturn 
-;             1023: goto 443 
-;             1026: aload_0 
-;             1027: getfield 130 (ComplementsGenerator/complementNumber I) 
-;             1030: ldc 31 (8) 
-;             1032: if_icmpne 107 
-;             1035: ldc 45 ("Show me that ") 
-;             1037: dup 
-;             1038: ifnull 6 
-;             1041: goto 6 
-;             1044: pop 
-;             1045: ldc 21 ("null") 
-;             1047: aload_1 
-;             1048: dup 
-;             1049: ifnull 6 
-;             1052: goto 6 
-;             1055: pop 
-;             1056: ldc 21 ("null") 
-;             1058: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1061: dup 
-;             1062: ifnull 6 
-;             1065: goto 6 
-;             1068: pop 
-;             1069: ldc 21 ("null") 
-;             1071: ldc 42 (" ") 
-;             1073: dup 
-;             1074: ifnull 6 
-;             1077: goto 6 
-;             1080: pop 
-;             1081: ldc 21 ("null") 
-;             1083: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1086: dup 
-;             1087: ifnull 6 
-;             1090: goto 6 
-;             1093: pop 
-;             1094: ldc 21 ("null") 
-;             1096: aload_3 
+;              699: ifnonnull 6 
+;              702: pop 
+;              703: ldc 21 ("null") 
+;              705: ldc 38 (".") 
+;              707: dup 
+;              708: ifnonnull 6 
+;              711: pop 
+;              712: ldc 21 ("null") 
+;              714: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              717: areturn 
+;              718: goto 436 
+;              721: aload_0 
+;              722: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              725: ldc 33 (7) 
+;              727: if_icmpne 83 
+;              730: ldc 35 ("You make me want to be a ") 
+;              732: dup 
+;              733: ifnonnull 6 
+;              736: pop 
+;              737: ldc 21 ("null") 
+;              739: aload_1 
+;              740: dup 
+;              741: ifnonnull 6 
+;              744: pop 
+;              745: ldc 21 ("null") 
+;              747: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              750: dup 
+;              751: ifnonnull 6 
+;              754: pop 
+;              755: ldc 21 ("null") 
+;              757: ldc 15 (" man. from now on I'll ") 
+;              759: dup 
+;              760: ifnonnull 6 
+;              763: pop 
+;              764: ldc 21 ("null") 
+;              766: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              769: dup 
+;              770: ifnonnull 6 
+;              773: pop 
+;              774: ldc 21 ("null") 
+;              776: aload_2 
+;              777: dup 
+;              778: ifnonnull 6 
+;              781: pop 
+;              782: ldc 21 ("null") 
+;              784: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              787: dup 
+;              788: ifnonnull 6 
+;              791: pop 
+;              792: ldc 21 ("null") 
+;              794: ldc 135 (" harder.") 
+;              796: dup 
+;              797: ifnonnull 6 
+;              800: pop 
+;              801: ldc 21 ("null") 
+;              803: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              806: areturn 
+;              807: goto 347 
+;              810: aload_0 
+;              811: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              814: ldc 31 (8) 
+;              816: if_icmpne 83 
+;              819: ldc 45 ("Show me that ") 
+;              821: dup 
+;              822: ifnonnull 6 
+;              825: pop 
+;              826: ldc 21 ("null") 
+;              828: aload_1 
+;              829: dup 
+;              830: ifnonnull 6 
+;              833: pop 
+;              834: ldc 21 ("null") 
+;              836: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              839: dup 
+;              840: ifnonnull 6 
+;              843: pop 
+;              844: ldc 21 ("null") 
+;              846: ldc 42 (" ") 
+;              848: dup 
+;              849: ifnonnull 6 
+;              852: pop 
+;              853: ldc 21 ("null") 
+;              855: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              858: dup 
+;              859: ifnonnull 6 
+;              862: pop 
+;              863: ldc 21 ("null") 
+;              865: aload_3 
+;              866: dup 
+;              867: ifnonnull 6 
+;              870: pop 
+;              871: ldc 21 ("null") 
+;              873: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              876: dup 
+;              877: ifnonnull 6 
+;              880: pop 
+;              881: ldc 21 ("null") 
+;              883: ldc 170 (" of yours! ") 
+;              885: dup 
+;              886: ifnonnull 6 
+;              889: pop 
+;              890: ldc 21 ("null") 
+;              892: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              895: areturn 
+;              896: goto 258 
+;              899: aload_0 
+;              900: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              903: ldc 30 (9) 
+;              905: if_icmpne 83 
+;              908: ldc 74 ("Let's ") 
+;              910: dup 
+;              911: ifnonnull 6 
+;              914: pop 
+;              915: ldc 21 ("null") 
+;              917: aload_2 
+;              918: dup 
+;              919: ifnonnull 6 
+;              922: pop 
+;              923: ldc 21 ("null") 
+;              925: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              928: dup 
+;              929: ifnonnull 6 
+;              932: pop 
+;              933: ldc 21 ("null") 
+;              935: ldc 144 (" all night long, you ") 
+;              937: dup 
+;              938: ifnonnull 6 
+;              941: pop 
+;              942: ldc 21 ("null") 
+;              944: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              947: dup 
+;              948: ifnonnull 6 
+;              951: pop 
+;              952: ldc 21 ("null") 
+;              954: aload_1 
+;              955: dup 
+;              956: ifnonnull 6 
+;              959: pop 
+;              960: ldc 21 ("null") 
+;              962: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              965: dup 
+;              966: ifnonnull 6 
+;              969: pop 
+;              970: ldc 21 ("null") 
+;              972: ldc 6 (" lady, you...") 
+;              974: dup 
+;              975: ifnonnull 6 
+;              978: pop 
+;              979: ldc 21 ("null") 
+;              981: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              984: areturn 
+;              985: goto 169 
+;              988: aload_0 
+;              989: getfield 130 (ComplementsGenerator/complementNumber I) 
+;              992: ldc 53 (10) 
+;              994: if_icmpne 46 
+;              997: ldc 60 ("Show me your ") 
+;              999: dup 
+;             1000: ifnonnull 6 
+;             1003: pop 
+;             1004: ldc 21 ("null") 
+;             1006: aload_3 
+;             1007: dup 
+;             1008: ifnonnull 6 
+;             1011: pop 
+;             1012: ldc 21 ("null") 
+;             1014: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1017: dup 
+;             1018: ifnonnull 6 
+;             1021: pop 
+;             1022: ldc 21 ("null") 
+;             1024: ldc 94 (" and I'll show you mine.") 
+;             1026: dup 
+;             1027: ifnonnull 6 
+;             1030: pop 
+;             1031: ldc 21 ("null") 
+;             1033: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1036: areturn 
+;             1037: goto 117 
+;             1040: ldc 131 ("you are my ") 
+;             1042: dup 
+;             1043: ifnonnull 6 
+;             1046: pop 
+;             1047: ldc 21 ("null") 
+;             1049: aload_3 
+;             1050: dup 
+;             1051: ifnonnull 6 
+;             1054: pop 
+;             1055: ldc 21 ("null") 
+;             1057: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1060: dup 
+;             1061: ifnonnull 6 
+;             1064: pop 
+;             1065: ldc 21 ("null") 
+;             1067: ldc 143 (" my only ") 
+;             1069: dup 
+;             1070: ifnonnull 6 
+;             1073: pop 
+;             1074: ldc 21 ("null") 
+;             1076: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1079: dup 
+;             1080: ifnonnull 6 
+;             1083: pop 
+;             1084: ldc 21 ("null") 
+;             1086: aload_3 
+;             1087: dup 
+;             1088: ifnonnull 6 
+;             1091: pop 
+;             1092: ldc 21 ("null") 
+;             1094: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;             1097: dup 
-;             1098: ifnull 6 
-;             1101: goto 6 
-;             1104: pop 
-;             1105: ldc 21 ("null") 
-;             1107: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1110: dup 
-;             1111: ifnull 6 
-;             1114: goto 6 
-;             1117: pop 
-;             1118: ldc 21 ("null") 
-;             1120: ldc 170 (" of yours! ") 
-;             1122: dup 
-;             1123: ifnull 6 
-;             1126: goto 6 
-;             1129: pop 
-;             1130: ldc 21 ("null") 
-;             1132: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1135: areturn 
-;             1136: goto 330 
-;             1139: aload_0 
-;             1140: getfield 130 (ComplementsGenerator/complementNumber I) 
-;             1143: ldc 30 (9) 
-;             1145: if_icmpne 107 
-;             1148: ldc 74 ("Let's ") 
-;             1150: dup 
-;             1151: ifnull 6 
-;             1154: goto 6 
-;             1157: pop 
-;             1158: ldc 21 ("null") 
-;             1160: aload_2 
-;             1161: dup 
-;             1162: ifnull 6 
-;             1165: goto 6 
-;             1168: pop 
-;             1169: ldc 21 ("null") 
-;             1171: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1174: dup 
-;             1175: ifnull 6 
-;             1178: goto 6 
-;             1181: pop 
-;             1182: ldc 21 ("null") 
-;             1184: ldc 144 (" all night long, you ") 
-;             1186: dup 
-;             1187: ifnull 6 
-;             1190: goto 6 
-;             1193: pop 
-;             1194: ldc 21 ("null") 
-;             1196: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1199: dup 
-;             1200: ifnull 6 
-;             1203: goto 6 
-;             1206: pop 
-;             1207: ldc 21 ("null") 
-;             1209: aload_1 
-;             1210: dup 
-;             1211: ifnull 6 
-;             1214: goto 6 
-;             1217: pop 
-;             1218: ldc 21 ("null") 
-;             1220: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1223: dup 
-;             1224: ifnull 6 
-;             1227: goto 6 
-;             1230: pop 
-;             1231: ldc 21 ("null") 
-;             1233: ldc 6 (" lady, you...") 
-;             1235: dup 
-;             1236: ifnull 6 
-;             1239: goto 6 
-;             1242: pop 
-;             1243: ldc 21 ("null") 
-;             1245: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1248: areturn 
-;             1249: goto 217 
-;             1252: aload_0 
-;             1253: getfield 130 (ComplementsGenerator/complementNumber I) 
-;             1256: ldc 53 (10) 
-;             1258: if_icmpne 58 
-;             1261: ldc 60 ("Show me your ") 
-;             1263: dup 
-;             1264: ifnull 6 
-;             1267: goto 6 
-;             1270: pop 
-;             1271: ldc 21 ("null") 
-;             1273: aload_3 
-;             1274: dup 
-;             1275: ifnull 6 
-;             1278: goto 6 
-;             1281: pop 
-;             1282: ldc 21 ("null") 
-;             1284: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1287: dup 
-;             1288: ifnull 6 
-;             1291: goto 6 
-;             1294: pop 
-;             1295: ldc 21 ("null") 
-;             1297: ldc 94 (" and I'll show you mine.") 
-;             1299: dup 
-;             1300: ifnull 6 
-;             1303: goto 6 
-;             1306: pop 
-;             1307: ldc 21 ("null") 
-;             1309: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1312: areturn 
-;             1313: goto 153 
-;             1316: ldc 131 ("you are my ") 
-;             1318: dup 
-;             1319: ifnull 6 
-;             1322: goto 6 
-;             1325: pop 
-;             1326: ldc 21 ("null") 
-;             1328: aload_3 
-;             1329: dup 
-;             1330: ifnull 6 
-;             1333: goto 6 
-;             1336: pop 
-;             1337: ldc 21 ("null") 
-;             1339: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1342: dup 
-;             1343: ifnull 6 
-;             1346: goto 6 
-;             1349: pop 
-;             1350: ldc 21 ("null") 
-;             1352: ldc 143 (" my only ") 
-;             1354: dup 
-;             1355: ifnull 6 
-;             1358: goto 6 
-;             1361: pop 
-;             1362: ldc 21 ("null") 
-;             1364: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1367: dup 
-;             1368: ifnull 6 
-;             1371: goto 6 
-;             1374: pop 
-;             1375: ldc 21 ("null") 
-;             1377: aload_3 
-;             1378: dup 
-;             1379: ifnull 6 
-;             1382: goto 6 
-;             1385: pop 
-;             1386: ldc 21 ("null") 
-;             1388: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1391: dup 
-;             1392: ifnull 6 
-;             1395: goto 6 
-;             1398: pop 
-;             1399: ldc 21 ("null") 
-;             1401: ldc 46 (" , you make me ") 
-;             1403: dup 
-;             1404: ifnull 6 
-;             1407: goto 6 
-;             1410: pop 
-;             1411: ldc 21 ("null") 
-;             1413: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1416: dup 
-;             1417: ifnull 6 
-;             1420: goto 6 
-;             1423: pop 
-;             1424: ldc 21 ("null") 
-;             1426: aload_1 
-;             1427: dup 
-;             1428: ifnull 6 
-;             1431: goto 6 
-;             1434: pop 
-;             1435: ldc 21 ("null") 
-;             1437: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1440: dup 
-;             1441: ifnull 6 
-;             1444: goto 6 
-;             1447: pop 
-;             1448: ldc 21 ("null") 
-;             1450: ldc 124 (" when skies are grey.") 
-;             1452: dup 
-;             1453: ifnull 6 
-;             1456: goto 6 
-;             1459: pop 
-;             1460: ldc 21 ("null") 
-;             1462: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1465: areturn 
-;             1466: nop 
+;             1098: ifnonnull 6 
+;             1101: pop 
+;             1102: ldc 21 ("null") 
+;             1104: ldc 46 (" , you make me ") 
+;             1106: dup 
+;             1107: ifnonnull 6 
+;             1110: pop 
+;             1111: ldc 21 ("null") 
+;             1113: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1116: dup 
+;             1117: ifnonnull 6 
+;             1120: pop 
+;             1121: ldc 21 ("null") 
+;             1123: aload_1 
+;             1124: dup 
+;             1125: ifnonnull 6 
+;             1128: pop 
+;             1129: ldc 21 ("null") 
+;             1131: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1134: dup 
+;             1135: ifnonnull 6 
+;             1138: pop 
+;             1139: ldc 21 ("null") 
+;             1141: ldc 124 (" when skies are grey.") 
+;             1143: dup 
+;             1144: ifnonnull 6 
+;             1147: pop 
+;             1148: ldc 21 ("null") 
+;             1150: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1153: areturn 
+;             1154: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xccd) :
+; methods[2] (offset 0xb95) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 93 (getComplementNumber)
 ;     descriptor_index 24 (()I)
@@ -982,7 +878,7 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0xced) :
+; methods[3] (offset 0xbb5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 120 (generateAdjective)
 ;     descriptor_index 103 (()Ljava/lang/String;)
@@ -1069,7 +965,7 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0xd89) :
+; methods[4] (offset 0xc51) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 126 (generateNoun)
 ;     descriptor_index 103 (()Ljava/lang/String;)
@@ -1150,7 +1046,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xe19) :
+; methods[5] (offset 0xce1) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 142 (generateVerb)
 ;     descriptor_index 103 (()Ljava/lang/String;)
@@ -1240,7 +1136,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xeb7) :
+; class_attributes[0] (offset 0xd7f) :
 ;     name_index 137 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 47

@@ -289,10 +289,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 120
+;         attribute_length 108
 ;         max_stack 4
 ;         max_locals 2
-;         code_length 108
+;         code_length 96
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 3 ("CAN") 
@@ -302,7 +302,7 @@
 ;               10: aload_0 
 ;               11: aload_1 
 ;               12: invokevirtual 42 (Interpretor/openMod (Ljava/lang/String;)V) 
-;               15: goto 92 
+;               15: goto 80 
 ;               18: aload_1 
 ;               19: ldc 52 ("VISIBLE") 
 ;               21: iconst_0 
@@ -311,47 +311,43 @@
 ;               28: aload_0 
 ;               29: aload_1 
 ;               30: invokevirtual 58 (Interpretor/visible (Ljava/lang/String;)V) 
-;               33: goto 74 
+;               33: goto 62 
 ;               36: aload_1 
 ;               37: ldc 65 ("KTHXBYE") 
 ;               39: invokevirtual 70 (java/lang/String/equals (Ljava/lang/Object;)Z) 
 ;               42: ifeq 10 
 ;               45: aload_0 
 ;               46: invokevirtual 32 (Interpretor/exit ()V) 
-;               49: goto 58 
+;               49: goto 46 
 ;               52: aload_0 
 ;               53: ldc 82 ("'") 
 ;               55: dup 
-;               56: ifnull 6 
-;               59: goto 6 
-;               62: pop 
-;               63: ldc 60 ("null") 
-;               65: aload_1 
-;               66: dup 
-;               67: ifnull 6 
-;               70: goto 6 
-;               73: pop 
-;               74: ldc 60 ("null") 
-;               76: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               79: dup 
-;               80: ifnull 6 
-;               83: goto 6 
+;               56: ifnonnull 6 
+;               59: pop 
+;               60: ldc 60 ("null") 
+;               62: aload_1 
+;               63: dup 
+;               64: ifnonnull 6 
+;               67: pop 
+;               68: ldc 60 ("null") 
+;               70: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               73: dup 
+;               74: ifnonnull 6 
+;               77: pop 
+;               78: ldc 60 ("null") 
+;               80: ldc 12 ("' can not be recognized") 
+;               82: dup 
+;               83: ifnonnull 6 
 ;               86: pop 
 ;               87: ldc 60 ("null") 
-;               89: ldc 12 ("' can not be recognized") 
-;               91: dup 
-;               92: ifnull 6 
-;               95: goto 6 
-;               98: pop 
-;               99: ldc 60 ("null") 
-;              101: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              104: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
-;              107: return 
+;               89: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               92: invokevirtual 92 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               95: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x57a) :
+; methods[6] (offset 0x56e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (visible)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -393,7 +389,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x5c6) :
+; methods[7] (offset 0x5ba) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (openMod)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -425,7 +421,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x5fd) :
+; class_attributes[0] (offset 0x5f1) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 34

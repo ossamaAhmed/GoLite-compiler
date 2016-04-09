@@ -8,6 +8,12 @@ simplify_if_else_with_icmpge: 6
 simplify_if_else_with_icmpne: 1
 simplify_if_else_with_icmpeq: 2
 simplify_if_else_with_icmpeq_ne: 1
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 6
+simplify_if_else_with_acmpne: 5
+simplify_if_null: 12
+simplify_if_nonnull: 0
 removeSavesIstore: 3
 removeSavesAstore: 7
 simplify_astore: 17
@@ -28,6 +34,7 @@ simplify_pop_afterinvokenonvirtual: 7
 simplify_pop_afterinvokevirtual: 7
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 18
 
 Generated: Board.class
 Generated: BombMove.class
@@ -45,16 +52,16 @@ Board.optdump:;         code_length 112
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 20
-Board.optdump:;         code_length 64
+Board.optdump:;         code_length 56
 Board.optdump:;         code_length 63
 Board.optdump:;         code_length 26
 Board.optdump:;         code_length 20
 Board.optdump:;         code_length 11
 Board.optdump:;         code_length 132
-Board.optdump:;         code_length 91
+Board.optdump:;         code_length 83
 Board.optdump:;         code_length 52
 Board.optdump:;         code_length 140
-Board.optdump:;         code_length 541
+Board.optdump:;         code_length 509
 Board.optdump:;         code_length 68
 BombMove.optdump:;         code_length 5
 BombMove.optdump:;         code_length 53
@@ -75,18 +82,18 @@ Game.optdump:;         code_length 94
 Game.optdump:;         code_length 6
 Game.optdump:;         code_length 6
 Game.optdump:;         code_length 6
-Game.optdump:;         code_length 30
-Game.optdump:;         code_length 27
-Game.optdump:;         code_length 41
-Game.optdump:;         code_length 30
-Game.optdump:;         code_length 101
-Game.optdump:;         code_length 160
-Game.optdump:;         code_length 199
+Game.optdump:;         code_length 22
+Game.optdump:;         code_length 19
+Game.optdump:;         code_length 33
+Game.optdump:;         code_length 22
+Game.optdump:;         code_length 92
+Game.optdump:;         code_length 151
+Game.optdump:;         code_length 187
 Game.optdump:;         code_length 59
 Game.optdump:;         code_length 13
 Game.optdump:;         code_length 130
 Game.optdump:;         code_length 89
-Game.optdump:;         code_length 84
+Game.optdump:;         code_length 70
 KillColumnMove.optdump:;         code_length 5
 KillColumnMove.optdump:;         code_length 29
 KillColumnMove.optdump:;         code_length 4

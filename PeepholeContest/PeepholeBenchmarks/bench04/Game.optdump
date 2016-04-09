@@ -576,142 +576,126 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 42
+;         attribute_length 34
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 30
+;         code_length 22
 ;         code :
 ;                0: aload_0 
 ;                1: dup 
 ;                2: getfield 184 (Game/currentPlayer Ljava/lang/Character;) 
 ;                5: getfield 39 (Game/X Ljava/lang/Character;) 
-;                8: if_acmpeq 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: ifeq 8 
-;               19: aload_0 
-;               20: getfield 119 (Game/O Ljava/lang/Character;) 
-;               23: areturn 
-;               24: aload_0 
-;               25: getfield 39 (Game/X Ljava/lang/Character;) 
-;               28: areturn 
-;               29: nop 
+;                8: if_acmpne 8 
+;               11: aload_0 
+;               12: getfield 119 (Game/O Ljava/lang/Character;) 
+;               15: areturn 
+;               16: aload_0 
+;               17: getfield 39 (Game/X Ljava/lang/Character;) 
+;               20: areturn 
+;               21: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0xbb8) :
+; methods[8] (offset 0xbb0) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 193 (getOpponent)
 ;     descriptor_index 226 ((Ljava/lang/Character;)Ljava/lang/Character;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 39
+;         attribute_length 31
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 27
+;         code_length 19
 ;         code :
 ;                0: aload_1 
 ;                1: aload_0 
 ;                2: getfield 39 (Game/X Ljava/lang/Character;) 
-;                5: if_acmpeq 7 
-;                8: iconst_0 
-;                9: goto 4 
-;               12: iconst_1 
-;               13: ifeq 8 
-;               16: aload_0 
-;               17: getfield 119 (Game/O Ljava/lang/Character;) 
-;               20: areturn 
-;               21: aload_0 
-;               22: getfield 39 (Game/X Ljava/lang/Character;) 
-;               25: areturn 
-;               26: nop 
+;                5: if_acmpne 8 
+;                8: aload_0 
+;                9: getfield 119 (Game/O Ljava/lang/Character;) 
+;               12: areturn 
+;               13: aload_0 
+;               14: getfield 39 (Game/X Ljava/lang/Character;) 
+;               17: areturn 
+;               18: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[9] (offset 0xbed) :
+; methods[9] (offset 0xbdd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 166 (togglePlayer)
 ;     descriptor_index 20 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 53
+;         attribute_length 45
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 41
+;         code_length 33
 ;         code :
 ;                0: aload_0 
 ;                1: dup 
 ;                2: getfield 184 (Game/currentPlayer Ljava/lang/Character;) 
 ;                5: getfield 39 (Game/X Ljava/lang/Character;) 
-;                8: if_acmpeq 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: ifeq 15 
-;               19: aload_0 
-;               20: getfield 119 (Game/O Ljava/lang/Character;) 
+;                8: if_acmpne 15 
+;               11: aload_0 
+;               12: getfield 119 (Game/O Ljava/lang/Character;) 
+;               15: aload_0 
+;               16: swap 
+;               17: putfield 184 (Game/currentPlayer Ljava/lang/Character;) 
+;               20: goto 12 
 ;               23: aload_0 
-;               24: swap 
-;               25: putfield 184 (Game/currentPlayer Ljava/lang/Character;) 
-;               28: goto 12 
-;               31: aload_0 
-;               32: getfield 39 (Game/X Ljava/lang/Character;) 
-;               35: aload_0 
-;               36: swap 
-;               37: putfield 184 (Game/currentPlayer Ljava/lang/Character;) 
-;               40: return 
+;               24: getfield 39 (Game/X Ljava/lang/Character;) 
+;               27: aload_0 
+;               28: swap 
+;               29: putfield 184 (Game/currentPlayer Ljava/lang/Character;) 
+;               32: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[10] (offset 0xc30) :
+; methods[10] (offset 0xc18) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 232 (getCurrPlayerMoves)
 ;     descriptor_index 12 (()Ljava/util/Vector;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 42
+;         attribute_length 34
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 30
+;         code_length 22
 ;         code :
 ;                0: aload_0 
 ;                1: invokevirtual 61 (Game/getCurrentPlayer ()Ljava/lang/Character;) 
 ;                4: aload_0 
 ;                5: invokevirtual 237 (Game/getX ()Ljava/lang/Character;) 
-;                8: if_acmpeq 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: ifeq 8 
-;               19: aload_0 
-;               20: getfield 200 (Game/playerXMoves Ljava/util/Vector;) 
-;               23: areturn 
-;               24: aload_0 
-;               25: getfield 50 (Game/playerOMoves Ljava/util/Vector;) 
-;               28: areturn 
-;               29: nop 
+;                8: if_acmpne 8 
+;               11: aload_0 
+;               12: getfield 200 (Game/playerXMoves Ljava/util/Vector;) 
+;               15: areturn 
+;               16: aload_0 
+;               17: getfield 50 (Game/playerOMoves Ljava/util/Vector;) 
+;               20: areturn 
+;               21: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[11] (offset 0xc68) :
+; methods[11] (offset 0xc48) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 15 (printMenu)
 ;     descriptor_index 20 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 113
+;         attribute_length 104
 ;         max_stack 4
 ;         max_locals 5
-;         code_length 101
+;         code_length 92
 ;         code :
 ;                0: new 81 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -725,7 +709,7 @@
 ;               16: iload_2 
 ;               17: aload 4 
 ;               19: invokevirtual 195 (java/util/Vector/size ()I) 
-;               22: if_icmpge 78 
+;               22: if_icmpge 69 
 ;               25: iload_2 
 ;               26: iconst_1 
 ;               27: iadd 
@@ -738,45 +722,42 @@
 ;               38: invokevirtual 51 (java/lang/Integer/toString ()Ljava/lang/String;) 
 ;               41: ldc 216 (" - ") 
 ;               43: dup 
-;               44: ifnull 6 
-;               47: goto 6 
-;               50: pop 
-;               51: ldc 28 ("null") 
-;               53: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               56: dup 
-;               57: ifnull 6 
-;               60: goto 6 
-;               63: pop 
-;               64: ldc 28 ("null") 
-;               66: aload 4 
-;               68: iload_2 
-;               69: invokevirtual 73 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               72: invokevirtual 215 (java/lang/Object/toString ()Ljava/lang/String;) 
-;               75: dup 
-;               76: ifnull 6 
-;               79: goto 6 
-;               82: pop 
-;               83: ldc 28 ("null") 
-;               85: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               88: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               91: wide iinc 2 1 
-;               97: goto -81 
-;              100: return 
+;               44: ifnonnull 6 
+;               47: pop 
+;               48: ldc 28 ("null") 
+;               50: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               53: dup 
+;               54: ifnonnull 6 
+;               57: pop 
+;               58: ldc 28 ("null") 
+;               60: aload 4 
+;               62: iload_2 
+;               63: invokevirtual 73 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               66: invokevirtual 215 (java/lang/Object/toString ()Ljava/lang/String;) 
+;               69: dup 
+;               70: ifnonnull 6 
+;               73: pop 
+;               74: ldc 28 ("null") 
+;               76: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               79: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               82: wide iinc 2 1 
+;               88: goto -72 
+;               91: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[12] (offset 0xce7) :
+; methods[12] (offset 0xcbe) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 191 (doMove)
 ;     descriptor_index 20 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 172
+;         attribute_length 163
 ;         max_stack 4
 ;         max_locals 6
-;         code_length 160
+;         code_length 151
 ;         code :
 ;                0: aload_0 
 ;                1: invokevirtual 98 (Game/getCurrPlayerMoves ()Ljava/util/Vector;) 
@@ -792,88 +773,85 @@
 ;               19: aload_2 
 ;               20: ldc 116 ("Player ") 
 ;               22: dup 
-;               23: ifnull 6 
-;               26: goto 6 
-;               29: pop 
-;               30: ldc 28 ("null") 
-;               32: aload_0 
-;               33: invokevirtual 61 (Game/getCurrentPlayer ()Ljava/lang/Character;) 
-;               36: dup 
-;               37: ifnull 9 
-;               40: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
-;               43: goto 6 
-;               46: pop 
-;               47: ldc 28 ("null") 
-;               49: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               52: dup 
-;               53: ifnull 6 
-;               56: goto 6 
-;               59: pop 
-;               60: ldc 28 ("null") 
-;               62: ldc 182 ("'s turn -> What would you like to do?") 
-;               64: dup 
-;               65: ifnull 6 
-;               68: goto 6 
-;               71: pop 
-;               72: ldc 28 ("null") 
-;               74: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               77: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               80: aload_0 
-;               81: invokevirtual 21 (Game/printMenu ()V) 
-;               84: iload 4 
-;               86: ifeq 7 
-;               89: iconst_0 
-;               90: goto 4 
-;               93: iconst_1 
-;               94: ifeq 57 
-;               97: aload_2 
-;               98: invokevirtual 10 (joos/lib/JoosIO/readInt ()I) 
-;              101: iconst_0 
-;              102: if_icmpgt 7 
-;              105: iconst_0 
-;              106: goto 4 
-;              109: iconst_1 
-;              110: dup 
-;              111: ifeq 18 
-;              114: pop 
-;              115: iload 5 
-;              117: aload_1 
-;              118: invokevirtual 195 (java/util/Vector/size ()I) 
-;              121: if_icmple 7 
-;              124: iconst_0 
-;              125: goto 4 
-;              128: iconst_1 
-;              129: ifeq 9 
-;              132: iconst_1 
-;              133: istore 4 
-;              135: goto -51 
-;              138: aload_2 
-;              139: ldc 99 ("Invalid choice, please choose again:") 
-;              141: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              144: aload_0 
-;              145: invokevirtual 21 (Game/printMenu ()V) 
-;              148: goto -64 
-;              151: aload_0 
-;              152: iload 5 
-;              154: iconst_1 
-;              155: isub 
-;              156: invokevirtual 156 (Game/applyMove (I)V) 
-;              159: return 
+;               23: ifnonnull 6 
+;               26: pop 
+;               27: ldc 28 ("null") 
+;               29: aload_0 
+;               30: invokevirtual 61 (Game/getCurrentPlayer ()Ljava/lang/Character;) 
+;               33: dup 
+;               34: ifnull 9 
+;               37: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
+;               40: goto 6 
+;               43: pop 
+;               44: ldc 28 ("null") 
+;               46: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               49: dup 
+;               50: ifnonnull 6 
+;               53: pop 
+;               54: ldc 28 ("null") 
+;               56: ldc 182 ("'s turn -> What would you like to do?") 
+;               58: dup 
+;               59: ifnonnull 6 
+;               62: pop 
+;               63: ldc 28 ("null") 
+;               65: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               68: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               71: aload_0 
+;               72: invokevirtual 21 (Game/printMenu ()V) 
+;               75: iload 4 
+;               77: ifeq 7 
+;               80: iconst_0 
+;               81: goto 4 
+;               84: iconst_1 
+;               85: ifeq 57 
+;               88: aload_2 
+;               89: invokevirtual 10 (joos/lib/JoosIO/readInt ()I) 
+;               92: iconst_0 
+;               93: if_icmpgt 7 
+;               96: iconst_0 
+;               97: goto 4 
+;              100: iconst_1 
+;              101: dup 
+;              102: ifeq 18 
+;              105: pop 
+;              106: iload 5 
+;              108: aload_1 
+;              109: invokevirtual 195 (java/util/Vector/size ()I) 
+;              112: if_icmple 7 
+;              115: iconst_0 
+;              116: goto 4 
+;              119: iconst_1 
+;              120: ifeq 9 
+;              123: iconst_1 
+;              124: istore 4 
+;              126: goto -51 
+;              129: aload_2 
+;              130: ldc 99 ("Invalid choice, please choose again:") 
+;              132: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              135: aload_0 
+;              136: invokevirtual 21 (Game/printMenu ()V) 
+;              139: goto -64 
+;              142: aload_0 
+;              143: iload 5 
+;              145: iconst_1 
+;              146: isub 
+;              147: invokevirtual 156 (Game/applyMove (I)V) 
+;              150: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[13] (offset 0xda1) :
+; methods[13] (offset 0xd6f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 225 (getColumnChoice)
 ;     descriptor_index 34 (()I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 211
+;         attribute_length 199
 ;         max_stack 5
 ;         max_locals 6
-;         code_length 199
+;         code_length 187
 ;         code :
 ;                0: new 81 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -890,98 +868,94 @@
 ;               21: aload_1 
 ;               22: ldc 110 ("Please choose a column between 1 and ") 
 ;               24: dup 
-;               25: ifnull 6 
-;               28: goto 6 
-;               31: pop 
-;               32: ldc 28 ("null") 
-;               34: new 162 (java/lang/Integer) 
-;               37: dup 
-;               38: iload_3 
-;               39: invokespecial 80 (java/lang/Integer/<init> (I)V) 
-;               42: invokevirtual 51 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;               45: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               48: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               51: iload 4 
-;               53: ifeq 7 
-;               56: iconst_0 
-;               57: goto 4 
-;               60: iconst_1 
-;               61: ifeq 133 
-;               64: aload_1 
-;               65: invokevirtual 10 (joos/lib/JoosIO/readInt ()I) 
-;               68: iconst_0 
-;               69: if_icmpgt 7 
-;               72: iconst_0 
-;               73: goto 4 
-;               76: iconst_1 
-;               77: dup 
-;               78: ifeq 14 
-;               81: pop 
-;               82: iload_2 
-;               83: iload_3 
-;               84: if_icmple 7 
-;               87: iconst_0 
-;               88: goto 4 
-;               91: iconst_1 
-;               92: ifeq 7 
-;               95: iconst_0 
-;               96: goto 4 
-;               99: iconst_1 
-;              100: ifeq 58 
-;              103: aload_1 
-;              104: ldc 149 ("Invalid column choice, please choose a column number between 1 and ") 
-;              106: dup 
-;              107: ifnull 6 
-;              110: goto 6 
-;              113: pop 
-;              114: ldc 28 ("null") 
-;              116: new 162 (java/lang/Integer) 
-;              119: dup 
-;              120: iload_3 
-;              121: invokespecial 80 (java/lang/Integer/<init> (I)V) 
-;              124: invokevirtual 51 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              127: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              130: dup 
-;              131: ifnull 6 
-;              134: goto 6 
+;               25: ifnonnull 6 
+;               28: pop 
+;               29: ldc 28 ("null") 
+;               31: new 162 (java/lang/Integer) 
+;               34: dup 
+;               35: iload_3 
+;               36: invokespecial 80 (java/lang/Integer/<init> (I)V) 
+;               39: invokevirtual 51 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;               42: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               45: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               48: iload 4 
+;               50: ifeq 7 
+;               53: iconst_0 
+;               54: goto 4 
+;               57: iconst_1 
+;               58: ifeq 124 
+;               61: aload_1 
+;               62: invokevirtual 10 (joos/lib/JoosIO/readInt ()I) 
+;               65: iconst_0 
+;               66: if_icmpgt 7 
+;               69: iconst_0 
+;               70: goto 4 
+;               73: iconst_1 
+;               74: dup 
+;               75: ifeq 14 
+;               78: pop 
+;               79: iload_2 
+;               80: iload_3 
+;               81: if_icmple 7 
+;               84: iconst_0 
+;               85: goto 4 
+;               88: iconst_1 
+;               89: ifeq 7 
+;               92: iconst_0 
+;               93: goto 4 
+;               96: iconst_1 
+;               97: ifeq 49 
+;              100: aload_1 
+;              101: ldc 149 ("Invalid column choice, please choose a column number between 1 and ") 
+;              103: dup 
+;              104: ifnonnull 6 
+;              107: pop 
+;              108: ldc 28 ("null") 
+;              110: new 162 (java/lang/Integer) 
+;              113: dup 
+;              114: iload_3 
+;              115: invokespecial 80 (java/lang/Integer/<init> (I)V) 
+;              118: invokevirtual 51 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              121: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              124: dup 
+;              125: ifnonnull 6 
+;              128: pop 
+;              129: ldc 28 ("null") 
+;              131: ldc 44 (":") 
+;              133: dup 
+;              134: ifnonnull 6 
 ;              137: pop 
 ;              138: ldc 28 ("null") 
-;              140: ldc 44 (":") 
-;              142: dup 
-;              143: ifnull 6 
-;              146: goto 6 
-;              149: pop 
-;              150: ldc 28 ("null") 
-;              152: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              155: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              158: aload_0 
-;              159: getfield 160 (Game/board LBoard;) 
-;              162: iload_2 
+;              140: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              143: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              146: aload_0 
+;              147: getfield 160 (Game/board LBoard;) 
+;              150: iload_2 
+;              151: iconst_1 
+;              152: isub 
+;              153: invokevirtual 203 (Board/isValidColumn (I)Z) 
+;              156: ifeq 7 
+;              159: iconst_0 
+;              160: goto 4 
 ;              163: iconst_1 
-;              164: isub 
-;              165: invokevirtual 203 (Board/isValidColumn (I)Z) 
-;              168: ifeq 7 
-;              171: iconst_0 
-;              172: goto 4 
-;              175: iconst_1 
-;              176: ifeq 12 
-;              179: aload_1 
-;              180: ldc 13 ("Error: column is full, please choose again:") 
-;              182: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              185: goto -134 
-;              188: iconst_1 
-;              189: istore 4 
-;              191: goto -140 
-;              194: iload_2 
-;              195: iconst_1 
-;              196: isub 
-;              197: ireturn 
-;              198: nop 
+;              164: ifeq 12 
+;              167: aload_1 
+;              168: ldc 13 ("Error: column is full, please choose again:") 
+;              170: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              173: goto -125 
+;              176: iconst_1 
+;              177: istore 4 
+;              179: goto -131 
+;              182: iload_2 
+;              183: iconst_1 
+;              184: isub 
+;              185: ireturn 
+;              186: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xe82) :
+; methods[14] (offset 0xe44) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 181 (applyMove)
 ;     descriptor_index 222 ((I)V)
@@ -1028,7 +1002,7 @@
 ;         attributes_count 0
 
 
-; methods[15] (offset 0xed7) :
+; methods[15] (offset 0xe99) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 94 (printGameModeMenu)
 ;     descriptor_index 20 (()V)
@@ -1050,7 +1024,7 @@
 ;         attributes_count 0
 
 
-; methods[16] (offset 0xefe) :
+; methods[16] (offset 0xec0) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 224 (initGameMode)
 ;     descriptor_index 20 (()V)
@@ -1135,7 +1109,7 @@
 ;         attributes_count 0
 
 
-; methods[17] (offset 0xf9a) :
+; methods[17] (offset 0xf5c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 30 (play)
 ;     descriptor_index 6 (()Ljava/lang/Character;)
@@ -1197,17 +1171,17 @@
 ;         attributes_count 0
 
 
-; methods[18] (offset 0x100d) :
+; methods[18] (offset 0xfcf) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 103 (main)
 ;     descriptor_index 163 (([Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 150 (Code)
-;         attribute_length 96
+;         attribute_length 82
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 84
+;         code_length 70
 ;         code :
 ;                0: new 81 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -1223,32 +1197,26 @@
 ;               23: invokespecial 125 (Game/<init> (LBoard;)V) 
 ;               26: invokevirtual 8 (Game/play ()Ljava/lang/Character;) 
 ;               29: aconst_null 
-;               30: if_acmpeq 7 
-;               33: iconst_0 
-;               34: goto 4 
-;               37: iconst_1 
-;               38: ifeq 12 
-;               41: aload_1 
-;               42: ldc 148 ("Stalemate!") 
-;               44: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               47: goto 36 
-;               50: aload_1 
-;               51: ldc 209 ("Winner: ") 
-;               53: dup 
-;               54: ifnull 6 
-;               57: goto 6 
+;               30: if_acmpne 12 
+;               33: aload_1 
+;               34: ldc 148 ("Stalemate!") 
+;               36: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               39: goto 30 
+;               42: aload_1 
+;               43: ldc 209 ("Winner: ") 
+;               45: dup 
+;               46: ifnonnull 6 
+;               49: pop 
+;               50: ldc 28 ("null") 
+;               52: aload_3 
+;               53: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
+;               56: dup 
+;               57: ifnonnull 6 
 ;               60: pop 
 ;               61: ldc 28 ("null") 
-;               63: aload_3 
-;               64: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
-;               67: dup 
-;               68: ifnull 6 
-;               71: goto 6 
-;               74: pop 
-;               75: ldc 28 ("null") 
-;               77: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               80: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               83: return 
+;               63: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               66: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               69: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -1256,7 +1224,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x107d) :
+; class_attributes[0] (offset 0x1031) :
 ;     name_index 171 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 58

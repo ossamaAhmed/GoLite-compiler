@@ -8,6 +8,12 @@ simplify_if_else_with_icmpge: 17
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 46
 simplify_if_else_with_icmpeq_ne: 1
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 4
+simplify_if_else_with_acmpne: 5
+simplify_if_null: 68
+simplify_if_nonnull: 0
 removeSavesIstore: 12
 removeSavesAstore: 9
 simplify_astore: 14
@@ -28,6 +34,7 @@ simplify_pop_afterinvokenonvirtual: 18
 simplify_pop_afterinvokevirtual: 21
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 117
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -58,19 +65,19 @@ ExitRoomAction.optdump:;         code_length 10
 ExitRoomAction.optdump:;         code_length 83
 FactorialRoomAction.optdump:;         code_length 5
 FactorialRoomAction.optdump:;         code_length 10
-FactorialRoomAction.optdump:;         code_length 244
+FactorialRoomAction.optdump:;         code_length 238
 FactorialRoomAction.optdump:;         code_length 36
 FeastRoomAction.optdump:;         code_length 5
 FeastRoomAction.optdump:;         code_length 10
 FeastRoomAction.optdump:;         code_length 171
 GrueHunt.optdump:;         code_length 5
 GrueHunt.optdump:;         code_length 22
-GrueHunt.optdump:;         code_length 1343
+GrueHunt.optdump:;         code_length 1177
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 101
 HuntRoomAction.optdump:;         code_length 59
-HuntRoomAction.optdump:;         code_length 141
-HuntRoomAction.optdump:;         code_length 762
+HuntRoomAction.optdump:;         code_length 117
+HuntRoomAction.optdump:;         code_length 714
 InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 177
 InGenerate.optdump:;         code_length 19
@@ -86,7 +93,7 @@ Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
 Room.optdump:;         code_length 6
-Room.optdump:;         code_length 139
+Room.optdump:;         code_length 107
 Room.optdump:;         code_length 154
 RoomAction.optdump:;         code_length 29
 RoomAction.optdump:;         code_length 10

@@ -9,6 +9,12 @@ simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 1
 simplify_if_else_with_icmpeq: 4
 simplify_if_else_with_icmpeq_ne: 2
+simplify_if_else_with_icmpne_eq: 1
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 2
+simplify_if_else_with_acmpne: 1
+simplify_if_null: 0
+simplify_if_nonnull: 0
 removeSavesIstore: 0
 removeSavesAstore: 11
 simplify_astore: 10
@@ -29,6 +35,7 @@ simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 0
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 10
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class
@@ -45,7 +52,7 @@ BacktrackSolver.optdump:;         code_length 127
 BacktrackSolver.optdump:;         code_length 26
 BacktrackSolver.optdump:;         code_length 7
 Benchmark.optdump:;         code_length 5
-Benchmark.optdump:;         code_length 82
+Benchmark.optdump:;         code_length 66
 SudokuSolver.optdump:;         code_length 5
 SudokuSolver.optdump:;         code_length 102
-SudokuSolver.optdump:;         code_length 278
+SudokuSolver.optdump:;         code_length 262

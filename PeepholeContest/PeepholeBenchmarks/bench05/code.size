@@ -8,6 +8,12 @@ simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 0
 simplify_if_else_with_icmpeq_ne: 2
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 0
+simplify_if_else_with_acmpne: 0
+simplify_if_null: 0
+simplify_if_nonnull: 0
 removeSavesIstore: 0
 removeSavesAstore: 3
 simplify_astore: 13
@@ -28,6 +34,7 @@ simplify_pop_afterinvokenonvirtual: 8
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 12
 
 Generated: CustomPoint.class
 Generated: Dungeon.class

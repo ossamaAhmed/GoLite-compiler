@@ -654,10 +654,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 151
+;         attribute_length 119
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 139
+;         code_length 107
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
@@ -675,61 +675,45 @@
 ;               29: aload_0 
 ;               30: invokevirtual 38 (Room/getNorth ()LRoom;) 
 ;               33: aconst_null 
-;               34: if_acmpne 7 
-;               37: iconst_0 
-;               38: goto 4 
-;               41: iconst_1 
-;               42: ifeq 12 
-;               45: aload_0 
-;               46: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
-;               49: ldc 108 (" -north") 
-;               51: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               34: if_acmpeq 12 
+;               37: aload_0 
+;               38: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;               41: ldc 108 (" -north") 
+;               43: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               46: aload_0 
+;               47: invokevirtual 14 (Room/getSouth ()LRoom;) 
+;               50: aconst_null 
+;               51: if_acmpeq 12 
 ;               54: aload_0 
-;               55: invokevirtual 14 (Room/getSouth ()LRoom;) 
-;               58: aconst_null 
-;               59: if_acmpne 7 
-;               62: iconst_0 
-;               63: goto 4 
-;               66: iconst_1 
-;               67: ifeq 12 
-;               70: aload_0 
-;               71: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
-;               74: ldc 121 (" -south") 
-;               76: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               79: aload_0 
-;               80: invokevirtual 157 (Room/getWest ()LRoom;) 
-;               83: aconst_null 
-;               84: if_acmpne 7 
-;               87: iconst_0 
-;               88: goto 4 
-;               91: iconst_1 
-;               92: ifeq 12 
-;               95: aload_0 
-;               96: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
-;               99: ldc 144 (" -west") 
-;              101: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              104: aload_0 
-;              105: invokevirtual 149 (Room/getEast ()LRoom;) 
-;              108: aconst_null 
-;              109: if_acmpne 7 
-;              112: iconst_0 
-;              113: goto 4 
-;              116: iconst_1 
-;              117: ifeq 12 
-;              120: aload_0 
-;              121: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
-;              124: ldc 165 (" -east") 
-;              126: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              129: aload_0 
-;              130: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
-;              133: ldc 135 ("") 
-;              135: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              138: return 
+;               55: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;               58: ldc 121 (" -south") 
+;               60: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               63: aload_0 
+;               64: invokevirtual 157 (Room/getWest ()LRoom;) 
+;               67: aconst_null 
+;               68: if_acmpeq 12 
+;               71: aload_0 
+;               72: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;               75: ldc 144 (" -west") 
+;               77: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               80: aload_0 
+;               81: invokevirtual 149 (Room/getEast ()LRoom;) 
+;               84: aconst_null 
+;               85: if_acmpeq 12 
+;               88: aload_0 
+;               89: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;               92: ldc 165 (" -east") 
+;               94: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               97: aload_0 
+;               98: getfield 168 (Room/io Ljoos/lib/JoosIO;) 
+;              101: ldc 135 ("") 
+;              103: invokevirtual 11 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              106: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x10b0) :
+; methods[9] (offset 0x1090) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 52 (generateDescription)
 ;     descriptor_index 24 ((I)Ljava/lang/String;)
@@ -829,7 +813,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1166) :
+; class_attributes[0] (offset 0x1146) :
 ;     name_index 139 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 73

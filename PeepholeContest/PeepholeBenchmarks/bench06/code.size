@@ -8,6 +8,12 @@ simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 61
 simplify_if_else_with_icmpeq_ne: 0
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 0
+simplify_if_else_with_acmpne: 0
+simplify_if_null: 123
+simplify_if_nonnull: 0
 removeSavesIstore: 6
 removeSavesAstore: 3
 simplify_astore: 18
@@ -28,6 +34,7 @@ simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 3
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 84
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -40,7 +47,7 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 21
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 1467
+ComplementsGenerator.optdump:;         code_length 1155
 ComplementsGenerator.optdump:;         code_length 6
 ComplementsGenerator.optdump:;         code_length 130
 ComplementsGenerator.optdump:;         code_length 118
@@ -50,6 +57,6 @@ FemaleBoss.optdump:;         code_length 410
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 892
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 491
+Main.optdump:;         code_length 434
 Woman.optdump:;         code_length 5
 Woman.optdump:;         code_length 4

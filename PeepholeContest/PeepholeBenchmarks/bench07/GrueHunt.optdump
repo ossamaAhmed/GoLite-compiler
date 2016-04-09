@@ -235,10 +235,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 107 (Code)
-;         attribute_length 1355
+;         attribute_length 1189
 ;         max_stack 5
 ;         max_locals 16
-;         code_length 1343
+;         code_length 1177
 ;         code :
 ;                0: new 91 (GrueHunt) 
 ;                3: dup 
@@ -274,605 +274,543 @@
 ;               58: aload_1 
 ;               59: ldc 55 ("\n") 
 ;               61: dup 
-;               62: ifnull 6 
-;               65: goto 6 
-;               68: pop 
-;               69: ldc 15 ("null") 
-;               71: aload 11 
-;               73: dup 
-;               74: ifnull 6 
-;               77: goto 6 
-;               80: pop 
-;               81: ldc 15 ("null") 
-;               83: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               62: ifnonnull 6 
+;               65: pop 
+;               66: ldc 15 ("null") 
+;               68: aload 11 
+;               70: dup 
+;               71: ifnonnull 6 
+;               74: pop 
+;               75: ldc 15 ("null") 
+;               77: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               80: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               83: aload_1 
+;               84: ldc 55 ("\n") 
 ;               86: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               89: aload_1 
-;               90: ldc 55 ("\n") 
+;               90: ldc 46 ("Welcome to GrueHunt! Please don't feed the grues.") 
 ;               92: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               95: aload_1 
-;               96: ldc 46 ("Welcome to GrueHunt! Please don't feed the grues.") 
+;               96: ldc 112 ("What is your name?") 
 ;               98: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;              101: aload_1 
-;              102: ldc 112 ("What is your name?") 
-;              104: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              107: aload_1 
-;              108: invokevirtual 18 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;              111: aconst_null 
-;              112: if_acmpeq 7 
-;              115: iconst_0 
-;              116: goto 4 
-;              119: iconst_1 
-;              120: dup 
-;              121: ifne 11 
-;              124: pop 
-;              125: aload 9 
-;              127: ldc 127 ("") 
-;              129: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              132: ifeq 7 
-;              135: ldc 72 ("Dave") 
-;              137: astore 9 
-;              139: aload 12 
-;              141: invokevirtual 77 (Room/enterRoom ()V) 
-;              144: aload 14 
-;              146: aload_1 
-;              147: iload 8 
-;              149: invokevirtual 147 (GrueHunt/testLoop (Ljoos/lib/JoosIO;Z)Ljava/lang/String;) 
-;              152: dup 
-;              153: astore 10 
-;              155: aconst_null 
-;              156: if_acmpne 7 
-;              159: iconst_0 
-;              160: goto 4 
-;              163: iconst_1 
-;              164: ifeq 937 
-;              167: aload_1 
-;              168: ldc 127 ("") 
-;              170: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              173: aload 10 
-;              175: ldc 111 ("give up") 
-;              177: iconst_0 
-;              178: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              181: iconst_0 
-;              182: if_icmplt 71 
-;              185: aload_1 
-;              186: ldc 60 ("You have given up, ") 
-;              188: dup 
-;              189: ifnull 6 
-;              192: goto 6 
-;              195: pop 
-;              196: ldc 15 ("null") 
-;              198: aload 9 
-;              200: dup 
-;              201: ifnull 6 
-;              204: goto 6 
-;              207: pop 
-;              208: ldc 15 ("null") 
-;              210: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              213: dup 
-;              214: ifnull 6 
-;              217: goto 6 
-;              220: pop 
-;              221: ldc 15 ("null") 
-;              223: ldc 31 (".") 
-;              225: dup 
-;              226: ifnull 6 
-;              229: goto 6 
-;              232: pop 
-;              233: ldc 15 ("null") 
-;              235: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              238: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              241: aload_1 
-;              242: ldc 13 ("You spend the rest of your days wandering this bizarre world. Better luck next time!") 
-;              244: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              247: iconst_1 
-;              248: istore 8 
-;              250: goto 824 
-;              253: aload 10 
-;              255: ldc 75 ("north") 
-;              257: iconst_0 
-;              258: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              261: iconst_0 
-;              262: if_icmplt 42 
-;              265: aload 12 
-;              267: invokevirtual 29 (Room/getNorth ()LRoom;) 
-;              270: aconst_null 
-;              271: if_acmpeq 7 
+;              102: invokevirtual 18 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;              105: aconst_null 
+;              106: if_acmpeq 7 
+;              109: iconst_0 
+;              110: goto 4 
+;              113: iconst_1 
+;              114: dup 
+;              115: ifne 11 
+;              118: pop 
+;              119: aload 9 
+;              121: ldc 127 ("") 
+;              123: invokevirtual 86 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              126: ifeq 7 
+;              129: ldc 72 ("Dave") 
+;              131: astore 9 
+;              133: aload 12 
+;              135: invokevirtual 77 (Room/enterRoom ()V) 
+;              138: aload 14 
+;              140: aload_1 
+;              141: iload 8 
+;              143: invokevirtual 147 (GrueHunt/testLoop (Ljoos/lib/JoosIO;Z)Ljava/lang/String;) 
+;              146: dup 
+;              147: astore 10 
+;              149: aconst_null 
+;              150: if_acmpeq 830 
+;              153: aload_1 
+;              154: ldc 127 ("") 
+;              156: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              159: aload 10 
+;              161: ldc 111 ("give up") 
+;              163: iconst_0 
+;              164: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              167: iconst_0 
+;              168: if_icmplt 59 
+;              171: aload_1 
+;              172: ldc 60 ("You have given up, ") 
+;              174: dup 
+;              175: ifnonnull 6 
+;              178: pop 
+;              179: ldc 15 ("null") 
+;              181: aload 9 
+;              183: dup 
+;              184: ifnonnull 6 
+;              187: pop 
+;              188: ldc 15 ("null") 
+;              190: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              193: dup 
+;              194: ifnonnull 6 
+;              197: pop 
+;              198: ldc 15 ("null") 
+;              200: ldc 31 (".") 
+;              202: dup 
+;              203: ifnonnull 6 
+;              206: pop 
+;              207: ldc 15 ("null") 
+;              209: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              212: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              215: aload_1 
+;              216: ldc 13 ("You spend the rest of your days wandering this bizarre world. Better luck next time!") 
+;              218: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              221: iconst_1 
+;              222: istore 8 
+;              224: goto 729 
+;              227: aload 10 
+;              229: ldc 75 ("north") 
+;              231: iconst_0 
+;              232: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              235: iconst_0 
+;              236: if_icmplt 34 
+;              239: aload 12 
+;              241: invokevirtual 29 (Room/getNorth ()LRoom;) 
+;              244: aconst_null 
+;              245: if_acmpne 12 
+;              248: aload_1 
+;              249: ldc 73 ("There is no exit that way.") 
+;              251: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              254: goto 699 
+;              257: aload 15 
+;              259: astore 12 
+;              261: aload_1 
+;              262: ldc 144 ("You go north.") 
+;              264: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              267: goto 686 
+;              270: aload 10 
+;              272: ldc 89 ("south") 
 ;              274: iconst_0 
-;              275: goto 4 
-;              278: iconst_1 
-;              279: ifeq 12 
-;              282: aload_1 
-;              283: ldc 73 ("There is no exit that way.") 
-;              285: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              288: goto 786 
-;              291: aload 15 
-;              293: astore 12 
-;              295: aload_1 
-;              296: ldc 144 ("You go north.") 
-;              298: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              301: goto 773 
-;              304: aload 10 
-;              306: ldc 89 ("south") 
-;              308: iconst_0 
-;              309: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              312: iconst_0 
-;              313: if_icmplt 42 
-;              316: aload 12 
-;              318: invokevirtual 10 (Room/getSouth ()LRoom;) 
-;              321: aconst_null 
-;              322: if_acmpeq 7 
-;              325: iconst_0 
-;              326: goto 4 
-;              329: iconst_1 
-;              330: ifeq 12 
-;              333: aload_1 
-;              334: ldc 73 ("There is no exit that way.") 
-;              336: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              339: goto 735 
-;              342: aload 15 
-;              344: astore 12 
-;              346: aload_1 
-;              347: ldc 134 ("You go south.") 
-;              349: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              352: goto 722 
-;              355: aload 10 
-;              357: ldc 103 ("west") 
-;              359: iconst_0 
-;              360: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              363: iconst_0 
-;              364: if_icmplt 42 
-;              367: aload 12 
-;              369: invokevirtual 146 (Room/getWest ()LRoom;) 
-;              372: aconst_null 
-;              373: if_acmpeq 7 
-;              376: iconst_0 
-;              377: goto 4 
-;              380: iconst_1 
-;              381: ifeq 12 
-;              384: aload_1 
-;              385: ldc 73 ("There is no exit that way.") 
-;              387: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              390: goto 684 
-;              393: aload 15 
-;              395: astore 12 
-;              397: aload_1 
-;              398: ldc 11 ("You go west.") 
-;              400: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              403: goto 671 
-;              406: aload 10 
-;              408: ldc 130 ("east") 
-;              410: iconst_0 
-;              411: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              414: iconst_0 
-;              415: if_icmplt 42 
-;              418: aload 12 
-;              420: invokevirtual 137 (Room/getEast ()LRoom;) 
-;              423: aconst_null 
-;              424: if_acmpeq 7 
-;              427: iconst_0 
-;              428: goto 4 
-;              431: iconst_1 
-;              432: ifeq 12 
-;              435: aload_1 
-;              436: ldc 73 ("There is no exit that way.") 
-;              438: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              441: goto 633 
-;              444: aload 15 
-;              446: astore 12 
-;              448: aload_1 
-;              449: ldc 59 ("You go east.") 
-;              451: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              454: goto 620 
-;              457: aload 12 
-;              459: invokevirtual 94 (Room/getRoomAction ()LRoomAction;) 
-;              462: aload 10 
-;              464: invokevirtual 87 (RoomAction/performAction (Ljava/lang/String;)I) 
-;              467: iconst_0 
-;              468: if_icmpne 6 
-;              471: goto 514 
-;              474: iload 5 
-;              476: iconst_1 
-;              477: if_icmpne 9 
-;              480: iconst_0 
-;              481: istore 4 
-;              483: goto 502 
-;              486: iload 5 
-;              488: iconst_2 
-;              489: if_icmpne 37 
-;              492: aload_1 
-;              493: aload 9 
-;              495: dup 
-;              496: ifnull 6 
-;              499: goto 6 
+;              275: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              278: iconst_0 
+;              279: if_icmplt 34 
+;              282: aload 12 
+;              284: invokevirtual 10 (Room/getSouth ()LRoom;) 
+;              287: aconst_null 
+;              288: if_acmpne 12 
+;              291: aload_1 
+;              292: ldc 73 ("There is no exit that way.") 
+;              294: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              297: goto 656 
+;              300: aload 15 
+;              302: astore 12 
+;              304: aload_1 
+;              305: ldc 134 ("You go south.") 
+;              307: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              310: goto 643 
+;              313: aload 10 
+;              315: ldc 103 ("west") 
+;              317: iconst_0 
+;              318: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              321: iconst_0 
+;              322: if_icmplt 34 
+;              325: aload 12 
+;              327: invokevirtual 146 (Room/getWest ()LRoom;) 
+;              330: aconst_null 
+;              331: if_acmpne 12 
+;              334: aload_1 
+;              335: ldc 73 ("There is no exit that way.") 
+;              337: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              340: goto 613 
+;              343: aload 15 
+;              345: astore 12 
+;              347: aload_1 
+;              348: ldc 11 ("You go west.") 
+;              350: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              353: goto 600 
+;              356: aload 10 
+;              358: ldc 130 ("east") 
+;              360: iconst_0 
+;              361: invokevirtual 138 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              364: iconst_0 
+;              365: if_icmplt 34 
+;              368: aload 12 
+;              370: invokevirtual 137 (Room/getEast ()LRoom;) 
+;              373: aconst_null 
+;              374: if_acmpne 12 
+;              377: aload_1 
+;              378: ldc 73 ("There is no exit that way.") 
+;              380: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              383: goto 570 
+;              386: aload 15 
+;              388: astore 12 
+;              390: aload_1 
+;              391: ldc 59 ("You go east.") 
+;              393: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              396: goto 557 
+;              399: aload 12 
+;              401: invokevirtual 94 (Room/getRoomAction ()LRoomAction;) 
+;              404: aload 10 
+;              406: invokevirtual 87 (RoomAction/performAction (Ljava/lang/String;)I) 
+;              409: iconst_0 
+;              410: if_icmpne 6 
+;              413: goto 463 
+;              416: iload 5 
+;              418: iconst_1 
+;              419: if_icmpne 9 
+;              422: iconst_0 
+;              423: istore 4 
+;              425: goto 451 
+;              428: iload 5 
+;              430: iconst_2 
+;              431: if_icmpne 31 
+;              434: aload_1 
+;              435: aload 9 
+;              437: dup 
+;              438: ifnonnull 6 
+;              441: pop 
+;              442: ldc 15 ("null") 
+;              444: ldc 124 (".\n") 
+;              446: dup 
+;              447: ifnonnull 6 
+;              450: pop 
+;              451: ldc 15 ("null") 
+;              453: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              456: invokevirtual 67 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              459: goto 417 
+;              462: iload 5 
+;              464: iconst_3 
+;              465: if_icmpne 58 
+;              468: wide iinc 3 1 
+;              474: aload_1 
+;              475: ldc 125 ("You have ") 
+;              477: dup 
+;              478: ifnonnull 6 
+;              481: pop 
+;              482: ldc 15 ("null") 
+;              484: new 117 (java/lang/Integer) 
+;              487: dup 
+;              488: iload_3 
+;              489: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;              492: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              495: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              498: dup 
+;              499: ifnonnull 6 
 ;              502: pop 
 ;              503: ldc 15 ("null") 
-;              505: ldc 124 (".\n") 
+;              505: ldc 141 (" treasure(s).") 
 ;              507: dup 
-;              508: ifnull 6 
-;              511: goto 6 
-;              514: pop 
-;              515: ldc 15 ("null") 
-;              517: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              520: invokevirtual 67 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
-;              523: goto 462 
-;              526: iload 5 
-;              528: iconst_3 
-;              529: if_icmpne 67 
-;              532: wide iinc 3 1 
-;              538: aload_1 
-;              539: ldc 125 ("You have ") 
-;              541: dup 
-;              542: ifnull 6 
-;              545: goto 6 
-;              548: pop 
-;              549: ldc 15 ("null") 
-;              551: new 117 (java/lang/Integer) 
-;              554: dup 
-;              555: iload_3 
-;              556: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;              559: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              562: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              565: dup 
-;              566: ifnull 6 
-;              569: goto 6 
-;              572: pop 
-;              573: ldc 15 ("null") 
-;              575: ldc 141 (" treasure(s).") 
-;              577: dup 
-;              578: ifnull 6 
-;              581: goto 6 
-;              584: pop 
-;              585: ldc 15 ("null") 
-;              587: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              590: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              593: goto 392 
-;              596: iload 5 
-;              598: iconst_4 
-;              599: if_icmpne 61 
-;              602: aload_1 
-;              603: ldc 125 ("You have ") 
-;              605: dup 
-;              606: ifnull 6 
-;              609: goto 6 
-;              612: pop 
-;              613: ldc 15 ("null") 
-;              615: new 117 (java/lang/Integer) 
-;              618: dup 
-;              619: iload_3 
-;              620: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;              623: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              626: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              629: dup 
-;              630: ifnull 6 
-;              633: goto 6 
-;              636: pop 
-;              637: ldc 15 ("null") 
-;              639: ldc 141 (" treasure(s).") 
-;              641: dup 
-;              642: ifnull 6 
-;              645: goto 6 
-;              648: pop 
-;              649: ldc 15 ("null") 
-;              651: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              654: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              657: goto 328 
-;              660: iload 5 
-;              662: iconst_5 
-;              663: if_icmpne 67 
-;              666: wide iinc 2 1 
-;              672: aload_1 
-;              673: ldc 125 ("You have ") 
-;              675: dup 
-;              676: ifnull 6 
-;              679: goto 6 
-;              682: pop 
-;              683: ldc 15 ("null") 
-;              685: new 117 (java/lang/Integer) 
-;              688: dup 
-;              689: iload_2 
-;              690: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;              693: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              696: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              699: dup 
-;              700: ifnull 6 
-;              703: goto 6 
-;              706: pop 
-;              707: ldc 15 ("null") 
-;              709: ldc 142 (" coin(s).") 
-;              711: dup 
-;              712: ifnull 6 
-;              715: goto 6 
-;              718: pop 
-;              719: ldc 15 ("null") 
-;              721: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              724: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              727: goto 258 
-;              730: iload 5 
-;              732: ldc 26 (6) 
-;              734: if_icmpne 61 
-;              737: aload_1 
-;              738: ldc 125 ("You have ") 
-;              740: dup 
-;              741: ifnull 6 
-;              744: goto 6 
-;              747: pop 
-;              748: ldc 15 ("null") 
-;              750: new 117 (java/lang/Integer) 
-;              753: dup 
-;              754: iload_2 
-;              755: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;              758: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              761: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              764: dup 
-;              765: ifnull 6 
-;              768: goto 6 
-;              771: pop 
-;              772: ldc 15 ("null") 
-;              774: ldc 142 (" coin(s).") 
-;              776: dup 
-;              777: ifnull 6 
-;              780: goto 6 
-;              783: pop 
-;              784: ldc 15 ("null") 
-;              786: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              789: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              792: goto 193 
-;              795: iload 5 
-;              797: ldc 25 (7) 
-;              799: if_icmpne 12 
-;              802: wide iinc 4 1 
-;              808: goto 177 
-;              811: iload 5 
-;              813: ldc 23 (8) 
-;              815: if_icmpne 12 
-;              818: wide iinc 4 2 
-;              824: goto 161 
-;              827: iload 5 
-;              829: ldc 21 (9) 
-;              831: if_icmpne 12 
-;              834: iload 4 
-;              836: iconst_1 
-;              837: isub 
-;              838: istore 4 
-;              840: goto 145 
-;              843: iload 5 
-;              845: ldc 47 (10) 
-;              847: if_icmpne 12 
-;              850: iload 4 
-;              852: iconst_2 
-;              853: isub 
-;              854: istore 4 
-;              856: goto 129 
-;              859: iload 5 
-;              861: ldc 44 (11) 
-;              863: if_icmpne 62 
-;              866: aload_1 
-;              867: ldc 125 ("You have ") 
-;              869: dup 
-;              870: ifnull 6 
-;              873: goto 6 
-;              876: pop 
-;              877: ldc 15 ("null") 
-;              879: new 117 (java/lang/Integer) 
-;              882: dup 
-;              883: iload 4 
-;              885: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;              888: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              891: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              894: dup 
-;              895: ifnull 6 
-;              898: goto 6 
-;              901: pop 
-;              902: ldc 15 ("null") 
-;              904: ldc 101 (" hit points remaining.") 
-;              906: dup 
-;              907: ifnull 6 
-;              910: goto 6 
-;              913: pop 
-;              914: ldc 15 ("null") 
-;              916: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              919: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              922: goto 63 
-;              925: iload 5 
-;              927: ldc 41 (12) 
-;              929: if_icmpne 56 
-;              932: aload 12 
-;              934: ldc 97 (100) 
-;              936: invokevirtual 2 (Room/randomRange (I)I) 
-;              939: iload 13 
-;              941: if_icmpge 12 
-;              944: aload_1 
-;              945: ldc 114 ("You've escaped this bizarre world! You are now free.") 
-;              947: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              950: goto 35 
-;              953: iload 6 
-;              955: iconst_1 
-;              956: isub 
-;              957: iconst_5 
-;              958: if_icmpne 7 
-;              961: ldc 44 (11) 
-;              963: istore 6 
-;              965: new 81 (Room) 
-;              968: dup 
-;              969: aconst_null 
-;              970: ldc 15 ("null") 
-;              972: iload 6 
-;              974: invokespecial 118 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
-;              977: astore 12 
-;              979: aload_1 
-;              980: ldc 30 ("You suddenly notice the new place you find yourself.") 
-;              982: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              985: iload 4 
-;              987: ldc 39 (15) 
-;              989: if_icmple 7 
-;              992: ldc 39 (15) 
-;              994: istore 4 
-;              996: iload 4 
-;              998: iconst_1 
-;              999: if_icmpge 65 
-;             1002: aload_1 
-;             1003: ldc 110 ("\n\n") 
-;             1005: dup 
-;             1006: ifnull 6 
-;             1009: goto 6 
-;             1012: pop 
-;             1013: ldc 15 ("null") 
-;             1015: aload 9 
-;             1017: dup 
-;             1018: ifnull 6 
-;             1021: goto 6 
-;             1024: pop 
-;             1025: ldc 15 ("null") 
-;             1027: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1030: dup 
-;             1031: ifnull 6 
-;             1034: goto 6 
-;             1037: pop 
-;             1038: ldc 15 ("null") 
-;             1040: ldc 105 (" died.") 
+;              508: ifnonnull 6 
+;              511: pop 
+;              512: ldc 15 ("null") 
+;              514: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              517: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              520: goto 356 
+;              523: iload 5 
+;              525: iconst_4 
+;              526: if_icmpne 52 
+;              529: aload_1 
+;              530: ldc 125 ("You have ") 
+;              532: dup 
+;              533: ifnonnull 6 
+;              536: pop 
+;              537: ldc 15 ("null") 
+;              539: new 117 (java/lang/Integer) 
+;              542: dup 
+;              543: iload_3 
+;              544: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;              547: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              550: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              553: dup 
+;              554: ifnonnull 6 
+;              557: pop 
+;              558: ldc 15 ("null") 
+;              560: ldc 141 (" treasure(s).") 
+;              562: dup 
+;              563: ifnonnull 6 
+;              566: pop 
+;              567: ldc 15 ("null") 
+;              569: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              572: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              575: goto 301 
+;              578: iload 5 
+;              580: iconst_5 
+;              581: if_icmpne 58 
+;              584: wide iinc 2 1 
+;              590: aload_1 
+;              591: ldc 125 ("You have ") 
+;              593: dup 
+;              594: ifnonnull 6 
+;              597: pop 
+;              598: ldc 15 ("null") 
+;              600: new 117 (java/lang/Integer) 
+;              603: dup 
+;              604: iload_2 
+;              605: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;              608: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              611: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              614: dup 
+;              615: ifnonnull 6 
+;              618: pop 
+;              619: ldc 15 ("null") 
+;              621: ldc 142 (" coin(s).") 
+;              623: dup 
+;              624: ifnonnull 6 
+;              627: pop 
+;              628: ldc 15 ("null") 
+;              630: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              633: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              636: goto 240 
+;              639: iload 5 
+;              641: ldc 26 (6) 
+;              643: if_icmpne 52 
+;              646: aload_1 
+;              647: ldc 125 ("You have ") 
+;              649: dup 
+;              650: ifnonnull 6 
+;              653: pop 
+;              654: ldc 15 ("null") 
+;              656: new 117 (java/lang/Integer) 
+;              659: dup 
+;              660: iload_2 
+;              661: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;              664: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              667: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              670: dup 
+;              671: ifnonnull 6 
+;              674: pop 
+;              675: ldc 15 ("null") 
+;              677: ldc 142 (" coin(s).") 
+;              679: dup 
+;              680: ifnonnull 6 
+;              683: pop 
+;              684: ldc 15 ("null") 
+;              686: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              689: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              692: goto 184 
+;              695: iload 5 
+;              697: ldc 25 (7) 
+;              699: if_icmpne 12 
+;              702: wide iinc 4 1 
+;              708: goto 168 
+;              711: iload 5 
+;              713: ldc 23 (8) 
+;              715: if_icmpne 12 
+;              718: wide iinc 4 2 
+;              724: goto 152 
+;              727: iload 5 
+;              729: ldc 21 (9) 
+;              731: if_icmpne 12 
+;              734: iload 4 
+;              736: iconst_1 
+;              737: isub 
+;              738: istore 4 
+;              740: goto 136 
+;              743: iload 5 
+;              745: ldc 47 (10) 
+;              747: if_icmpne 12 
+;              750: iload 4 
+;              752: iconst_2 
+;              753: isub 
+;              754: istore 4 
+;              756: goto 120 
+;              759: iload 5 
+;              761: ldc 44 (11) 
+;              763: if_icmpne 53 
+;              766: aload_1 
+;              767: ldc 125 ("You have ") 
+;              769: dup 
+;              770: ifnonnull 6 
+;              773: pop 
+;              774: ldc 15 ("null") 
+;              776: new 117 (java/lang/Integer) 
+;              779: dup 
+;              780: iload 4 
+;              782: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;              785: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              788: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              791: dup 
+;              792: ifnonnull 6 
+;              795: pop 
+;              796: ldc 15 ("null") 
+;              798: ldc 101 (" hit points remaining.") 
+;              800: dup 
+;              801: ifnonnull 6 
+;              804: pop 
+;              805: ldc 15 ("null") 
+;              807: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              810: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              813: goto 63 
+;              816: iload 5 
+;              818: ldc 41 (12) 
+;              820: if_icmpne 56 
+;              823: aload 12 
+;              825: ldc 97 (100) 
+;              827: invokevirtual 2 (Room/randomRange (I)I) 
+;              830: iload 13 
+;              832: if_icmpge 12 
+;              835: aload_1 
+;              836: ldc 114 ("You've escaped this bizarre world! You are now free.") 
+;              838: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              841: goto 35 
+;              844: iload 6 
+;              846: iconst_1 
+;              847: isub 
+;              848: iconst_5 
+;              849: if_icmpne 7 
+;              852: ldc 44 (11) 
+;              854: istore 6 
+;              856: new 81 (Room) 
+;              859: dup 
+;              860: aconst_null 
+;              861: ldc 15 ("null") 
+;              863: iload 6 
+;              865: invokespecial 118 (Room/<init> (LRoom;Ljava/lang/String;I)V) 
+;              868: astore 12 
+;              870: aload_1 
+;              871: ldc 30 ("You suddenly notice the new place you find yourself.") 
+;              873: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              876: iload 4 
+;              878: ldc 39 (15) 
+;              880: if_icmple 7 
+;              883: ldc 39 (15) 
+;              885: istore 4 
+;              887: iload 4 
+;              889: iconst_1 
+;              890: if_icmpge 53 
+;              893: aload_1 
+;              894: ldc 110 ("\n\n") 
+;              896: dup 
+;              897: ifnonnull 6 
+;              900: pop 
+;              901: ldc 15 ("null") 
+;              903: aload 9 
+;              905: dup 
+;              906: ifnonnull 6 
+;              909: pop 
+;              910: ldc 15 ("null") 
+;              912: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              915: dup 
+;              916: ifnonnull 6 
+;              919: pop 
+;              920: ldc 15 ("null") 
+;              922: ldc 105 (" died.") 
+;              924: dup 
+;              925: ifnonnull 6 
+;              928: pop 
+;              929: ldc 15 ("null") 
+;              931: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              934: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              937: iconst_0 
+;              938: istore 4 
+;              940: iconst_1 
+;              941: istore 8 
+;              943: iload 7 
+;              945: iload 13 
+;              947: if_icmpge 6 
+;              950: iconst_1 
+;              951: istore 8 
+;              953: iload 8 
+;              955: ifeq 7 
+;              958: iconst_0 
+;              959: goto 4 
+;              962: iconst_1 
+;              963: ifeq 14 
+;              966: aload_1 
+;              967: ldc 127 ("") 
+;              969: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              972: aload 12 
+;              974: invokevirtual 77 (Room/enterRoom ()V) 
+;              977: goto -839 
+;              980: aload_1 
+;              981: aload 9 
+;              983: dup 
+;              984: ifnonnull 6 
+;              987: pop 
+;              988: ldc 15 ("null") 
+;              990: ldc 152 (" has accumulated ") 
+;              992: dup 
+;              993: ifnonnull 6 
+;              996: pop 
+;              997: ldc 15 ("null") 
+;              999: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1002: dup 
+;             1003: ifnonnull 6 
+;             1006: pop 
+;             1007: ldc 15 ("null") 
+;             1009: new 117 (java/lang/Integer) 
+;             1012: dup 
+;             1013: iload_3 
+;             1014: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;             1017: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;             1020: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1023: dup 
+;             1024: ifnonnull 6 
+;             1027: pop 
+;             1028: ldc 15 ("null") 
+;             1030: ldc 1 (" treasure(s) and ") 
+;             1032: dup 
+;             1033: ifnonnull 6 
+;             1036: pop 
+;             1037: ldc 15 ("null") 
+;             1039: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;             1042: dup 
-;             1043: ifnull 6 
-;             1046: goto 6 
-;             1049: pop 
-;             1050: ldc 15 ("null") 
-;             1052: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1055: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;             1058: iconst_0 
-;             1059: istore 4 
-;             1061: iconst_1 
-;             1062: istore 8 
-;             1064: iload 7 
-;             1066: iload 13 
-;             1068: if_icmpge 6 
-;             1071: iconst_1 
-;             1072: istore 8 
-;             1074: iload 8 
-;             1076: ifeq 7 
-;             1079: iconst_0 
-;             1080: goto 4 
-;             1083: iconst_1 
-;             1084: ifeq 14 
-;             1087: aload_1 
-;             1088: ldc 127 ("") 
-;             1090: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;             1093: aload 12 
-;             1095: invokevirtual 77 (Room/enterRoom ()V) 
-;             1098: goto -954 
-;             1101: aload_1 
-;             1102: aload 9 
-;             1104: dup 
-;             1105: ifnull 6 
-;             1108: goto 6 
+;             1043: ifnonnull 6 
+;             1046: pop 
+;             1047: ldc 15 ("null") 
+;             1049: new 117 (java/lang/Integer) 
+;             1052: dup 
+;             1053: iload_2 
+;             1054: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;             1057: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;             1060: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1063: dup 
+;             1064: ifnonnull 6 
+;             1067: pop 
+;             1068: ldc 15 ("null") 
+;             1070: ldc 142 (" coin(s).") 
+;             1072: dup 
+;             1073: ifnonnull 6 
+;             1076: pop 
+;             1077: ldc 15 ("null") 
+;             1079: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1082: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;             1085: aload_1 
+;             1086: aload 9 
+;             1088: dup 
+;             1089: ifnonnull 6 
+;             1092: pop 
+;             1093: ldc 15 ("null") 
+;             1095: ldc 139 (" has ") 
+;             1097: dup 
+;             1098: ifnonnull 6 
+;             1101: pop 
+;             1102: ldc 15 ("null") 
+;             1104: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1107: dup 
+;             1108: ifnonnull 6 
 ;             1111: pop 
 ;             1112: ldc 15 ("null") 
-;             1114: ldc 152 (" has accumulated ") 
-;             1116: dup 
-;             1117: ifnull 6 
-;             1120: goto 6 
-;             1123: pop 
-;             1124: ldc 15 ("null") 
+;             1114: new 117 (java/lang/Integer) 
+;             1117: dup 
+;             1118: iload 4 
+;             1120: invokespecial 61 (java/lang/Integer/<init> (I)V) 
+;             1123: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
 ;             1126: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;             1129: dup 
-;             1130: ifnull 6 
-;             1133: goto 6 
-;             1136: pop 
-;             1137: ldc 15 ("null") 
-;             1139: new 117 (java/lang/Integer) 
-;             1142: dup 
-;             1143: iload_3 
-;             1144: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;             1147: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;             1150: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1153: dup 
-;             1154: ifnull 6 
-;             1157: goto 6 
-;             1160: pop 
-;             1161: ldc 15 ("null") 
-;             1163: ldc 1 (" treasure(s) and ") 
-;             1165: dup 
-;             1166: ifnull 6 
-;             1169: goto 6 
-;             1172: pop 
-;             1173: ldc 15 ("null") 
-;             1175: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1178: dup 
-;             1179: ifnull 6 
-;             1182: goto 6 
-;             1185: pop 
-;             1186: ldc 15 ("null") 
-;             1188: new 117 (java/lang/Integer) 
-;             1191: dup 
-;             1192: iload_2 
-;             1193: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;             1196: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;             1199: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1202: dup 
-;             1203: ifnull 6 
-;             1206: goto 6 
-;             1209: pop 
-;             1210: ldc 15 ("null") 
-;             1212: ldc 142 (" coin(s).") 
-;             1214: dup 
-;             1215: ifnull 6 
-;             1218: goto 6 
-;             1221: pop 
-;             1222: ldc 15 ("null") 
-;             1224: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1227: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;             1230: aload_1 
-;             1231: aload 9 
-;             1233: dup 
-;             1234: ifnull 6 
-;             1237: goto 6 
-;             1240: pop 
-;             1241: ldc 15 ("null") 
-;             1243: ldc 139 (" has ") 
-;             1245: dup 
-;             1246: ifnull 6 
-;             1249: goto 6 
-;             1252: pop 
-;             1253: ldc 15 ("null") 
-;             1255: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1258: dup 
-;             1259: ifnull 6 
-;             1262: goto 6 
-;             1265: pop 
-;             1266: ldc 15 ("null") 
-;             1268: new 117 (java/lang/Integer) 
-;             1271: dup 
-;             1272: iload 4 
-;             1274: invokespecial 61 (java/lang/Integer/<init> (I)V) 
-;             1277: invokevirtual 27 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;             1280: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1283: dup 
-;             1284: ifnull 6 
-;             1287: goto 6 
-;             1290: pop 
-;             1291: ldc 15 ("null") 
-;             1293: ldc 101 (" hit points remaining.") 
-;             1295: dup 
-;             1296: ifnull 6 
-;             1299: goto 6 
-;             1302: pop 
-;             1303: ldc 15 ("null") 
-;             1305: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1308: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;             1311: aload_1 
-;             1312: ldc 38 ("Thank you for playing\n") 
-;             1314: dup 
-;             1315: ifnull 6 
-;             1318: goto 6 
-;             1321: pop 
-;             1322: ldc 15 ("null") 
-;             1324: aload 11 
-;             1326: dup 
-;             1327: ifnull 6 
-;             1330: goto 6 
-;             1333: pop 
-;             1334: ldc 15 ("null") 
-;             1336: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;             1339: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;             1342: return 
+;             1130: ifnonnull 6 
+;             1133: pop 
+;             1134: ldc 15 ("null") 
+;             1136: ldc 101 (" hit points remaining.") 
+;             1138: dup 
+;             1139: ifnonnull 6 
+;             1142: pop 
+;             1143: ldc 15 ("null") 
+;             1145: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1148: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;             1151: aload_1 
+;             1152: ldc 38 ("Thank you for playing\n") 
+;             1154: dup 
+;             1155: ifnonnull 6 
+;             1158: pop 
+;             1159: ldc 15 ("null") 
+;             1161: aload 11 
+;             1163: dup 
+;             1164: ifnonnull 6 
+;             1167: pop 
+;             1168: ldc 15 ("null") 
+;             1170: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1173: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;             1176: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -880,7 +818,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xcd6) :
+; class_attributes[0] (offset 0xc30) :
 ;     name_index 131 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 78

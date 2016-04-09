@@ -8,6 +8,12 @@ simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 6
 simplify_if_else_with_icmpeq_ne: 0
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 0
+simplify_if_else_with_acmpne: 1
+simplify_if_null: 15
+simplify_if_nonnull: 0
 removeSavesIstore: 2
 removeSavesAstore: 10
 simplify_astore: 15
@@ -28,6 +34,7 @@ simplify_pop_afterinvokenonvirtual: 6
 simplify_pop_afterinvokevirtual: 0
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 3
 
 Generated: Conversion.class
 Generated: Decoder.class
@@ -38,8 +45,8 @@ Conversion.optdump:;         code_length 1722
 Conversion.optdump:;         code_length 17
 Conversion.optdump:;         code_length 24
 Decoder.optdump:;         code_length 29
-Decoder.optdump:;         code_length 650
+Decoder.optdump:;         code_length 632
 Encoder.optdump:;         code_length 29
-Encoder.optdump:;         code_length 601
+Encoder.optdump:;         code_length 574
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 69
+Main.optdump:;         code_length 61

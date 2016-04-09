@@ -9,6 +9,12 @@ simplify_if_else_with_icmpge: 1
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 0
 simplify_if_else_with_icmpeq_ne: 0
+simplify_if_else_with_icmpne_eq: 0
+simplify_addition_right1: 0
+simplify_if_else_with_acmpeq: 0
+simplify_if_else_with_acmpne: 1
+simplify_if_null: 8
+simplify_if_nonnull: 0
 removeSavesIstore: 1
 removeSavesAstore: 1
 simplify_astore: 10
@@ -29,6 +35,7 @@ simplify_pop_afterinvokenonvirtual: 2
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
 removeSwap: 0
+delete_dead_goto_label: 2
 
 Generated: Interpretor.class
 Generated: Main.class
@@ -39,11 +46,11 @@ Interpretor.optdump:;         code_length 38
 Interpretor.optdump:;         code_length 30
 Interpretor.optdump:;         code_length 13
 Interpretor.optdump:;         code_length 4
-Interpretor.optdump:;         code_length 108
+Interpretor.optdump:;         code_length 96
 Interpretor.optdump:;         code_length 50
 Interpretor.optdump:;         code_length 27
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 48
+Main.optdump:;         code_length 40
 StringEscapeUtils.optdump:;         code_length 5
 StringEscapeUtils.optdump:;         code_length 41
-StringEscapeUtils.optdump:;         code_length 97
+StringEscapeUtils.optdump:;         code_length 85

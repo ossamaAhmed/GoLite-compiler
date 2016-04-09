@@ -442,6 +442,26 @@ int simplify_addition_right(CODE **c)
   return 0;
 }
 
+/*ldc 0  
+ * iload x             
+ * iadd          
+ * ------>       
+ * iload x 
+ ADDED BY OSSAMA        
+ *                        
+ *                             
+ */
+
+int simplify_addition_right1(CODE **c)
+{ int x,k;
+  if (is_ldc_int(*c,&k) &&
+      is_iload(next(*c),&x) && 
+      is_iadd(next(next(*c)))) {
+     if (k==0) return replace(c,3,makeCODEiload(x,NULL));
+  }
+  return 0;
+}
+
  /* aload_0
   * getfield Decoder/uti Llib/JoosBitwise;
   * aload_0
@@ -749,6 +769,46 @@ int simplify_if_else_with_icmpne(CODE **c) {
   }
   return 0;
 }
+/**
+  if( o1 != o2 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmpne label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmpeq label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_acmpne(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_acmpne(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_acmpeq(label3,NULL));
+  }
+  return 0;
+}
+
 
 /**
   if( col == 8 )
@@ -789,7 +849,45 @@ int simplify_if_else_with_icmpeq(CODE **c) {
   }
   return 0;
 }
-
+/**
+  if( o1 == o2 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_acmpeq label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_acmpne label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_acmpeq(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_acmpeq(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_acmpne(label3,NULL));
+  }
+  return 0;
+}
 /**
 if_icmpeq label1
 iconst_0
@@ -802,16 +900,12 @@ ifne label3
 pop
 .
 .
-.
-.
 . 
 label3:
 ------->
 iconst_1
 if_icmpeq label3
 pop
-.
-.
 .
 .
 .
@@ -843,6 +937,118 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
   return 0;
 }
 
+/**
+if_icmpne label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup
+ifeq label3
+pop
+.
+.
+. 
+label3:
+------->
+iconst_1
+if_icmpne label3
+pop
+.
+.
+.
+label3:
+
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpne_eq(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpne(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(*c))))))) &&
+      is_ifeq(next(next(next(next(next(next(next(*c))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(*c))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 9, makeCODEldc_int(y,makeCODEif_icmpeq(label3,makeCODEpop(NULL))) );
+  }
+  return 0;
+}
+
+/**
+  ifnull null_8
+  goto stop_9
+  null_8:
+  pop
+  ldc "null"
+------->
+ifnonnull stop_9
+pop
+ldc "null"
+
+ ADDED BY OSSAMA
+*/
+int simplify_if_null(CODE **c) {
+  int label1, label2, labeltemp;
+  char* x;
+  if (is_ifnull(*c, &label1) &&
+      is_goto(next(*c), &label2)  &&
+      is_label(next(next(*c)), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_pop(next(next(next(*c)))) &&
+      is_ldc_string(next(next(next(next(*c)))), &x) && 
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      uniquelabel(label1))  {
+    droplabel(label1);
+    return replace(c, 5, makeCODEifnonnull(label2,makeCODEpop(makeCODEldc_string(x,NULL))) );
+  }
+  return 0;
+}
+
+/**
+  ifnonnull null_8
+  goto stop_9
+  null_8:
+  pop
+  ldc "null"
+------->
+ifnull stop_9
+pop
+ldc "null"
+
+ ADDED BY OSSAMA
+*/
+int simplify_if_nonnull(CODE **c) {
+  int label1, label2, labeltemp;
+  char* x;
+  if (is_ifnonnull(*c, &label1) &&
+      is_goto(next(*c), &label2)  &&
+      is_label(next(next(*c)), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_pop(next(next(next(*c)))) &&
+      is_ldc_string(next(next(next(next(*c)))), &x) && 
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      uniquelabel(label1))  {
+    droplabel(label1);
+    return replace(c, 5, makeCODEifnull(label2,makeCODEpop(makeCODEldc_string(x,NULL))) );
+  }
+  return 0;
+}
+
+
 
 /*
 #define OPTS 4
@@ -854,6 +1060,7 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 */
 
 
+
 int init_patterns()
 { 
     ADD_PATTERN(simplify_if_else_with_icmple);
@@ -863,6 +1070,12 @@ int init_patterns()
     ADD_PATTERN(simplify_if_else_with_icmpne);
     ADD_PATTERN(simplify_if_else_with_icmpeq);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
+    ADD_PATTERN(simplify_if_else_with_icmpne_eq);
+    ADD_PATTERN(simplify_addition_right1);
+    ADD_PATTERN(simplify_if_else_with_acmpeq);
+    ADD_PATTERN(simplify_if_else_with_acmpne);
+    ADD_PATTERN(simplify_if_null);
+    ADD_PATTERN(simplify_if_nonnull);
 
     ADD_PATTERN(removeSavesIstore);
     ADD_PATTERN(removeSavesAstore);
@@ -884,5 +1097,6 @@ int init_patterns()
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
     ADD_PATTERN(simplify_severalgetfield);
     ADD_PATTERN(removeSwap);
+    ADD_PATTERN(delete_dead_goto_label);
     return 1;
 }

@@ -143,10 +143,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 44 (Code)
-;         attribute_length 256
+;         attribute_length 250
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 244
+;         code_length 238
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 29 ("use") 
@@ -217,7 +217,7 @@
 ;              116: iconst_0 
 ;              117: goto 4 
 ;              120: iconst_1 
-;              121: ifeq 116 
+;              121: ifeq 110 
 ;              124: new 43 (joos/lib/JoosRandom) 
 ;              127: dup 
 ;              128: invokespecial 23 (joos/lib/JoosRandom/<init> ()V) 
@@ -242,46 +242,44 @@
 ;              165: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
 ;              168: ldc 61 ("!\n---") 
 ;              170: dup 
-;              171: ifnull 6 
-;              174: goto 6 
-;              177: pop 
-;              178: ldc 46 ("null") 
-;              180: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              183: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              186: aload_0 
-;              187: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              190: ldc 81 ("") 
-;              192: dup 
-;              193: ifnull 6 
-;              196: goto 6 
-;              199: pop 
-;              200: ldc 46 ("null") 
-;              202: new 70 (java/lang/Integer) 
-;              205: dup 
-;              206: aload_0 
-;              207: iload_3 
-;              208: invokevirtual 64 (FactorialRoomAction/f (I)I) 
-;              211: invokespecial 35 (java/lang/Integer/<init> (I)V) 
-;              214: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              217: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              220: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              223: aload_0 
-;              224: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              227: ldc 79 ("The dials resume spinning.") 
-;              229: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              232: iconst_0 
-;              233: ireturn 
-;              234: goto 9 
-;              237: aload_0 
-;              238: aload_1 
-;              239: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              242: ireturn 
-;              243: nop 
+;              171: ifnonnull 6 
+;              174: pop 
+;              175: ldc 46 ("null") 
+;              177: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              180: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              183: aload_0 
+;              184: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              187: ldc 81 ("") 
+;              189: dup 
+;              190: ifnonnull 6 
+;              193: pop 
+;              194: ldc 46 ("null") 
+;              196: new 70 (java/lang/Integer) 
+;              199: dup 
+;              200: aload_0 
+;              201: iload_3 
+;              202: invokevirtual 64 (FactorialRoomAction/f (I)I) 
+;              205: invokespecial 35 (java/lang/Integer/<init> (I)V) 
+;              208: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              211: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              214: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              217: aload_0 
+;              218: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              221: ldc 79 ("The dials resume spinning.") 
+;              223: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              226: iconst_0 
+;              227: ireturn 
+;              228: goto 9 
+;              231: aload_0 
+;              232: aload_1 
+;              233: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              236: ireturn 
+;              237: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x475) :
+; methods[3] (offset 0x46f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 42 (f)
 ;     descriptor_index 62 ((I)I)
@@ -324,7 +322,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4b5) :
+; class_attributes[0] (offset 0x4af) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2
