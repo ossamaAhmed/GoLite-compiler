@@ -33,6 +33,7 @@ simplify_pop_afterinvokevirtual: 7
 delete_dead_goto_label: 18
 remove_aload_swap: 1
 remove_iload_swap: 0
+remove_ldc_ifnonnull: 7
 
 Generated: Board.class
 Generated: BombMove.class
@@ -84,14 +85,14 @@ Game.optdump:;         code_length 22
 Game.optdump:;         code_length 19
 Game.optdump:;         code_length 33
 Game.optdump:;         code_length 22
-Game.optdump:;         code_length 92
-Game.optdump:;         code_length 146
-Game.optdump:;         code_length 165
+Game.optdump:;         code_length 85
+Game.optdump:;         code_length 132
+Game.optdump:;         code_length 144
 Game.optdump:;         code_length 65
 Game.optdump:;         code_length 15
 Game.optdump:;         code_length 132
 Game.optdump:;         code_length 89
-Game.optdump:;         code_length 74
+Game.optdump:;         code_length 67
 KillColumnMove.optdump:;         code_length 5
 KillColumnMove.optdump:;         code_length 29
 KillColumnMove.optdump:;         code_length 4

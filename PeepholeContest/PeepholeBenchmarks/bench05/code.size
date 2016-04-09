@@ -33,6 +33,7 @@ simplify_pop_afterinvokevirtual: 5
 delete_dead_goto_label: 12
 remove_aload_swap: 1
 remove_iload_swap: 0
+remove_ldc_ifnonnull: 0
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
