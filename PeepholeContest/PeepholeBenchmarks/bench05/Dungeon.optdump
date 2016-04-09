@@ -503,10 +503,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 35
+;         attribute_length 37
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 23
+;         code_length 25
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 77 (Dungeon/output Ljava/util/Vector;) 
@@ -514,11 +514,13 @@
 ;                5: invokevirtual 46 (CustomPoint/getY ()I) 
 ;                8: invokevirtual 24 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
 ;               11: checkcast 86 (java/util/Vector) 
-;               14: aload_1 
-;               15: aload_2 
-;               16: invokevirtual 105 (CustomPoint/getX ()I) 
-;               19: invokevirtual 78 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
-;               22: return 
+;               14: dup 
+;               15: astore_3 
+;               16: aload_1 
+;               17: aload_2 
+;               18: invokevirtual 105 (CustomPoint/getX ()I) 
+;               21: invokevirtual 78 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
+;               24: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -526,7 +528,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x6bb) :
+; class_attributes[0] (offset 0x6bd) :
 ;     name_index 3 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 36

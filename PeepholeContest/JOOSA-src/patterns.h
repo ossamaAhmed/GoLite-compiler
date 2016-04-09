@@ -443,6 +443,27 @@ int negative_increment(CODE **c)
   return 0;
 }
 
+ /*
+  iconst_1
+  iload_2
+  isub
+  istore_2
+  --------->
+  iinc 2 -1
+  ADDED BY OSSAMA
+*/
+int negative_increment1(CODE **c)
+{ int x,y,k;
+  if ( is_ldc_int(*c,&x) &&
+      is_iload(next(*c),&k) &&
+      is_isub(next(next(*c))) &&
+      is_istore(next(next(next(*c))),&y) &&
+      k==y && 0<=x && x<=127) {
+     return replace(c,4,makeCODEiinc(k,x,NULL));
+  }
+  return 0;
+}
+
 /* iload x       
  * ldc 0       
  * iadd          
@@ -1016,6 +1037,34 @@ int simplify_if_else_with_icmpge_ne_virtual(CODE **c) {
   return 0;
 }
 
+int simplify_if_else_with_icmpge_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpge(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpge(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
 
 
 /**
@@ -1220,7 +1269,46 @@ int remove_ldc_ifnonnull(CODE **c) {
   return 0;
 }
 
+/*
+  In beanch06/ComplementsGenerator.j
+  There are SEVERAL instances of:
 
+  ... (load 2 strings on operand stack)
+  dup
+  ifnonnull stop_21
+  pop
+  ldc "null"
+  stop_21:
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+  ...
+
+  Virtual calls to java/lang/String/concat can accept NULL values so there is no need to check ifnonull
+  This can be simple replaced by:
+
+  ... (load 2 strings on operand stack)
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  SHRINKS BY 308 !
+
+  ADDED BY MICHAEL
+*/
+
+int remove_string_concat_ifnonnull(CODE **c) {
+  int label1, label2;
+  char *useless, *virtualmethod;
+  if (is_dup(*c) && 
+      is_ifnonnull(next(*c), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(*c))) &&
+      is_ldc_string(next(next(next(*c))), &useless) &&
+      is_label(next(next(next(next(*c)))), &label2) &&
+      label1 == label2 &&
+      is_invokevirtual(next(next(next(next(next(*c))))), &virtualmethod) &&
+      strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
+      return replace(c, 6, makeCODEinvokenonvirtual(virtualmethod, NULL));
+  }
+  return 0;
+}
 
 
 /*
@@ -1236,9 +1324,11 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
-    ADD_PATTERN(removeSavesIstore);
-    ADD_PATTERN(removeSavesAstore);
+    // ADD_PATTERN(removeSavesIstore);
+    // ADD_PATTERN(removeSavesAstore);
+    
     ADD_PATTERN(simplify_if_else_with_icmpge_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmpge_ne_nonvirtual);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
     ADD_PATTERN(simplify_if_else_with_icmpne_eq); 
     ADD_PATTERN(simplify_if_else_with_icmple);
@@ -1269,11 +1359,14 @@ int init_patterns()
     ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
     ADD_PATTERN(delete_dead_goto_label);
-    
+
     // ADD_PATTERN(remove_swap);
     // ADD_PATTERN(remove_nop);
     ADD_PATTERN(remove_aload_swap);
     ADD_PATTERN(remove_iload_swap);
     ADD_PATTERN(remove_ldc_ifnonnull);
+    ADD_PATTERN(remove_string_concat_ifnonnull);
+    ADD_PATTERN(negative_increment1);
+    ADD_PATTERN(negative_increment);
     return 1;
 }

@@ -251,24 +251,26 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 69 (Code)
-;         attribute_length 31
+;         attribute_length 33
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 19
+;         code_length 21
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 18 (RoomAction/R Ljoos/lib/JoosRandom;) 
 ;                4: invokevirtual 48 (joos/lib/JoosRandom/nextInt ()I) 
-;                7: iconst_0 
-;                8: if_icmpge 6 
-;               11: iload_2 
-;               12: ineg 
-;               13: istore_2 
-;               14: iload_2 
-;               15: iload_1 
-;               16: irem 
-;               17: ireturn 
-;               18: nop 
+;                7: dup 
+;                8: istore_2 
+;                9: iconst_0 
+;               10: if_icmpge 6 
+;               13: iload_2 
+;               14: ineg 
+;               15: istore_2 
+;               16: iload_2 
+;               17: iload_1 
+;               18: irem 
+;               19: ireturn 
+;               20: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -276,7 +278,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x3ea) :
+; class_attributes[0] (offset 0x3ec) :
 ;     name_index 43 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 19

@@ -141,10 +141,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 43 (Code)
-;         attribute_length 229
+;         attribute_length 233
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 217
+;         code_length 221
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 28 ("use") 
@@ -212,61 +212,65 @@
 ;              109: iconst_0 
 ;              110: goto 4 
 ;              113: iconst_1 
-;              114: ifeq 96 
+;              114: ifeq 100 
 ;              117: new 42 (joos/lib/JoosRandom) 
 ;              120: dup 
 ;              121: invokespecial 22 (joos/lib/JoosRandom/<init> ()V) 
-;              124: invokevirtual 70 (joos/lib/JoosRandom/nextInt ()I) 
-;              127: ldc 37 (13) 
-;              129: irem 
-;              130: iconst_0 
-;              131: if_icmpge 6 
-;              134: iload_3 
-;              135: ineg 
-;              136: istore_3 
-;              137: aload_0 
-;              138: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              141: ldc 56 ("The dials come to a stop. Showing:") 
-;              143: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              146: aload_0 
-;              147: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              150: new 68 (java/lang/Integer) 
-;              153: dup 
-;              154: iload_3 
-;              155: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              158: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              161: ldc 59 ("!\n---") 
-;              163: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              166: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              169: aload_0 
-;              170: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              173: ldc 79 ("") 
-;              175: new 68 (java/lang/Integer) 
-;              178: dup 
-;              179: aload_0 
-;              180: iload_3 
-;              181: invokevirtual 63 (FactorialRoomAction/f (I)I) 
-;              184: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              187: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              190: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              193: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              196: aload_0 
-;              197: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              200: ldc 77 ("The dials resume spinning.") 
-;              202: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              205: iconst_0 
-;              206: ireturn 
-;              207: goto 9 
-;              210: aload_0 
-;              211: aload_1 
-;              212: invokevirtual 23 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              215: ireturn 
-;              216: nop 
+;              124: dup 
+;              125: astore_2 
+;              126: invokevirtual 70 (joos/lib/JoosRandom/nextInt ()I) 
+;              129: ldc 37 (13) 
+;              131: irem 
+;              132: dup 
+;              133: istore_3 
+;              134: iconst_0 
+;              135: if_icmpge 6 
+;              138: iload_3 
+;              139: ineg 
+;              140: istore_3 
+;              141: aload_0 
+;              142: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              145: ldc 56 ("The dials come to a stop. Showing:") 
+;              147: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              150: aload_0 
+;              151: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              154: new 68 (java/lang/Integer) 
+;              157: dup 
+;              158: iload_3 
+;              159: invokespecial 34 (java/lang/Integer/<init> (I)V) 
+;              162: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              165: ldc 59 ("!\n---") 
+;              167: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              170: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              173: aload_0 
+;              174: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              177: ldc 79 ("") 
+;              179: new 68 (java/lang/Integer) 
+;              182: dup 
+;              183: aload_0 
+;              184: iload_3 
+;              185: invokevirtual 63 (FactorialRoomAction/f (I)I) 
+;              188: invokespecial 34 (java/lang/Integer/<init> (I)V) 
+;              191: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              194: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              197: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              200: aload_0 
+;              201: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              204: ldc 77 ("The dials resume spinning.") 
+;              206: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              209: iconst_0 
+;              210: ireturn 
+;              211: goto 9 
+;              214: aload_0 
+;              215: aload_1 
+;              216: invokevirtual 23 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              219: ireturn 
+;              220: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x450) :
+; methods[3] (offset 0x454) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (f)
 ;     descriptor_index 60 ((I)I)
@@ -309,7 +313,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x490) :
+; class_attributes[0] (offset 0x494) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

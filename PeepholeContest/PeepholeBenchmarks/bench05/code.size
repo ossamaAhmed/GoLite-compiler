@@ -1,9 +1,8 @@
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java 
 
 Frequencies:
-removeSavesIstore: 0
-removeSavesAstore: 3
 simplify_if_else_with_icmpge_ne_virtual: 0
+simplify_if_else_with_icmpge_ne_nonvirtual: 0
 simplify_if_else_with_icmpeq_ne: 2
 simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
@@ -18,7 +17,7 @@ simplify_if_else_with_acmpne: 0
 simplify_if_null: 0
 simplify_if_nonnull: 0
 simplify_if_else_with_eq_eq: 0
-simplify_astore: 13
+simplify_astore: 16
 simplify_istore: 20
 positive_increment: 9
 simplify_multiplication_right: 0
@@ -26,7 +25,7 @@ simplify_goto_goto: 0
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_iload_after_istore2: 0
-simplify_aload_after_astore2: 0
+simplify_aload_after_astore2: 3
 positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
@@ -37,6 +36,9 @@ delete_dead_goto_label: 12
 remove_aload_swap: 1
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 0
+remove_string_concat_ifnonnull: 0
+negative_increment1: 0
+negative_increment: 0
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
@@ -50,12 +52,12 @@ CustomPoint.optdump:;         code_length 6
 Dungeon.optdump:;         code_length 22
 Dungeon.optdump:;         code_length 314
 Dungeon.optdump:;         code_length 294
-Dungeon.optdump:;         code_length 23
+Dungeon.optdump:;         code_length 25
 DungeonGenerator.optdump:;         code_length 5
-DungeonGenerator.optdump:;         code_length 32
+DungeonGenerator.optdump:;         code_length 34
 DungeonInfos.optdump:;         code_length 9
 DungeonInfos.optdump:;         code_length 73
-DungeonInfos.optdump:;         code_length 229
+DungeonInfos.optdump:;         code_length 231
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6

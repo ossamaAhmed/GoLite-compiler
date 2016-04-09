@@ -105,14 +105,8 @@
 ;               40: iload 5 
 ;               42: iload 6 
 ;               44: invokevirtual 18 (Board/clear (II)V) 
-;               47: iload 6 
-;               49: iconst_1 
-;               50: isub 
-;               51: istore 6 
-;               53: iload 5 
-;               55: iconst_1 
-;               56: isub 
-;               57: istore 5 
+;               47: wide iinc 6 1 
+;               53: wide iinc 5 1 
 ;               59: goto -37 
 ;               62: iload_2 
 ;               63: iconst_1 
@@ -134,10 +128,7 @@
 ;               91: iload 5 
 ;               93: iload 6 
 ;               95: invokevirtual 18 (Board/clear (II)V) 
-;               98: iload 6 
-;              100: iconst_1 
-;              101: isub 
-;              102: istore 6 
+;               98: wide iinc 6 1 
 ;              104: wide iinc 5 1 
 ;              110: goto -38 
 ;              113: iload_2 
@@ -161,10 +152,7 @@
 ;              143: iload 6 
 ;              145: invokevirtual 18 (Board/clear (II)V) 
 ;              148: wide iinc 6 1 
-;              154: iload 5 
-;              156: iconst_1 
-;              157: isub 
-;              158: istore 5 
+;              154: wide iinc 5 1 
 ;              160: goto -37 
 ;              163: iload_2 
 ;              164: iconst_1 
