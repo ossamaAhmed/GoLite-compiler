@@ -160,10 +160,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 146
+;         attribute_length 140
 ;         max_stack 3
 ;         max_locals 6
-;         code_length 134
+;         code_length 128
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 111 (java/lang/Object/<init> ()V) 
@@ -174,66 +174,60 @@
 ;               13: aload_0 
 ;               14: swap 
 ;               15: putfield 2 (Board/SPACE Ljava/lang/Character;) 
-;               18: iload_1 
-;               19: aload_0 
-;               20: swap 
-;               21: putfield 96 (Board/width I) 
-;               24: iload_2 
-;               25: aload_0 
-;               26: swap 
-;               27: putfield 70 (Board/height I) 
-;               30: new 79 (java/util/Vector) 
-;               33: dup 
-;               34: aload_0 
-;               35: getfield 96 (Board/width I) 
-;               38: invokespecial 88 (java/util/Vector/<init> (I)V) 
-;               41: aload_0 
-;               42: swap 
-;               43: putfield 73 (Board/columns Ljava/util/Vector;) 
-;               46: iconst_0 
-;               47: istore_3 
-;               48: iload_3 
-;               49: aload_0 
-;               50: getfield 96 (Board/width I) 
-;               53: if_icmplt 7 
-;               56: iconst_0 
-;               57: goto 4 
-;               60: iconst_1 
-;               61: ifeq 72 
-;               64: new 79 (java/util/Vector) 
-;               67: dup 
-;               68: aload_0 
-;               69: getfield 70 (Board/height I) 
-;               72: invokespecial 88 (java/util/Vector/<init> (I)V) 
-;               75: astore 5 
-;               77: iconst_0 
-;               78: istore 4 
-;               80: iload 4 
-;               82: aload_0 
-;               83: getfield 70 (Board/height I) 
-;               86: if_icmplt 7 
-;               89: iconst_0 
-;               90: goto 4 
-;               93: iconst_1 
-;               94: ifeq 21 
-;               97: aload 5 
-;               99: aload_0 
-;              100: getfield 2 (Board/SPACE Ljava/lang/Character;) 
-;              103: invokevirtual 87 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              106: wide iinc 4 1 
-;              112: goto -32 
-;              115: aload_0 
-;              116: getfield 73 (Board/columns Ljava/util/Vector;) 
-;              119: aload 5 
-;              121: invokevirtual 87 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
-;              124: wide iinc 3 1 
-;              130: goto -82 
-;              133: return 
+;               18: putfield 96 (Board/width I) 
+;               21: putfield 70 (Board/height I) 
+;               24: new 79 (java/util/Vector) 
+;               27: dup 
+;               28: aload_0 
+;               29: getfield 96 (Board/width I) 
+;               32: invokespecial 88 (java/util/Vector/<init> (I)V) 
+;               35: aload_0 
+;               36: swap 
+;               37: putfield 73 (Board/columns Ljava/util/Vector;) 
+;               40: iconst_0 
+;               41: istore_3 
+;               42: iload_3 
+;               43: aload_0 
+;               44: getfield 96 (Board/width I) 
+;               47: if_icmplt 7 
+;               50: iconst_0 
+;               51: goto 4 
+;               54: iconst_1 
+;               55: ifeq 72 
+;               58: new 79 (java/util/Vector) 
+;               61: dup 
+;               62: aload_0 
+;               63: getfield 70 (Board/height I) 
+;               66: invokespecial 88 (java/util/Vector/<init> (I)V) 
+;               69: astore 5 
+;               71: iconst_0 
+;               72: istore 4 
+;               74: iload 4 
+;               76: aload_0 
+;               77: getfield 70 (Board/height I) 
+;               80: if_icmplt 7 
+;               83: iconst_0 
+;               84: goto 4 
+;               87: iconst_1 
+;               88: ifeq 21 
+;               91: aload 5 
+;               93: aload_0 
+;               94: getfield 2 (Board/SPACE Ljava/lang/Character;) 
+;               97: invokevirtual 87 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              100: wide iinc 4 1 
+;              106: goto -32 
+;              109: aload_0 
+;              110: getfield 73 (Board/columns Ljava/util/Vector;) 
+;              113: aload 5 
+;              115: invokevirtual 87 (java/util/Vector/addElement (Ljava/lang/Object;)V) 
+;              118: wide iinc 3 1 
+;              124: goto -82 
+;              127: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x4ca) :
+; methods[1] (offset 0x4c4) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 3 (getWidth)
 ;     descriptor_index 75 (()I)
@@ -253,7 +247,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x4ea) :
+; methods[2] (offset 0x4e4) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 107 (getHeight)
 ;     descriptor_index 75 (()I)
@@ -273,7 +267,7 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x50a) :
+; methods[3] (offset 0x504) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 84 (get)
 ;     descriptor_index 7 ((II)Ljava/lang/Character;)
@@ -299,7 +293,7 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x538) :
+; methods[4] (offset 0x532) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 106 (full)
 ;     descriptor_index 60 (()Z)
@@ -355,7 +349,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x5a2) :
+; methods[5] (offset 0x59c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 100 (inRange)
 ;     descriptor_index 110 ((II)Z)
@@ -408,7 +402,7 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x5fb) :
+; methods[6] (offset 0x5f5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 43 (set)
 ;     descriptor_index 50 ((IILjava/lang/Character;)V)
@@ -438,7 +432,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x62f) :
+; methods[7] (offset 0x629) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 8 (place)
 ;     descriptor_index 29 ((ILjava/lang/Character;)V)
@@ -466,7 +460,7 @@
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x65d) :
+; methods[8] (offset 0x657) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 68 (clear)
 ;     descriptor_index 115 ((II)V)
@@ -489,7 +483,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x682) :
+; methods[9] (offset 0x67c) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 104 (normalize)
 ;     descriptor_index 64 (()V)
@@ -588,7 +582,7 @@
 ;         attributes_count 0
 
 
-; methods[10] (offset 0x738) :
+; methods[10] (offset 0x732) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 86 (expectedRow)
 ;     descriptor_index 76 ((I)I)
@@ -663,7 +657,7 @@
 ;         attributes_count 0
 
 
-; methods[11] (offset 0x7b5) :
+; methods[11] (offset 0x7af) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (isValidColumn)
 ;     descriptor_index 63 ((I)Z)
@@ -709,7 +703,7 @@
 ;         attributes_count 0
 
 
-; methods[12] (offset 0x803) :
+; methods[12] (offset 0x7fd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 13 (print)
 ;     descriptor_index 64 (()V)
@@ -811,7 +805,7 @@
 ;         attributes_count 0
 
 
-; methods[13] (offset 0x8c9) :
+; methods[13] (offset 0x8c3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 108 (getWinner)
 ;     descriptor_index 65 (()Ljava/lang/Character;)
@@ -1169,7 +1163,7 @@
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xb60) :
+; methods[14] (offset 0xb5a) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 17 (main)
 ;     descriptor_index 67 (([Ljava/lang/String;)V)
@@ -1221,7 +1215,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xbc0) :
+; class_attributes[0] (offset 0xbba) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 12

@@ -1,6 +1,5 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench02'
 rm -rf *.class *.j
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
 removeSavesIstore: 1
@@ -22,22 +21,22 @@ simplify_aload_severalgetfield: 1
 simplify_pop_afterinvokenonvirtual: 2
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: Interpretor.class
 Generated: Main.class
 Generated: StringEscapeUtils.class
 ----- Method code sizes ----
-Interpretor.optdump:;         code_length 42
+Interpretor.optdump:;         code_length 35
 Interpretor.optdump:;         code_length 38
-Interpretor.optdump:;         code_length 34
+Interpretor.optdump:;         code_length 30
 Interpretor.optdump:;         code_length 13
-Interpretor.optdump:;         code_length 8
+Interpretor.optdump:;         code_length 4
 Interpretor.optdump:;         code_length 108
 Interpretor.optdump:;         code_length 50
-Interpretor.optdump:;         code_length 30
+Interpretor.optdump:;         code_length 27
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 48
 StringEscapeUtils.optdump:;         code_length 5
 StringEscapeUtils.optdump:;         code_length 41
 StringEscapeUtils.optdump:;         code_length 105
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench02'

@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java 
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java 
 
 Frequencies:
 removeSavesIstore: 3
@@ -21,6 +20,7 @@ simplify_aload_severalgetfield: 2
 simplify_pop_afterinvokenonvirtual: 7
 simplify_pop_afterinvokevirtual: 7
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: Board.class
 Generated: BombMove.class
@@ -34,7 +34,7 @@ Generated: KillRowMove.class
 Generated: Move.class
 Generated: Strategy.class
 ----- Method code sizes ----
-Board.optdump:;         code_length 134
+Board.optdump:;         code_length 128
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 6
 Board.optdump:;         code_length 20
@@ -61,7 +61,7 @@ DiagBombMove.optdump:;         code_length 4
 FlipBoardMove.optdump:;         code_length 5
 FlipBoardMove.optdump:;         code_length 172
 FlipBoardMove.optdump:;         code_length 4
-Game.optdump:;         code_length 90
+Game.optdump:;         code_length 84
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 78
 Game.optdump:;         code_length 110
@@ -91,4 +91,3 @@ KillRowMove.optdump:;         code_length 37
 KillRowMove.optdump:;         code_length 4
 Move.optdump:;         code_length 5
 Strategy.optdump:;         code_length 5
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench04'

@@ -1,6 +1,5 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench01'
 rm -rf *.class *.j *~
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
 removeSavesIstore: 0
@@ -22,6 +21,7 @@ simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 0
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class
@@ -42,4 +42,3 @@ Benchmark.optdump:;         code_length 82
 SudokuSolver.optdump:;         code_length 5
 SudokuSolver.optdump:;         code_length 118
 SudokuSolver.optdump:;         code_length 310
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench01'

@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
 removeSavesIstore: 6
@@ -21,6 +20,7 @@ simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 3
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -33,7 +33,7 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 29
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 1567
+ComplementsGenerator.optdump:;         code_length 1563
 ComplementsGenerator.optdump:;         code_length 6
 ComplementsGenerator.optdump:;         code_length 210
 ComplementsGenerator.optdump:;         code_length 190
@@ -45,5 +45,4 @@ GirlFriend.optdump:;         code_length 980
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 499
 Woman.optdump:;         code_length 5
-Woman.optdump:;         code_length 7
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench06'
+Woman.optdump:;         code_length 4

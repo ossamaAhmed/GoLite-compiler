@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java *.joos
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java *.joos
 
 Frequencies:
 removeSavesIstore: 2
@@ -21,6 +20,7 @@ simplify_aload_severalgetfield: 19
 simplify_pop_afterinvokenonvirtual: 6
 simplify_pop_afterinvokevirtual: 0
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: Conversion.class
 Generated: Decoder.class
@@ -36,4 +36,3 @@ Encoder.optdump:;         code_length 29
 Encoder.optdump:;         code_length 633
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 69
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench03'

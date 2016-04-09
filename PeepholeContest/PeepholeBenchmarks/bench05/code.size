@@ -1,5 +1,4 @@
-make[1]: Entering directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench05'
-/home/shabbir/code/compilers/goCompiler/PeepholeContest/joosc -O *.java 
+/Users/michaelho/comp520-2016-02/PeepholeContest/joosc -O *.java 
 
 Frequencies:
 removeSavesIstore: 0
@@ -21,16 +20,21 @@ simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 8
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
+removeSwap: 0
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
 Generated: DungeonGenerator.class
 Generated: DungeonInfos.class
 ----- Method code sizes ----
-CustomPoint.optdump:;         code_length 17
-CustomPoint.optdump:;         code_length 17
+CustomPoint.optdump:;         code_length 11
+CustomPoint.optdump:;         code_length 11
 CustomPoint.optdump:;         code_length 6
 CustomPoint.optdump:;         code_length 6
+Dungeon.optdump:;         code_length 20
+Dungeon.optdump:;         code_length 370
+Dungeon.optdump:;         code_length 326
+Dungeon.optdump:;         code_length 23
 DungeonGenerator.optdump:;         code_length 5
 DungeonGenerator.optdump:;         code_length 32
 DungeonInfos.optdump:;         code_length 9
@@ -42,8 +46,3 @@ DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
 DungeonInfos.optdump:;         code_length 6
-Dungeon.optdump:;         code_length 23
-Dungeon.optdump:;         code_length 370
-Dungeon.optdump:;         code_length 326
-Dungeon.optdump:;         code_length 23
-make[1]: Leaving directory `/home/shabbir/code/compilers/goCompiler/PeepholeContest/PeepholeBenchmarks/bench05'
