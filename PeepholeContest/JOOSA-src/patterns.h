@@ -641,6 +641,7 @@ int simplify_if_else_with_icmpgt(CODE **c) {
   return 0;
 }
 
+
 /**
   if( col <= 8 )
       this.solveCell( row, col + 1 ) ;
@@ -872,9 +873,64 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
   int cmp1, cmp2;
   int label1, label2, label3, labeltemp;
   int x, y;
-  CODE **q;
   if (is_iload(*c, &cmp1) &&
       is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpeq(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEldc_int(y,makeCODEiload(cmp1, makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL))))));
+
+  }
+  return 0;
+}
+/**
+iconst_0
+iload_3
+if_icmpeq label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup     1 1   0 0
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+iconst_1
+iload_3 
+iconst_0
+if_icmpeq label3
+pop
+.
+.
+.
+label3: 1
+
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpeq_ne_reverse(CODE **c) {
+  int cmp1, cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_ldc_int(*c, &cmp2) &&
+      is_iload(next(*c), &cmp1) &&
       is_if_icmpeq(next(next(*c)), &label1) &&
       is_ldc_int(next(next(next(*c))), &x) && 
       (x==0)  &&
@@ -929,7 +985,6 @@ int simplify_if_else_with_icmpne_eq(CODE **c) {
   int cmp1, cmp2;
   int label1, label2, label3, labeltemp;
   int x, y;
-  CODE **q;
   if (is_iload(*c, &cmp1) &&
       is_ldc_int(next(*c), &cmp2) &&
       is_if_icmpne(next(next(*c)), &label1) &&
@@ -1054,7 +1109,6 @@ int init_patterns()
     ADD_PATTERN(simplify_if_else_with_acmpne);
     ADD_PATTERN(simplify_if_null);
     ADD_PATTERN(simplify_if_nonnull);
-
     // // ADD_PATTERN(removeSavesIstore);
     // // ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);
