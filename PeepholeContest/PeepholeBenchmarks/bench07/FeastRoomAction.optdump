@@ -124,10 +124,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 62 (Code)
-;         attribute_length 215
+;         attribute_length 183
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 203
+;         code_length 171
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 30 ("use") 
@@ -174,73 +174,53 @@
 ;               74: iconst_0 
 ;               75: goto 4 
 ;               78: iconst_1 
-;               79: ifeq 83 
+;               79: ifeq 59 
 ;               82: new 28 (joos/lib/JoosRandom) 
 ;               85: dup 
 ;               86: invokespecial 17 (joos/lib/JoosRandom/<init> ()V) 
-;               89: astore_2 
-;               90: aload_2 
-;               91: invokevirtual 45 (joos/lib/JoosRandom/nextInt ()I) 
-;               94: ldc 9 (100) 
-;               96: irem 
-;               97: dup 
-;               98: istore_3 
-;               99: pop 
-;              100: iload_3 
-;              101: iconst_0 
-;              102: if_icmplt 7 
-;              105: iconst_0 
-;              106: goto 4 
-;              109: iconst_1 
-;              110: ifeq 8 
-;              113: iload_3 
-;              114: ineg 
-;              115: dup 
-;              116: istore_3 
-;              117: pop 
-;              118: iload_3 
-;              119: ldc 11 (40) 
-;              121: if_icmplt 7 
-;              124: iconst_0 
-;              125: goto 4 
-;              128: iconst_1 
-;              129: ifeq 18 
-;              132: aload_0 
-;              133: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              136: ldc 36 ("The food leaves a bitter aftertaste. You feel weakened.") 
-;              138: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              141: ldc 8 (10) 
-;              143: ireturn 
-;              144: goto 58 
-;              147: aload_0 
-;              148: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              151: ldc 29 ("The food was delicious! You feel energized.") 
-;              153: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              156: ldc 14 (7) 
-;              158: ireturn 
-;              159: goto 43 
-;              162: aload_1 
-;              163: ldc 49 ("flip") 
-;              165: iconst_0 
-;              166: invokevirtual 26 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              169: iconst_0 
-;              170: if_icmpge 7 
-;              173: iconst_0 
-;              174: goto 4 
-;              177: iconst_1 
-;              178: ifeq 18 
-;              181: aload_0 
-;              182: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              185: ldc 35 ("You hurt yourself in the process. A new table appears. ") 
-;              187: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              190: ldc 13 (9) 
-;              192: ireturn 
-;              193: goto 9 
-;              196: aload_0 
-;              197: aload_1 
-;              198: invokevirtual 54 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              201: ireturn 
-;              202: nop 
+;               89: invokevirtual 45 (joos/lib/JoosRandom/nextInt ()I) 
+;               92: ldc 9 (100) 
+;               94: irem 
+;               95: iconst_0 
+;               96: if_icmpge 6 
+;               99: iload_3 
+;              100: ineg 
+;              101: istore_3 
+;              102: iload_3 
+;              103: ldc 11 (40) 
+;              105: if_icmpge 18 
+;              108: aload_0 
+;              109: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              112: ldc 36 ("The food leaves a bitter aftertaste. You feel weakened.") 
+;              114: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              117: ldc 8 (10) 
+;              119: ireturn 
+;              120: goto 50 
+;              123: aload_0 
+;              124: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              127: ldc 29 ("The food was delicious! You feel energized.") 
+;              129: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              132: ldc 14 (7) 
+;              134: ireturn 
+;              135: goto 35 
+;              138: aload_1 
+;              139: ldc 49 ("flip") 
+;              141: iconst_0 
+;              142: invokevirtual 26 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              145: iconst_0 
+;              146: if_icmplt 18 
+;              149: aload_0 
+;              150: getfield 18 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              153: ldc 35 ("You hurt yourself in the process. A new table appears. ") 
+;              155: invokevirtual 43 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              158: ldc 13 (9) 
+;              160: ireturn 
+;              161: goto 9 
+;              164: aload_0 
+;              165: aload_1 
+;              166: invokevirtual 54 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              169: ireturn 
+;              170: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -248,7 +228,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x3d6) :
+; class_attributes[0] (offset 0x3b6) :
 ;     name_index 39 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

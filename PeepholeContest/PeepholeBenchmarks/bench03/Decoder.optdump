@@ -109,440 +109,347 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 37 (Code)
-;         attribute_length 45
-;         max_stack 3
+;         attribute_length 41
+;         max_stack 2
 ;         max_locals 1
-;         code_length 33
+;         code_length 29
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 75 (java/lang/Object/<init> ()V) 
 ;                4: new 54 (Conversion) 
 ;                7: dup 
 ;                8: invokespecial 19 (Conversion/<init> ()V) 
-;               11: dup 
-;               12: aload_0 
-;               13: swap 
-;               14: putfield 40 (Decoder/con LConversion;) 
-;               17: pop 
-;               18: new 25 (lib/JoosBitwise) 
-;               21: dup 
-;               22: invokespecial 38 (lib/JoosBitwise/<init> ()V) 
-;               25: dup 
-;               26: aload_0 
-;               27: swap 
-;               28: putfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;               31: pop 
-;               32: return 
+;               11: aload_0 
+;               12: swap 
+;               13: putfield 40 (Decoder/con LConversion;) 
+;               16: new 25 (lib/JoosBitwise) 
+;               19: dup 
+;               20: invokespecial 38 (lib/JoosBitwise/<init> ()V) 
+;               23: aload_0 
+;               24: swap 
+;               25: putfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;               28: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x2a6) :
+; methods[1] (offset 0x2a2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 8 (base64_decode)
 ;     descriptor_index 59 ((Ljava/lang/String;)Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 37 (Code)
-;         attribute_length 752
+;         attribute_length 662
 ;         max_stack 7
 ;         max_locals 7
-;         code_length 740
+;         code_length 650
 ;         code :
 ;                0: ldc 74 ("") 
 ;                2: astore 6 
 ;                4: iconst_0 
-;                5: dup 
-;                6: istore_2 
-;                7: pop 
-;                8: iconst_0 
-;                9: dup 
-;               10: istore 5 
-;               12: pop 
-;               13: aload_1 
-;               14: invokevirtual 7 (java/lang/String/length ()I) 
-;               17: dup 
-;               18: istore_3 
-;               19: pop 
-;               20: iload_3 
-;               21: iconst_1 
-;               22: isub 
-;               23: dup 
-;               24: istore 4 
-;               26: pop 
-;               27: aload_1 
-;               28: iload 4 
-;               30: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;               33: ldc 44 (61) 
-;               35: if_icmpeq 7 
-;               38: iconst_0 
-;               39: goto 4 
-;               42: iconst_1 
-;               43: ifeq 22 
-;               46: iload 5 
-;               48: iconst_1 
-;               49: iadd 
-;               50: dup 
-;               51: istore 5 
-;               53: pop 
-;               54: iload 4 
-;               56: iconst_1 
-;               57: isub 
-;               58: dup 
-;               59: istore 4 
-;               61: pop 
-;               62: goto -35 
-;               65: iconst_0 
-;               66: dup 
-;               67: istore 4 
-;               69: pop 
-;               70: iload 4 
-;               72: iload_3 
-;               73: if_icmplt 7 
-;               76: iconst_0 
-;               77: goto 4 
-;               80: iconst_1 
-;               81: ifeq 655 
-;               84: iconst_0 
-;               85: dup 
-;               86: istore_2 
-;               87: pop 
-;               88: iload_3 
-;               89: iconst_4 
-;               90: isub 
-;               91: iload 4 
-;               93: if_icmpeq 7 
-;               96: iconst_0 
-;               97: goto 4 
-;              100: iconst_1 
-;              101: dup 
-;              102: ifeq 15 
-;              105: pop 
-;              106: iload 5 
-;              108: iconst_0 
-;              109: if_icmpgt 7 
-;              112: iconst_0 
-;              113: goto 4 
-;              116: iconst_1 
-;              117: ifeq 329 
-;              120: iload 5 
-;              122: iconst_2 
-;              123: if_icmpeq 7 
-;              126: iconst_0 
-;              127: goto 4 
-;              130: iconst_1 
-;              131: ifeq 86 
-;              134: aload_0 
-;              135: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              138: iload_2 
+;                5: istore_2 
+;                6: iconst_0 
+;                7: istore 5 
+;                9: aload_1 
+;               10: invokevirtual 7 (java/lang/String/length ()I) 
+;               13: iconst_1 
+;               14: isub 
+;               15: istore 4 
+;               17: aload_1 
+;               18: iload 4 
+;               20: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;               23: ldc 44 (61) 
+;               25: if_icmpne 18 
+;               28: wide iinc 5 1 
+;               34: iload 4 
+;               36: iconst_1 
+;               37: isub 
+;               38: istore 4 
+;               40: goto -23 
+;               43: iconst_0 
+;               44: istore 4 
+;               46: iload 4 
+;               48: iload_3 
+;               49: if_icmpge 597 
+;               52: iconst_0 
+;               53: istore_2 
+;               54: iload_3 
+;               55: iconst_4 
+;               56: isub 
+;               57: iload 4 
+;               59: if_icmpeq 7 
+;               62: iconst_0 
+;               63: goto 4 
+;               66: iconst_1 
+;               67: dup 
+;               68: ifeq 15 
+;               71: pop 
+;               72: iload 5 
+;               74: iconst_0 
+;               75: if_icmpgt 7 
+;               78: iconst_0 
+;               79: goto 4 
+;               82: iconst_1 
+;               83: ifeq 297 
+;               86: iload 5 
+;               88: iconst_2 
+;               89: if_icmpne 84 
+;               92: aload_0 
+;               93: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;               96: iload_2 
+;               97: aload_0 
+;               98: dup 
+;               99: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              102: getfield 40 (Decoder/con LConversion;) 
+;              105: aload_1 
+;              106: iload 4 
+;              108: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              111: invokevirtual 9 (Conversion/get10 (I)C) 
+;              114: ldc 31 (18) 
+;              116: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              119: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              122: istore_2 
+;              123: aload 6 
+;              125: dup 
+;              126: ifnull 6 
+;              129: goto 6 
+;              132: pop 
+;              133: ldc 39 ("null") 
+;              135: new 52 (java/lang/Character) 
+;              138: dup 
 ;              139: aload_0 
-;              140: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              143: aload_0 
-;              144: getfield 40 (Decoder/con LConversion;) 
-;              147: aload_1 
-;              148: iload 4 
-;              150: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              153: invokevirtual 9 (Conversion/get10 (I)C) 
-;              156: ldc 31 (18) 
-;              158: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              161: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              164: dup 
-;              165: istore_2 
-;              166: pop 
-;              167: aload 6 
-;              169: dup 
-;              170: ifnull 6 
-;              173: goto 6 
-;              176: pop 
-;              177: ldc 39 ("null") 
-;              179: new 52 (java/lang/Character) 
-;              182: dup 
-;              183: aload_0 
-;              184: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              187: aload_0 
-;              188: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              191: iload_2 
-;              192: ldc 32 (16) 
-;              194: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
-;              197: ldc 50 (255) 
-;              199: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              202: i2c 
-;              203: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              206: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              209: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              212: astore 6 
-;              214: goto 226 
-;              217: iload 5 
-;              219: iconst_1 
-;              220: if_icmpeq 7 
-;              223: iconst_0 
-;              224: goto 4 
-;              227: iconst_1 
-;              228: ifeq 212 
-;              231: aload_0 
-;              232: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              235: iload_2 
-;              236: aload_0 
-;              237: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              240: aload_0 
-;              241: getfield 40 (Decoder/con LConversion;) 
-;              244: aload_1 
-;              245: iload 4 
-;              247: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              250: invokevirtual 9 (Conversion/get10 (I)C) 
-;              253: ldc 31 (18) 
-;              255: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              258: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              261: dup 
-;              262: istore_2 
-;              263: pop 
-;              264: iload 4 
-;              266: iconst_1 
-;              267: iadd 
-;              268: dup 
-;              269: istore 4 
-;              271: pop 
-;              272: aload_0 
-;              273: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              276: iload_2 
-;              277: aload_0 
-;              278: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              281: aload_0 
-;              282: getfield 40 (Decoder/con LConversion;) 
-;              285: aload_1 
-;              286: iload 4 
-;              288: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              291: invokevirtual 9 (Conversion/get10 (I)C) 
-;              294: ldc 34 (12) 
-;              296: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              299: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              302: dup 
-;              303: istore_2 
-;              304: pop 
-;              305: iload 4 
-;              307: iconst_1 
-;              308: iadd 
-;              309: dup 
-;              310: istore 4 
-;              312: pop 
-;              313: aload_0 
-;              314: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              317: iload_2 
-;              318: aload_0 
-;              319: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              322: aload_0 
-;              323: getfield 40 (Decoder/con LConversion;) 
-;              326: aload_1 
-;              327: iload 4 
-;              329: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              332: invokevirtual 9 (Conversion/get10 (I)C) 
-;              335: ldc 21 (6) 
-;              337: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              340: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              343: dup 
-;              344: istore_2 
-;              345: pop 
-;              346: aload 6 
-;              348: dup 
-;              349: ifnull 6 
-;              352: goto 6 
-;              355: pop 
-;              356: ldc 39 ("null") 
-;              358: new 52 (java/lang/Character) 
-;              361: dup 
-;              362: aload_0 
-;              363: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              366: aload_0 
-;              367: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              370: iload_2 
-;              371: ldc 32 (16) 
-;              373: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
-;              376: ldc 50 (255) 
-;              378: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              381: i2c 
-;              382: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              385: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              388: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              391: astore 6 
-;              393: aload 6 
-;              395: dup 
-;              396: ifnull 6 
-;              399: goto 6 
-;              402: pop 
-;              403: ldc 39 ("null") 
-;              405: new 52 (java/lang/Character) 
-;              408: dup 
-;              409: aload_0 
-;              410: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              413: aload_0 
-;              414: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              417: iload_2 
-;              418: ldc 20 (8) 
-;              420: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
-;              423: ldc 50 (255) 
-;              425: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              428: i2c 
-;              429: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              432: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              435: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              438: astore 6 
-;              440: aload 6 
-;              442: areturn 
-;              443: goto -373 
-;              446: aload_0 
-;              447: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              450: iload_2 
-;              451: aload_0 
-;              452: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              455: aload_0 
-;              456: getfield 40 (Decoder/con LConversion;) 
-;              459: aload_1 
-;              460: iload 4 
-;              462: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              465: invokevirtual 9 (Conversion/get10 (I)C) 
-;              468: ldc 31 (18) 
-;              470: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              473: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              476: dup 
-;              477: istore_2 
-;              478: pop 
-;              479: iload 4 
-;              481: iconst_1 
-;              482: iadd 
-;              483: dup 
-;              484: istore 4 
-;              486: pop 
-;              487: aload_0 
-;              488: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              491: iload_2 
-;              492: aload_0 
-;              493: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              140: dup 
+;              141: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              144: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              147: iload_2 
+;              148: ldc 32 (16) 
+;              150: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
+;              153: ldc 50 (255) 
+;              155: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              158: i2c 
+;              159: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              162: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              165: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              168: astore 6 
+;              170: goto 204 
+;              173: iload 5 
+;              175: iconst_1 
+;              176: if_icmpne 198 
+;              179: aload_0 
+;              180: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              183: iload_2 
+;              184: aload_0 
+;              185: dup 
+;              186: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              189: getfield 40 (Decoder/con LConversion;) 
+;              192: aload_1 
+;              193: iload 4 
+;              195: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              198: invokevirtual 9 (Conversion/get10 (I)C) 
+;              201: ldc 31 (18) 
+;              203: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              206: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              209: istore_2 
+;              210: wide iinc 4 1 
+;              216: aload_0 
+;              217: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              220: iload_2 
+;              221: aload_0 
+;              222: dup 
+;              223: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              226: getfield 40 (Decoder/con LConversion;) 
+;              229: aload_1 
+;              230: iload 4 
+;              232: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              235: invokevirtual 9 (Conversion/get10 (I)C) 
+;              238: ldc 34 (12) 
+;              240: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              243: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              246: istore_2 
+;              247: wide iinc 4 1 
+;              253: aload_0 
+;              254: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              257: iload_2 
+;              258: aload_0 
+;              259: dup 
+;              260: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              263: getfield 40 (Decoder/con LConversion;) 
+;              266: aload_1 
+;              267: iload 4 
+;              269: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              272: invokevirtual 9 (Conversion/get10 (I)C) 
+;              275: ldc 21 (6) 
+;              277: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              280: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              283: istore_2 
+;              284: aload 6 
+;              286: dup 
+;              287: ifnull 6 
+;              290: goto 6 
+;              293: pop 
+;              294: ldc 39 ("null") 
+;              296: new 52 (java/lang/Character) 
+;              299: dup 
+;              300: aload_0 
+;              301: dup 
+;              302: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              305: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              308: iload_2 
+;              309: ldc 32 (16) 
+;              311: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
+;              314: ldc 50 (255) 
+;              316: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              319: i2c 
+;              320: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              323: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              326: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              329: dup 
+;              330: ifnull 6 
+;              333: goto 6 
+;              336: pop 
+;              337: ldc 39 ("null") 
+;              339: new 52 (java/lang/Character) 
+;              342: dup 
+;              343: aload_0 
+;              344: dup 
+;              345: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              348: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              351: iload_2 
+;              352: ldc 20 (8) 
+;              354: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
+;              357: ldc 50 (255) 
+;              359: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              362: i2c 
+;              363: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              366: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              369: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              372: astore 6 
+;              374: aload 6 
+;              376: areturn 
+;              377: goto -331 
+;              380: aload_0 
+;              381: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              384: iload_2 
+;              385: aload_0 
+;              386: dup 
+;              387: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              390: getfield 40 (Decoder/con LConversion;) 
+;              393: aload_1 
+;              394: iload 4 
+;              396: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              399: invokevirtual 9 (Conversion/get10 (I)C) 
+;              402: ldc 31 (18) 
+;              404: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              407: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              410: istore_2 
+;              411: wide iinc 4 1 
+;              417: aload_0 
+;              418: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              421: iload_2 
+;              422: aload_0 
+;              423: dup 
+;              424: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              427: getfield 40 (Decoder/con LConversion;) 
+;              430: aload_1 
+;              431: iload 4 
+;              433: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              436: invokevirtual 9 (Conversion/get10 (I)C) 
+;              439: ldc 34 (12) 
+;              441: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              444: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              447: istore_2 
+;              448: wide iinc 4 1 
+;              454: aload_0 
+;              455: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              458: iload_2 
+;              459: aload_0 
+;              460: dup 
+;              461: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              464: getfield 40 (Decoder/con LConversion;) 
+;              467: aload_1 
+;              468: iload 4 
+;              470: invokevirtual 57 (java/lang/String/charAt (I)C) 
+;              473: invokevirtual 9 (Conversion/get10 (I)C) 
+;              476: ldc 21 (6) 
+;              478: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
+;              481: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              484: istore_2 
+;              485: wide iinc 4 1 
+;              491: aload_0 
+;              492: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              495: iload_2 
 ;              496: aload_0 
 ;              497: getfield 40 (Decoder/con LConversion;) 
 ;              500: aload_1 
 ;              501: iload 4 
 ;              503: invokevirtual 57 (java/lang/String/charAt (I)C) 
 ;              506: invokevirtual 9 (Conversion/get10 (I)C) 
-;              509: ldc 34 (12) 
-;              511: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              514: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              517: dup 
-;              518: istore_2 
-;              519: pop 
-;              520: iload 4 
-;              522: iconst_1 
-;              523: iadd 
-;              524: dup 
-;              525: istore 4 
-;              527: pop 
-;              528: aload_0 
-;              529: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              532: iload_2 
-;              533: aload_0 
-;              534: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              537: aload_0 
-;              538: getfield 40 (Decoder/con LConversion;) 
-;              541: aload_1 
-;              542: iload 4 
-;              544: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              547: invokevirtual 9 (Conversion/get10 (I)C) 
-;              550: ldc 21 (6) 
-;              552: invokevirtual 68 (lib/JoosBitwise/shl (II)I) 
-;              555: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              558: dup 
-;              559: istore_2 
-;              560: pop 
-;              561: iload 4 
-;              563: iconst_1 
-;              564: iadd 
-;              565: dup 
-;              566: istore 4 
-;              568: pop 
-;              569: aload_0 
-;              570: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              573: iload_2 
-;              574: aload_0 
-;              575: getfield 40 (Decoder/con LConversion;) 
-;              578: aload_1 
-;              579: iload 4 
-;              581: invokevirtual 57 (java/lang/String/charAt (I)C) 
-;              584: invokevirtual 9 (Conversion/get10 (I)C) 
-;              587: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
-;              590: dup 
-;              591: istore_2 
-;              592: pop 
-;              593: iload 4 
-;              595: iconst_1 
-;              596: iadd 
-;              597: dup 
-;              598: istore 4 
-;              600: pop 
-;              601: aload 6 
-;              603: dup 
-;              604: ifnull 6 
-;              607: goto 6 
-;              610: pop 
-;              611: ldc 39 ("null") 
-;              613: new 52 (java/lang/Character) 
-;              616: dup 
-;              617: aload_0 
-;              618: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              509: invokevirtual 2 (lib/JoosBitwise/or (II)I) 
+;              512: istore_2 
+;              513: wide iinc 4 1 
+;              519: aload 6 
+;              521: dup 
+;              522: ifnull 6 
+;              525: goto 6 
+;              528: pop 
+;              529: ldc 39 ("null") 
+;              531: new 52 (java/lang/Character) 
+;              534: dup 
+;              535: aload_0 
+;              536: dup 
+;              537: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              540: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              543: iload_2 
+;              544: ldc 32 (16) 
+;              546: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
+;              549: ldc 50 (255) 
+;              551: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              554: i2c 
+;              555: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              558: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              561: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              564: dup 
+;              565: ifnull 6 
+;              568: goto 6 
+;              571: pop 
+;              572: ldc 39 ("null") 
+;              574: new 52 (java/lang/Character) 
+;              577: dup 
+;              578: aload_0 
+;              579: dup 
+;              580: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              583: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
+;              586: iload_2 
+;              587: ldc 20 (8) 
+;              589: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
+;              592: ldc 50 (255) 
+;              594: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              597: i2c 
+;              598: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              601: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              604: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              607: dup 
+;              608: ifnull 6 
+;              611: goto 6 
+;              614: pop 
+;              615: ldc 39 ("null") 
+;              617: new 52 (java/lang/Character) 
+;              620: dup 
 ;              621: aload_0 
 ;              622: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
 ;              625: iload_2 
-;              626: ldc 32 (16) 
-;              628: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
-;              631: ldc 50 (255) 
-;              633: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              636: i2c 
-;              637: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              640: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              643: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              646: astore 6 
-;              648: aload 6 
-;              650: dup 
-;              651: ifnull 6 
-;              654: goto 6 
-;              657: pop 
-;              658: ldc 39 ("null") 
-;              660: new 52 (java/lang/Character) 
-;              663: dup 
-;              664: aload_0 
-;              665: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              668: aload_0 
-;              669: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              672: iload_2 
-;              673: ldc 20 (8) 
-;              675: invokevirtual 26 (lib/JoosBitwise/shr (II)I) 
-;              678: ldc 50 (255) 
-;              680: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              683: i2c 
-;              684: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              687: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              690: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              693: astore 6 
-;              695: aload 6 
-;              697: dup 
-;              698: ifnull 6 
-;              701: goto 6 
-;              704: pop 
-;              705: ldc 39 ("null") 
-;              707: new 52 (java/lang/Character) 
-;              710: dup 
-;              711: aload_0 
-;              712: getfield 66 (Decoder/uti Llib/JoosBitwise;) 
-;              715: iload_2 
-;              716: ldc 50 (255) 
-;              718: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
-;              721: i2c 
-;              722: invokespecial 53 (java/lang/Character/<init> (C)V) 
-;              725: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
-;              728: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              731: astore 6 
-;              733: goto -663 
-;              736: aload 6 
-;              738: areturn 
-;              739: nop 
+;              626: ldc 50 (255) 
+;              628: invokevirtual 45 (lib/JoosBitwise/and (II)I) 
+;              631: i2c 
+;              632: invokespecial 53 (java/lang/Character/<init> (C)V) 
+;              635: invokevirtual 17 (java/lang/Character/toString ()Ljava/lang/String;) 
+;              638: invokevirtual 30 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              641: astore 6 
+;              643: goto -597 
+;              646: aload 6 
+;              648: areturn 
+;              649: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -550,7 +457,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x5a6) :
+; class_attributes[0] (offset 0x548) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 63

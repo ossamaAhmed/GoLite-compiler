@@ -65,23 +65,18 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 8 (Code)
-;         attribute_length 21
-;         max_stack 3
+;         attribute_length 16
+;         max_stack 0
 ;         max_locals 2
-;         code_length 9
+;         code_length 4
 ;         code :
-;                0: iload_1 
-;                1: dup 
-;                2: aload_0 
-;                3: swap 
-;                4: putfield 16 (Woman/complementNumber I) 
-;                7: pop 
-;                8: return 
+;                0: putfield 16 (Woman/complementNumber I) 
+;                3: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x15d) :
+; methods[2] (offset 0x158) :
 ;     access_flags 0x401 [ ACC_ABSTRACT ACC_PUBLIC ]
 ;     name_index 9 (react)
 ;     descriptor_index 7 ((Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;)
@@ -91,7 +86,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x167) :
+; class_attributes[0] (offset 0x162) :
 ;     name_index 10 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 18

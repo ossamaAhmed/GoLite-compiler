@@ -118,259 +118,215 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 510
+;         attribute_length 422
 ;         max_stack 2
 ;         max_locals 5
-;         code_length 498
+;         code_length 410
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 48 (Woman/complementNumber I) 
 ;                4: iconst_0 
-;                5: if_icmpeq 7 
-;                8: iconst_0 
-;                9: goto 4 
-;               12: iconst_1 
-;               13: ifeq 9 
-;               16: ldc 6 ("This is highly inappropriate.") 
-;               18: areturn 
-;               19: goto 478 
-;               22: aload_0 
-;               23: getfield 48 (Woman/complementNumber I) 
-;               26: iconst_1 
-;               27: if_icmpeq 7 
-;               30: iconst_0 
-;               31: goto 4 
-;               34: iconst_1 
-;               35: ifeq 59 
-;               38: aload_3 
-;               39: ldc 7 ("work-ethic") 
-;               41: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               44: dup 
-;               45: ifne 10 
-;               48: pop 
-;               49: aload_3 
-;               50: ldc 25 ("dream") 
-;               52: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               55: dup 
-;               56: ifeq 23 
-;               59: pop 
-;               60: aload 4 
-;               62: ldc 76 ("work") 
-;               64: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               67: dup 
-;               68: ifne 11 
-;               71: pop 
-;               72: aload 4 
-;               74: ldc 47 ("program") 
-;               76: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;               79: ifeq 9 
-;               82: ldc 62 ("I feel a promotion coming your way!!") 
-;               84: areturn 
-;               85: goto 412 
-;               88: ldc 13 ("get out of my office.") 
-;               90: areturn 
-;               91: goto 406 
-;               94: aload_0 
-;               95: getfield 48 (Woman/complementNumber I) 
-;               98: iconst_2 
-;               99: if_icmpeq 7 
-;              102: iconst_0 
-;              103: goto 4 
-;              106: iconst_1 
-;              107: ifeq 9 
-;              110: ldc 34 ("are you familiar with the term sexual harassment?") 
-;              112: areturn 
-;              113: goto 384 
-;              116: aload_0 
-;              117: getfield 48 (Woman/complementNumber I) 
-;              120: iconst_3 
-;              121: if_icmpeq 7 
-;              124: iconst_0 
-;              125: goto 4 
-;              128: iconst_1 
-;              129: ifeq 9 
-;              132: ldc 67 ("I am your boss, you know.") 
-;              134: areturn 
-;              135: goto 362 
-;              138: aload_0 
-;              139: getfield 48 (Woman/complementNumber I) 
-;              142: iconst_4 
-;              143: if_icmpeq 7 
-;              146: iconst_0 
-;              147: goto 4 
-;              150: iconst_1 
-;              151: ifeq 43 
-;              154: aload_3 
-;              155: ldc 7 ("work-ethic") 
-;              157: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              160: dup 
-;              161: ifeq 18 
-;              164: pop 
-;              165: aload_2 
-;              166: ldc 9 ("sexy") 
-;              168: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              171: ifeq 7 
-;              174: iconst_0 
-;              175: goto 4 
-;              178: iconst_1 
-;              179: ifeq 9 
-;              182: ldc 23 ("I'm impressed, you are hired.") 
-;              184: areturn 
-;              185: goto 312 
-;              188: ldc 74 ("get out of my office, you sick sick man.") 
-;              190: areturn 
-;              191: goto 306 
-;              194: aload_0 
-;              195: getfield 48 (Woman/complementNumber I) 
-;              198: iconst_5 
-;              199: if_icmpeq 7 
-;              202: iconst_0 
-;              203: goto 4 
-;              206: iconst_1 
-;              207: ifeq 9 
-;              210: ldc 28 ("If I was your girlfriend, that might have been funny. you are fired.") 
-;              212: areturn 
-;              213: goto 284 
-;              216: aload_0 
-;              217: getfield 48 (Woman/complementNumber I) 
-;              220: ldc 27 (6) 
-;              222: if_icmpeq 7 
-;              225: iconst_0 
-;              226: goto 4 
-;              229: iconst_1 
-;              230: ifeq 9 
-;              233: ldc 58 ("who the hell do you think you are talking to??") 
-;              235: areturn 
-;              236: goto 261 
-;              239: aload_0 
-;              240: getfield 48 (Woman/complementNumber I) 
-;              243: ldc 26 (7) 
-;              245: if_icmpeq 7 
-;              248: iconst_0 
-;              249: goto 4 
-;              252: iconst_1 
-;              253: ifeq 70 
-;              256: aload_2 
-;              257: ldc 72 ("better") 
-;              259: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              262: dup 
-;              263: ifne 10 
-;              266: pop 
-;              267: aload_2 
-;              268: ldc 17 ("happy") 
-;              270: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              273: dup 
-;              274: ifne 10 
-;              277: pop 
-;              278: aload_2 
-;              279: ldc 15 ("talented") 
-;              281: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              284: dup 
-;              285: ifeq 23 
-;              288: pop 
-;              289: aload 4 
-;              291: ldc 76 ("work") 
-;              293: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              296: dup 
-;              297: ifne 11 
-;              300: pop 
-;              301: aload 4 
-;              303: ldc 47 ("program") 
-;              305: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              308: ifeq 9 
-;              311: ldc 39 ("you have a slippery tongue..well done") 
-;              313: areturn 
-;              314: goto 183 
-;              317: ldc 13 ("get out of my office.") 
-;              319: areturn 
-;              320: goto 177 
-;              323: aload_0 
-;              324: getfield 48 (Woman/complementNumber I) 
-;              327: ldc 24 (8) 
-;              329: if_icmpeq 7 
-;              332: iconst_0 
-;              333: goto 4 
-;              336: iconst_1 
-;              337: ifeq 24 
-;              340: aload_3 
-;              341: ldc 7 ("work-ethic") 
-;              343: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              346: ifeq 9 
-;              349: ldc 59 ("that's a strange proposal, but Ive heard worse..") 
-;              351: areturn 
-;              352: goto 145 
-;              355: ldc 78 ("you are going to have hard time keeping your job like that.") 
-;              357: areturn 
-;              358: goto 139 
-;              361: aload_0 
-;              362: getfield 48 (Woman/complementNumber I) 
-;              365: ldc 22 (9) 
-;              367: if_icmpeq 7 
-;              370: iconst_0 
-;              371: goto 4 
-;              374: iconst_1 
-;              375: ifeq 59 
-;              378: aload 4 
-;              380: ldc 76 ("work") 
-;              382: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              385: dup 
-;              386: ifne 11 
-;              389: pop 
-;              390: aload 4 
-;              392: ldc 47 ("program") 
-;              394: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              397: dup 
-;              398: ifeq 21 
-;              401: pop 
-;              402: aload_2 
-;              403: ldc 17 ("happy") 
-;              405: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              408: dup 
-;              409: ifne 10 
-;              412: pop 
-;              413: aload_2 
-;              414: ldc 15 ("talented") 
-;              416: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              419: ifeq 9 
-;              422: ldc 45 ("let's indeed! you are a very talented young man..") 
-;              424: areturn 
-;              425: goto 72 
-;              428: ldc 34 ("are you familiar with the term sexual harassment?") 
-;              430: areturn 
-;              431: goto 66 
-;              434: aload_0 
-;              435: getfield 48 (Woman/complementNumber I) 
-;              438: ldc 37 (10) 
-;              440: if_icmpeq 7 
-;              443: iconst_0 
-;              444: goto 4 
-;              447: iconst_1 
-;              448: ifeq 46 
-;              451: aload_3 
-;              452: ldc 7 ("work-ethic") 
-;              454: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              457: dup 
-;              458: ifne 10 
-;              461: pop 
-;              462: aload_3 
-;              463: ldc 35 ("problems") 
-;              465: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              468: dup 
-;              469: ifne 10 
-;              472: pop 
-;              473: aload_3 
-;              474: ldc 25 ("dream") 
-;              476: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;              479: ifeq 9 
-;              482: ldc 46 ("I don't understand exactly what you want, but whatever.") 
-;              484: areturn 
-;              485: goto 12 
-;              488: ldc 8 ("get out of my office, you pervert.") 
-;              490: areturn 
-;              491: goto 6 
-;              494: ldc 56 ("WTF??") 
-;              496: areturn 
-;              497: nop 
+;                5: if_icmpne 9 
+;                8: ldc 6 ("This is highly inappropriate.") 
+;               10: areturn 
+;               11: goto 398 
+;               14: aload_0 
+;               15: getfield 48 (Woman/complementNumber I) 
+;               18: iconst_1 
+;               19: if_icmpne 59 
+;               22: aload_3 
+;               23: ldc 7 ("work-ethic") 
+;               25: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               28: dup 
+;               29: ifne 10 
+;               32: pop 
+;               33: aload_3 
+;               34: ldc 25 ("dream") 
+;               36: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               39: dup 
+;               40: ifeq 23 
+;               43: pop 
+;               44: aload 4 
+;               46: ldc 76 ("work") 
+;               48: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               51: dup 
+;               52: ifne 11 
+;               55: pop 
+;               56: aload 4 
+;               58: ldc 47 ("program") 
+;               60: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;               63: ifeq 9 
+;               66: ldc 62 ("I feel a promotion coming your way!!") 
+;               68: areturn 
+;               69: goto 340 
+;               72: ldc 13 ("get out of my office.") 
+;               74: areturn 
+;               75: goto 334 
+;               78: aload_0 
+;               79: getfield 48 (Woman/complementNumber I) 
+;               82: iconst_2 
+;               83: if_icmpne 9 
+;               86: ldc 34 ("are you familiar with the term sexual harassment?") 
+;               88: areturn 
+;               89: goto 320 
+;               92: aload_0 
+;               93: getfield 48 (Woman/complementNumber I) 
+;               96: iconst_3 
+;               97: if_icmpne 9 
+;              100: ldc 67 ("I am your boss, you know.") 
+;              102: areturn 
+;              103: goto 306 
+;              106: aload_0 
+;              107: getfield 48 (Woman/complementNumber I) 
+;              110: iconst_4 
+;              111: if_icmpne 43 
+;              114: aload_3 
+;              115: ldc 7 ("work-ethic") 
+;              117: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              120: dup 
+;              121: ifeq 18 
+;              124: pop 
+;              125: aload_2 
+;              126: ldc 9 ("sexy") 
+;              128: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              131: ifeq 7 
+;              134: iconst_0 
+;              135: goto 4 
+;              138: iconst_1 
+;              139: ifeq 9 
+;              142: ldc 23 ("I'm impressed, you are hired.") 
+;              144: areturn 
+;              145: goto 264 
+;              148: ldc 74 ("get out of my office, you sick sick man.") 
+;              150: areturn 
+;              151: goto 258 
+;              154: aload_0 
+;              155: getfield 48 (Woman/complementNumber I) 
+;              158: iconst_5 
+;              159: if_icmpne 9 
+;              162: ldc 28 ("If I was your girlfriend, that might have been funny. you are fired.") 
+;              164: areturn 
+;              165: goto 244 
+;              168: aload_0 
+;              169: getfield 48 (Woman/complementNumber I) 
+;              172: ldc 27 (6) 
+;              174: if_icmpne 9 
+;              177: ldc 58 ("who the hell do you think you are talking to??") 
+;              179: areturn 
+;              180: goto 229 
+;              183: aload_0 
+;              184: getfield 48 (Woman/complementNumber I) 
+;              187: ldc 26 (7) 
+;              189: if_icmpne 70 
+;              192: aload_2 
+;              193: ldc 72 ("better") 
+;              195: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              198: dup 
+;              199: ifne 10 
+;              202: pop 
+;              203: aload_2 
+;              204: ldc 17 ("happy") 
+;              206: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              209: dup 
+;              210: ifne 10 
+;              213: pop 
+;              214: aload_2 
+;              215: ldc 15 ("talented") 
+;              217: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              220: dup 
+;              221: ifeq 23 
+;              224: pop 
+;              225: aload 4 
+;              227: ldc 76 ("work") 
+;              229: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              232: dup 
+;              233: ifne 11 
+;              236: pop 
+;              237: aload 4 
+;              239: ldc 47 ("program") 
+;              241: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              244: ifeq 9 
+;              247: ldc 39 ("you have a slippery tongue..well done") 
+;              249: areturn 
+;              250: goto 159 
+;              253: ldc 13 ("get out of my office.") 
+;              255: areturn 
+;              256: goto 153 
+;              259: aload_0 
+;              260: getfield 48 (Woman/complementNumber I) 
+;              263: ldc 24 (8) 
+;              265: if_icmpne 24 
+;              268: aload_3 
+;              269: ldc 7 ("work-ethic") 
+;              271: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              274: ifeq 9 
+;              277: ldc 59 ("that's a strange proposal, but Ive heard worse..") 
+;              279: areturn 
+;              280: goto 129 
+;              283: ldc 78 ("you are going to have hard time keeping your job like that.") 
+;              285: areturn 
+;              286: goto 123 
+;              289: aload_0 
+;              290: getfield 48 (Woman/complementNumber I) 
+;              293: ldc 22 (9) 
+;              295: if_icmpne 59 
+;              298: aload 4 
+;              300: ldc 76 ("work") 
+;              302: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              305: dup 
+;              306: ifne 11 
+;              309: pop 
+;              310: aload 4 
+;              312: ldc 47 ("program") 
+;              314: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              317: dup 
+;              318: ifeq 21 
+;              321: pop 
+;              322: aload_2 
+;              323: ldc 17 ("happy") 
+;              325: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              328: dup 
+;              329: ifne 10 
+;              332: pop 
+;              333: aload_2 
+;              334: ldc 15 ("talented") 
+;              336: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              339: ifeq 9 
+;              342: ldc 45 ("let's indeed! you are a very talented young man..") 
+;              344: areturn 
+;              345: goto 64 
+;              348: ldc 34 ("are you familiar with the term sexual harassment?") 
+;              350: areturn 
+;              351: goto 58 
+;              354: aload_0 
+;              355: getfield 48 (Woman/complementNumber I) 
+;              358: ldc 37 (10) 
+;              360: if_icmpne 46 
+;              363: aload_3 
+;              364: ldc 7 ("work-ethic") 
+;              366: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              369: dup 
+;              370: ifne 10 
+;              373: pop 
+;              374: aload_3 
+;              375: ldc 35 ("problems") 
+;              377: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              380: dup 
+;              381: ifne 10 
+;              384: pop 
+;              385: aload_3 
+;              386: ldc 25 ("dream") 
+;              388: invokevirtual 50 (java/lang/String/equals (Ljava/lang/Object;)Z) 
+;              391: ifeq 9 
+;              394: ldc 46 ("I don't understand exactly what you want, but whatever.") 
+;              396: areturn 
+;              397: goto 12 
+;              400: ldc 8 ("get out of my office, you pervert.") 
+;              402: areturn 
+;              403: goto 6 
+;              406: ldc 56 ("WTF??") 
+;              408: areturn 
+;              409: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -378,7 +334,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x6c1) :
+; class_attributes[0] (offset 0x669) :
 ;     name_index 2 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 70

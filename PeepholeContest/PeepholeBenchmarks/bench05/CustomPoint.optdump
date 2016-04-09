@@ -55,62 +55,42 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 7 (Code)
-;         attribute_length 33
-;         max_stack 3
+;         attribute_length 23
+;         max_stack 1
 ;         max_locals 1
-;         code_length 21
+;         code_length 11
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 16 (java/lang/Object/<init> ()V) 
-;                4: iconst_0 
-;                5: dup 
-;                6: aload_0 
-;                7: swap 
-;                8: putfield 9 (CustomPoint/x I) 
-;               11: pop 
-;               12: iconst_0 
-;               13: dup 
-;               14: aload_0 
-;               15: swap 
-;               16: putfield 8 (CustomPoint/y I) 
-;               19: pop 
-;               20: return 
+;                4: putfield 9 (CustomPoint/x I) 
+;                7: putfield 8 (CustomPoint/y I) 
+;               10: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0xf5) :
+; methods[1] (offset 0xeb) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 3 (<init>)
 ;     descriptor_index 2 ((II)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 7 (Code)
-;         attribute_length 33
-;         max_stack 3
+;         attribute_length 23
+;         max_stack 1
 ;         max_locals 3
-;         code_length 21
+;         code_length 11
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 16 (java/lang/Object/<init> ()V) 
-;                4: iload_1 
-;                5: dup 
-;                6: aload_0 
-;                7: swap 
-;                8: putfield 9 (CustomPoint/x I) 
-;               11: pop 
-;               12: iload_2 
-;               13: dup 
-;               14: aload_0 
-;               15: swap 
-;               16: putfield 8 (CustomPoint/y I) 
-;               19: pop 
-;               20: return 
+;                4: putfield 9 (CustomPoint/x I) 
+;                7: putfield 8 (CustomPoint/y I) 
+;               10: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x124) :
+; methods[2] (offset 0x110) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 21 (getX)
 ;     descriptor_index 14 (()I)
@@ -130,7 +110,7 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x144) :
+; methods[3] (offset 0x130) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 19 (getY)
 ;     descriptor_index 14 (()I)
@@ -153,7 +133,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x166) :
+; class_attributes[0] (offset 0x152) :
 ;     name_index 11 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 22

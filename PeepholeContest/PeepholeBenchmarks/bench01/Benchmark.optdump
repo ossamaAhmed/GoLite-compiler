@@ -79,55 +79,51 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 98
+;         attribute_length 94
 ;         max_stack 2
 ;         max_locals 4
-;         code_length 86
+;         code_length 82
 ;         code :
 ;                0: new 12 (joos/lib/JoosIO) 
 ;                3: dup 
 ;                4: invokespecial 36 (joos/lib/JoosIO/<init> ()V) 
-;                7: astore_1 
-;                8: aload_1 
-;                9: invokevirtual 13 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               12: astore_2 
-;               13: aload_2 
-;               14: ldc 11 ("backtrack") 
-;               16: if_acmpeq 7 
-;               19: iconst_0 
-;               20: goto 4 
-;               23: iconst_1 
-;               24: ifeq 14 
-;               27: new 25 (BacktrackSolver) 
-;               30: dup 
-;               31: invokespecial 17 (BacktrackSolver/<init> ()V) 
-;               34: astore_3 
-;               35: goto 36 
-;               38: aload_2 
-;               39: ldc 3 ("bruteforce") 
-;               41: if_acmpeq 7 
-;               44: iconst_0 
-;               45: goto 4 
-;               48: iconst_1 
-;               49: ifeq 14 
-;               52: new 25 (BacktrackSolver) 
-;               55: dup 
-;               56: invokespecial 17 (BacktrackSolver/<init> ()V) 
-;               59: astore_3 
-;               60: goto 11 
-;               63: new 25 (BacktrackSolver) 
-;               66: dup 
-;               67: invokespecial 17 (BacktrackSolver/<init> ()V) 
-;               70: astore_3 
-;               71: aload_3 
-;               72: aload_1 
-;               73: invokevirtual 39 (SudokuSolver/parse (Ljoos/lib/JoosIO;)V) 
+;                7: invokevirtual 13 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               10: ldc 11 ("backtrack") 
+;               12: if_acmpeq 7 
+;               15: iconst_0 
+;               16: goto 4 
+;               19: iconst_1 
+;               20: ifeq 14 
+;               23: new 25 (BacktrackSolver) 
+;               26: dup 
+;               27: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               30: astore_3 
+;               31: goto 36 
+;               34: aload_2 
+;               35: ldc 3 ("bruteforce") 
+;               37: if_acmpeq 7 
+;               40: iconst_0 
+;               41: goto 4 
+;               44: iconst_1 
+;               45: ifeq 14 
+;               48: new 25 (BacktrackSolver) 
+;               51: dup 
+;               52: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               55: astore_3 
+;               56: goto 11 
+;               59: new 25 (BacktrackSolver) 
+;               62: dup 
+;               63: invokespecial 17 (BacktrackSolver/<init> ()V) 
+;               66: astore_3 
+;               67: aload_3 
+;               68: aload_1 
+;               69: invokevirtual 39 (SudokuSolver/parse (Ljoos/lib/JoosIO;)V) 
+;               72: aload_3 
+;               73: invokevirtual 14 (SudokuSolver/solve ()V) 
 ;               76: aload_3 
-;               77: invokevirtual 14 (SudokuSolver/solve ()V) 
-;               80: aload_3 
-;               81: aload_1 
-;               82: invokevirtual 10 (SudokuSolver/print (Ljoos/lib/JoosIO;)V) 
-;               85: return 
+;               77: aload_1 
+;               78: invokevirtual 10 (SudokuSolver/print (Ljoos/lib/JoosIO;)V) 
+;               81: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -135,7 +131,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x205) :
+; class_attributes[0] (offset 0x201) :
 ;     name_index 27 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 24

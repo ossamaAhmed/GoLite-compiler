@@ -90,77 +90,61 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 49 (Code)
-;         attribute_length 145
+;         attribute_length 113
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 133
+;         code_length 101
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 7 ("fight") 
 ;                3: iconst_0 
 ;                4: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;                7: iconst_0 
-;                8: if_icmpge 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: ifeq 15 
-;               19: aload_0 
-;               20: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               23: ldc 13 ("You are ambushed.") 
-;               25: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               28: goto 93 
-;               31: aload_1 
-;               32: ldc 2 ("defend") 
-;               34: iconst_0 
-;               35: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               38: iconst_0 
-;               39: if_icmpge 7 
-;               42: iconst_0 
-;               43: goto 4 
-;               46: iconst_1 
-;               47: ifeq 15 
-;               50: aload_0 
-;               51: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               54: ldc 34 ("You die from lack of sustenance.") 
-;               56: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               59: goto 62 
-;               62: aload_1 
-;               63: ldc 29 ("light") 
-;               65: iconst_0 
-;               66: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               69: iconst_0 
-;               70: if_icmpge 7 
-;               73: iconst_0 
-;               74: goto 4 
-;               77: iconst_1 
-;               78: ifeq 15 
-;               81: aload_0 
-;               82: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               85: ldc 11 ("You have nothing with which to lighten up the room.") 
-;               87: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               90: goto 31 
-;               93: aload_1 
-;               94: ldc 8 ("run") 
-;               96: iconst_0 
-;               97: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              100: iconst_0 
-;              101: if_icmpge 7 
-;              104: iconst_0 
-;              105: goto 4 
-;              108: iconst_1 
-;              109: ifeq 12 
-;              112: aload_0 
-;              113: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              116: ldc 1 ("You are too slow.") 
-;              118: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              121: aload_0 
-;              122: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              125: ldc 27 ("You are eaten by a grue. ") 
-;              127: invokevirtual 46 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
-;              130: iconst_1 
-;              131: ireturn 
-;              132: nop 
+;                8: if_icmplt 15 
+;               11: aload_0 
+;               12: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               15: ldc 13 ("You are ambushed.") 
+;               17: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               20: goto 69 
+;               23: aload_1 
+;               24: ldc 2 ("defend") 
+;               26: iconst_0 
+;               27: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               30: iconst_0 
+;               31: if_icmplt 15 
+;               34: aload_0 
+;               35: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               38: ldc 34 ("You die from lack of sustenance.") 
+;               40: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               43: goto 46 
+;               46: aload_1 
+;               47: ldc 29 ("light") 
+;               49: iconst_0 
+;               50: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               53: iconst_0 
+;               54: if_icmplt 15 
+;               57: aload_0 
+;               58: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               61: ldc 11 ("You have nothing with which to lighten up the room.") 
+;               63: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               66: goto 23 
+;               69: aload_1 
+;               70: ldc 8 ("run") 
+;               72: iconst_0 
+;               73: invokevirtual 23 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               76: iconst_0 
+;               77: if_icmplt 12 
+;               80: aload_0 
+;               81: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               84: ldc 1 ("You are too slow.") 
+;               86: invokevirtual 37 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               89: aload_0 
+;               90: getfield 15 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               93: ldc 27 ("You are eaten by a grue. ") 
+;               95: invokevirtual 46 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;               98: iconst_1 
+;               99: ireturn 
+;              100: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -168,7 +152,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x2f1) :
+; class_attributes[0] (offset 0x2d1) :
 ;     name_index 35 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 18

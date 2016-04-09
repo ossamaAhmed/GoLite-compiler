@@ -56,35 +56,31 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 10 (Code)
-;         attribute_length 41
+;         attribute_length 33
 ;         max_stack 4
 ;         max_locals 2
-;         code_length 29
+;         code_length 21
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_0 
-;                2: if_icmpeq 7 
-;                5: iconst_0 
-;                6: goto 4 
-;                9: iconst_1 
-;               10: ifeq 8 
+;                2: if_icmpne 8 
+;                5: iconst_1 
+;                6: ireturn 
+;                7: goto 13 
+;               10: iload_1 
+;               11: aload_0 
+;               12: iload_1 
 ;               13: iconst_1 
-;               14: ireturn 
-;               15: goto 13 
-;               18: iload_1 
-;               19: aload_0 
-;               20: iload_1 
-;               21: iconst_1 
-;               22: isub 
-;               23: invokevirtual 14 (AmazingCalculator/factorial (I)I) 
-;               26: imul 
-;               27: ireturn 
-;               28: nop 
+;               14: isub 
+;               15: invokevirtual 14 (AmazingCalculator/factorial (I)I) 
+;               18: imul 
+;               19: ireturn 
+;               20: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xff) :
+; methods[2] (offset 0xf7) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 11 (bla)
 ;     descriptor_index 12 (()V)
@@ -104,7 +100,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x11c) :
+; class_attributes[0] (offset 0x114) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 13

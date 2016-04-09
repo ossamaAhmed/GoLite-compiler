@@ -79,10 +79,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 38 (Code)
-;         attribute_length 83
+;         attribute_length 81
 ;         max_stack 2
 ;         max_locals 7
-;         code_length 71
+;         code_length 69
 ;         code :
 ;                0: new 33 (Encoder) 
 ;                3: dup 
@@ -95,30 +95,28 @@
 ;               16: new 10 (joos/lib/JoosIO) 
 ;               19: dup 
 ;               20: invokespecial 34 (joos/lib/JoosIO/<init> ()V) 
-;               23: astore_3 
-;               24: aload_3 
-;               25: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               28: astore 4 
-;               30: aload 4 
-;               32: aconst_null 
-;               33: if_acmpne 7 
-;               36: iconst_0 
-;               37: goto 4 
-;               40: iconst_1 
-;               41: ifeq 29 
-;               44: aload_2 
-;               45: aload 4 
-;               47: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
-;               50: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
-;               53: astore 6 
-;               55: aload_3 
-;               56: aload 6 
-;               58: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               61: aload_3 
-;               62: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
-;               65: astore 4 
-;               67: goto -37 
-;               70: return 
+;               23: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               26: astore 4 
+;               28: aload 4 
+;               30: aconst_null 
+;               31: if_acmpne 7 
+;               34: iconst_0 
+;               35: goto 4 
+;               38: iconst_1 
+;               39: ifeq 29 
+;               42: aload_2 
+;               43: aload 4 
+;               45: invokevirtual 19 (java/lang/String/trim ()Ljava/lang/String;) 
+;               48: invokevirtual 26 (Decoder/base64_decode (Ljava/lang/String;)Ljava/lang/String;) 
+;               51: astore 6 
+;               53: aload_3 
+;               54: aload 6 
+;               56: invokevirtual 27 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               59: aload_3 
+;               60: invokevirtual 11 (joos/lib/JoosIO/readLine ()Ljava/lang/String;) 
+;               63: astore 4 
+;               65: goto -37 
+;               68: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -126,7 +124,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x20e) :
+; class_attributes[0] (offset 0x20c) :
 ;     name_index 23 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 13

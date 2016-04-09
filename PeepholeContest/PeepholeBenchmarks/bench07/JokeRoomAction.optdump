@@ -151,10 +151,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 51 (Code)
-;         attribute_length 190
+;         attribute_length 182
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 178
+;         code_length 170
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 64 ("listen") 
@@ -186,7 +186,7 @@
 ;               50: invokevirtual 46 (JokeRoomAction/printJoke ()V) 
 ;               53: iconst_0 
 ;               54: ireturn 
-;               55: goto 122 
+;               55: goto 114 
 ;               58: aload_1 
 ;               59: ldc 28 ("talk") 
 ;               61: iconst_0 
@@ -229,200 +229,140 @@
 ;              129: invokevirtual 46 (JokeRoomAction/printJoke ()V) 
 ;              132: iconst_0 
 ;              133: ireturn 
-;              134: goto 43 
+;              134: goto 35 
 ;              137: aload_1 
 ;              138: ldc 56 ("ignore") 
 ;              140: iconst_0 
 ;              141: invokevirtual 60 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              144: iconst_0 
-;              145: if_icmpge 7 
-;              148: iconst_0 
-;              149: goto 4 
-;              152: iconst_1 
-;              153: ifeq 18 
-;              156: aload_0 
-;              157: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              160: ldc 89 ("The old man hits you with a fish. You feel weakened.") 
-;              162: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              165: ldc 22 (9) 
-;              167: ireturn 
-;              168: goto 9 
-;              171: aload_0 
-;              172: aload_1 
-;              173: invokevirtual 18 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              176: ireturn 
-;              177: nop 
+;              145: if_icmplt 18 
+;              148: aload_0 
+;              149: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              152: ldc 89 ("The old man hits you with a fish. You feel weakened.") 
+;              154: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              157: ldc 22 (9) 
+;              159: ireturn 
+;              160: goto 9 
+;              163: aload_0 
+;              164: aload_1 
+;              165: invokevirtual 18 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              168: ireturn 
+;              169: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x7da) :
+; methods[3] (offset 0x7d2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 68 (printJoke)
 ;     descriptor_index 61 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 51 (Code)
-;         attribute_length 326
+;         attribute_length 222
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 314
+;         code_length 210
 ;         code :
 ;                0: new 47 (joos/lib/JoosRandom) 
 ;                3: dup 
 ;                4: invokespecial 16 (joos/lib/JoosRandom/<init> ()V) 
-;                7: astore_1 
-;                8: aload_1 
-;                9: invokevirtual 77 (joos/lib/JoosRandom/nextInt ()I) 
-;               12: ldc 42 (10) 
-;               14: irem 
-;               15: dup 
-;               16: istore_2 
-;               17: pop 
-;               18: iload_2 
-;               19: iconst_0 
-;               20: if_icmplt 7 
-;               23: iconst_0 
-;               24: goto 4 
-;               27: iconst_1 
-;               28: ifeq 8 
-;               31: iload_2 
-;               32: ineg 
-;               33: dup 
-;               34: istore_2 
-;               35: pop 
-;               36: iload_2 
-;               37: iconst_0 
-;               38: if_icmpeq 7 
-;               41: iconst_0 
-;               42: goto 4 
-;               45: iconst_1 
-;               46: ifeq 15 
-;               49: aload_0 
-;               50: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               53: ldc 69 ("Two cannibals are eating a clown, when one asks the other 'does this taste funny to you?'") 
-;               55: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               58: goto 255 
-;               61: iload_2 
-;               62: iconst_1 
-;               63: if_icmpeq 7 
-;               66: iconst_0 
-;               67: goto 4 
-;               70: iconst_1 
-;               71: ifeq 15 
-;               74: aload_0 
-;               75: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               78: ldc 44 ("Two peanuts were walking down the street, and one was assaulted.") 
-;               80: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               83: goto 230 
-;               86: iload_2 
-;               87: iconst_2 
-;               88: if_icmpeq 7 
-;               91: iconst_0 
-;               92: goto 4 
-;               95: iconst_1 
-;               96: ifeq 15 
-;               99: aload_0 
-;              100: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              103: ldc 1 ("A sausage is sitting in a frying pan. Another sausage gets dropped in, and says 'holy crap, it's hot in here!' To which the first sausage replies 'holy crap, a talking sausage!'") 
-;              105: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              108: goto 205 
-;              111: iload_2 
-;              112: iconst_3 
-;              113: if_icmpeq 7 
-;              116: iconst_0 
-;              117: goto 4 
-;              120: iconst_1 
-;              121: ifeq 15 
-;              124: aload_0 
-;              125: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              128: ldc 50 ("Have you heard about that new movie Constipation?\n\nIt hasn't come out yet.") 
-;              130: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              133: goto 180 
-;              136: iload_2 
-;              137: iconst_4 
-;              138: if_icmpeq 7 
-;              141: iconst_0 
-;              142: goto 4 
-;              145: iconst_1 
-;              146: ifeq 15 
-;              149: aload_0 
-;              150: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              153: ldc 36 ("What's a foot long and slippery?\n\nA slipper!") 
-;              155: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              158: goto 155 
-;              161: iload_2 
-;              162: iconst_5 
-;              163: if_icmpeq 7 
-;              166: iconst_0 
-;              167: goto 4 
-;              170: iconst_1 
-;              171: ifeq 15 
-;              174: aload_0 
-;              175: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              178: ldc 55 ("If H2O is on the inside of a fire hydrant, what's on the outside? \n\nK9P") 
-;              180: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              183: goto 130 
-;              186: iload_2 
-;              187: ldc 25 (6) 
-;              189: if_icmpeq 7 
-;              192: iconst_0 
-;              193: goto 4 
-;              196: iconst_1 
-;              197: ifeq 15 
+;                7: invokevirtual 77 (joos/lib/JoosRandom/nextInt ()I) 
+;               10: ldc 42 (10) 
+;               12: irem 
+;               13: iconst_0 
+;               14: if_icmpge 6 
+;               17: iload_2 
+;               18: ineg 
+;               19: istore_2 
+;               20: iload_2 
+;               21: iconst_0 
+;               22: if_icmpne 15 
+;               25: aload_0 
+;               26: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               29: ldc 69 ("Two cannibals are eating a clown, when one asks the other 'does this taste funny to you?'") 
+;               31: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               34: goto 175 
+;               37: iload_2 
+;               38: iconst_1 
+;               39: if_icmpne 15 
+;               42: aload_0 
+;               43: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               46: ldc 44 ("Two peanuts were walking down the street, and one was assaulted.") 
+;               48: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               51: goto 158 
+;               54: iload_2 
+;               55: iconst_2 
+;               56: if_icmpne 15 
+;               59: aload_0 
+;               60: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               63: ldc 1 ("A sausage is sitting in a frying pan. Another sausage gets dropped in, and says 'holy crap, it's hot in here!' To which the first sausage replies 'holy crap, a talking sausage!'") 
+;               65: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               68: goto 141 
+;               71: iload_2 
+;               72: iconst_3 
+;               73: if_icmpne 15 
+;               76: aload_0 
+;               77: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               80: ldc 50 ("Have you heard about that new movie Constipation?\n\nIt hasn't come out yet.") 
+;               82: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               85: goto 124 
+;               88: iload_2 
+;               89: iconst_4 
+;               90: if_icmpne 15 
+;               93: aload_0 
+;               94: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               97: ldc 36 ("What's a foot long and slippery?\n\nA slipper!") 
+;               99: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              102: goto 107 
+;              105: iload_2 
+;              106: iconst_5 
+;              107: if_icmpne 15 
+;              110: aload_0 
+;              111: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              114: ldc 55 ("If H2O is on the inside of a fire hydrant, what's on the outside? \n\nK9P") 
+;              116: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              119: goto 90 
+;              122: iload_2 
+;              123: ldc 25 (6) 
+;              125: if_icmpne 15 
+;              128: aload_0 
+;              129: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              132: ldc 4 ("Two silk worms were in a race.\n\nIt ended in a tie.") 
+;              134: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              137: goto 72 
+;              140: iload_2 
+;              141: ldc 24 (7) 
+;              143: if_icmpne 15 
+;              146: aload_0 
+;              147: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              150: ldc 38 ("Werner Heisenberg is driving down the highway. Cop stops him and says, 'Sir, do you know how fast you were going?' Heisenberg says, 'No, but I know exactly where I am!'") 
+;              152: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              155: goto 54 
+;              158: iload_2 
+;              159: ldc 23 (8) 
+;              161: if_icmpne 15 
+;              164: aload_0 
+;              165: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              168: ldc 90 ("What's the difference between roast beef and pea soup?\n\nAnyone can roast beef.") 
+;              170: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              173: goto 36 
+;              176: iload_2 
+;              177: ldc 22 (9) 
+;              179: if_icmpne 15 
+;              182: aload_0 
+;              183: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              186: ldc 81 ("What do you get when you cross an elephant with a banana?\n\nElephant banana sine theta.") 
+;              188: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              191: goto 18 
+;              194: iload_2 
+;              195: ldc 42 (10) 
+;              197: if_icmpne 12 
 ;              200: aload_0 
 ;              201: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              204: ldc 4 ("Two silk worms were in a race.\n\nIt ended in a tie.") 
+;              204: ldc 9 ("What did the girl fungus say to the boy fungus?\n\nYou're a real fun guy.") 
 ;              206: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              209: goto 104 
-;              212: iload_2 
-;              213: ldc 24 (7) 
-;              215: if_icmpeq 7 
-;              218: iconst_0 
-;              219: goto 4 
-;              222: iconst_1 
-;              223: ifeq 15 
-;              226: aload_0 
-;              227: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              230: ldc 38 ("Werner Heisenberg is driving down the highway. Cop stops him and says, 'Sir, do you know how fast you were going?' Heisenberg says, 'No, but I know exactly where I am!'") 
-;              232: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              235: goto 78 
-;              238: iload_2 
-;              239: ldc 23 (8) 
-;              241: if_icmpeq 7 
-;              244: iconst_0 
-;              245: goto 4 
-;              248: iconst_1 
-;              249: ifeq 15 
-;              252: aload_0 
-;              253: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              256: ldc 90 ("What's the difference between roast beef and pea soup?\n\nAnyone can roast beef.") 
-;              258: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              261: goto 52 
-;              264: iload_2 
-;              265: ldc 22 (9) 
-;              267: if_icmpeq 7 
-;              270: iconst_0 
-;              271: goto 4 
-;              274: iconst_1 
-;              275: ifeq 15 
-;              278: aload_0 
-;              279: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              282: ldc 81 ("What do you get when you cross an elephant with a banana?\n\nElephant banana sine theta.") 
-;              284: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              287: goto 26 
-;              290: iload_2 
-;              291: ldc 42 (10) 
-;              293: if_icmpeq 7 
-;              296: iconst_0 
-;              297: goto 4 
-;              300: iconst_1 
-;              301: ifeq 12 
-;              304: aload_0 
-;              305: getfield 52 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              308: ldc 9 ("What did the girl fungus say to the boy fungus?\n\nYou're a real fun guy.") 
-;              310: invokevirtual 59 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              313: return 
+;              209: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -430,7 +370,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x930) :
+; class_attributes[0] (offset 0x8c0) :
 ;     name_index 3 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 80

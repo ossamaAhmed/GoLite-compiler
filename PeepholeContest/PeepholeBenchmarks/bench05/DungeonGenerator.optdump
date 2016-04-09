@@ -70,29 +70,27 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 12 (Code)
-;         attribute_length 46
+;         attribute_length 44
 ;         max_stack 3
 ;         max_locals 4
-;         code_length 34
+;         code_length 32
 ;         code :
 ;                0: new 28 (DungeonInfos) 
 ;                3: dup 
 ;                4: invokespecial 15 (DungeonInfos/<init> ()V) 
-;                7: astore_1 
-;                8: aload_1 
-;                9: invokevirtual 16 (DungeonInfos/initializeFromStdIn ()V) 
-;               12: new 18 (Dungeon) 
-;               15: dup 
-;               16: aload_1 
-;               17: invokespecial 30 (Dungeon/<init> (LDungeonInfos;)V) 
-;               20: astore_2 
-;               21: new 17 (joos/lib/JoosIO) 
-;               24: dup 
-;               25: invokespecial 25 (joos/lib/JoosIO/<init> ()V) 
-;               28: astore_3 
-;               29: aload_2 
-;               30: invokevirtual 29 (Dungeon/draw ()V) 
-;               33: return 
+;                7: invokevirtual 16 (DungeonInfos/initializeFromStdIn ()V) 
+;               10: new 18 (Dungeon) 
+;               13: dup 
+;               14: aload_1 
+;               15: invokespecial 30 (Dungeon/<init> (LDungeonInfos;)V) 
+;               18: astore_2 
+;               19: new 17 (joos/lib/JoosIO) 
+;               22: dup 
+;               23: invokespecial 25 (joos/lib/JoosIO/<init> ()V) 
+;               26: astore_3 
+;               27: aload_2 
+;               28: invokevirtual 29 (Dungeon/draw ()V) 
+;               31: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -100,7 +98,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x18e) :
+; class_attributes[0] (offset 0x18c) :
 ;     name_index 19 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 4

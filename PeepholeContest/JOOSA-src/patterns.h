@@ -10,6 +10,138 @@
  * email: hendren@cs.mcgill.ca, mis@brics.dk
  */
 
+/**
+ * ifeq true_1
+ * iconst_0
+ * goto stop_2
+ * true_1
+ * iconst_1
+ * stop_2
+ * ifeq stop_0
+ * ----------->
+ *  ifneq stop_0
+ */
+
+/**
+ * aload x
+ * aload k
+ * swap
+ * ------>
+ *  aload k
+ *  aload x
+ *
+ * removes swaps
+ * removes73 bytes
+ * ADDED BY SHABBIR
+ */
+
+int removeSwap(CODE **c){
+  int x,k;
+  char * arg;
+  if(is_aload(*c,&x) || is_iload(*c,&x) || is_ldc_int(*c,&x) || is_ldc_string(*c,&arg) ){
+    if(is_aload(next(*c),&k) || is_iload(next(*c),&k) || is_ldc_int(next(*c),&k)|| is_ldc_string(next(*c),&arg)){
+        if(is_swap(next(next(*c)))){
+                CODE *i1 = *c;
+                CODE *i2 = i1->next;
+                i1 = i2;
+                i2 = *c;
+                *c= i1->next->next;
+        }
+
+    }
+  }
+  return 0;
+}
+
+
+/**
+ * dup
+ * astore x
+ * pop
+ * aload x
+ * -------->
+ *  (blank)
+ *
+ *  if local x is not accessed again
+ *
+ *  removes 226 bytes
+ *  ADDED BY SHABBIR
+ */
+int removeSavesAstore(CODE **c){
+  int x,k;
+  if (is_dup(*c) &&
+      is_astore(next(*c),&x) && 
+      is_pop(next(next(*c))) &&
+      is_aload(next(next(next(*c))),&k) &&
+      x==k
+     ){
+        CODE * cursor = *c;
+        cursor = next(*c);
+        while(cursor!=NULL){
+            /*if not a basic block then exit*/
+            if(uses_label(cursor,&k)){
+                return 0;
+            }
+            else if(is_aload(cursor,&k)){
+                /*can't replace because variable is read again*/
+                return 0;
+            }
+            /*local not accessed*/
+            else if(is_return(cursor) || is_areturn(cursor) || is_ireturn(cursor)|| (is_astore(cursor,&k) && k==x)){
+                /*can replace*/
+                return replace(c,4,NULL);
+            }
+            cursor = next(cursor);
+        }
+     return 0;
+  }
+  return 0;
+}
+
+/**
+ * dup
+ * istore x
+ * pop
+ * iload x
+ * -------->
+ *  (blank)
+ *
+ *  if local x is not accessed again
+ *
+ *  removes 114 bytes
+ *  ADDED BY SHABBIR 
+ */
+int removeSavesIstore(CODE **c){
+  int x,k;
+  if (is_dup(*c) &&
+      is_istore(next(*c),&x) && 
+      is_pop(next(next(*c))) &&
+      is_iload(next(next(next(*c))),&k) &&
+      x==k
+     ){
+        CODE * cursor = *c;
+        cursor = next(*c);
+        while(cursor!=NULL){
+            /*if not a basic block then exit*/
+            if(uses_label(cursor,&k)){
+                return 0;
+            }
+            else if(is_iload(cursor,&k)){
+                /*can't replace because variable is read again*/
+                return 0;
+            }
+            /*local not accessed*/
+            else if(is_return(cursor) || is_areturn(cursor) || is_ireturn(cursor)|| (is_istore(cursor,&k) && k==x)){
+                /*can replace*/
+                return replace(c,4,NULL);
+            }
+            cursor = next(cursor);
+        }
+     return 0;
+  }
+  return 0;
+}
+
 /* iload x        iload x        iload x
  * ldc 0          ldc 1          ldc 2
  * imul           imul           imul
@@ -92,7 +224,7 @@ int positive_increment(CODE **c)
  * iadd
  * istore x
  * --------->
- * iinc x k
+ * iinc x k   ADDED BY OSSAMA
  */ 
 int positive_increment1(CODE **c)
 { int x,y,k;
@@ -118,7 +250,8 @@ int positive_increment1(CODE **c)
  * L1:    (reference count reduced by 1)
  * goto L2
  * ...
- * L2:    (reference count increased by 1)  
+ * L2:    (reference count increased by 1)
+ ADDED BY OSSAMA  
  */
 int simplify_goto_goto(CODE **c)
 { int l1,l2;
@@ -139,6 +272,7 @@ int simplify_goto_goto(CODE **c)
  * ....
  * L1:
  * L2:    (reference count increased by 1)  
+ ADDED BY OSSAMA
  */
 int simplify_goto_label(CODE **c)
 { int l1,l2;
@@ -158,6 +292,7 @@ int simplify_goto_label(CODE **c)
  * goto L2
  * ....
  * L2:    (reference count increased by 1)  
+ ADDED BY OSSAMA
  */
 int delete_dead_goto_label(CODE **c)
 { int l1;
@@ -277,6 +412,7 @@ int simplify_iload_after_istore2(CODE **c)
 /* iinc x 0
  * --------->
  * null
+ ADDED BY OSSAMA
  */ 
 int positive_increment_0(CODE **c)
 { int x,k;
@@ -291,7 +427,8 @@ int positive_increment_0(CODE **c)
  * ldc 0       
  * iadd          
  * ------>       
- * iload x         
+ * iload x 
+ ADDED BY OSSAMA        
  *                        
  *                             
  */
@@ -314,7 +451,8 @@ int simplify_addition_right(CODE **c)
   * aload_0
   * dup
   * getfield Decoder/uti Llib/JoosBitwise;
-  * getfield Decoder/con LConversion;        
+  * getfield Decoder/con LConversion;      
+  ADDED BY OSSAMA  
  *                        
  *                             
  */
@@ -339,6 +477,7 @@ int simplify_aload_severalgetfield(CODE **c)
   * getfield Decoder/uti Llib/JoosBitwise;       
  * ------>       
   * getfield Decoder/uti Llib/JoosBitwise;
+  ADDED BY OSSAMA
  *  dup                         
  *                             
  */
@@ -365,6 +504,7 @@ int simplify_severalgetfield(CODE **c)
  *    aload_0
  *    swap
  *    putfield SudokuSolver/grid Ljava/util/Vector;
+ ADDED BY OSSAMA
  */
 
 int simplify_pop_afterinvokenonvirtual(CODE **c)
@@ -396,6 +536,7 @@ int simplify_pop_afterinvokenonvirtual(CODE **c)
  *    aload_0
  *    swap
  *    putfield SudokuSolver/grid Ljava/util/Vector;
+ ADDED BY OSSAMA
  */
 
 int simplify_pop_afterinvokevirtual(CODE **c)
@@ -416,6 +557,300 @@ int simplify_pop_afterinvokevirtual(CODE **c)
   }
   return 0;
 }
+
+/**
+  if( col >= 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmpge label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmplt label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpge(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpge(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmplt(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+  if( col < 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmplt label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmpge label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmplt(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmplt(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmpge(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+  if( col > 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmpgt label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmple label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpgt(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpgt(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmple(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+  if( col <= 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmple label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmpgt label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmple(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmple(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmpgt(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+  if( col != 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmpne label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmpeq label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpne(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpne(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmpeq(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+  if( col == 8 )
+      this.solveCell( row, col + 1 ) ;
+  else
+      this.solveCell( row + 1, 0 ) ;
+    }
+===>
+if_icmpeq label1 
+iconst_0
+goto label2 
+label1:
+iconst_1
+label2:
+ifeq label3 
+------->
+if_icmpne label3
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpeq(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpeq(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_ifeq(next(next(next(next(next(next(*c)))))), &label3) && 
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 7, makeCODEif_icmpne(label3,NULL));
+  }
+  return 0;
+}
+
+/**
+if_icmpeq label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup
+ifne label3
+pop
+.
+.
+.
+.
+. 
+label3:
+------->
+iconst_1
+if_icmpeq label3
+pop
+.
+.
+.
+.
+.
+label3:
+
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpeq_ne(CODE **c) {
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_if_icmpeq(*c, &label1) &&
+      is_ldc_int(next(*c), &x) && 
+      (x==0)  &&
+      is_goto(next(next(*c)), &label2)  &&
+      is_label(next(next(next(*c))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(*c)))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(*c))))))) &&
+      is_ifne(next(next(next(next(next(next(next(*c))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(*c))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+    droplabel(label1);
+    droplabel(label2);
+    return replace(c, 9, makeCODEldc_int(y,makeCODEif_icmpeq(label3,makeCODEpop(NULL))) );
+  }
+  return 0;
+}
+
 /*
 #define OPTS 4
 
@@ -427,23 +862,33 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
-    ADD_PATTERN(simplify_multiplication_right);
+    ADD_PATTERN(simplify_if_else_with_icmple);
+    ADD_PATTERN(simplify_if_else_with_icmpgt);
+    ADD_PATTERN(simplify_if_else_with_icmplt);
+    ADD_PATTERN(simplify_if_else_with_icmpge);
+    ADD_PATTERN(simplify_if_else_with_icmpne);
+    ADD_PATTERN(simplify_if_else_with_icmpeq);
+    ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
+
+    ADD_PATTERN(removeSavesIstore);
+    ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);
+    ADD_PATTERN(simplify_istore);
     ADD_PATTERN(positive_increment);
+    ADD_PATTERN(simplify_multiplication_right);
     ADD_PATTERN(simplify_goto_goto);
-    // ADD_PATTERN(simplify_aload_after_astore);
-    // ADD_PATTERN(simplify_iload_after_istore);
-    // ADD_PATTERN(simplify_istore);
-    // ADD_PATTERN(simplify_iload_after_istore2);
-    // ADD_PATTERN(simplify_aload_after_astore2);
-    // ADD_PATTERN(positive_increment_0);
-    // ADD_PATTERN(positive_increment1);
-    // ADD_PATTERN(simplify_addition_right);
-    // ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!
-    // ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD
-    // ADD_PATTERN(simplify_aload_severalgetfield);
-    // // ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
-    // ADD_PATTERN(simplify_pop_afterinvokevirtual);
-    // ADD_PATTERN(simplify_severalgetfield);
+    ADD_PATTERN(simplify_aload_after_astore);
+    ADD_PATTERN(simplify_iload_after_istore);
+    ADD_PATTERN(simplify_iload_after_istore2);
+    ADD_PATTERN(simplify_aload_after_astore2);
+    ADD_PATTERN(positive_increment_0);
+    ADD_PATTERN(positive_increment1);
+    ADD_PATTERN(simplify_addition_right);
+    ADD_PATTERN(simplify_goto_label); 
+    ADD_PATTERN(simplify_aload_severalgetfield);
+    ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
+    ADD_PATTERN(simplify_pop_afterinvokevirtual);
+    ADD_PATTERN(simplify_severalgetfield);
+    ADD_PATTERN(removeSwap);
     return 1;
 }
