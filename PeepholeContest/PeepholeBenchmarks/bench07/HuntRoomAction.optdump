@@ -246,7 +246,7 @@
 ;               11: ldc 110 ("A wild ") 
 ;               13: aload_0 
 ;               14: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               17: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               17: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               20: dup 
 ;               21: ifnonnull 6 
 ;               24: pop 
@@ -260,7 +260,7 @@
 ;               42: ldc 68 ("The carcass of a ") 
 ;               44: aload_0 
 ;               45: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               48: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               48: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               51: dup 
 ;               52: ifnonnull 6 
 ;               55: pop 
@@ -456,7 +456,7 @@
 ;              296: ldc 102 ("The ") 
 ;              298: aload_0 
 ;              299: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;              302: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              302: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              305: dup 
 ;              306: ifnonnull 6 
 ;              309: pop 
@@ -511,7 +511,7 @@
 ;              414: ldc 135 ("Your attack failed. But you managed to dodge the ") 
 ;              416: aload_0 
 ;              417: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;              420: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              420: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              423: dup 
 ;              424: ifnonnull 6 
 ;              427: pop 
@@ -527,7 +527,7 @@
 ;              447: ldc 41 ("Your attack failed. The counter attack from the ") 
 ;              449: aload_0 
 ;              450: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;              453: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              453: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              456: dup 
 ;              457: ifnonnull 6 
 ;              460: pop 
@@ -592,7 +592,7 @@
 ;              571: ldc 102 ("The ") 
 ;              573: aload_0 
 ;              574: getfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;              577: invokespecial 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              577: invokevirtual 57 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              580: dup 
 ;              581: ifnonnull 6 
 ;              584: pop 

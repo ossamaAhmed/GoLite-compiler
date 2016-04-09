@@ -1155,6 +1155,8 @@ int remove_nop(CODE **c) {
   ------>
   aload k
   aload x
+
+  ADDED BY MICHAEL
 */
 int remove_aload_swap(CODE **c){
   int x, k;
@@ -1173,6 +1175,8 @@ int remove_aload_swap(CODE **c){
   ------>
   iload k
   iload x
+
+  ADDED BY MICHAEL
 */
 int remove_iload_swap(CODE **c){
   int x, k;
@@ -1256,7 +1260,7 @@ int remove_string_concat_ifnonnull(CODE **c) {
       label1 == label2 &&
       is_invokevirtual(next(next(next(next(next(*c))))), &virtualmethod) &&
       strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
-      return replace(c, 6, makeCODEinvokenonvirtual(virtualmethod, NULL));
+      return replace(c, 6, makeCODEinvokevirtual(virtualmethod, NULL));
   }
   return 0;
 }

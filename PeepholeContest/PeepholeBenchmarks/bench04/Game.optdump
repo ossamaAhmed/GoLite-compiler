@@ -735,7 +735,7 @@
 ;               55: iload_2 
 ;               56: invokevirtual 73 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
 ;               59: invokevirtual 215 (java/lang/Object/toString ()Ljava/lang/String;) 
-;               62: invokespecial 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               62: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               65: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               68: wide iinc 2 1 
 ;               74: goto -58 
@@ -1183,7 +1183,7 @@
 ;               47: ldc 209 ("Winner: ") 
 ;               49: aload_3 
 ;               50: invokevirtual 124 (java/lang/Character/toString ()Ljava/lang/String;) 
-;               53: invokespecial 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               53: invokevirtual 206 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               56: invokevirtual 16 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               59: return 
 ;         exception_table_length 0
