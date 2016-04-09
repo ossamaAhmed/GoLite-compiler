@@ -32,6 +32,7 @@ simplify_pop_afterinvokevirtual: 21
 delete_dead_goto_label: 117
 remove_aload_swap: 4
 remove_iload_swap: 0
+remove_ldc_ifnonnull: 36
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -62,19 +63,19 @@ ExitRoomAction.optdump:;         code_length 10
 ExitRoomAction.optdump:;         code_length 83
 FactorialRoomAction.optdump:;         code_length 5
 FactorialRoomAction.optdump:;         code_length 10
-FactorialRoomAction.optdump:;         code_length 242
+FactorialRoomAction.optdump:;         code_length 228
 FactorialRoomAction.optdump:;         code_length 36
 FeastRoomAction.optdump:;         code_length 5
 FeastRoomAction.optdump:;         code_length 10
 FeastRoomAction.optdump:;         code_length 175
 GrueHunt.optdump:;         code_length 5
 GrueHunt.optdump:;         code_length 22
-GrueHunt.optdump:;         code_length 1201
+GrueHunt.optdump:;         code_length 1047
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 101
 HuntRoomAction.optdump:;         code_length 84
-HuntRoomAction.optdump:;         code_length 117
-HuntRoomAction.optdump:;         code_length 720
+HuntRoomAction.optdump:;         code_length 89
+HuntRoomAction.optdump:;         code_length 664
 InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 179
 InGenerate.optdump:;         code_length 21

@@ -1085,6 +1085,42 @@ int remove_iload_swap(CODE **c){
 }
 
 /*
+  In beanch06/ComplementsGenerator.j
+  SEVERAL instances of:
+
+  ldc "I love how your hair smells like  a "
+  dup
+  ifnonnull stop_19
+  pop
+  ldc "null"
+  stop_19:
+
+  This is useless since a string has been declared, ifnonnull will always resolve to true.
+  This is simply be replaced by:
+
+  ldc "I love how your hair smells like  a "
+
+  SHRINKS by 630 !
+
+  ADDED BY MICHAEL
+*/
+int remove_ldc_ifnonnull(CODE **c) {
+  char *string, *useless;
+  int label1, label2;
+  if (is_ldc_string(*c, &string) && 
+      is_dup(next(*c)) && 
+      is_ifnonnull(next(next(*c)), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(next(*c)))) &&
+      is_ldc_string(next(next(next(next(*c)))), &useless) &&
+      is_label(next(next(next(next(next(*c))))), &label2) &&
+      label1 == label2) {
+      return replace(c, 6, makeCODEldc_string(string, NULL));
+  }
+  return 0;
+}
+
+/*
 #define OPTS 4
 
 OPTI optimization[OPTS] = {simplify_multiplication_right,
@@ -1133,5 +1169,6 @@ int init_patterns()
     // ADD_PATTERN(remove_nop);
     ADD_PATTERN(remove_aload_swap);
     ADD_PATTERN(remove_iload_swap);
+    ADD_PATTERN(remove_ldc_ifnonnull);
     return 1;
 }

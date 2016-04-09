@@ -33,6 +33,7 @@ simplify_pop_afterinvokevirtual: 0
 delete_dead_goto_label: 10
 remove_aload_swap: 0
 remove_iload_swap: 0
+remove_ldc_ifnonnull: 0
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class
