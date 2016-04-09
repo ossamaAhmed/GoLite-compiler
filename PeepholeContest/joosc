@@ -24,7 +24,7 @@
 if ( { $PEEPDIR/joos $* } ) then
     foreach f ( $* )
         if ( $f != "-O" && $f:e != "joos" ) then
-            java -jar $PEEPDIR/jasmin.jar $f:r.j
+            java -cp $PEEPDIR/jooslib.jar -jar $PEEPDIR/jasmin.jar $f:r.j
             if ( $1 == "-O" ) then
                 $PEEPDIR/djas -w $f:r.class > $f:r.optdump
             else
@@ -34,8 +34,8 @@ if ( { $PEEPDIR/joos $* } ) then
     end
     echo "----- Method code sizes ----"
     if ( $1 == "-O" ) then
-        grep code_length *.optdump
+        grep -a code_length *.optdump
     else
-        grep code_length *.dump
+        grep -a code_length *.dump
     endif
 endif

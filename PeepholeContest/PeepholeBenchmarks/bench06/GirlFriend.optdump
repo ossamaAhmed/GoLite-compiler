@@ -252,7 +252,7 @@
 ;              102: ifeq 9 
 ;              105: ldc 54 ("that's the most disgusting thing I've ever heard.") 
 ;              107: areturn 
-;              108: goto 871 
+;              108: goto 6 
 ;              111: ldc 129 ("You'll have to do better than that.") 
 ;              113: areturn 
 ;              114: goto 865 
@@ -289,7 +289,7 @@
 ;              178: ifeq 9 
 ;              181: ldc 40 ("you sick bastard, stay away from my family.") 
 ;              183: areturn 
-;              184: goto 795 
+;              184: goto 6 
 ;              187: ldc 22 ("that don't impresse me much.") 
 ;              189: areturn 
 ;              190: goto 789 
@@ -332,7 +332,7 @@
 ;              263: ifeq 9 
 ;              266: ldc 84 ("Go to hell!!") 
 ;              268: areturn 
-;              269: goto 710 
+;              269: goto 6 
 ;              272: ldc 90 ("Try again, mister..") 
 ;              274: areturn 
 ;              275: goto 704 
@@ -393,7 +393,7 @@
 ;              386: ifeq 9 
 ;              389: ldc 79 ("you are a freak. you know that, right?") 
 ;              391: areturn 
-;              392: goto 587 
+;              392: goto 6 
 ;              395: ldc 41 ("nice try, but that won't cut it.") 
 ;              397: areturn 
 ;              398: goto 581 
@@ -442,7 +442,7 @@
 ;              484: ifeq 9 
 ;              487: ldc 130 ("you pervert, leave me alone!") 
 ;              489: areturn 
-;              490: goto 489 
+;              490: goto 6 
 ;              493: ldc 60 ("I don't think so.") 
 ;              495: areturn 
 ;              496: goto 483 
@@ -480,7 +480,7 @@
 ;              562: ifeq 9 
 ;              565: ldc 149 ("man, you are not making any sence..") 
 ;              567: areturn 
-;              568: goto 411 
+;              568: goto 6 
 ;              571: ldc 74 ("move along, mister.") 
 ;              573: areturn 
 ;              574: goto 405 
@@ -529,7 +529,7 @@
 ;              661: ifeq 9 
 ;              664: ldc 114 ("'rot'? you stink at giving complements!") 
 ;              666: areturn 
-;              667: goto 312 
+;              667: goto 6 
 ;              670: ldc 139 ("When hell frizes.") 
 ;              672: areturn 
 ;              673: goto 306 
@@ -560,7 +560,7 @@
 ;              725: ifeq 9 
 ;              728: ldc 38 ("are you trying to insult me or to complement me?") 
 ;              730: areturn 
-;              731: goto 248 
+;              731: goto 6 
 ;              734: ldc 142 ("na, I don't think so.") 
 ;              736: areturn 
 ;              737: goto 242 
@@ -603,7 +603,7 @@
 ;              811: ifeq 9 
 ;              814: ldc 34 ("Grose, dude.") 
 ;              816: areturn 
-;              817: goto 162 
+;              817: goto 6 
 ;              820: ldc 55 ("no way, man.") 
 ;              822: areturn 
 ;              823: goto 156 
@@ -664,7 +664,7 @@
 ;              935: ifeq 9 
 ;              938: ldc 48 ("I'm calling the cops.") 
 ;              940: areturn 
-;              941: goto 38 
+;              941: goto 6 
 ;              944: ldc 25 ("ah, I don't think so.") 
 ;              946: areturn 
 ;              947: goto 32 

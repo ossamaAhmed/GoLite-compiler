@@ -1,85 +1,89 @@
 ; magic number 0xCAFEBABE
 ; bytecode version 45.3
 
-; constant pool count 79
-; cp[1] (offset 0xd) -> CONSTANT_Class 32
+; constant pool count 83
+; cp[1] (offset 0xd) -> CONSTANT_Class 33
 ; cp[2] (offset 0x25) -> CONSTANT_Utf8 "FactorialRoomAction.j"
 ; cp[3] (offset 0x2c) -> CONSTANT_Utf8 "push"
 ; cp[4] (offset 0x40) -> CONSTANT_Utf8 "java/lang/Integer"
 ; cp[5] (offset 0x4d) -> CONSTANT_Utf8 "SourceFile"
-; cp[6] (offset 0x50) -> CONSTANT_String 39
-; cp[7] (offset 0x55) -> CONSTANT_NameAndType 26, 30
+; cp[6] (offset 0x50) -> CONSTANT_String 40
+; cp[7] (offset 0x55) -> CONSTANT_NameAndType 26, 31
 ; cp[8] (offset 0x5e) -> CONSTANT_Utf8 "<init>"
-; cp[9] (offset 0x63) -> CONSTANT_NameAndType 58, 33
+; cp[9] (offset 0x63) -> CONSTANT_NameAndType 60, 34
 ; cp[10] (offset 0x66) -> CONSTANT_Class 21
-; cp[11] (offset 0x69) -> CONSTANT_String 27
+; cp[11] (offset 0x69) -> CONSTANT_String 28
 ; cp[12] (offset 0x71) -> CONSTANT_Utf8 "!\n---"
 ; cp[13] (offset 0x88) -> CONSTANT_Utf8 "()Ljava/lang/String;"
 ; cp[14] (offset 0x8f) -> CONSTANT_Utf8 "null"
-; cp[15] (offset 0x94) -> CONSTANT_NameAndType 48, 17
+; cp[15] (offset 0x94) -> CONSTANT_NameAndType 49, 17
 ; cp[16] (offset 0x9a) -> CONSTANT_Utf8 "use"
 ; cp[17] (offset 0xae) -> CONSTANT_Utf8 "Ljoos/lib/JoosIO;"
-; cp[18] (offset 0xb3) -> CONSTANT_NameAndType 8, 53
+; cp[18] (offset 0xb3) -> CONSTANT_NameAndType 8, 54
 ; cp[19] (offset 0xbd) -> CONSTANT_Utf8 "indexOf"
-; cp[20] (offset 0xc2) -> CONSTANT_Methodref 68, 62
+; cp[20] (offset 0xc2) -> CONSTANT_Methodref 70, 65
 ; cp[21] (offset 0xd8) -> CONSTANT_Utf8 "FactorialRoomAction"
-; cp[22] (offset 0xdd) -> CONSTANT_Methodref 1, 69
-; cp[23] (offset 0xe2) -> CONSTANT_Methodref 42, 69
+; cp[22] (offset 0xdd) -> CONSTANT_Methodref 1, 74
+; cp[23] (offset 0xe2) -> CONSTANT_Methodref 43, 74
 ; cp[24] (offset 0xe7) -> CONSTANT_Methodref 1, 9
 ; cp[25] (offset 0xf2) -> CONSTANT_Utf8 "describe"
 ; cp[26] (offset 0xfc) -> CONSTANT_Utf8 "println"
-; cp[27] (offset 0x106) -> CONSTANT_Utf8 "operate"
-; cp[28] (offset 0x109) -> CONSTANT_String 16
-; cp[29] (offset 0x12e) -> CONSTANT_Utf8 "The dials come to a stop. Showing:"
-; cp[30] (offset 0x146) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
-; cp[31] (offset 0x14b) -> CONSTANT_NameAndType 19, 35
-; cp[32] (offset 0x158) -> CONSTANT_Utf8 "RoomAction"
-; cp[33] (offset 0x170) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
-; cp[34] (offset 0x175) -> CONSTANT_Methodref 68, 18
-; cp[35] (offset 0x18e) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
-; cp[36] (offset 0x193) -> CONSTANT_Methodref 66, 49
-; cp[37] (offset 0x198) -> CONSTANT_Integer 13
-; cp[38] (offset 0x1b5) -> CONSTANT_Utf8 "The dials resume spinning."
-; cp[39] (offset 0x1bd) -> CONSTANT_Utf8 "press"
-; cp[40] (offset 0x1c0) -> CONSTANT_String 3
-; cp[41] (offset 0x1c4) -> CONSTANT_Utf8 "f"
-; cp[42] (offset 0x1c7) -> CONSTANT_Class 47
-; cp[43] (offset 0x1ce) -> CONSTANT_Utf8 "Code"
-; cp[44] (offset 0x1d3) -> CONSTANT_Fieldref 1, 15
-; cp[45] (offset 0x1d6) -> CONSTANT_String 14
-; cp[46] (offset 0x1d9) -> CONSTANT_String 61
-; cp[47] (offset 0x1ef) -> CONSTANT_Utf8 "joos/lib/JoosRandom"
-; cp[48] (offset 0x1f3) -> CONSTANT_Utf8 "O"
-; cp[49] (offset 0x1f8) -> CONSTANT_NameAndType 73, 64
-; cp[50] (offset 0x1fd) -> CONSTANT_Methodref 70, 7
-; cp[51] (offset 0x202) -> CONSTANT_Methodref 66, 31
-; cp[52] (offset 0x208) -> CONSTANT_Utf8 "()V"
-; cp[53] (offset 0x20f) -> CONSTANT_Utf8 "(I)V"
-; cp[54] (offset 0x21a) -> CONSTANT_Utf8 "interact"
-; cp[55] (offset 0x21d) -> CONSTANT_String 74
-; cp[56] (offset 0x228) -> CONSTANT_Utf8 "toString"
-; cp[57] (offset 0x22b) -> CONSTANT_String 29
-; cp[58] (offset 0x23f) -> CONSTANT_Utf8 "performBaseAction"
-; cp[59] (offset 0x242) -> CONSTANT_String 12
-; cp[60] (offset 0x249) -> CONSTANT_Utf8 "(I)I"
-; cp[61] (offset 0x262) -> CONSTANT_Utf8 "There is a red button."
-; cp[62] (offset 0x267) -> CONSTANT_NameAndType 56, 13
-; cp[63] (offset 0x26c) -> CONSTANT_Methodref 10, 71
-; cp[64] (offset 0x295) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
-; cp[65] (offset 0x2a7) -> CONSTANT_Utf8 "joos/lib/JoosIO"
-; cp[66] (offset 0x2aa) -> CONSTANT_Class 72
-; cp[67] (offset 0x2ba) -> CONSTANT_Utf8 "performAction"
-; cp[68] (offset 0x2bd) -> CONSTANT_Class 4
-; cp[69] (offset 0x2c2) -> CONSTANT_NameAndType 8, 52
-; cp[70] (offset 0x2c5) -> CONSTANT_Class 65
-; cp[71] (offset 0x2ca) -> CONSTANT_NameAndType 41, 60
-; cp[72] (offset 0x2dd) -> CONSTANT_Utf8 "java/lang/String"
-; cp[73] (offset 0x2e6) -> CONSTANT_Utf8 "concat"
-; cp[74] (offset 0x2f2) -> CONSTANT_Utf8 "factorial"
-; cp[75] (offset 0x2f5) -> CONSTANT_String 38
-; cp[76] (offset 0x2f8) -> CONSTANT_String 54
-; cp[77] (offset 0x2fb) -> CONSTANT_String 78
-; cp[78] (offset 0x2fe) -> CONSTANT_Utf8 ""
+; cp[27] (offset 0x101) -> CONSTANT_NameAndType 71, 59
+; cp[28] (offset 0x10b) -> CONSTANT_Utf8 "operate"
+; cp[29] (offset 0x10e) -> CONSTANT_String 16
+; cp[30] (offset 0x133) -> CONSTANT_Utf8 "The dials come to a stop. Showing:"
+; cp[31] (offset 0x14b) -> CONSTANT_Utf8 "(Ljava/lang/String;)V"
+; cp[32] (offset 0x150) -> CONSTANT_NameAndType 19, 36
+; cp[33] (offset 0x15d) -> CONSTANT_Utf8 "RoomAction"
+; cp[34] (offset 0x175) -> CONSTANT_Utf8 "(Ljava/lang/String;)I"
+; cp[35] (offset 0x17a) -> CONSTANT_Methodref 70, 18
+; cp[36] (offset 0x193) -> CONSTANT_Utf8 "(Ljava/lang/String;I)I"
+; cp[37] (offset 0x198) -> CONSTANT_Methodref 68, 50
+; cp[38] (offset 0x19d) -> CONSTANT_Integer 13
+; cp[39] (offset 0x1ba) -> CONSTANT_Utf8 "The dials resume spinning."
+; cp[40] (offset 0x1c2) -> CONSTANT_Utf8 "press"
+; cp[41] (offset 0x1c5) -> CONSTANT_String 3
+; cp[42] (offset 0x1c9) -> CONSTANT_Utf8 "f"
+; cp[43] (offset 0x1cc) -> CONSTANT_Class 48
+; cp[44] (offset 0x1d3) -> CONSTANT_Utf8 "Code"
+; cp[45] (offset 0x1d8) -> CONSTANT_Fieldref 1, 15
+; cp[46] (offset 0x1db) -> CONSTANT_String 14
+; cp[47] (offset 0x1de) -> CONSTANT_String 63
+; cp[48] (offset 0x1f4) -> CONSTANT_Utf8 "joos/lib/JoosRandom"
+; cp[49] (offset 0x1f8) -> CONSTANT_Utf8 "O"
+; cp[50] (offset 0x1fd) -> CONSTANT_NameAndType 77, 66
+; cp[51] (offset 0x202) -> CONSTANT_Methodref 75, 7
+; cp[52] (offset 0x207) -> CONSTANT_Methodref 68, 32
+; cp[53] (offset 0x20d) -> CONSTANT_Utf8 "()V"
+; cp[54] (offset 0x214) -> CONSTANT_Utf8 "(I)V"
+; cp[55] (offset 0x21f) -> CONSTANT_Utf8 "interact"
+; cp[56] (offset 0x222) -> CONSTANT_String 78
+; cp[57] (offset 0x22d) -> CONSTANT_Utf8 "toString"
+; cp[58] (offset 0x230) -> CONSTANT_String 30
+; cp[59] (offset 0x236) -> CONSTANT_Utf8 "()I"
+; cp[60] (offset 0x24a) -> CONSTANT_Utf8 "performBaseAction"
+; cp[61] (offset 0x24d) -> CONSTANT_String 12
+; cp[62] (offset 0x254) -> CONSTANT_Utf8 "(I)I"
+; cp[63] (offset 0x26d) -> CONSTANT_Utf8 "There is a red button."
+; cp[64] (offset 0x272) -> CONSTANT_Methodref 10, 73
+; cp[65] (offset 0x277) -> CONSTANT_NameAndType 57, 13
+; cp[66] (offset 0x2a0) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
+; cp[67] (offset 0x2b2) -> CONSTANT_Utf8 "joos/lib/JoosIO"
+; cp[68] (offset 0x2b5) -> CONSTANT_Class 76
+; cp[69] (offset 0x2c5) -> CONSTANT_Utf8 "performAction"
+; cp[70] (offset 0x2c8) -> CONSTANT_Class 4
+; cp[71] (offset 0x2d2) -> CONSTANT_Utf8 "nextInt"
+; cp[72] (offset 0x2d7) -> CONSTANT_Methodref 43, 27
+; cp[73] (offset 0x2dc) -> CONSTANT_NameAndType 42, 62
+; cp[74] (offset 0x2e1) -> CONSTANT_NameAndType 8, 53
+; cp[75] (offset 0x2e4) -> CONSTANT_Class 67
+; cp[76] (offset 0x2f7) -> CONSTANT_Utf8 "java/lang/String"
+; cp[77] (offset 0x300) -> CONSTANT_Utf8 "concat"
+; cp[78] (offset 0x30c) -> CONSTANT_Utf8 "factorial"
+; cp[79] (offset 0x30f) -> CONSTANT_String 39
+; cp[80] (offset 0x312) -> CONSTANT_String 55
+; cp[81] (offset 0x315) -> CONSTANT_String 82
+; cp[82] (offset 0x318) -> CONSTANT_Utf8 ""
 
 ; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
 ; this_class index = 10
@@ -92,13 +96,13 @@
 
 ; methods_count 4
 
-; methods[0] (offset 0x30a) :
+; methods[0] (offset 0x324) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 8 (<init>)
-;     descriptor_index 52 (()V)
+;     descriptor_index 53 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 43 (Code)
+;         name_index 44 (Code)
 ;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
@@ -111,43 +115,43 @@
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x329) :
+; methods[1] (offset 0x343) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (describe)
-;     descriptor_index 52 (()V)
+;     descriptor_index 53 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 43 (Code)
+;         name_index 44 (Code)
 ;         attribute_length 22
 ;         max_stack 2
 ;         max_locals 1
 ;         code_length 10
 ;         code :
 ;                0: aload_0 
-;                1: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;                4: ldc 46 ("There is a red button.") 
-;                6: invokevirtual 50 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;                1: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;                4: ldc 47 ("There is a red button.") 
+;                6: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;                9: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x34d) :
+; methods[2] (offset 0x367) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 67 (performAction)
-;     descriptor_index 33 ((Ljava/lang/String;)I)
+;     name_index 69 (performAction)
+;     descriptor_index 34 ((Ljava/lang/String;)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 43 (Code)
-;         attribute_length 264
-;         max_stack 5
+;         name_index 44 (Code)
+;         attribute_length 272
+;         max_stack 6
 ;         max_locals 4
-;         code_length 252
+;         code_length 260
 ;         code :
 ;                0: aload_1 
-;                1: ldc 28 ("use") 
+;                1: ldc 29 ("use") 
 ;                3: iconst_0 
-;                4: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;                4: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;                7: iconst_0 
 ;                8: if_icmpge 7 
 ;               11: iconst_0 
@@ -159,7 +163,7 @@
 ;               21: aload_1 
 ;               22: ldc 11 ("operate") 
 ;               24: iconst_0 
-;               25: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               25: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               28: iconst_0 
 ;               29: if_icmpge 7 
 ;               32: iconst_0 
@@ -171,7 +175,7 @@
 ;               42: aload_1 
 ;               43: ldc 6 ("press") 
 ;               45: iconst_0 
-;               46: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               46: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               49: iconst_0 
 ;               50: if_icmpge 7 
 ;               53: iconst_0 
@@ -181,9 +185,9 @@
 ;               59: ifne 20 
 ;               62: pop 
 ;               63: aload_1 
-;               64: ldc 76 ("interact") 
+;               64: ldc 80 ("interact") 
 ;               66: iconst_0 
-;               67: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               67: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               70: iconst_0 
 ;               71: if_icmpge 7 
 ;               74: iconst_0 
@@ -193,9 +197,9 @@
 ;               80: ifne 20 
 ;               83: pop 
 ;               84: aload_1 
-;               85: ldc 55 ("factorial") 
+;               85: ldc 56 ("factorial") 
 ;               87: iconst_0 
-;               88: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               88: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;               91: iconst_0 
 ;               92: if_icmpge 7 
 ;               95: iconst_0 
@@ -205,91 +209,97 @@
 ;              101: ifne 20 
 ;              104: pop 
 ;              105: aload_1 
-;              106: ldc 40 ("push") 
+;              106: ldc 41 ("push") 
 ;              108: iconst_0 
-;              109: invokevirtual 51 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              109: invokevirtual 52 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
 ;              112: iconst_0 
 ;              113: if_icmpge 7 
 ;              116: iconst_0 
 ;              117: goto 4 
 ;              120: iconst_1 
-;              121: ifeq 124 
-;              124: new 42 (joos/lib/JoosRandom) 
+;              121: ifeq 132 
+;              124: new 43 (joos/lib/JoosRandom) 
 ;              127: dup 
 ;              128: invokespecial 23 (joos/lib/JoosRandom/<init> ()V) 
-;              131: dup 
-;              132: astore_2 
-;              133: ldc 37 (13) 
-;              135: irem 
-;              136: dup 
-;              137: istore_3 
-;              138: if_icmplt 7 
-;              141: iconst_0 
-;              142: goto 4 
-;              145: iconst_1 
-;              146: ifeq 6 
-;              149: iload_3 
-;              150: ineg 
-;              151: istore_3 
-;              152: aload_0 
-;              153: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              156: ldc 57 ("The dials come to a stop. Showing:") 
-;              158: invokevirtual 50 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              161: aload_0 
-;              162: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              165: new 68 (java/lang/Integer) 
-;              168: dup 
-;              169: iload_3 
-;              170: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              173: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              176: ldc 59 ("!\n---") 
-;              178: dup 
-;              179: ifnull 6 
-;              182: goto 6 
-;              185: pop 
-;              186: ldc 45 ("null") 
-;              188: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              191: invokevirtual 50 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              194: aload_0 
-;              195: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              198: ldc 77 ("") 
-;              200: dup 
-;              201: ifnull 6 
-;              204: goto 6 
-;              207: pop 
-;              208: ldc 45 ("null") 
-;              210: new 68 (java/lang/Integer) 
-;              213: dup 
-;              214: aload_0 
-;              215: iload_3 
-;              216: invokevirtual 63 (FactorialRoomAction/f (I)I) 
-;              219: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              222: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              225: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              228: invokevirtual 50 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              231: aload_0 
-;              232: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              235: ldc 75 ("The dials resume spinning.") 
-;              237: invokevirtual 50 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              240: iconst_0 
-;              241: ireturn 
-;              242: goto 9 
-;              245: aload_0 
-;              246: aload_1 
-;              247: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              250: ireturn 
-;              251: nop 
+;              131: astore_2 
+;              132: aload_2 
+;              133: invokevirtual 72 (joos/lib/JoosRandom/nextInt ()I) 
+;              136: ldc 38 (13) 
+;              138: irem 
+;              139: dup 
+;              140: istore_3 
+;              141: pop 
+;              142: iload_3 
+;              143: iconst_0 
+;              144: if_icmplt 7 
+;              147: iconst_0 
+;              148: goto 4 
+;              151: iconst_1 
+;              152: ifeq 8 
+;              155: iload_3 
+;              156: ineg 
+;              157: dup 
+;              158: istore_3 
+;              159: pop 
+;              160: aload_0 
+;              161: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              164: ldc 58 ("The dials come to a stop. Showing:") 
+;              166: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              169: aload_0 
+;              170: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              173: new 70 (java/lang/Integer) 
+;              176: dup 
+;              177: iload_3 
+;              178: invokespecial 35 (java/lang/Integer/<init> (I)V) 
+;              181: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              184: ldc 61 ("!\n---") 
+;              186: dup 
+;              187: ifnull 6 
+;              190: goto 6 
+;              193: pop 
+;              194: ldc 46 ("null") 
+;              196: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              199: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              202: aload_0 
+;              203: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              206: ldc 81 ("") 
+;              208: dup 
+;              209: ifnull 6 
+;              212: goto 6 
+;              215: pop 
+;              216: ldc 46 ("null") 
+;              218: new 70 (java/lang/Integer) 
+;              221: dup 
+;              222: aload_0 
+;              223: iload_3 
+;              224: invokevirtual 64 (FactorialRoomAction/f (I)I) 
+;              227: invokespecial 35 (java/lang/Integer/<init> (I)V) 
+;              230: invokevirtual 20 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              233: invokevirtual 37 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              236: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              239: aload_0 
+;              240: getfield 45 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              243: ldc 79 ("The dials resume spinning.") 
+;              245: invokevirtual 51 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              248: iconst_0 
+;              249: ireturn 
+;              250: goto 9 
+;              253: aload_0 
+;              254: aload_1 
+;              255: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              258: ireturn 
+;              259: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x463) :
+; methods[3] (offset 0x485) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 41 (f)
-;     descriptor_index 60 ((I)I)
+;     name_index 42 (f)
+;     descriptor_index 62 ((I)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 43 (Code)
+;         name_index 44 (Code)
 ;         attribute_length 56
 ;         max_stack 4
 ;         max_locals 2
@@ -319,7 +329,7 @@
 ;               35: iload_1 
 ;               36: iconst_1 
 ;               37: isub 
-;               38: invokevirtual 63 (FactorialRoomAction/f (I)I) 
+;               38: invokevirtual 64 (FactorialRoomAction/f (I)I) 
 ;               41: imul 
 ;               42: ireturn 
 ;               43: nop 
@@ -330,7 +340,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4ab) :
+; class_attributes[0] (offset 0x4cd) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

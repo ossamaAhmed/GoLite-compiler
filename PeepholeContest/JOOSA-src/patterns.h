@@ -162,7 +162,7 @@ int simplify_goto_label(CODE **c)
 int delete_dead_goto_label(CODE **c)
 { int l1;
   if (is_label(*c,&l1) && deadlabel(l1)) {
-     return replace(c,1,NULL);
+     return kill_line(c);
   }
   return 0;
 }
@@ -282,7 +282,7 @@ int positive_increment_0(CODE **c)
 { int x,k;
   if (is_iinc(*c,&x, &k) &&
       (k==0)) {
-     return replace(c,1,NULL);
+     return kill_line(c);
   }
   return 0;
 }
@@ -431,19 +431,19 @@ int init_patterns()
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(positive_increment);
     ADD_PATTERN(simplify_goto_goto);
-    ADD_PATTERN(simplify_aload_after_astore);
-    ADD_PATTERN(simplify_iload_after_istore);
-    ADD_PATTERN(simplify_istore);
-    ADD_PATTERN(simplify_iload_after_istore2);
-    ADD_PATTERN(simplify_aload_after_astore2);
-    ADD_PATTERN(positive_increment_0);
-    ADD_PATTERN(positive_increment1);
-    ADD_PATTERN(simplify_addition_right);
-    ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!
-    ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD
-    ADD_PATTERN(simplify_aload_severalgetfield);
-    // ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
-    ADD_PATTERN(simplify_pop_afterinvokevirtual);
-    ADD_PATTERN(simplify_severalgetfield);
+    // ADD_PATTERN(simplify_aload_after_astore);
+    // ADD_PATTERN(simplify_iload_after_istore);
+    // ADD_PATTERN(simplify_istore);
+    // ADD_PATTERN(simplify_iload_after_istore2);
+    // ADD_PATTERN(simplify_aload_after_astore2);
+    // ADD_PATTERN(positive_increment_0);
+    // ADD_PATTERN(positive_increment1);
+    // ADD_PATTERN(simplify_addition_right);
+    // ADD_PATTERN(simplify_goto_label); //didnt decrease anything but decreased sizeof emitted j code not the size in bytes, dont know why !!
+    // ADD_PATTERN(delete_dead_goto_label); //didnt decrease anything WIERD
+    // ADD_PATTERN(simplify_aload_severalgetfield);
+    // // ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
+    // ADD_PATTERN(simplify_pop_afterinvokevirtual);
+    // ADD_PATTERN(simplify_severalgetfield);
     return 1;
 }
