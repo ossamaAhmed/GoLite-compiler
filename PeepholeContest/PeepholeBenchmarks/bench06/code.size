@@ -1,30 +1,28 @@
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
+simplify_if_else_with_icmpeq_ne: 0
+simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
 simplify_if_else_with_icmpgt: 0
 simplify_if_else_with_icmplt: 4
 simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 61
-simplify_if_else_with_icmpeq_ne: 0
-simplify_if_else_with_icmpne_eq: 0
 simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 0
 simplify_if_else_with_acmpne: 0
 simplify_if_null: 123
 simplify_if_nonnull: 0
-removeSavesIstore: 6
-removeSavesAstore: 3
-simplify_astore: 18
-simplify_istore: 8
+simplify_astore: 21
+simplify_istore: 14
 positive_increment: 0
 simplify_multiplication_right: 0
 simplify_goto_goto: 29
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
-simplify_iload_after_istore2: 0
-simplify_aload_after_astore2: 0
+simplify_iload_after_istore2: 6
+simplify_aload_after_astore2: 3
 positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
@@ -48,16 +46,16 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 20
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 1154
+ComplementsGenerator.optdump:;         code_length 1160
 ComplementsGenerator.optdump:;         code_length 5
-ComplementsGenerator.optdump:;         code_length 129
-ComplementsGenerator.optdump:;         code_length 117
-ComplementsGenerator.optdump:;         code_length 129
+ComplementsGenerator.optdump:;         code_length 131
+ComplementsGenerator.optdump:;         code_length 119
+ComplementsGenerator.optdump:;         code_length 131
 FemaleBoss.optdump:;         code_length 5
 FemaleBoss.optdump:;         code_length 409
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 891
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 434
+Main.optdump:;         code_length 446
 Woman.optdump:;         code_length 5
 Woman.optdump:;         code_length 4

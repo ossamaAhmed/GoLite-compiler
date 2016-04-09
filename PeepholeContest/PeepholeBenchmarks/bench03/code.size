@@ -1,30 +1,28 @@
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java *.joos
 
 Frequencies:
+simplify_if_else_with_icmpeq_ne: 0
+simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
 simplify_if_else_with_icmpgt: 0
 simplify_if_else_with_icmplt: 2
 simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 6
-simplify_if_else_with_icmpeq_ne: 0
-simplify_if_else_with_icmpne_eq: 0
 simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 0
 simplify_if_else_with_acmpne: 1
 simplify_if_null: 15
 simplify_if_nonnull: 0
-removeSavesIstore: 2
-removeSavesAstore: 10
-simplify_astore: 15
-simplify_istore: 34
+simplify_astore: 25
+simplify_istore: 36
 positive_increment: 10
 simplify_multiplication_right: 0
 simplify_goto_goto: 2
-simplify_aload_after_astore: 0
+simplify_aload_after_astore: 7
 simplify_iload_after_istore: 0
-simplify_iload_after_istore2: 0
-simplify_aload_after_astore2: 0
+simplify_iload_after_istore2: 2
+simplify_aload_after_astore2: 3
 positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
@@ -43,11 +41,11 @@ Generated: Encoder.class
 Generated: Main.class
 ----- Method code sizes ----
 Conversion.optdump:;         code_length 1722
-Conversion.optdump:;         code_length 16
-Conversion.optdump:;         code_length 23
+Conversion.optdump:;         code_length 18
+Conversion.optdump:;         code_length 25
 Decoder.optdump:;         code_length 29
-Decoder.optdump:;         code_length 631
+Decoder.optdump:;         code_length 642
 Encoder.optdump:;         code_length 29
-Encoder.optdump:;         code_length 573
+Encoder.optdump:;         code_length 587
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 61
+Main.optdump:;         code_length 63

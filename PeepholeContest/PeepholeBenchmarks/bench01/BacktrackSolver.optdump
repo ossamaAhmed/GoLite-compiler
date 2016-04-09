@@ -108,58 +108,68 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 34
+;         attribute_length 45
 ;         max_stack 2
 ;         max_locals 8
-;         code_length 22
+;         code_length 33
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 10 (SudokuSolver/grid Ljava/util/Vector;) 
 ;                4: iload_1 
 ;                5: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;                8: checkcast 43 (java/util/Vector) 
-;               11: iload_2 
-;               12: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;               15: checkcast 20 (java/lang/Integer) 
-;               18: invokevirtual 23 (java/lang/Integer/intValue ()I) 
-;               21: ireturn 
+;                8: dup 
+;                9: astore_3 
+;               10: checkcast 43 (java/util/Vector) 
+;               13: dup 
+;               14: astore 5 
+;               16: iload_2 
+;               17: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
+;               20: dup 
+;               21: astore 4 
+;               23: checkcast 20 (java/lang/Integer) 
+;               26: dup 
+;               27: astore 6 
+;               29: invokevirtual 23 (java/lang/Integer/intValue ()I) 
+;               32: ireturn 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x297) :
+; methods[2] (offset 0x2a2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 35 (setVal)
 ;     descriptor_index 59 ((III)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 44
+;         attribute_length 47
 ;         max_stack 3
 ;         max_locals 9
-;         code_length 32
+;         code_length 35
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 10 (SudokuSolver/grid Ljava/util/Vector;) 
 ;                4: iload_1 
 ;                5: invokevirtual 63 (java/util/Vector/elementAt (I)Ljava/lang/Object;) 
-;                8: checkcast 43 (java/util/Vector) 
-;               11: astore 7 
-;               13: new 20 (java/lang/Integer) 
-;               16: dup 
-;               17: iload_3 
-;               18: invokespecial 18 (java/lang/Integer/<init> (I)V) 
-;               21: astore 6 
-;               23: aload 7 
-;               25: aload 6 
-;               27: iload_2 
-;               28: invokevirtual 7 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
-;               31: return 
+;                8: dup 
+;                9: astore 4 
+;               11: checkcast 43 (java/util/Vector) 
+;               14: astore 7 
+;               16: new 20 (java/lang/Integer) 
+;               19: dup 
+;               20: iload_3 
+;               21: invokespecial 18 (java/lang/Integer/<init> (I)V) 
+;               24: astore 6 
+;               26: aload 7 
+;               28: aload 6 
+;               30: iload_2 
+;               31: invokevirtual 7 (java/util/Vector/setElementAt (Ljava/lang/Object;I)V) 
+;               34: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x2d1) :
+; methods[3] (offset 0x2df) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 68 (checkRow)
 ;     descriptor_index 19 ((II)Z)
@@ -192,7 +202,7 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x30a) :
+; methods[4] (offset 0x318) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 57 (checkCol)
 ;     descriptor_index 19 ((II)Z)
@@ -225,7 +235,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x343) :
+; methods[5] (offset 0x351) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 54 (checkBox)
 ;     descriptor_index 56 ((III)Z)
@@ -281,7 +291,7 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x3a1) :
+; methods[6] (offset 0x3af) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (checkFinish)
 ;     descriptor_index 2 (()Z)
@@ -321,7 +331,7 @@
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x3eb) :
+; methods[7] (offset 0x3f9) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 40 (solveCell)
 ;     descriptor_index 21 ((II)V)
@@ -408,7 +418,7 @@
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x484) :
+; methods[8] (offset 0x492) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 5 (next)
 ;     descriptor_index 21 ((II)V)
@@ -441,7 +451,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x4b8) :
+; methods[9] (offset 0x4c6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (solve)
 ;     descriptor_index 6 (()V)
@@ -465,7 +475,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4db) :
+; class_attributes[0] (offset 0x4e9) :
 ;     name_index 45 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 29

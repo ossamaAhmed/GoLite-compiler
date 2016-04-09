@@ -162,43 +162,45 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 57 (Code)
-;         attribute_length 71
+;         attribute_length 73
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 59
+;         code_length 61
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 19 (RoomAction/<init> ()V) 
 ;                4: aload_0 
 ;                5: iconst_4 
 ;                6: invokevirtual 82 (RoomAction/rand (I)I) 
-;                9: iconst_0 
-;               10: if_icmpne 9 
-;               13: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               16: goto 39 
-;               19: iload_1 
-;               20: iconst_1 
-;               21: if_icmpne 9 
-;               24: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               27: goto 28 
-;               30: iload_1 
-;               31: iconst_2 
-;               32: if_icmpne 9 
-;               35: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               38: goto 17 
-;               41: iload_1 
-;               42: iconst_3 
-;               43: if_icmpne 9 
-;               46: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               49: goto 6 
-;               52: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
-;               55: putfield 2 (HuntRoomAction/taken Z) 
-;               58: return 
+;                9: dup 
+;               10: istore_1 
+;               11: iconst_0 
+;               12: if_icmpne 9 
+;               15: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               18: goto 39 
+;               21: iload_1 
+;               22: iconst_1 
+;               23: if_icmpne 9 
+;               26: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               29: goto 28 
+;               32: iload_1 
+;               33: iconst_2 
+;               34: if_icmpne 9 
+;               37: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               40: goto 17 
+;               43: iload_1 
+;               44: iconst_3 
+;               45: if_icmpne 9 
+;               48: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               51: goto 6 
+;               54: putfield 104 (HuntRoomAction/target Ljava/lang/String;) 
+;               57: putfield 2 (HuntRoomAction/taken Z) 
+;               60: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x561) :
+; methods[1] (offset 0x563) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 23 (describe)
 ;     descriptor_index 83 (()V)
@@ -273,7 +275,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x5f0) :
+; methods[2] (offset 0x5f2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 102 (performAction)
 ;     descriptor_index 45 ((Ljava/lang/String;)I)
@@ -670,7 +672,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x8d5) :
+; class_attributes[0] (offset 0x8d7) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 119

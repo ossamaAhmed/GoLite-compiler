@@ -343,7 +343,7 @@ int simplify_aload_after_astore2(CODE **c)
      is_aload(next(*c),&y) &&
      (x==y)
     ){
-    return replace(c,3, makeCODEdup(
+    return replace(c,2, makeCODEdup(
                         makeCODEastore(x,NULL)));
   }
   return 0;
@@ -389,7 +389,7 @@ int simplify_iload_after_istore2(CODE **c)
      is_iload(next(*c),&y) &&
      (x==y)
     ){
-    return replace(c,3, makeCODEdup(
+    return replace(c,2, makeCODEdup(
                         makeCODEistore(x,NULL)));
   }
   return 0;
@@ -889,100 +889,116 @@ int simplify_if_else_with_acmpeq(CODE **c) {
   return 0;
 }
 /**
+iload_3
+iconst_0
 if_icmpeq label1
 iconst_0
 goto label2
 label1:
 iconst_1
 label2:
-dup
+dup     1 1   0 0
 ifne label3
-pop
+pop empty
 .
 .
 . 
-label3:
+label3: 
 ------->
 iconst_1
+iload_3 
+iconst_0
 if_icmpeq label3
 pop
 .
 .
 .
-label3:
+label3: 1
 
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpeq_ne(CODE **c) {
+  int cmp1, cmp2;
   int label1, label2, label3, labeltemp;
   int x, y;
-  if (is_if_icmpeq(*c, &label1) &&
-      is_ldc_int(next(*c), &x) && 
+  CODE **q;
+  if (is_iload(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpeq(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
       (x==0)  &&
-      is_goto(next(next(*c)), &label2)  &&
-      is_label(next(next(next(*c))), &labeltemp) && 
-      (labeltemp==label1) &&
-      is_ldc_int(next(next(next(next(*c)))), &y) && 
-      (y==1) &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
       is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
       ( labeltemp== label2) &&
-      is_dup(next(next(next(next(next(next(*c))))))) &&
-      is_ifne(next(next(next(next(next(next(next(*c))))))), &label3) && 
-      is_pop(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
       uniquelabel(label1) && uniquelabel(label2))  {
-    droplabel(label1);
-    droplabel(label2);
-    return replace(c, 9, makeCODEldc_int(y,makeCODEif_icmpeq(label3,makeCODEpop(NULL))) );
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEldc_int(y,makeCODEiload(cmp1, makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL))))));
+
   }
   return 0;
 }
-
-
 /**
+iload_3
+iconst_0
 if_icmpne label1
 iconst_0
 goto label2
 label1:
 iconst_1
 label2:
-dup
+dup     1 1   0 0
 ifeq label3
-pop
+pop empty
 .
 .
 . 
-label3:
+label3: 
 ------->
-iconst_1
-if_icmpne label3
+iconst_0
+iload_3 
+iconst_0
+if_icmpeq label3
 pop
 .
 .
 .
-label3:
+label3: 1
 
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpne_eq(CODE **c) {
+  int cmp1, cmp2;
   int label1, label2, label3, labeltemp;
   int x, y;
-  if (is_if_icmpne(*c, &label1) &&
-      is_ldc_int(next(*c), &x) && 
+  CODE **q;
+  if (is_iload(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpne(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
       (x==0)  &&
-      is_goto(next(next(*c)), &label2)  &&
-      is_label(next(next(next(*c))), &labeltemp) && 
-      (labeltemp==label1) &&
-      is_ldc_int(next(next(next(next(*c)))), &y) && 
-      (y==1) &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
       is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
       ( labeltemp== label2) &&
-      is_dup(next(next(next(next(next(next(*c))))))) &&
-      is_ifeq(next(next(next(next(next(next(next(*c))))))), &label3) && 
-      is_pop(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifeq(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
       uniquelabel(label1) && uniquelabel(label2))  {
-    droplabel(label1);
-    droplabel(label2);
-    return replace(c, 9, makeCODEldc_int(y,makeCODEif_icmpeq(label3,makeCODEpop(NULL))) );
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEldc_int(x,makeCODEiload(cmp1, makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL))))));
+
   }
   return 0;
 }
@@ -1074,22 +1090,22 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
+    ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
+    ADD_PATTERN(simplify_if_else_with_icmpne_eq); 
     ADD_PATTERN(simplify_if_else_with_icmple);
     ADD_PATTERN(simplify_if_else_with_icmpgt);
     ADD_PATTERN(simplify_if_else_with_icmplt);
     ADD_PATTERN(simplify_if_else_with_icmpge);
     ADD_PATTERN(simplify_if_else_with_icmpne);
     ADD_PATTERN(simplify_if_else_with_icmpeq);
-    ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
-    ADD_PATTERN(simplify_if_else_with_icmpne_eq);
     ADD_PATTERN(simplify_addition_right1);
     ADD_PATTERN(simplify_if_else_with_acmpeq);
     ADD_PATTERN(simplify_if_else_with_acmpne);
     ADD_PATTERN(simplify_if_null);
     ADD_PATTERN(simplify_if_nonnull);
 
-    ADD_PATTERN(removeSavesIstore);
-    ADD_PATTERN(removeSavesAstore);
+    // ADD_PATTERN(removeSavesIstore);
+    // ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(simplify_istore);
     ADD_PATTERN(positive_increment);
