@@ -550,7 +550,6 @@ int simplify_pop_afterinvokevirtual(CODE **c){
   return 0;
 }
 
-<<<<<<< HEAD
 /**
   if( col >= 8 )
       this.solveCell( row, col + 1 ) ;
@@ -844,6 +843,7 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
   return 0;
 }
 
+
 /*
 #define OPTS 4
 
@@ -852,6 +852,7 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
                            positive_increment,
                            simplify_goto_goto};
 */
+
 
 int init_patterns()
 { 
@@ -862,6 +863,7 @@ int init_patterns()
     ADD_PATTERN(simplify_if_else_with_icmpne);
     ADD_PATTERN(simplify_if_else_with_icmpeq);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
+
     ADD_PATTERN(removeSavesIstore);
     ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_astore);
