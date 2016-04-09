@@ -10,3 +10,4 @@ test_results.txt
 *.class
 *.optdump
 *.dump
+code.size
