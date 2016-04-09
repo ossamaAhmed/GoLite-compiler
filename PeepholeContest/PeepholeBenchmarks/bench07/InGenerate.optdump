@@ -110,10 +110,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 57 (Code)
-;         attribute_length 191
+;         attribute_length 189
 ;         max_stack 2
 ;         max_locals 5
-;         code_length 179
+;         code_length 177
 ;         code :
 ;                0: new 14 (InGenerate) 
 ;                3: dup 
@@ -132,104 +132,100 @@
 ;               25: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               28: iload_1 
 ;               29: ldc 38 (500) 
-;               31: if_icmpge 147 
+;               31: if_icmpge 145 
 ;               34: aload_3 
 ;               35: iconst_4 
 ;               36: invokevirtual 23 (InGenerate/randRange (I)I) 
-;               39: dup 
-;               40: istore_2 
-;               41: iconst_0 
-;               42: if_icmpne 13 
-;               45: aload 4 
-;               47: ldc 29 ("go north") 
-;               49: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               52: goto 45 
-;               55: iload_2 
-;               56: iconst_1 
-;               57: if_icmpne 13 
-;               60: aload 4 
-;               62: ldc 47 ("go south") 
-;               64: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               67: goto 30 
-;               70: iload_2 
-;               71: iconst_2 
-;               72: if_icmpne 13 
-;               75: aload 4 
-;               77: ldc 28 ("go east") 
-;               79: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               82: goto 15 
-;               85: iload_2 
-;               86: iconst_3 
-;               87: if_icmpne 10 
-;               90: aload 4 
-;               92: ldc 20 ("go west") 
-;               94: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               97: aload_3 
-;               98: ldc 8 (100) 
-;              100: invokevirtual 23 (InGenerate/randRange (I)I) 
-;              103: ldc 27 (30) 
-;              105: if_icmple 10 
-;              108: aload 4 
-;              110: ldc 3 ("interact") 
-;              112: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              115: aload_3 
-;              116: ldc 8 (100) 
-;              118: invokevirtual 23 (InGenerate/randRange (I)I) 
-;              121: ldc 11 (70) 
-;              123: if_icmple 10 
-;              126: aload 4 
-;              128: ldc 52 ("show hp") 
-;              130: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              133: aload_3 
-;              134: ldc 8 (100) 
-;              136: invokevirtual 23 (InGenerate/randRange (I)I) 
-;              139: ldc 11 (70) 
-;              141: if_icmple 10 
-;              144: aload 4 
-;              146: ldc 54 ("show treasure") 
-;              148: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              151: aload_3 
-;              152: ldc 8 (100) 
-;              154: invokevirtual 23 (InGenerate/randRange (I)I) 
-;              157: ldc 11 (70) 
-;              159: if_icmple 10 
-;              162: aload 4 
-;              164: ldc 31 ("show coin") 
-;              166: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              169: wide iinc 1 1 
-;              175: goto -147 
-;              178: return 
+;               39: iconst_0 
+;               40: if_icmpne 13 
+;               43: aload 4 
+;               45: ldc 29 ("go north") 
+;               47: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               50: goto 45 
+;               53: iload_2 
+;               54: iconst_1 
+;               55: if_icmpne 13 
+;               58: aload 4 
+;               60: ldc 47 ("go south") 
+;               62: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               65: goto 30 
+;               68: iload_2 
+;               69: iconst_2 
+;               70: if_icmpne 13 
+;               73: aload 4 
+;               75: ldc 28 ("go east") 
+;               77: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               80: goto 15 
+;               83: iload_2 
+;               84: iconst_3 
+;               85: if_icmpne 10 
+;               88: aload 4 
+;               90: ldc 20 ("go west") 
+;               92: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               95: aload_3 
+;               96: ldc 8 (100) 
+;               98: invokevirtual 23 (InGenerate/randRange (I)I) 
+;              101: ldc 27 (30) 
+;              103: if_icmple 10 
+;              106: aload 4 
+;              108: ldc 3 ("interact") 
+;              110: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              113: aload_3 
+;              114: ldc 8 (100) 
+;              116: invokevirtual 23 (InGenerate/randRange (I)I) 
+;              119: ldc 11 (70) 
+;              121: if_icmple 10 
+;              124: aload 4 
+;              126: ldc 52 ("show hp") 
+;              128: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              131: aload_3 
+;              132: ldc 8 (100) 
+;              134: invokevirtual 23 (InGenerate/randRange (I)I) 
+;              137: ldc 11 (70) 
+;              139: if_icmple 10 
+;              142: aload 4 
+;              144: ldc 54 ("show treasure") 
+;              146: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              149: aload_3 
+;              150: ldc 8 (100) 
+;              152: invokevirtual 23 (InGenerate/randRange (I)I) 
+;              155: ldc 11 (70) 
+;              157: if_icmple 10 
+;              160: aload 4 
+;              162: ldc 31 ("show coin") 
+;              164: invokevirtual 42 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              167: wide iinc 1 1 
+;              173: goto -145 
+;              176: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2f2) :
+; methods[2] (offset 0x2f0) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (randRange)
 ;     descriptor_index 51 ((I)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 57 (Code)
-;         attribute_length 33
+;         attribute_length 31
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 21
+;         code_length 19
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 18 (InGenerate/rand Ljoos/lib/JoosRandom;) 
 ;                4: invokevirtual 45 (joos/lib/JoosRandom/nextInt ()I) 
-;                7: dup 
-;                8: istore_2 
-;                9: iconst_0 
-;               10: if_icmpge 6 
-;               13: iload_2 
-;               14: ineg 
-;               15: istore_2 
-;               16: iload_2 
-;               17: iload_1 
-;               18: irem 
-;               19: ireturn 
-;               20: nop 
+;                7: iconst_0 
+;                8: if_icmpge 6 
+;               11: iload_2 
+;               12: ineg 
+;               13: istore_2 
+;               14: iload_2 
+;               15: iload_1 
+;               16: irem 
+;               17: ireturn 
+;               18: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -237,7 +233,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x323) :
+; class_attributes[0] (offset 0x31f) :
 ;     name_index 40 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 5

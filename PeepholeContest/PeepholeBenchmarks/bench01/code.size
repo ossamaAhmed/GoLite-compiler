@@ -2,6 +2,8 @@ rm -rf *.class *.j *~
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
+removeSavesIstore: 0
+removeSavesAstore: 11
 simplify_if_else_with_icmpge_ne_virtual: 0
 simplify_if_else_with_icmpeq_ne: 2
 simplify_if_else_with_icmpne_eq: 1
@@ -17,7 +19,7 @@ simplify_if_else_with_acmpne: 1
 simplify_if_null: 0
 simplify_if_nonnull: 0
 simplify_if_else_with_eq_eq: 2
-simplify_astore: 21
+simplify_astore: 10
 simplify_istore: 29
 positive_increment: 13
 simplify_multiplication_right: 0
@@ -25,7 +27,7 @@ simplify_goto_goto: 0
 simplify_aload_after_astore: 0
 simplify_iload_after_istore: 0
 simplify_iload_after_istore2: 0
-simplify_aload_after_astore2: 11
+simplify_aload_after_astore2: 0
 positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
@@ -42,8 +44,8 @@ Generated: Benchmark.class
 Generated: SudokuSolver.class
 ----- Method code sizes ----
 BacktrackSolver.optdump:;         code_length 5
-BacktrackSolver.optdump:;         code_length 34
-BacktrackSolver.optdump:;         code_length 35
+BacktrackSolver.optdump:;         code_length 23
+BacktrackSolver.optdump:;         code_length 32
 BacktrackSolver.optdump:;         code_length 32
 BacktrackSolver.optdump:;         code_length 32
 BacktrackSolver.optdump:;         code_length 69
@@ -52,7 +54,7 @@ BacktrackSolver.optdump:;         code_length 111
 BacktrackSolver.optdump:;         code_length 26
 BacktrackSolver.optdump:;         code_length 7
 Benchmark.optdump:;         code_length 5
-Benchmark.optdump:;         code_length 70
+Benchmark.optdump:;         code_length 66
 SudokuSolver.optdump:;         code_length 5
-SudokuSolver.optdump:;         code_length 105
-SudokuSolver.optdump:;         code_length 271
+SudokuSolver.optdump:;         code_length 102
+SudokuSolver.optdump:;         code_length 262

@@ -1236,8 +1236,8 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
 
 int init_patterns()
 { 
-    // // ADD_PATTERN(removeSavesIstore);
-    // // ADD_PATTERN(removeSavesAstore);
+    ADD_PATTERN(removeSavesIstore);
+    ADD_PATTERN(removeSavesAstore);
     ADD_PATTERN(simplify_if_else_with_icmpge_ne_virtual);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
     ADD_PATTERN(simplify_if_else_with_icmpne_eq); 

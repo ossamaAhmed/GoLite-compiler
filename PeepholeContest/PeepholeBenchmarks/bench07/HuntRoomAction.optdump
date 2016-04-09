@@ -170,63 +170,61 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 64 (Code)
-;         attribute_length 96
+;         attribute_length 94
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 84
+;         code_length 82
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 22 (RoomAction/<init> ()V) 
 ;                4: aload_0 
 ;                5: iconst_4 
 ;                6: invokevirtual 89 (RoomAction/rand (I)I) 
-;                9: dup 
-;               10: istore_1 
-;               11: iconst_0 
-;               12: if_icmpne 13 
-;               15: ldc 36 ("fierce ogre") 
-;               17: aload_0 
-;               18: swap 
-;               19: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               22: goto 55 
-;               25: iload_1 
-;               26: iconst_1 
-;               27: if_icmpne 13 
-;               30: ldc 79 ("rabbit") 
-;               32: aload_0 
-;               33: swap 
-;               34: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               37: goto 40 
-;               40: iload_1 
-;               41: iconst_2 
-;               42: if_icmpne 13 
-;               45: ldc 2 ("dark demon") 
-;               47: aload_0 
-;               48: swap 
-;               49: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               52: goto 25 
-;               55: iload_1 
-;               56: iconst_3 
-;               57: if_icmpne 13 
-;               60: ldc 34 ("puppy") 
-;               62: aload_0 
-;               63: swap 
-;               64: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               67: goto 10 
-;               70: ldc 1 ("wtf") 
-;               72: aload_0 
-;               73: swap 
-;               74: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
-;               77: iconst_0 
-;               78: aload_0 
-;               79: swap 
-;               80: putfield 4 (HuntRoomAction/taken Z) 
-;               83: return 
+;                9: iconst_0 
+;               10: if_icmpne 13 
+;               13: ldc 36 ("fierce ogre") 
+;               15: aload_0 
+;               16: swap 
+;               17: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               20: goto 55 
+;               23: iload_1 
+;               24: iconst_1 
+;               25: if_icmpne 13 
+;               28: ldc 79 ("rabbit") 
+;               30: aload_0 
+;               31: swap 
+;               32: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               35: goto 40 
+;               38: iload_1 
+;               39: iconst_2 
+;               40: if_icmpne 13 
+;               43: ldc 2 ("dark demon") 
+;               45: aload_0 
+;               46: swap 
+;               47: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               50: goto 25 
+;               53: iload_1 
+;               54: iconst_3 
+;               55: if_icmpne 13 
+;               58: ldc 34 ("puppy") 
+;               60: aload_0 
+;               61: swap 
+;               62: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               65: goto 10 
+;               68: ldc 1 ("wtf") 
+;               70: aload_0 
+;               71: swap 
+;               72: putfield 111 (HuntRoomAction/target Ljava/lang/String;) 
+;               75: iconst_0 
+;               76: aload_0 
+;               77: swap 
+;               78: putfield 4 (HuntRoomAction/taken Z) 
+;               81: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x5b0) :
+; methods[1] (offset 0x5ae) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 26 (describe)
 ;     descriptor_index 90 (()V)
@@ -281,7 +279,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x61b) :
+; methods[2] (offset 0x619) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 109 (performAction)
 ;     descriptor_index 51 ((Ljava/lang/String;)I)
@@ -647,7 +645,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x8c1) :
+; class_attributes[0] (offset 0x8bf) :
 ;     name_index 6 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 127
