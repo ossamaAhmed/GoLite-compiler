@@ -168,10 +168,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 69 (Code)
-;         attribute_length 142
+;         attribute_length 141
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 130
+;         code_length 129
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 44 ("fortune") 
@@ -242,22 +242,21 @@
 ;              126: ireturn 
 ;              127: iconst_0 
 ;              128: ireturn 
-;              129: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x3c2) :
+; methods[4] (offset 0x3c1) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 38 (rand)
 ;     descriptor_index 54 ((I)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 69 (Code)
-;         attribute_length 31
+;         attribute_length 30
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 19
+;         code_length 18
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 18 (RoomAction/R Ljoos/lib/JoosRandom;) 
@@ -271,7 +270,6 @@
 ;               15: iload_1 
 ;               16: irem 
 ;               17: ireturn 
-;               18: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -279,7 +277,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x3f1) :
+; class_attributes[0] (offset 0x3ef) :
 ;     name_index 43 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 19

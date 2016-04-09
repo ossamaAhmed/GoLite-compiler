@@ -502,10 +502,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 34
+;         attribute_length 33
 ;         max_stack 2
 ;         max_locals 4
-;         code_length 22
+;         code_length 21
 ;         code :
 ;                0: new 65 (joos/lib/JoosRandom) 
 ;                3: dup 
@@ -520,12 +520,11 @@
 ;               18: iload_2 
 ;               19: ineg 
 ;               20: ireturn 
-;               21: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xf45) :
+; methods[2] (offset 0xf44) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 170 (getDescription)
 ;     descriptor_index 15 (()V)
@@ -547,107 +546,102 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0xf6b) :
+; methods[3] (offset 0xf6a) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 179 (getNorth)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 20 (Room/north LRoom;) 
 ;                4: areturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0xf8b) :
+; methods[4] (offset 0xf89) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 9 (getSouth)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 96 (Room/south LRoom;) 
 ;                4: areturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xfab) :
+; methods[5] (offset 0xfa8) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 156 (getWest)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 25 (Room/west LRoom;) 
 ;                4: areturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[6] (offset 0xfcb) :
+; methods[6] (offset 0xfc7) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 180 (getEast)
 ;     descriptor_index 29 (()LRoom;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 60 (Room/east LRoom;) 
 ;                4: areturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0xfeb) :
+; methods[7] (offset 0xfe6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 154 (getRoomAction)
 ;     descriptor_index 118 (()LRoomAction;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 100 (Room/action LRoomAction;) 
 ;                4: areturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x100b) :
+; methods[8] (offset 0x1005) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 55 (enterRoom)
 ;     descriptor_index 15 (()V)
@@ -713,17 +707,17 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x1090) :
+; methods[9] (offset 0x108a) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 52 (generateDescription)
 ;     descriptor_index 24 ((I)Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 119 (Code)
-;         attribute_length 166
+;         attribute_length 165
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 154
+;         code_length 153
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_0 
@@ -805,7 +799,6 @@
 ;              147: goto 6 
 ;              150: ldc 153 ("You are in a non-descript room. How did you get here?") 
 ;              152: areturn 
-;              153: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -813,7 +806,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x1146) :
+; class_attributes[0] (offset 0x113f) :
 ;     name_index 139 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 73

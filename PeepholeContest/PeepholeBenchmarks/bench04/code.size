@@ -33,8 +33,9 @@ simplify_aload_severalgetfield: 2
 simplify_pop_afterinvokenonvirtual: 7
 simplify_pop_afterinvokevirtual: 7
 simplify_severalgetfield: 0
-removeSwap: 0
 delete_dead_goto_label: 18
+remove_swap: 0
+remove_nop: 24
 
 Generated: Board.class
 Generated: BombMove.class
@@ -49,59 +50,59 @@ Generated: Move.class
 Generated: Strategy.class
 ----- Method code sizes ----
 Board.optdump:;         code_length 112
-Board.optdump:;         code_length 6
-Board.optdump:;         code_length 6
-Board.optdump:;         code_length 20
-Board.optdump:;         code_length 56
-Board.optdump:;         code_length 63
+Board.optdump:;         code_length 5
+Board.optdump:;         code_length 5
+Board.optdump:;         code_length 19
+Board.optdump:;         code_length 55
+Board.optdump:;         code_length 62
 Board.optdump:;         code_length 26
 Board.optdump:;         code_length 20
 Board.optdump:;         code_length 11
 Board.optdump:;         code_length 132
-Board.optdump:;         code_length 83
-Board.optdump:;         code_length 52
+Board.optdump:;         code_length 82
+Board.optdump:;         code_length 51
 Board.optdump:;         code_length 140
-Board.optdump:;         code_length 509
+Board.optdump:;         code_length 508
 Board.optdump:;         code_length 68
 BombMove.optdump:;         code_length 5
 BombMove.optdump:;         code_length 53
-BombMove.optdump:;         code_length 4
+BombMove.optdump:;         code_length 3
 ClassicMove.optdump:;         code_length 5
 ClassicMove.optdump:;         code_length 8
-ClassicMove.optdump:;         code_length 4
+ClassicMove.optdump:;         code_length 3
 DiagBombMove.optdump:;         code_length 5
 DiagBombMove.optdump:;         code_length 215
-DiagBombMove.optdump:;         code_length 4
+DiagBombMove.optdump:;         code_length 3
 FlipBoardMove.optdump:;         code_length 5
 FlipBoardMove.optdump:;         code_length 140
-FlipBoardMove.optdump:;         code_length 4
+FlipBoardMove.optdump:;         code_length 3
 Game.optdump:;         code_length 84
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 78
 Game.optdump:;         code_length 94
-Game.optdump:;         code_length 6
-Game.optdump:;         code_length 6
-Game.optdump:;         code_length 6
-Game.optdump:;         code_length 22
-Game.optdump:;         code_length 19
+Game.optdump:;         code_length 5
+Game.optdump:;         code_length 5
+Game.optdump:;         code_length 5
+Game.optdump:;         code_length 21
+Game.optdump:;         code_length 18
 Game.optdump:;         code_length 33
-Game.optdump:;         code_length 22
+Game.optdump:;         code_length 21
 Game.optdump:;         code_length 92
 Game.optdump:;         code_length 151
-Game.optdump:;         code_length 187
+Game.optdump:;         code_length 186
 Game.optdump:;         code_length 59
 Game.optdump:;         code_length 13
 Game.optdump:;         code_length 130
-Game.optdump:;         code_length 89
+Game.optdump:;         code_length 88
 Game.optdump:;         code_length 70
 KillColumnMove.optdump:;         code_length 5
 KillColumnMove.optdump:;         code_length 29
-KillColumnMove.optdump:;         code_length 4
+KillColumnMove.optdump:;         code_length 3
 KillRowAndColumnMove.optdump:;         code_length 5
 KillRowAndColumnMove.optdump:;         code_length 57
-KillRowAndColumnMove.optdump:;         code_length 4
+KillRowAndColumnMove.optdump:;         code_length 3
 KillRowMove.optdump:;         code_length 5
 KillRowMove.optdump:;         code_length 29
-KillRowMove.optdump:;         code_length 4
+KillRowMove.optdump:;         code_length 3
 Move.optdump:;         code_length 5
 Strategy.optdump:;         code_length 5

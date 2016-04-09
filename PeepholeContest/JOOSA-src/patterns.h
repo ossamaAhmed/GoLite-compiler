@@ -35,7 +35,7 @@
  * ADDED BY SHABBIR
  */
 
-int removeSwap(CODE **c){
+int remove_swap(CODE **c){
   int x,k;
   char * arg;
   if (is_aload(*c,&x) || is_iload(*c,&x) || is_ldc_int(*c,&x) || is_ldc_string(*c,&arg) ){
@@ -937,6 +937,7 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
   return 0;
 }
 
+
 /**
 if_icmpne label1
 iconst_0
@@ -1049,6 +1050,16 @@ int simplify_if_nonnull(CODE **c) {
 }
 
 
+/* nop
+ * ------->
+ */
+int remove_nop(CODE **c) {
+  if (is_nop(*c)) {
+    return replace(c,1,NULL);
+  }
+  return 0;
+}
+
 
 /*
 #define OPTS 4
@@ -1096,7 +1107,8 @@ int init_patterns()
     ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
     ADD_PATTERN(simplify_severalgetfield);
-    ADD_PATTERN(removeSwap);
     ADD_PATTERN(delete_dead_goto_label);
+    ADD_PATTERN(remove_swap);
+    ADD_PATTERN(remove_nop);
     return 1;
 }

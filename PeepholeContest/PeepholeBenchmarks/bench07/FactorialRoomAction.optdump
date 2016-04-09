@@ -143,10 +143,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 44 (Code)
-;         attribute_length 250
+;         attribute_length 249
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 238
+;         code_length 237
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 29 ("use") 
@@ -274,22 +274,21 @@
 ;              232: aload_1 
 ;              233: invokevirtual 24 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
 ;              236: ireturn 
-;              237: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x46f) :
+; methods[3] (offset 0x46e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 42 (f)
 ;     descriptor_index 62 ((I)I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 44 (Code)
-;         attribute_length 48
+;         attribute_length 47
 ;         max_stack 4
 ;         max_locals 2
-;         code_length 36
+;         code_length 35
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_0 
@@ -314,7 +313,6 @@
 ;               30: invokevirtual 64 (FactorialRoomAction/f (I)I) 
 ;               33: imul 
 ;               34: ireturn 
-;               35: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -322,7 +320,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4af) :
+; class_attributes[0] (offset 0x4ad) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

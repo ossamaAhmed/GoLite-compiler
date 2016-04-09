@@ -97,35 +97,33 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 7 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 9 (CustomPoint/x I) 
 ;                4: ireturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x130) :
+; methods[3] (offset 0x12f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 19 (getY)
 ;     descriptor_index 14 (()I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 7 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 8 (CustomPoint/y I) 
 ;                4: ireturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -133,7 +131,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x152) :
+; class_attributes[0] (offset 0x150) :
 ;     name_index 11 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 22

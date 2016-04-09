@@ -33,8 +33,9 @@ simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 8
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
-removeSwap: 0
 delete_dead_goto_label: 12
+remove_swap: 0
+remove_nop: 8
 
 Generated: CustomPoint.class
 Generated: Dungeon.class
@@ -43,8 +44,8 @@ Generated: DungeonInfos.class
 ----- Method code sizes ----
 CustomPoint.optdump:;         code_length 11
 CustomPoint.optdump:;         code_length 11
-CustomPoint.optdump:;         code_length 6
-CustomPoint.optdump:;         code_length 6
+CustomPoint.optdump:;         code_length 5
+CustomPoint.optdump:;         code_length 5
 Dungeon.optdump:;         code_length 20
 Dungeon.optdump:;         code_length 314
 Dungeon.optdump:;         code_length 294
@@ -54,9 +55,9 @@ DungeonGenerator.optdump:;         code_length 32
 DungeonInfos.optdump:;         code_length 9
 DungeonInfos.optdump:;         code_length 73
 DungeonInfos.optdump:;         code_length 229
-DungeonInfos.optdump:;         code_length 6
-DungeonInfos.optdump:;         code_length 6
-DungeonInfos.optdump:;         code_length 6
-DungeonInfos.optdump:;         code_length 6
-DungeonInfos.optdump:;         code_length 6
-DungeonInfos.optdump:;         code_length 6
+DungeonInfos.optdump:;         code_length 5
+DungeonInfos.optdump:;         code_length 5
+DungeonInfos.optdump:;         code_length 5
+DungeonInfos.optdump:;         code_length 5
+DungeonInfos.optdump:;         code_length 5
+DungeonInfos.optdump:;         code_length 5

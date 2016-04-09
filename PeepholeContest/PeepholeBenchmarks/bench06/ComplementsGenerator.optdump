@@ -234,10 +234,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 1167
+;         attribute_length 1166
 ;         max_stack 2
 ;         max_locals 6
-;         code_length 1155
+;         code_length 1154
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
@@ -853,42 +853,40 @@
 ;             1148: ldc 21 ("null") 
 ;             1150: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;             1153: areturn 
-;             1154: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xb95) :
+; methods[2] (offset 0xb94) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 93 (getComplementNumber)
 ;     descriptor_index 24 (()I)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 18
+;         attribute_length 17
 ;         max_stack 1
 ;         max_locals 1
-;         code_length 6
+;         code_length 5
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 130 (ComplementsGenerator/complementNumber I) 
 ;                4: ireturn 
-;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0xbb5) :
+; methods[3] (offset 0xbb3) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 120 (generateAdjective)
 ;     descriptor_index 103 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 142
+;         attribute_length 141
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 130
+;         code_length 129
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
@@ -960,22 +958,21 @@
 ;              123: goto 6 
 ;              126: ldc 76 ("crappy") 
 ;              128: areturn 
-;              129: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0xc51) :
+; methods[4] (offset 0xc4e) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 126 (generateNoun)
 ;     descriptor_index 103 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 130
+;         attribute_length 129
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 118
+;         code_length 117
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
@@ -1041,22 +1038,21 @@
 ;              111: goto 6 
 ;              114: ldc 97 ("skin") 
 ;              116: areturn 
-;              117: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xce1) :
+; methods[5] (offset 0xcdd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 142 (generateVerb)
 ;     descriptor_index 103 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 115 (Code)
-;         attribute_length 142
+;         attribute_length 141
 ;         max_stack 2
 ;         max_locals 3
-;         code_length 130
+;         code_length 129
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
@@ -1128,7 +1124,6 @@
 ;              123: goto 6 
 ;              126: ldc 141 ("eat-bananas") 
 ;              128: areturn 
-;              129: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -1136,7 +1131,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xd7f) :
+; class_attributes[0] (offset 0xd7a) :
 ;     name_index 137 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 47

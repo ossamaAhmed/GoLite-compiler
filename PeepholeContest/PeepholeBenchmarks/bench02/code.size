@@ -34,8 +34,9 @@ simplify_aload_severalgetfield: 1
 simplify_pop_afterinvokenonvirtual: 2
 simplify_pop_afterinvokevirtual: 5
 simplify_severalgetfield: 0
-removeSwap: 0
 delete_dead_goto_label: 2
+remove_swap: 0
+remove_nop: 2
 
 Generated: Interpretor.class
 Generated: Main.class
@@ -52,5 +53,5 @@ Interpretor.optdump:;         code_length 27
 Main.optdump:;         code_length 5
 Main.optdump:;         code_length 40
 StringEscapeUtils.optdump:;         code_length 5
-StringEscapeUtils.optdump:;         code_length 41
-StringEscapeUtils.optdump:;         code_length 85
+StringEscapeUtils.optdump:;         code_length 40
+StringEscapeUtils.optdump:;         code_length 84

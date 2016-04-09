@@ -140,10 +140,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 37 (Code)
-;         attribute_length 644
+;         attribute_length 643
 ;         max_stack 7
 ;         max_locals 7
-;         code_length 632
+;         code_length 631
 ;         code :
 ;                0: ldc 74 ("") 
 ;                2: astore 6 
@@ -443,7 +443,6 @@
 ;              625: goto -579 
 ;              628: aload 6 
 ;              630: areturn 
-;              631: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -451,7 +450,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x536) :
+; class_attributes[0] (offset 0x535) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 63

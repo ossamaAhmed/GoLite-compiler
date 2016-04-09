@@ -34,20 +34,21 @@ simplify_aload_severalgetfield: 0
 simplify_pop_afterinvokenonvirtual: 1
 simplify_pop_afterinvokevirtual: 0
 simplify_severalgetfield: 0
-removeSwap: 0
 delete_dead_goto_label: 10
+remove_swap: 0
+remove_nop: 5
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class
 Generated: SudokuSolver.class
 ----- Method code sizes ----
 BacktrackSolver.optdump:;         code_length 5
-BacktrackSolver.optdump:;         code_length 23
+BacktrackSolver.optdump:;         code_length 22
 BacktrackSolver.optdump:;         code_length 32
-BacktrackSolver.optdump:;         code_length 32
-BacktrackSolver.optdump:;         code_length 32
-BacktrackSolver.optdump:;         code_length 69
-BacktrackSolver.optdump:;         code_length 49
+BacktrackSolver.optdump:;         code_length 31
+BacktrackSolver.optdump:;         code_length 31
+BacktrackSolver.optdump:;         code_length 68
+BacktrackSolver.optdump:;         code_length 48
 BacktrackSolver.optdump:;         code_length 127
 BacktrackSolver.optdump:;         code_length 26
 BacktrackSolver.optdump:;         code_length 7

@@ -205,10 +205,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 107 (Code)
-;         attribute_length 34
+;         attribute_length 33
 ;         max_stack 1
 ;         max_locals 4
-;         code_length 22
+;         code_length 21
 ;         code :
 ;                0: aconst_null 
 ;                1: astore_3 
@@ -223,12 +223,11 @@
 ;               18: astore_3 
 ;               19: aload_3 
 ;               20: areturn 
-;               21: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x77b) :
+; methods[2] (offset 0x77a) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 80 (main)
 ;     descriptor_index 119 (([Ljava/lang/String;)V)
@@ -818,7 +817,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xc30) :
+; class_attributes[0] (offset 0xc2f) :
 ;     name_index 131 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 78

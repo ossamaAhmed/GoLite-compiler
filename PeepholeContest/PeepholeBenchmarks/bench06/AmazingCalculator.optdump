@@ -56,10 +56,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 10 (Code)
-;         attribute_length 33
+;         attribute_length 32
 ;         max_stack 4
 ;         max_locals 2
-;         code_length 21
+;         code_length 20
 ;         code :
 ;                0: iload_1 
 ;                1: iconst_0 
@@ -75,12 +75,11 @@
 ;               15: invokevirtual 14 (AmazingCalculator/factorial (I)I) 
 ;               18: imul 
 ;               19: ireturn 
-;               20: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0xf7) :
+; methods[2] (offset 0xf6) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 11 (bla)
 ;     descriptor_index 12 (()V)
@@ -100,7 +99,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x114) :
+; class_attributes[0] (offset 0x113) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 13
