@@ -118,33 +118,29 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 65 (Code)
-;         attribute_length 49
+;         attribute_length 41
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 37
+;         code_length 29
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 66 (CoinRoomAction/taken Z) 
-;                4: ifeq 7 
-;                7: iconst_0 
-;                8: goto 4 
-;               11: iconst_1 
-;               12: ifeq 15 
-;               15: aload_0 
-;               16: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               19: ldc 11 ("Ooooooh! Shiny!") 
-;               21: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               24: goto 12 
-;               27: aload_0 
-;               28: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               31: ldc 41 ("") 
-;               33: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               36: return 
+;                4: ifne 15 
+;                7: aload_0 
+;                8: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               11: ldc 11 ("Ooooooh! Shiny!") 
+;               13: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               16: goto 12 
+;               19: aload_0 
+;               20: getfield 24 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               23: ldc 41 ("") 
+;               25: invokevirtual 47 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               28: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x31b) :
+; methods[2] (offset 0x313) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 61 (performAction)
 ;     descriptor_index 6 ((Ljava/lang/String;)I)
@@ -289,7 +285,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x41d) :
+; class_attributes[0] (offset 0x415) :
 ;     name_index 44 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 17

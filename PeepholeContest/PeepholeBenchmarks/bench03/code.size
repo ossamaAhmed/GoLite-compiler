@@ -14,6 +14,7 @@ simplify_if_else_with_acmpeq: 0
 simplify_if_else_with_acmpne: 1
 simplify_if_null: 15
 simplify_if_nonnull: 0
+simplify_if_else_with_eq_eq: 0
 simplify_astore: 25
 simplify_istore: 36
 positive_increment: 10
@@ -30,6 +31,8 @@ simplify_goto_label: 1
 simplify_pop_afterinvokenonvirtual: 6
 simplify_pop_afterinvokevirtual: 0
 delete_dead_goto_label: 3
+remove_aload_swap: 0
+remove_iload_swap: 0
 
 Generated: Conversion.class
 Generated: Decoder.class

@@ -343,10 +343,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 66 (Code)
-;         attribute_length 139
+;         attribute_length 123
 ;         max_stack 4
 ;         max_locals 4
-;         code_length 127
+;         code_length 111
 ;         code :
 ;                0: aload_0 
 ;                1: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
@@ -362,12 +362,12 @@
 ;               19: iload_1 
 ;               20: iload_2 
 ;               21: invokevirtual 52 (BacktrackSolver/next (II)V) 
-;               24: goto 102 
+;               24: goto 86 
 ;               27: iconst_1 
 ;               28: istore_3 
 ;               29: iload_3 
 ;               30: ldc 9 (10) 
-;               32: if_icmpge 72 
+;               32: if_icmpge 64 
 ;               35: aload_0 
 ;               36: iload_1 
 ;               37: iload_3 
@@ -387,43 +387,35 @@
 ;               59: iload_2 
 ;               60: iload_3 
 ;               61: invokevirtual 65 (BacktrackSolver/checkBox (III)Z) 
-;               64: ifeq 31 
+;               64: ifeq 23 
 ;               67: aload_0 
 ;               68: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
-;               71: ifeq 7 
-;               74: iconst_0 
-;               75: goto 4 
-;               78: iconst_1 
-;               79: ifeq 10 
-;               82: aload_0 
-;               83: iload_1 
-;               84: iload_2 
-;               85: iload_3 
-;               86: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
-;               89: aload_0 
-;               90: iload_1 
-;               91: iload_2 
-;               92: invokevirtual 52 (BacktrackSolver/next (II)V) 
-;               95: wide iinc 3 1 
-;              101: goto -72 
-;              104: aload_0 
-;              105: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
-;              108: ifeq 7 
-;              111: iconst_0 
-;              112: goto 4 
-;              115: iconst_1 
-;              116: ifeq 10 
-;              119: aload_0 
-;              120: iload_1 
-;              121: iload_2 
-;              122: iconst_0 
-;              123: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
-;              126: return 
+;               71: ifne 10 
+;               74: aload_0 
+;               75: iload_1 
+;               76: iload_2 
+;               77: iload_3 
+;               78: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;               81: aload_0 
+;               82: iload_1 
+;               83: iload_2 
+;               84: invokevirtual 52 (BacktrackSolver/next (II)V) 
+;               87: wide iinc 3 1 
+;               93: goto -64 
+;               96: aload_0 
+;               97: invokevirtual 15 (BacktrackSolver/checkFinish ()Z) 
+;              100: ifne 10 
+;              103: aload_0 
+;              104: iload_1 
+;              105: iload_2 
+;              106: iconst_0 
+;              107: invokevirtual 62 (BacktrackSolver/setVal (III)V) 
+;              110: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[8] (offset 0x497) :
+; methods[8] (offset 0x487) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 5 (next)
 ;     descriptor_index 21 ((II)V)
@@ -456,7 +448,7 @@
 ;         attributes_count 0
 
 
-; methods[9] (offset 0x4cb) :
+; methods[9] (offset 0x4bb) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 1 (solve)
 ;     descriptor_index 6 (()V)
@@ -480,7 +472,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x4ee) :
+; class_attributes[0] (offset 0x4de) :
 ;     name_index 45 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 29

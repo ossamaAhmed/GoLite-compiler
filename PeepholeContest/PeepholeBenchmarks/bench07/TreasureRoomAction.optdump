@@ -106,33 +106,29 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 49
+;         attribute_length 41
 ;         max_stack 2
 ;         max_locals 1
-;         code_length 37
+;         code_length 29
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 15 (TreasureRoomAction/taken Z) 
-;                4: ifeq 7 
-;                7: iconst_0 
-;                8: goto 4 
-;               11: iconst_1 
-;               12: ifeq 15 
-;               15: aload_0 
-;               16: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               19: ldc 9 ("There is a treasure box at the center of the room.") 
-;               21: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               24: goto 12 
-;               27: aload_0 
-;               28: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
-;               31: ldc 56 ("The treasure box is empty.") 
-;               33: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               36: return 
+;                4: ifne 15 
+;                7: aload_0 
+;                8: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               11: ldc 9 ("There is a treasure box at the center of the room.") 
+;               13: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               16: goto 12 
+;               19: aload_0 
+;               20: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;               23: ldc 56 ("The treasure box is empty.") 
+;               25: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               28: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x2e9) :
+; methods[2] (offset 0x2e1) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 52 (performAction)
 ;     descriptor_index 4 ((Ljava/lang/String;)I)
@@ -235,7 +231,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x39c) :
+; class_attributes[0] (offset 0x394) :
 ;     name_index 37 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 28

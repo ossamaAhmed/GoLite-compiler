@@ -225,33 +225,29 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 46
+;         attribute_length 38
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 34
+;         code_length 26
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 102 ("HAI") 
 ;                3: invokevirtual 70 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;                6: ifeq 7 
-;                9: iconst_0 
-;               10: goto 4 
-;               13: iconst_1 
-;               14: ifeq 12 
-;               17: aload_0 
-;               18: ldc 81 ("Program must start with 'HAI'") 
-;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               23: goto 10 
-;               26: ldc 29 ("running") 
-;               28: aload_0 
-;               29: swap 
-;               30: putfield 23 (Interpretor/state Ljava/lang/String;) 
-;               33: return 
+;                6: ifne 12 
+;                9: aload_0 
+;               10: ldc 81 ("Program must start with 'HAI'") 
+;               12: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               15: goto 10 
+;               18: ldc 29 ("running") 
+;               20: aload_0 
+;               21: swap 
+;               22: putfield 23 (Interpretor/state Ljava/lang/String;) 
+;               25: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x4bd) :
+; methods[3] (offset 0x4b5) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 79 (crashed)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -274,7 +270,7 @@
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x4e4) :
+; methods[4] (offset 0x4dc) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 26 (exit)
 ;     descriptor_index 77 (()V)
@@ -295,7 +291,7 @@
 ;         attributes_count 0
 
 
-; methods[5] (offset 0x506) :
+; methods[5] (offset 0x4fe) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 94 (run)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
@@ -360,76 +356,68 @@
 ;         attributes_count 0
 
 
-; methods[6] (offset 0x580) :
+; methods[6] (offset 0x578) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 25 (visible)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 62
+;         attribute_length 54
 ;         max_stack 4
 ;         max_locals 3
-;         code_length 50
+;         code_length 42
 ;         code :
 ;                0: aload_0 
 ;                1: getfield 104 (Interpretor/ioImported Z) 
-;                4: ifeq 7 
-;                7: iconst_0 
-;                8: goto 4 
-;               11: iconst_1 
-;               12: ifeq 9 
-;               15: aload_0 
-;               16: ldc 36 ("Can not execute VISIBLE with out stdio") 
-;               18: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               21: aload_1 
-;               22: ldc 28 (9) 
-;               24: aload_1 
-;               25: invokevirtual 9 (java/lang/String/length ()I) 
-;               28: iconst_1 
-;               29: isub 
-;               30: invokevirtual 71 (java/lang/String/substring (II)Ljava/lang/String;) 
-;               33: astore_2 
-;               34: aload_0 
-;               35: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
-;               38: aload_0 
-;               39: getfield 73 (Interpretor/escape LStringEscapeUtils;) 
-;               42: aload_2 
-;               43: invokevirtual 97 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
-;               46: invokevirtual 74 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;               49: return 
+;                4: ifne 9 
+;                7: aload_0 
+;                8: ldc 36 ("Can not execute VISIBLE with out stdio") 
+;               10: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               13: aload_1 
+;               14: ldc 28 (9) 
+;               16: aload_1 
+;               17: invokevirtual 9 (java/lang/String/length ()I) 
+;               20: iconst_1 
+;               21: isub 
+;               22: invokevirtual 71 (java/lang/String/substring (II)Ljava/lang/String;) 
+;               25: astore_2 
+;               26: aload_0 
+;               27: getfield 57 (Interpretor/f Ljoos/lib/JoosIO;) 
+;               30: aload_0 
+;               31: getfield 73 (Interpretor/escape LStringEscapeUtils;) 
+;               34: aload_2 
+;               35: invokevirtual 97 (StringEscapeUtils/escape (Ljava/lang/String;)Ljava/lang/String;) 
+;               38: invokevirtual 74 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;               41: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[7] (offset 0x5cc) :
+; methods[7] (offset 0x5bc) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 63 (openMod)
 ;     descriptor_index 30 ((Ljava/lang/String;)V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 59 (Code)
-;         attribute_length 42
+;         attribute_length 34
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 30
+;         code_length 22
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 11 ("CAN HAS STDIO?") 
 ;                3: invokevirtual 70 (java/lang/String/equals (Ljava/lang/Object;)Z) 
-;                6: ifeq 7 
-;                9: iconst_0 
-;               10: goto 4 
-;               13: iconst_1 
-;               14: ifeq 9 
-;               17: aload_0 
-;               18: ldc 72 ("Only module 'STDIO' is supported") 
-;               20: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
-;               23: iconst_1 
-;               24: aload_0 
-;               25: swap 
-;               26: putfield 104 (Interpretor/ioImported Z) 
-;               29: return 
+;                6: ifne 9 
+;                9: aload_0 
+;               10: ldc 72 ("Only module 'STDIO' is supported") 
+;               12: invokevirtual 93 (Interpretor/crashed (Ljava/lang/String;)V) 
+;               15: iconst_1 
+;               16: aload_0 
+;               17: swap 
+;               18: putfield 104 (Interpretor/ioImported Z) 
+;               21: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -437,7 +425,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x606) :
+; class_attributes[0] (offset 0x5ee) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 34

@@ -14,6 +14,7 @@ simplify_if_else_with_acmpeq: 6
 simplify_if_else_with_acmpne: 5
 simplify_if_null: 12
 simplify_if_nonnull: 0
+simplify_if_else_with_eq_eq: 6
 simplify_astore: 24
 simplify_istore: 119
 positive_increment: 36
@@ -30,6 +31,8 @@ simplify_goto_label: 15
 simplify_pop_afterinvokenonvirtual: 7
 simplify_pop_afterinvokevirtual: 7
 delete_dead_goto_label: 18
+remove_aload_swap: 1
+remove_iload_swap: 0
 
 Generated: Board.class
 Generated: BombMove.class
@@ -53,7 +56,7 @@ Board.optdump:;         code_length 26
 Board.optdump:;         code_length 20
 Board.optdump:;         code_length 11
 Board.optdump:;         code_length 132
-Board.optdump:;         code_length 83
+Board.optdump:;         code_length 75
 Board.optdump:;         code_length 52
 Board.optdump:;         code_length 140
 Board.optdump:;         code_length 509
@@ -70,7 +73,7 @@ DiagBombMove.optdump:;         code_length 4
 FlipBoardMove.optdump:;         code_length 5
 FlipBoardMove.optdump:;         code_length 140
 FlipBoardMove.optdump:;         code_length 4
-Game.optdump:;         code_length 90
+Game.optdump:;         code_length 89
 Game.optdump:;         code_length 45
 Game.optdump:;         code_length 78
 Game.optdump:;         code_length 94
@@ -82,11 +85,11 @@ Game.optdump:;         code_length 19
 Game.optdump:;         code_length 33
 Game.optdump:;         code_length 22
 Game.optdump:;         code_length 92
-Game.optdump:;         code_length 154
-Game.optdump:;         code_length 189
+Game.optdump:;         code_length 146
+Game.optdump:;         code_length 165
 Game.optdump:;         code_length 65
 Game.optdump:;         code_length 15
-Game.optdump:;         code_length 140
+Game.optdump:;         code_length 132
 Game.optdump:;         code_length 89
 Game.optdump:;         code_length 74
 KillColumnMove.optdump:;         code_length 5

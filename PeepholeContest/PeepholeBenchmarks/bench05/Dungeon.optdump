@@ -144,29 +144,28 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 35
+;         attribute_length 34
 ;         max_stack 2
 ;         max_locals 2
-;         code_length 23
+;         code_length 22
 ;         code :
 ;                0: aload_0 
 ;                1: invokespecial 108 (java/lang/Object/<init> ()V) 
-;                4: aload_1 
-;                5: aload_0 
-;                6: swap 
-;                7: putfield 2 (Dungeon/infos LDungeonInfos;) 
-;               10: new 86 (java/util/Vector) 
-;               13: dup 
-;               14: invokespecial 49 (java/util/Vector/<init> ()V) 
-;               17: aload_0 
-;               18: swap 
-;               19: putfield 77 (Dungeon/output Ljava/util/Vector;) 
-;               22: return 
+;                4: aload_0 
+;                5: aload_1 
+;                6: putfield 2 (Dungeon/infos LDungeonInfos;) 
+;                9: new 86 (java/util/Vector) 
+;               12: dup 
+;               13: invokespecial 49 (java/util/Vector/<init> ()V) 
+;               16: aload_0 
+;               17: swap 
+;               18: putfield 77 (Dungeon/output Ljava/util/Vector;) 
+;               21: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x3f5) :
+; methods[1] (offset 0x3f4) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 72 (draw)
 ;     descriptor_index 70 (()V)
@@ -321,7 +320,7 @@
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x549) :
+; methods[2] (offset 0x548) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 90 (createRoom)
 ;     descriptor_index 70 (()V)
@@ -497,7 +496,7 @@
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x689) :
+; methods[3] (offset 0x688) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 109 (createItem)
 ;     descriptor_index 50 ((Ljava/lang/String;LCustomPoint;)V)
@@ -529,7 +528,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x6be) :
+; class_attributes[0] (offset 0x6bd) :
 ;     name_index 3 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 36
