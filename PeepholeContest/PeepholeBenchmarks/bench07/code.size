@@ -1,6 +1,7 @@
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O RoomAction.java BFRoomAction.java FeastRoomAction.java CoinRoomAction.java EmptyRoomAction.java GrueRoomAction.java TreasureRoomAction.java FactorialRoomAction.java HuntRoomAction.java ExitRoomAction.java JokeRoomAction.java Room.java GrueHunt.java InGenerate.java
 
 Frequencies:
+simplify_if_else_with_icmpge_ne_virtual: 12
 simplify_if_else_with_icmpeq_ne: 1
 simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
@@ -52,23 +53,23 @@ Generated: InGenerate.class
 ----- Method code sizes ----
 BFRoomAction.optdump:;         code_length 5
 BFRoomAction.optdump:;         code_length 10
-BFRoomAction.optdump:;         code_length 124
+BFRoomAction.optdump:;         code_length 117
 CoinRoomAction.optdump:;         code_length 11
 CoinRoomAction.optdump:;         code_length 29
-CoinRoomAction.optdump:;         code_length 230
+CoinRoomAction.optdump:;         code_length 216
 EmptyRoomAction.optdump:;         code_length 5
 EmptyRoomAction.optdump:;         code_length 10
 EmptyRoomAction.optdump:;         code_length 7
 ExitRoomAction.optdump:;         code_length 5
 ExitRoomAction.optdump:;         code_length 10
-ExitRoomAction.optdump:;         code_length 83
+ExitRoomAction.optdump:;         code_length 76
 FactorialRoomAction.optdump:;         code_length 5
 FactorialRoomAction.optdump:;         code_length 10
-FactorialRoomAction.optdump:;         code_length 228
+FactorialRoomAction.optdump:;         code_length 221
 FactorialRoomAction.optdump:;         code_length 36
 FeastRoomAction.optdump:;         code_length 5
 FeastRoomAction.optdump:;         code_length 10
-FeastRoomAction.optdump:;         code_length 175
+FeastRoomAction.optdump:;         code_length 168
 GrueHunt.optdump:;         code_length 5
 GrueHunt.optdump:;         code_length 14
 GrueHunt.optdump:;         code_length 1039
@@ -76,13 +77,13 @@ GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 101
 HuntRoomAction.optdump:;         code_length 84
 HuntRoomAction.optdump:;         code_length 81
-HuntRoomAction.optdump:;         code_length 664
+HuntRoomAction.optdump:;         code_length 650
 InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 179
 InGenerate.optdump:;         code_length 21
 JokeRoomAction.optdump:;         code_length 5
 JokeRoomAction.optdump:;         code_length 10
-JokeRoomAction.optdump:;         code_length 170
+JokeRoomAction.optdump:;         code_length 156
 JokeRoomAction.optdump:;         code_length 214
 Room.optdump:;         code_length 494
 Room.optdump:;         code_length 26
@@ -96,8 +97,8 @@ Room.optdump:;         code_length 107
 Room.optdump:;         code_length 154
 RoomAction.optdump:;         code_length 29
 RoomAction.optdump:;         code_length 10
-RoomAction.optdump:;         code_length 130
+RoomAction.optdump:;         code_length 123
 RoomAction.optdump:;         code_length 21
 TreasureRoomAction.optdump:;         code_length 11
 TreasureRoomAction.optdump:;         code_length 29
-TreasureRoomAction.optdump:;         code_length 151
+TreasureRoomAction.optdump:;         code_length 144

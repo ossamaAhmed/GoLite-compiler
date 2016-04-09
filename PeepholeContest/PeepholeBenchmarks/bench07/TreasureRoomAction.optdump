@@ -135,95 +135,92 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 55 (Code)
-;         attribute_length 163
+;         attribute_length 156
 ;         max_stack 3
 ;         max_locals 2
-;         code_length 151
+;         code_length 144
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 30 ("pick up") 
 ;                3: iconst_0 
 ;                4: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;                7: iconst_0 
-;                8: if_icmpge 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: dup 
-;               17: ifne 20 
-;               20: pop 
-;               21: aload_1 
-;               22: ldc 2 ("interact") 
-;               24: iconst_0 
-;               25: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               28: iconst_0 
-;               29: if_icmpge 7 
-;               32: iconst_0 
-;               33: goto 4 
-;               36: iconst_1 
-;               37: dup 
-;               38: ifne 20 
-;               41: pop 
-;               42: aload_1 
-;               43: ldc 13 ("take") 
-;               45: iconst_0 
-;               46: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               49: iconst_0 
-;               50: if_icmpge 7 
-;               53: iconst_0 
-;               54: goto 4 
-;               57: iconst_1 
-;               58: dup 
-;               59: ifne 20 
-;               62: pop 
-;               63: aload_1 
-;               64: ldc 17 ("open") 
-;               66: iconst_0 
-;               67: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               70: iconst_0 
-;               71: if_icmpge 7 
-;               74: iconst_0 
-;               75: goto 4 
-;               78: iconst_1 
-;               79: dup 
-;               80: ifne 20 
-;               83: pop 
-;               84: aload_1 
-;               85: ldc 12 ("get ") 
-;               87: iconst_0 
-;               88: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               91: iconst_0 
-;               92: if_icmpge 7 
-;               95: iconst_0 
-;               96: goto 4 
-;               99: iconst_1 
-;              100: ifeq 44 
+;                7: iconst_1 
+;                8: swap 
+;                9: iconst_0 
+;               10: if_icmpge 20 
+;               13: pop 
+;               14: aload_1 
+;               15: ldc 2 ("interact") 
+;               17: iconst_0 
+;               18: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               21: iconst_0 
+;               22: if_icmpge 7 
+;               25: iconst_0 
+;               26: goto 4 
+;               29: iconst_1 
+;               30: dup 
+;               31: ifne 20 
+;               34: pop 
+;               35: aload_1 
+;               36: ldc 13 ("take") 
+;               38: iconst_0 
+;               39: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               42: iconst_0 
+;               43: if_icmpge 7 
+;               46: iconst_0 
+;               47: goto 4 
+;               50: iconst_1 
+;               51: dup 
+;               52: ifne 20 
+;               55: pop 
+;               56: aload_1 
+;               57: ldc 17 ("open") 
+;               59: iconst_0 
+;               60: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               63: iconst_0 
+;               64: if_icmpge 7 
+;               67: iconst_0 
+;               68: goto 4 
+;               71: iconst_1 
+;               72: dup 
+;               73: ifne 20 
+;               76: pop 
+;               77: aload_1 
+;               78: ldc 12 ("get ") 
+;               80: iconst_0 
+;               81: invokevirtual 29 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               84: iconst_0 
+;               85: if_icmpge 7 
+;               88: iconst_0 
+;               89: goto 4 
+;               92: iconst_1 
+;               93: ifeq 44 
+;               96: aload_0 
+;               97: getfield 15 (TreasureRoomAction/taken Z) 
+;              100: ifeq 17 
 ;              103: aload_0 
-;              104: getfield 15 (TreasureRoomAction/taken Z) 
-;              107: ifeq 17 
-;              110: aload_0 
-;              111: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              114: ldc 56 ("The treasure box is empty.") 
-;              116: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              119: iconst_0 
-;              120: ireturn 
-;              121: goto 29 
-;              124: aload_0 
-;              125: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              128: ldc 43 ("You open the treasure box and finds a treasure! Your treasure count: ") 
-;              130: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
-;              133: iconst_1 
-;              134: aload_0 
-;              135: swap 
-;              136: putfield 15 (TreasureRoomAction/taken Z) 
-;              139: iconst_3 
-;              140: ireturn 
-;              141: goto 9 
-;              144: aload_0 
-;              145: aload_1 
-;              146: invokevirtual 48 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              149: ireturn 
-;              150: nop 
+;              104: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              107: ldc 56 ("The treasure box is empty.") 
+;              109: invokevirtual 41 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              112: iconst_0 
+;              113: ireturn 
+;              114: goto 29 
+;              117: aload_0 
+;              118: getfield 19 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              121: ldc 43 ("You open the treasure box and finds a treasure! Your treasure count: ") 
+;              123: invokevirtual 51 (joos/lib/JoosIO/print (Ljava/lang/String;)V) 
+;              126: iconst_1 
+;              127: aload_0 
+;              128: swap 
+;              129: putfield 15 (TreasureRoomAction/taken Z) 
+;              132: iconst_3 
+;              133: ireturn 
+;              134: goto 9 
+;              137: aload_0 
+;              138: aload_1 
+;              139: invokevirtual 48 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              142: ireturn 
+;              143: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
@@ -231,7 +228,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x394) :
+; class_attributes[0] (offset 0x38d) :
 ;     name_index 37 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 28

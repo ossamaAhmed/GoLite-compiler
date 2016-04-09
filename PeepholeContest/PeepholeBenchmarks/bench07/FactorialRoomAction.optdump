@@ -141,139 +141,136 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 43 (Code)
-;         attribute_length 240
+;         attribute_length 233
 ;         max_stack 6
 ;         max_locals 4
-;         code_length 228
+;         code_length 221
 ;         code :
 ;                0: aload_1 
 ;                1: ldc 28 ("use") 
 ;                3: iconst_0 
 ;                4: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;                7: iconst_0 
-;                8: if_icmpge 7 
-;               11: iconst_0 
-;               12: goto 4 
-;               15: iconst_1 
-;               16: dup 
-;               17: ifne 20 
-;               20: pop 
-;               21: aload_1 
-;               22: ldc 11 ("operate") 
-;               24: iconst_0 
-;               25: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               28: iconst_0 
-;               29: if_icmpge 7 
-;               32: iconst_0 
-;               33: goto 4 
-;               36: iconst_1 
-;               37: dup 
-;               38: ifne 20 
-;               41: pop 
-;               42: aload_1 
-;               43: ldc 6 ("press") 
-;               45: iconst_0 
-;               46: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               49: iconst_0 
-;               50: if_icmpge 7 
-;               53: iconst_0 
-;               54: goto 4 
-;               57: iconst_1 
-;               58: dup 
-;               59: ifne 20 
-;               62: pop 
-;               63: aload_1 
-;               64: ldc 78 ("interact") 
-;               66: iconst_0 
-;               67: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               70: iconst_0 
-;               71: if_icmpge 7 
-;               74: iconst_0 
-;               75: goto 4 
-;               78: iconst_1 
-;               79: dup 
-;               80: ifne 20 
-;               83: pop 
-;               84: aload_1 
-;               85: ldc 54 ("factorial") 
-;               87: iconst_0 
-;               88: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;               91: iconst_0 
-;               92: if_icmpge 7 
-;               95: iconst_0 
-;               96: goto 4 
-;               99: iconst_1 
-;              100: dup 
-;              101: ifne 20 
-;              104: pop 
-;              105: aload_1 
-;              106: ldc 40 ("push") 
-;              108: iconst_0 
-;              109: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
-;              112: iconst_0 
-;              113: if_icmpge 7 
-;              116: iconst_0 
-;              117: goto 4 
-;              120: iconst_1 
-;              121: ifeq 100 
-;              124: new 42 (joos/lib/JoosRandom) 
-;              127: dup 
-;              128: invokespecial 22 (joos/lib/JoosRandom/<init> ()V) 
-;              131: dup 
-;              132: astore_2 
-;              133: invokevirtual 70 (joos/lib/JoosRandom/nextInt ()I) 
-;              136: ldc 37 (13) 
-;              138: irem 
-;              139: dup 
+;                7: iconst_1 
+;                8: swap 
+;                9: iconst_0 
+;               10: if_icmpge 20 
+;               13: pop 
+;               14: aload_1 
+;               15: ldc 11 ("operate") 
+;               17: iconst_0 
+;               18: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               21: iconst_0 
+;               22: if_icmpge 7 
+;               25: iconst_0 
+;               26: goto 4 
+;               29: iconst_1 
+;               30: dup 
+;               31: ifne 20 
+;               34: pop 
+;               35: aload_1 
+;               36: ldc 6 ("press") 
+;               38: iconst_0 
+;               39: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               42: iconst_0 
+;               43: if_icmpge 7 
+;               46: iconst_0 
+;               47: goto 4 
+;               50: iconst_1 
+;               51: dup 
+;               52: ifne 20 
+;               55: pop 
+;               56: aload_1 
+;               57: ldc 78 ("interact") 
+;               59: iconst_0 
+;               60: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               63: iconst_0 
+;               64: if_icmpge 7 
+;               67: iconst_0 
+;               68: goto 4 
+;               71: iconst_1 
+;               72: dup 
+;               73: ifne 20 
+;               76: pop 
+;               77: aload_1 
+;               78: ldc 54 ("factorial") 
+;               80: iconst_0 
+;               81: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;               84: iconst_0 
+;               85: if_icmpge 7 
+;               88: iconst_0 
+;               89: goto 4 
+;               92: iconst_1 
+;               93: dup 
+;               94: ifne 20 
+;               97: pop 
+;               98: aload_1 
+;               99: ldc 40 ("push") 
+;              101: iconst_0 
+;              102: invokevirtual 50 (java/lang/String/indexOf (Ljava/lang/String;I)I) 
+;              105: iconst_0 
+;              106: if_icmpge 7 
+;              109: iconst_0 
+;              110: goto 4 
+;              113: iconst_1 
+;              114: ifeq 100 
+;              117: new 42 (joos/lib/JoosRandom) 
+;              120: dup 
+;              121: invokespecial 22 (joos/lib/JoosRandom/<init> ()V) 
+;              124: dup 
+;              125: astore_2 
+;              126: invokevirtual 70 (joos/lib/JoosRandom/nextInt ()I) 
+;              129: ldc 37 (13) 
+;              131: irem 
+;              132: dup 
+;              133: istore_3 
+;              134: iconst_0 
+;              135: if_icmpge 6 
+;              138: iload_3 
+;              139: ineg 
 ;              140: istore_3 
-;              141: iconst_0 
-;              142: if_icmpge 6 
-;              145: iload_3 
-;              146: ineg 
-;              147: istore_3 
-;              148: aload_0 
-;              149: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              152: ldc 56 ("The dials come to a stop. Showing:") 
-;              154: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              157: aload_0 
-;              158: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              161: new 68 (java/lang/Integer) 
-;              164: dup 
-;              165: iload_3 
-;              166: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              169: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              172: ldc 59 ("!\n---") 
-;              174: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              177: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              180: aload_0 
-;              181: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              184: ldc 79 ("") 
-;              186: new 68 (java/lang/Integer) 
-;              189: dup 
-;              190: aload_0 
-;              191: iload_3 
-;              192: invokevirtual 63 (FactorialRoomAction/f (I)I) 
-;              195: invokespecial 34 (java/lang/Integer/<init> (I)V) 
-;              198: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
-;              201: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              204: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              207: aload_0 
-;              208: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
-;              211: ldc 77 ("The dials resume spinning.") 
-;              213: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              216: iconst_0 
-;              217: ireturn 
-;              218: goto 9 
-;              221: aload_0 
-;              222: aload_1 
-;              223: invokevirtual 23 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
-;              226: ireturn 
-;              227: nop 
+;              141: aload_0 
+;              142: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              145: ldc 56 ("The dials come to a stop. Showing:") 
+;              147: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              150: aload_0 
+;              151: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              154: new 68 (java/lang/Integer) 
+;              157: dup 
+;              158: iload_3 
+;              159: invokespecial 34 (java/lang/Integer/<init> (I)V) 
+;              162: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              165: ldc 59 ("!\n---") 
+;              167: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              170: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              173: aload_0 
+;              174: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              177: ldc 79 ("") 
+;              179: new 68 (java/lang/Integer) 
+;              182: dup 
+;              183: aload_0 
+;              184: iload_3 
+;              185: invokevirtual 63 (FactorialRoomAction/f (I)I) 
+;              188: invokespecial 34 (java/lang/Integer/<init> (I)V) 
+;              191: invokevirtual 19 (java/lang/Integer/toString ()Ljava/lang/String;) 
+;              194: invokevirtual 36 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              197: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              200: aload_0 
+;              201: getfield 44 (RoomAction/O Ljoos/lib/JoosIO;) 
+;              204: ldc 77 ("The dials resume spinning.") 
+;              206: invokevirtual 49 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
+;              209: iconst_0 
+;              210: ireturn 
+;              211: goto 9 
+;              214: aload_0 
+;              215: aload_1 
+;              216: invokevirtual 23 (RoomAction/performBaseAction (Ljava/lang/String;)I) 
+;              219: ireturn 
+;              220: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x45b) :
+; methods[3] (offset 0x454) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (f)
 ;     descriptor_index 60 ((I)I)
@@ -316,7 +313,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0x49b) :
+; class_attributes[0] (offset 0x494) :
 ;     name_index 5 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 2

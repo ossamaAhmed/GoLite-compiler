@@ -2,6 +2,7 @@ rm -rf *.class *.j *~
 /Users/ossama_mady/Documents/McGill/SemesterSix/COMP520/Project/comp520-2016-02/PeepholeContest/joosc -O *.java
 
 Frequencies:
+simplify_if_else_with_icmpge_ne_virtual: 0
 simplify_if_else_with_icmpeq_ne: 2
 simplify_if_else_with_icmpne_eq: 1
 simplify_if_else_with_icmple: 0

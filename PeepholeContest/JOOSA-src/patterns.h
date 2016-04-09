@@ -924,7 +924,9 @@ pop
 .
 .
 .
-label3: 1
+label3: 
+
+
 
  ADDED BY OSSAMA
 */
@@ -955,9 +957,10 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
   }
   return 0;
 }
+
 /**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
 iconst_0
-iload_3
 if_icmpeq label1
 iconst_0
 goto label2
@@ -972,25 +975,26 @@ pop empty
 . 
 label3: 
 ------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
 iconst_1
-iload_3 
+swap
 iconst_0
 if_icmpeq label3
 pop
 .
 .
 .
-label3: 1
-
+label3: 
  ADDED BY OSSAMA
 */
-int simplify_if_else_with_icmpeq_ne_reverse(CODE **c) {
-  int cmp1, cmp2;
+int simplify_if_else_with_icmpge_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
   int label1, label2, label3, labeltemp;
   int x, y;
-  if (is_ldc_int(*c, &cmp2) &&
-      is_iload(next(*c), &cmp1) &&
-      is_if_icmpeq(next(next(*c)), &label1) &&
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpge(next(next(*c)), &label1) &&
       is_ldc_int(next(next(next(*c))), &x) && 
       (x==0)  &&
       is_goto(next(next(next(next(*c)))), &label2)  &&
@@ -1006,11 +1010,14 @@ int simplify_if_else_with_icmpeq_ne_reverse(CODE **c) {
       uniquelabel(label1) && uniquelabel(label2))  {
          droplabel(label1);
          droplabel(label2);     
-         return replace(c, 11,makeCODEldc_int(y,makeCODEiload(cmp1, makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL))))));
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpge(label3,makeCODEpop(NULL)))))));
 
   }
   return 0;
 }
+
+
+
 /**
 iload_3
 iconst_0
@@ -1213,6 +1220,9 @@ int remove_ldc_ifnonnull(CODE **c) {
   return 0;
 }
 
+
+
+
 /*
 #define OPTS 4
 
@@ -1228,7 +1238,7 @@ int init_patterns()
 { 
     // // ADD_PATTERN(removeSavesIstore);
     // // ADD_PATTERN(removeSavesAstore);
-
+    ADD_PATTERN(simplify_if_else_with_icmpge_ne_virtual);
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
     ADD_PATTERN(simplify_if_else_with_icmpne_eq); 
     ADD_PATTERN(simplify_if_else_with_icmple);
