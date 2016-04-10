@@ -1137,17 +1137,6 @@ int simplify_if_nonnull(CODE **c) {
   return 0;
 }
 
-
-/* nop
-   ------->
- */
-int remove_nop(CODE **c) {
-  if (is_nop(*c)) {
-    return replace(c,1,NULL);
-  }
-  return 0;
-}
-
 /*
   aload x
   aload k
@@ -1156,8 +1145,11 @@ int remove_nop(CODE **c) {
   aload k
   aload x
 
+  This is sound because the swap opcode yields the same result.
+
   ADDED BY MICHAEL
 */
+  
 int remove_aload_swap(CODE **c){
   int x, k;
   if (is_aload(*c, &x) &&
@@ -1176,8 +1168,11 @@ int remove_aload_swap(CODE **c){
   iload k
   iload x
 
+  This is sound because the swap opcode yields the same result.
+
   ADDED BY MICHAEL
 */
+
 int remove_iload_swap(CODE **c){
   int x, k;
   if (is_iload(*c, &x) &&
@@ -1189,7 +1184,7 @@ int remove_iload_swap(CODE **c){
 }
 
 /*
-  In beanch06/ComplementsGenerator.j
+  In bench06/ComplementsGenerator.j
   SEVERAL instances of:
 
   ldc "I love how your hair smells like  a "
@@ -1200,6 +1195,7 @@ int remove_iload_swap(CODE **c){
   stop_19:
 
   This is useless since a string has been declared, ifnonnull will always resolve to true.
+  We just have to make sure the branch label is unique.
   This is simply be replaced by:
 
   ldc "I love how your hair smells like  a "
@@ -1208,6 +1204,7 @@ int remove_iload_swap(CODE **c){
 
   ADDED BY MICHAEL
 */
+
 int remove_ldc_ifnonnull(CODE **c) {
   char *string, *useless;
   int label1, label2;
@@ -1225,7 +1222,7 @@ int remove_ldc_ifnonnull(CODE **c) {
 }
 
 /*
-  In beanch06/ComplementsGenerator.j
+  In bench06/ComplementsGenerator.j
   There are SEVERAL instances of:
 
   ... (load 2 strings on operand stack)
@@ -1242,6 +1239,13 @@ int remove_ldc_ifnonnull(CODE **c) {
 
   ... (load 2 strings on operand stack)
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  This is sound because the JVM method java/lang/String/concat does accept NULL in concatenation
+  We've tested it in Java:
+  
+  String s = "Hello " + null + "World";
+
+  Is valid code and its Bytecode output does not perform any ifnonnull check, we believe it's done inside the body of the concat method.
 
   SHRINKS BY 308 !
 
@@ -1280,6 +1284,8 @@ int remove_string_concat_ifnonnull(CODE **c) {
   ldc " ever since."
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
 
+  This is sound as explained in the remove_string_concat_ifnonnull pattern.
+
   ANOTHER 368 !
 
   ADDED BY MICHAEL
@@ -1317,6 +1323,8 @@ int remove_string_concat_ifnonnull_ldc(CODE **c) {
   ----------------------------------------------------------------------------->
   aload_2
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  This is sound as explained in the remove_string_concat_ifnonnull pattern.
 
   ANOTHER 119 !
 
@@ -1387,7 +1395,6 @@ int init_patterns()
     ADD_PATTERN(delete_dead_goto_label);
     
     // ADD_PATTERN(remove_swap);
-    // ADD_PATTERN(remove_nop);
     ADD_PATTERN(remove_aload_swap);
     ADD_PATTERN(remove_iload_swap);
     ADD_PATTERN(remove_ldc_ifnonnull);
