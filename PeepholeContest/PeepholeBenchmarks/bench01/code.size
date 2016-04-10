@@ -50,6 +50,7 @@ remove_iload_swap: 0
 remove_ldc_ifnonnull: 0
 remove_string_concat_ifnonnull: 0
 remove_string_concat_ifnonnull_ldc: 0
+remove_string_concat_ifnonnull_aload: 0
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class

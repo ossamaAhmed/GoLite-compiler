@@ -50,6 +50,7 @@ remove_iload_swap: 0
 remove_ldc_ifnonnull: 2
 remove_string_concat_ifnonnull: 3
 remove_string_concat_ifnonnull_ldc: 1
+remove_string_concat_ifnonnull_aload: 1
 
 Generated: Interpretor.class
 Generated: Main.class
@@ -67,4 +68,4 @@ Main.optdump:;         code_length 5
 Main.optdump:;         code_length 40
 StringEscapeUtils.optdump:;         code_length 5
 StringEscapeUtils.optdump:;         code_length 43
-StringEscapeUtils.optdump:;         code_length 74
+StringEscapeUtils.optdump:;         code_length 67

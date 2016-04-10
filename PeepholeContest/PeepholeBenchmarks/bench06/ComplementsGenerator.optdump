@@ -1,553 +1,495 @@
 ; magic number 0xCAFEBABE
 ; bytecode version 45.3
 
-; constant pool count 176
-; cp[1] (offset 0xd) -> CONSTANT_String 27
-; cp[2] (offset 0x10) -> CONSTANT_String 106
+; constant pool count 174
+; cp[1] (offset 0xd) -> CONSTANT_String 26
+; cp[2] (offset 0x10) -> CONSTANT_String 104
 ; cp[3] (offset 0x1d) -> CONSTANT_Utf8 "be-pleased"
 ; cp[4] (offset 0x20) -> CONSTANT_String 12
 ; cp[5] (offset 0x2b) -> CONSTANT_Utf8 " harder."
-; cp[6] (offset 0x2e) -> CONSTANT_String 163
-; cp[7] (offset 0x31) -> CONSTANT_String 154
+; cp[6] (offset 0x2e) -> CONSTANT_String 161
+; cp[7] (offset 0x31) -> CONSTANT_String 152
 ; cp[8] (offset 0x39) -> CONSTANT_Utf8 "niece"
-; cp[9] (offset 0x3c) -> CONSTANT_String 165
-; cp[10] (offset 0x3f) -> CONSTANT_String 77
-; cp[11] (offset 0x42) -> CONSTANT_String 132
+; cp[9] (offset 0x3c) -> CONSTANT_String 163
+; cp[10] (offset 0x3f) -> CONSTANT_String 75
+; cp[11] (offset 0x42) -> CONSTANT_String 130
 ; cp[12] (offset 0x48) -> CONSTANT_Utf8 "cry"
 ; cp[13] (offset 0x63) -> CONSTANT_Utf8 " and I'll show you mine."
 ; cp[14] (offset 0x6c) -> CONSTANT_Utf8 "nibble"
-; cp[15] (offset 0x6f) -> CONSTANT_String 105
+; cp[15] (offset 0x6f) -> CONSTANT_String 103
 ; cp[16] (offset 0x8a) -> CONSTANT_Utf8 "I always admired you're "
 ; cp[17] (offset 0x92) -> CONSTANT_Utf8 "sleep"
 ; cp[18] (offset 0x98) -> CONSTANT_Utf8 "()V"
 ; cp[19] (offset 0xbb) -> CONSTANT_Utf8 "If you'll leave me it will be a "
-; cp[20] (offset 0xbe) -> CONSTANT_Class 64
-; cp[21] (offset 0xc1) -> CONSTANT_String 52
-; cp[22] (offset 0xd7) -> CONSTANT_Utf8 "joos/lib/JoosRandom"
-; cp[23] (offset 0xda) -> CONSTANT_String 133
-; cp[24] (offset 0xe0) -> CONSTANT_Utf8 "()I"
-; cp[25] (offset 0xe3) -> CONSTANT_String 8
-; cp[26] (offset 0xf3) -> CONSTANT_Utf8 "Show me that "
-; cp[27] (offset 0xfa) -> CONSTANT_Utf8 "dead"
-; cp[28] (offset 0x116) -> CONSTANT_Utf8 "You make me want to be a "
-; cp[29] (offset 0x11e) -> CONSTANT_Utf8 "blind"
-; cp[30] (offset 0x123) -> CONSTANT_Integer 9
-; cp[31] (offset 0x128) -> CONSTANT_Integer 8
-; cp[32] (offset 0x14a) -> CONSTANT_Utf8 " until I met you - and i can't "
-; cp[33] (offset 0x14f) -> CONSTANT_Integer 7
-; cp[34] (offset 0x154) -> CONSTANT_Integer 6
-; cp[35] (offset 0x157) -> CONSTANT_String 28
-; cp[36] (offset 0x161) -> CONSTANT_Utf8 "raccoon"
-; cp[37] (offset 0x164) -> CONSTANT_String 17
-; cp[38] (offset 0x167) -> CONSTANT_String 155
-; cp[39] (offset 0x16a) -> CONSTANT_String 100
-; cp[40] (offset 0x16d) -> CONSTANT_String 171
-; cp[41] (offset 0x170) -> CONSTANT_String 151
-; cp[42] (offset 0x173) -> CONSTANT_String 161
-; cp[43] (offset 0x183) -> CONSTANT_Utf8 "Show me your "
-; cp[44] (offset 0x186) -> CONSTANT_String 157
-; cp[45] (offset 0x189) -> CONSTANT_String 26
-; cp[46] (offset 0x18c) -> CONSTANT_String 167
-; cp[47] (offset 0x1a5) -> CONSTANT_Utf8 "ComplementsGenerator.j"
-; cp[48] (offset 0x1bc) -> CONSTANT_Utf8 "You remind me of my "
-; cp[49] (offset 0x1c1) -> CONSTANT_Integer 12
-; cp[50] (offset 0x1c4) -> CONSTANT_String 29
-; cp[51] (offset 0x1c9) -> CONSTANT_NameAndType 87, 92
-; cp[52] (offset 0x1d0) -> CONSTANT_Utf8 "null"
-; cp[53] (offset 0x1d5) -> CONSTANT_Integer 10
-; cp[54] (offset 0x1d8) -> CONSTANT_String 19
-; cp[55] (offset 0x1f7) -> CONSTANT_Utf8 "I can't wait to show you my "
-; cp[56] (offset 0x1ff) -> CONSTANT_Utf8 "happy"
-; cp[57] (offset 0x209) -> CONSTANT_Utf8 ". your "
-; cp[58] (offset 0x20e) -> CONSTANT_Methodref 59, 104
-; cp[59] (offset 0x211) -> CONSTANT_Class 117
-; cp[60] (offset 0x214) -> CONSTANT_String 43
-; cp[61] (offset 0x217) -> CONSTANT_Class 22
-; cp[62] (offset 0x21a) -> CONSTANT_String 83
-; cp[63] (offset 0x21d) -> CONSTANT_String 71
-; cp[64] (offset 0x230) -> CONSTANT_Utf8 "java/lang/String"
-; cp[65] (offset 0x233) -> CONSTANT_String 48
-; cp[66] (offset 0x236) -> CONSTANT_String 136
-; cp[67] (offset 0x23f) -> CONSTANT_Utf8 "better"
-; cp[68] (offset 0x242) -> CONSTANT_String 32
-; cp[69] (offset 0x245) -> CONSTANT_String 56
-; cp[70] (offset 0x253) -> CONSTANT_Utf8 "eat-bananas"
-; cp[71] (offset 0x260) -> CONSTANT_Utf8 "work-ethic"
-; cp[72] (offset 0x26c) -> CONSTANT_Utf8 " my only "
-; cp[73] (offset 0x27a) -> CONSTANT_Utf8 "you are my "
-; cp[74] (offset 0x27d) -> CONSTANT_String 172
-; cp[75] (offset 0x280) -> CONSTANT_String 128
-; cp[76] (offset 0x283) -> CONSTANT_String 173
-; cp[77] (offset 0x28e) -> CONSTANT_Utf8 "talented"
-; cp[78] (offset 0x297) -> CONSTANT_Utf8 "single"
-; cp[79] (offset 0x2e4) -> CONSTANT_Utf8 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
-; cp[80] (offset 0x2e9) -> CONSTANT_NameAndType 162, 145
-; cp[81] (offset 0x2ee) -> CONSTANT_NameAndType 91, 24
-; cp[82] (offset 0x2f1) -> CONSTANT_Class 149
-; cp[83] (offset 0x2f8) -> CONSTANT_Utf8 "sexy"
-; cp[84] (offset 0x2fb) -> CONSTANT_String 55
-; cp[85] (offset 0x2fe) -> CONSTANT_String 138
-; cp[86] (offset 0x31d) -> CONSTANT_Utf8 ". I have a feeling you will "
-; cp[87] (offset 0x326) -> CONSTANT_Utf8 "concat"
-; cp[88] (offset 0x33e) -> CONSTANT_Utf8 " when skies are grey."
-; cp[89] (offset 0x356) -> CONSTANT_Utf8 "Ljoos/lib/JoosRandom;"
-; cp[90] (offset 0x359) -> CONSTANT_String 36
-; cp[91] (offset 0x363) -> CONSTANT_Utf8 "nextInt"
-; cp[92] (offset 0x38c) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
-; cp[93] (offset 0x3a2) -> CONSTANT_Utf8 "getComplementNumber"
-; cp[94] (offset 0x3a5) -> CONSTANT_String 13
-; cp[95] (offset 0x3a8) -> CONSTANT_String 14
-; cp[96] (offset 0x3ab) -> CONSTANT_String 127
-; cp[97] (offset 0x3ae) -> CONSTANT_String 118
-; cp[98] (offset 0x3b1) -> CONSTANT_String 16
-; cp[99] (offset 0x3b6) -> CONSTANT_Methodref 61, 81
-; cp[100] (offset 0x3c1) -> CONSTANT_Utf8 "flourish"
-; cp[101] (offset 0x3c9) -> CONSTANT_Utf8 "fruit"
-; cp[102] (offset 0x3cc) -> CONSTANT_String 86
-; cp[103] (offset 0x3e3) -> CONSTANT_Utf8 "()Ljava/lang/String;"
-; cp[104] (offset 0x3e8) -> CONSTANT_NameAndType 134, 18
-; cp[105] (offset 0x402) -> CONSTANT_Utf8 " man. from now on I'll "
-; cp[106] (offset 0x40e) -> CONSTANT_Utf8 "beautiful"
-; cp[107] (offset 0x411) -> CONSTANT_String 57
-; cp[108] (offset 0x416) -> CONSTANT_NameAndType 134, 169
-; cp[109] (offset 0x42d) -> CONSTANT_Utf8 ". I would rather be "
-; cp[110] (offset 0x445) -> CONSTANT_Utf8 " all night long, you "
-; cp[111] (offset 0x448) -> CONSTANT_String 139
-; cp[112] (offset 0x44b) -> CONSTANT_String 123
-; cp[113] (offset 0x44e) -> CONSTANT_String 140
-; cp[114] (offset 0x460) -> CONSTANT_Utf8 "generateComment"
-; cp[115] (offset 0x467) -> CONSTANT_Utf8 "Code"
-; cp[116] (offset 0x475) -> CONSTANT_Utf8 " of yours! "
-; cp[117] (offset 0x488) -> CONSTANT_Utf8 "java/lang/Object"
-; cp[118] (offset 0x48f) -> CONSTANT_Utf8 "skin"
-; cp[119] (offset 0x492) -> CONSTANT_String 109
-; cp[120] (offset 0x4a6) -> CONSTANT_Utf8 "generateAdjective"
-; cp[121] (offset 0x4a9) -> CONSTANT_String 168
-; cp[122] (offset 0x4ac) -> CONSTANT_String 101
-; cp[123] (offset 0x4b2) -> CONSTANT_Utf8 "rot"
-; cp[124] (offset 0x4b5) -> CONSTANT_String 88
-; cp[125] (offset 0x4b8) -> CONSTANT_String 146
-; cp[126] (offset 0x4c7) -> CONSTANT_Utf8 "generateNoun"
-; cp[127] (offset 0x4ee) -> CONSTANT_Utf8 "I love how your hair smells like  a "
-; cp[128] (offset 0x4f9) -> CONSTANT_Utf8 " like a "
-; cp[129] (offset 0x4fd) -> CONSTANT_Utf8 "r"
-; cp[130] (offset 0x502) -> CONSTANT_Fieldref 82, 80
-; cp[131] (offset 0x505) -> CONSTANT_String 73
-; cp[132] (offset 0x50f) -> CONSTANT_Utf8 "program"
-; cp[133] (offset 0x51d) -> CONSTANT_Utf8 "I hope our "
-; cp[134] (offset 0x526) -> CONSTANT_Utf8 "<init>"
-; cp[135] (offset 0x529) -> CONSTANT_String 5
-; cp[136] (offset 0x534) -> CONSTANT_Utf8 "enormous"
-; cp[137] (offset 0x541) -> CONSTANT_Utf8 "SourceFile"
-; cp[138] (offset 0x54c) -> CONSTANT_Utf8 "sunshine"
-; cp[139] (offset 0x553) -> CONSTANT_Utf8 "work"
-; cp[140] (offset 0x55a) -> CONSTANT_Utf8 "puke"
-; cp[141] (offset 0x55d) -> CONSTANT_String 70
-; cp[142] (offset 0x56c) -> CONSTANT_Utf8 "generateVerb"
-; cp[143] (offset 0x56f) -> CONSTANT_String 72
-; cp[144] (offset 0x572) -> CONSTANT_String 110
-; cp[145] (offset 0x576) -> CONSTANT_Utf8 "I"
-; cp[146] (offset 0x583) -> CONSTANT_Utf8 " with you."
-; cp[147] (offset 0x586) -> CONSTANT_String 67
-; cp[148] (offset 0x58b) -> CONSTANT_Methodref 61, 108
-; cp[149] (offset 0x5a2) -> CONSTANT_Utf8 "ComplementsGenerator"
-; cp[150] (offset 0x5a5) -> CONSTANT_String 174
-; cp[151] (offset 0x5ae) -> CONSTANT_Utf8 "I was "
-; cp[152] (offset 0x5b1) -> CONSTANT_String 78
-; cp[153] (offset 0x5b4) -> CONSTANT_String 3
-; cp[154] (offset 0x5d2) -> CONSTANT_Utf8 " legs gives me the shivers."
-; cp[155] (offset 0x5d6) -> CONSTANT_Utf8 "."
-; cp[156] (offset 0x5ec) -> CONSTANT_Utf8 " relationship will "
-; cp[157] (offset 0x5f6) -> CONSTANT_Utf8 "tragedy"
-; cp[158] (offset 0x5fb) -> CONSTANT_NameAndType 129, 89
-; cp[159] (offset 0x60a) -> CONSTANT_Utf8 " ever since."
-; cp[160] (offset 0x60f) -> CONSTANT_Methodref 20, 51
-; cp[161] (offset 0x613) -> CONSTANT_Utf8 " "
-; cp[162] (offset 0x626) -> CONSTANT_Utf8 "complementNumber"
-; cp[163] (offset 0x636) -> CONSTANT_Utf8 " lady, you..."
-; cp[164] (offset 0x63b) -> CONSTANT_Fieldref 82, 158
-; cp[165] (offset 0x643) -> CONSTANT_Utf8 "dream"
-; cp[166] (offset 0x646) -> CONSTANT_String 156
-; cp[167] (offset 0x658) -> CONSTANT_Utf8 " , you make me "
-; cp[168] (offset 0x663) -> CONSTANT_Utf8 "problems"
-; cp[169] (offset 0x66a) -> CONSTANT_Utf8 "(I)V"
-; cp[170] (offset 0x66d) -> CONSTANT_String 116
-; cp[171] (offset 0x682) -> CONSTANT_Utf8 ". I can't wait to "
-; cp[172] (offset 0x68b) -> CONSTANT_Utf8 "Let's "
-; cp[173] (offset 0x694) -> CONSTANT_Utf8 "crappy"
-; cp[174] (offset 0x6ad) -> CONSTANT_Utf8 ". It makes me want to "
-; cp[175] (offset 0x6b0) -> CONSTANT_String 159
+; cp[20] (offset 0xbe) -> CONSTANT_Class 62
+; cp[21] (offset 0xd4) -> CONSTANT_Utf8 "joos/lib/JoosRandom"
+; cp[22] (offset 0xd7) -> CONSTANT_String 131
+; cp[23] (offset 0xdd) -> CONSTANT_Utf8 "()I"
+; cp[24] (offset 0xe0) -> CONSTANT_String 8
+; cp[25] (offset 0xf0) -> CONSTANT_Utf8 "Show me that "
+; cp[26] (offset 0xf7) -> CONSTANT_Utf8 "dead"
+; cp[27] (offset 0x113) -> CONSTANT_Utf8 "You make me want to be a "
+; cp[28] (offset 0x11b) -> CONSTANT_Utf8 "blind"
+; cp[29] (offset 0x120) -> CONSTANT_Integer 9
+; cp[30] (offset 0x125) -> CONSTANT_Integer 8
+; cp[31] (offset 0x147) -> CONSTANT_Utf8 " until I met you - and i can't "
+; cp[32] (offset 0x14c) -> CONSTANT_Integer 7
+; cp[33] (offset 0x151) -> CONSTANT_Integer 6
+; cp[34] (offset 0x154) -> CONSTANT_String 27
+; cp[35] (offset 0x15e) -> CONSTANT_Utf8 "raccoon"
+; cp[36] (offset 0x161) -> CONSTANT_String 17
+; cp[37] (offset 0x164) -> CONSTANT_String 153
+; cp[38] (offset 0x167) -> CONSTANT_String 98
+; cp[39] (offset 0x16a) -> CONSTANT_String 169
+; cp[40] (offset 0x16d) -> CONSTANT_String 149
+; cp[41] (offset 0x170) -> CONSTANT_String 159
+; cp[42] (offset 0x180) -> CONSTANT_Utf8 "Show me your "
+; cp[43] (offset 0x183) -> CONSTANT_String 155
+; cp[44] (offset 0x186) -> CONSTANT_String 25
+; cp[45] (offset 0x189) -> CONSTANT_String 165
+; cp[46] (offset 0x1a2) -> CONSTANT_Utf8 "ComplementsGenerator.j"
+; cp[47] (offset 0x1b9) -> CONSTANT_Utf8 "You remind me of my "
+; cp[48] (offset 0x1be) -> CONSTANT_Integer 12
+; cp[49] (offset 0x1c1) -> CONSTANT_String 28
+; cp[50] (offset 0x1c6) -> CONSTANT_NameAndType 85, 90
+; cp[51] (offset 0x1cb) -> CONSTANT_Integer 10
+; cp[52] (offset 0x1ce) -> CONSTANT_String 19
+; cp[53] (offset 0x1ed) -> CONSTANT_Utf8 "I can't wait to show you my "
+; cp[54] (offset 0x1f5) -> CONSTANT_Utf8 "happy"
+; cp[55] (offset 0x1ff) -> CONSTANT_Utf8 ". your "
+; cp[56] (offset 0x204) -> CONSTANT_Methodref 57, 102
+; cp[57] (offset 0x207) -> CONSTANT_Class 115
+; cp[58] (offset 0x20a) -> CONSTANT_String 42
+; cp[59] (offset 0x20d) -> CONSTANT_Class 21
+; cp[60] (offset 0x210) -> CONSTANT_String 81
+; cp[61] (offset 0x213) -> CONSTANT_String 69
+; cp[62] (offset 0x226) -> CONSTANT_Utf8 "java/lang/String"
+; cp[63] (offset 0x229) -> CONSTANT_String 47
+; cp[64] (offset 0x22c) -> CONSTANT_String 134
+; cp[65] (offset 0x235) -> CONSTANT_Utf8 "better"
+; cp[66] (offset 0x238) -> CONSTANT_String 31
+; cp[67] (offset 0x23b) -> CONSTANT_String 54
+; cp[68] (offset 0x249) -> CONSTANT_Utf8 "eat-bananas"
+; cp[69] (offset 0x256) -> CONSTANT_Utf8 "work-ethic"
+; cp[70] (offset 0x262) -> CONSTANT_Utf8 " my only "
+; cp[71] (offset 0x270) -> CONSTANT_Utf8 "you are my "
+; cp[72] (offset 0x273) -> CONSTANT_String 170
+; cp[73] (offset 0x276) -> CONSTANT_String 126
+; cp[74] (offset 0x279) -> CONSTANT_String 171
+; cp[75] (offset 0x284) -> CONSTANT_Utf8 "talented"
+; cp[76] (offset 0x28d) -> CONSTANT_Utf8 "single"
+; cp[77] (offset 0x2da) -> CONSTANT_Utf8 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+; cp[78] (offset 0x2df) -> CONSTANT_NameAndType 160, 143
+; cp[79] (offset 0x2e4) -> CONSTANT_NameAndType 89, 23
+; cp[80] (offset 0x2e7) -> CONSTANT_Class 147
+; cp[81] (offset 0x2ee) -> CONSTANT_Utf8 "sexy"
+; cp[82] (offset 0x2f1) -> CONSTANT_String 53
+; cp[83] (offset 0x2f4) -> CONSTANT_String 136
+; cp[84] (offset 0x313) -> CONSTANT_Utf8 ". I have a feeling you will "
+; cp[85] (offset 0x31c) -> CONSTANT_Utf8 "concat"
+; cp[86] (offset 0x334) -> CONSTANT_Utf8 " when skies are grey."
+; cp[87] (offset 0x34c) -> CONSTANT_Utf8 "Ljoos/lib/JoosRandom;"
+; cp[88] (offset 0x34f) -> CONSTANT_String 35
+; cp[89] (offset 0x359) -> CONSTANT_Utf8 "nextInt"
+; cp[90] (offset 0x382) -> CONSTANT_Utf8 "(Ljava/lang/String;)Ljava/lang/String;"
+; cp[91] (offset 0x398) -> CONSTANT_Utf8 "getComplementNumber"
+; cp[92] (offset 0x39b) -> CONSTANT_String 13
+; cp[93] (offset 0x39e) -> CONSTANT_String 14
+; cp[94] (offset 0x3a1) -> CONSTANT_String 125
+; cp[95] (offset 0x3a4) -> CONSTANT_String 116
+; cp[96] (offset 0x3a7) -> CONSTANT_String 16
+; cp[97] (offset 0x3ac) -> CONSTANT_Methodref 59, 79
+; cp[98] (offset 0x3b7) -> CONSTANT_Utf8 "flourish"
+; cp[99] (offset 0x3bf) -> CONSTANT_Utf8 "fruit"
+; cp[100] (offset 0x3c2) -> CONSTANT_String 84
+; cp[101] (offset 0x3d9) -> CONSTANT_Utf8 "()Ljava/lang/String;"
+; cp[102] (offset 0x3de) -> CONSTANT_NameAndType 132, 18
+; cp[103] (offset 0x3f8) -> CONSTANT_Utf8 " man. from now on I'll "
+; cp[104] (offset 0x404) -> CONSTANT_Utf8 "beautiful"
+; cp[105] (offset 0x407) -> CONSTANT_String 55
+; cp[106] (offset 0x40c) -> CONSTANT_NameAndType 132, 167
+; cp[107] (offset 0x423) -> CONSTANT_Utf8 ". I would rather be "
+; cp[108] (offset 0x43b) -> CONSTANT_Utf8 " all night long, you "
+; cp[109] (offset 0x43e) -> CONSTANT_String 137
+; cp[110] (offset 0x441) -> CONSTANT_String 121
+; cp[111] (offset 0x444) -> CONSTANT_String 138
+; cp[112] (offset 0x456) -> CONSTANT_Utf8 "generateComment"
+; cp[113] (offset 0x45d) -> CONSTANT_Utf8 "Code"
+; cp[114] (offset 0x46b) -> CONSTANT_Utf8 " of yours! "
+; cp[115] (offset 0x47e) -> CONSTANT_Utf8 "java/lang/Object"
+; cp[116] (offset 0x485) -> CONSTANT_Utf8 "skin"
+; cp[117] (offset 0x488) -> CONSTANT_String 107
+; cp[118] (offset 0x49c) -> CONSTANT_Utf8 "generateAdjective"
+; cp[119] (offset 0x49f) -> CONSTANT_String 166
+; cp[120] (offset 0x4a2) -> CONSTANT_String 99
+; cp[121] (offset 0x4a8) -> CONSTANT_Utf8 "rot"
+; cp[122] (offset 0x4ab) -> CONSTANT_String 86
+; cp[123] (offset 0x4ae) -> CONSTANT_String 144
+; cp[124] (offset 0x4bd) -> CONSTANT_Utf8 "generateNoun"
+; cp[125] (offset 0x4e4) -> CONSTANT_Utf8 "I love how your hair smells like  a "
+; cp[126] (offset 0x4ef) -> CONSTANT_Utf8 " like a "
+; cp[127] (offset 0x4f3) -> CONSTANT_Utf8 "r"
+; cp[128] (offset 0x4f8) -> CONSTANT_Fieldref 80, 78
+; cp[129] (offset 0x4fb) -> CONSTANT_String 71
+; cp[130] (offset 0x505) -> CONSTANT_Utf8 "program"
+; cp[131] (offset 0x513) -> CONSTANT_Utf8 "I hope our "
+; cp[132] (offset 0x51c) -> CONSTANT_Utf8 "<init>"
+; cp[133] (offset 0x51f) -> CONSTANT_String 5
+; cp[134] (offset 0x52a) -> CONSTANT_Utf8 "enormous"
+; cp[135] (offset 0x537) -> CONSTANT_Utf8 "SourceFile"
+; cp[136] (offset 0x542) -> CONSTANT_Utf8 "sunshine"
+; cp[137] (offset 0x549) -> CONSTANT_Utf8 "work"
+; cp[138] (offset 0x550) -> CONSTANT_Utf8 "puke"
+; cp[139] (offset 0x553) -> CONSTANT_String 68
+; cp[140] (offset 0x562) -> CONSTANT_Utf8 "generateVerb"
+; cp[141] (offset 0x565) -> CONSTANT_String 70
+; cp[142] (offset 0x568) -> CONSTANT_String 108
+; cp[143] (offset 0x56c) -> CONSTANT_Utf8 "I"
+; cp[144] (offset 0x579) -> CONSTANT_Utf8 " with you."
+; cp[145] (offset 0x57c) -> CONSTANT_String 65
+; cp[146] (offset 0x581) -> CONSTANT_Methodref 59, 106
+; cp[147] (offset 0x598) -> CONSTANT_Utf8 "ComplementsGenerator"
+; cp[148] (offset 0x59b) -> CONSTANT_String 172
+; cp[149] (offset 0x5a4) -> CONSTANT_Utf8 "I was "
+; cp[150] (offset 0x5a7) -> CONSTANT_String 76
+; cp[151] (offset 0x5aa) -> CONSTANT_String 3
+; cp[152] (offset 0x5c8) -> CONSTANT_Utf8 " legs gives me the shivers."
+; cp[153] (offset 0x5cc) -> CONSTANT_Utf8 "."
+; cp[154] (offset 0x5e2) -> CONSTANT_Utf8 " relationship will "
+; cp[155] (offset 0x5ec) -> CONSTANT_Utf8 "tragedy"
+; cp[156] (offset 0x5f1) -> CONSTANT_NameAndType 127, 87
+; cp[157] (offset 0x600) -> CONSTANT_Utf8 " ever since."
+; cp[158] (offset 0x605) -> CONSTANT_Methodref 20, 50
+; cp[159] (offset 0x609) -> CONSTANT_Utf8 " "
+; cp[160] (offset 0x61c) -> CONSTANT_Utf8 "complementNumber"
+; cp[161] (offset 0x62c) -> CONSTANT_Utf8 " lady, you..."
+; cp[162] (offset 0x631) -> CONSTANT_Fieldref 80, 156
+; cp[163] (offset 0x639) -> CONSTANT_Utf8 "dream"
+; cp[164] (offset 0x63c) -> CONSTANT_String 154
+; cp[165] (offset 0x64e) -> CONSTANT_Utf8 " , you make me "
+; cp[166] (offset 0x659) -> CONSTANT_Utf8 "problems"
+; cp[167] (offset 0x660) -> CONSTANT_Utf8 "(I)V"
+; cp[168] (offset 0x663) -> CONSTANT_String 114
+; cp[169] (offset 0x678) -> CONSTANT_Utf8 ". I can't wait to "
+; cp[170] (offset 0x681) -> CONSTANT_Utf8 "Let's "
+; cp[171] (offset 0x68a) -> CONSTANT_Utf8 "crappy"
+; cp[172] (offset 0x6a3) -> CONSTANT_Utf8 ". It makes me want to "
+; cp[173] (offset 0x6a6) -> CONSTANT_String 157
 
 ; access flags = 0x21 [ ACC_SUPER ACC_PUBLIC ]
-; this_class index = 82
-; super_class index = 59
+; this_class index = 80
+; super_class index = 57
 
 ; interfaces_count = 0
 
 
 ; fields_count = 2
 
-; fields[0] (offset 0x6ba) :
+; fields[0] (offset 0x6b0) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 162 (complementNumber)
-;     descriptor_index 145 (I)
+;     name_index 160 (complementNumber)
+;     descriptor_index 143 (I)
 ;     attributes_count 0
 
-; fields[1] (offset 0x6c2) :
+; fields[1] (offset 0x6b8) :
 ;     access_flags 0x4 [ ACC_PROTECTED ]
-;     name_index 129 (r)
-;     descriptor_index 89 (Ljoos/lib/JoosRandom;)
+;     name_index 127 (r)
+;     descriptor_index 87 (Ljoos/lib/JoosRandom;)
 ;     attributes_count 0
 
 ; methods_count 6
 
-; methods[0] (offset 0x6cc) :
+; methods[0] (offset 0x6c2) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 134 (<init>)
+;     name_index 132 (<init>)
 ;     descriptor_index 18 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
+;         name_index 113 (Code)
 ;         attribute_length 30
 ;         max_stack 3
 ;         max_locals 1
 ;         code_length 18
 ;         code :
 ;                0: aload_0 
-;                1: invokespecial 58 (java/lang/Object/<init> ()V) 
-;                4: new 61 (joos/lib/JoosRandom) 
+;                1: invokespecial 56 (java/lang/Object/<init> ()V) 
+;                4: new 59 (joos/lib/JoosRandom) 
 ;                7: dup 
 ;                8: iconst_1 
-;                9: invokespecial 148 (joos/lib/JoosRandom/<init> (I)V) 
+;                9: invokespecial 146 (joos/lib/JoosRandom/<init> (I)V) 
 ;               12: aload_0 
 ;               13: swap 
-;               14: putfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
+;               14: putfield 162 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
 ;               17: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[1] (offset 0x6f8) :
+; methods[1] (offset 0x6ee) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 114 (generateComment)
-;     descriptor_index 79 ((Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;)
+;     name_index 112 (generateComment)
+;     descriptor_index 77 ((Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
-;         attribute_length 547
+;         name_index 113 (Code)
+;         attribute_length 449
 ;         max_stack 2
 ;         max_locals 6
-;         code_length 535
+;         code_length 437
 ;         code :
 ;                0: aload_0 
-;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
-;                4: invokevirtual 99 (joos/lib/JoosRandom/nextInt ()I) 
+;                1: getfield 162 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
+;                4: invokevirtual 97 (joos/lib/JoosRandom/nextInt ()I) 
 ;                7: dup 
 ;                8: istore 4 
-;               10: ldc 49 (12) 
+;               10: ldc 48 (12) 
 ;               12: irem 
 ;               13: dup 
 ;               14: istore 5 
 ;               16: iconst_0 
 ;               17: if_icmpge 16 
 ;               20: iload 5 
-;               22: ldc 49 (12) 
+;               22: ldc 48 (12) 
 ;               24: iadd 
 ;               25: aload_0 
 ;               26: swap 
-;               27: putfield 130 (ComplementsGenerator/complementNumber I) 
+;               27: putfield 128 (ComplementsGenerator/complementNumber I) 
 ;               30: goto 10 
 ;               33: iload 5 
 ;               35: aload_0 
 ;               36: swap 
-;               37: putfield 130 (ComplementsGenerator/complementNumber I) 
+;               37: putfield 128 (ComplementsGenerator/complementNumber I) 
 ;               40: aload_0 
-;               41: getfield 130 (ComplementsGenerator/complementNumber I) 
+;               41: getfield 128 (ComplementsGenerator/complementNumber I) 
 ;               44: iconst_0 
-;               45: if_icmpne 50 
-;               48: ldc 96 ("I love how your hair smells like  a ") 
+;               45: if_icmpne 36 
+;               48: ldc 94 ("I love how your hair smells like  a ") 
 ;               50: aload_1 
-;               51: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               54: ldc 42 (" ") 
-;               56: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               59: dup 
-;               60: ifnonnull 6 
-;               63: pop 
-;               64: ldc 21 ("null") 
-;               66: aload_3 
-;               67: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               70: ldc 150 (". It makes me want to ") 
-;               72: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               75: dup 
-;               76: ifnonnull 6 
-;               79: pop 
-;               80: ldc 21 ("null") 
-;               82: aload_2 
-;               83: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               86: ldc 38 (".") 
-;               88: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;               91: areturn 
-;               92: goto 442 
-;               95: aload_0 
-;               96: getfield 130 (ComplementsGenerator/complementNumber I) 
-;               99: iconst_1 
-;              100: if_icmpne 34 
-;              103: ldc 98 ("I always admired you're ") 
-;              105: aload_3 
-;              106: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              109: ldc 40 (". I can't wait to ") 
-;              111: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              114: dup 
-;              115: ifnonnull 6 
-;              118: pop 
-;              119: ldc 21 ("null") 
-;              121: aload_2 
-;              122: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              125: ldc 125 (" with you.") 
-;              127: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              130: areturn 
-;              131: goto 403 
-;              134: aload_0 
-;              135: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              138: iconst_2 
-;              139: if_icmpne 34 
-;              142: ldc 65 ("You remind me of my ") 
-;              144: aload_3 
-;              145: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              148: ldc 107 (". your ") 
-;              150: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              153: dup 
-;              154: ifnonnull 6 
-;              157: pop 
-;              158: ldc 21 ("null") 
-;              160: aload_1 
-;              161: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              164: ldc 7 (" legs gives me the shivers.") 
-;              166: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              169: areturn 
-;              170: goto 364 
-;              173: aload_0 
-;              174: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              177: iconst_3 
-;              178: if_icmpne 34 
-;              181: ldc 41 ("I was ") 
-;              183: aload_1 
-;              184: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              187: ldc 68 (" until I met you - and i can't ") 
-;              189: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              192: dup 
-;              193: ifnonnull 6 
-;              196: pop 
-;              197: ldc 21 ("null") 
-;              199: aload_2 
-;              200: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              203: ldc 175 (" ever since.") 
-;              205: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              208: areturn 
-;              209: goto 325 
-;              212: aload_0 
-;              213: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              216: iconst_4 
-;              217: if_icmpne 34 
-;              220: ldc 84 ("I can't wait to show you my ") 
-;              222: aload_3 
-;              223: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              226: ldc 102 (". I have a feeling you will ") 
-;              228: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              231: dup 
-;              232: ifnonnull 6 
-;              235: pop 
-;              236: ldc 21 ("null") 
-;              238: aload_2 
-;              239: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              242: ldc 38 (".") 
-;              244: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              247: areturn 
-;              248: goto 286 
-;              251: aload_0 
-;              252: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              255: iconst_5 
-;              256: if_icmpne 34 
-;              259: ldc 54 ("If you'll leave me it will be a ") 
-;              261: aload_3 
-;              262: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              265: ldc 119 (". I would rather be ") 
-;              267: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              270: dup 
-;              271: ifnonnull 6 
-;              274: pop 
-;              275: ldc 21 ("null") 
-;              277: aload_1 
-;              278: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              281: ldc 38 (".") 
-;              283: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              286: areturn 
-;              287: goto 247 
-;              290: aload_0 
-;              291: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              294: ldc 34 (6) 
-;              296: if_icmpne 50 
-;              299: ldc 23 ("I hope our ") 
-;              301: aload_1 
-;              302: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              305: ldc 166 (" relationship will ") 
-;              307: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              310: dup 
-;              311: ifnonnull 6 
-;              314: pop 
-;              315: ldc 21 ("null") 
-;              317: aload_2 
-;              318: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              321: ldc 75 (" like a ") 
-;              323: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              326: dup 
-;              327: ifnonnull 6 
-;              330: pop 
-;              331: ldc 21 ("null") 
-;              333: aload_3 
-;              334: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              337: ldc 38 (".") 
-;              339: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              342: areturn 
-;              343: goto 191 
-;              346: aload_0 
-;              347: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              350: ldc 33 (7) 
-;              352: if_icmpne 34 
-;              355: ldc 35 ("You make me want to be a ") 
-;              357: aload_1 
-;              358: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              361: ldc 15 (" man. from now on I'll ") 
-;              363: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              366: dup 
-;              367: ifnonnull 6 
-;              370: pop 
-;              371: ldc 21 ("null") 
-;              373: aload_2 
-;              374: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              377: ldc 135 (" harder.") 
-;              379: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              382: areturn 
-;              383: goto 151 
-;              386: aload_0 
-;              387: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              390: ldc 31 (8) 
-;              392: if_icmpne 34 
-;              395: ldc 45 ("Show me that ") 
-;              397: aload_1 
-;              398: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              401: ldc 42 (" ") 
-;              403: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              406: dup 
-;              407: ifnonnull 6 
-;              410: pop 
-;              411: ldc 21 ("null") 
-;              413: aload_3 
-;              414: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              417: ldc 170 (" of yours! ") 
-;              419: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              422: areturn 
-;              423: goto 111 
-;              426: aload_0 
-;              427: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              430: ldc 30 (9) 
-;              432: if_icmpne 34 
-;              435: ldc 74 ("Let's ") 
-;              437: aload_2 
-;              438: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              441: ldc 144 (" all night long, you ") 
-;              443: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              446: dup 
-;              447: ifnonnull 6 
-;              450: pop 
-;              451: ldc 21 ("null") 
-;              453: aload_1 
-;              454: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              457: ldc 6 (" lady, you...") 
-;              459: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              462: areturn 
-;              463: goto 71 
-;              466: aload_0 
-;              467: getfield 130 (ComplementsGenerator/complementNumber I) 
-;              470: ldc 53 (10) 
-;              472: if_icmpne 18 
-;              475: ldc 60 ("Show me your ") 
-;              477: aload_3 
-;              478: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              481: ldc 94 (" and I'll show you mine.") 
-;              483: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              486: areturn 
-;              487: goto 47 
-;              490: ldc 131 ("you are my ") 
-;              492: aload_3 
-;              493: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              496: ldc 143 (" my only ") 
-;              498: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              501: dup 
-;              502: ifnonnull 6 
-;              505: pop 
-;              506: ldc 21 ("null") 
-;              508: aload_3 
-;              509: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              512: ldc 46 (" , you make me ") 
-;              514: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              517: dup 
-;              518: ifnonnull 6 
-;              521: pop 
-;              522: ldc 21 ("null") 
-;              524: aload_1 
-;              525: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              528: ldc 124 (" when skies are grey.") 
-;              530: invokevirtual 160 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
-;              533: areturn 
-;              534: nop 
+;               51: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               54: ldc 41 (" ") 
+;               56: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               59: aload_3 
+;               60: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               63: ldc 148 (". It makes me want to ") 
+;               65: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               68: aload_2 
+;               69: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               72: ldc 37 (".") 
+;               74: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               77: areturn 
+;               78: goto 358 
+;               81: aload_0 
+;               82: getfield 128 (ComplementsGenerator/complementNumber I) 
+;               85: iconst_1 
+;               86: if_icmpne 27 
+;               89: ldc 96 ("I always admired you're ") 
+;               91: aload_3 
+;               92: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               95: ldc 39 (". I can't wait to ") 
+;               97: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              100: aload_2 
+;              101: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              104: ldc 123 (" with you.") 
+;              106: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              109: areturn 
+;              110: goto 326 
+;              113: aload_0 
+;              114: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              117: iconst_2 
+;              118: if_icmpne 27 
+;              121: ldc 63 ("You remind me of my ") 
+;              123: aload_3 
+;              124: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              127: ldc 105 (". your ") 
+;              129: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              132: aload_1 
+;              133: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              136: ldc 7 (" legs gives me the shivers.") 
+;              138: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              141: areturn 
+;              142: goto 294 
+;              145: aload_0 
+;              146: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              149: iconst_3 
+;              150: if_icmpne 27 
+;              153: ldc 40 ("I was ") 
+;              155: aload_1 
+;              156: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              159: ldc 66 (" until I met you - and i can't ") 
+;              161: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              164: aload_2 
+;              165: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              168: ldc 173 (" ever since.") 
+;              170: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              173: areturn 
+;              174: goto 262 
+;              177: aload_0 
+;              178: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              181: iconst_4 
+;              182: if_icmpne 27 
+;              185: ldc 82 ("I can't wait to show you my ") 
+;              187: aload_3 
+;              188: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              191: ldc 100 (". I have a feeling you will ") 
+;              193: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              196: aload_2 
+;              197: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              200: ldc 37 (".") 
+;              202: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              205: areturn 
+;              206: goto 230 
+;              209: aload_0 
+;              210: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              213: iconst_5 
+;              214: if_icmpne 27 
+;              217: ldc 52 ("If you'll leave me it will be a ") 
+;              219: aload_3 
+;              220: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              223: ldc 117 (". I would rather be ") 
+;              225: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              228: aload_1 
+;              229: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              232: ldc 37 (".") 
+;              234: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              237: areturn 
+;              238: goto 198 
+;              241: aload_0 
+;              242: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              245: ldc 33 (6) 
+;              247: if_icmpne 36 
+;              250: ldc 22 ("I hope our ") 
+;              252: aload_1 
+;              253: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              256: ldc 164 (" relationship will ") 
+;              258: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              261: aload_2 
+;              262: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              265: ldc 73 (" like a ") 
+;              267: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              270: aload_3 
+;              271: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              274: ldc 37 (".") 
+;              276: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              279: areturn 
+;              280: goto 156 
+;              283: aload_0 
+;              284: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              287: ldc 32 (7) 
+;              289: if_icmpne 27 
+;              292: ldc 34 ("You make me want to be a ") 
+;              294: aload_1 
+;              295: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              298: ldc 15 (" man. from now on I'll ") 
+;              300: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              303: aload_2 
+;              304: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              307: ldc 133 (" harder.") 
+;              309: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              312: areturn 
+;              313: goto 123 
+;              316: aload_0 
+;              317: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              320: ldc 30 (8) 
+;              322: if_icmpne 27 
+;              325: ldc 44 ("Show me that ") 
+;              327: aload_1 
+;              328: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              331: ldc 41 (" ") 
+;              333: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              336: aload_3 
+;              337: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              340: ldc 168 (" of yours! ") 
+;              342: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              345: areturn 
+;              346: goto 90 
+;              349: aload_0 
+;              350: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              353: ldc 29 (9) 
+;              355: if_icmpne 27 
+;              358: ldc 72 ("Let's ") 
+;              360: aload_2 
+;              361: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              364: ldc 142 (" all night long, you ") 
+;              366: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              369: aload_1 
+;              370: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              373: ldc 6 (" lady, you...") 
+;              375: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              378: areturn 
+;              379: goto 57 
+;              382: aload_0 
+;              383: getfield 128 (ComplementsGenerator/complementNumber I) 
+;              386: ldc 51 (10) 
+;              388: if_icmpne 18 
+;              391: ldc 58 ("Show me your ") 
+;              393: aload_3 
+;              394: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              397: ldc 92 (" and I'll show you mine.") 
+;              399: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              402: areturn 
+;              403: goto 33 
+;              406: ldc 129 ("you are my ") 
+;              408: aload_3 
+;              409: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              412: ldc 141 (" my only ") 
+;              414: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              417: aload_3 
+;              418: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              421: ldc 45 (" , you make me ") 
+;              423: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              426: aload_1 
+;              427: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              430: ldc 122 (" when skies are grey.") 
+;              432: invokevirtual 158 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              435: areturn 
+;              436: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[2] (offset 0x929) :
+; methods[2] (offset 0x8bd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 93 (getComplementNumber)
-;     descriptor_index 24 (()I)
+;     name_index 91 (getComplementNumber)
+;     descriptor_index 23 (()I)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
+;         name_index 113 (Code)
 ;         attribute_length 18
 ;         max_stack 1
 ;         max_locals 1
 ;         code_length 6
 ;         code :
 ;                0: aload_0 
-;                1: getfield 130 (ComplementsGenerator/complementNumber I) 
+;                1: getfield 128 (ComplementsGenerator/complementNumber I) 
 ;                4: ireturn 
 ;                5: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[3] (offset 0x949) :
+; methods[3] (offset 0x8dd) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 120 (generateAdjective)
-;     descriptor_index 103 (()Ljava/lang/String;)
+;     name_index 118 (generateAdjective)
+;     descriptor_index 101 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
+;         name_index 113 (Code)
 ;         attribute_length 144
 ;         max_stack 2
 ;         max_locals 3
 ;         code_length 132
 ;         code :
 ;                0: aload_0 
-;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
-;                4: invokevirtual 99 (joos/lib/JoosRandom/nextInt ()I) 
-;                7: ldc 53 (10) 
+;                1: getfield 162 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
+;                4: invokevirtual 97 (joos/lib/JoosRandom/nextInt ()I) 
+;                7: ldc 51 (10) 
 ;                9: irem 
 ;               10: dup 
 ;               11: istore_1 
 ;               12: iconst_0 
 ;               13: if_icmpge 11 
 ;               16: iload_1 
-;               17: ldc 53 (10) 
+;               17: ldc 51 (10) 
 ;               19: iadd 
 ;               20: istore_2 
 ;               21: goto 5 
@@ -568,75 +510,75 @@
 ;               48: iload_2 
 ;               49: iconst_2 
 ;               50: if_icmpne 9 
-;               53: ldc 152 ("single") 
+;               53: ldc 150 ("single") 
 ;               55: areturn 
 ;               56: goto 75 
 ;               59: iload_2 
 ;               60: iconst_3 
 ;               61: if_icmpne 9 
-;               64: ldc 50 ("blind") 
+;               64: ldc 49 ("blind") 
 ;               66: areturn 
 ;               67: goto 64 
 ;               70: iload_2 
 ;               71: iconst_4 
 ;               72: if_icmpne 9 
-;               75: ldc 66 ("enormous") 
+;               75: ldc 64 ("enormous") 
 ;               77: areturn 
 ;               78: goto 53 
 ;               81: iload_2 
 ;               82: iconst_5 
 ;               83: if_icmpne 9 
-;               86: ldc 62 ("sexy") 
+;               86: ldc 60 ("sexy") 
 ;               88: areturn 
 ;               89: goto 42 
 ;               92: iload_2 
-;               93: ldc 34 (6) 
+;               93: ldc 33 (6) 
 ;               95: if_icmpne 9 
 ;               98: ldc 10 ("talented") 
 ;              100: areturn 
 ;              101: goto 30 
 ;              104: iload_2 
-;              105: ldc 33 (7) 
+;              105: ldc 32 (7) 
 ;              107: if_icmpne 9 
-;              110: ldc 147 ("better") 
+;              110: ldc 145 ("better") 
 ;              112: areturn 
 ;              113: goto 18 
 ;              116: iload_2 
-;              117: ldc 31 (8) 
+;              117: ldc 30 (8) 
 ;              119: if_icmpne 9 
-;              122: ldc 69 ("happy") 
+;              122: ldc 67 ("happy") 
 ;              124: areturn 
 ;              125: goto 6 
-;              128: ldc 76 ("crappy") 
+;              128: ldc 74 ("crappy") 
 ;              130: areturn 
 ;              131: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[4] (offset 0x9e7) :
+; methods[4] (offset 0x97b) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 126 (generateNoun)
-;     descriptor_index 103 (()Ljava/lang/String;)
+;     name_index 124 (generateNoun)
+;     descriptor_index 101 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
+;         name_index 113 (Code)
 ;         attribute_length 132
 ;         max_stack 2
 ;         max_locals 3
 ;         code_length 120
 ;         code :
 ;                0: aload_0 
-;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
-;                4: invokevirtual 99 (joos/lib/JoosRandom/nextInt ()I) 
-;                7: ldc 30 (9) 
+;                1: getfield 162 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
+;                4: invokevirtual 97 (joos/lib/JoosRandom/nextInt ()I) 
+;                7: ldc 29 (9) 
 ;                9: irem 
 ;               10: dup 
 ;               11: istore_1 
 ;               12: iconst_0 
 ;               13: if_icmpge 11 
 ;               16: iload_1 
-;               17: ldc 30 (9) 
+;               17: ldc 29 (9) 
 ;               19: iadd 
 ;               20: istore_2 
 ;               21: goto 5 
@@ -645,31 +587,31 @@
 ;               26: iload_1 
 ;               27: iconst_0 
 ;               28: if_icmpne 9 
-;               31: ldc 122 ("fruit") 
+;               31: ldc 120 ("fruit") 
 ;               33: areturn 
 ;               34: goto 85 
 ;               37: iload_2 
 ;               38: iconst_1 
 ;               39: if_icmpne 9 
-;               42: ldc 63 ("work-ethic") 
+;               42: ldc 61 ("work-ethic") 
 ;               44: areturn 
 ;               45: goto 74 
 ;               48: iload_2 
 ;               49: iconst_2 
 ;               50: if_icmpne 9 
-;               53: ldc 25 ("niece") 
+;               53: ldc 24 ("niece") 
 ;               55: areturn 
 ;               56: goto 63 
 ;               59: iload_2 
 ;               60: iconst_3 
 ;               61: if_icmpne 9 
-;               64: ldc 121 ("problems") 
+;               64: ldc 119 ("problems") 
 ;               66: areturn 
 ;               67: goto 52 
 ;               70: iload_2 
 ;               71: iconst_4 
 ;               72: if_icmpne 9 
-;               75: ldc 44 ("tragedy") 
+;               75: ldc 43 ("tragedy") 
 ;               77: areturn 
 ;               78: goto 41 
 ;               81: iload_2 
@@ -679,47 +621,47 @@
 ;               88: areturn 
 ;               89: goto 30 
 ;               92: iload_2 
-;               93: ldc 34 (6) 
+;               93: ldc 33 (6) 
 ;               95: if_icmpne 9 
-;               98: ldc 85 ("sunshine") 
+;               98: ldc 83 ("sunshine") 
 ;              100: areturn 
 ;              101: goto 18 
 ;              104: iload_2 
-;              105: ldc 33 (7) 
+;              105: ldc 32 (7) 
 ;              107: if_icmpne 9 
-;              110: ldc 90 ("raccoon") 
+;              110: ldc 88 ("raccoon") 
 ;              112: areturn 
 ;              113: goto 6 
-;              116: ldc 97 ("skin") 
+;              116: ldc 95 ("skin") 
 ;              118: areturn 
 ;              119: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[5] (offset 0xa79) :
+; methods[5] (offset 0xa0d) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
-;     name_index 142 (generateVerb)
-;     descriptor_index 103 (()Ljava/lang/String;)
+;     name_index 140 (generateVerb)
+;     descriptor_index 101 (()Ljava/lang/String;)
 ;     attributes_count 1
 ;     method_attributes[0] :
-;         name_index 115 (Code)
+;         name_index 113 (Code)
 ;         attribute_length 144
 ;         max_stack 2
 ;         max_locals 3
 ;         code_length 132
 ;         code :
 ;                0: aload_0 
-;                1: getfield 164 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
-;                4: invokevirtual 99 (joos/lib/JoosRandom/nextInt ()I) 
-;                7: ldc 53 (10) 
+;                1: getfield 162 (ComplementsGenerator/r Ljoos/lib/JoosRandom;) 
+;                4: invokevirtual 97 (joos/lib/JoosRandom/nextInt ()I) 
+;                7: ldc 51 (10) 
 ;                9: irem 
 ;               10: dup 
 ;               11: istore_1 
 ;               12: iconst_0 
 ;               13: if_icmpge 11 
 ;               16: iload_1 
-;               17: ldc 53 (10) 
+;               17: ldc 51 (10) 
 ;               19: iadd 
 ;               20: istore_2 
 ;               21: goto 5 
@@ -728,7 +670,7 @@
 ;               26: iload_1 
 ;               27: iconst_0 
 ;               28: if_icmpne 9 
-;               31: ldc 112 ("rot") 
+;               31: ldc 110 ("rot") 
 ;               33: areturn 
 ;               34: goto 97 
 ;               37: iload_2 
@@ -740,46 +682,46 @@
 ;               48: iload_2 
 ;               49: iconst_2 
 ;               50: if_icmpne 9 
-;               53: ldc 113 ("puke") 
+;               53: ldc 111 ("puke") 
 ;               55: areturn 
 ;               56: goto 75 
 ;               59: iload_2 
 ;               60: iconst_3 
 ;               61: if_icmpne 9 
-;               64: ldc 111 ("work") 
+;               64: ldc 109 ("work") 
 ;               66: areturn 
 ;               67: goto 64 
 ;               70: iload_2 
 ;               71: iconst_4 
 ;               72: if_icmpne 9 
-;               75: ldc 37 ("sleep") 
+;               75: ldc 36 ("sleep") 
 ;               77: areturn 
 ;               78: goto 53 
 ;               81: iload_2 
 ;               82: iconst_5 
 ;               83: if_icmpne 9 
-;               86: ldc 153 ("be-pleased") 
+;               86: ldc 151 ("be-pleased") 
 ;               88: areturn 
 ;               89: goto 42 
 ;               92: iload_2 
-;               93: ldc 34 (6) 
+;               93: ldc 33 (6) 
 ;               95: if_icmpne 9 
-;               98: ldc 39 ("flourish") 
+;               98: ldc 38 ("flourish") 
 ;              100: areturn 
 ;              101: goto 30 
 ;              104: iload_2 
-;              105: ldc 33 (7) 
+;              105: ldc 32 (7) 
 ;              107: if_icmpne 9 
-;              110: ldc 95 ("nibble") 
+;              110: ldc 93 ("nibble") 
 ;              112: areturn 
 ;              113: goto 18 
 ;              116: iload_2 
-;              117: ldc 31 (8) 
+;              117: ldc 30 (8) 
 ;              119: if_icmpne 9 
 ;              122: ldc 11 ("program") 
 ;              124: areturn 
 ;              125: goto 6 
-;              128: ldc 141 ("eat-bananas") 
+;              128: ldc 139 ("eat-bananas") 
 ;              130: areturn 
 ;              131: nop 
 ;         exception_table_length 0
@@ -789,9 +731,9 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xb19) :
-;     name_index 137 (SourceFile)
+; class_attributes[0] (offset 0xaad) :
+;     name_index 135 (SourceFile)
 ;     attribute_length 2
-;     sourcefile_index 47
+;     sourcefile_index 46
 
 ; End of file reached successfully. Enjoy :)

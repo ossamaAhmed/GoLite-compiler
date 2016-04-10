@@ -49,6 +49,7 @@ remove_iload_swap: 0
 remove_ldc_ifnonnull: 36
 remove_string_concat_ifnonnull: 10
 remove_string_concat_ifnonnull_ldc: 19
+remove_string_concat_ifnonnull_aload: 0
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
