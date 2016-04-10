@@ -565,10 +565,10 @@
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 89
+;         attribute_length 87
 ;         max_stack 3
 ;         max_locals 3
-;         code_length 77
+;         code_length 75
 ;         code :
 ;                0: iconst_0 
 ;                1: iload_1 
@@ -597,7 +597,7 @@
 ;               42: istore_2 
 ;               43: iload_2 
 ;               44: iconst_0 
-;               45: if_icmplt 29 
+;               45: if_icmplt 27 
 ;               48: aload_0 
 ;               49: iload_1 
 ;               50: iload_2 
@@ -609,16 +609,19 @@
 ;               62: iconst_1 
 ;               63: iadd 
 ;               64: ireturn 
-;               65: wide iinc 2 1 
-;               71: goto -28 
-;               74: iconst_0 
-;               75: ireturn 
-;               76: nop 
+;               65: iload_2 
+;               66: iconst_1 
+;               67: isub 
+;               68: istore_2 
+;               69: goto -26 
+;               72: iconst_0 
+;               73: ireturn 
+;               74: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[11] (offset 0x761) :
+; methods[11] (offset 0x75f) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 41 (isValidColumn)
 ;     descriptor_index 63 ((I)Z)
@@ -664,17 +667,17 @@
 ;         attributes_count 0
 
 
-; methods[12] (offset 0x7af) :
+; methods[12] (offset 0x7ad) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 13 (print)
 ;     descriptor_index 64 (()V)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 154
+;         attribute_length 152
 ;         max_stack 4
 ;         max_locals 4
-;         code_length 142
+;         code_length 140
 ;         code :
 ;                0: new 101 (joos/lib/JoosIO) 
 ;                3: dup 
@@ -701,7 +704,7 @@
 ;               45: istore_2 
 ;               46: iload_2 
 ;               47: iconst_0 
-;               48: if_icmplt 93 
+;               48: if_icmplt 91 
 ;               51: iconst_0 
 ;               52: istore_3 
 ;               53: iload_3 
@@ -740,24 +743,27 @@
 ;              126: aload_1 
 ;              127: ldc 31 ("|") 
 ;              129: invokevirtual 62 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
-;              132: wide iinc 2 1 
-;              138: goto -92 
-;              141: return 
+;              132: iload_2 
+;              133: iconst_1 
+;              134: isub 
+;              135: istore_2 
+;              136: goto -90 
+;              139: return 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[13] (offset 0x857) :
+; methods[13] (offset 0x853) :
 ;     access_flags 0x1 [ ACC_PUBLIC ]
 ;     name_index 108 (getWinner)
 ;     descriptor_index 65 (()Ljava/lang/Character;)
 ;     attributes_count 1
 ;     method_attributes[0] :
 ;         name_index 54 (Code)
-;         attribute_length 523
+;         attribute_length 521
 ;         max_stack 4
 ;         max_locals 5
-;         code_length 511
+;         code_length 509
 ;         code :
 ;                0: iconst_0 
 ;                1: istore_1 
@@ -970,7 +976,7 @@
 ;              387: istore_1 
 ;              388: iload_1 
 ;              389: iconst_3 
-;              390: if_icmplt 118 
+;              390: if_icmplt 116 
 ;              393: iconst_0 
 ;              394: istore_2 
 ;              395: iload_2 
@@ -1029,16 +1035,19 @@
 ;              489: areturn 
 ;              490: wide iinc 2 1 
 ;              496: goto -101 
-;              499: wide iinc 1 1 
-;              505: goto -117 
-;              508: aconst_null 
-;              509: areturn 
-;              510: nop 
+;              499: iload_1 
+;              500: iconst_1 
+;              501: isub 
+;              502: istore_1 
+;              503: goto -115 
+;              506: aconst_null 
+;              507: areturn 
+;              508: nop 
 ;         exception_table_length 0
 ;         attributes_count 0
 
 
-; methods[14] (offset 0xa70) :
+; methods[14] (offset 0xa6a) :
 ;     access_flags 0x9 [ ACC_STATIC ACC_PUBLIC ]
 ;     name_index 17 (main)
 ;     descriptor_index 67 (([Ljava/lang/String;)V)
@@ -1092,7 +1101,7 @@
 
 ; attributes_count 1
 
-; class_attributes[0] (offset 0xad2) :
+; class_attributes[0] (offset 0xacc) :
 ;     name_index 4 (SourceFile)
 ;     attribute_length 2
 ;     sourcefile_index 12

@@ -309,7 +309,7 @@
 ;              233: aload 11 
 ;              235: ldc 49 ("You have just told your ") 
 ;              237: aload_2 
-;              238: invokespecial 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              238: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              241: dup 
 ;              242: ifnonnull 6 
 ;              245: pop 
@@ -321,7 +321,7 @@
 ;              257: pop 
 ;              258: ldc 67 ("null") 
 ;              260: aload 7 
-;              262: invokespecial 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              262: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              265: dup 
 ;              266: ifnonnull 6 
 ;              269: pop 
@@ -333,7 +333,7 @@
 ;              281: pop 
 ;              282: ldc 67 ("null") 
 ;              284: aload 8 
-;              286: invokespecial 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              286: invokevirtual 51 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              289: dup 
 ;              290: ifnonnull 6 
 ;              293: pop 

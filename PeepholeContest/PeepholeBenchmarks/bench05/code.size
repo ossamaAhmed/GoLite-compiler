@@ -37,8 +37,6 @@ remove_aload_swap: 1
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 0
 remove_string_concat_ifnonnull: 0
-negative_increment1: 0
-negative_increment: 0
 
 Generated: CustomPoint.class
 Generated: Dungeon.class

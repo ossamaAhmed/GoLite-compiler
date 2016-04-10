@@ -331,7 +331,7 @@
 ;               52: aload_0 
 ;               53: ldc 83 ("'") 
 ;               55: aload_1 
-;               56: invokespecial 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               56: invokevirtual 45 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               59: dup 
 ;               60: ifnonnull 6 
 ;               63: pop 

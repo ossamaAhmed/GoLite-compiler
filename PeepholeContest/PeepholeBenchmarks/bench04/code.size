@@ -37,8 +37,6 @@ remove_aload_swap: 1
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 7
 remove_string_concat_ifnonnull: 2
-negative_increment1: 0
-negative_increment: 8
 
 Generated: Board.class
 Generated: BombMove.class
@@ -62,10 +60,10 @@ Board.optdump:;         code_length 26
 Board.optdump:;         code_length 20
 Board.optdump:;         code_length 11
 Board.optdump:;         code_length 132
-Board.optdump:;         code_length 77
+Board.optdump:;         code_length 75
 Board.optdump:;         code_length 52
-Board.optdump:;         code_length 142
-Board.optdump:;         code_length 511
+Board.optdump:;         code_length 140
+Board.optdump:;         code_length 509
 Board.optdump:;         code_length 70
 BombMove.optdump:;         code_length 5
 BombMove.optdump:;         code_length 53

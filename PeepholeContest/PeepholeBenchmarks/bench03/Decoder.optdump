@@ -164,7 +164,10 @@
 ;               25: ldc 44 (61) 
 ;               27: if_icmpne 18 
 ;               30: wide iinc 5 1 
-;               36: wide iinc 4 1 
+;               36: iload 4 
+;               38: iconst_1 
+;               39: isub 
+;               40: istore 4 
 ;               42: goto -23 
 ;               45: iconst_0 
 ;               46: istore 4 

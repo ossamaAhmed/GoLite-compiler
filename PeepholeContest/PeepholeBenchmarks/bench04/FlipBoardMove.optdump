@@ -119,7 +119,10 @@
 ;               59: iload 5 
 ;               61: aload 9 
 ;               63: invokevirtual 40 (Board/place (ILjava/lang/Character;)V) 
-;               66: wide iinc 6 1 
+;               66: iload 6 
+;               68: iconst_1 
+;               69: isub 
+;               70: istore 6 
 ;               72: goto -31 
 ;               75: wide iinc 5 1 
 ;               81: goto -53 

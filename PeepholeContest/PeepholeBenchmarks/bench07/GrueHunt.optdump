@@ -270,7 +270,7 @@
 ;               58: aload_1 
 ;               59: ldc 55 ("\n") 
 ;               61: aload 11 
-;               63: invokespecial 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;               63: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;               66: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;               69: aload_1 
 ;               70: ldc 55 ("\n") 
@@ -321,7 +321,7 @@
 ;              160: aload_1 
 ;              161: ldc 60 ("You have given up, ") 
 ;              163: aload 9 
-;              165: invokespecial 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              165: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              168: dup 
 ;              169: ifnonnull 6 
 ;              172: pop 
@@ -542,12 +542,18 @@
 ;              647: iload 5 
 ;              649: ldc 21 (9) 
 ;              651: if_icmpne 12 
-;              654: wide iinc 4 1 
+;              654: iload 4 
+;              656: iconst_1 
+;              657: isub 
+;              658: istore 4 
 ;              660: goto 128 
 ;              663: iload 5 
 ;              665: ldc 47 (10) 
 ;              667: if_icmpne 12 
-;              670: wide iinc 4 2 
+;              670: iload 4 
+;              672: iconst_2 
+;              673: isub 
+;              674: istore 4 
 ;              676: goto 112 
 ;              679: iload 5 
 ;              681: ldc 44 (11) 
@@ -612,7 +618,7 @@
 ;              805: aload_1 
 ;              806: ldc 110 ("\n\n") 
 ;              808: aload 9 
-;              810: invokespecial 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;              810: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;              813: dup 
 ;              814: ifnonnull 6 
 ;              817: pop 
@@ -706,7 +712,7 @@
 ;              999: aload_1 
 ;             1000: ldc 38 ("Thank you for playing\n") 
 ;             1002: aload 11 
-;             1004: invokespecial 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
+;             1004: invokevirtual 150 (java/lang/String/concat (Ljava/lang/String;)Ljava/lang/String;) 
 ;             1007: invokevirtual 8 (joos/lib/JoosIO/println (Ljava/lang/String;)V) 
 ;             1010: return 
 ;         exception_table_length 0
