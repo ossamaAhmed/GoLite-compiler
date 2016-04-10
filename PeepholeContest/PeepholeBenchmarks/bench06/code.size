@@ -37,6 +37,7 @@ remove_iload_swap: 0
 remove_ldc_ifnonnull: 45
 remove_string_concat_ifnonnull: 29
 remove_string_concat_ifnonnull_ldc: 32
+remove_string_concat_ifnonnull_aload: 16
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -49,7 +50,7 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 21
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 535
+ComplementsGenerator.optdump:;         code_length 437
 ComplementsGenerator.optdump:;         code_length 6
 ComplementsGenerator.optdump:;         code_length 132
 ComplementsGenerator.optdump:;         code_length 120
@@ -59,6 +60,6 @@ FemaleBoss.optdump:;         code_length 410
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 892
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 326
+Main.optdump:;         code_length 312
 Woman.optdump:;         code_length 5
 Woman.optdump:;         code_length 7

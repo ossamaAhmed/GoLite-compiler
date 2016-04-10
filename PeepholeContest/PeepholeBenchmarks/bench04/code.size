@@ -37,6 +37,7 @@ remove_iload_swap: 0
 remove_ldc_ifnonnull: 7
 remove_string_concat_ifnonnull: 2
 remove_string_concat_ifnonnull_ldc: 2
+remove_string_concat_ifnonnull_aload: 0
 
 Generated: Board.class
 Generated: BombMove.class

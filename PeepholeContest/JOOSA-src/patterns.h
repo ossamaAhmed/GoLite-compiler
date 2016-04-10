@@ -1304,6 +1304,44 @@ int remove_string_concat_ifnonnull_ldc(CODE **c) {
 }
 
 /*
+  Same idea as above but with an extra aload.
+  Virtual calls to java/lang/String/concat can accept NULL arguments so there is no need to check ifnonnull
+
+  dup
+  ifnonnull stop_167
+  pop
+  ldc "null"
+  stop_167:
+  aload_2
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+  ----------------------------------------------------------------------------->
+  aload_2
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  ANOTHER 119 !
+
+  ADDED BY MICHAEL
+*/
+
+int remove_string_concat_ifnonnull_aload(CODE **c) {
+  int label1, label2, aload1;
+  char *useless, *virtualmethod;
+  if (is_dup(*c) && 
+      is_ifnonnull(next(*c), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(*c))) &&
+      is_ldc_string(next(next(next(*c))), &useless) &&
+      is_label(next(next(next(next(*c)))), &label2) &&
+      label1 == label2 &&
+      is_aload(next(next(next(next(next(*c))))), &aload1) &&
+      is_invokevirtual(next(next(next(next(next(next(*c)))))), &virtualmethod) &&
+      strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
+      return replace(c, 7, makeCODEaload(aload1, makeCODEinvokevirtual(virtualmethod, NULL)));
+  }
+  return 0;
+}
+
+/*
 #define OPTS 4
 
 OPTI optimization[OPTS] = {simplify_multiplication_right,
@@ -1355,5 +1393,7 @@ int init_patterns()
     ADD_PATTERN(remove_ldc_ifnonnull);
     ADD_PATTERN(remove_string_concat_ifnonnull);
     ADD_PATTERN(remove_string_concat_ifnonnull_ldc);
+    ADD_PATTERN(remove_string_concat_ifnonnull_aload);
+
     return 1;
 }
