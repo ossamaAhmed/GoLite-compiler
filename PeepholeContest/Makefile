@@ -32,6 +32,7 @@ clean_optdump:
 runall:
 	cd PeepholeBenchmarks/bench01 && $ make run
 	cd PeepholeBenchmarks/bench02 && $ make run
+	cd PeepholeBenchmarks/bench03 && $ make run
 	cd PeepholeBenchmarks/bench04 && $ make run
 	cd PeepholeBenchmarks/bench05 && $ make run
 	cd PeepholeBenchmarks/bench06 && $ make run

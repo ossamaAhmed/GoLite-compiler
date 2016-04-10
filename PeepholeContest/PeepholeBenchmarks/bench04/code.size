@@ -2,7 +2,19 @@
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 0
+simplify_if_else_with_icmpgt_ne_virtual: 0
+simplify_if_else_with_icmplt_ne_virtual: 0
+simplify_if_else_with_icmple_ne_virtual: 0
+simplify_if_else_with_icmpeq_ne_virtual: 0
+simplify_if_else_with_icmpne_ne_virtual: 0
+simplify_if_else_with_acmpne_ne_virtual: 0
+simplify_if_else_with_acmpeq_ne_virtual: 0
 simplify_if_else_with_icmpge_ne_nonvirtual: 0
+simplify_if_else_with_icmpgt_ne_nonvirtual: 0
+simplify_if_else_with_icmple_ne_nonvirtual: 0
+simplify_if_else_with_icmplt_ne_nonvirtual: 0
+simplify_if_else_with_icmpeq_ne_nonvirtual: 0
+simplify_if_else_with_icmpne_ne_nonvirtual: 0
 simplify_if_else_with_icmpeq_ne: 0
 simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 2
@@ -11,12 +23,12 @@ simplify_if_else_with_icmplt: 32
 simplify_if_else_with_icmpge: 6
 simplify_if_else_with_icmpne: 1
 simplify_if_else_with_icmpeq: 2
-simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 6
 simplify_if_else_with_acmpne: 5
+simplify_if_else_with_eq_eq: 6
 simplify_if_null: 12
 simplify_if_nonnull: 0
-simplify_if_else_with_eq_eq: 6
+simplify_addition_right1: 0
 simplify_astore: 24
 simplify_istore: 119
 positive_increment: 36
@@ -30,13 +42,13 @@ positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
 simplify_goto_label: 15
-simplify_pop_afterinvokenonvirtual: 7
-simplify_pop_afterinvokevirtual: 7
+simplify_pop_afterinvokevirtual: 14
 delete_dead_goto_label: 18
 remove_aload_swap: 1
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 7
 remove_string_concat_ifnonnull: 2
+remove_string_concat_ifnonnull_ldc: 2
 
 Generated: Board.class
 Generated: BombMove.class
@@ -89,8 +101,8 @@ Game.optdump:;         code_length 19
 Game.optdump:;         code_length 33
 Game.optdump:;         code_length 22
 Game.optdump:;         code_length 78
-Game.optdump:;         code_length 132
-Game.optdump:;         code_length 144
+Game.optdump:;         code_length 125
+Game.optdump:;         code_length 137
 Game.optdump:;         code_length 65
 Game.optdump:;         code_length 15
 Game.optdump:;         code_length 132

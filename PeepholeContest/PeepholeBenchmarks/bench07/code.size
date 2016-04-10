@@ -2,7 +2,19 @@
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 12
+simplify_if_else_with_icmpgt_ne_virtual: 0
+simplify_if_else_with_icmplt_ne_virtual: 0
+simplify_if_else_with_icmple_ne_virtual: 0
+simplify_if_else_with_icmpeq_ne_virtual: 0
+simplify_if_else_with_icmpne_ne_virtual: 0
+simplify_if_else_with_acmpne_ne_virtual: 0
+simplify_if_else_with_acmpeq_ne_virtual: 0
 simplify_if_else_with_icmpge_ne_nonvirtual: 0
+simplify_if_else_with_icmpgt_ne_nonvirtual: 0
+simplify_if_else_with_icmple_ne_nonvirtual: 0
+simplify_if_else_with_icmplt_ne_nonvirtual: 0
+simplify_if_else_with_icmpeq_ne_nonvirtual: 0
+simplify_if_else_with_icmpne_ne_nonvirtual: 0
 simplify_if_else_with_icmpeq_ne: 1
 simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
@@ -11,12 +23,12 @@ simplify_if_else_with_icmplt: 23
 simplify_if_else_with_icmpge: 17
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 46
-simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 4
 simplify_if_else_with_acmpne: 5
+simplify_if_else_with_eq_eq: 5
 simplify_if_null: 68
 simplify_if_nonnull: 0
-simplify_if_else_with_eq_eq: 5
+simplify_addition_right1: 0
 simplify_astore: 23
 simplify_istore: 51
 positive_increment: 5
@@ -30,13 +42,13 @@ positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
 simplify_goto_label: 336
-simplify_pop_afterinvokenonvirtual: 18
-simplify_pop_afterinvokevirtual: 21
+simplify_pop_afterinvokevirtual: 39
 delete_dead_goto_label: 117
 remove_aload_swap: 4
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 36
 remove_string_concat_ifnonnull: 10
+remove_string_concat_ifnonnull_ldc: 19
 
 Generated: RoomAction.class
 Generated: BFRoomAction.class
@@ -74,12 +86,12 @@ FeastRoomAction.optdump:;         code_length 10
 FeastRoomAction.optdump:;         code_length 168
 GrueHunt.optdump:;         code_length 5
 GrueHunt.optdump:;         code_length 14
-GrueHunt.optdump:;         code_length 1011
+GrueHunt.optdump:;         code_length 920
 GrueRoomAction.optdump:;         code_length 5
 GrueRoomAction.optdump:;         code_length 101
 HuntRoomAction.optdump:;         code_length 84
-HuntRoomAction.optdump:;         code_length 67
-HuntRoomAction.optdump:;         code_length 622
+HuntRoomAction.optdump:;         code_length 53
+HuntRoomAction.optdump:;         code_length 594
 InGenerate.optdump:;         code_length 17
 InGenerate.optdump:;         code_length 179
 InGenerate.optdump:;         code_length 21

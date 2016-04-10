@@ -3,7 +3,19 @@ rm -rf *.class *.j *~
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 0
+simplify_if_else_with_icmpgt_ne_virtual: 0
+simplify_if_else_with_icmplt_ne_virtual: 0
+simplify_if_else_with_icmple_ne_virtual: 0
+simplify_if_else_with_icmpeq_ne_virtual: 0
+simplify_if_else_with_icmpne_ne_virtual: 0
+simplify_if_else_with_acmpne_ne_virtual: 0
+simplify_if_else_with_acmpeq_ne_virtual: 0
 simplify_if_else_with_icmpge_ne_nonvirtual: 0
+simplify_if_else_with_icmpgt_ne_nonvirtual: 0
+simplify_if_else_with_icmple_ne_nonvirtual: 0
+simplify_if_else_with_icmplt_ne_nonvirtual: 0
+simplify_if_else_with_icmpeq_ne_nonvirtual: 0
+simplify_if_else_with_icmpne_ne_nonvirtual: 0
 simplify_if_else_with_icmpeq_ne: 2
 simplify_if_else_with_icmpne_eq: 1
 simplify_if_else_with_icmple: 0
@@ -12,12 +24,12 @@ simplify_if_else_with_icmplt: 12
 simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 1
 simplify_if_else_with_icmpeq: 4
-simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 2
 simplify_if_else_with_acmpne: 1
+simplify_if_else_with_eq_eq: 2
 simplify_if_null: 0
 simplify_if_nonnull: 0
-simplify_if_else_with_eq_eq: 2
+simplify_addition_right1: 0
 simplify_astore: 21
 simplify_istore: 29
 positive_increment: 13
@@ -31,13 +43,13 @@ positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
 simplify_goto_label: 11
-simplify_pop_afterinvokenonvirtual: 1
-simplify_pop_afterinvokevirtual: 0
+simplify_pop_afterinvokevirtual: 1
 delete_dead_goto_label: 10
 remove_aload_swap: 0
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 0
 remove_string_concat_ifnonnull: 0
+remove_string_concat_ifnonnull_ldc: 0
 
 Generated: BacktrackSolver.class
 Generated: Benchmark.class

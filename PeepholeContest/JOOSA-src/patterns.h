@@ -186,7 +186,9 @@ int simplify_astore(CODE **c)
  * pop
  * -------->
  * istore x
- * Added by OSSAMA this reduces the benchmark from 20537 to 20077
+ * Reason: This pattern is sound because duplication 
+ * is not necessary since the duplicated value will always be popped afterwards.
+ * Added by OSSAMA 
  */
 int simplify_istore(CODE **c)
 { int x;
@@ -223,7 +225,10 @@ int positive_increment(CODE **c)
  * iadd
  * istore x
  * --------->
- * iinc x k   ADDED BY OSSAMA
+ * iinc x k   
+ * Reason: This pattern is sound because after the addition is perofrmed, a store is done 
+ * which is the same thing as iinc
+ * ADDED BY OSSAMA
  */ 
 int positive_increment1(CODE **c)
 { int x,y,k;
@@ -250,6 +255,8 @@ int positive_increment1(CODE **c)
  * goto L2
  * ...
  * L2:    (reference count increased by 1)
+ * Reason: This pattern is sound because instead of having a middle jump we can just 
+ * short circuit the two jumps. 
  ADDED BY OSSAMA  
  */
 int simplify_goto_goto(CODE **c)
@@ -270,8 +277,7 @@ int simplify_goto_goto(CODE **c)
  * goto L2
  * ....
  * L1:
- * L2:    (reference count increased by 1)  
- ADDED BY OSSAMA
+ * L2:    (reference count increased by 1) 
  */
 int simplify_goto_label(CODE **c)
 { int l1,l2;
@@ -291,6 +297,8 @@ int simplify_goto_label(CODE **c)
  * goto L2
  * ....
  * L2:    (reference count increased by 1)  
+ * Reason: this pattern is sound because a label with in degree of 0 
+ * doesn't affect the program at all
  ADDED BY OSSAMA
  */
 int delete_dead_goto_label(CODE **c)
@@ -310,6 +318,8 @@ int delete_dead_goto_label(CODE **c)
  * dup
  * dup
  * astore 6
+ * Reason: this pattern is sound because instead of storing the value into x and loading the same value,
+ * its faster to duplicate the value on the stack. 
  * ADDED BY OSSAMA this reduces the benchmark from 20544 to 20537
  */
 
@@ -333,6 +343,7 @@ int simplify_aload_after_astore(CODE **c)
  * -------->
  * dup
  * astore 6
+ * Reason: same reason as before.
  * ADDED BY OSSAMA this had 20077 to 20044
  */
 
@@ -356,6 +367,7 @@ int simplify_aload_after_astore2(CODE **c)
  * dup
  * dup
  * istore 6
+ * Reason: same reason as before.
  * ADDED BY OSSAMA this had no effect for the benchmark
  */
 
@@ -380,6 +392,7 @@ int simplify_iload_after_istore(CODE **c)
  * dup
  * istore 6
  * ADDED BY OSSAMA this had 20077 to 20044
+* Reason: same reason as before.
  */
 
 int simplify_iload_after_istore2(CODE **c)
@@ -395,23 +408,12 @@ int simplify_iload_after_istore2(CODE **c)
   return 0;
 }
 
-/*iconst_0
-  *istore_2
-  *iconst_0
-  *istore 5
- * -------->
- * iconst_0
- * dup
-  *istore_2
-  *istore 5
- * istore 6
- * TO BE IMPLEMENTED
- */
 
 /* iinc x 0
  * --------->
  * null
- ADDED BY OSSAMA
+ * Reason: an increment by zero is the same as nop
+ * ADDED BY OSSAMA
  */ 
 int positive_increment_0(CODE **c)
 { int x,k;
@@ -450,6 +452,7 @@ int negative_increment(CODE **c)
   istore_2
   --------->
   iinc 2 -1
+  * Reason: same reason as before.
   ADDED BY OSSAMA
 */
 int negative_increment1(CODE **c)
@@ -469,9 +472,8 @@ int negative_increment1(CODE **c)
  * iadd          
  * ------>       
  * iload x 
- ADDED BY OSSAMA        
- *                        
- *                             
+* Reason: same reason as before.
+ ADDED BY OSSAMA                              
  */
 
 int simplify_addition_right(CODE **c)
@@ -489,9 +491,8 @@ int simplify_addition_right(CODE **c)
  * iadd          
  * ------>       
  * iload x 
- ADDED BY OSSAMA        
- *                        
- *                             
+ * Reason: same reason as before.
+ ADDED BY OSSAMA                        
  */
 
 int simplify_addition_right1(CODE **c)
@@ -500,39 +501,6 @@ int simplify_addition_right1(CODE **c)
       is_iload(next(*c),&x) && 
       is_iadd(next(next(*c)))) {
      if (k==0) return replace(c,3,makeCODEiload(x,NULL));
-  }
-  return 0;
-}
-
-
- /*  invokenonvirtual java/util/Vector/<init>(I)V
- *    dup
- *    aload_0
- *    swap
- *    putfield SudokuSolver/grid Ljava/util/Vector;
-*     pop 
- * ------>       
-*     invokenonvirtual java/util/Vector/<init>(I)V
- *    aload_0
- *    swap
- *    putfield SudokuSolver/grid Ljava/util/Vector;
- ADDED BY OSSAMA
- */
-
-int simplify_pop_afterinvokenonvirtual(CODE **c){
-  int x;
-  char *virtualmethod;
-  char *field;
-  if (is_invokenonvirtual(*c,&virtualmethod) &&
-      is_dup(next(*c))  &&
-      is_aload(next(next(*c)),&x)   &&
-      is_swap(next(next(next(*c)))) &&
-      is_putfield(next(next(next(next(*c)))), &field) &&
-      is_pop(next(next(next(next(next(*c))))))) {
-      return replace(c,6,makeCODEinvokenonvirtual(virtualmethod,
-                                       makeCODEaload(x, 
-                                       makeCODEswap(
-                                       makeCODEputfield(field , NULL)))));
   }
   return 0;
 }
@@ -547,7 +515,8 @@ int simplify_pop_afterinvokenonvirtual(CODE **c){
  *    aload_0
  *    swap
  *    putfield SudokuSolver/grid Ljava/util/Vector;
- ADDED BY OSSAMA
+ * Reason: No use of the duplocation if its popped afterwards anyway
+ * ADDED BY OSSAMA
  */
 
 int simplify_pop_afterinvokevirtual(CODE **c){
@@ -579,6 +548,7 @@ label2:
 ifeq label3 
 ------->
 if_icmplt label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpge(CODE **c) {
@@ -619,6 +589,7 @@ label2:
 ifeq label3 
 ------->
 if_icmpge label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmplt(CODE **c) {
@@ -659,6 +630,7 @@ label2:
 ifeq label3 
 ------->
 if_icmple label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpgt(CODE **c) {
@@ -700,6 +672,7 @@ label2:
 ifeq label3 
 ------->
 if_icmpgt label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmple(CODE **c) {
@@ -740,6 +713,7 @@ label2:
 ifeq label3 
 ------->
 if_icmpeq label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpne(CODE **c) {
@@ -778,7 +752,8 @@ iconst_1
 label2:
 ifeq label3 
 ------->
-if_icmpeq label3
+if_acmpeq label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_acmpne(CODE **c) {
@@ -804,7 +779,7 @@ int simplify_if_else_with_acmpne(CODE **c) {
 }
 
 /**
-  if( o1 != o2 )
+  if( o1 == o2 )
       this.solveCell( row, col + 1 ) ;
   else
       this.solveCell( row + 1, 0 ) ;
@@ -819,6 +794,7 @@ label2:
 ifeq label3 
 ------->
 if_icmpeq label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_eq_eq(CODE **c) {
@@ -858,6 +834,7 @@ label2:
 ifeq label3 
 ------->
 if_icmpne label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpeq(CODE **c) {
@@ -897,6 +874,7 @@ label2:
 ifeq label3 
 ------->
 if_acmpne label3
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_acmpeq(CODE **c) {
@@ -929,7 +907,7 @@ goto label2
 label1:
 iconst_1
 label2:
-dup     1 1   0 0
+dup     
 ifne label3
 pop empty
 .
@@ -946,9 +924,7 @@ pop
 .
 .
 label3: 
-
-
-
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpeq_ne(CODE **c) {
@@ -982,13 +958,13 @@ int simplify_if_else_with_icmpeq_ne(CODE **c) {
 /**
 invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
 iconst_0
-if_icmpeq label1
+if_icmpge label1
 iconst_0
 goto label2
 label1:
 iconst_1
 label2:
-dup     1 1   0 0
+dup    
 ifne label3
 pop empty
 .
@@ -1000,12 +976,13 @@ invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
 iconst_1
 swap
 iconst_0
-if_icmpeq label3
+if_icmpge label3
 pop
 .
 .
 .
 label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpge_ne_virtual(CODE **c) {
@@ -1036,7 +1013,442 @@ int simplify_if_else_with_icmpge_ne_virtual(CODE **c) {
   }
   return 0;
 }
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmple label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmple label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmple_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmple(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmple(label3,makeCODEpop(NULL)))))));
 
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpgt label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpgt label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpgt_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpgt(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpgt(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmplt label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmplt label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmplt_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmple(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmplt(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpeq label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpeq label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpeq_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpeq(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpne label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpne label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpne_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpne(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpne(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+aload_0
+if_acmpeq label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+aload_0
+if_icmpeq label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_acmpeq_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_aload(next(*c), &cmp2) &&
+      is_if_acmpeq(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEaload(cmp2,makeCODEif_acmpeq(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+aload_0
+if_acmpne label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokevirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+aload_0
+if_icmpne label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_acmpne_ne_virtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokevirtual(*c, &cmp1) &&
+      is_aload(next(*c), &cmp2) &&
+      is_if_acmpne(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokevirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEaload(cmp2,makeCODEif_acmpne(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpge label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpge label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
 int simplify_if_else_with_icmpge_ne_nonvirtual(CODE **c) {
   char* cmp1;
   int cmp2;
@@ -1065,6 +1477,299 @@ int simplify_if_else_with_icmpge_ne_nonvirtual(CODE **c) {
   }
   return 0;
 }
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpgt label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpgt label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpgt_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpgt(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpgt(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmplt label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmplt label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmplt_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmplt(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmplt(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmple label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmple label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmple_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmple(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmple(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpeq label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpeq label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpeq_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpeq(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpeq(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+
+/**
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_0
+if_icmpne label1
+iconst_0
+goto label2
+label1:
+iconst_1
+label2:
+dup    
+ifne label3
+pop empty
+.
+.
+. 
+label3: 
+------->
+invokenonvirtual java/lang/String/indexOf(Ljava/lang/String;I)I
+iconst_1
+swap
+iconst_0
+if_icmpne label3
+pop
+.
+.
+.
+label3: 
+* Reason: No reason to store conditional results, instead a jump is made directly
+ ADDED BY OSSAMA
+*/
+int simplify_if_else_with_icmpne_ne_nonvirtual(CODE **c) {
+  char* cmp1;
+  int cmp2;
+  int label1, label2, label3, labeltemp;
+  int x, y;
+  if (is_invokenonvirtual(*c, &cmp1) &&
+      is_ldc_int(next(*c), &cmp2) &&
+      is_if_icmpne(next(next(*c)), &label1) &&
+      is_ldc_int(next(next(next(*c))), &x) && 
+      (x==0)  &&
+      is_goto(next(next(next(next(*c)))), &label2)  &&
+      is_label(next(next(next(next(next(*c))))), &labeltemp) && 
+      (labeltemp==label1) &&
+      is_ldc_int(next(next(next(next(next(next(*c)))))), &y) && 
+      (y==1) &&
+      is_label(next(next(next(next(next(next(next(*c))))))), &labeltemp) && 
+      ( labeltemp== label2) &&
+      is_dup(next(next(next(next(next(next(next(next(*c))))))))) &&
+      is_ifne(next(next(next(next(next(next(next(next(next(*c))))))))), &label3) && 
+      is_pop(next(next(next(next(next(next(next(next(next(next(*c))))))))))) &&
+      uniquelabel(label1) && uniquelabel(label2))  {
+         droplabel(label1);
+         droplabel(label2);     
+         return replace(c, 11,makeCODEinvokenonvirtual(cmp1,makeCODEldc_int(y,makeCODEswap(makeCODEldc_int(cmp2,makeCODEif_icmpne(label3,makeCODEpop(NULL)))))));
+
+  }
+  return 0;
+}
+
+
 
 
 /**
@@ -1093,7 +1798,7 @@ pop
 .
 .
 label3: 1
-
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_else_with_icmpne_eq(CODE **c) {
@@ -1134,7 +1839,7 @@ int simplify_if_else_with_icmpne_eq(CODE **c) {
 ifnonnull stop_9
 pop
 ldc "null"
-
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_null(CODE **c) {
@@ -1165,7 +1870,7 @@ int simplify_if_null(CODE **c) {
 ifnull stop_9
 pop
 ldc "null"
-
+* Reason: No reason to store conditional results, instead a jump is made directly
  ADDED BY OSSAMA
 */
 int simplify_if_nonnull(CODE **c) {
@@ -1286,7 +1991,7 @@ int remove_ldc_ifnonnull(CODE **c) {
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
   ...
 
-  Virtual calls to java/lang/String/concat can accept NULL values so there is no need to check ifnonull
+  Virtual calls to java/lang/String/concat can accept NULL arguments so there is no need to check ifnonnull
   This can be simple replaced by:
 
   ... (load 2 strings on operand stack)
@@ -1316,6 +2021,44 @@ int remove_string_concat_ifnonnull(CODE **c) {
 
 
 /*
+  Same idea as above but with an extra ldc.
+  Virtual calls to java/lang/String/concat can accept NULL arguments so there is no need to check ifnonnull
+
+  dup
+  ifnonnull stop_77
+  pop
+  ldc "null"
+  stop_77:
+  ldc " ever since."
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+  ----------------------------------------------------------------------------->
+  ldc " ever since."
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  ANOTHER 368 !
+
+  ADDED BY MICHAEL
+*/
+
+int remove_string_concat_ifnonnull_ldc(CODE **c) {
+  int label1, label2;
+  char *useless, *virtualmethod, *extra;
+  if (is_dup(*c) && 
+      is_ifnonnull(next(*c), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(*c))) &&
+      is_ldc_string(next(next(next(*c))), &useless) &&
+      is_label(next(next(next(next(*c)))), &label2) &&
+      label1 == label2 &&
+      is_ldc_string(next(next(next(next(next(*c))))), &extra) &&
+      is_invokevirtual(next(next(next(next(next(next(*c)))))), &virtualmethod) &&
+      strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
+      return replace(c, 7, makeCODEldc_string(extra, makeCODEinvokevirtual(virtualmethod, NULL)));
+  }
+  return 0;
+}
+
+/*
 #define OPTS 4
 
 OPTI optimization[OPTS] = {simplify_multiplication_right,
@@ -1323,16 +2066,30 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
                            positive_increment,
                            simplify_goto_goto};
 */
-
-
-
+// ADD_PATTERN(removeSavesIstore);
+// ADD_PATTERN(removeSavesAstore);
+// ADD_PATTERN(remove_swap);
+// ADD_PATTERN(remove_nop);
 int init_patterns()
 { 
-    // ADD_PATTERN(removeSavesIstore);
-    // ADD_PATTERN(removeSavesAstore);
+    
     
     ADD_PATTERN(simplify_if_else_with_icmpge_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmpgt_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmplt_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmple_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmpeq_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_icmpne_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_acmpne_ne_virtual);
+    ADD_PATTERN(simplify_if_else_with_acmpeq_ne_virtual);
+
     ADD_PATTERN(simplify_if_else_with_icmpge_ne_nonvirtual);
+    ADD_PATTERN(simplify_if_else_with_icmpgt_ne_nonvirtual);
+    ADD_PATTERN(simplify_if_else_with_icmple_ne_nonvirtual);
+    ADD_PATTERN(simplify_if_else_with_icmplt_ne_nonvirtual);
+    ADD_PATTERN(simplify_if_else_with_icmpeq_ne_nonvirtual);
+    ADD_PATTERN(simplify_if_else_with_icmpne_ne_nonvirtual);
+
     ADD_PATTERN(simplify_if_else_with_icmpeq_ne);
     ADD_PATTERN(simplify_if_else_with_icmpne_eq); 
     ADD_PATTERN(simplify_if_else_with_icmple);
@@ -1341,12 +2098,14 @@ int init_patterns()
     ADD_PATTERN(simplify_if_else_with_icmpge);
     ADD_PATTERN(simplify_if_else_with_icmpne);
     ADD_PATTERN(simplify_if_else_with_icmpeq);
-    ADD_PATTERN(simplify_addition_right1);
+
     ADD_PATTERN(simplify_if_else_with_acmpeq);
     ADD_PATTERN(simplify_if_else_with_acmpne);
+    ADD_PATTERN(simplify_if_else_with_eq_eq);
     ADD_PATTERN(simplify_if_null);
     ADD_PATTERN(simplify_if_nonnull);
-    ADD_PATTERN(simplify_if_else_with_eq_eq);
+
+    ADD_PATTERN(simplify_addition_right1);
     ADD_PATTERN(simplify_astore);
     ADD_PATTERN(simplify_istore);
     ADD_PATTERN(positive_increment);
@@ -1360,15 +2119,13 @@ int init_patterns()
     ADD_PATTERN(positive_increment1);
     ADD_PATTERN(simplify_addition_right);
     ADD_PATTERN(simplify_goto_label); 
-    ADD_PATTERN(simplify_pop_afterinvokenonvirtual);
     ADD_PATTERN(simplify_pop_afterinvokevirtual);
     ADD_PATTERN(delete_dead_goto_label);
 
-    // ADD_PATTERN(remove_swap);
-    // ADD_PATTERN(remove_nop);
     ADD_PATTERN(remove_aload_swap);
     ADD_PATTERN(remove_iload_swap);
     ADD_PATTERN(remove_ldc_ifnonnull);
     ADD_PATTERN(remove_string_concat_ifnonnull);
+    ADD_PATTERN(remove_string_concat_ifnonnull_ldc);
     return 1;
 }

@@ -2,7 +2,19 @@
 
 Frequencies:
 simplify_if_else_with_icmpge_ne_virtual: 0
+simplify_if_else_with_icmpgt_ne_virtual: 0
+simplify_if_else_with_icmplt_ne_virtual: 0
+simplify_if_else_with_icmple_ne_virtual: 0
+simplify_if_else_with_icmpeq_ne_virtual: 0
+simplify_if_else_with_icmpne_ne_virtual: 0
+simplify_if_else_with_acmpne_ne_virtual: 0
+simplify_if_else_with_acmpeq_ne_virtual: 0
 simplify_if_else_with_icmpge_ne_nonvirtual: 0
+simplify_if_else_with_icmpgt_ne_nonvirtual: 0
+simplify_if_else_with_icmple_ne_nonvirtual: 0
+simplify_if_else_with_icmplt_ne_nonvirtual: 0
+simplify_if_else_with_icmpeq_ne_nonvirtual: 0
+simplify_if_else_with_icmpne_ne_nonvirtual: 0
 simplify_if_else_with_icmpeq_ne: 0
 simplify_if_else_with_icmpne_eq: 0
 simplify_if_else_with_icmple: 0
@@ -11,12 +23,12 @@ simplify_if_else_with_icmplt: 4
 simplify_if_else_with_icmpge: 0
 simplify_if_else_with_icmpne: 0
 simplify_if_else_with_icmpeq: 61
-simplify_addition_right1: 0
 simplify_if_else_with_acmpeq: 0
 simplify_if_else_with_acmpne: 0
+simplify_if_else_with_eq_eq: 1
 simplify_if_null: 123
 simplify_if_nonnull: 0
-simplify_if_else_with_eq_eq: 1
+simplify_addition_right1: 0
 simplify_astore: 21
 simplify_istore: 14
 positive_increment: 0
@@ -30,13 +42,13 @@ positive_increment_0: 0
 positive_increment1: 0
 simplify_addition_right: 0
 simplify_goto_label: 433
-simplify_pop_afterinvokenonvirtual: 1
-simplify_pop_afterinvokevirtual: 3
+simplify_pop_afterinvokevirtual: 4
 delete_dead_goto_label: 84
 remove_aload_swap: 0
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 45
 remove_string_concat_ifnonnull: 29
+remove_string_concat_ifnonnull_ldc: 32
 
 Generated: AmazingCalculator.class
 Generated: ComplementsGenerator.class
@@ -49,7 +61,7 @@ AmazingCalculator.optdump:;         code_length 5
 AmazingCalculator.optdump:;         code_length 21
 AmazingCalculator.optdump:;         code_length 1
 ComplementsGenerator.optdump:;         code_length 18
-ComplementsGenerator.optdump:;         code_length 717
+ComplementsGenerator.optdump:;         code_length 535
 ComplementsGenerator.optdump:;         code_length 6
 ComplementsGenerator.optdump:;         code_length 132
 ComplementsGenerator.optdump:;         code_length 120
@@ -59,6 +71,6 @@ FemaleBoss.optdump:;         code_length 410
 GirlFriend.optdump:;         code_length 5
 GirlFriend.optdump:;         code_length 892
 Main.optdump:;         code_length 5
-Main.optdump:;         code_length 368
+Main.optdump:;         code_length 326
 Woman.optdump:;         code_length 5
 Woman.optdump:;         code_length 7

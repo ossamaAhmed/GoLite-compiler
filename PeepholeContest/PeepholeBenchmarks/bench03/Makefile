@@ -4,4 +4,4 @@ all:
 clean:
 	rm -f *.j *.class
 run:
-	java Main < in1
+	(cd lib; javac JoosBitwise.java) && (java Main < in1)
