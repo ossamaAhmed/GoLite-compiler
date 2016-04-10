@@ -32,6 +32,10 @@
  *
  * removes swaps
  * removes73 bytes
+ *
+ * Sound because the swap opcode yields the same result on the stack
+ * THIS IS NOT USED, CREATES BUGS.
+ *
  * ADDED BY SHABBIR
  */
 
@@ -61,7 +65,8 @@ int remove_swap(CODE **c){
  * -------->
  *  (blank)
  *
- *  if local x is not accessed again
+ *  ONLY IF the x local is not accessed again
+ *  Sound because if x is not accessed for the remaining of the stack call, there's no point in loading it on the stack, these instructions are therefore useless.
  *
  *  removes 226 bytes
  *  ADDED BY SHABBIR
@@ -105,7 +110,8 @@ int removeSavesAstore(CODE **c){
  * -------->
  *  (blank)
  *
- *  if local x is not accessed again
+ *  ONLY IF the x local is not accessed again
+ *  Sound because if x is not accessed for the remaining of the stack call, there's no point in loading it on the stack, these instructions are therefore useless.
  *
  *  removes 114 bytes
  *  ADDED BY SHABBIR 
@@ -1149,7 +1155,7 @@ int simplify_if_nonnull(CODE **c) {
 
   ADDED BY MICHAEL
 */
-  
+
 int remove_aload_swap(CODE **c){
   int x, k;
   if (is_aload(*c, &x) &&
