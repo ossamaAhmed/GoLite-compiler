@@ -36,6 +36,7 @@ remove_aload_swap: 1
 remove_iload_swap: 0
 remove_ldc_ifnonnull: 7
 remove_string_concat_ifnonnull: 2
+remove_string_concat_ifnonnull_ldc: 2
 
 Generated: Board.class
 Generated: BombMove.class
@@ -88,8 +89,8 @@ Game.optdump:;         code_length 19
 Game.optdump:;         code_length 33
 Game.optdump:;         code_length 22
 Game.optdump:;         code_length 78
-Game.optdump:;         code_length 132
-Game.optdump:;         code_length 144
+Game.optdump:;         code_length 125
+Game.optdump:;         code_length 137
 Game.optdump:;         code_length 65
 Game.optdump:;         code_length 15
 Game.optdump:;         code_length 132

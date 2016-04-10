@@ -1237,7 +1237,7 @@ int remove_ldc_ifnonnull(CODE **c) {
   invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
   ...
 
-  Virtual calls to java/lang/String/concat can accept NULL values so there is no need to check ifnonull
+  Virtual calls to java/lang/String/concat can accept NULL arguments so there is no need to check ifnonnull
   This can be simple replaced by:
 
   ... (load 2 strings on operand stack)
@@ -1266,6 +1266,44 @@ int remove_string_concat_ifnonnull(CODE **c) {
 }
 
 /*
+  Same idea as above but with an extra ldc.
+  Virtual calls to java/lang/String/concat can accept NULL arguments so there is no need to check ifnonnull
+
+  dup
+  ifnonnull stop_77
+  pop
+  ldc "null"
+  stop_77:
+  ldc " ever since."
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+  ----------------------------------------------------------------------------->
+  ldc " ever since."
+  invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;
+
+  ANOTHER 368 !
+
+  ADDED BY MICHAEL
+*/
+
+int remove_string_concat_ifnonnull_ldc(CODE **c) {
+  int label1, label2;
+  char *useless, *virtualmethod, *extra;
+  if (is_dup(*c) && 
+      is_ifnonnull(next(*c), &label1) &&
+      uniquelabel(label1) &&
+      is_pop(next(next(*c))) &&
+      is_ldc_string(next(next(next(*c))), &useless) &&
+      is_label(next(next(next(next(*c)))), &label2) &&
+      label1 == label2 &&
+      is_ldc_string(next(next(next(next(next(*c))))), &extra) &&
+      is_invokevirtual(next(next(next(next(next(next(*c)))))), &virtualmethod) &&
+      strcmp(virtualmethod, "java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;") == 0) {
+      return replace(c, 7, makeCODEldc_string(extra, makeCODEinvokevirtual(virtualmethod, NULL)));
+  }
+  return 0;
+}
+
+/*
 #define OPTS 4
 
 OPTI optimization[OPTS] = {simplify_multiplication_right,
@@ -1273,8 +1311,6 @@ OPTI optimization[OPTS] = {simplify_multiplication_right,
                            positive_increment,
                            simplify_goto_goto};
 */
-
-
 
 int init_patterns()
 { 
@@ -1318,5 +1354,6 @@ int init_patterns()
     ADD_PATTERN(remove_iload_swap);
     ADD_PATTERN(remove_ldc_ifnonnull);
     ADD_PATTERN(remove_string_concat_ifnonnull);
+    ADD_PATTERN(remove_string_concat_ifnonnull_ldc);
     return 1;
 }
