@@ -2,7 +2,57 @@ open Printf
 open Ast
 
 exception Code_generation_error of string
+let code_gen_error msg = raise (Code_generation_error msg)
 
+(*I will add here the stack functions we will use for the locals variables*)
+
+
+type symTable = Scope of (string , string) Hashtbl.t
+let symbol_table = ref []
+
+let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
+let end_scope ()= match !symbol_table with 
+                | head::tail -> symbol_table:= tail
+let search_current_scope key = match !symbol_table with 
+    | Scope(current_scope)::tail -> 
+    if (Hashtbl.mem current_scope key) then 
+        Hashtbl.find current_scope key
+    else 
+        code_gen_error ("variable is not defined in current_scope")
+
+let search_not_find_current_scope x= match !symbol_table with 
+                            | Scope(current_scope)::tail -> 
+                            if (Hashtbl.mem current_scope x) then 
+                                    true
+                            else 
+                                    false
+
+let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
+                            | []-> code_gen_error ("variable is not defined in current and previous scopes")
+                            | Scope(current_scope)::tail -> 
+                            if (Hashtbl.mem current_scope x) then 
+                                    Hashtbl.find current_scope x
+                            else 
+                                    search_previous_scopes x tail
+
+let add_variable_to_current_scope mytype myvar=  match myvar with
+                                            | Identifier(myvariable,linenum)-> 
+                                                (match !symbol_table with
+                                                    | Scope(current_scope)::tail ->
+                                                    if not(Hashtbl.mem current_scope myvariable) then 
+                                                        Hashtbl.add current_scope myvariable mytype
+                                                    else 
+                                                         code_gen_error ("variable is defined more than one time")
+                                                 ) 
+
+
+let labelcount = ref 0
+let labelcounter ()= labelcount:=!labelcount+1
+let localcount = ref 0
+let localcounter ()= localcount:=!localcount+1
+
+
+(*-------------END--------------------------------*)
 let generate program filedir filename =
 
     (* Program AST unpacking *)
@@ -132,7 +182,7 @@ let generate program filedir filename =
         | Stringliteral(value, _) -> print_string value
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, _, _) -> print_string value
+        | OperandName(value, _, _) -> print_string ("ldc_"^(search_current_scope value)^"\n")
         | AndAndOp(exp1, exp2, _, _) -> 
             begin
                 print_string "( ";
@@ -391,17 +441,38 @@ let generate program filedir filename =
                 println_string_with_tab level ".end method\n";
             end
     in
+    let initialize_variable_default typename = match typename with 
+        | Definedtype(Identifier(value, _), _) -> ()
+        | Primitivetype(value, _) -> 
+
+           ( match value with
+                | "int" -> print_string "iconst_0\n"
+                | "rune" -> print_string "iconst_0\n"
+                | "bool" -> print_string "iconst_0\n"
+                | "string" -> print_string "ldc \"\"\n"
+                | "float64" -> print_string "fconst_0\n")
+
+        | Arraytype(len, type_name2, _)-> ()
+        | Slicetype(type_name2, _)-> ()
+        | Structtype([], _) -> ()
+        | Structtype(field_dcl_list, _) -> ()
+    in
+    let declare_variable_emit typename iden= 
+        begin
+            initialize_variable_default typename;
+            add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+            print_string (Printf.sprintf "istore_%d\n" ((!localcount)));
+            localcounter();
+        end
+    in
     let print_var_decl level decl = match decl with
         | VarSpecWithType(iden_list, typename, exprs, _) -> 
             (match exprs with
                 | [] -> 
                     begin
                         print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string " ";
-                        print_type_name level typename;
-                        print_string ";\n";
+                        List.map (declare_variable_emit typename) iden_list;
+                        print_string "";
                     end
                 | head::tail ->
                     begin
@@ -595,7 +666,6 @@ let generate program filedir filename =
         | Print(exprs, _) -> 
             begin
                 print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
-                print_string_with_tab level "ldc ";
                 print_expr_list exprs;
                 print_string "\n";
                 print_string_with_tab level "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n";
@@ -603,7 +673,6 @@ let generate program filedir filename =
         | Println(exprs, _) -> 
             begin
                 print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
-                print_string_with_tab level "ldc ";
                 print_expr_list exprs;
                 print_string "\n";
                 print_string_with_tab level "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n";
@@ -723,6 +792,7 @@ let generate program filedir filename =
             match func_name with
             | "main" ->
                 begin
+                    start_scope ();
                     println_string ".method public static main([Ljava/lang/String;)V";
                     println_string_with_tab (level+1) ".limit stack 99";
                     println_string_with_tab (level+1) ".limit locals 99";
