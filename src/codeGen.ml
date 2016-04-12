@@ -101,9 +101,9 @@ let string_jasmin_type go_type = match go_type with
     | Primitivetype(value, _) ->
         (match value with 
             | "int" -> "I"
-            | "bool" -> "I"
+            | "bool" -> "Z"
             | "float64" -> "F"
-            | "rune" -> "F"
+            | "rune" -> "C"
             | "string" -> "[Ljava/lang/String;"
         )
     | Arraytype(len, type_name2, _) -> ""
