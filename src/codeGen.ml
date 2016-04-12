@@ -1,18 +1,24 @@
 open Printf
 open Ast
+open Symboltbl 
 
 exception Code_generation_error of string
 let code_gen_error msg = raise (Code_generation_error msg)
 
-(*I will add here the stack functions we will use for the locals variables*)
-
+(* Stack functions for locals manipulation *)
 
 type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
+let labelcount = ref 0
+let labelcounter ()= labelcount:=!labelcount+1
+let localcount = ref 0
+let localcounter ()= localcount:=!localcount+1
+
 
 let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
 let end_scope ()= match !symbol_table with 
-                | head::tail -> symbol_table:= tail
+                | Scope(head)::tail -> localcount:= !localcount-(Hashtbl.length head); symbol_table:= tail
+
 let search_current_scope key = match !symbol_table with 
     | Scope(current_scope)::tail -> 
     if (Hashtbl.mem current_scope key) then 
@@ -20,39 +26,61 @@ let search_current_scope key = match !symbol_table with
     else 
         code_gen_error ("variable is not defined in current_scope")
 
-let search_not_find_current_scope x= match !symbol_table with 
-                            | Scope(current_scope)::tail -> 
-                            if (Hashtbl.mem current_scope x) then 
-                                    true
-                            else 
-                                    false
+let search_not_find_current_scope x = match !symbol_table with
+    | Scope(current_scope)::tail ->
+        if (Hashtbl.mem current_scope x) then true else false
 
-let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
-                            | []-> code_gen_error ("variable is not defined in current and previous scopes")
-                            | Scope(current_scope)::tail -> 
-                            if (Hashtbl.mem current_scope x) then 
-                                    Hashtbl.find current_scope x
-                            else 
-                                    search_previous_scopes x tail
+let rec search_previous_scopes x table = match table with (*called with !symbol_table*)
+    | []-> code_gen_error ("variable is not defined in current and previous scopes")
+    | Scope(current_scope)::tail -> 
+        if (Hashtbl.mem current_scope x) then 
+            Hashtbl.find current_scope x
+        else 
+            search_previous_scopes x tail
 
-let add_variable_to_current_scope mytype myvar=  match myvar with
-                                            | Identifier(myvariable,linenum)-> 
-                                                (match !symbol_table with
-                                                    | Scope(current_scope)::tail ->
-                                                    if not(Hashtbl.mem current_scope myvariable) then 
-                                                        Hashtbl.add current_scope myvariable mytype
-                                                    else 
-                                                         code_gen_error ("variable is defined more than one time")
-                                                 ) 
+let add_variable_to_current_scope mytype myvar = match myvar with
+    | Identifier(myvariable,linenum)-> 
+        (match !symbol_table with
+            | Scope(current_scope)::tail ->
+                if not(Hashtbl.mem current_scope myvariable) then 
+                    Hashtbl.add current_scope myvariable mytype
+                else
+                    code_gen_error ("variable is defined more than one time")
+        )
 
+let get_primitive_type type_of_type_i = match type_of_type_i with
+        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
+        | Primitivetype(value, _) -> 
 
-let labelcount = ref 0
-let labelcounter ()= labelcount:=!labelcount+1
-let localcount = ref 0
-let localcounter ()= localcount:=!localcount+1
+           ( match value with
+                | "int" -> SymInt
+                | "rune" -> SymRune
+                | "bool" -> SymBool
+                | "string" -> SymString
+                | "float64" -> SymString)
 
+        | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
+        | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
+        | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
+        | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
-(*-------------END--------------------------------*)
+let generate_load typename varname= match typename with 
+    | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
+    | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
+    | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
+    | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
+    | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
+    | NotDefined -> code_gen_error "type wasnt attached in type checking"
+
+let generate_store typename varnameIden= match typename, varnameIden with 
+    | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+    | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
+    | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+    | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
+    | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+
+(* --------------------------------END-------------------------------- *)
+
 let generate program filedir filename =
 
     (* Program AST unpacking *)
@@ -195,7 +223,7 @@ let generate program filedir filename =
         | Stringliteral(value, _) -> print_string value
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, _, _) -> print_string ("ldc_"^(search_current_scope value)^"\n")
+        | OperandName(value, _, symt) -> println_string_with_tab 1 (generate_load symt value)
         | AndAndOp(exp1, exp2, _, _) -> 
             begin
                 print_string "( ";
@@ -453,27 +481,27 @@ let generate program filedir filename =
             end
     in
     let initialize_variable_default typename = match typename with 
-        | Definedtype(Identifier(value, _), _) -> ()
+        | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
 
            ( match value with
-                | "int" -> print_string "iconst_0\n"
-                | "rune" -> print_string "iconst_0\n"
-                | "bool" -> print_string "iconst_0\n"
-                | "string" -> print_string "ldc \"\"\n"
-                | "float64" -> print_string "fconst_0\n")
+                | "int" -> println_string_with_tab 1  "iconst_0"
+                | "rune" -> println_string_with_tab 1  "iconst_0"
+                | "bool" -> println_string_with_tab 1  "iconst_0"
+                | "string" -> println_string_with_tab 1  "ldc \"\""
+                | "float64" -> println_string_with_tab 1  "fconst_0")
 
-        | Arraytype(len, type_name2, _)-> ()
-        | Slicetype(type_name2, _)-> ()
-        | Structtype([], _) -> ()
-        | Structtype(field_dcl_list, _) -> ()
+        | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
+        | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
+        | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
+        | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
     let declare_variable_emit typename iden= 
         begin
             initialize_variable_default typename;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-            print_string (Printf.sprintf "istore_%d\n" ((!localcount)));
             localcounter();
+            println_string_with_tab 1 (generate_store (get_primitive_type typename) iden);
         end
     in
     let print_var_decl level decl = match decl with
@@ -481,9 +509,8 @@ let generate program filedir filename =
             (match exprs with
                 | [] -> 
                     begin
-                        print_tab (level);
                         List.map (declare_variable_emit typename) iden_list;
-                        print_string "";
+                        ();
                     end
                 | head::tail ->
                     begin
