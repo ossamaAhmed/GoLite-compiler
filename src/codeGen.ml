@@ -67,6 +67,41 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
+let get_expr_type exp1 = match exp1 with
+	| OperandName(_,_,symType)-> symType
+	| AndAndOp(_,_,_,symType)-> symType
+	| OrOrOp(_,_,_,symType)-> symType
+	| EqualEqualCmp(_,_,_,symType)-> symType
+	| NotEqualCmp(_,_,_,symType)-> symType
+	| LessThanCmp(_,_,_,symType)-> symType
+	| GreaterThanCmp(_,_,_,symType)-> symType
+	| LessThanOrEqualCmp(_,_,_,symType)-> symType
+	| GreaterThanOrEqualCmp(_,_,_,symType)-> symType
+	| AddOp(_,_,_,symType)-> symType
+	| MinusOp(_,_,_,symType)-> symType
+	| OrOp(_,_,_,symType)-> symType
+	| CaretOp(_,_,_,symType)-> symType
+	| MulOp(_,_,_,symType)-> symType
+	| DivOp(_,_,_,symType)-> symType
+	| ModuloOp(_,_,_,symType)-> symType
+	| SrOp(_,_,_,symType)-> symType
+	| SlOp(_,_,_,symType)-> symType
+	| AndOp(_,_,_,symType)-> symType
+	| AndCaretOp(_,_,_,symType)-> symType
+	| OperandParenthesis(_,_,symType)-> symType
+	| Indexexpr(_,_,_,symType)-> symType
+	| Unaryexpr(_,_,symType)-> symType
+	| Binaryexpr(_,_,symType)-> symType
+	| FuncCallExpr(_,_,_,symType)-> symType
+	| UnaryPlus(_,_,symType)-> symType
+	| UnaryMinus(_,_,symType)-> symType
+	| UnaryNot(_,_,symType)-> symType
+	| UnaryCaret(_,_,symType)-> symType
+	| Value(_,_,symType)-> symType
+	| Selectorexpr(_,_,_,symType)-> symType
+	| TypeCastExpr(_,_,_,symType)	-> symType
+    | Appendexpr(_,_,_,symType)-> symType
+
 let generate_load typename varname linenum= match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
@@ -466,20 +501,6 @@ let generate program filedir filename =
                 symt
             end
         | Value(value, _, symt) -> print_literal value; symt (*MISSING RUNES*)
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-            begin
-                print_string "getfield ";
-                print_expr exp1;
-                print_symType symbolType linenum;
-                symbolType
-            end
-        | Indexexpr(exp1, exp2, _, symt) -> 
-            begin
-                print_expr exp1;(*put array ref on stack*)
-                print_expr exp2;(*put array index on stack*)
-                (*if assignment -> load value, call iastore*)
-                (*print_string "iaload"*)
-            end
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
         | FuncCallExpr(exp1, exprs, _, symt) -> 
@@ -521,12 +542,16 @@ let generate program filedir filename =
                 symt
             end
         | Value(value, _, symt) -> print_literal value; symt;
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-                (*TODO: determine if put or get *)
+        | Indexexpr(exp1, exp2, _, symt) -> 
             begin
-                print_string "getfield ";
-                print_expr exp1;
-                print_symType symbolType linenum;
+                print_expr exp1;(*put array ref on stack*)
+                print_expr exp2;(*put array index on stack*)
+                print_string "iaload"(* TODO: eval expression to immediate or ref*)
+            end
+        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
+                (*TODO: GET STRCUT NAME*)
+            begin
+                print_string "getfield structName fieldType";
                 symbolType
             end
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
@@ -558,11 +583,28 @@ let generate program filedir filename =
             
         | Appendexpr(Identifier(iden, _),exp1, linenum, symType)-> 
             begin
+                (*TODO: CHANGE Immediates for string*)
                 generate_load symType iden linenum;
                 print_string "arraylength";
                 print_string "iconst_1";
                 print_string "iadd";
-                (*TODO: FINISH ALGO*) 
+                print_string "newarray"(* ^ get_type exp1*);
+                print_string "dup";
+                print_string "dup";
+                print_string "dup";
+                generate_load symType iden linenum;
+                print_string "swap";
+                print_string "iconst_0";
+                print_string "swap";
+                print_string "iconst_0";
+                generate_load symType iden linenum;
+                print_string "arraylength";
+                print_string "invokestatic java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V";
+                generate_load symType iden linenum;
+                print_string "arraylength";
+                print_expr exp1;
+                print_string "iastore";
+                print_string (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
 
@@ -703,7 +745,13 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Indexexpr(expr1,expr2,linenum,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | Indexexpr(expr1,expr2,linenum,ast_type) -> 
+            begin
+                print_expr exp1;(*put array ref on stack*)
+                print_expr exp2;(*put array index on stack*)
+                (*TODO: PRINT LHS*)
+                print_string "aastore"(* or iastore*)
+            end
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
