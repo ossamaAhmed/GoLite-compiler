@@ -78,6 +78,19 @@ let generate program filedir filename =
     in
     let print_int value = print_string (string_of_int value) in
     let print_float value = print_string (string_of_float value) in
+    let print_symType sType = match sType with
+        | SymInt -> print_string "SymInt"
+        | SymFloat64 -> print_string "SymFloat64"
+        | SymRune -> print_string "SymRune" 
+        | SymString -> print_string "SymString"
+        | SymBool -> print_string "SymBool"
+        | SymArray(subType) -> print_string "SymArray/"^print_symType(subType)
+        | SymSlice(subType) -> print_string "SymSlice/"^print_symType(subType)
+        | SymStruct(fieldlist) -> print_string "SymStruct/"(*TODO: this needs to be tested*)
+        | SymFunc(subType,arglist) -> print_string "SymFunc/"^print_symType subType
+        | SymType(subType) -> print_string "SymType/"^print_symType(subType)
+        | Void -> print_string "Void"
+        | NotDefined -> print_string "Undefined" in
 
     (* Jasmin initializations *)
 
@@ -91,7 +104,7 @@ let generate program filedir filename =
             print_string ".super java/lang/Object\n\n"
         end
     in
-    (*
+    (
     .method public <init>()V
        aload_0
        invokenonvirtual java/lang/Object/<init>()V
@@ -381,15 +394,13 @@ let generate program filedir filename =
                 print_string " )";
             end
         | Value(value, _, _) -> print_literal value
-        | Selectorexpr(exp1, Identifier(iden, _), _, _) ->
+        | Selectorexpr(exp1, Identifier(iden, _), _, symbolType) ->
             begin
-                print_string "( ";
+                print_string "getfield ";
                 print_expr exp1;
-                print_string ".";
-                print_string iden;
-                print_string " )";
+                print_symType symbolType;
             end
-        | TypeCastExpr(typename, exp1, _, _) ->
+        | TypeCastExpr(typename, exp1, _, symbolType) ->
             begin
                 print_type_name 0 typename;
                 print_string "( ";
