@@ -83,6 +83,7 @@ let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
+
 (* --------------------------------END-------------------------------- *)
 
 let generate program filedir filename =
@@ -226,162 +227,187 @@ let generate program filedir filename =
         | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
         | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
     in
+    let generate_addition type1 type2 = match type1,type2 with 
+                        | SymInt, SymInt -> println_string_with_tab 1 "iadd";
+                        | SymFloat64, SymFloat64 -> println_string_with_tab 1 "fadd";
+                        | SymInt, SymFloat64 -> println_string_with_tab 1 "f2i";
+                                                println_string_with_tab 1 "iadd";
+                        | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
+                                                println_string_with_tab 1 "fadd";
+                        | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
+                        | _ ,_ -> code_gen_error "addition function error"
+    in
     let rec print_expr exp = match exp with 
-        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum)
-        | AndAndOp(exp1, exp2, _, _) -> 
+        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum); symt
+        | AndAndOp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " && ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | OrOrOp(exp1, exp2, _, _) -> 
+        | OrOrOp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " || ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | EqualEqualCmp(exp1, exp2, _, _) -> 
+        | EqualEqualCmp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " == ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | NotEqualCmp(exp1, exp2, _, _) -> 
+        | NotEqualCmp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " != ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | LessThanCmp(exp1, exp2, _, _) -> 
+        | LessThanCmp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " < ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | GreaterThanCmp (exp1, exp2, _, _) -> 
+        | GreaterThanCmp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " > ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | LessThanOrEqualCmp(exp1, exp2, _, _) -> 
+        | LessThanOrEqualCmp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " <= ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | GreaterThanOrEqualCmp(exp1, exp2, _, _) -> 
+        | GreaterThanOrEqualCmp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " >= ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | AddOp(exp1, exp2, _, _) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " + ";
-                print_expr exp2;
-                print_string " )";
-            end
-        | MinusOp(exp1, exp2, _, _) -> 
+        | AddOp(exp1, exp2, _, symt) -> 
+                let typeexpr1= print_expr exp1 in
+                let typeexpr2= print_expr exp2 in
+                let _= generate_addition typeexpr1 typeexpr2 in
+                symt
+        | MinusOp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " - ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | OrOp (exp1, exp2, _, _) -> 
+        | OrOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " | ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | CaretOp (exp1, exp2, _, _) -> 
+        | CaretOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " ^ ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | MulOp (exp1, exp2, _, _)-> 
+        | MulOp (exp1, exp2, _, symt)-> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " * ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | DivOp (exp1, exp2, _, _)-> 
+        | DivOp (exp1, exp2, _, symt)-> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " / ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | ModuloOp (exp1, exp2, _, _) -> 
+        | ModuloOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " % ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | SrOp (exp1, exp2, _, _) -> 
+        | SrOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " >> ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | SlOp (exp1, exp2, _, _) ->
+        | SlOp (exp1, exp2, _, symt) ->
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " << ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | AndOp (exp1, exp2, _, _) -> 
+        | AndOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " & ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | AndCaretOp (exp1, exp2, _, _) -> 
+        | AndCaretOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
                 print_string " &^ ";
                 print_expr exp2;
                 print_string " )";
+                symt
             end
-        | OperandParenthesis (exp1, _, _) -> print_expr exp1
-        | Indexexpr(exp1, exp2, _, _) -> 
+        | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt
+        | Indexexpr(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -389,10 +415,11 @@ let generate program filedir filename =
                 print_expr exp2;
                 print_string "]";
                 print_string " )";
+                symt
             end
-        | Unaryexpr(exp1, _, _) -> print_expr exp1
-        | Binaryexpr(exp1, _, _) -> print_expr exp1
-        | FuncCallExpr(exp1, exprs, _, _) -> 
+        | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt
+        | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt
+        | FuncCallExpr(exp1, exprs, _, symt) -> 
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -400,37 +427,43 @@ let generate program filedir filename =
                 print_expr_list exprs;
                 print_string ")";
                 print_string " )";
+                symt
             end
-        | UnaryPlus(exp1, _, _) -> 
+        | UnaryPlus(exp1, _, symt) -> 
             begin
                 print_string "( +";
                 print_expr exp1;
                 print_string " )";
+                symt
             end
-        | UnaryMinus(exp1, _, _) ->
+        | UnaryMinus(exp1, _, symt) ->
             begin
                 print_string "( -";
                 print_expr exp1;
                 print_string " )";
+                symt
             end
-        | UnaryNot(exp1, _, _) ->
+        | UnaryNot(exp1, _, symt) ->
             begin
                 print_string "( !";
                 print_expr exp1;
                 print_string " )";
+                symt
             end
-        | UnaryCaret(exp1, _, _) ->
+        | UnaryCaret(exp1, _, symt) ->
             begin
                 print_string "( ^";
                 print_expr exp1;
                 print_string " )";
+                symt
             end
-        | Value(value, _, _) -> print_literal value
+        | Value(value, _, symt) -> print_literal value; symt
         | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
             begin
                 print_string "getfield ";
                 print_expr exp1;
                 print_symType symbolType linenum;
+                symbolType
             end
         | TypeCastExpr(typename, exp1, _, symbolType) ->
             begin
@@ -438,19 +471,21 @@ let generate program filedir filename =
                 print_string "( ";
                 print_expr exp1;
                 print_string " )";
+                symbolType
             end
-        | Appendexpr(Identifier(iden, _),exp1, _, _)-> 
+        | Appendexpr(Identifier(iden, _),exp1, _, symt)-> 
             begin
                 print_string "( append(";
                 print_string iden;
                 print_string ", ";
                 print_expr exp1;
                 print_string ") )";
+                symt
             end
         | _ -> ast_error ("expression error")
     and print_expr_list expr_list = match expr_list with
         | [] -> ()
-        | head::[] -> print_expr head
+        | head::[] -> print_expr head;()
         | head::tail ->
             begin
                 print_expr head;
@@ -573,15 +608,15 @@ let generate program filedir filename =
                 print_string "--";
             end
     in
-    let generate_assign_expr_lh expr = match expr with 
-        | OperandName(iden,linenum,ast_type) -> generate_store ast_type (Identifier(iden,linenum))
+    let generate_assign_expr_lh expr exprtype= match expr with 
+        | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
         | Indexexpr(expr1,expr2,linenum,ast_type) -> "" (*NOT IMPLEMENTED*)
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
     let generate_assignment expr1 expr2 = 
-        print_expr expr2;
-        println_string_with_tab 1 (generate_assign_expr_lh expr1);
+        let exprtype= print_expr expr2 in 
+        println_string_with_tab 1 (generate_assign_expr_lh expr1 exprtype);
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
@@ -593,6 +628,7 @@ let generate program filedir filename =
                 print_expr exprs1;
                 print_string assign_op;
                 print_expr exprs2;
+                ()
             end
     in
     let print_short_var_decl_stmt dcl = match dcl with
@@ -604,7 +640,7 @@ let generate program filedir filename =
             end
     in
     let print_simple_stmt stmt = match stmt with 
-        | SimpleExpression(expr, _) -> print_expr expr
+        | SimpleExpression(expr, _) -> print_expr expr;()
         | IncDec(incdec, _) -> print_inc_dec_stmt incdec 
         | Assignment(assignment_stmt, _) -> print_assignment_stmt assignment_stmt
         | ShortVardecl(short_var_decl, _) -> print_short_var_decl_stmt short_var_decl
@@ -655,7 +691,7 @@ let generate program filedir filename =
                 | Empty -> ()
             in
             let print_if_cond cond = match cond with 
-                | ConditionExpression(expr, _) -> print_expr expr
+                | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
             let print_if_stmt level if_stmt = match if_stmt with
@@ -727,7 +763,7 @@ let generate program filedir filename =
             end
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
-                | ConditionExpression(expr, _) -> print_expr expr
+                | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
             let print_for_clause clause = match clause with 
