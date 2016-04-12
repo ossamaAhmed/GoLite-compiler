@@ -13,8 +13,8 @@ type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
 let labelcounttrue = ref 0
 let labelcountertrue () = labelcounttrue :=! labelcounttrue+1
-let labelcountflase = ref 0
-let labelcounterfalse () = labelcountflase :=! labelcountflase+1
+let labelcountfalse = ref 0
+let labelcounterfalse () = labelcountfalse :=! labelcountfalse+1
 let localcount = ref 0
 let localcounter () = localcount :=! localcount+1
 
@@ -289,24 +289,26 @@ let generate program filedir filename =
     in
     let rec print_expr exp = match exp with 
         | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum); symt (*handle true and false missing*)
-        | AndAndOp(exp1, exp2, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " && ";
+        | AndAndOp(exp1, exp2, _, symt) -> (*DONE*)
+                print_expr exp1; 
+                println_string_with_tab 1 ("dup");
+                println_string_with_tab 1 ("ifne "^"true"^(string_of_int !labelcounttrue));
+                println_string_with_tab 1 ("pop");
                 print_expr exp2;
-                print_string " )";
+                println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
+                labelcountertrue();
+                labelcounterfalse(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
                 symt
-            end
-        | OrOrOp(exp1, exp2, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " || ";
+        | OrOrOp(exp1, exp2, _, symt) -> (*DONE*)
+                print_expr exp1; 
+                println_string_with_tab 1 ("dup");
+                println_string_with_tab 1 ("ifeq "^"false"^(string_of_int !labelcountfalse));
+                println_string_with_tab 1 ("pop");
                 print_expr exp2;
-                print_string " )";
+                println_string_with_tab 1 ("false"^(string_of_int !labelcountfalse)^":");
+                labelcountertrue(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
+                labelcounterfalse();
                 symt
-            end
         | EqualEqualCmp(exp1, exp2, _, symt) ->  (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in 
             let typeexpr2= print_expr exp2 in
@@ -432,7 +434,7 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt
+        | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Indexexpr(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
@@ -443,8 +445,8 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt
-        | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt
+        | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
+        | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> print_ln_one_tab (invoke_func value); symt
         | UnaryPlus(exp1, _, symt) -> 
             begin
@@ -512,28 +514,12 @@ let generate program filedir filename =
     and generate_comparable_binary_ints optype= 
                   println_string_with_tab 1 ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
                   println_string_with_tab 1 ("iconst_0");
-                  println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountflase));
+                  println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountfalse));
                   println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
                   println_string_with_tab 1 ("iconst_1");
-                  println_string_with_tab 1 ("stop"^(string_of_int !labelcountflase)^":");
+                  println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
                   labelcountertrue();
-                  labelcounterfalse();
-
-(*  codeEXP(e->val.eqE.left);
-         codeEXP(e->val.eqE.right);
-         if (e->val.eqE.left->type->kind==refK ||
-             e->val.eqE.left->type->kind==polynullK) {
-           code_if_acmpeq(e->val.eqE.truelabel);
-         } else {
-           code_if_icmpeq(e->val.eqE.truelabel);
-         }
-         code_ldc_int(0);
-         code_goto(e->val.eqE.stoplabel);
-         code_label("true",e->val.eqE.truelabel);
-         code_ldc_int(1);
-         code_label("stop",e->val.eqE.stoplabel);
-         break;
-                  *)      
+                  labelcounterfalse();    
     in
     let string_return_type type_i = match type_i with
         | Primitivetype(value, _) -> match value with
