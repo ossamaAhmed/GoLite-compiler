@@ -118,10 +118,11 @@ let rec string_method_params_types iden_list = match iden_list with
         string_jasmin_type iden_type
     | TypeSpec(Identifier(iden, _), iden_type, _)::tail ->
         (string_jasmin_type iden_type)^(string_method_params_types tail)
-let add_func f = match f with
-    | Function(func_name, FuncSig(FuncParams(params_list, _), FuncReturnType(return_type_i, _), _), stmt_list, _) ->
+let add_func func_name func_sig = match func_sig with
+    | FuncSig(FuncParams(params_list, _), FuncReturnType(return_type_i, _), _) ->
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")"^(string_jasmin_type return_type_i))
-    | _ -> ()
+    | FuncSig(FuncParams(params_list, _), _, _) ->
+        Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")V")
 let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* --------------------------------END-------------------------------- *)
@@ -146,6 +147,12 @@ let generate program filedir filename =
     let println_string_with_tab (level) s =
         begin
             print_tab (level);
+            println_string s
+        end
+    in
+    let print_ln_one_tab s = 
+        begin 
+            print_tab 1;
             println_string s
         end
     in
@@ -262,10 +269,10 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_int value))
-        | Floatliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_float value))
+        | Intliteral(value, _) -> print_ln_one_tab ("ldc "^(string_of_int value))
+        | Floatliteral(value, _) -> print_ln_one_tab ("ldc "^(string_of_float value))
         | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
-        | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
+        | Stringliteral(value, _) -> print_ln_one_tab ("ldc "^(value))
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
@@ -279,7 +286,7 @@ let generate program filedir filename =
     in
     let rec print_expr exp = match exp with 
         | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum); symt
-        | AndAndOp(exp1, exp2, _, symt) -> 
+        | AndAndOp(exp1, exp2, _, symt) ->
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -460,14 +467,7 @@ let generate program filedir filename =
             end
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt
-        | FuncCallExpr(exp1, exprs, _, symt) -> 
-           (match exp1 with
-                | Value(value, _, _) -> (match value with
-                    | Stringliteral(lit, _) -> println_string_with_tab 1 (invoke_func lit); symt
-                    | _ -> symt
-                )
-                | _ -> symt
-            )
+        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> print_ln_one_tab (invoke_func value); symt
         | UnaryPlus(exp1, _, symt) -> 
             begin
                 print_string "( +";
@@ -563,11 +563,11 @@ let generate program filedir filename =
         | Primitivetype(value, _) -> 
 
            ( match value with
-                | "int" -> println_string_with_tab 1  "iconst_0"
-                | "rune" -> println_string_with_tab 1  "iconst_0"
-                | "bool" -> println_string_with_tab 1  "iconst_0"
-                | "string" -> println_string_with_tab 1  "ldc \"\""
-                | "float64" -> println_string_with_tab 1  "fconst_0")
+                | "int" -> print_ln_one_tab  "iconst_0"
+                | "rune" -> print_ln_one_tab  "iconst_0"
+                | "bool" -> print_ln_one_tab  "iconst_0"
+                | "string" -> print_ln_one_tab  "ldc \"\""
+                | "float64" -> print_ln_one_tab  "fconst_0")
 
         | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
@@ -579,7 +579,7 @@ let generate program filedir filename =
             initialize_variable_default typename;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
-            println_string_with_tab 1 (generate_store (get_primitive_type typename) iden);
+            print_ln_one_tab (generate_store (get_primitive_type typename) iden);
         end
     in
     let print_var_decl level decl = match decl with
@@ -654,8 +654,8 @@ let generate program filedir filename =
         | _ -> code_gen_error "Lvalue function error"
     in 
     let generate_assignment expr1 expr2 = 
-        let exprtype= print_expr expr2 in 
-        println_string_with_tab 1 (generate_assign_expr_lh expr1 exprtype);
+        let exprtype = print_expr expr2 in 
+            println_string_with_tab 1 (generate_assign_expr_lh expr1 exprtype);
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
@@ -692,10 +692,10 @@ let generate program filedir filename =
                 | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
-                | Function(func_name, signature, stmt_list, line) ->
+                | Function(func_name, func_sig, stmt_list, line) ->
                     begin
-                        add_func (Function(func_name, signature, stmt_list, line));
-                        print_method_decl level func_name signature stmt_list;
+                        add_func func_name func_sig;
+                        print_method_decl level func_name func_sig stmt_list;
                     end
                 | _ -> ()
             )
@@ -928,7 +928,7 @@ let generate program filedir filename =
                 end
             | _ ->
                 begin
-                    add_func (Function(func_name, signature, stmt_list, line));
+                    add_func func_name signature;
                     print_method_decl level func_name signature stmt_list;
                 end
         | _ -> ()
