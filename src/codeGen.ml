@@ -287,7 +287,11 @@ let generate program filedir filename =
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, linenum, symt) -> println_one_tab (generate_load symt value linenum); symt (*handle true and false missing*)
+        | OperandName(value, linenum, symt) -> 
+                (match value with 
+                | "true"-> println_string_with_tab 1 "iconst_1"; symt
+                | "false"-> println_string_with_tab 1 "iconst_0"; symt
+                | _ ->  println_one_tab (generate_load symt value linenum); symt)
         | AndAndOp(exp1, exp2, _, symt) -> (*DONE*)
                 print_expr exp1;
                 println_string_with_tab 1 ("dup");
