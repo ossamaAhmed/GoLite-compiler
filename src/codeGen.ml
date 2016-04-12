@@ -5,8 +5,7 @@ open Symboltbl
 exception Code_generation_error of string
 let code_gen_error msg = raise (Code_generation_error msg)
 
-(*I will add here the stack functions we will use for the locals variables*)
-
+(* Stack functions for locals manipulation *)
 
 type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
@@ -15,9 +14,11 @@ let labelcounter ()= labelcount:=!labelcount+1
 let localcount = ref 0
 let localcounter ()= localcount:=!localcount+1
 
+
 let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
 let end_scope ()= match !symbol_table with 
                 | Scope(head)::tail -> localcount:= !localcount-(Hashtbl.length head); symbol_table:= tail
+
 let search_current_scope key = match !symbol_table with 
     | Scope(current_scope)::tail -> 
     if (Hashtbl.mem current_scope key) then 
@@ -25,31 +26,27 @@ let search_current_scope key = match !symbol_table with
     else 
         code_gen_error ("variable is not defined in current_scope")
 
-let search_not_find_current_scope x= match !symbol_table with 
-                            | Scope(current_scope)::tail -> 
-                            if (Hashtbl.mem current_scope x) then 
-                                    true
-                            else 
-                                    false
+let search_not_find_current_scope x = match !symbol_table with
+    | Scope(current_scope)::tail ->
+        if (Hashtbl.mem current_scope x) then true else false
 
-let rec search_previous_scopes x table= match table with (*called with !symbol_table*)
-                            | []-> code_gen_error ("variable is not defined in current and previous scopes")
-                            | Scope(current_scope)::tail -> 
-                            if (Hashtbl.mem current_scope x) then 
-                                    Hashtbl.find current_scope x
-                            else 
-                                    search_previous_scopes x tail
+let rec search_previous_scopes x table = match table with (*called with !symbol_table*)
+    | []-> code_gen_error ("variable is not defined in current and previous scopes")
+    | Scope(current_scope)::tail -> 
+        if (Hashtbl.mem current_scope x) then 
+            Hashtbl.find current_scope x
+        else 
+            search_previous_scopes x tail
 
-let add_variable_to_current_scope mytype myvar=  match myvar with
-                                            | Identifier(myvariable,linenum)-> 
-                                                (match !symbol_table with
-                                                    | Scope(current_scope)::tail ->
-                                                    if not(Hashtbl.mem current_scope myvariable) then 
-                                                        Hashtbl.add current_scope myvariable mytype
-                                                    else 
-                                                         code_gen_error ("variable is defined more than one time")
-                                                 ) 
-
+let add_variable_to_current_scope mytype myvar = match myvar with
+    | Identifier(myvariable,linenum)-> 
+        (match !symbol_table with
+            | Scope(current_scope)::tail ->
+                if not(Hashtbl.mem current_scope myvariable) then 
+                    Hashtbl.add current_scope myvariable mytype
+                else
+                    code_gen_error ("variable is defined more than one time")
+        )
 
 let get_primitive_type type_of_type_i = match type_of_type_i with
         | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
@@ -82,8 +79,8 @@ let generate_store typename varnameIden= match typename, varnameIden with
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
 
+(* --------------------------------END-------------------------------- *)
 
-(*-------------END--------------------------------*)
 let generate program filedir filename =
 
     (* Program AST unpacking *)
