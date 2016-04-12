@@ -2,7 +2,12 @@ package main
 
 
 func main() {
-	var x string
+	var x int
 	var y string
-	println("hello world")
+	var z bool
+	y="conditional doesn't work"
+	if(2>1){
+		y= "conditional works YAY"+"x"
+	}
+	println(y)
 }

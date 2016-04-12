@@ -222,90 +222,140 @@ and pretty_typecheck_expression exp =
 									match exp with 
 												| OperandName(value,linenum,ast_type)-> let mytype= search_previous_scopes value !symbol_table in 
 																						(OperandName(value,linenum,mytype),mytype)  (*  value *)
+
 												| AndAndOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																	   					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
+																	   					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in
 																	   					 let mytype= bool_typecheck exp_type1 exp_type2 in 
-																	   					 (AndAndOp(exp1,exp2,linenum,mytype), mytype)
+																	   					 let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	 let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	   					 (AndAndOp(exp_type1_node,exp_type2_node,linenum,mytype), mytype)
+
 												| OrOrOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  				   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	   				   let mytype= bool_typecheck exp_type1 exp_type2 in 
-																	   				   (OrOrOp(exp1,exp2,linenum,mytype),mytype)
+																	   				   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				   let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	   				   (OrOrOp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| EqualEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 						  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	 						  let mytype= comparable_typecheck exp_type1 exp_type2 in 
-																	 						  (EqualEqualCmp(exp1,exp2,linenum,mytype),mytype)
-												| NotEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																	   					   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
-																	   					   let mytype= comparable_typecheck exp_type1 exp_type2 in 
-																	   					   (NotEqualCmp(exp1,exp2,linenum,mytype),mytype)
+																	 						  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  						  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	 						  (EqualEqualCmp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
 
+												| NotEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	   					   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	   					   let mytype= comparable_typecheck exp_type1 exp_type2 in 
+																	   					   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  					   let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in 
+																	   					   (NotEqualCmp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
 
 												| LessThanCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  						let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	 	    				let mytype= ordered_typecheck exp_type1 exp_type2 in 
-																	 	    				(LessThanCmp(exp1,exp2,linenum,mytype),mytype)
+																	 	    				let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  		let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	 	    				(LessThanCmp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| GreaterThanCmp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 		 					let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	 		 					let mytype= ordered_typecheck exp_type1 exp_type2 in 
-																	 		 					(GreaterThanCmp (exp1,exp2,linenum,mytype),mytype)
+																	 		 					let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  			let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	 		 					(GreaterThanCmp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| LessThanOrEqualCmp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  							   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  							   let mytype=  ordered_typecheck exp_type1 exp_type2 in 
-																	  							   (LessThanOrEqualCmp(exp1,exp2,linenum,mytype),mytype)
+																	  							   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  				let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  							   (LessThanOrEqualCmp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| GreaterThanOrEqualCmp(exp1,exp2,linenum,ast_type)->let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  								 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	   								 let mytype= ordered_typecheck exp_type1 exp_type2 in 
-																	   								 (GreaterThanOrEqualCmp(exp1,exp2,linenum,mytype),mytype)
+																	   								 let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  				let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	   								 (GreaterThanOrEqualCmp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| AddOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  				  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  				  let mytype= numeric_string_typecheck exp_type1 exp_type2 in 
 																	  				  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in 
-															
 																	  				  (AddOp(exp_type1_node,exp_type2_node,linenum,mytype), mytype)
 												 					 
 												| MinusOp(exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  					let mytype= numeric_typecheck exp_type1 exp_type2 in 
-																	  					(MinusOp(exp1,exp2,linenum,mytype),mytype)
+																	  					let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  					(MinusOp(exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| OrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 				  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  				  let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  				  (OrOp (exp1,exp2,linenum,mytype),mytype)
+																	  				  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  				  (OrOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
 
 												| CaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	  					 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  					let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  					(CaretOp (exp1,exp2,linenum,mytype),mytype)
+																	  					let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  					(CaretOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
 
 												| MulOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
-																	  				   let mytype= numeric_typecheck exp_type1 exp_type2 in 
-																	  				   (MulOp (exp1,exp2,linenum,mytype),mytype)
+																	  				   let mytype= numeric_typecheck exp_type1 exp_type2 in
+																	  				   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				   let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  				   (MulOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| DivOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	 				   let mytype=  numeric_typecheck exp_type1 exp_type2 in 
-																	 					(DivOp (exp1,exp2,linenum,mytype),mytype)
+																	 				   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				   let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	 					(DivOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| ModuloOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 					  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  					  let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  					  (ModuloOp (exp1,exp2,linenum,mytype), mytype)
+																	  					  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  					  (ModuloOp (exp_type1_node,exp_type2_node,linenum,mytype), mytype)
+
 												| SrOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																				  	  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
-																	  				  let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  				  (SrOp (exp1,exp2,linenum,mytype),mytype)
+																	  				  let mytype= integer_typecheck exp_type1 exp_type2 in
+																	  				  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in 
+																	  				  (SrOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| SlOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 				  let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																					  let mytype=   integer_typecheck exp_type1 exp_type2 in 
-																					  (SlOp (exp1,exp2,linenum,mytype),mytype )
+																					  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																					  (SlOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype )
+
 												| AndOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					   let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  					let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  					(AndOp (exp1,exp2,linenum,mytype),mytype)
+																	  					let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  					(AndOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| AndCaretOp (exp1,exp2,linenum,ast_type)-> let exp_type1= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																	 						 let exp_type2= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
 																	  						let mytype= integer_typecheck exp_type1 exp_type2 in 
-																	  						(AndCaretOp (exp1,exp2,linenum,mytype),mytype)
+																	  						let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  		let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
+																	  						(AndCaretOp (exp_type1_node,exp_type2_node,linenum,mytype),mytype)
+
 												| OperandParenthesis (exp1,linenum,ast_type)-> let mytype= pretty_typecheck_expression exp1 in
 																							   let mytype_name=  extract_type_from_expr_tuple mytype in
 																							   let mytype_node= extract_node_from_expr_tuple mytype in 
@@ -313,10 +363,12 @@ and pretty_typecheck_expression exp =
 
 												| Indexexpr(exp1,exp2,linenum,ast_type)-> let index_name_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																						  let indexing= extract_type_from_expr_tuple(pretty_typecheck_expression exp2) in 
+																						  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																	  				  	  let exp_type2_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp2) in
 																						  if indexing!= SymInt then type_checking_error ("indexing should have an int expression linenum:="^(Printf.sprintf "%i" linenum))
 																						  else (match index_name_type with 
-																						  	| SymArray(symtype)-> (Indexexpr(exp1,exp2,linenum,symtype),symtype)
-																						  	| SymSlice(symtype)-> (Indexexpr(exp1,exp2,linenum,symtype),symtype)
+																						  	| SymArray(symtype)-> (Indexexpr(exp_type1_node,exp_type2_node,linenum,symtype),symtype)
+																						  	| SymSlice(symtype)-> (Indexexpr(exp_type1_node,exp_type2_node,linenum,symtype),symtype)
 																						  	| _-> type_checking_error ("indexing should be done on an array or a slice linenum:="^(Printf.sprintf "%i" linenum))
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
@@ -336,47 +388,56 @@ and pretty_typecheck_expression exp =
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																					  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																	 (match exp_type with 
-																	 | SymInt-> ( UnaryPlus(exp1,linenum,SymInt),SymInt)
-																	 | SymFloat64-> ( UnaryPlus(exp1,linenum,SymFloat64),SymFloat64)
-																	 | SymRune ->( UnaryPlus(exp1,linenum,SymRune),SymRune) 
+																	 | SymInt-> ( UnaryPlus(exp_type1_node,linenum,SymInt),SymInt)
+																	 | SymFloat64-> ( UnaryPlus(exp_type1_node,linenum,SymFloat64),SymFloat64)
+																	 | SymRune ->( UnaryPlus(exp_type1_node,linenum,SymRune),SymRune) 
 																	 | _ -> type_checking_error "Unary Plus should be done on a numeric value"
 																		)(* "( +"^(pretty_typecheck_expression exp1)^" )" *)
+
 												| UnaryMinus(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																					   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																	 (match exp_type with 
-																	 | SymInt-> (UnaryMinus(exp1,linenum,exp_type),exp_type)
-																	 | SymFloat64-> (UnaryMinus(exp1,linenum,exp_type),exp_type)
-																	 | SymRune -> (UnaryMinus(exp1,linenum,exp_type),exp_type)
+																	 | SymInt-> (UnaryMinus(exp_type1_node,linenum,exp_type),exp_type)
+																	 | SymFloat64-> (UnaryMinus(exp_type1_node,linenum,exp_type),exp_type)
+																	 | SymRune -> (UnaryMinus(exp_type1_node,linenum,exp_type),exp_type)
 																	 | _ -> type_checking_error "Unary Negation should be done on a numeric value"
 																		)(*  "( -"^(pretty_typecheck_expression exp1)^" )" *)
 												| UnaryNot(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																					 let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																	 (match exp_type with 
-																	 | SymBool-> (UnaryNot(exp1,linenum,exp_type),exp_type)
+																	 | SymBool-> (UnaryNot(exp_type1_node,linenum,exp_type),exp_type)
 																	 | _ -> type_checking_error "Unary Logical Negation should be done on a bool value"
 																		)(* "( !"^(pretty_typecheck_expression exp1)^" )" *)
 												| UnaryCaret(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																					   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																	 (match exp_type with 
-																	 | SymInt-> (UnaryCaret(exp1,linenum,exp_type),exp_type)
-																	 | SymRune -> (UnaryCaret(exp1,linenum,exp_type),exp_type)
+																	 | SymInt-> (UnaryCaret(exp_type1_node,linenum,exp_type),exp_type)
+																	 | SymRune -> (UnaryCaret(exp_type1_node,linenum,exp_type),exp_type)
 																	 | _ -> type_checking_error "Unary Bitwise should be done on an integer value"
 																		)(* "( ^"^(pretty_typecheck_expression exp1)^" )" *)
 												| Value(value,linenum,ast_type)-> let mytype= (typecheck_literal value) in 
 																				(Value(value,linenum,mytype),mytype)
+
 												| Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type)-> let exp1_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																												   let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																												   ( match exp1_type with 
 																												   	| SymStruct(field_list)-> let mytype= search_struct_field_list iden field_list linenum1 in 
-																												   							  (Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,mytype),mytype)
+																												   							  (Selectorexpr(exp_type1_node,Identifier(iden,linenum1),linenum2,mytype),mytype)
 																												   	| _-> type_checking_error ("selector operator is only allowed on structs linenum:="^(Printf.sprintf "%i" linenum1))
 																												   )
 												| TypeCastExpr (typename,exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																									let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																								    let mytype = typecheck_type_name typename in
-																								    if (is_basetype_numeric_typecheck exp_type) && (is_basetype_numeric_typecheck mytype) then (TypeCastExpr (typename,exp1,linenum,mytype), mytype)
+																								    if (is_basetype_numeric_typecheck exp_type) && (is_basetype_numeric_typecheck mytype) then (TypeCastExpr (typename,exp_type1_node,linenum,mytype), mytype)
 																								    else type_checking_error ("type casting is only allowed on numeric base types linenum:="^(Printf.sprintf "%i" linenum))
 
 												| Appendexpr (Identifier(iden,linenum1),exp1,linenum2,ast_type)-> let iden_type_check= search_previous_scopes iden !symbol_table in 
 																												  let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																												  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																												  (match iden_type_check with 
-																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp1,linenum2,iden_type_check),iden_type_check)
+																												  | SymSlice(symtype)-> if exp_type!=symtype then type_checking_error ("expression inside append should have the same type as the slice linenum:="^(Printf.sprintf "%i" linenum2)) else ( Appendexpr (Identifier(iden,linenum1),exp_type1_node,linenum2,iden_type_check),iden_type_check)
 																						  					      | _-> type_checking_error ("append expression done on slice type only linenum:="^(Printf.sprintf "%i" linenum2)) )(* "( append("^iden^", "^(pretty_typecheck_expression exp1)^"))" *)
 												| _-> type_checking_error ("expression error") 
 
