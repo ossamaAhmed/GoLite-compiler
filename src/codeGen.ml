@@ -267,13 +267,13 @@ let generate program filedir filename =
         | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
         | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
     in
-    let generate_addition type1 type2 = match type1,type2 with 
-                        | SymInt, SymInt -> println_string_with_tab 1 "iadd";
-                        | SymFloat64, SymFloat64 -> println_string_with_tab 1 "fadd";
+    let generate_binary_arithmetic type1 type2 = match type1,type2 with 
+                        | SymInt, SymInt -> print_string_with_tab 1 "i";
+                        | SymFloat64, SymFloat64 -> print_string_with_tab 1 "f";
                         | SymInt, SymFloat64 -> println_string_with_tab 1 "f2i";
-                                                println_string_with_tab 1 "iadd";
+                                                print_string_with_tab 1 "i";
                         | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
-                                                println_string_with_tab 1 "fadd";
+                                                print_string_with_tab 1 "f";
                         | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
                         | _ ,_ -> code_gen_error "addition function error"
     in
@@ -354,7 +354,8 @@ let generate program filedir filename =
         | AddOp(exp1, exp2, _, symt) -> 
                 let typeexpr1= print_expr exp1 in
                 let typeexpr2= print_expr exp2 in
-                let _= generate_addition typeexpr1 typeexpr2 in
+                let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
+                let _= print_string "add\n" in 
                 symt
         | MinusOp(exp1, exp2, _, symt) -> 
             begin
