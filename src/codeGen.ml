@@ -64,20 +64,20 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
-let generate_load typename varname= match typename with 
+let generate_load typename varname linenum= match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
-    | NotDefined -> code_gen_error "type wasnt attached in type checking"
-
+    | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
 let generate_store typename varnameIden= match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+    | _,_ -> "Other" (*TODO: place holder *)
 
 let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
     | [],[]-> ()
@@ -110,6 +110,19 @@ let generate program filedir filename =
     in
     let print_int value = print_string (string_of_int value) in
     let print_float value = print_string (string_of_float value) in
+    let rec print_symType sType linenum = match sType with
+        | SymInt -> print_string "SymInt"
+        | SymFloat64 -> print_string "SymFloat64"
+        | SymRune -> print_string "SymRune" 
+        | SymString -> print_string "SymString"
+        | SymBool -> print_string "SymBool"
+        | SymArray(subType) -> print_string "SymArray/"; print_symType subType linenum;
+        | SymSlice(subType) -> print_string "SymSlice/"; print_symType subType linenum;
+        | SymStruct(fieldlist) -> print_string "SymStruct/"(*TODO: this needs to be tested*)
+        | SymFunc(subType,arglist) -> print_string "SymFunc/"; print_symType subType linenum;
+        | SymType(subType) -> print_string "SymType/"; print_symType subType linenum;
+        | Void -> print_string "Void"
+        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg) ; in
 
     (* Jasmin initializations *)
 
@@ -214,7 +227,7 @@ let generate program filedir filename =
         | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, _, symt) -> println_string_with_tab 1 (generate_load symt value)
+        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum)
         | AndAndOp(exp1, exp2, _, _) -> 
             begin
                 print_string "( ";
@@ -413,15 +426,13 @@ let generate program filedir filename =
                 print_string " )";
             end
         | Value(value, _, _) -> print_literal value
-        | Selectorexpr(exp1, Identifier(iden, _), _, _) ->
+        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
             begin
-                print_string "( ";
+                print_string "getfield ";
                 print_expr exp1;
-                print_string ".";
-                print_string iden;
-                print_string " )";
+                print_symType symbolType linenum;
             end
-        | TypeCastExpr(typename, exp1, _, _) ->
+        | TypeCastExpr(typename, exp1, _, symbolType) ->
             begin
                 print_type_name 0 typename;
                 print_string "( ";
