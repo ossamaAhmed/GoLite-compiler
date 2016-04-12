@@ -282,6 +282,7 @@ let generate program filedir filename =
                         | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
                                                 print_string_with_tab 1 "f";
                         | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
+                        | SymString, SymString -> () (*NOT YET IMPLEMENTED FOR ADD ONLY*)
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
@@ -358,21 +359,18 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | AddOp(exp1, exp2, _, symt) -> 
+        | AddOp(exp1, exp2, _, symt) ->   (*DONE*)
                 let typeexpr1= print_expr exp1 in
                 let typeexpr2= print_expr exp2 in
                 let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
                 let _= print_string "add\n" in 
                 symt
-        | MinusOp(exp1, exp2, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " - ";
-                print_expr exp2;
-                print_string " )";
-                symt
-            end
+        | MinusOp(exp1, exp2, _, symt) ->  (*DONE*)
+                 let typeexpr1= print_expr exp1 in
+                 let typeexpr2= print_expr exp2 in
+                 let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
+                 let _= print_string "sub\n" in 
+                 symt
         | OrOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
@@ -391,24 +389,18 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | MulOp (exp1, exp2, _, symt)-> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " * ";
-                print_expr exp2;
-                print_string " )";
-                symt
-            end
-        | DivOp (exp1, exp2, _, symt)-> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string " / ";
-                print_expr exp2;
-                print_string " )";
-                symt
-            end
+        | MulOp (exp1, exp2, _, symt)-> (*DONE*)
+            let typeexpr1= print_expr exp1 in
+            let typeexpr2= print_expr exp2 in
+            let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
+            let _= print_string "mul\n" in 
+            symt
+        | DivOp (exp1, exp2, _, symt)-> (*DONE*)
+            let typeexpr1= print_expr exp1 in
+            let typeexpr2= print_expr exp2 in
+            let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
+            let _= print_string "div\n" in 
+            symt
         | ModuloOp (exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
