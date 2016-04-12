@@ -79,6 +79,10 @@ let generate_store typename varnameIden= match typename, varnameIden with
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
 
+let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
+    | [],[]-> ()
+    | head1::tail1,head2::tail2-> func head1 head2
+
 (* --------------------------------END-------------------------------- *)
 
 let generate program filedir filename =
@@ -558,12 +562,20 @@ let generate program filedir filename =
                 print_string "--";
             end
     in
+    let generate_assign_expr_lh expr = match expr with 
+        | OperandName(iden,linenum,ast_type) -> generate_store ast_type (Identifier(iden,linenum))
+        | Indexexpr(expr1,expr2,linenum,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | _ -> code_gen_error "Lvalue function error"
+    in 
+    let generate_assignment expr1 expr2 = 
+        print_expr expr2;
+        println_string_with_tab 1 (generate_assign_expr_lh expr1);
+    in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
             begin
-                print_expr_list exprs1;
-                print_string " = ";
-                print_expr_list exprs2;
+                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment;
             end
         | AssignmentOp(exprs1, assign_op, exprs2, _) ->
             begin
@@ -686,9 +698,7 @@ let generate program filedir filename =
             print_conditional_stmt level conditional
         | Simple(simple, _) -> 
             begin
-                print_tab level;
                 print_simple_stmt simple;
-                print_string ";\n"
             end
         | Print(exprs, _) -> 
             begin
