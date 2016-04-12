@@ -291,22 +291,27 @@ let generate program filedir filename =
         | AndAndOp(exp1, exp2, _, symt) -> (*DONE*)
                 print_expr exp1; 
                 println_string_with_tab 1 ("dup");
-                println_string_with_tab 1 ("ifne "^"true"^(string_of_int !labelcounttrue));
+                let cur_label= !labelcountfalse in 
+                labelcountertrue(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
+                labelcounterfalse();
+                println_string_with_tab 1 ("ifeq "^"false"^(string_of_int cur_label));
                 println_string_with_tab 1 ("pop");
                 print_expr exp2;
-                println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
-                labelcountertrue();
-                labelcounterfalse(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
+                println_string_with_tab 1 ("false"^(string_of_int cur_label)^":");
+
                 symt
         | OrOrOp(exp1, exp2, _, symt) -> (*DONE*)
                 print_expr exp1; 
                 println_string_with_tab 1 ("dup");
-                println_string_with_tab 1 ("ifeq "^"false"^(string_of_int !labelcountfalse));
-                println_string_with_tab 1 ("pop");
-                print_expr exp2;
-                println_string_with_tab 1 ("false"^(string_of_int !labelcountfalse)^":");
+                let cur_label= !labelcountfalse in 
                 labelcountertrue(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
                 labelcounterfalse();
+                println_string_with_tab 1 ("ifne "^"true"^(string_of_int cur_label));
+                println_string_with_tab 1 ("pop");
+                print_expr exp2;
+                println_string_with_tab 1 ("true"^(string_of_int cur_label)^":");
+                labelcountertrue();
+                labelcounterfalse(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
                 symt
         | EqualEqualCmp(exp1, exp2, _, symt) ->  (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in 
@@ -734,20 +739,51 @@ let generate program filedir filename =
                         labelcounterfalse();
                         println_string_with_tab 1 ("ifeq stop"^(string_of_int currlabel));
                         start_scope();
-                        print_stmt_list (level+1) stmts;
-                        print_tab level;
+                        print_stmt_list 1 stmts;
                         end_scope();
                         println_string_with_tab 1 ("stop"^(string_of_int currlabel)^":");
+                    end
+            in
+          (*    codeEXP(s->val.ifelseS.condition);
+            code_ifeq(s->val.ifelseS.elselabel);
+            codeSTATEMENT(s->val.ifelseS.thenpart); stop
+            code_goto(s->val.ifelseS.stoplabel);
+            code_label("else",s->val.ifelseS.elselabel);
+            codeSTATEMENT(s->val.ifelseS.elsepart); --
+            code_label("stop",s->val.ifelseS.stoplabel);
+            break; *)
+            let print_if_stmt_with_else level if_stmt = match if_stmt with
+                | IfInit(if_init, condition, stmts, _) -> 
+                    begin
+                        start_scope();
+                        print_if_init if_init;
+                        print_if_cond condition;
+                        let curr_else_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
+                        start_scope();
+                        print_stmt_list 1 stmts;
+                        end_scope();
+
+                        let curr_stop_label= !labelcountfalse in 
+                        println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
+
+
                     end
             in
             let rec print_else_stmt level stmt =  match stmt with 
                 | ElseSingle(if_stmt, stmts, _) -> 
                     begin
-                        print_if_stmt level if_stmt;
-                        print_string " else {\n ";
-                        print_stmt_list (level+1) stmts;
-                        print_tab level;
-                        print_string "}";
+                        print_if_stmt_with_else 1 if_stmt;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        start_scope();
+                        print_stmt_list 1 stmts;
+                        end_scope();
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
                 | ElseIFMultiple(if_stmt, else_stmt, _) ->
                     begin
@@ -770,9 +806,8 @@ let generate program filedir filename =
                     end
                 | ElseStmt(else_stmt, _) ->
                     begin
-                        print_tab level;
                         print_else_stmt level else_stmt;
-                        print_string "\n";
+                        end_scope();
                     end
             in
             print_conditional_stmt level conditional
