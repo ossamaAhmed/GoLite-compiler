@@ -104,7 +104,7 @@ let generate program filedir filename =
             print_string ".super java/lang/Object\n\n"
         end
     in
-    (
+    (*
     .method public <init>()V
        aload_0
        invokenonvirtual java/lang/Object/<init>()V
