@@ -729,12 +729,15 @@ let generate program filedir filename =
                         start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
-                        println_string_with_tab 1 ("ifeq stop"^(string_of_int !labelcountfalse));
+                        let currlabel= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        println_string_with_tab 1 ("ifeq stop"^(string_of_int currlabel));
                         start_scope();
                         print_stmt_list (level+1) stmts;
                         print_tab level;
                         end_scope();
-                        println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
+                        println_string_with_tab 1 ("stop"^(string_of_int currlabel)^":");
                     end
             in
             let rec print_else_stmt level stmt =  match stmt with 
