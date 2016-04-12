@@ -49,7 +49,6 @@ let add_variable_to_current_scope mytype myvar = match myvar with
         )
 
 let get_primitive_type type_of_type_i = match type_of_type_i with
-        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
 
            ( match value with
@@ -60,6 +59,7 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
                 | "float64" -> SymString)
 
         | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
+        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
@@ -379,12 +379,10 @@ let generate program filedir filename =
         | OperandParenthesis (exp1, _, _) -> print_expr exp1
         | Indexexpr(exp1, exp2, _, _) -> 
             begin
-                print_string "( ";
-                print_expr exp1;
-                print_string "[";
-                print_expr exp2;
-                print_string "]";
-                print_string " )";
+                print_expr exp1;(*put array ref on stack*)
+                print_expr exp2;(*put array index on stack*)
+                (*if assignment -> load value, call iastore*)
+                print_string "iaload"
             end
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
@@ -423,25 +421,45 @@ let generate program filedir filename =
             end
         | Value(value, _, _) -> print_literal value
         | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
+                (*TODO: determine if put or get *)
             begin
                 print_string "getfield ";
                 print_expr exp1;
                 print_symType symbolType linenum;
             end
-        | TypeCastExpr(typename, exp1, _, symbolType) ->
+        | TypeCastExpr(typename, exp1, linenum, symbolType) ->
+            let pType = get_primitive_type typename in 
+            (
+            match symbolType, pType with
+            | SymInt, SymInt -> print_expr exp1
+            | SymInt, SymFloat64 -> print_expr exp1; print_string "i2f"
+            | SymInt, SymRune -> print_expr exp1
+            | SymInt, SymBool -> print_expr exp1
+            | SymInt,_ -> (let errMsg = "Cannot cast expr of type int at line: "^string_of_int linenum in code_gen_error errMsg) 
+            | SymFloat64, SymFloat64 -> print_expr exp1;
+            | SymFloat64, SymInt -> print_expr exp1; print_string "f2i"
+            | SymFloat64, SymRune-> print_expr exp1; print_string "f2i"
+            | SymFloat64, SymBool-> print_expr exp1; print_string "f2i"
+            | SymFloat64,_ -> (let errMsg = "Cannot cast expr of type float64 at line: "^string_of_int linenum in code_gen_error errMsg) 
+            | SymRune, SymRune -> print_expr exp1 
+            | SymRune, SymInt -> print_expr exp1 
+            | SymRune, SymBool -> print_expr exp1 
+            | SymRune, SymFloat64-> print_expr exp1; print_string "i2f"
+            | SymRune,_ -> (let errMsg = "Cannot cast expr of type rune at line: "^string_of_int linenum in code_gen_error errMsg) 
+            | SymBool , SymRune -> print_expr exp1 
+            | SymBool , SymInt -> print_expr exp1 
+            | SymBool , SymBool -> print_expr exp1 
+            | SymBool ,  SymFloat64-> print_expr exp1; print_string "i2f"
+            | SymRune,_ -> (let errMsg = "Cannot cast expr of type bool at line: "^string_of_int linenum in code_gen_error errMsg) 
+            | _,_ -> (let errMsg = "Cannot cast expr at line: "^string_of_int linenum in code_gen_error errMsg) 
+            )
+        | Appendexpr(Identifier(iden, _),exp1, linenum, symType)-> 
             begin
-                print_type_name 0 typename;
-                print_string "( ";
-                print_expr exp1;
-                print_string " )";
-            end
-        | Appendexpr(Identifier(iden, _),exp1, _, _)-> 
-            begin
-                print_string "( append(";
-                print_string iden;
-                print_string ", ";
-                print_expr exp1;
-                print_string ") )";
+                generate_load symType iden linenum 
+                print_string "arraylength"
+                print_string "iconst_1"
+                print_string "iadd"
+                (*TODO: FINISH ALGO*) 
             end
         | _ -> ast_error ("expression error")
     and print_expr_list expr_list = match expr_list with
