@@ -65,20 +65,24 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
-let generate_load typename varname= match typename with 
+let generate_load typename varname linenum= match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
-    | NotDefined -> code_gen_error "type wasnt attached in type checking"
-
+    | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
 let generate_store typename varnameIden= match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+    | _,_ -> "Other" (*TODO: place holder *)
+
+let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
+    | [],[]-> ()
+    | head1::tail1,head2::tail2-> func head1 head2
 
 (* --------------------------------END-------------------------------- *)
 
@@ -146,6 +150,19 @@ let generate program filedir filename =
     in
     let print_int value = print_string (string_of_int value) in
     let print_float value = print_string (string_of_float value) in
+    let rec print_symType sType linenum = match sType with
+        | SymInt -> print_string "SymInt"
+        | SymFloat64 -> print_string "SymFloat64"
+        | SymRune -> print_string "SymRune" 
+        | SymString -> print_string "SymString"
+        | SymBool -> print_string "SymBool"
+        | SymArray(subType) -> print_string "SymArray/"; print_symType subType linenum;
+        | SymSlice(subType) -> print_string "SymSlice/"; print_symType subType linenum;
+        | SymStruct(fieldlist) -> print_string "SymStruct/"(*TODO: this needs to be tested*)
+        | SymFunc(subType,arglist) -> print_string "SymFunc/"; print_symType subType linenum;
+        | SymType(subType) -> print_string "SymType/"; print_symType subType linenum;
+        | Void -> print_string "Void"
+        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg) ; in
 
     (* Jasmin initializations *)
 
@@ -244,13 +261,13 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> print_int value
-        | Floatliteral(value, _) -> print_float value
-        | Runeliteral(value, _) -> print_string value
-        | Stringliteral(value, _) -> print_string value
+        | Intliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_int value))
+        | Floatliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_float value))
+        | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
+        | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, _, symt) -> println_string_with_tab 1 (generate_load symt value)
+        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum)
         | AndAndOp(exp1, exp2, _, _) -> 
             begin
                 print_string "( ";
@@ -447,15 +464,13 @@ let generate program filedir filename =
                 print_string " )";
             end
         | Value(value, _, _) -> print_literal value
-        | Selectorexpr(exp1, Identifier(iden, _), _, _) ->
+        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
             begin
-                print_string "( ";
+                print_string "getfield ";
                 print_expr exp1;
-                print_string ".";
-                print_string iden;
-                print_string " )";
+                print_symType symbolType linenum;
             end
-        | TypeCastExpr(typename, exp1, _, _) ->
+        | TypeCastExpr(typename, exp1, _, symbolType) ->
             begin
                 print_type_name 0 typename;
                 print_string "( ";
@@ -596,12 +611,20 @@ let generate program filedir filename =
                 print_string "--";
             end
     in
+    let generate_assign_expr_lh expr = match expr with 
+        | OperandName(iden,linenum,ast_type) -> generate_store ast_type (Identifier(iden,linenum))
+        | Indexexpr(expr1,expr2,linenum,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | _ -> code_gen_error "Lvalue function error"
+    in 
+    let generate_assignment expr1 expr2 = 
+        print_expr expr2;
+        println_string_with_tab 1 (generate_assign_expr_lh expr1);
+    in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
             begin
-                print_expr_list exprs1;
-                print_string " = ";
-                print_expr_list exprs2;
+                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment;
             end
         | AssignmentOp(exprs1, assign_op, exprs2, _) ->
             begin
@@ -726,9 +749,7 @@ let generate program filedir filename =
             print_conditional_stmt level conditional
         | Simple(simple, _) -> 
             begin
-                print_tab level;
                 print_simple_stmt simple;
-                print_string ";\n"
             end
         | Print(exprs, _) -> 
             begin

@@ -2,7 +2,8 @@ package main
 
 
 func main() {
-	var x string
+	var x int
 	var y string
+	x=1
 	println("hello world")
 }
