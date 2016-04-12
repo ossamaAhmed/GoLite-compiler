@@ -425,7 +425,7 @@ let generate program filedir filename =
             let typeexpr2= print_expr exp2 in
             let _= println_string_with_tab 1 "iand\n" in 
             symt
-        | AndCaretOp (exp1, exp2, _, symt) -> 
+        | AndCaretOp (exp1, exp2, _, symt) -> (*NOT IMPLEMENTED*)
             begin
                 print_string "( ";
                 print_expr exp1;
@@ -435,41 +435,28 @@ let generate program filedir filename =
                 symt
             end
         | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
-        | Indexexpr(exp1, exp2, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string "[";
-                print_expr exp2;
-                print_string "]";
-                print_string " )";
-                symt
-            end
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> print_ln_one_tab (invoke_func value); symt
-        | UnaryPlus(exp1, _, symt) -> 
-            begin
-                print_string "( +";
+        | UnaryPlus(exp1, _, symt) -> (*DONE*)
+            let typeexpr1= print_expr exp1 in 
+            symt
+        | UnaryMinus(exp1, _, symt) -> (*MISSING FOR OTHER TYPES OTHER THAN INT*)
+            let typeexpr1= print_expr exp1 in
+            let _= println_string_with_tab 1 "ineg\n" in 
+            symt
+        | UnaryNot(exp1, _, symt) -> (*DONE*)
                 print_expr exp1;
-                print_string " )";
+                println_string_with_tab 1 ("ifeq true"^(string_of_int !labelcounttrue));
+                println_string_with_tab 1 ("iconst_0");
+                println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountfalse));
+                println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
+                println_string_with_tab 1 ("iconst_1");
+                println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
+                labelcountertrue();
+                labelcounterfalse();    
                 symt
-            end
-        | UnaryMinus(exp1, _, symt) ->
-            begin
-                print_string "( -";
-                print_expr exp1;
-                print_string " )";
-                symt
-            end
-        | UnaryNot(exp1, _, symt) ->
-            begin
-                print_string "( !";
-                print_expr exp1;
-                print_string " )";
-                symt
-            end
-        | UnaryCaret(exp1, _, symt) ->
+        | UnaryCaret(exp1, _, symt) -> (*NOT IMPLEMENTED*)
             begin
                 print_string "( ^";
                 print_expr exp1;
@@ -483,6 +470,16 @@ let generate program filedir filename =
                 print_expr exp1;
                 print_symType symbolType linenum;
                 symbolType
+            end
+        | Indexexpr(exp1, exp2, _, symt) -> 
+            begin
+                print_string "( ";
+                print_expr exp1;
+                print_string "[";
+                print_expr exp2;
+                print_string "]";
+                print_string " )";
+                symt
             end
         | TypeCastExpr(typename, exp1, _, symbolType) ->
             begin
@@ -501,6 +498,7 @@ let generate program filedir filename =
                 print_string ") )";
                 symt
             end
+
         | _ -> code_gen_error ("expression error")
     and print_expr_list expr_list = match expr_list with
         | [] -> ()
