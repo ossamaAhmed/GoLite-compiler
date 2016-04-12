@@ -193,7 +193,7 @@ let generate program filedir filename =
        return
     .end method
     *)
-    let print_init_header level =
+    let print_init_header filename =
         begin
             println_string (".method public <init>()V");
             println_one_tab "aload_0";
@@ -586,31 +586,9 @@ let generate program filedir filename =
                   labelcountertrue();
                   labelcounterfalse();    
     in
-    let string_return_type type_i = match type_i with
-        | Primitivetype(value, _) -> match value with
-            | "int" -> "I"
-            | "rune" -> "C"
-            | "bool" -> "I"
-            | "string" -> "[Ljava/lang/String;"
-            | "float64" -> "F"
-            | _ -> "V"
-        | _ -> "V"
-    in
-    let string_method_decl_return_type return_type = match return_type with
-        | FuncReturnType(return_type_i, _) -> string_return_type return_type_i
+    let string_method_return_type return_type = match return_type with
+        | FuncReturnType(type_i, _) -> string_jasmin_type type_i
         | Empty -> "V"
-    in
-    let print_method_decl level func_name signature stmt_list = match signature with
-        | FuncSig(FuncParams(func_params, _), return_type, _) ->
-            begin
-                (* print_identifier_list_with_type func_params; *)
-                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_decl_return_type return_type));
-                println_one_tab ".limit stack 99";
-                println_one_tab  ".limit locals 99";
-(*                 print_method_decl_return_type return_type; *)
-                println_one_tab "return";
-                println_string ".end method\n";
-            end
     in
     let print_var_default_value typename = match typename with 
         | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
@@ -744,7 +722,7 @@ let generate program filedir filename =
                 | Function(func_name, func_sig, stmt_list, line) ->
                     begin
                         add_func func_name func_sig;
-                        print_method_decl level func_name func_sig stmt_list;
+                        print_method_decl func_name func_sig stmt_list;
                     end
                 | _ -> ()
             )
@@ -752,12 +730,10 @@ let generate program filedir filename =
             let print_return_stmt level stmt = match stmt with
                 | ReturnStatement(expr, _) -> 
                     begin
-                        print_tab level;
-                        print_string "return ";
                         print_expr expr;
-                        print_string "\n";
+                        ();
                     end
-                | Empty -> print_string "return\n"
+                | Empty -> ()
             in
             print_return_stmt level rt_stmt
         | Break(_) -> 
@@ -842,17 +818,15 @@ let generate program filedir filename =
             end
         | Print(exprs, _) -> 
             begin
-                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
                 print_expr_list exprs;
-                print_string "\n";
-                print_string_with_tab level "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n";
+                println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
             end
         | Println(exprs, _) -> 
             begin
-                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
                 print_expr_list exprs;
-                print_string "\n";
-                print_string_with_tab level "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n";
+                println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
             end
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
@@ -960,6 +934,29 @@ let generate program filedir filename =
                 print_stmt level head;
                 print_stmt_list level tail;
             end
+    and print_method_return return_type = match return_type with
+        | FuncReturnType(return_type_i, _) -> 
+            (match return_type_i with
+                    | Primitivetype(value, _) -> 
+                        (match value with
+                            | "int" -> println_one_tab "ireturn"
+                            | "float64" -> println_one_tab "freturn"
+                            | "bool" -> println_one_tab "ireturn"
+                            | _ -> println_one_tab "areturn"
+                        )   
+                    | _ -> println_one_tab "areturn"
+            )
+        | Empty -> println_one_tab "return"
+    and print_method_decl func_name signature stmt_list = match signature with
+        | FuncSig(FuncParams(func_params, _), return_type, _) ->
+            begin
+                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type));
+                println_one_tab ".limit stack 99";
+                println_one_tab  ".limit locals 99";
+                print_stmt_list 1 stmt_list;
+                print_method_return return_type;
+                println_string ".end method\n";
+            end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
         | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
@@ -981,14 +978,16 @@ let generate program filedir filename =
             | _ ->
                 begin
                     add_func func_name signature;
-                    print_method_decl level func_name signature stmt_list;
+                    print_method_decl func_name signature stmt_list;
                 end
         | _ -> ()
     and print_decl_list level decl_list = 
         List.iter (print_decl level) decl_list
     in
-    jasmin_main_class := filename;
-    print_class_header filename;
-    print_init_header 1;
-    print_decl_list 0 decl_list;
-    close_out output_file
+    begin
+        jasmin_main_class := filename;
+        print_class_header filename;
+        print_init_header filename;
+        print_decl_list 0 decl_list;
+        close_out output_file
+    end
