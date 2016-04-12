@@ -320,7 +320,8 @@ and pretty_typecheck_expression exp =
 																						  	| _-> type_checking_error ("indexing should be done on an array or a slice linenum:="^(Printf.sprintf "%i" linenum))
 																						  )
 												| Unaryexpr(exp1,linenum,ast_type) -> let mytype= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
-																					 (Unaryexpr(exp1,linenum,mytype),mytype)
+																					  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in 
+																					 (Unaryexpr(exp_type1_node,linenum,mytype),mytype)
 												| Binaryexpr(exp1,linenum,ast_type) ->  let mytype= pretty_typecheck_expression exp1 in 
 																						let mytype_name= extract_type_from_expr_tuple mytype in 
 																						let mytype_node = extract_node_from_expr_tuple mytype in
