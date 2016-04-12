@@ -53,14 +53,13 @@ let add_variable_to_current_scope mytype myvar = match myvar with
 
 let get_primitive_type type_of_type_i = match type_of_type_i with
         | Primitivetype(value, _) -> 
-
-           ( match value with
+            (match value with
                 | "int" -> SymInt
                 | "rune" -> SymRune
                 | "bool" -> SymBool
                 | "string" -> SymString
-                | "float64" -> SymString)
-
+                | "float64" -> SymString
+            )
         | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
         | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
@@ -109,7 +108,8 @@ let generate_load typename varname linenum= match typename with
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
-let generate_store typename varnameIden= match typename, varnameIden with 
+
+let generate_store typename varnameIden = match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
@@ -136,10 +136,10 @@ let string_jasmin_type go_type = match go_type with
     | Primitivetype(value, _) ->
         (match value with 
             | "int" -> "I"
-            | "bool" -> "I"
+            | "bool" -> "Z"
             | "float64" -> "F"
-            | "rune" -> "F"
-            | "string" -> "F"
+            | "rune" -> "C"
+            | "string" -> "[Ljava/lang/String;"
         )
     | Arraytype(len, type_name2, _) -> ""
         (* What is array type in jasmin? *)
@@ -187,7 +187,7 @@ let generate program filedir filename =
             println_string s
         end
     in
-    let print_ln_one_tab s = 
+    let println_one_tab s = 
         begin 
             print_tab 1;
             println_string s
@@ -217,8 +217,8 @@ let generate program filedir filename =
     *)
     let print_class_header filename = 
         begin
-            print_string (".class public "^(filename)^"\n");
-            print_string ".super java/lang/Object\n\n"
+            println_string (".class public "^(filename)^"");
+            println_string ".super java/lang/Object\n"
         end
     in
     (*
@@ -228,13 +228,13 @@ let generate program filedir filename =
        return
     .end method
     *)
-    let print_init_header level =
+    let print_init_header filename =
         begin
-            print_string (".method public <init>()V\n");
-            print_string_with_tab (level) "aload_0\n";
-            print_string_with_tab (level) "invokenonvirtual java/lang/Object/<init>()V\n";
-            print_string_with_tab (level) "return\n";
-            print_string ".end method\n\n"   
+            println_string (".method public <init>()V");
+            println_one_tab "aload_0";
+            println_one_tab "invokenonvirtual java/lang/Object/<init>()V";
+            println_one_tab "return";
+            println_string ".end method\n"   
         end
     in
     let rec print_identifier_list iden_list = match iden_list with
@@ -306,42 +306,50 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> print_ln_one_tab ("ldc "^(string_of_int value))
-        | Floatliteral(value, _) -> print_ln_one_tab ("ldc "^(string_of_float value))
+        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value))
+        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value))
         | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
-        | Stringliteral(value, _) -> print_ln_one_tab ("ldc "^(value))
+        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value))
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
                         | SymFloat64, SymFloat64 -> print_string_with_tab 1 "f";
-                        | SymInt, SymFloat64 -> println_string_with_tab 1 "f2i";
+                        | SymInt, SymFloat64 -> println_one_tab "f2i";
                                                 print_string_with_tab 1 "i";
-                        | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
+                        | SymFloat64, SymInt -> println_one_tab "i2f";
                                                 print_string_with_tab 1 "f";
                         | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum); symt (*handle true and false missing*)
+        | OperandName(value, linenum, symt) -> 
+                (match value with 
+                | "true"-> println_string_with_tab 1 "iconst_1"; symt
+                | "false"-> println_string_with_tab 1 "iconst_0"; symt
+                | _ ->  println_one_tab (generate_load symt value linenum); symt)
         | AndAndOp(exp1, exp2, _, symt) -> (*DONE*)
-                print_expr exp1; 
+                print_expr exp1;
                 println_string_with_tab 1 ("dup");
-                println_string_with_tab 1 ("ifne "^"true"^(string_of_int !labelcounttrue));
+                let cur_label= !labelcountfalse in 
+                labelcountertrue(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
+                labelcounterfalse();
+                println_string_with_tab 1 ("ifeq "^"false"^(string_of_int cur_label));
                 println_string_with_tab 1 ("pop");
                 print_expr exp2;
-                println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
-                labelcountertrue();
-                labelcounterfalse(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
+               println_string_with_tab 1 ("false"^(string_of_int cur_label)^":");
                 symt
         | OrOrOp(exp1, exp2, _, symt) -> (*DONE*)
                 print_expr exp1; 
                 println_string_with_tab 1 ("dup");
-                println_string_with_tab 1 ("ifeq "^"false"^(string_of_int !labelcountfalse));
-                println_string_with_tab 1 ("pop");
-                print_expr exp2;
-                println_string_with_tab 1 ("false"^(string_of_int !labelcountfalse)^":");
+                let cur_label= !labelcountfalse in 
                 labelcountertrue(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
                 labelcounterfalse();
+                println_string_with_tab 1 ("ifne "^"true"^(string_of_int cur_label));
+                println_string_with_tab 1 ("pop");
+                print_expr exp2;
+                println_string_with_tab 1 ("true"^(string_of_int cur_label)^":");
+                labelcountertrue();
+                labelcounterfalse(); (*NOT SURE IF WE SHOULD INCREMENT BOTH, NEED TO FIGURE THIS IN BREAK*)
                 symt
         | EqualEqualCmp(exp1, exp2, _, symt) ->  (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in 
@@ -407,7 +415,7 @@ let generate program filedir filename =
                 let typeexpr1= print_expr exp1 in
                 let typeexpr2= print_expr exp2 in
                 (match typeexpr1, typeexpr2 with 
-                    | SymString, SymString ->  println_string_with_tab 1 "invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;";symt
+                    | SymString, SymString ->  println_one_tab "invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;";symt
                     | _, _ -> let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
                               let _= print_string "add\n" in symt
                 )
@@ -421,7 +429,7 @@ let generate program filedir filename =
         | OrOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ior\n" in 
+            let _= println_one_tab "ior\n" in 
             symt
         | CaretOp (exp1, exp2, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in
@@ -450,17 +458,17 @@ let generate program filedir filename =
         | SrOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ishr\n" in 
+            let _= println_one_tab "ishr\n" in 
             symt
         | SlOp (exp1, exp2, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ishl\n" in 
+            let _= println_one_tab "ishl\n" in 
             symt
         | AndOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "iand\n" in 
+            let _= println_one_tab "iand\n" in 
             symt
         | AndCaretOp (exp1, exp2, _, symt) -> (*NOT IMPLEMENTED*)
             begin
@@ -474,22 +482,22 @@ let generate program filedir filename =
         | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
-        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> print_ln_one_tab (invoke_func value); symt
+        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> println_one_tab (invoke_func value); symt
         | UnaryPlus(exp1, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in 
             symt
         | UnaryMinus(exp1, _, symt) -> (*MISSING FOR OTHER TYPES OTHER THAN INT*)
             let typeexpr1= print_expr exp1 in
-            let _= println_string_with_tab 1 "ineg\n" in 
+            let _= println_one_tab "ineg\n" in 
             symt
         | UnaryNot(exp1, _, symt) -> (*DONE*)
                 print_expr exp1;
-                println_string_with_tab 1 ("ifeq true"^(string_of_int !labelcounttrue));
-                println_string_with_tab 1 ("iconst_0");
-                println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountfalse));
-                println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
-                println_string_with_tab 1 ("iconst_1");
-                println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
+                println_one_tab ("ifeq true"^(string_of_int !labelcounttrue));
+                println_one_tab ("iconst_0");
+                println_one_tab ("goto stop"^(string_of_int !labelcountfalse));
+                println_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                println_one_tab ("iconst_1");
+                println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
                 labelcountertrue();
                 labelcounterfalse();    
                 symt
@@ -619,104 +627,77 @@ let generate program filedir filename =
                 print_expr_list tail;
             end
     and generate_comparable_binary_ints optype= 
-                  println_string_with_tab 1 ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
-                  println_string_with_tab 1 ("iconst_0");
-                  println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountfalse));
-                  println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
-                  println_string_with_tab 1 ("iconst_1");
-                  println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
+                  println_one_tab ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
+                  println_one_tab ("iconst_0");
+                  println_one_tab ("goto stop"^(string_of_int !labelcountfalse));
+                  println_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                  println_one_tab ("iconst_1");
+                  println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
                   labelcountertrue();
                   labelcounterfalse();    
     in
-    let string_return_type type_i = match type_i with
-        | Primitivetype(value, _) -> match value with
-            | "int" -> "I"
-            | "rune" -> "C"
-            | "bool" -> "B"
-            | "string" -> "[Ljava/lang/String;"
-            | "float64" -> "F"
-            | _ -> "V"
-        | _ -> "V"
-    in
-    let string_method_decl_return_type return_type = match return_type with
-        | FuncReturnType(return_type_i, _) -> string_return_type return_type_i
+    let string_method_return_type return_type = match return_type with
+        | FuncReturnType(type_i, _) -> string_jasmin_type type_i
         | Empty -> "V"
     in
-    let print_method_decl level func_name signature stmt_list = match signature with
-        | FuncSig(FuncParams(func_params, _), return_type, _) ->
-            begin
-                (* print_identifier_list_with_type func_params; *)
-                println_string_with_tab level (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_decl_return_type return_type));
-                println_string_with_tab (level+1) ".limit stack 99";
-                println_string_with_tab (level+1) ".limit locals 99";
-(*                 print_method_decl_return_type return_type; *)
-                println_string_with_tab (level+1) "return";
-                println_string_with_tab level ".end method\n";
-            end
-    in
-    let initialize_variable_default typename = match typename with 
+    let print_var_default_value typename = match typename with 
         | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
-
-           ( match value with
-                | "int" -> print_ln_one_tab  "iconst_0"
-                | "rune" -> print_ln_one_tab  "iconst_0"
-                | "bool" -> print_ln_one_tab  "iconst_0"
-                | "string" -> print_ln_one_tab  "ldc \"\""
-                | "float64" -> print_ln_one_tab  "fconst_0")
-
+            (match value with
+                | "int" -> println_one_tab  "iconst_0"
+                | "rune" -> println_one_tab  "iconst_0"
+                | "bool" -> println_one_tab  "iconst_0"
+                | "string" -> println_one_tab  "ldc \"\""
+                | "float64" -> println_one_tab  "fconst_0"
+            )
         | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
-    let declare_variable_emit typename iden= 
+    let emit_var_decl typename iden = 
         begin
-            initialize_variable_default typename;
+            print_var_default_value typename;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
-            print_ln_one_tab (generate_store (get_primitive_type typename) iden);
+            println_one_tab (generate_store (get_primitive_type typename) iden);
         end
     in
     let print_var_decl level decl = match decl with
         | VarSpecWithType(iden_list, typename, exprs, _) -> 
-            (match exprs with
-                | [] -> 
-                    begin
-                        List.map (declare_variable_emit typename) iden_list;
-                        ();
-                    end
-                | head::tail ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string " ";
-                        print_type_name level typename;
-                        print_string " = ";
-                        print_expr_list exprs;
-                        print_string ";\n";     
-                    end
-            )
+            if exprs = [] then
+                begin
+                    List.map (emit_var_decl typename) iden_list;
+                    ();
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " ";
+                    print_type_name level typename;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";     
+                end
         | VarSpecWithoutType (iden_list, exprs, _) -> 
-            (match exprs with
-                | [] ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string ";\n";
-                    end
-                | head::tail ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string " = ";
-                        print_expr_list exprs;
-                        print_string ";\n";
-                    end
-            )
+            if exprs = [] then
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string ";\n"; 
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";                
+                end
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = match decl with
@@ -757,7 +738,7 @@ let generate program filedir filename =
     in 
     let generate_assignment expr1 expr2 = 
         let exprtype = print_expr expr2 in 
-            println_string_with_tab 1 (generate_assign_expr_lh expr1 exprtype);
+            println_one_tab (generate_assign_expr_lh expr1 exprtype);
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
@@ -797,7 +778,7 @@ let generate program filedir filename =
                 | Function(func_name, func_sig, stmt_list, line) ->
                     begin
                         add_func func_name func_sig;
-                        print_method_decl level func_name func_sig stmt_list;
+                        print_method_decl func_name func_sig stmt_list;
                     end
                 | _ -> ()
             )
@@ -805,12 +786,10 @@ let generate program filedir filename =
             let print_return_stmt level stmt = match stmt with
                 | ReturnStatement(expr, _) -> 
                     begin
-                        print_tab level;
-                        print_string "return ";
                         print_expr expr;
-                        print_string "\n";
+                        ();
                     end
-                | Empty -> print_string "return\n"
+                | Empty -> ()
             in
             print_return_stmt level rt_stmt
         | Break(_) -> 
@@ -824,7 +803,7 @@ let generate program filedir filename =
                 print_string "continue\n";
             end
         | Block(stmt_list, _) -> print_stmt_list (level+1) stmt_list
-        | Conditional(conditional, _) ->
+        | Conditional(conditional, _) ->  (*DONE*)
             let print_if_init if_init = match if_init with
                 | IfInitSimple(simplestmt, _) ->
                     begin
@@ -832,12 +811,12 @@ let generate program filedir filename =
                     end
                 | Empty -> ()
             in
-            let print_if_cond cond = match cond with 
+            let print_if_cond cond = match cond with (*DONE*)
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
             let print_if_stmt level if_stmt = match if_stmt with
-                | IfInit(if_init, condition, stmts, _) -> 
+                | IfInit(if_init, condition, stmts, _) -> (*DONE*)
                     begin
                         start_scope();
                         print_if_init if_init;
@@ -845,37 +824,74 @@ let generate program filedir filename =
                         let currlabel= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
-                        println_string_with_tab 1 ("ifeq stop"^(string_of_int currlabel));
+                        println_one_tab ("ifeq stop"^(string_of_int currlabel));
                         start_scope();
-                        print_stmt_list (level+1) stmts;
-                        print_tab level;
+                        print_stmt_list 1 stmts;
                         end_scope();
-                        println_string_with_tab 1 ("stop"^(string_of_int currlabel)^":");
+                        println_one_tab ("stop"^(string_of_int currlabel)^":");
+                    end
+            in
+            let print_if_stmt_with_else level if_stmt = match if_stmt with (*DONE*)
+                | IfInit(if_init, condition, stmts, _) -> 
+                    begin
+                        start_scope();
+                        print_if_init if_init;
+                        print_if_cond condition;
+                        let curr_else_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
+                        start_scope();
+                        print_stmt_list 1 stmts;
+                        end_scope();
+                        let curr_stop_label= !labelcountfalse in 
+                        println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
+
+
                     end
             in
             let rec print_else_stmt level stmt =  match stmt with 
-                | ElseSingle(if_stmt, stmts, _) -> 
+                | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
-                        print_if_stmt level if_stmt;
-                        print_string " else {\n ";
-                        print_stmt_list (level+1) stmts;
-                        print_tab level;
-                        print_string "}";
+                        print_if_stmt_with_else 1 if_stmt;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        start_scope();
+                        print_stmt_list 1 stmts;
+                        end_scope();
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
-                | ElseIFMultiple(if_stmt, else_stmt, _) ->
+                | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
-                        print_if_stmt level if_stmt;
-                        print_string " else ";
-                        print_else_stmt level else_stmt;
+                        print_if_stmt_with_else 1 if_stmt;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        print_else_stmt 1 else_stmt;
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
-                | ElseIFSingle(if_stmt1, if_stmt2, _) -> 
+                | ElseIFSingle(if_stmt1, if_stmt2, _) -> (*DONE*)
+
                     begin
-                        print_if_stmt level if_stmt1;
-                        print_string " else ";
-                        print_if_stmt level if_stmt2;
+                        print_if_stmt_with_else 1 if_stmt1;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        
+                        print_if_stmt_with_else 1 if_stmt2;
+                        let curr_stop_label2= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        
+
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label2)^":");
+
                     end
             in
-            let print_conditional_stmt level cond = match cond with 
+            let print_conditional_stmt level cond = match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
                         print_if_stmt 1 if_stmt;
@@ -883,9 +899,8 @@ let generate program filedir filename =
                     end
                 | ElseStmt(else_stmt, _) ->
                     begin
-                        print_tab level;
                         print_else_stmt level else_stmt;
-                        print_string "\n";
+                        end_scope();
                     end
             in
             print_conditional_stmt level conditional
@@ -895,17 +910,15 @@ let generate program filedir filename =
             end
         | Print(exprs, _) -> 
             begin
-                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
                 print_expr_list exprs;
-                print_string "\n";
-                print_string_with_tab level "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V\n";
+                println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
             end
         | Println(exprs, _) -> 
             begin
-                print_string_with_tab level "getstatic java/lang/System/out Ljava/io/PrintStream;\n";
+                println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
                 print_expr_list exprs;
-                print_string "\n";
-                print_string_with_tab level "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n";
+                println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
             end
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
@@ -1013,6 +1026,29 @@ let generate program filedir filename =
                 print_stmt level head;
                 print_stmt_list level tail;
             end
+    and print_method_return return_type = match return_type with
+        | FuncReturnType(return_type_i, _) -> 
+            (match return_type_i with
+                    | Primitivetype(value, _) -> 
+                        (match value with
+                            | "int" -> println_one_tab "ireturn"
+                            | "float64" -> println_one_tab "freturn"
+                            | "bool" -> println_one_tab "ireturn"
+                            | _ -> println_one_tab "areturn"
+                        )   
+                    | _ -> println_one_tab "areturn"
+            )
+        | Empty -> println_one_tab "return"
+    and print_method_decl func_name signature stmt_list = match signature with
+        | FuncSig(FuncParams(func_params, _), return_type, _) ->
+            begin
+                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type));
+                println_one_tab ".limit stack 99";
+                println_one_tab  ".limit locals 99";
+                print_stmt_list 1 stmt_list;
+                print_method_return return_type;
+                println_string ".end method\n";
+            end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
         | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
@@ -1024,24 +1060,26 @@ let generate program filedir filename =
                 begin
                     start_scope ();
                     println_string ".method public static main([Ljava/lang/String;)V";
-                    println_string_with_tab (level+1) ".limit stack 99";
-                    println_string_with_tab (level+1) ".limit locals 99";
-                    print_stmt_list (level+1) stmt_list;
+                    println_one_tab ".limit stack 99";
+                    println_one_tab ".limit locals 99";
+                    print_stmt_list 1 stmt_list;
                     println_string "";
-                    println_string_with_tab (level+1) "return";
+                    println_one_tab "return";
                     println_string ".end method";
                 end
             | _ ->
                 begin
                     add_func func_name signature;
-                    print_method_decl level func_name signature stmt_list;
+                    print_method_decl func_name signature stmt_list;
                 end
         | _ -> ()
     and print_decl_list level decl_list = 
         List.iter (print_decl level) decl_list
     in
-    jasmin_main_class := filename;
-    print_class_header filename;
-    print_init_header 1;
-    print_decl_list 0 decl_list;
-    close_out output_file
+    begin
+        jasmin_main_class := filename;
+        print_class_header filename;
+        print_init_header filename;
+        print_decl_list 0 decl_list;
+        close_out output_file
+    end
