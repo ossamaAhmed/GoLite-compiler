@@ -751,7 +751,7 @@ let generate program filedir filename =
                 print_string "continue\n";
             end
         | Block(stmt_list, _) -> print_stmt_list (level+1) stmt_list
-        | Conditional(conditional, _) ->
+        | Conditional(conditional, _) ->  (*DONE*)
             let print_if_init if_init = match if_init with
                 | IfInitSimple(simplestmt, _) ->
                     begin
@@ -759,12 +759,12 @@ let generate program filedir filename =
                     end
                 | Empty -> ()
             in
-            let print_if_cond cond = match cond with 
+            let print_if_cond cond = match cond with (*DONE*)
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
             let print_if_stmt level if_stmt = match if_stmt with
-                | IfInit(if_init, condition, stmts, _) -> 
+                | IfInit(if_init, condition, stmts, _) -> (*DONE*)
                     begin
                         start_scope();
                         print_if_init if_init;
@@ -779,15 +779,7 @@ let generate program filedir filename =
                         println_one_tab ("stop"^(string_of_int currlabel)^":");
                     end
             in
-          (*    codeEXP(s->val.ifelseS.condition);
-            code_ifeq(s->val.ifelseS.elselabel);
-            codeSTATEMENT(s->val.ifelseS.thenpart); stop
-            code_goto(s->val.ifelseS.stoplabel);
-            code_label("else",s->val.ifelseS.elselabel);
-            codeSTATEMENT(s->val.ifelseS.elsepart); --
-            code_label("stop",s->val.ifelseS.stoplabel);
-            break; *)
-            let print_if_stmt_with_else level if_stmt = match if_stmt with
+            let print_if_stmt_with_else level if_stmt = match if_stmt with (*DONE*)
                 | IfInit(if_init, condition, stmts, _) -> 
                     begin
                         start_scope();
@@ -800,7 +792,6 @@ let generate program filedir filename =
                         start_scope();
                         print_stmt_list 1 stmts;
                         end_scope();
-
                         let curr_stop_label= !labelcountfalse in 
                         println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
                         println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
@@ -809,7 +800,7 @@ let generate program filedir filename =
                     end
             in
             let rec print_else_stmt level stmt =  match stmt with 
-                | ElseSingle(if_stmt, stmts, _) -> 
+                | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
                         print_if_stmt_with_else 1 if_stmt;
                         let curr_stop_label= !labelcountfalse in 
@@ -820,20 +811,35 @@ let generate program filedir filename =
                         end_scope();
                         println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
-                | ElseIFMultiple(if_stmt, else_stmt, _) ->
+                | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
-                        print_if_stmt level if_stmt;
-                        print_string " else ";
-                        print_else_stmt level else_stmt;
+                        print_if_stmt_with_else 1 if_stmt;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        print_else_stmt 1 else_stmt;
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
-                | ElseIFSingle(if_stmt1, if_stmt2, _) -> 
+                | ElseIFSingle(if_stmt1, if_stmt2, _) -> (*DONE*)
+
                     begin
-                        print_if_stmt level if_stmt1;
-                        print_string " else ";
-                        print_if_stmt level if_stmt2;
+                        print_if_stmt_with_else 1 if_stmt1;
+                        let curr_stop_label= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        
+                        print_if_stmt_with_else 1 if_stmt2;
+                        let curr_stop_label2= !labelcountfalse in 
+                        labelcountertrue();
+                        labelcounterfalse();
+                        
+
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label2)^":");
+
                     end
             in
-            let print_conditional_stmt level cond = match cond with 
+            let print_conditional_stmt level cond = match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
                         print_if_stmt 1 if_stmt;
