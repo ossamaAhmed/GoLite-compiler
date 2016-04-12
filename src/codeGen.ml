@@ -54,14 +54,13 @@ let add_variable_to_current_scope mytype myvar = match myvar with
 let get_primitive_type type_of_type_i = match type_of_type_i with
         | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
-
-           ( match value with
+            (match value with
                 | "int" -> SymInt
                 | "rune" -> SymRune
                 | "bool" -> SymBool
                 | "string" -> SymString
-                | "float64" -> SymString)
-
+                | "float64" -> SymString
+            )
         | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
@@ -74,7 +73,8 @@ let generate_load typename varname linenum= match typename with
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
-let generate_store typename varnameIden= match typename, varnameIden with 
+
+let generate_store typename varnameIden = match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
@@ -104,7 +104,7 @@ let string_jasmin_type go_type = match go_type with
             | "bool" -> "I"
             | "float64" -> "F"
             | "rune" -> "F"
-            | "string" -> "F"
+            | "string" -> "[Ljava/lang/String;"
         )
     | Arraytype(len, type_name2, _) -> ""
         (* What is array type in jasmin? *)
@@ -279,16 +279,16 @@ let generate program filedir filename =
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
                         | SymFloat64, SymFloat64 -> print_string_with_tab 1 "f";
-                        | SymInt, SymFloat64 -> println_string_with_tab 1 "f2i";
+                        | SymInt, SymFloat64 -> print_ln_one_tab "f2i";
                                                 print_string_with_tab 1 "i";
-                        | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
+                        | SymFloat64, SymInt -> print_ln_one_tab "i2f";
                                                 print_string_with_tab 1 "f";
                         | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
                         | SymString, SymString -> () (*NOT YET IMPLEMENTED FOR ADD ONLY*)
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
-        | OperandName(value, linenum, symt) -> println_string_with_tab 1 (generate_load symt value linenum); symt (*handle true and false missing*)
+        | OperandName(value, linenum, symt) -> print_ln_one_tab (generate_load symt value linenum); symt (*handle true and false missing*)
         | AndAndOp(exp1, exp2, _, symt) -> 
             begin
                 print_string "( ";
@@ -382,7 +382,7 @@ let generate program filedir filename =
         | OrOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ior\n" in 
+            let _= print_ln_one_tab "ior\n" in 
             symt
         | CaretOp (exp1, exp2, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in
@@ -411,17 +411,17 @@ let generate program filedir filename =
         | SrOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ishr\n" in 
+            let _= print_ln_one_tab "ishr\n" in 
             symt
         | SlOp (exp1, exp2, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "ishl\n" in 
+            let _= print_ln_one_tab "ishl\n" in 
             symt
         | AndOp (exp1, exp2, _, symt) ->  (*DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
-            let _= println_string_with_tab 1 "iand\n" in 
+            let _= print_ln_one_tab "iand\n" in 
             symt
         | AndCaretOp (exp1, exp2, _, symt) -> 
             begin
@@ -510,12 +510,12 @@ let generate program filedir filename =
                 print_expr_list tail;
             end
     and generate_comparable_binary_ints optype= 
-                  println_string_with_tab 1 ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
-                  println_string_with_tab 1 ("iconst_0");
-                  println_string_with_tab 1 ("goto stop"^(string_of_int !labelcountflase));
-                  println_string_with_tab 1 ("true"^(string_of_int !labelcounttrue)^":");
-                  println_string_with_tab 1 ("iconst_1");
-                  println_string_with_tab 1 ("stop"^(string_of_int !labelcountflase)^":");
+                  print_ln_one_tab ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
+                  print_ln_one_tab ("iconst_0");
+                  print_ln_one_tab ("goto stop"^(string_of_int !labelcountflase));
+                  print_ln_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                  print_ln_one_tab ("iconst_1");
+                  print_ln_one_tab ("stop"^(string_of_int !labelcountflase)^":");
                   labelcountertrue();
                   labelcounterfalse();
 
@@ -539,7 +539,7 @@ let generate program filedir filename =
         | Primitivetype(value, _) -> match value with
             | "int" -> "I"
             | "rune" -> "C"
-            | "bool" -> "B"
+            | "bool" -> "I"
             | "string" -> "[Ljava/lang/String;"
             | "float64" -> "F"
             | _ -> "V"
@@ -561,25 +561,24 @@ let generate program filedir filename =
                 println_string_with_tab level ".end method\n";
             end
     in
-    let initialize_variable_default typename = match typename with 
+    let print_var_default_value typename = match typename with 
         | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
-
-           ( match value with
+            (match value with
                 | "int" -> print_ln_one_tab  "iconst_0"
                 | "rune" -> print_ln_one_tab  "iconst_0"
                 | "bool" -> print_ln_one_tab  "iconst_0"
                 | "string" -> print_ln_one_tab  "ldc \"\""
-                | "float64" -> print_ln_one_tab  "fconst_0")
-
+                | "float64" -> print_ln_one_tab  "fconst_0"
+            )
         | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
-    let declare_variable_emit typename iden= 
+    let emit_var_decl typename iden = 
         begin
-            initialize_variable_default typename;
+            print_var_default_value typename;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
             print_ln_one_tab (generate_store (get_primitive_type typename) iden);
@@ -587,43 +586,39 @@ let generate program filedir filename =
     in
     let print_var_decl level decl = match decl with
         | VarSpecWithType(iden_list, typename, exprs, _) -> 
-            (match exprs with
-                | [] -> 
-                    begin
-                        List.map (declare_variable_emit typename) iden_list;
-                        ();
-                    end
-                | head::tail ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string " ";
-                        print_type_name level typename;
-                        print_string " = ";
-                        print_expr_list exprs;
-                        print_string ";\n";     
-                    end
-            )
+            if exprs = [] then
+                begin
+                    List.map (emit_var_decl typename) iden_list;
+                    ();
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " ";
+                    print_type_name level typename;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";     
+                end
         | VarSpecWithoutType (iden_list, exprs, _) -> 
-            (match exprs with
-                | [] ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string ";\n";
-                    end
-                | head::tail ->
-                    begin
-                        print_tab (level);
-                        print_string "var ";
-                        print_identifier_list iden_list;
-                        print_string " = ";
-                        print_expr_list exprs;
-                        print_string ";\n";
-                    end
-            )
+            if exprs = [] then
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string ";\n"; 
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";                
+                end
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = match decl with
@@ -658,7 +653,7 @@ let generate program filedir filename =
     in 
     let generate_assignment expr1 expr2 = 
         let exprtype = print_expr expr2 in 
-            println_string_with_tab 1 (generate_assign_expr_lh expr1 exprtype);
+            print_ln_one_tab (generate_assign_expr_lh expr1 exprtype);
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
@@ -922,11 +917,11 @@ let generate program filedir filename =
                 begin
                     start_scope ();
                     println_string ".method public static main([Ljava/lang/String;)V";
-                    println_string_with_tab (level+1) ".limit stack 99";
-                    println_string_with_tab (level+1) ".limit locals 99";
-                    print_stmt_list (level+1) stmt_list;
+                    print_ln_one_tab ".limit stack 99";
+                    print_ln_one_tab ".limit locals 99";
+                    print_stmt_list 1 stmt_list;
                     println_string "";
-                    println_string_with_tab (level+1) "return";
+                    print_ln_one_tab "return";
                     println_string ".end method";
                 end
             | _ ->
