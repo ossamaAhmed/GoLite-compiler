@@ -5,19 +5,20 @@ open Symboltbl
 exception Code_generation_error of string
 let code_gen_error msg = raise (Code_generation_error msg)
 
+let jasmin_main_class = ref "GoFile"
+
 (* Stack functions for locals manipulation *)
 
 type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
 let labelcount = ref 0
-let labelcounter ()= labelcount:=!labelcount+1
+let labelcounter () = labelcount :=! labelcount+1
 let localcount = ref 0
-let localcounter ()= localcount:=!localcount+1
+let localcounter () = localcount :=! localcount+1
 
-
-let start_scope ()= symbol_table :=Scope(Hashtbl.create 50)::!symbol_table
-let end_scope ()= match !symbol_table with 
-                | Scope(head)::tail -> localcount:= !localcount-(Hashtbl.length head); symbol_table:= tail
+let start_scope () = symbol_table := Scope(Hashtbl.create 50)::!symbol_table
+let end_scope () = match !symbol_table with 
+                | Scope(head)::tail -> localcount := !localcount-(Hashtbl.length head); symbol_table:= tail
 
 let search_current_scope key = match !symbol_table with 
     | Scope(current_scope)::tail -> 
@@ -83,6 +84,45 @@ let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
+
+(* --------------------------------END-------------------------------- *)
+
+(* Function call table *)
+
+(* Store a table of function name => Jasmin function invocation strings *)
+type funcTable = (string, string) Hashtbl.t;;
+let (func_table : funcTable) = Hashtbl.create 123456;;
+
+(* Refer to print_type_name in prettyPrinter *)
+let string_jasmin_type go_type = match go_type with 
+    | Definedtype(Identifier(value, _), _) -> value
+    | Primitivetype(value, _) ->
+        (match value with 
+            | "int" -> "I"
+            | "bool" -> "I"
+            | "float64" -> "F"
+            | "rune" -> "F"
+            | "string" -> "F"
+        )
+    | Arraytype(len, type_name2, _) -> ""
+        (* What is array type in jasmin? *)
+    | Slicetype(type_name2, _) -> ""
+        (* What is slice type in jasmin? *)
+    | Structtype([], _) -> ""
+        (*TO BE IMPLEMENTED*)
+    | Structtype(field_dcl_list, _) -> ""
+        (*TO BE IMPLEMENTED*)
+let rec string_method_params_types iden_list = match iden_list with
+    | [] -> ""
+    | TypeSpec(Identifier(iden, _), iden_type, _)::[] -> 
+        string_jasmin_type iden_type
+    | TypeSpec(Identifier(iden, _), iden_type, _)::tail ->
+        (string_jasmin_type iden_type)^(string_method_params_types tail)
+let add_func f = match f with
+    | Function(func_name, FuncSig(FuncParams(params_list, _), FuncReturnType(return_type_i, _), _), stmt_list, _) ->
+        Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")"^(string_jasmin_type return_type_i))
+    | _ -> ()
+let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* --------------------------------END-------------------------------- *)
 
@@ -420,15 +460,13 @@ let generate program filedir filename =
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt
         | FuncCallExpr(exp1, exprs, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string "(";
-                print_expr_list exprs;
-                print_string ")";
-                print_string " )";
-                symt
-            end
+           (match exp1 with
+                | Value(value, _, _) -> (match value with
+                    | Stringliteral(lit, _) -> println_string_with_tab 1 (invoke_func lit); symt
+                    | _ -> symt
+                )
+                | _ -> symt
+            )
         | UnaryPlus(exp1, _, symt) -> 
             begin
                 print_string "( +";
@@ -511,7 +549,7 @@ let generate program filedir filename =
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
                 (* print_identifier_list_with_type func_params; *)
-                println_string_with_tab level (Printf.sprintf ".method public %s(%s)%s" func_name "" (string_method_decl_return_type return_type));
+                println_string_with_tab level (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_decl_return_type return_type));
                 println_string_with_tab (level+1) ".limit stack 99";
                 println_string_with_tab (level+1) ".limit locals 99";
 (*                 print_method_decl_return_type return_type; *)
@@ -653,8 +691,10 @@ let generate program filedir filename =
                 | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
-                | Function(func_name, signature, stmt_list, _) ->
+                | Function(func_name, signature, stmt_list, line) ->
                     begin
+                        add_func (Function(func_name, signature, stmt_list, line));
+                        print_method_decl level func_name signature stmt_list;
                     end
                 | _ -> ()
             )
@@ -872,7 +912,7 @@ let generate program filedir filename =
         | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
-        | Function(func_name, signature, stmt_list, _) ->
+        | Function(func_name, signature, stmt_list, line) ->
             match func_name with
             | "main" ->
                 begin
@@ -880,19 +920,21 @@ let generate program filedir filename =
                     println_string ".method public static main([Ljava/lang/String;)V";
                     println_string_with_tab (level+1) ".limit stack 99";
                     println_string_with_tab (level+1) ".limit locals 99";
-                    println_string_with_tab (level+1) ("new "^(filename)^"");
-                    println_string_with_tab (level+1) "dup";
-                    println_string_with_tab (level+1) ("invokespecial "^(filename)^"/<init>()V\n");
                     print_stmt_list (level+1) stmt_list;
                     println_string "";
                     println_string_with_tab (level+1) "return";
                     println_string ".end method";
                 end
-            | _ -> print_method_decl level func_name signature stmt_list
+            | _ ->
+                begin
+                    add_func (Function(func_name, signature, stmt_list, line));
+                    print_method_decl level func_name signature stmt_list;
+                end
         | _ -> ()
     and print_decl_list level decl_list = 
         List.iter (print_decl level) decl_list
     in
+    jasmin_main_class := filename;
     print_class_header filename;
     print_init_header 1;
     print_decl_list 0 decl_list;
