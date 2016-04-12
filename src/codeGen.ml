@@ -284,7 +284,6 @@ let generate program filedir filename =
                         | SymFloat64, SymInt -> println_string_with_tab 1 "i2f";
                                                 print_string_with_tab 1 "f";
                         | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
-                        | SymString, SymString -> () (*NOT YET IMPLEMENTED FOR ADD ONLY*)
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
@@ -372,9 +371,12 @@ let generate program filedir filename =
         | AddOp(exp1, exp2, _, symt) ->   (*DONE*)
                 let typeexpr1= print_expr exp1 in
                 let typeexpr2= print_expr exp2 in
-                let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
-                let _= print_string "add\n" in 
-                symt
+                (match typeexpr1, typeexpr2 with 
+                    | SymString, SymString ->  println_string_with_tab 1 "invokevirtual java/lang/String/concat(Ljava/lang/String;)Ljava/lang/String;";symt
+                    | _, _ -> let _= generate_binary_arithmetic typeexpr1 typeexpr2 in
+                              let _= print_string "add\n" in symt
+                )
+                
         | MinusOp(exp1, exp2, _, symt) ->  (*DONE*)
                  let typeexpr1= print_expr exp1 in
                  let typeexpr2= print_expr exp2 in
@@ -714,7 +716,6 @@ let generate program filedir filename =
                 | IfInitSimple(simplestmt, _) ->
                     begin
                         print_simple_stmt simplestmt;
-                        print_string "; ";
                     end
                 | Empty -> ()
             in
@@ -725,13 +726,15 @@ let generate program filedir filename =
             let print_if_stmt level if_stmt = match if_stmt with
                 | IfInit(if_init, condition, stmts, _) -> 
                     begin
-                        print_string "if ";
+                        start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
-                        print_string " {\n";
+                        println_string_with_tab 1 ("ifeq stop"^(string_of_int !labelcountfalse));
+                        start_scope();
                         print_stmt_list (level+1) stmts;
                         print_tab level;
-                        print_string "}";
+                        end_scope();
+                        println_string_with_tab 1 ("stop"^(string_of_int !labelcountfalse)^":");
                     end
             in
             let rec print_else_stmt level stmt =  match stmt with 
@@ -759,9 +762,8 @@ let generate program filedir filename =
             let print_conditional_stmt level cond = match cond with 
                 | IfStmt(if_stmt, _) -> 
                     begin
-                        print_tab level;
-                        print_if_stmt level if_stmt;
-                        print_string "\n";
+                        print_if_stmt 1 if_stmt;
+                        end_scope();
                     end
                 | ElseStmt(else_stmt, _) ->
                     begin
