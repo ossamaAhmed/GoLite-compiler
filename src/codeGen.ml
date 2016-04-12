@@ -204,10 +204,10 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> print_int value
-        | Floatliteral(value, _) -> print_float value
-        | Runeliteral(value, _) -> print_string value
-        | Stringliteral(value, _) -> print_string value
+        | Intliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_int value))
+        | Floatliteral(value, _) -> println_string_with_tab 1 ("ldc "^(string_of_float value))
+        | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
+        | Stringliteral(value, _) -> println_string_with_tab 1 ("ldc "^(value))
     in
     let rec print_expr exp = match exp with 
         | OperandName(value, _, symt) -> println_string_with_tab 1 (generate_load symt value)
