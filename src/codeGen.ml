@@ -67,6 +67,20 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
+let is_immediate exp_type linenum = match exp_type with
+        | SymInt -> true 
+        | SymFloat64 -> true 
+        | SymRune -> true
+        | SymString -> false 
+        | SymBool -> true
+        | SymArray(subType) -> false 
+        | SymSlice(subType) -> false
+        | SymStruct(fieldlist) -> false
+        | SymFunc(subType,arglist) -> false
+        | SymType(subType) -> false
+        | Void -> true
+        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
+
 let get_expr_type exp1 = match exp1 with
 	| OperandName(_,_,symType)-> symType
 	| AndAndOp(_,_,_,symType)-> symType
@@ -588,13 +602,20 @@ let generate program filedir filename =
                 symt
             end
         | Value(value, _, symt) -> print_literal value; symt;
-        | Indexexpr(exp1, exp2, _, symt) -> 
+        | Indexexpr(exp1, exp2, linenum, symt) -> 
             begin
-                print_expr exp1;(*put array ref on stack*)
-                print_expr exp2;(*put array index on stack*) (* TODO: eval expression to immediate or ref*)
-                (* DOES NOT COMPILE NOT FOR SHABBIR *)
-                (* print_string "iaload" *)
+                let exp_type = get_expr_type exp1 in
+                let symtype = (match exp_type with
+                    |SymArray(inner) -> inner
+                    |_ -> let errMsg = "not an array at line "^string_of_int(linenum) in code_gen_error errMsg
+                ) in
+                let is_i = is_immediate exp_type linenum in 
+                print_expr exp1; (*put array ref on stack*)
+                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                if is_i then print_string "iaload" else print_string "aaload";
+                symt;
             end
+        
         | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
                 (*TODO: GET STRCUT NAME*)
             begin
