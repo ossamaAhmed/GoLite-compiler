@@ -7,7 +7,7 @@ let code_gen_error msg = raise (Code_generation_error msg)
 
 let jasmin_main_class = ref "GoFile"
 
-(* Stack functions for locals manipulation *)
+(* ------------ Stack functions for locals manipulation ------------ *)
 
 type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
@@ -124,11 +124,11 @@ let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with
 
 (* --------------------------------END-------------------------------- *)
 
-(* Function call table *)
+(* ----------------------- Function call table ----------------------- *)
 
-(* Store a table of function name => Jasmin function invocation strings *)
+(* Store a table of function name => Jasmin function invocation string *)
 type funcTable = (string, string) Hashtbl.t;;
-let (func_table : funcTable) = Hashtbl.create 123456;;
+let (func_table : funcTable) = Hashtbl.create 1234;;
 
 (* Refer to print_type_name in prettyPrinter *)
 let string_jasmin_type go_type = match go_type with 
@@ -161,6 +161,23 @@ let add_func func_name func_sig = match func_sig with
     | FuncSig(FuncParams(params_list, _), _, _) ->
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")V")
 let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
+
+(* --------------------------------END-------------------------------- *)
+
+(* ----------------------- Struct manipulation ----------------------- *)
+
+(* Store a table of struct type name => Jasmin object invocation string *)
+type structTable = (string, symType) Hashtbl.t;;
+let (struct_table : structTable) = Hashtbl.create 1234;;
+
+(* let add_struct struct = match sym_type with  *)
+
+(* --------------------------------END-------------------------------- *)
+
+(* ------------------------ Type manipulation ------------------------ *)
+type typeTable = (string, symType) Hashtbl.t;;
+let (type_table : structTable) = Hashtbl.create 1234;;
+
 
 (* --------------------------------END-------------------------------- *)
 
@@ -786,11 +803,15 @@ let generate program filedir filename =
             )
         | Return(rt_stmt, _) -> 
             let print_return_stmt level stmt = match stmt with
-                | ReturnStatement(expr, _) -> 
-                    begin
-                        print_expr expr;
-                        ();
-                    end
+                | ReturnStatement(expr, _) ->
+                    (match (print_expr expr) with
+                        | SymInt -> println_one_tab "ireturn"
+                        | SymFloat64 -> println_one_tab "freturn"
+                        | SymRune -> println_one_tab "ireturn"
+                        | SymString -> println_one_tab "areturn"
+                        | SymBool -> println_one_tab "ireturn"
+                        | NotDefined -> ()
+                    )
                 | Empty -> ()
             in
             print_return_stmt level rt_stmt
@@ -1040,19 +1061,6 @@ let generate program filedir filename =
                 print_stmt level head;
                 print_stmt_list level tail;
             end
-    and print_method_return return_type = match return_type with
-        | FuncReturnType(return_type_i, _) -> 
-            (match return_type_i with
-                    | Primitivetype(value, _) -> 
-                        (match value with
-                            | "int" -> println_one_tab "ireturn"
-                            | "float64" -> println_one_tab "freturn"
-                            | "bool" -> println_one_tab "ireturn"
-                            | _ -> println_one_tab "areturn"
-                        )   
-                    | _ -> println_one_tab "areturn"
-            )
-        | Empty -> println_one_tab "return"
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
@@ -1060,7 +1068,6 @@ let generate program filedir filename =
                 println_one_tab ".limit stack 99";
                 println_one_tab  ".limit locals 99";
                 print_stmt_list 1 stmt_list;
-                print_method_return return_type;
                 println_string ".end method\n";
             end
     and print_decl level decl = match decl with
