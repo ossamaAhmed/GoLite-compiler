@@ -553,8 +553,9 @@ let generate program filedir filename =
         | Indexexpr(exp1, exp2, _, symt) -> 
             begin
                 print_expr exp1;(*put array ref on stack*)
-                print_expr exp2;(*put array index on stack*)
-                print_string "iaload"(* TODO: eval expression to immediate or ref*)
+                print_expr exp2;(*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                (* DOES NOT COMPILE NOT FOR SHABBIR *)
+                (* print_string "iaload" *)
             end
         | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
                 (*TODO: GET STRCUT NAME*)
@@ -726,13 +727,14 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Indexexpr(expr1,expr2,linenum,ast_type) -> 
-            begin
-                print_expr exp1;(*put array ref on stack*)
-                print_expr exp2;(*put array index on stack*)
+        | Indexexpr(expr1,expr2,linenum,ast_type) -> ""
+        (* DOES NOT COMPILE NOTE FOR SHABBIR *)
+(*             begin
+                print_expr expr1;(*put array ref on stack*)
+                print_expr expr2;put array index on stack
                 (*TODO: PRINT LHS*)
-                print_string "aastore"(* or iastore*)
-            end
+                print_string "aastore" (* or iastore*)
+            end *)
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
