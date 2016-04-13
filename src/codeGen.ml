@@ -911,17 +911,29 @@ let generate program filedir filename =
                 print_simple_stmt simple;
             end
         | Print(exprs, _) -> 
-            begin
+            let print_jasmin_exp exp = 
                 println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
-                print_expr_list exprs;
-                println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
-            end
+                match (print_expr exp) with 
+                    | SymInt -> println_one_tab "invokevirtual java/io/PrintStream/print(I)V";
+                    | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/print(F)V";
+                    | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
+                    | SymString -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/print(Z)V";
+                    | NotDefined -> ()
+            in
+            List.iter print_jasmin_exp exprs;    
         | Println(exprs, _) -> 
-            begin
+            let println_jasmin_exp exp = 
                 println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
-                print_expr_list exprs;
-                println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
-            end
+                match (print_expr exp) with 
+                    | SymInt -> println_one_tab "invokevirtual java/io/PrintStream/println(I)V";
+                    | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/println(F)V";
+                    | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+                    | SymString -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/println(Z)V";
+                    | NotDefined -> ()
+            in
+            List.iter println_jasmin_exp exprs;  
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
                 | ConditionExpression(expr, _) -> print_expr expr;()
