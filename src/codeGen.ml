@@ -177,16 +177,18 @@ let init_struct iden field_dcl_list =
     let struct_file = open_out struct_filename in
     let print_struct_string s = output_string struct_file s in
     let println_struct_string s = output_string struct_file (s^"\n") in
-    let println_struct_one_tab s = print_string (String.make 1 '\t'); println_struct_string s in
+    let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
     begin
-        println_struct_string (".class public "^iden^"\n");
+        println_struct_string (".class public "^iden^"");
         println_struct_string ".super java/lang/Object\n";
+        (* Print fields *)
         println_struct_string ".method public <init>()V";
         println_struct_one_tab ".limit locals 99";
         println_struct_one_tab ".limit stack 99";
-
+        println_struct_one_tab "aload_0";
+        println_struct_one_tab "invokenonvirtual java/lang/Object/<init>()V";
+        println_struct_one_tab "return";
         println_struct_string ".end method";
-
         close_out struct_file
     end
 let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
