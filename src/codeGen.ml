@@ -67,6 +67,17 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
+let rec sym_to_type symt = match symt with
+        | SymInt -> "int"
+        | SymFloat64 -> "float"
+        | SymRune -> "char"
+        | SymString -> "[Ljava/lang/String;"
+        | SymBool -> "boolean"
+        | SymArray(subType) ->"["^sym_to_type subType  
+        | SymSlice(subType) -> "["^sym_to_type subType  
+        | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
+        | _ -> ""
+    
 let is_immediate exp_type linenum = match exp_type with
         | SymInt -> true 
         | SymFloat64 -> true 
@@ -650,13 +661,15 @@ let generate program filedir filename =
             )
             
         | Appendexpr(Identifier(iden, _),exp1, linenum, symType)-> 
+            let exp1_type = get_expr_type exp1 in
+            let is_i = is_immediate exp1_type linenum in 
+            let expType = sym_to_type exp1_type in
             begin
-                (*TODO: CHANGE Immediates for string*)
                 generate_load symType iden linenum;
                 print_string "arraylength";
                 print_string "iconst_1";
                 print_string "iadd";
-                print_string "newarray"(* ^ get_type exp1*);
+                if is_i then (let ade="newarray "^expType in print_string ade) else( let ade ="anewarray "^expType in print_string ade);
                 print_string "dup";
                 print_string "dup";
                 print_string "dup";
@@ -671,7 +684,7 @@ let generate program filedir filename =
                 generate_load symType iden linenum;
                 print_string "arraylength";
                 print_expr exp1;
-                print_string "iastore";
+                if is_i then print_string "iastore" else print_string "aastore" ;
                 print_string (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
