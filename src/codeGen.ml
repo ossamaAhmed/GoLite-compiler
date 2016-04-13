@@ -1050,12 +1050,20 @@ let generate program filedir filename =
             let print_for_stmt level stmt = match stmt with 
                 | Forstmt(stmts, _) ->
                     begin
-                        print_tab (level);
-                        print_string "for {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        let currlabel = !labelcountfalse in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        (*infinite loop*)
+                        start_scope();
+                        (*generate label*)
+                        println_string ("stop"^(string_of_int currlabel)^":");
+                        print_stmt_list (level+1) stmts; (*TODO: pass in end label*)
+                        (*print goto label *)
+                    let gotocmd = "goto stop"^(string_of_int currlabel) in
+                        println_one_tab gotocmd;
+                        end_scope();
                     end
+
                 | ForCondition(condition, stmts, _) -> 
                     begin
                         print_tab (level);
