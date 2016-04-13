@@ -134,6 +134,8 @@ let generate_load typename varname linenum= match typename with
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
+    | _ ->"aload"^" "^(search_previous_scopes varname !symbol_table)
+
 
 let generate_store typename varnameIden = match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
@@ -620,10 +622,11 @@ let generate program filedir filename =
                     |SymArray(inner) -> inner
                     |_ -> let errMsg = "not an array at line "^string_of_int(linenum) in code_gen_error errMsg
                 ) in
-                let is_i = is_immediate exp_type linenum in 
+                let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
                 print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
-                if is_i then print_string "iaload" else print_string "aaload";
+                print_tab 1;
+                if is_i then println_string "iaload" else println_string "aaload";
                 symt;
             end
         
@@ -666,26 +669,26 @@ let generate program filedir filename =
             let expType = sym_to_type exp1_type in
             begin
                 generate_load symType iden linenum;
-                print_string "arraylength";
-                print_string "iconst_1";
-                print_string "iadd";
-                if is_i then (let ade="newarray "^expType in print_string ade) else( let ade ="anewarray "^expType in print_string ade);
-                print_string "dup";
-                print_string "dup";
-                print_string "dup";
+                println_string "arraylength";
+                println_string "iconst_1";
+                println_string "iadd";
+                if is_i then (let ade="newarray "^expType in println_string ade) else( let ade ="anewarray "^expType in println_string ade);
+                println_string "dup";
+                println_string "dup";
+                println_string "dup";
                 generate_load symType iden linenum;
-                print_string "swap";
-                print_string "iconst_0";
-                print_string "swap";
-                print_string "iconst_0";
+                println_string "swap";
+                println_string "iconst_0";
+                println_string "swap";
+                println_string "iconst_0";
                 generate_load symType iden linenum;
-                print_string "arraylength";
-                print_string "invokestatic java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V";
+                println_string "arraylength";
+                println_string "invokestatic java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V";
                 generate_load symType iden linenum;
-                print_string "arraylength";
+                println_string "arraylength";
                 print_expr exp1;
-                if is_i then print_string "iastore" else print_string "aastore" ;
-                print_string (generate_store symType (Identifier(iden,linenum)));
+                if is_i then println_string "iastore" else println_string "aastore" ;
+                println_string (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
 
@@ -814,14 +817,18 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Indexexpr(expr1,expr2,linenum,ast_type) -> ""
-        (* DOES NOT COMPILE NOTE FOR SHABBIR *)
-(*             begin
-                print_expr expr1;(*put array ref on stack*)
-                print_expr expr2;put array index on stack
-                (*TODO: PRINT LHS*)
-                print_string "aastore" (* or iastore*)
-            end *)
+        | Indexexpr(exp1,exp2,linenum,ast_type) ->
+                let exp_type = get_expr_type exp1 in
+                let symtype = (match exp_type with
+                    |SymArray(inner) -> inner
+                    |_ -> let errMsg = "not an array at line "^string_of_int(linenum) in code_gen_error errMsg
+                ) in
+                let is_i = is_immediate symtype linenum in 
+                print_expr exp1; (*put array ref on stack*)
+                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_tab 1;
+                if is_i then println_string "iastore" else println_string "aastore";
+                "";
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
