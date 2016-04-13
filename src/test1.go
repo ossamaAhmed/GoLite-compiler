@@ -1,5 +1,7 @@
 package main;
 
 func main() {
-    print("hello ","world",5)
+    type hello struct {
+    	a int
+    }
 }

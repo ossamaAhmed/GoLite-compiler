@@ -6,6 +6,7 @@ exception Code_generation_error of string
 let code_gen_error msg = raise (Code_generation_error msg)
 
 let jasmin_main_class = ref "GoFile"
+let jasmin_file_dir = ref "/"
 
 (* ------------ Stack functions for locals manipulation ------------ *)
 
@@ -155,7 +156,7 @@ let rec string_method_params_types iden_list = match iden_list with
         string_jasmin_type iden_type
     | TypeSpec(Identifier(iden, _), iden_type, _)::tail ->
         (string_jasmin_type iden_type)^(string_method_params_types tail)
-let add_func func_name func_sig = match func_sig with
+let init_func func_name func_sig = match func_sig with
     | FuncSig(FuncParams(params_list, _), FuncReturnType(return_type_i, _), _) ->
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")"^(string_jasmin_type return_type_i))
     | FuncSig(FuncParams(params_list, _), _, _) ->
@@ -170,14 +171,32 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 type structTable = (string, symType) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-(* let add_struct struct = match sym_type with  *)
+let init_struct iden field_dcl_list = 
+    let struct_class_name = !jasmin_main_class^"_struct_"^iden in 
+    let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
+    let struct_file = open_out struct_filename in
+    let print_struct_string s = output_string struct_file s in
+    let println_struct_string s = output_string struct_file (s^"\n") in
+    let println_struct_one_tab s = print_string (String.make 1 '\t'); println_struct_string s in
+    begin
+        println_struct_string (".class public "^iden^"\n");
+        println_struct_string ".super java/lang/Object\n";
+        println_struct_string ".method public <init>()V";
+        println_struct_one_tab ".limit locals 99";
+        println_struct_one_tab ".limit stack 99";
+
+        println_struct_string ".end method";
+
+        close_out struct_file
+    end
+let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
 
 (* --------------------------------END-------------------------------- *)
 
 (* ------------------------ Type manipulation ------------------------ *)
+
 type typeTable = (string, symType) Hashtbl.t;;
 let (type_table : structTable) = Hashtbl.create 1234;;
-
 
 (* --------------------------------END-------------------------------- *)
 
@@ -719,15 +738,30 @@ let generate program filedir filename =
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = match decl with
-        | TypeSpec(Identifier(iden, _), typename, _)->
-            begin
-                print_tab (level);
-                print_string "type ";
-                print_string iden;
-                print_string " ";
-                print_type_name level typename;
-                print_string "\n"
-            end
+        | TypeSpec(Identifier(iden, _), typename, _) -> 
+            let print_jasmin_type_decl typename = match typename with
+                | Definedtype(Identifier(value, _), _) -> () (* TODO *)
+                | Primitivetype(value, _) -> () (* TODO *)
+                | Arraytype(len, type_name2, _)-> () (* TODO *)
+                | Slicetype(type_name2, _)-> () (* TODO *)
+                | Structtype([], _) -> ()
+                | Structtype(field_dcl_list, _) -> init_struct iden field_dcl_list
+(*                     let print_field_dcl level field = match field with 
+                        | (iden_list,type_name1) -> 
+                        begin
+                            print_tab (level);
+                            print_identifier_list iden_list;
+                            print_string " ";
+                            print_type_name (level) type_name1;
+                            print_string ";\n";
+                        end
+                        | _ -> ast_error ("field_dcl_print error")
+                    in
+                        print_string "struct {\n";
+                        List.iter (print_field_dcl (level+1)) field_dcl_list;
+                        print_tab (level);
+                        print_string "}"; *)
+            in print_jasmin_type_decl typename
         | _ -> ast_error ("type_dcl error")
     in
     let print_inc_dec_stmt stmt = match stmt with 
@@ -796,7 +830,7 @@ let generate program filedir filename =
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
                     begin
-                        add_func func_name func_sig;
+                        init_func func_name func_sig;
                         print_method_decl func_name func_sig stmt_list;
                     end
                 | _ -> ()
@@ -1090,7 +1124,7 @@ let generate program filedir filename =
                 end
             | _ ->
                 begin
-                    add_func func_name signature;
+                    init_func func_name signature;
                     print_method_decl func_name signature stmt_list;
                 end
         | _ -> ()
@@ -1099,6 +1133,7 @@ let generate program filedir filename =
     in
     begin
         jasmin_main_class := filename;
+        jasmin_file_dir := filedir;
         print_class_header filename;
         print_init_header filename;
         print_decl_list 0 decl_list;
