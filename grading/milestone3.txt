@@ -1,0 +1,14 @@
+• Pretty cool idea to use your peephole optimizer with your GoLite
+  project: synergy!
+• It's perfectly fine to have one .go file generate multiple .j files; I
+  believe that the Scala compiler generates a .class file per class,
+  object or lambda in a file, so one .scala file can generate dozens of
+  .class files.  Also, classes are the right fit for structs in the JVM,
+  so you should definitely go with that.
+• For declarations with an assignment, the right-hand side could be an
+  arbitrary expression.  Your pattern needs to be more general.
+• In your final report, it'd be nice if there were more details on the
+  extra data structures and passes needed in order to generate JVM
+  bytecode (e.g. a map from variable names to local slots, a pass to
+  compute the baby stack height, etc.)  Laurie will certainly ask you
+  about that in the meeting.
