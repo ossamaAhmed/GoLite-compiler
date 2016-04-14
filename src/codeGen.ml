@@ -143,7 +143,7 @@ let generate_store typename varnameIden = match typename, varnameIden with
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
-    | _,_ -> "Other" (*TODO: place holder *)
+    | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
 let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
     | [],[]-> ()
@@ -1128,29 +1128,34 @@ let generate program filedir filename =
                     end
                 | Empty -> ()
             in
-            let print_switch_case_clause level clause = match clause with 
+            let print_switch_case_clause level start_label end_label clause = match clause with 
                 | SwitchCaseClause(exprs, stmts, _) -> 
                     (match exprs with
                         | [] -> 
                             begin
-                                print_tab (level);
-                                print_string "default :\n";
-                                print_stmt_list (level+1) stmts "" "";
+                                print_stmt_list (level+1) stmts start_label end_label;
                             end
                         | head::tail ->
                             begin
-                                print_tab (level);
-                                print_string "case ";
+                                let currlabelend = !labelcountfalse in
+                                let currlabelstart = !labelcounttrue in
+                                let currlabelendstr = "stopcase"^(string_of_int currlabelend) in
+                                let currlabelstartstr = "startcase"^(string_of_int currlabelstart) in
+
+                                (*duplicate exp and check *)
+                                print_string "dup";
                                 print_expr_list exprs;
-                                print_string " :\n";
-                                print_stmt_list (level+1) stmts "" ""; 
+                                println_string ("ifne "^currlabelendstr);
+                                
+                                print_stmt_list (level+1) stmts start_label end_label; 
+                                println_string (currlabelendstr^":");
                             end
                     )
                 | Empty -> ()   
             in
             let print_switch_case_stmt level stmts start_label end_label= match stmts with
                 | SwitchCasestmt([], _) -> ()
-                | SwitchCasestmt(switch_case_clauses, _) -> List.iter (print_switch_case_clause level) switch_case_clauses
+                | SwitchCasestmt(switch_case_clauses, _) -> List.iter (print_switch_case_clause level start_label end_label) switch_case_clauses
             in       
             begin
                 start_scope();
@@ -1158,7 +1163,6 @@ let generate program filedir filename =
                 print_switch_clause switch_clause;
                 (*put expr on stack*)
                 print_switch_expr switch_expr;
-                println_string "lookupswitch";
                 
                 (*make labels*)
                 let currlabelend = !labelcountfalse in
@@ -1168,8 +1172,9 @@ let generate program filedir filename =
                 labelcountertrue(); 
                 labelcounterfalse(); 
                 
-                print_switch_case_stmt (level+1) switch_case_stmts currlabelstartstr currlabelendstr;
+                print_switch_case_stmt (level+1) switch_case_stmts startlabel currlabelendstr;
                 
+                println_string "pop";
                 end_scope();
             end
         | _ -> ()
@@ -1184,11 +1189,7 @@ let generate program filedir filename =
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
-                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type));
-                println_one_tab ".limit stack 99";
-                println_one_tab  ".limit locals 99";
-                print_stmt_list 1 stmt_list;
-                println_string ".end method\n";
+                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type)); println_one_tab ".limit stack 99"; println_one_tab  ".limit locals 99"; print_stmt_list 1 stmt_list; println_string ".end method\n";
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
