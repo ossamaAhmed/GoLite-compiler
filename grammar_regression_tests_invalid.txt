@@ -1,0 +1,53 @@
+./TEST_PROGRAMS/INVALID/03/invalid_funccall1.go -- might need weeding for the func calls on structs
+Valid
+./TEST_PROGRAMS/INVALID/03/invalid_funccall2.go -- might need weeding for the func calls on structs
+Valid
+./TEST_PROGRAMS/INVALID/03/invalid_funcdecl.go --not sure why ?
+Valid
+
+./TEST_PROGRAMS/INVALID/03/invalid_switch10.go -- underscore identifier
+Valid
+
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_6.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/03/invalid_vardecl_7.go -- underscore identifier
+Valid
+
+./TEST_PROGRAMS/INVALID/09/blank_append.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_assignements.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_conversion.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_exp.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_field.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_funccall.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_funccall_arg.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_funcsign.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_index.go -- underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_index_int.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_package.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_print.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_println.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_returns.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blank_selector.go --underscore identifier
+Valid
+./TEST_PROGRAMS/INVALID/09/blanktype.go --underscore identifier
+Valid
+
+./TEST_PROGRAMS/INVALID/14/0350_array_type_parens.go -- array type with parens ?? not sure why it passes 
+Valid
+
+./TEST_PROGRAMS/INVALID/15/weeding3.go -- weeding break stmts inside function? no loop
+Valid

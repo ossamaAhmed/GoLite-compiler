@@ -1,0 +1,30 @@
+./TEST_PROGRAMS/typing_benchmarks/INVALID/append1.go
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/append2.go
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/append3.go
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/append4.go
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/assign3.go -- not sure ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/binop1.go -- allowed ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/funcall2.go -- types dont propagate ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/funcall7.go -- empty function assigned ? whats wrong
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/opassign1.go -- allowed ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/return4.go -- types dont propagate ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/short_decl4.go -- blank identifier ?
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/short_decl5.go -- repeated decl in the same line
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/struct1.go -- scoping rules in declaraing variables in structs
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/struct2.go -- undeclared type in structs
+Valid
+./TEST_PROGRAMS/typing_benchmarks/INVALID/switch1.go -- types don't propagate
+Valid

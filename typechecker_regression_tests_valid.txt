@@ -1,0 +1,13 @@
+./TEST_PROGRAMS/typing_benchmarks/VALID/binops.go -- rune arithmetic ops ?
+Fatal error: exception TypeChecker.Type_checking_error("arithmetic operation should be done on a integer value")
+
+./TEST_PROGRAMS/typing_benchmarks/VALID/init_stmt.go -- mistake ?
+Fatal error: exception TypeChecker.Type_checking_error("short var decl should have at least one variable not defined in same scope linenum:=13")
+./TEST_PROGRAMS/typing_benchmarks/VALID/print.go -- structs maybe
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/typing_benchmarks/VALID/return.go -- structs maybe
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
+
+./TEST_PROGRAMS/typing_benchmarks/VALID/structs.go -- structs maybe
+Fatal error: exception TypeChecker.Symbol_table_error("variable is not defined in current_scope")
