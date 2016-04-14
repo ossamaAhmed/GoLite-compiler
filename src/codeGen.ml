@@ -907,7 +907,7 @@ let generate program filedir filename =
         | Block(stmt_list, _) -> (*DONE*)
             begin
                 start_scope();
-                print_stmt_list (level+1) stmt_list stmt_list startlabel endlabel;
+                print_stmt_list (level+1) stmt_list startlabel endlabel;
                 end_scope();
             end
         | Conditional(conditional, _) ->  (*DONE*)
@@ -1117,7 +1117,6 @@ let generate program filedir filename =
                 | SwitchClause(simple_stmt, _) -> 
                     begin
                         print_simple_stmt simple_stmt;
-                        print_string "; ";
                     end
                 | Empty -> ()
             in
@@ -1149,19 +1148,29 @@ let generate program filedir filename =
                     )
                 | Empty -> ()   
             in
-            let print_switch_case_stmt level stmts = match stmts with
+            let print_switch_case_stmt level stmts start_label end_label= match stmts with
                 | SwitchCasestmt([], _) -> ()
                 | SwitchCasestmt(switch_case_clauses, _) -> List.iter (print_switch_case_clause level) switch_case_clauses
             in       
             begin
-                print_tab (level);
-                print_string "switch ";
+                start_scope();
+                (*do simple stmt*)
                 print_switch_clause switch_clause;
+                (*put expr on stack*)
                 print_switch_expr switch_expr;
-                print_string "{\n";
-                print_switch_case_stmt (level+1) switch_case_stmts;
-                print_tab (level);
-                print_string "}\n";
+                println_string "lookupswitch";
+                
+                (*make labels*)
+                let currlabelend = !labelcountfalse in
+                let currlabelstart = !labelcounttrue in
+                let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                labelcountertrue(); 
+                labelcounterfalse(); 
+                
+                print_switch_case_stmt (level+1) switch_case_stmts currlabelstartstr currlabelendstr;
+                
+                end_scope();
             end
         | _ -> ()
     and print_stmt_list level stmt_list startlabel endlabel= match stmt_list with
