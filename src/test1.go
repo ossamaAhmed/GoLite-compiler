@@ -5,7 +5,10 @@ func main() {
     var y int;
     y = 1;
     switch y {
-        case 1,2:  println("case1")
-        defualt:   println("default")
+        case 1,2:  
+            y=2;
+            y=5;
+        default:  
+            println("default")
     }
 }

@@ -693,13 +693,31 @@ let generate program filedir filename =
             end
 
         | _ -> code_gen_error ("expression error")
+    and print_expr_list_switch expr_list start_label = match expr_list with
+        | [] -> ()
+        | head::[] ->
+            begin
+                print_tab 1;
+                println_string "dup";
+                print_expr head;
+                print_tab 1;
+                println_string ("ifeq "^start_label);
+            end
+        | head::tail ->
+            begin
+                print_tab 1;
+                println_string "dup";
+                print_expr head;
+                print_tab 1;
+                println_string ("ifeq "^start_label);
+                print_expr_list_switch tail start_label;
+            end
     and print_expr_list expr_list = match expr_list with
         | [] -> ()
         | head::[] -> print_expr head;()
         | head::tail ->
             begin
                 print_expr head;
-                print_string ", ";
                 print_expr_list tail;
             end
     and generate_comparable_binary_ints optype= 
@@ -1143,10 +1161,9 @@ let generate program filedir filename =
                                 let currlabelstartstr = "startcase"^(string_of_int currlabelstart) in
 
                                 (*duplicate exp and check *)
-                                print_string "dup";
-                                print_expr_list exprs;
-                                println_string ("ifne "^currlabelendstr);
-                                
+                                print_expr_list_switch exprs currlabelstartstr;
+                                println_string ("goto "^currlabelendstr);
+                                println_string (currlabelstartstr^":");
                                 print_stmt_list (level+1) stmts start_label end_label; 
                                 println_string (currlabelendstr^":");
                             end
@@ -1173,7 +1190,7 @@ let generate program filedir filename =
                 labelcounterfalse(); 
                 
                 print_switch_case_stmt (level+1) switch_case_stmts startlabel currlabelendstr;
-                
+                print_tab 1;
                 println_string "pop";
                 end_scope();
             end
