@@ -864,7 +864,7 @@ let generate program filedir filename =
         | ShortVardecl(short_var_decl, _) -> print_short_var_decl_stmt short_var_decl
         | Empty -> ()
     in
-    let rec print_stmt level stmt = match stmt with
+    let rec print_stmt level stmt startlabel endlabel = match stmt with
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
@@ -893,16 +893,18 @@ let generate program filedir filename =
             in
             print_return_stmt level rt_stmt
         | Break(_) -> 
+            let breakpoint = "goto "^endlabel in
             begin
                 print_tab level;
-                print_string "break\n";
+                print_string breakpoint;
             end
         | Continue(_) ->
+            let contpoint = "goto "^startlabel in
             begin
                 print_tab level;
-                print_string "continue\n";
+                print_string contpoint; 
             end
-        | Block(stmt_list, _) -> print_stmt_list (level+1) stmt_list
+        | Block(stmt_list, _) -> print_stmt_list (level+1) stmt_list startlabel endlabel
         | Conditional(conditional, _) ->  (*DONE*)
             let print_if_init if_init = match if_init with
                 | IfInitSimple(simplestmt, _) ->
@@ -915,53 +917,54 @@ let generate program filedir filename =
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
-            let print_if_stmt level if_stmt = match if_stmt with
+            let print_if_stmt level if_stmt start_label end_label= match if_stmt with
                 | IfInit(if_init, condition, stmts, _) -> (*DONE*)
                     begin
                         start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
                         let currlabel= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int currlabel) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_one_tab ("ifeq stop"^(string_of_int currlabel));
+                        println_one_tab ("ifeq "^currlabelstr);
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label;
                         end_scope();
                         println_one_tab ("stop"^(string_of_int currlabel)^":");
                     end
             in
-            let print_if_stmt_with_else level if_stmt = match if_stmt with (*DONE*)
+            let print_if_stmt_with_else level if_stmt start_label end_label= match if_stmt with (*DONE*)
                 | IfInit(if_init, condition, stmts, _) -> 
                     begin
                         start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
                         let curr_else_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_else_label) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
+                        println_string_with_tab 1 ("ifeq "^currlabelstr) ;
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
                         let curr_stop_label= !labelcountfalse in 
                         println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
                         println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
-
-
                     end
             in
-            let rec print_else_stmt level stmt =  match stmt with 
+            let rec print_else_stmt level stmt start_label end_label =  match stmt with 
                 | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
                         print_if_stmt_with_else 1 if_stmt;
                         let curr_stop_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_stop_label) in
                         labelcountertrue();
                         labelcounterfalse();
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
-                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
+                        println_string_with_tab 1 (currlabelstr^":");
                     end
                 | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
@@ -969,18 +972,18 @@ let generate program filedir filename =
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
-                        print_else_stmt 1 else_stmt;
+                        print_else_stmt 1 else_stmt start_label end_label;
                         println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
                 | ElseIFSingle(if_stmt1, if_stmt2, _) -> (*DONE*)
 
                     begin
-                        print_if_stmt_with_else 1 if_stmt1;
+                        print_if_stmt_with_else 1 if_stmt1 start_label end_label;
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
                         
-                        print_if_stmt_with_else 1 if_stmt2;
+                        print_if_stmt_with_else 1 if_stmt2 start_label end_label;
                         let curr_stop_label2= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
@@ -991,19 +994,19 @@ let generate program filedir filename =
 
                     end
             in
-            let print_conditional_stmt level cond = match cond with (*needs testing*)
+            let print_conditional_stmt level cond start_label end_label = match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
-                        print_if_stmt 1 if_stmt;
+                        print_if_stmt 1 if_stmt start_label end_label;
                         end_scope();
                     end
                 | ElseStmt(else_stmt, _) ->
                     begin
-                        print_else_stmt level else_stmt;
+                        print_else_stmt level else_stmt start_label end_label;
                         end_scope();
                     end
             in
-            print_conditional_stmt level conditional
+            print_conditional_stmt level conditional startlabel endlabel
         | Simple(simple, _) -> 
             begin
                 print_simple_stmt simple;
@@ -1037,52 +1040,70 @@ let generate program filedir filename =
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
-            let print_for_clause clause = match clause with 
-                | ForClauseCond(simple1, condition, simple2, _) -> 
-                    begin
-                        print_simple_stmt simple1;
-                        print_string "; ";
-                        print_for_cond condition;
-                        print_string "; ";
-                        print_simple_stmt simple2;
-                    end
-            in
             let print_for_stmt level stmt = match stmt with 
                 | Forstmt(stmts, _) ->
                     begin
-                        let currlabel = !labelcountfalse in
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
                         labelcountertrue(); 
                         labelcounterfalse(); 
                         (*infinite loop*)
                         start_scope();
                         (*generate label*)
-                        println_string ("stop"^(string_of_int currlabel)^":");
-                        print_stmt_list (level+1) stmts; (*TODO: pass in end label*)
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                         (*print goto label *)
-                    let gotocmd = "goto stop"^(string_of_int currlabel) in
+                    let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
                         end_scope();
                     end
 
                 | ForCondition(condition, stmts, _) -> 
                     begin
-                        print_tab (level);
-                        print_string "for ";
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        start_scope();
+                        (*evaluate condition *)
                         print_for_cond condition;
-                        print_string " {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        (*check condition *)
+                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
+                    let gotocmd = "goto "^currlabelstartstr in
+                        println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
+                        end_scope();
                     end
-                | ForClause (for_clause, stmts, _) ->
+                | ForClause (ForClauseCond(simple1, condition, simple2, linenum), stmts, _) ->
                     begin
-                        print_tab (level);
-                        print_string "for ";
-                        print_for_clause for_clause;
-                        print_string " {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        (*eval simple 1*)
+                        print_simple_stmt simple1;
+                        (*check condition*)
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        start_scope();
+                        (*evaluate condition *)
+                        print_for_cond condition;
+                        (*check condition *)
+                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        print_simple_stmt simple2;
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
+                    let gotocmd = "goto "^currlabelstartstr in
+                        println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
+                        end_scope();
                     end
             in
             print_for_stmt level for_stmt
@@ -1110,7 +1131,7 @@ let generate program filedir filename =
                             begin
                                 print_tab (level);
                                 print_string "default :\n";
-                                print_stmt_list (level+1) stmts;
+                                print_stmt_list (level+1) stmts "" "";
                             end
                         | head::tail ->
                             begin
@@ -1118,7 +1139,7 @@ let generate program filedir filename =
                                 print_string "case ";
                                 print_expr_list exprs;
                                 print_string " :\n";
-                                print_stmt_list (level+1) stmts;
+                                print_stmt_list (level+1) stmts "" ""; 
                             end
                     )
                 | Empty -> ()   
@@ -1138,13 +1159,13 @@ let generate program filedir filename =
                 print_string "}\n";
             end
         | _ -> ()
-    and print_stmt_list level stmt_list = match stmt_list with
+    and print_stmt_list level stmt_list startlabel endlabel= match stmt_list with
         | [] -> ()
-        | head::[] -> print_stmt level head
+        | head::[] -> print_stmt level head startlabel endlabel
         | head::tail ->
             begin
-                print_stmt level head;
-                print_stmt_list level tail;
+                print_stmt level head startlabel endlabel;
+                print_stmt_list level tail startlabel endlabel;
             end
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
@@ -1168,7 +1189,7 @@ let generate program filedir filename =
                     println_string ".method public static main([Ljava/lang/String;)V";
                     println_one_tab ".limit stack 99";
                     println_one_tab ".limit locals 99";
-                    print_stmt_list 1 stmt_list;
+                    print_stmt_list 1 stmt_list "" "";
                     println_string "";
                     println_one_tab "return";
                     println_string ".end method";

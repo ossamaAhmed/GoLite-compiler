@@ -1,7 +1,9 @@
 package main;
 
 func main() {
-    var x [6] int;
+    var x[3] int;
     var y int;
-    y = x[0];
+    for g:=1; g < 5; g+=1{
+        y = x[0];
+    }
 }
