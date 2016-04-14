@@ -1,0 +1,33 @@
+Members
+═══════
+
+  • Michael Chum
+  • Shabbir Hussain
+  • Ossama Ahmed
+
+
+Q1
+══
+
+  • Grade: 10/10
+
+
+Q2
+══
+
+  • Grade: 21.2/30
+    • Valid: 10/15
+      • Recognized as valid: 10/15
+      • Recognized as invalid: 5/15
+    • Invalid: 11.2/15
+      • Recognized as invalid: 44/59
+      • Recognized as valid: 15/59
+
+
+Q3
+══
+
+  • Grade: 8/10
+    • Good explanation of the roles of each member
+    • I would've liked more information on the design of your symbol
+      table

@@ -6,8 +6,9 @@ exception Code_generation_error of string
 let code_gen_error msg = raise (Code_generation_error msg)
 
 let jasmin_main_class = ref "GoFile"
+let jasmin_file_dir = ref "/"
 
-(* Stack functions for locals manipulation *)
+(* ------------ Stack functions for locals manipulation ------------ *)
 
 type symTable = Scope of (string , string) Hashtbl.t
 let symbol_table = ref []
@@ -66,6 +67,66 @@ let get_primitive_type type_of_type_i = match type_of_type_i with
         | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
+let rec sym_to_type symt = match symt with
+        | SymInt -> "int"
+        | SymFloat64 -> "float"
+        | SymRune -> "char"
+        | SymString -> "[Ljava/lang/String;"
+        | SymBool -> "boolean"
+        | SymArray(subType) ->"["^sym_to_type subType  
+        | SymSlice(subType) -> "["^sym_to_type subType  
+        | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
+        | _ -> ""
+    
+let is_immediate exp_type linenum = match exp_type with
+        | SymInt -> true 
+        | SymFloat64 -> true 
+        | SymRune -> true
+        | SymString -> false 
+        | SymBool -> true
+        | SymArray(subType) -> false 
+        | SymSlice(subType) -> false
+        | SymStruct(fieldlist) -> false
+        | SymFunc(subType,arglist) -> false
+        | SymType(subType) -> false
+        | Void -> true
+        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
+
+let get_expr_type exp1 = match exp1 with
+	| OperandName(_,_,symType)-> symType
+	| AndAndOp(_,_,_,symType)-> symType
+	| OrOrOp(_,_,_,symType)-> symType
+	| EqualEqualCmp(_,_,_,symType)-> symType
+	| NotEqualCmp(_,_,_,symType)-> symType
+	| LessThanCmp(_,_,_,symType)-> symType
+	| GreaterThanCmp(_,_,_,symType)-> symType
+	| LessThanOrEqualCmp(_,_,_,symType)-> symType
+	| GreaterThanOrEqualCmp(_,_,_,symType)-> symType
+	| AddOp(_,_,_,symType)-> symType
+	| MinusOp(_,_,_,symType)-> symType
+	| OrOp(_,_,_,symType)-> symType
+	| CaretOp(_,_,_,symType)-> symType
+	| MulOp(_,_,_,symType)-> symType
+	| DivOp(_,_,_,symType)-> symType
+	| ModuloOp(_,_,_,symType)-> symType
+	| SrOp(_,_,_,symType)-> symType
+	| SlOp(_,_,_,symType)-> symType
+	| AndOp(_,_,_,symType)-> symType
+	| AndCaretOp(_,_,_,symType)-> symType
+	| OperandParenthesis(_,_,symType)-> symType
+	| Indexexpr(_,_,_,symType)-> symType
+	| Unaryexpr(_,_,symType)-> symType
+	| Binaryexpr(_,_,symType)-> symType
+	| FuncCallExpr(_,_,_,symType)-> symType
+	| UnaryPlus(_,_,symType)-> symType
+	| UnaryMinus(_,_,symType)-> symType
+	| UnaryNot(_,_,symType)-> symType
+	| UnaryCaret(_,_,symType)-> symType
+	| Value(_,_,symType)-> symType
+	| Selectorexpr(_,_,_,symType)-> symType
+	| TypeCastExpr(_,_,_,symType)	-> symType
+    | Appendexpr(_,_,_,symType)-> symType
+
 let generate_load typename varname linenum= match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
@@ -73,6 +134,8 @@ let generate_load typename varname linenum= match typename with
     | SymString -> "aload"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | NotDefined -> (let errMsg ="type wasnt attached in type checking at line: "^string_of_int linenum  in code_gen_error errMsg)
+    | _ ->"aload"^" "^(search_previous_scopes varname !symbol_table)
+
 
 let generate_store typename varnameIden = match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
@@ -89,11 +152,11 @@ let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with
 
 (* --------------------------------END-------------------------------- *)
 
-(* Function call table *)
+(* ----------------------- Function call table ----------------------- *)
 
-(* Store a table of function name => Jasmin function invocation strings *)
+(* Store a table of function name => Jasmin function invocation string *)
 type funcTable = (string, string) Hashtbl.t;;
-let (func_table : funcTable) = Hashtbl.create 123456;;
+let (func_table : funcTable) = Hashtbl.create 1234;;
 
 (* Refer to print_type_name in prettyPrinter *)
 let string_jasmin_type go_type = match go_type with 
@@ -120,12 +183,49 @@ let rec string_method_params_types iden_list = match iden_list with
         string_jasmin_type iden_type
     | TypeSpec(Identifier(iden, _), iden_type, _)::tail ->
         (string_jasmin_type iden_type)^(string_method_params_types tail)
-let add_func func_name func_sig = match func_sig with
+let init_func func_name func_sig = match func_sig with
     | FuncSig(FuncParams(params_list, _), FuncReturnType(return_type_i, _), _) ->
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")"^(string_jasmin_type return_type_i))
     | FuncSig(FuncParams(params_list, _), _, _) ->
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")V")
 let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
+
+(* --------------------------------END-------------------------------- *)
+
+(* ----------------------- Struct manipulation ----------------------- *)
+
+(* Store a table of struct type name => Jasmin object invocation string *)
+type structTable = (string, symType) Hashtbl.t;;
+let (struct_table : structTable) = Hashtbl.create 1234;;
+
+let init_struct iden field_dcl_list = 
+    let struct_class_name = !jasmin_main_class^"_struct_"^iden in 
+    let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
+    let struct_file = open_out struct_filename in
+    let print_struct_string s = output_string struct_file s in
+    let println_struct_string s = output_string struct_file (s^"\n") in
+    let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
+    begin
+        println_struct_string (".class public "^iden^"");
+        println_struct_string ".super java/lang/Object\n";
+        (* Print fields *)
+        println_struct_string ".method public <init>()V";
+        println_struct_one_tab ".limit locals 99";
+        println_struct_one_tab ".limit stack 99";
+        println_struct_one_tab "aload_0";
+        println_struct_one_tab "invokenonvirtual java/lang/Object/<init>()V";
+        println_struct_one_tab "return";
+        println_struct_string ".end method";
+        close_out struct_file
+    end
+let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
+
+(* --------------------------------END-------------------------------- *)
+
+(* ------------------------ Type manipulation ------------------------ *)
+
+type typeTable = (string, symType) Hashtbl.t;;
+let (type_table : structTable) = Hashtbl.create 1234;;
 
 (* --------------------------------END-------------------------------- *)
 
@@ -474,20 +574,6 @@ let generate program filedir filename =
                 symt
             end
         | Value(value, _, symt) -> print_literal value; symt (*MISSING RUNES*)
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-            begin
-                print_string "getfield ";
-                print_expr exp1;
-                print_symType symbolType linenum;
-                symbolType
-            end
-        | Indexexpr(exp1, exp2, _, symt) -> 
-            begin
-                print_expr exp1;(*put array ref on stack*)
-                print_expr exp2;(*put array index on stack*)
-                (*if assignment -> load value, call iastore*)
-                (*print_string "iaload"*)
-            end
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
         | FuncCallExpr(exp1, exprs, _, symt) -> 
@@ -529,12 +615,25 @@ let generate program filedir filename =
                 symt
             end
         | Value(value, _, symt) -> print_literal value; symt;
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-                (*TODO: determine if put or get *)
+        | Indexexpr(exp1, exp2, linenum, symt) -> 
             begin
-                print_string "getfield ";
-                print_expr exp1;
-                print_symType symbolType linenum;
+                let exp_type = get_expr_type exp1 in
+                let symtype = (match exp_type with
+                    |SymArray(inner) -> inner
+                    |_ -> let errMsg = "not an array at line "^string_of_int(linenum) in code_gen_error errMsg
+                ) in
+                let is_i = is_immediate symtype linenum in 
+                print_expr exp1; (*put array ref on stack*)
+                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_tab 1;
+                if is_i then println_string "iaload" else println_string "aaload";
+                symt;
+            end
+        
+        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
+                (*TODO: GET STRCUT NAME*)
+            begin
+                print_string "getfield structName fieldType";
                 symbolType
             end
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
@@ -565,12 +664,31 @@ let generate program filedir filename =
             )
             
         | Appendexpr(Identifier(iden, _),exp1, linenum, symType)-> 
+            let exp1_type = get_expr_type exp1 in
+            let is_i = is_immediate exp1_type linenum in 
+            let expType = sym_to_type exp1_type in
             begin
                 generate_load symType iden linenum;
-                print_string "arraylength";
-                print_string "iconst_1";
-                print_string "iadd";
-                (*TODO: FINISH ALGO*) 
+                println_string "arraylength";
+                println_string "iconst_1";
+                println_string "iadd";
+                if is_i then (let ade="newarray "^expType in println_string ade) else( let ade ="anewarray "^expType in println_string ade);
+                println_string "dup";
+                println_string "dup";
+                println_string "dup";
+                generate_load symType iden linenum;
+                println_string "swap";
+                println_string "iconst_0";
+                println_string "swap";
+                println_string "iconst_0";
+                generate_load symType iden linenum;
+                println_string "arraylength";
+                println_string "invokestatic java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V";
+                generate_load symType iden linenum;
+                println_string "arraylength";
+                print_expr exp1;
+                if is_i then println_string "iastore" else println_string "aastore" ;
+                println_string (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
 
@@ -659,15 +777,30 @@ let generate program filedir filename =
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = match decl with
-        | TypeSpec(Identifier(iden, _), typename, _)->
-            begin
-                print_tab (level);
-                print_string "type ";
-                print_string iden;
-                print_string " ";
-                print_type_name level typename;
-                print_string "\n"
-            end
+        | TypeSpec(Identifier(iden, _), typename, _) -> 
+            let print_jasmin_type_decl typename = match typename with
+                | Definedtype(Identifier(value, _), _) -> () (* TODO *)
+                | Primitivetype(value, _) -> () (* TODO *)
+                | Arraytype(len, type_name2, _)-> () (* TODO *)
+                | Slicetype(type_name2, _)-> () (* TODO *)
+                | Structtype([], _) -> ()
+                | Structtype(field_dcl_list, _) -> init_struct iden field_dcl_list
+(*                     let print_field_dcl level field = match field with 
+                        | (iden_list,type_name1) -> 
+                        begin
+                            print_tab (level);
+                            print_identifier_list iden_list;
+                            print_string " ";
+                            print_type_name (level) type_name1;
+                            print_string ";\n";
+                        end
+                        | _ -> ast_error ("field_dcl_print error")
+                    in
+                        print_string "struct {\n";
+                        List.iter (print_field_dcl (level+1)) field_dcl_list;
+                        print_tab (level);
+                        print_string "}"; *)
+            in print_jasmin_type_decl typename
         | _ -> ast_error ("type_dcl error")
     in
     let print_inc_dec_stmt stmt = match stmt with 
@@ -684,7 +817,18 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Indexexpr(expr1,expr2,linenum,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | Indexexpr(exp1,exp2,linenum,ast_type) ->
+                let exp_type = get_expr_type exp1 in
+                let symtype = (match exp_type with
+                    |SymArray(inner) -> inner
+                    |_ -> let errMsg = "not an array at line "^string_of_int(linenum) in code_gen_error errMsg
+                ) in
+                let is_i = is_immediate symtype linenum in 
+                print_expr exp1; (*put array ref on stack*)
+                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_tab 1;
+                if is_i then println_string "iastore" else println_string "aastore";
+                "";
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
@@ -729,18 +873,22 @@ let generate program filedir filename =
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
                     begin
-                        add_func func_name func_sig;
+                        init_func func_name func_sig;
                         print_method_decl func_name func_sig stmt_list;
                     end
                 | _ -> ()
             )
         | Return(rt_stmt, _) -> 
             let print_return_stmt level stmt = match stmt with
-                | ReturnStatement(expr, _) -> 
-                    begin
-                        print_expr expr;
-                        ();
-                    end
+                | ReturnStatement(expr, _) ->
+                    (match (print_expr expr) with
+                        | SymInt -> println_one_tab "ireturn"
+                        | SymFloat64 -> println_one_tab "freturn"
+                        | SymRune -> println_one_tab "ireturn"
+                        | SymString -> println_one_tab "areturn"
+                        | SymBool -> println_one_tab "ireturn"
+                        | NotDefined -> ()
+                    )
                 | Empty -> ()
             in
             print_return_stmt level rt_stmt
@@ -866,17 +1014,29 @@ let generate program filedir filename =
                 print_simple_stmt simple;
             end
         | Print(exprs, _) -> 
-            begin
+            let print_jasmin_exp exp = 
                 println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
-                print_expr_list exprs;
-                println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
-            end
+                match (print_expr exp) with 
+                    | SymInt -> println_one_tab "invokevirtual java/io/PrintStream/print(I)V";
+                    | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/print(F)V";
+                    | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
+                    | SymString -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/print(Z)V";
+                    | NotDefined -> ()
+            in
+            List.iter print_jasmin_exp exprs;    
         | Println(exprs, _) -> 
-            begin
+            let println_jasmin_exp exp = 
                 println_one_tab "getstatic java/lang/System/out Ljava/io/PrintStream;";
-                print_expr_list exprs;
-                println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
-            end
+                match (print_expr exp) with 
+                    | SymInt -> println_one_tab "invokevirtual java/io/PrintStream/println(I)V";
+                    | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/println(F)V";
+                    | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+                    | SymString -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/println(Z)V";
+                    | NotDefined -> ()
+            in
+            List.iter println_jasmin_exp exprs;  
         | For(for_stmt, _) ->
             let print_for_cond cond = match cond with 
                 | ConditionExpression(expr, _) -> print_expr expr;()
@@ -895,12 +1055,20 @@ let generate program filedir filename =
             let print_for_stmt level stmt = match stmt with 
                 | Forstmt(stmts, _) ->
                     begin
-                        print_tab (level);
-                        print_string "for {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        let currlabel = !labelcountfalse in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        (*infinite loop*)
+                        start_scope();
+                        (*generate label*)
+                        println_string ("stop"^(string_of_int currlabel)^":");
+                        print_stmt_list (level+1) stmts; (*TODO: pass in end label*)
+                        (*print goto label *)
+                    let gotocmd = "goto stop"^(string_of_int currlabel) in
+                        println_one_tab gotocmd;
+                        end_scope();
                     end
+
                 | ForCondition(condition, stmts, _) -> 
                     begin
                         print_tab (level);
@@ -983,19 +1151,6 @@ let generate program filedir filename =
                 print_stmt level head;
                 print_stmt_list level tail;
             end
-    and print_method_return return_type = match return_type with
-        | FuncReturnType(return_type_i, _) -> 
-            (match return_type_i with
-                    | Primitivetype(value, _) -> 
-                        (match value with
-                            | "int" -> println_one_tab "ireturn"
-                            | "float64" -> println_one_tab "freturn"
-                            | "bool" -> println_one_tab "ireturn"
-                            | _ -> println_one_tab "areturn"
-                        )   
-                    | _ -> println_one_tab "areturn"
-            )
-        | Empty -> println_one_tab "return"
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
@@ -1003,7 +1158,6 @@ let generate program filedir filename =
                 println_one_tab ".limit stack 99";
                 println_one_tab  ".limit locals 99";
                 print_stmt_list 1 stmt_list;
-                print_method_return return_type;
                 println_string ".end method\n";
             end
     and print_decl level decl = match decl with
@@ -1026,7 +1180,7 @@ let generate program filedir filename =
                 end
             | _ ->
                 begin
-                    add_func func_name signature;
+                    init_func func_name signature;
                     print_method_decl func_name signature stmt_list;
                 end
         | _ -> ()
@@ -1035,6 +1189,7 @@ let generate program filedir filename =
     in
     begin
         jasmin_main_class := filename;
+        jasmin_file_dir := filedir;
         print_class_header filename;
         print_init_header filename;
         print_decl_list 0 decl_list;
