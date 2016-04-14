@@ -4,4 +4,4 @@ cd src
 make clean
 make golite
 } &> /dev/null
-./goLite.native  ../$1
+./goLite.native  -pptype ../$1
