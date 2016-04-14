@@ -1,0 +1,38 @@
+./TEST_PROGRAMS/VALID/05/array_access_on_func_call.go
+Fatal error: exception Error.GoliteError("Syntax Error at 27")
+
+./TEST_PROGRAMS/VALID/05/expressions.go
+Fatal error: exception Error.GoliteError("Syntax Error at 26")
+
+./TEST_PROGRAMS/VALID/05/op_precedence.go
+Fatal error: exception Error.GoliteError("Syntax Error at 6")
+
+./TEST_PROGRAMS/VALID/05/sort_search.go
+Fatal error: exception Ast.AST_error("Not all paths have return")  ---- possibility of an error
+
+./TEST_PROGRAMS/VALID/05/unary_minus.go
+Fatal error: exception Error.GoliteError("Syntax Error at 8")
+
+./TEST_PROGRAMS/VALID/05/underscore_id.go
+Fatal error: exception Error.GoliteError("Syntax Error at 16")
+
+./TEST_PROGRAMS/VALID/07/func_decl_spec_acc.go
+Fatal error: exception Ast.AST_error("Not all paths have return")
+
+
+./TEST_PROGRAMS/VALID/09/calc.go
+Fatal error: exception Ast.AST_error("Not all paths have return") --- possibilty of an error
+
+
+./TEST_PROGRAMS/VALID/09/set2square.go
+Fatal error: exception Error.GoliteError("Syntax Error at 38") --check 
+(type casts error, need to check the grammar, cast inside paran)
+
+
+
+./TEST_PROGRAMS/VALID/11/atoi.go
+Fatal error: exception Ast.AST_error("Not all paths have return")  -- possibilty of an error
+
+./TEST_PROGRAMS/VALID/15/full2.go
+Fatal error: exception Error.GoliteError("Syntax Error at 141") --check (string casting causes error)
+

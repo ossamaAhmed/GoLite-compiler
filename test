@@ -1,10 +1,7 @@
 #!/bin/bash
-for validinvalid in ./TEST_PROGRAMS/VALID/*; do
-	 for subfolder in $validinvalid/*; do
-        for filename in $validinvalid/*; do 
-        echo "$filename" 
-        ./src/goLite.native $filename 
-        done
-	 done
+for validinvalid in ./TEST_PROGRAMS/typing_benchmarks/VALID/*; do
+        echo "$validinvalid" 
+        ./src/goLite.native $validinvalid 
+  
 done
         

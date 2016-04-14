@@ -904,7 +904,12 @@ let generate program filedir filename =
                 print_tab level;
                 print_string contpoint; 
             end
-        | Block(stmt_list, _) -> print_stmt_list (level+1) stmt_list startlabel endlabel
+        | Block(stmt_list, _) -> (*DONE*)
+            begin
+                start_scope();
+                print_stmt_list (level+1) stmt_list stmt_list startlabel endlabel;
+                end_scope();
+            end
         | Conditional(conditional, _) ->  (*DONE*)
             let print_if_init if_init = match if_init with
                 | IfInitSimple(simplestmt, _) ->

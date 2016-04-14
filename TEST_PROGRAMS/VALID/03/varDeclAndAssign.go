@@ -40,7 +40,7 @@ func f() {
 	p.y = 2
 	p.z = 3
 
-	// // type casting, works like function calls
+	// type casting, works like function calls
 	x = int(y)
 	x = x.f()
 	x = num(y) // if num is a type struct
@@ -58,5 +58,5 @@ func f() {
 	a[i] <<= 2
 	i &^= 1 << n
 	_ = x         // evaluate x but ignore it
-	// x, _ = f(), x // evaluate f() but ignore second result value
+	x, _ = f(), x // evaluate f() but ignore second result value
 }
