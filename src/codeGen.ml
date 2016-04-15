@@ -194,22 +194,45 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* ----------------------- Struct manipulation ----------------------- *)
 
-(* Store a table of struct type name => Jasmin object invocation string *)
-type structTable = (string, symType) Hashtbl.t;;
+(* Store a table of struct type name => jasmin class string *)
+type structTable = (string, string) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-let init_struct iden field_dcl_list = 
-    let struct_class_name = !jasmin_main_class^"_struct_"^iden in 
+let init_struct field_dcl_list struct_iden = 
+    let struct_class_name = !jasmin_main_class^"_struct_"^struct_iden in 
     let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
     let struct_file = open_out struct_filename in
     let print_struct_string s = output_string struct_file s in
     let println_struct_string s = output_string struct_file (s^"\n") in
     let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
+    let print_struct_field_type type_name identifier = match identifier, type_name with
+        | Identifier(field_iden, _), Definedtype(Identifier(value, _), _) -> () (* TODO *)
+        | Identifier(field_iden, _), Primitivetype(value, _) ->
+            (match value with
+            | "int" -> println_struct_string (".field "^field_iden^" I")
+            | "rune" -> println_struct_string (".field "^field_iden^" C")
+            | "bool" -> println_struct_string (".field "^field_iden^" Z")
+            | "string" -> println_struct_string (".field "^field_iden^" [Ljava/lang/String;")
+            | "float64" -> println_struct_string (".field "^field_iden^" F")
+            | _ -> code_gen_error ("unknown struct field type"))
+        | Identifier(field_iden, _), Arraytype(len, type_name2, _) -> () (* TODO *)
+        | Identifier(field_iden, _), Slicetype(type_name2, _) -> () (* TODO *)
+        | Identifier(field_iden, _), Structtype([], _) -> () (* TODO *)
+        | Identifier(field_iden, _), Structtype(dcl_list, _) -> () (* TODO *)
+    in
+    let print_struct_field field = match field with 
+        | (iden_list,type_name) -> List.iter (print_struct_field_type type_name) iden_list 
+        | _ -> ast_error ("field_dcl_print error")
+    in
     begin
-        println_struct_string (".class public "^iden^"");
+        (* Store struct name => jasmin class filename *)
+        Hashtbl.add struct_table struct_iden struct_class_name;
+        (* Print separate jasmin class file *)
+        println_struct_string (".class public "^struct_class_name^"");
         println_struct_string ".super java/lang/Object\n";
         (* Print fields *)
-        println_struct_string ".method public <init>()V";
+        List.iter print_struct_field field_dcl_list;
+        println_struct_string "\n.method public <init>()V";
         println_struct_one_tab ".limit locals 99";
         println_struct_one_tab ".limit stack 99";
         println_struct_one_tab "aload_0";
@@ -218,7 +241,7 @@ let init_struct iden field_dcl_list =
         println_struct_string ".end method";
         close_out struct_file
     end
-let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
+let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
 
 (* --------------------------------END-------------------------------- *)
 
@@ -630,12 +653,13 @@ let generate program filedir filename =
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-                (*TODO: GET STRCUT NAME*)
-            begin
-                print_string "getfield structName fieldType";
-                symbolType
-            end
+        | Selectorexpr(exp1, Identifier(iden1, _), linenum1, symt1) -> symt1
+(*             (match exp1 with
+            (* Simple struct access s.a *)
+            | OperandName(value2, linenum2, symt2) ->
+            (* Nested struct access s1.s2.a *)
+            | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
+            ) *)
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
             let pType = get_primitive_type typename in 
             (
@@ -802,7 +826,7 @@ let generate program filedir filename =
                 | Arraytype(len, type_name2, _)-> () (* TODO *)
                 | Slicetype(type_name2, _)-> () (* TODO *)
                 | Structtype([], _) -> ()
-                | Structtype(field_dcl_list, _) -> init_struct iden field_dcl_list
+                | Structtype(field_dcl_list, _) -> init_struct field_dcl_list iden; ()
 (*                     let print_field_dcl level field = match field with 
                         | (iden_list,type_name1) -> 
                         begin
