@@ -1,16 +1,14 @@
 package main
 
-type t int
-
-func f(x t) {
-}
 
 func main() {
-	var x t
-	var y t
-	var z int
+	if (1 > 2) {
+		println ("code 1")
 
-	y = x - y
-	// Argument is not an int
-	f(x)
+	} else if (1 < 2) {
+		println ("code 2")
+
+	} else {
+		println ("hi")
+	}
 }
