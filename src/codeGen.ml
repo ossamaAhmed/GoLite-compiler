@@ -134,7 +134,7 @@ let get_expr_type exp1 = match exp1 with
 	| TypeCastExpr(_,_,_,symType)	-> symType
     | Appendexpr(_,_,_,symType)-> symType
 
-let generate_load typename varname linenum= match typename with 
+let generate_load typename varname linenum = match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
@@ -152,7 +152,7 @@ let generate_store typename varnameIden = match typename, varnameIden with
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
-let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
+let apply_func_on_element_from_two_lsts lst1 lst2 func = match lst1,lst2 with 
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
@@ -682,14 +682,14 @@ let generate program filedir filename =
         
         | Selectorexpr(exp1, Identifier(iden,_), linenum1, symt1) ->
             (match exp1 with 
-                | OperandName(value, linenum, symt) ->
+                | OperandName(struct_var_name, linenum, symt) ->
                     let rec find_field field_iden field_list =
                         match field_list with
                             | [] -> NotDefined
-                            | (value, sym_type)::tail -> if value = field_iden then sym_type
+                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
                                                     else find_field field_iden tail
                     in
-                    let struct_class = retrieve_struct_class_from_var value in
+                    let struct_class = retrieve_struct_class_from_var struct_var_name in
                     let symt2 = (print_expr exp1) in
                     (match symt2 with 
                         | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
@@ -707,6 +707,7 @@ let generate program filedir filename =
                         | _ -> code_gen_error ("struct type does not resolve")
                     );
                     symt1
+                (* Do nested structs *)
                 | _ -> code_gen_error ("selector type does not resolve")
             )
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
@@ -860,11 +861,14 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+            (* STRUCT ASSIGNMENT *)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> ""
         | _ -> code_gen_error "Lvalue function error"
     in 
     let generate_assignment expr1 expr2 = match expr1 with
-        | OperandName(iden,linenum,ast_type) -> let exprtype = print_expr expr2 in println_one_tab (generate_assign_expr_lh expr1 exprtype); 
+        | OperandName(iden,linenum,ast_type) -> 
+            let exprtype = print_expr expr2 in 
+                println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in
                 let symtype = (match exp_type with
@@ -878,7 +882,41 @@ let generate program filedir filename =
                 print_tab 1;
                 if is_i then println_string "iastore" else println_string "aastore";
                 ();
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> () (*NOT IMPLEMENTED*)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> 
+            print_expr expr2;
+            (match exp1 with 
+                | OperandName(struct_var_name, linenum, symt) ->
+                    let rec find_field field_iden field_list =
+                        match field_list with
+                            | [] -> NotDefined
+                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
+                                                    else find_field field_iden tail
+                    in
+                    let struct_class = retrieve_struct_class_from_var struct_var_name in
+                    let symt2 = (print_expr exp1) in
+                    (match symt2 with 
+                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
+                            (match field_sym_type with
+                                | SymInt -> 
+                                    begin
+(*                                         println_one_tab (generate_load (SymStruct(field_list)) struct_var_name linenum2); *)
+                                        println_one_tab "swap";
+                                        println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I");
+                                    end
+                                | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
+                                | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"C")
+                                | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymArray(sym_type) -> ()
+                                | SymSlice(sym_type) -> ()
+                                | SymStruct(fields) -> ()
+                                | NotDefined -> ()
+                            )
+                        | _ -> code_gen_error ("struct type does not resolve")
+                    )
+                (* Do nested structs *)
+                | _ -> code_gen_error ("selector type does not resolve")
+            );
         | _ -> code_gen_error "Lvalue function error"
     in
     let print_inc_dec_stmt stmt = match stmt with 
