@@ -34,6 +34,13 @@ let search_not_find_current_scope x = match !symbol_table with
     | Scope(current_scope)::tail ->
         if (Hashtbl.mem current_scope x) then true else false
 
+let search_iden_not_find_current_scope iden = match iden with
+    | Identifier(x,_) -> 
+        (match !symbol_table with
+            | Scope(current_scope)::tail -> 
+                if (Hashtbl.mem current_scope x) then true else false
+        )
+
 let rec search_previous_scopes x table = match table with (*called with !symbol_table*)
     | []-> code_gen_error ("variable is not defined in current and previous scopes")
     | Scope(current_scope)::tail -> 
@@ -42,12 +49,12 @@ let rec search_previous_scopes x table = match table with (*called with !symbol_
         else 
             search_previous_scopes x tail
 
-let add_variable_to_current_scope mytype myvar = match myvar with
-    | Identifier(myvariable,linenum)-> 
+let add_variable_to_current_scope count iden = match iden with
+    | Identifier(myvariable,linenum) -> 
         (match !symbol_table with
             | Scope(current_scope)::tail ->
                 if not(Hashtbl.mem current_scope myvariable) then 
-                    Hashtbl.add current_scope myvariable mytype
+                    Hashtbl.add current_scope myvariable count
                 else
                     code_gen_error ("variable is defined more than one time")
         )
@@ -876,11 +883,10 @@ let generate program filedir filename =
         | ShortVarDecl(idens, exprs, _) ->
             let short_var_decl_expr (iden, expr) =
                 let symt = print_expr expr in
-                    begin 
+                    if (search_iden_not_find_current_scope iden) then
                         add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
                         localcounter();
-                        println_one_tab (generate_store symt iden);
-                    end
+                    println_one_tab (generate_store symt iden);
             in
             List.iter short_var_decl_expr (combine_two_lists idens exprs)
     in
