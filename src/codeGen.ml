@@ -52,45 +52,45 @@ let add_variable_to_current_scope mytype myvar = match myvar with
                     code_gen_error ("variable is defined more than one time")
         )
 
-let get_sym_type type_of_type_i = match type_of_type_i with
-        | Primitivetype(value, _) -> 
-            (match value with
-                | "int" -> SymInt
-                | "rune" -> SymRune
-                | "bool" -> SymBool
-                | "string" -> SymString
-                | "float64" -> SymString
-            )
-        | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
-        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
-        | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
-        | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
-        | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
+let rec get_sym_type type_of_type_i = match type_of_type_i with
+    | Primitivetype(value, _) -> 
+        (match value with
+            | "int" -> SymInt
+            | "rune" -> SymRune
+            | "bool" -> SymBool
+            | "string" -> SymString
+            | "float64" -> SymString
+        )
+    | Arraytype(len, type_name2, _)-> SymArray((get_sym_type type_name2))
+    | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
+    | Slicetype(type_name2, _)-> SymSlice((get_sym_type type_name2))
+    | Structtype([], _) -> SymStruct([])
+    | Structtype(field_dcl_list, _) -> SymStruct([]) (*TO BE IMPLEMENTED*)
 
 let rec sym_to_type symt = match symt with
-        | SymInt -> "int"
-        | SymFloat64 -> "float"
-        | SymRune -> "char"
-        | SymString -> "[Ljava/lang/String;"
-        | SymBool -> "boolean"
-        | SymArray(subType) ->"["^sym_to_type subType  
-        | SymSlice(subType) -> "["^sym_to_type subType  
-        | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
-        | _ -> ""
+    | SymInt -> "int"
+    | SymFloat64 -> "float"
+    | SymRune -> "char"
+    | SymString -> "[Ljava/lang/String;"
+    | SymBool -> "boolean"
+    | SymArray(subType) ->"["^sym_to_type subType  
+    | SymSlice(subType) -> "["^sym_to_type subType  
+    | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
+    | _ -> ""
     
 let is_immediate exp_type linenum = match exp_type with
-        | SymInt -> true 
-        | SymFloat64 -> true 
-        | SymRune -> true
-        | SymString -> false 
-        | SymBool -> true
-        | SymArray(subType) -> false 
-        | SymSlice(subType) -> false
-        | SymStruct(fieldlist) -> false
-        | SymFunc(subType,arglist) -> false
-        | SymType(subType) -> false
-        | Void -> true
-        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
+    | SymInt -> true 
+    | SymFloat64 -> true 
+    | SymRune -> true
+    | SymString -> false 
+    | SymBool -> true
+    | SymArray(subType) -> false 
+    | SymSlice(subType) -> false
+    | SymStruct(fieldlist) -> false
+    | SymFunc(subType,arglist) -> false
+    | SymType(subType) -> false
+    | Void -> true
+    | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
 let get_expr_type exp1 = match exp1 with
 	| OperandName(_,_,symType)-> symType
@@ -793,12 +793,13 @@ let generate program filedir filename =
             end
     in
     let print_var_decl level decl = match decl with
-        (* NOTE STRUCT ARE ONLY DECLARED HERE, WITH TYPE*)
-        | VarSpecWithType(iden_list, typename, exprs, _) ->
+        (* STRUCT ARE DECLARED HERE, ALONG PRIMITIVES, ARRAYS AND SLICES *)
+        | VarSpecWithType(iden_list, type_i, exprs, _) ->
             (match exprs with
-            | [] -> List.iter (emit_var_decl typename) iden_list
+            | [] -> List.iter (emit_var_decl type_i) iden_list
             | _ -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
-            )   
+            )
+        (* NO STRUCT DECLARED HERE ONLY PRIMITIVES, ARRAYS AND SLICES *)
         | VarSpecWithoutType (iden_list, exprs, _) -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
         | _ -> ast_error ("var_dcl error")
     in
