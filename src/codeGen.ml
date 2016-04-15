@@ -149,6 +149,9 @@ let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
+let rec combine_two_lists list1 list2 = match list1, list2 with
+    | head1::[], head2::[] -> (head1, head2)::[]
+    | head1::tail1, head2::tail2 -> (head1, head2)::(combine_two_lists tail1 tail2)
 
 (* --------------------------------END-------------------------------- *)
 
@@ -891,11 +894,15 @@ let generate program filedir filename =
     in
     let print_short_var_decl_stmt dcl = match dcl with
         | ShortVarDecl(idens, exprs, _) ->
-            begin
-                print_identifier_list idens;
-                print_string " := ";
-                print_expr_list exprs;
-            end
+            let short_var_decl_expr (iden, expr) =
+                let symt = print_expr expr in
+                    begin 
+                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                        localcounter();
+                        println_one_tab (generate_store symt iden);
+                    end
+            in
+            List.iter short_var_decl_expr (combine_two_lists idens exprs)
     in
     let print_simple_stmt stmt = match stmt with 
         | SimpleExpression(expr, _) -> print_expr expr;()
