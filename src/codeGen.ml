@@ -1075,10 +1075,9 @@ let generate program filedir filename =
                         print_if_init if_init;
                         print_if_cond condition;
                         let currlabel= !labelcountfalse in 
-                        let currlabelstr = "stop"^(string_of_int currlabel) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_one_tab ("ifeq "^currlabelstr);
+                        println_one_tab ("ifeq stop"^(string_of_int currlabel));
                         start_scope();
                         print_stmt_list 1 stmts start_label end_label;
                         end_scope();
@@ -1092,34 +1091,34 @@ let generate program filedir filename =
                         print_if_init if_init;
                         print_if_cond condition;
                         let curr_else_label= !labelcountfalse in 
-                        let currlabelstr = "stop"^(string_of_int curr_else_label) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_string_with_tab 1 ("ifeq "^currlabelstr) ;
+                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
                         start_scope();
-                        print_stmt_list 1 stmts start_label end_label; 
+                        print_stmt_list 1 stmts start_label end_label;
                         end_scope();
                         let curr_stop_label= !labelcountfalse in 
                         println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
                         println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
+
+
                     end
             in
-            let rec print_else_stmt level stmt start_label end_label =  match stmt with 
+            let rec print_else_stmt level stmt start_label end_label=  match stmt with 
                 | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
-                        print_if_stmt_with_else 1 if_stmt;
+                        print_if_stmt_with_else 1 if_stmt start_label end_label;
                         let curr_stop_label= !labelcountfalse in 
-                        let currlabelstr = "stop"^(string_of_int curr_stop_label) in
                         labelcountertrue();
                         labelcounterfalse();
                         start_scope();
-                        print_stmt_list 1 stmts start_label end_label; 
+                        print_stmt_list 1 stmts start_label end_label;
                         end_scope();
-                        println_string_with_tab 1 (currlabelstr^":");
+                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
                 | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
-                        print_if_stmt_with_else 1 if_stmt;
+                        print_if_stmt_with_else 1 if_stmt start_label end_label;
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
@@ -1145,7 +1144,7 @@ let generate program filedir filename =
 
                     end
             in
-            let print_conditional_stmt level cond start_label end_label = match cond with (*needs testing*)
+            let print_conditional_stmt level cond start_label end_label= match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
                         print_if_stmt 1 if_stmt start_label end_label;
