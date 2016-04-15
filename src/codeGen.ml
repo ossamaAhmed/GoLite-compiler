@@ -200,6 +200,18 @@ let init_func func_name func_sig = match func_sig with
         Hashtbl.add func_table func_name (!jasmin_main_class^"/"^func_name^"("^(string_method_params_types params_list)^")V")
 let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
+let rec insert_method_params_to_current_scope iden_list = match iden_list with
+    | [] -> ()
+    | TypeSpec(iden, iden_type, _)::[] -> 
+        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden; localcounter(); ()
+    | TypeSpec(iden, iden_type, _)::tail ->
+        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden; localcounter(); ()
+
+let init_method_params func_sig = match func_sig with
+    | FuncSig(FuncParams(params_list, _), _, _) -> 
+        insert_method_params_to_current_scope params_list;
+        string_method_params_types params_list
+
 (* --------------------------------END-------------------------------- *)
 
 (* ----------------------- Struct manipulation ----------------------- *)
@@ -1324,18 +1336,24 @@ let generate program filedir filename =
                 end_scope();
             end
         | _ -> ()
-    and print_stmt_list level stmt_list startlabel endlabel= match stmt_list with
+    and print_stmt_list level stmt_list startlabel endlabel = match stmt_list with
         | [] -> ()
         | head::[] -> print_stmt level head startlabel endlabel
         | head::tail ->
             begin
                 print_stmt level head startlabel endlabel;
-                print_stmt_list level tail startlabel endlabel;
+                print_stmt_list level tail startlabel endlabel
             end
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
-                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type)); println_one_tab ".limit stack 99"; println_one_tab  ".limit locals 99"; print_stmt_list 1 stmt_list; println_string ".end method\n";
+                start_scope();
+                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name (init_method_params signature) (string_method_return_type return_type)); 
+                println_one_tab ".limit stack 99"; 
+                println_one_tab  ".limit locals 99"; 
+                print_stmt_list 1 stmt_list "" ""; 
+                println_string ".end method\n";
+                end_scope();
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
