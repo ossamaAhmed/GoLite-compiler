@@ -51,7 +51,7 @@ let generate_float  literal linenum=   Value(Floatliteral(literal,linenum),linen
 let generate_string  literal linenum=  Value(Stringliteral(literal,linenum),linenum,NotDefined)
 let generate_rune  literal linenum=  Value(Runeliteral(literal,linenum),linenum,NotDefined)
 
-let generate_defined_type identifier linenum= Definedtype(Identifier(identifier,linenum),linenum)
+let generate_defined_type identifier linenum= Definedtype(Identifier(identifier,linenum),NoneType,linenum)
 let generate_primitive_type typename linenum= Primitivetype(typename,linenum)
 let generate_array_type len typedef linenum= Arraytype(len, typedef,linenum)
 let generate_slice_type typedef linenum= Slicetype(typedef,linenum)

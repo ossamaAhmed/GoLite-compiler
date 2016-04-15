@@ -102,11 +102,12 @@ type func_return =
 	| Stringliteral of string * int 
     and
     type_i =
-	| Definedtype of identifier * int
+	| Definedtype of identifier * type_i * int (*just added the real type attached*)
 	| Primitivetype of string * int(*can accept INT, RUNE, BOOL, STRING, FLOAT64, *)
 	| Arraytype of int * type_i* int
 	| Slicetype of type_i* int
 	| Structtype of (identifier list * type_i) list* int
+    | NoneType
     and
     expression = 
 	| OperandName of string* int * symType
