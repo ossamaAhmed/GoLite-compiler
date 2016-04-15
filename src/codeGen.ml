@@ -802,8 +802,6 @@ let generate program filedir filename =
         | VarSpecWithoutType (iden_list, exprs, _) -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
         | _ -> ast_error ("var_dcl error")
     in
-    let print_type_decl level decl = () (* Nothing to do in codegen *)
-    in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
         | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
