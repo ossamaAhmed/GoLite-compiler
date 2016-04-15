@@ -32,8 +32,8 @@ let _ =
         let typecheckedProg = TypeChecker.check tokens out in
         let _ = if !pptype = true then PrettyPrinterTyped.print typecheckedProg filedir out in
         let codeGeneratedProg = CodeGen.generate typecheckedProg filedir out in
-        Sys.command ("java -jar ../jasmin.jar "^filedir^(Filename.dir_sep)^out^".j -d "^filedir);
-        Sys.command ("java "^filedir^(Filename.dir_sep)^out);
-        print_string ("Valid\n"); 
+        Sys.command ("java -jar ../jasmin.jar "^filedir^(Filename.dir_sep)^"*.j -d "^filedir);
+        Sys.command ("cd "^filedir^" && "^"java "^out);
+        print_string ("Compilation Valid\n"); 
     with 
         | Parser.Error -> print_string("Invalid grammar\n"); exit 0;
