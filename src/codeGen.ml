@@ -99,6 +99,14 @@ let is_immediate exp_type linenum = match exp_type with
     | Void -> true
     | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
+let rec get_type_i type_i = match type_i with
+	| Definedtype(_,t,_) -> get_type_i t 
+	| Primitivetype(str,_) -> str
+	| Arraytype(_,t,_) -> "["^(get_type_i t)
+	| Slicetype(t,_) -> "["^(get_type_i t)
+	| Structtype(t,_) -> "" (*TODO: THIS*)
+    | NoneType -> ""
+    
 let get_expr_type exp1 = match exp1 with
 	| OperandName(_,_,symType)-> symType
 	| AndAndOp(_,_,_,symType)-> symType
@@ -834,11 +842,17 @@ let generate program filedir filename =
                 | "string" -> println_one_tab  "ldc \"\""
                 | "float64" -> println_one_tab  "fconst_0"
             )
-        | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
+        | Arraytype(len, type_i2, _)->
+                begin
+                    println_one_tab ("ldc "^(string_of_int len));
+                    let typename = get_type_i type_i2 in
+                    println_one_tab ("newarray "^typename);
+                end
         | Slicetype(type_i2, _)-> 
                 begin
                     println_one_tab "iconst_1";
-                   println_one_tab ("newarray "^"int" );
+                    let typename = get_type_i type_i2 in
+                    println_one_tab ("newarray "^typename);
                 end
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> ()
