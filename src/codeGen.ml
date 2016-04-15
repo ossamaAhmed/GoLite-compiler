@@ -69,7 +69,7 @@ let rec get_sym_type type_of_type_i = match type_of_type_i with
             | "float64" -> SymString
         )
     | Arraytype(len, type_name2, _)-> SymArray((get_sym_type type_name2))
-    | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
+    | Definedtype(Identifier(value, _), _,_) -> Void (*TO BE IMPLEMENTED*)
     | Slicetype(type_name2, _)-> SymSlice((get_sym_type type_name2))
     | Structtype([], _) -> SymStruct([])
     | Structtype(field_dcl_list, _) -> SymStruct([]) (*TO BE IMPLEMENTED*)
@@ -170,7 +170,7 @@ let (func_table : funcTable) = Hashtbl.create 1234;;
 
 (* Refer to print_type_name in prettyPrinter *)
 let string_jasmin_type go_type = match go_type with 
-    | Definedtype(Identifier(value, _), _) -> value
+    | Definedtype(Identifier(value, _), _,_) -> value
     | Primitivetype(value, _) ->
         (match value with 
             | "int" -> "I"
@@ -216,7 +216,7 @@ let init_struct field_dcl_list struct_iden =
     let println_struct_string s = output_string struct_file (s^"\n") in
     let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
     let print_struct_field_type type_name identifier = match identifier, type_name with
-        | Identifier(field_iden, _), Definedtype(Identifier(value, _), _) -> () (* TODO *)
+        | Identifier(field_iden, _), Definedtype(Identifier(value, _), _,_) -> () (* TODO *)
         | Identifier(field_iden, _), Primitivetype(value, _) ->
             (match value with
             | "int" -> println_struct_string (".field "^field_iden^" I")
@@ -345,7 +345,7 @@ let generate program filedir filename =
         | _ -> ()
     in
     let rec print_type_name level type_name = match type_name with
-        | Definedtype(Identifier(value, _), _) -> print_string value
+        | Definedtype(Identifier(value, _), _,_) -> print_string value
         | Primitivetype(value, _) -> ()
 (*
             let _ = match value with
@@ -769,7 +769,7 @@ let generate program filedir filename =
         | Empty -> "V"
     in
     let print_var_default_value typename = match typename with 
-        | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
+        | Definedtype(Identifier(value, _), _,_) -> () (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
             (match value with
                 | "int" -> println_one_tab  "iconst_0"

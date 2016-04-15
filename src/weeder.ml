@@ -7,7 +7,7 @@ let weed_literal lit = match lit with
     | Stringliteral(value,linenum) -> ""
 
 let rec weed_type_name type_name = match type_name with
-    | Definedtype(Identifier(value,linenum1),linenum2) -> ""
+    | Definedtype(Identifier(value,linenum1),ty, linenum2) -> ""
     | Primitivetype(value,linenum) -> "" 
     | Arraytype(len, type_name2,linenum) -> ""
     | Slicetype(type_name2,linenum) -> ""

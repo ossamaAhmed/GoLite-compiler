@@ -22,7 +22,7 @@ let print program filedir filename =
         | _ -> ()
     in
     let rec print_type_name level type_name = match type_name with
-        | Definedtype(Identifier(value, _), _) -> print_string value
+        | Definedtype(Identifier(value, _),_, _) -> print_string value
         | Primitivetype(value, _) -> print_string value 
         | Arraytype(len, type_name2, _)-> 
             begin
