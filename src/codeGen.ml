@@ -52,7 +52,7 @@ let add_variable_to_current_scope mytype myvar = match myvar with
                     code_gen_error ("variable is defined more than one time")
         )
 
-let get_primitive_type type_of_type_i = match type_of_type_i with
+let get_sym_type type_of_type_i = match type_of_type_i with
         | Primitivetype(value, _) -> 
             (match value with
                 | "int" -> SymInt
@@ -664,7 +664,7 @@ let generate program filedir filename =
             | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
             ) *)
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
-            let pType = get_primitive_type typename in 
+            let pType = get_sym_type typename in 
             (
             match symbolType, pType with
             | SymInt, SymInt -> print_expr exp1; symbolType;
@@ -776,41 +776,30 @@ let generate program filedir filename =
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
-    let emit_var_decl typename iden = 
+    let emit_var_decl type_i iden = 
         begin
-            print_var_default_value typename;
+            print_var_default_value type_i;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
-            println_one_tab (generate_store (get_primitive_type typename) iden);
+            println_one_tab (generate_store (get_sym_type type_i) iden);
         end
     in
+    let emit_var_decl_expr (iden, expr) =
+        let symt = print_expr expr in
+            begin 
+                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                localcounter();
+                println_one_tab (generate_store symt iden);
+            end
+    in
     let print_var_decl level decl = match decl with
-        | VarSpecWithType(iden_list, typename, exprs, _) -> 
-            if exprs = [] then
-                begin
-                    List.map (emit_var_decl typename) iden_list;
-                    ();
-                end
-            else
-                let print_var_decl_expr (iden, expr) =
-                    let symt = print_expr expr in
-                        begin 
-                            add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                            localcounter();
-                            println_one_tab (generate_store symt iden);
-                        end
-                in
-                List.iter print_var_decl_expr (combine_two_lists iden_list exprs)
-        | VarSpecWithoutType (iden_list, exprs, _) -> 
-            let print_var_decl_expr (iden, expr) =
-                let symt = print_expr expr in
-                    begin 
-                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                        localcounter();
-                        println_one_tab (generate_store symt iden);
-                    end
-            in
-            List.iter print_var_decl_expr (combine_two_lists iden_list exprs)
+        (* NOTE STRUCT ARE ONLY DECLARED HERE, WITH TYPE*)
+        | VarSpecWithType(iden_list, typename, exprs, _) ->
+            (match exprs with
+            | [] -> List.iter (emit_var_decl typename) iden_list
+            | _ -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
+            )   
+        | VarSpecWithoutType (iden_list, exprs, _) -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = () (* Nothing to do in codegen *)
