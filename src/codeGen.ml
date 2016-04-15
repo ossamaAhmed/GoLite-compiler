@@ -818,32 +818,7 @@ let generate program filedir filename =
                 end
         | _ -> ast_error ("var_dcl error")
     in
-    let print_type_decl level decl = match decl with
-        | TypeSpec(Identifier(iden, _), typename, _) -> 
-            let print_jasmin_type_decl typename = match typename with
-                | Definedtype(Identifier(value, _), _) -> () (* TODO *)
-                | Primitivetype(value, _) -> () (* TODO *)
-                | Arraytype(len, type_name2, _)-> () (* TODO *)
-                | Slicetype(type_name2, _)-> () (* TODO *)
-                | Structtype([], _) -> ()
-                | Structtype(field_dcl_list, _) -> init_struct field_dcl_list iden; ()
-(*                     let print_field_dcl level field = match field with 
-                        | (iden_list,type_name1) -> 
-                        begin
-                            print_tab (level);
-                            print_identifier_list iden_list;
-                            print_string " ";
-                            print_type_name (level) type_name1;
-                            print_string ";\n";
-                        end
-                        | _ -> ast_error ("field_dcl_print error")
-                    in
-                        print_string "struct {\n";
-                        List.iter (print_field_dcl (level+1)) field_dcl_list;
-                        print_tab (level);
-                        print_string "}"; *)
-            in print_jasmin_type_decl typename
-        | _ -> ast_error ("type_dcl error")
+    let print_type_decl level decl = () (* Nothing to do in codegen *)
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
@@ -918,7 +893,7 @@ let generate program filedir filename =
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
-                | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
+                | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen Type*)
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
@@ -1242,7 +1217,7 @@ let generate program filedir filename =
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
-        | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
+        | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen *)
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, line) ->
