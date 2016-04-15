@@ -199,8 +199,8 @@ and create_field_types_list lst= match lst with
 								| (identifierlst,typ)::tail-> (struct_field_types identifierlst typ)@(create_field_types_list tail)
 
 and typecheck_type_name type_name = match type_name with
-								| Definedtype(Identifier(value,linenum1),ty, linenum2)-> search_previous_scopes value !symbol_table (* in (match x with | SymType(mytype)-> mytype) *)
-								| Primitivetype(value,linenum)-> get_primitive_type value 
+								| Definedtype(Identifier(value,linenum1),ty, linenum2)->  search_previous_scopes (value^"typiing") !symbol_table (* in (match x with | SymType(mytype)-> mytype) *)
+								| Primitivetype(value,linenum)-> get_primitive_type (value) 
 								| Arraytype(len, type_name2,linenum)-> SymArray((typecheck_type_name type_name2))
 								| Slicetype(type_name2,linenum)-> SymSlice((typecheck_type_name type_name2))
 								| Structtype([],linenum) -> SymStruct([])
@@ -216,10 +216,13 @@ let rec typecheck_identifiers_with_type idenlist = match idenlist with
 and typecheck_identifiers_with_type_new_scope idenlist = match idenlist with
 									| [] -> []
 									| TypeSpec(value,return_type,linenum)::tail -> let mytype = typecheck_type_name return_type in 
-																		    let _= add_variable_to_current_scope mytype value in
-																			TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope tail)
+														
+																			( match value with 
+																				| Identifier(value2,linenum2)-> 
+																					let _= add_variable_to_current_scope mytype (Identifier((value2,linenum))) in
+																				TypeSpec(value,return_type,linenum)::(typecheck_identifiers_with_type_new_scope tail))
 and typecheck_type_declaration decl = match decl with
-								| TypeSpec(value, typename,linenum)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) value in TypeSpec(value, typename,linenum)
+								| TypeSpec(value, typename,linenum)-> match value with |Identifier(value2,linenum2)-> let mytype = typecheck_type_name typename in let result= add_variable_to_current_scope (SymType(mytype)) (Identifier((value2^"typiing"),linenum)) in TypeSpec(value, typename,linenum)
 								| _-> type_checking_error ("type_dcl error")
 
 
@@ -399,15 +402,32 @@ and pretty_typecheck_expression exp =
 																						let mytype_name= extract_type_from_expr_tuple mytype in 
 																						let mytype_node = extract_node_from_expr_tuple mytype in
 																					 	(Binaryexpr(mytype_node,linenum,mytype_name),mytype_name)
-												| FuncCallExpr(expr,exprs,linenum,ast_type)-> let exp_type= pretty_typecheck_expression expr in
+												| FuncCallExpr(expr,exprs,linenum,ast_type)-> 
+																							  (match expr,exprs with 
+																								| OperandName(iden,l,t),head::[]-> if (search_not_find_current_scope (iden^"typiing")) then pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
+																															else let exp_type= pretty_typecheck_expression expr in
 																							  let mytype_name= extract_type_from_expr_tuple exp_type in 
 																							  let mytype_node = extract_node_from_expr_tuple exp_type in
+
+																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
+																							  ( match mytype_name, expr,exprs with 
+																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
+																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum)))
+
+
+																								| _ -> 
+																								let exp_type= pretty_typecheck_expression expr in
+																							  let mytype_name= extract_type_from_expr_tuple exp_type in 
+																							  let mytype_node = extract_node_from_expr_tuple exp_type in
+
 																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
 																							  ( match mytype_name, expr,exprs with 
 																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
 																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
+																							)
 												| UnaryPlus(exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																					  let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
 																	 (match (get_propagated_type exp_type) with 
@@ -448,9 +468,12 @@ and pretty_typecheck_expression exp =
 																												   							  (Selectorexpr(exp_type1_node,Identifier(iden,linenum1),linenum2,mytype),mytype)
 																												   	| _-> type_checking_error ("selector operator is only allowed on structs linenum:="^(Printf.sprintf "%i" linenum1))
 																												   )
-												| TypeCastExpr (typename,exp1,linenum,ast_type) -> let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
+												| TypeCastExpr (typename,exp1,linenum,ast_type) ->	
+																									 let exp_type= extract_type_from_expr_tuple(pretty_typecheck_expression exp1) in 
 																									let exp_type1_node= extract_node_from_expr_tuple(pretty_typecheck_expression exp1) in
+
 																								    let mytype = typecheck_type_name typename in
+
 																								    if (is_basetype_numeric_typecheck exp_type) && (is_basetype_numeric_typecheck mytype) then (TypeCastExpr (typename,exp_type1_node,linenum,mytype), mytype)
 																								    else type_checking_error ("type casting is only allowed on numeric base types linenum:="^(Printf.sprintf "%i" linenum))
 
