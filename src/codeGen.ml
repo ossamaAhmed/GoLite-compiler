@@ -373,65 +373,6 @@ let generate program filedir filename =
             end
         | _ -> ()
     in
-    let rec print_type_name level type_name = match type_name with
-        | Definedtype(Identifier(value, _), _,_) -> print_string value
-        | Primitivetype(value, _) -> ()
-(*
-            let _ = match value with
-                | "int" -> print_string "I"
-                | "rune" -> print_string "C"
-                | "bool" -> print_string "B"
-                | "string" -> print_string "[Ljava/lang/String;"
-                | "float64" -> print_string "F"
-                | _ -> print_string "V"
-*)
-        | Arraytype(len, type_name2, _)-> 
-            begin
-                print_string "[ ";
-                print_int len;
-                print_string " ] ";
-                print_type_name level type_name2;
-            end
-        | Slicetype(type_name2, _)->
-            begin
-                print_string "[] ";
-                print_type_name level type_name2;
-            end
-        | Structtype([], _) -> ()
-        | Structtype(field_dcl_list, _) -> 
-            let print_field_dcl level field = match field with 
-                | (iden_list,type_name1) -> 
-                begin
-                    print_tab (level);
-                    print_identifier_list iden_list;
-                    print_string " ";
-                    print_type_name (level) type_name1;
-                    print_string ";\n";
-                end
-                | _ -> ast_error ("field_dcl_print error")
-            in
-                print_string "struct {\n";
-                List.iter (print_field_dcl (level+1)) field_dcl_list;
-                print_tab (level);
-                print_string "}";
-    in
-    let rec print_identifier_list_with_type iden_list = match iden_list with
-        | [] -> ()
-        | TypeSpec(Identifier(iden, _), iden_type, _)::[] -> 
-            begin
-                print_string iden;
-                print_string " ";
-                print_type_name 0 iden_type;
-            end
-        | TypeSpec(Identifier(iden, _), iden_type, _)::tail ->
-            begin
-                print_string iden;
-                print_string " ";
-                print_type_name 0 iden_type;
-                print_string ", ";
-                print_identifier_list_with_type tail;
-            end
-    in 
     let print_literal lit = match lit with
         | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value)); SymInt
         | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value)); SymFloat64
