@@ -5,14 +5,14 @@ type point3d struct{
 }
 
 func main() {
-    var a = 5
+	x := true
+	y := false
 
-    var p point3d
-    p.y = 2
-
-    var c int
-    c = a + p.y
-
-    println(c)
-    // p.z = 3;
+	if y {
+		//Do nothing
+	} else if x {
+		//Do nothing
+	} else {
+		println(x)
+	}
 }
