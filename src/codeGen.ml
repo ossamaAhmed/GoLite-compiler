@@ -208,7 +208,10 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 type structTable = (string, string) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-let init_struct field_dcl_list struct_iden = 
+type structVarTable = (string, string) Hashtbl.t;;
+let (struct_var_table : structVarTable) = Hashtbl.create 1234;;
+
+let init_struct_type field_dcl_list struct_iden = 
     let struct_class_name = !jasmin_main_class^"_struct_"^struct_iden in 
     let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
     let struct_file = open_out struct_filename in
@@ -255,6 +258,17 @@ let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
 
 let is_struct_type struct_iden =
     if (Hashtbl.mem struct_table struct_iden) then true else false
+
+let store_struct_var iden struct_class = match iden with
+    | Identifier(var_name, _) -> Hashtbl.add struct_var_table var_name struct_class
+
+let retrieve_struct_class_from_var struct_iden = Hashtbl.find struct_var_table struct_iden
+
+
+(* let search_struct_field_type var_name field_name =
+    let field_dcl_list = Hashtbl.find struct_table var_name in () *)
+        (* (identifier list * type_i) *)
+
 
 (* --------------------------------END-------------------------------- *)
 
@@ -666,13 +680,35 @@ let generate program filedir filename =
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden1, _), linenum1, symt1) -> symt1
-(*             (match exp1 with
-            (* Simple struct access s.a *)
-            | OperandName(value2, linenum2, symt2) ->
-            (* Nested struct access s1.s2.a *)
-            | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
-            ) *)
+        | Selectorexpr(exp1, Identifier(iden,_), linenum1, symt1) ->
+            (match exp1 with 
+                | OperandName(value, linenum, symt) ->
+                    let rec find_field field_iden field_list =
+                        match field_list with
+                            | [] -> NotDefined
+                            | (value, sym_type)::tail -> if value = field_iden then sym_type
+                                                    else find_field field_iden tail
+                    in
+                    let struct_class = retrieve_struct_class_from_var value in
+                    let symt2 = (print_expr exp1) in
+                    (match symt2 with 
+                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
+                            (match field_sym_type with
+                                | SymInt -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
+                                | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
+                                | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"C")
+                                | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymArray(sym_type) -> ()
+                                | SymSlice(sym_type) -> ()
+                                | SymStruct(fields) -> ()
+                                | NotDefined -> ()
+                            )
+                        | _ -> code_gen_error ("struct type does not resolve")
+                    );
+                    symt1
+                | _ -> code_gen_error ("selector type does not resolve")
+            )
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
             let pType = get_sym_type typename in 
             (
@@ -772,10 +808,12 @@ let generate program filedir filename =
         | Empty -> "V"
     in
     let print_var_decl_default_value type_i iden = match type_i with 
+        (* ONLY USED FOR STRUCTS ? *)
         | Definedtype(Identifier(value, _), _,_) -> 
             if (is_struct_type value) then
                 let struct_class = invoke_struct value in
                     begin
+                        store_struct_var iden struct_class;
                         println_one_tab ("new "^struct_class);
                         println_one_tab "dup";
                         println_one_tab ("invokenonvirtual "^struct_class^"/<init>()V")            
@@ -791,7 +829,7 @@ let generate program filedir filename =
         | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
         | Slicetype(type_i2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
-        | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
+        | Structtype(field_dcl_list, _) -> ()
     in
     let emit_var_decl type_i iden = 
         begin
@@ -893,7 +931,7 @@ let generate program filedir filename =
         | TypeSpec(Identifier(iden, _), type_i, _)->
             (match type_i with 
                 | Structtype([], _) -> ()
-                | Structtype(field_dcl_list, _) -> init_struct field_dcl_list iden
+                | Structtype(field_dcl_list, _) -> init_struct_type field_dcl_list iden
                 | _ -> () (* Do nothing for type dcl *)
             )
         | _ -> ast_error ("type_dcl error")
