@@ -421,10 +421,10 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value))
-        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value))
-        | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
-        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value))
+        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value)); SymInt
+        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value)); SymFloat64
+        | Runeliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString   (*TO BE IMPLEMENTED*)
+        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
@@ -623,7 +623,7 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | Value(value, _, symt) -> print_literal value; symt (*MISSING RUNES*)
+        | Value(value, _, symt) -> print_literal value (*MISSING RUNES*)
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
         | FuncCallExpr(exp1, exprs, _, symt) -> 
@@ -867,7 +867,7 @@ let generate program filedir filename =
     in 
     let generate_assignment expr1 expr2 = match expr1 with
         | OperandName(iden,linenum,ast_type) -> 
-            let exprtype = print_expr expr2 in 
+            let exprtype = print_expr expr2 in
                 println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in

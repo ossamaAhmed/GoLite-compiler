@@ -5,8 +5,14 @@ type point3d struct{
 }
 
 func main() {
+    var a = 5
+
     var p point3d
-    a := p.y
-    // p.y = 2;
+    p.y = 2
+
+    var c int
+    c = a + p.y
+
+    println(c)
     // p.z = 3;
 }
