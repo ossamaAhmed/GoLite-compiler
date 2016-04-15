@@ -194,8 +194,8 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* ----------------------- Struct manipulation ----------------------- *)
 
-(* Store a table of struct type name => Jasmin object invocation string *)
-type structTable = (string, symType) Hashtbl.t;;
+(* Store a table of struct type name => jasmin class string *)
+type structTable = (string, string) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
 let init_struct field_dcl_list struct_iden = 
@@ -225,6 +225,9 @@ let init_struct field_dcl_list struct_iden =
         | _ -> ast_error ("field_dcl_print error")
     in
     begin
+        (* Store struct name => jasmin class filename *)
+        Hashtbl.add struct_table struct_iden struct_class_name;
+        (* Print separate jasmin class file *)
         println_struct_string (".class public "^struct_class_name^"");
         println_struct_string ".super java/lang/Object\n";
         (* Print fields *)
@@ -238,7 +241,7 @@ let init_struct field_dcl_list struct_iden =
         println_struct_string ".end method";
         close_out struct_file
     end
-let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
+let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
 
 (* --------------------------------END-------------------------------- *)
 
@@ -650,12 +653,13 @@ let generate program filedir filename =
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-                (*TODO: GET STRCUT NAME*)
-            begin
-                print_string "getfield structName fieldType";
-                symbolType
-            end
+        | Selectorexpr(exp1, Identifier(iden1, _), linenum1, symt1) -> symt1
+(*             (match exp1 with
+            (* Simple struct access s.a *)
+            | OperandName(value2, linenum2, symt2) ->
+            (* Nested struct access s1.s2.a *)
+            | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
+            ) *)
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
             let pType = get_primitive_type typename in 
             (
