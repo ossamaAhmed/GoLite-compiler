@@ -751,27 +751,25 @@ let generate program filedir filename =
             let is_i = is_immediate exp1_type linenum in 
             let expType = sym_to_type exp1_type in
             begin
-                generate_load symType iden linenum;
+                println_one_tab (generate_load symType iden linenum);
                 println_one_tab "arraylength";
                 println_one_tab "iconst_1";
                 println_one_tab "iadd";
                 if is_i then (let ade="newarray "^expType in println_one_tab ade) else( let ade ="anewarray "^expType in println_one_tab ade);
                 println_one_tab "dup";
                 println_one_tab "dup";
-                println_one_tab "dup";
-                generate_load symType iden linenum;
+                println_one_tab (generate_load symType iden linenum);
                 println_one_tab "swap";
                 println_one_tab "iconst_0";
                 println_one_tab "swap";
                 println_one_tab "iconst_0";
-                generate_load symType iden linenum;
+                println_one_tab (generate_load symType iden linenum);
                 println_one_tab "arraylength";
                 println_one_tab "invokestatic java/lang/System/arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V";
-                generate_load symType iden linenum;
+                println_one_tab (generate_load symType iden linenum);
                 println_one_tab "arraylength";
                 print_expr exp1;
                 if is_i then println_one_tab "iastore" else println_one_tab "aastore" ;
-                println_one_tab (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
 
@@ -837,7 +835,11 @@ let generate program filedir filename =
                 | "float64" -> println_one_tab  "fconst_0"
             )
         | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
-        | Slicetype(type_i2, _)-> () (*TO BE IMPLEMENTED*)
+        | Slicetype(type_i2, _)-> 
+                begin
+                    println_one_tab "iconst_1";
+                   println_one_tab ("newarray "^"int" );
+                end
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> ()
     in
