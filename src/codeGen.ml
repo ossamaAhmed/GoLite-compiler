@@ -253,6 +253,9 @@ let init_struct field_dcl_list struct_iden =
     end
 let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
 
+let is_struct_type struct_iden =
+    if (Hashtbl.mem struct_table struct_iden) then true else false
+
 (* --------------------------------END-------------------------------- *)
 
 (* ------------------------ Type manipulation ------------------------ *)
@@ -768,8 +771,15 @@ let generate program filedir filename =
         | FuncReturnType(type_i, _) -> string_jasmin_type type_i
         | Empty -> "V"
     in
-    let print_var_default_value typename = match typename with 
-        | Definedtype(Identifier(value, _), _,_) -> () (*TO BE IMPLEMENTED*)
+    let print_var_decl_default_value type_i iden = match type_i with 
+        | Definedtype(Identifier(value, _), _,_) -> 
+            if (is_struct_type value) then
+                let struct_class = invoke_struct value in
+                    begin
+                        println_one_tab ("new "^struct_class);
+                        println_one_tab "dup";
+                        println_one_tab ("invokenonvirtual "^struct_class^"/<init>()V")            
+                    end
         | Primitivetype(value, _) -> 
             (match value with
                 | "int" -> println_one_tab  "iconst_0"
@@ -778,14 +788,14 @@ let generate program filedir filename =
                 | "string" -> println_one_tab  "ldc \"\""
                 | "float64" -> println_one_tab  "fconst_0"
             )
-        | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
-        | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
+        | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
+        | Slicetype(type_i2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
     let emit_var_decl type_i iden = 
         begin
-            print_var_default_value type_i;
+            print_var_decl_default_value type_i iden;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
             println_one_tab (generate_store (get_sym_type type_i) iden);
@@ -849,7 +859,7 @@ let generate program filedir filename =
                 print_tab 1;
                 println_string "iconst_m1";
                 print_tab 1;
-                println_string "iadd";
+                println_string "isub";
                 println_one_tab (generate_assign_expr_lh expr exprtype);
             end
     in
@@ -879,14 +889,32 @@ let generate program filedir filename =
                 println_one_tab (generate_assign_expr_lh exprs1 exprtype);
             end
     in
+    let print_type_decl decl = match decl with
+        | TypeSpec(Identifier(iden, _), type_i, _)->
+            (match type_i with 
+                | Structtype([], _) -> ()
+                | Structtype(field_dcl_list, _) -> init_struct field_dcl_list iden
+                | _ -> () (* Do nothing for type dcl *)
+            )
+        | _ -> ast_error ("type_dcl error")
+    in
     let print_short_var_decl_stmt dcl = match dcl with
         | ShortVarDecl(idens, exprs, _) ->
             let short_var_decl_expr (iden, expr) =
                 let symt = print_expr expr in
-                    if (search_iden_not_find_current_scope iden) then
-                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                        localcounter();
-                    println_one_tab (generate_store symt iden);
+                    (match (search_iden_not_find_current_scope iden) with
+                        | true ->
+                            begin
+                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                                localcounter();       
+                            end
+                        | false ->
+                            begin
+                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                                localcounter();    
+                                println_one_tab (generate_store symt iden);
+                            end
+                    )     
             in
             List.iter short_var_decl_expr (combine_two_lists idens exprs)
     in
@@ -901,7 +929,7 @@ let generate program filedir filename =
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
-                | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen Type*)
+                | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
@@ -1225,7 +1253,7 @@ let generate program filedir filename =
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
-        | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen *)
+        | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, line) ->
