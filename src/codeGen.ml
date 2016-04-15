@@ -647,7 +647,7 @@ let generate program filedir filename =
                 ) in
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
-                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_expr exp2; (*put array index on stack*) 
                 print_tab 1;
                 if is_i then println_string "iaload" else println_string "aaload";
                 symt;
