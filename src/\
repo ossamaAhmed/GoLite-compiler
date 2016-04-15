@@ -34,13 +34,6 @@ let search_not_find_current_scope x = match !symbol_table with
     | Scope(current_scope)::tail ->
         if (Hashtbl.mem current_scope x) then true else false
 
-let search_iden_not_find_current_scope iden = match iden with
-    | Identifier(x,_) -> 
-        (match !symbol_table with
-            | Scope(current_scope)::tail -> 
-                if (Hashtbl.mem current_scope x) then true else false
-        )
-
 let rec search_previous_scopes x table = match table with (*called with !symbol_table*)
     | []-> code_gen_error ("variable is not defined in current and previous scopes")
     | Scope(current_scope)::tail -> 
@@ -49,55 +42,55 @@ let rec search_previous_scopes x table = match table with (*called with !symbol_
         else 
             search_previous_scopes x tail
 
-let add_variable_to_current_scope count iden = match iden with
-    | Identifier(myvariable,linenum) -> 
+let add_variable_to_current_scope mytype myvar = match myvar with
+    | Identifier(myvariable,linenum)-> 
         (match !symbol_table with
             | Scope(current_scope)::tail ->
                 if not(Hashtbl.mem current_scope myvariable) then 
-                    Hashtbl.add current_scope myvariable count
+                    Hashtbl.add current_scope myvariable mytype
                 else
                     code_gen_error ("variable is defined more than one time")
         )
 
-let rec get_sym_type type_of_type_i = match type_of_type_i with
-    | Primitivetype(value, _) -> 
-        (match value with
-            | "int" -> SymInt
-            | "rune" -> SymRune
-            | "bool" -> SymBool
-            | "string" -> SymString
-            | "float64" -> SymString
-        )
-    | Arraytype(len, type_name2, _)-> SymArray((get_sym_type type_name2))
-    | Definedtype(Identifier(value, _), _,_) -> Void (*TO BE IMPLEMENTED*)
-    | Slicetype(type_name2, _)-> SymSlice((get_sym_type type_name2))
-    | Structtype([], _) -> SymStruct([])
-    | Structtype(field_dcl_list, _) -> SymStruct([]) (*TO BE IMPLEMENTED*)
+let get_primitive_type type_of_type_i = match type_of_type_i with
+        | Primitivetype(value, _) -> 
+            (match value with
+                | "int" -> SymInt
+                | "rune" -> SymRune
+                | "bool" -> SymBool
+                | "string" -> SymString
+                | "float64" -> SymString
+            )
+        | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
+        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
+        | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
+        | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
+        | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
 
 let rec sym_to_type symt = match symt with
-    | SymInt -> "int"
-    | SymFloat64 -> "float"
-    | SymRune -> "char"
-    | SymString -> "[Ljava/lang/String;"
-    | SymBool -> "boolean"
-    | SymArray(subType) ->"["^sym_to_type subType  
-    | SymSlice(subType) -> "["^sym_to_type subType  
-    | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
-    | _ -> ""
+        | SymInt -> "int"
+        | SymFloat64 -> "float"
+        | SymRune -> "char"
+        | SymString -> "[Ljava/lang/String;"
+        | SymBool -> "boolean"
+        | SymArray(subType) ->"["^sym_to_type subType  
+        | SymSlice(subType) -> "["^sym_to_type subType  
+        | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
+        | _ -> ""
     
 let is_immediate exp_type linenum = match exp_type with
-    | SymInt -> true 
-    | SymFloat64 -> true 
-    | SymRune -> true
-    | SymString -> false 
-    | SymBool -> true
-    | SymArray(subType) -> false 
-    | SymSlice(subType) -> false
-    | SymStruct(fieldlist) -> false
-    | SymFunc(subType,arglist) -> false
-    | SymType(subType) -> false
-    | Void -> true
-    | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
+        | SymInt -> true 
+        | SymFloat64 -> true 
+        | SymRune -> true
+        | SymString -> false 
+        | SymBool -> true
+        | SymArray(subType) -> false 
+        | SymSlice(subType) -> false
+        | SymStruct(fieldlist) -> false
+        | SymFunc(subType,arglist) -> false
+        | SymType(subType) -> false
+        | Void -> true
+        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
 let get_expr_type exp1 = match exp1 with
 	| OperandName(_,_,symType)-> symType
@@ -134,7 +127,7 @@ let get_expr_type exp1 = match exp1 with
 	| TypeCastExpr(_,_,_,symType)	-> symType
     | Appendexpr(_,_,_,symType)-> symType
 
-let generate_load typename varname linenum = match typename with 
+let generate_load typename varname linenum= match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
@@ -152,13 +145,10 @@ let generate_store typename varnameIden = match typename, varnameIden with
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
-let apply_func_on_element_from_two_lsts lst1 lst2 func = match lst1,lst2 with 
+let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
-let rec combine_two_lists list1 list2 = match list1, list2 with
-    | head1::[], head2::[] -> (head1, head2)::[]
-    | head1::tail1, head2::tail2 -> (head1, head2)::(combine_two_lists tail1 tail2)
 
 (* --------------------------------END-------------------------------- *)
 
@@ -170,7 +160,7 @@ let (func_table : funcTable) = Hashtbl.create 1234;;
 
 (* Refer to print_type_name in prettyPrinter *)
 let string_jasmin_type go_type = match go_type with 
-    | Definedtype(Identifier(value, _), _,_) -> value
+    | Definedtype(Identifier(value, _), _) -> value
     | Primitivetype(value, _) ->
         (match value with 
             | "int" -> "I"
@@ -204,48 +194,22 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* ----------------------- Struct manipulation ----------------------- *)
 
-(* Store a table of struct type name => jasmin class string *)
-type structTable = (string, string) Hashtbl.t;;
+(* Store a table of struct type name => Jasmin object invocation string *)
+type structTable = (string, symType) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-type structVarTable = (string, string) Hashtbl.t;;
-let (struct_var_table : structVarTable) = Hashtbl.create 1234;;
-
-let init_struct_type field_dcl_list struct_iden = 
-    let struct_class_name = !jasmin_main_class^"_struct_"^struct_iden in 
+let init_struct iden field_dcl_list = 
+    let struct_class_name = !jasmin_main_class^"_struct_"^iden in 
     let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
     let struct_file = open_out struct_filename in
     let print_struct_string s = output_string struct_file s in
     let println_struct_string s = output_string struct_file (s^"\n") in
     let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
-    let print_struct_field_type type_name identifier = match identifier, type_name with
-        | Identifier(field_iden, _), Definedtype(Identifier(value, _), _,_) -> () (* TODO *)
-        | Identifier(field_iden, _), Primitivetype(value, _) ->
-            (match value with
-            | "int" -> println_struct_string (".field "^field_iden^" I")
-            | "rune" -> println_struct_string (".field "^field_iden^" C")
-            | "bool" -> println_struct_string (".field "^field_iden^" Z")
-            | "string" -> println_struct_string (".field "^field_iden^" [Ljava/lang/String;")
-            | "float64" -> println_struct_string (".field "^field_iden^" F")
-            | _ -> code_gen_error ("unknown struct field type"))
-        | Identifier(field_iden, _), Arraytype(len, type_name2, _) -> () (* TODO *)
-        | Identifier(field_iden, _), Slicetype(type_name2, _) -> () (* TODO *)
-        | Identifier(field_iden, _), Structtype([], _) -> () (* TODO *)
-        | Identifier(field_iden, _), Structtype(dcl_list, _) -> () (* TODO *)
-    in
-    let print_struct_field field = match field with 
-        | (iden_list,type_name) -> List.iter (print_struct_field_type type_name) iden_list 
-        | _ -> ast_error ("field_dcl_print error")
-    in
     begin
-        (* Store struct name => jasmin class filename *)
-        Hashtbl.add struct_table struct_iden struct_class_name;
-        (* Print separate jasmin class file *)
-        println_struct_string (".class public "^struct_class_name^"");
+        println_struct_string (".class public "^iden^"");
         println_struct_string ".super java/lang/Object\n";
         (* Print fields *)
-        List.iter print_struct_field field_dcl_list;
-        println_struct_string "\n.method public <init>()V";
+        println_struct_string ".method public <init>()V";
         println_struct_one_tab ".limit locals 99";
         println_struct_one_tab ".limit stack 99";
         println_struct_one_tab "aload_0";
@@ -254,21 +218,7 @@ let init_struct_type field_dcl_list struct_iden =
         println_struct_string ".end method";
         close_out struct_file
     end
-let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
-
-let is_struct_type struct_iden =
-    if (Hashtbl.mem struct_table struct_iden) then true else false
-
-let store_struct_var iden struct_class = match iden with
-    | Identifier(var_name, _) -> Hashtbl.add struct_var_table var_name struct_class
-
-let retrieve_struct_class_from_var struct_iden = Hashtbl.find struct_var_table struct_iden
-
-
-(* let search_struct_field_type var_name field_name =
-    let field_dcl_list = Hashtbl.find struct_table var_name in () *)
-        (* (identifier list * type_i) *)
-
+let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
 
 (* --------------------------------END-------------------------------- *)
 
@@ -362,7 +312,7 @@ let generate program filedir filename =
         | _ -> ()
     in
     let rec print_type_name level type_name = match type_name with
-        | Definedtype(Identifier(value, _), _,_) -> print_string value
+        | Definedtype(Identifier(value, _), _) -> print_string value
         | Primitivetype(value, _) -> ()
 (*
             let _ = match value with
@@ -421,10 +371,10 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value)); SymInt
-        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value)); SymFloat64
-        | Runeliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString   (*TO BE IMPLEMENTED*)
-        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString
+        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value))
+        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value))
+        | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
+        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value))
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
@@ -597,16 +547,7 @@ let generate program filedir filename =
         | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
-        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) ->
-            let rec print_expr_list expr_list = match expr_list with
-                | head::[] -> print_expr head; ()
-                | head::tail -> print_expr head; print_expr_list tail; ()
-            in
-            begin
-                print_expr_list exprs;
-                println_one_tab (invoke_func value);
-                symt
-            end
+        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> println_one_tab (invoke_func value); symt
         | UnaryPlus(exp1, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in 
             symt
@@ -632,7 +573,7 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | Value(value, _, symt) -> print_literal value (*MISSING RUNES*)
+        | Value(value, _, symt) -> print_literal value; symt (*MISSING RUNES*)
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
         | FuncCallExpr(exp1, exprs, _, symt) -> 
@@ -683,44 +624,20 @@ let generate program filedir filename =
                 ) in
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
-                print_expr exp2; (*put array index on stack*) 
+                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
                 print_tab 1;
                 if is_i then println_string "iaload" else println_string "aaload";
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden,_), linenum1, symt1) ->
-            (match exp1 with 
-                | OperandName(struct_var_name, linenum, symt) ->
-                    let rec find_field field_iden field_list =
-                        match field_list with
-                            | [] -> NotDefined
-                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
-                                                    else find_field field_iden tail
-                    in
-                    let struct_class = retrieve_struct_class_from_var struct_var_name in
-                    let symt2 = (print_expr exp1) in
-                    (match symt2 with 
-                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
-                            (match field_sym_type with
-                                | SymInt -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
-                                | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
-                                | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"C")
-                                | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
-                                | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
-                                | SymArray(sym_type) -> ()
-                                | SymSlice(sym_type) -> ()
-                                | SymStruct(fields) -> ()
-                                | NotDefined -> ()
-                            )
-                        | _ -> code_gen_error ("struct type does not resolve")
-                    );
-                    symt1
-                (* Do nested structs *)
-                | _ -> code_gen_error ("selector type does not resolve")
-            )
+        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
+                (*TODO: GET STRCUT NAME*)
+            begin
+                print_string "getfield structName fieldType";
+                symbolType
+            end
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
-            let pType = get_sym_type typename in 
+            let pType = get_primitive_type typename in 
             (
             match symbolType, pType with
             | SymInt, SymInt -> print_expr exp1; symbolType;
@@ -817,17 +734,8 @@ let generate program filedir filename =
         | FuncReturnType(type_i, _) -> string_jasmin_type type_i
         | Empty -> "V"
     in
-    let print_var_decl_default_value type_i iden = match type_i with 
-        (* ONLY USED FOR STRUCTS ? *)
-        | Definedtype(Identifier(value, _), _,_) -> 
-            if (is_struct_type value) then
-                let struct_class = invoke_struct value in
-                    begin
-                        store_struct_var iden struct_class;
-                        println_one_tab ("new "^struct_class);
-                        println_one_tab "dup";
-                        println_one_tab ("invokenonvirtual "^struct_class^"/<init>()V")            
-                    end
+    let print_var_default_value typename = match typename with 
+        | Definedtype(Identifier(value, _), _) -> () (*TO BE IMPLEMENTED*)
         | Primitivetype(value, _) -> 
             (match value with
                 | "int" -> println_one_tab  "iconst_0"
@@ -836,48 +744,90 @@ let generate program filedir filename =
                 | "string" -> println_one_tab  "ldc \"\""
                 | "float64" -> println_one_tab  "fconst_0"
             )
-        | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
-        | Slicetype(type_i2, _)-> () (*TO BE IMPLEMENTED*)
+        | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
+        | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
-        | Structtype(field_dcl_list, _) -> ()
+        | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
-    let emit_var_decl type_i iden = 
+    let emit_var_decl typename iden = 
         begin
-            print_var_decl_default_value type_i iden;
+            print_var_default_value typename;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
-            println_one_tab (generate_store (get_sym_type type_i) iden);
+            println_one_tab (generate_store (get_primitive_type typename) iden);
         end
     in
-    let emit_var_decl_expr (iden, expr) =
-        let symt = print_expr expr in
-            begin 
-                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                localcounter();
-                println_one_tab (generate_store symt iden);
-            end
-    in
     let print_var_decl level decl = match decl with
-        (* STRUCT ARE DECLARED HERE, ALONG PRIMITIVES, ARRAYS AND SLICES *)
-        | VarSpecWithType(iden_list, type_i, exprs, _) ->
-            (match exprs with
-            | [] -> List.iter (emit_var_decl type_i) iden_list
-            | _ -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
-            )
-        (* NO STRUCT DECLARED HERE ONLY PRIMITIVES, ARRAYS AND SLICES *)
-        | VarSpecWithoutType (iden_list, exprs, _) -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
+        | VarSpecWithType(iden_list, typename, exprs, _) -> 
+            if exprs = [] then
+                begin
+                    List.map (emit_var_decl typename) iden_list;
+                    ();
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " ";
+                    print_type_name level typename;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";     
+                end
+        | VarSpecWithoutType (iden_list, exprs, _) -> 
+            if exprs = [] then
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string ";\n"; 
+                end
+            else
+                begin
+                    print_tab (level);
+                    print_string "var ";
+                    print_identifier_list iden_list;
+                    print_string " = ";
+                    print_expr_list exprs;
+                    print_string ";\n";                
+                end
         | _ -> ast_error ("var_dcl error")
+    in
+    let print_type_decl level decl = match decl with
+        | TypeSpec(Identifier(iden, _), typename, _) -> 
+            let print_jasmin_type_decl typename = match typename with
+                | Definedtype(Identifier(value, _), _) -> () (* TODO *)
+                | Primitivetype(value, _) -> () (* TODO *)
+                | Arraytype(len, type_name2, _)-> () (* TODO *)
+                | Slicetype(type_name2, _)-> () (* TODO *)
+                | Structtype([], _) -> ()
+                | Structtype(field_dcl_list, _) -> init_struct iden field_dcl_list
+(*                     let print_field_dcl level field = match field with 
+                        | (iden_list,type_name1) -> 
+                        begin
+                            print_tab (level);
+                            print_identifier_list iden_list;
+                            print_string " ";
+                            print_type_name (level) type_name1;
+                            print_string ";\n";
+                        end
+                        | _ -> ast_error ("field_dcl_print error")
+                    in
+                        print_string "struct {\n";
+                        List.iter (print_field_dcl (level+1)) field_dcl_list;
+                        print_tab (level);
+                        print_string "}"; *)
+            in print_jasmin_type_decl typename
+        | _ -> ast_error ("type_dcl error")
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-            (* STRUCT ASSIGNMENT *)
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> ""
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in 
     let generate_assignment expr1 expr2 = match expr1 with
-        | OperandName(iden,linenum,ast_type) -> 
-            let exprtype = print_expr expr2 in
-                println_one_tab (generate_assign_expr_lh expr1 exprtype); 
+        | OperandName(iden,linenum,ast_type) -> let exprtype = print_expr expr2 in println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in
                 let symtype = (match exp_type with
@@ -886,46 +836,12 @@ let generate program filedir filename =
                 ) in
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
-                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_expr exp2; (*put array index on stack*) 
                 print_expr expr2;
                 print_tab 1;
                 if is_i then println_string "iastore" else println_string "aastore";
                 ();
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> 
-            print_expr expr2;
-            (match exp1 with 
-                | OperandName(struct_var_name, linenum, symt) ->
-                    let rec find_field field_iden field_list =
-                        match field_list with
-                            | [] -> NotDefined
-                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
-                                                    else find_field field_iden tail
-                    in
-                    let struct_class = retrieve_struct_class_from_var struct_var_name in
-                    let symt2 = (print_expr exp1) in
-                    (match symt2 with 
-                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
-                            (match field_sym_type with
-                                | SymInt -> 
-                                    begin
-(*                                         println_one_tab (generate_load (SymStruct(field_list)) struct_var_name linenum2); *)
-                                        println_one_tab "swap";
-                                        println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I");
-                                    end
-                                | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
-                                | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"C")
-                                | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
-                                | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
-                                | SymArray(sym_type) -> ()
-                                | SymSlice(sym_type) -> ()
-                                | SymStruct(fields) -> ()
-                                | NotDefined -> ()
-                            )
-                        | _ -> code_gen_error ("struct type does not resolve")
-                    )
-                (* Do nested structs *)
-                | _ -> code_gen_error ("selector type does not resolve")
-            );
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> () (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
     in
     let print_inc_dec_stmt stmt = match stmt with 
@@ -944,7 +860,7 @@ let generate program filedir filename =
                 print_tab 1;
                 println_string "iconst_m1";
                 print_tab 1;
-                println_string "isub";
+                println_string "iadd";
                 println_one_tab (generate_assign_expr_lh expr exprtype);
             end
     in
@@ -974,34 +890,13 @@ let generate program filedir filename =
                 println_one_tab (generate_assign_expr_lh exprs1 exprtype);
             end
     in
-    let print_type_decl decl = match decl with
-        | TypeSpec(Identifier(iden, _), type_i, _)->
-            (match type_i with 
-                | Structtype([], _) -> ()
-                | Structtype(field_dcl_list, _) -> init_struct_type field_dcl_list iden
-                | _ -> () (* Do nothing for type dcl *)
-            )
-        | _ -> ast_error ("type_dcl error")
-    in
     let print_short_var_decl_stmt dcl = match dcl with
         | ShortVarDecl(idens, exprs, _) ->
-            let short_var_decl_expr (iden, expr) =
-                let symt = print_expr expr in
-                    (match (search_iden_not_find_current_scope iden) with
-                        | true ->
-                            begin
-                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                                localcounter();       
-                            end
-                        | false ->
-                            begin
-                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                                localcounter();    
-                                println_one_tab (generate_store symt iden);
-                            end
-                    )     
-            in
-            List.iter short_var_decl_expr (combine_two_lists idens exprs)
+            begin
+                print_identifier_list idens;
+                print_string " := ";
+                print_expr_list exprs;
+            end
     in
     let print_simple_stmt stmt = match stmt with 
         | SimpleExpression(expr, _) -> print_expr expr;()
@@ -1014,7 +909,7 @@ let generate program filedir filename =
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
-                | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
+                | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
@@ -1249,8 +1144,8 @@ let generate program filedir filename =
                         print_for_cond condition;
                         (*check condition *)
                         println_string_with_tab 1 ("ifne "^currlabelendstr) ;
-                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                         print_simple_stmt simple2;
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                     let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
                         println_string (currlabelendstr^":");
@@ -1293,7 +1188,6 @@ let generate program filedir filename =
                                 println_string ("goto "^currlabelendstr);
                                 println_string (currlabelstartstr^":");
                                 print_stmt_list (level+1) stmts start_label end_label; 
-                                println_one_tab ("goto "^end_label);
                                 println_string (currlabelendstr^":");
                             end
                     )
@@ -1339,7 +1233,7 @@ let generate program filedir filename =
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
-        | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
+        | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, line) ->

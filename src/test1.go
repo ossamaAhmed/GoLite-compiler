@@ -5,14 +5,9 @@ type point3d struct{
 }
 
 func main() {
-	x := true
-	y := false
-
-	if y {
-		//Do nothing
-	} else if x {
-		//Do nothing
-	} else {
-		println(x)
-	}
+    
+    var y int;
+    for i:=0;i<10;i++{
+        y=i+1
+    }
 }
