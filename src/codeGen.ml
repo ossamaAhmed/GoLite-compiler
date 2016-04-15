@@ -823,6 +823,11 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | _ -> code_gen_error "Lvalue function error"
+    in 
+    let generate_assignment expr1 expr2 = match expr1 with
+        | OperandName(iden,linenum,ast_type) -> let exprtype = print_expr expr2 in println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in
                 let symtype = (match exp_type with
@@ -832,15 +837,12 @@ let generate program filedir filename =
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
                 print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_expr expr2;
                 print_tab 1;
                 if is_i then println_string "iastore" else println_string "aastore";
-                "";
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+                ();
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> () (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
-    in 
-    let generate_assignment expr1 expr2 = 
-        let exprtype = print_expr expr2 in 
-            println_one_tab (generate_assign_expr_lh expr1 exprtype);
     in
     let print_inc_dec_stmt stmt = match stmt with 
         | Increment(expr, _) ->
@@ -865,14 +867,27 @@ let generate program filedir filename =
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
             begin
-                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment;
+                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment; (*not working*)
             end
         | AssignmentOp(exprs1, assign_op, exprs2, _) ->
+                let exprtype = print_expr exprs1 in
             begin
-                print_expr exprs1;
-                print_string assign_op;
                 print_expr exprs2;
-                ()
+                (*TODO: DO THIS FOR FLAOTS TOO*)
+                (match assign_op with
+                    | "+="-> println_one_tab "iadd";
+                    | "-="-> println_one_tab "isub";
+                    | "|="-> println_one_tab "ior";
+                    | "^="-> println_one_tab "ixor";
+                    | "*="-> println_one_tab "imul";
+                    | "/="-> println_one_tab "idiv";
+                    | "%="-> println_one_tab "irem";
+                    | ">>="-> println_one_tab "ishr";
+                    | "<<="-> println_one_tab "ishl";
+                    |  "&="-> println_one_tab "iand";
+                    |  "&^="-> println_one_tab "iand"; println_one_tab "ineg"; println_one_tab "iconst_m1"; println_one_tab "iadd";
+                );
+                println_one_tab (generate_assign_expr_lh exprs1 exprtype);
             end
     in
     let print_short_var_decl_stmt dcl = match dcl with
