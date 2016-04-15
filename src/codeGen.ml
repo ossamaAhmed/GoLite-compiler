@@ -743,26 +743,26 @@ let generate program filedir filename =
             let expType = sym_to_type exp1_type in
             begin
                 generate_load symType iden linenum;
-                println_string "arraylength";
-                println_string "iconst_1";
-                println_string "iadd";
-                if is_i then (let ade="newarray "^expType in println_string ade) else( let ade ="anewarray "^expType in println_string ade);
-                println_string "dup";
-                println_string "dup";
-                println_string "dup";
+                println_one_tab "arraylength";
+                println_one_tab "iconst_1";
+                println_one_tab "iadd";
+                if is_i then (let ade="newarray "^expType in println_one_tab ade) else( let ade ="anewarray "^expType in println_one_tab ade);
+                println_one_tab "dup";
+                println_one_tab "dup";
+                println_one_tab "dup";
                 generate_load symType iden linenum;
-                println_string "swap";
-                println_string "iconst_0";
-                println_string "swap";
-                println_string "iconst_0";
+                println_one_tab "swap";
+                println_one_tab "iconst_0";
+                println_one_tab "swap";
+                println_one_tab "iconst_0";
                 generate_load symType iden linenum;
-                println_string "arraylength";
-                println_string "invokestatic java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V";
+                println_one_tab "arraylength";
+                println_one_tab "invokestatic java/lang/System/arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V";
                 generate_load symType iden linenum;
-                println_string "arraylength";
+                println_one_tab "arraylength";
                 print_expr exp1;
-                if is_i then println_string "iastore" else println_string "aastore" ;
-                println_string (generate_store symType (Identifier(iden,linenum)));
+                if is_i then println_one_tab "iastore" else println_one_tab "aastore" ;
+                println_one_tab (generate_store symType (Identifier(iden,linenum)));
                 symType;
             end
 
