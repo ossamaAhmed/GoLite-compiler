@@ -597,7 +597,16 @@ let generate program filedir filename =
         | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
-        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> println_one_tab (invoke_func value); symt
+        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) ->
+            let rec print_expr_list expr_list = match expr_list with
+                | head::[] -> print_expr head; ()
+                | head::tail -> print_expr head; print_expr_list tail; ()
+            in
+            begin
+                print_expr_list exprs;
+                println_one_tab (invoke_func value);
+                symt
+            end
         | UnaryPlus(exp1, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in 
             symt
