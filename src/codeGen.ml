@@ -841,18 +841,6 @@ let generate program filedir filename =
             in print_jasmin_type_decl typename
         | _ -> ast_error ("type_dcl error")
     in
-    let print_inc_dec_stmt stmt = match stmt with 
-        | Increment(expr, _) ->
-            begin
-                print_expr expr;
-                print_string "++";
-            end
-        | Decrement(expr, _) ->
-            begin
-                print_expr expr;
-                print_string "--";
-            end
-    in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
@@ -873,6 +861,26 @@ let generate program filedir filename =
     let generate_assignment expr1 expr2 = 
         let exprtype = print_expr expr2 in 
             println_one_tab (generate_assign_expr_lh expr1 exprtype);
+    in
+    let print_inc_dec_stmt stmt = match stmt with 
+        | Increment(expr, _) ->
+            let exprtype = print_expr expr in
+            begin
+                print_tab 1;
+                println_string "iconst_1";
+                print_tab 1;
+                println_string "iadd";
+                println_one_tab (generate_assign_expr_lh expr exprtype);
+            end
+        | Decrement(expr, _) ->
+            let exprtype = print_expr expr in
+            begin
+                print_tab 1;
+                println_string "iconst_m1";
+                print_tab 1;
+                println_string "iadd";
+                println_one_tab (generate_assign_expr_lh expr exprtype);
+            end
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
@@ -897,7 +905,7 @@ let generate program filedir filename =
     in
     let print_simple_stmt stmt = match stmt with 
         | SimpleExpression(expr, _) -> print_expr expr;()
-        | IncDec(incdec, _) -> print_inc_dec_stmt incdec 
+        | IncDec(incdec, _) -> print_inc_dec_stmt incdec; ()
         | Assignment(assignment_stmt, _) -> print_assignment_stmt assignment_stmt
         | ShortVardecl(short_var_decl, _) -> print_short_var_decl_stmt short_var_decl
         | Empty -> ()
