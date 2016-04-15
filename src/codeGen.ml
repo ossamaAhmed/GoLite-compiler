@@ -1309,6 +1309,7 @@ let generate program filedir filename =
                 println_one_tab ".limit stack 99"; 
                 println_one_tab  ".limit locals 99"; 
                 print_stmt_list 1 stmt_list "" ""; 
+                println_one_tab "return";
                 println_string ".end method\n";
                 end_scope();
             end
