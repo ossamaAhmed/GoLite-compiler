@@ -792,33 +792,25 @@ let generate program filedir filename =
                     ();
                 end
             else
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string " ";
-                    print_type_name level typename;
-                    print_string " = ";
-                    print_expr_list exprs;
-                    print_string ";\n";     
-                end
+                let print_var_decl_expr (iden, expr) =
+                    let symt = print_expr expr in
+                        begin 
+                            add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                            localcounter();
+                            println_one_tab (generate_store symt iden);
+                        end
+                in
+                List.iter print_var_decl_expr (combine_two_lists iden_list exprs)
         | VarSpecWithoutType (iden_list, exprs, _) -> 
-            if exprs = [] then
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string ";\n"; 
-                end
-            else
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string " = ";
-                    print_expr_list exprs;
-                    print_string ";\n";                
-                end
+            let print_var_decl_expr (iden, expr) =
+                let symt = print_expr expr in
+                    begin 
+                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                        localcounter();
+                        println_one_tab (generate_store symt iden);
+                    end
+            in
+            List.iter print_var_decl_expr (combine_two_lists iden_list exprs)
         | _ -> ast_error ("var_dcl error")
     in
     let print_type_decl level decl = () (* Nothing to do in codegen *)
