@@ -100,41 +100,41 @@ let is_immediate exp_type linenum = match exp_type with
     | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
 let get_expr_type exp1 = match exp1 with
-	| OperandName(_,_,symType)-> symType
-	| AndAndOp(_,_,_,symType)-> symType
-	| OrOrOp(_,_,_,symType)-> symType
-	| EqualEqualCmp(_,_,_,symType)-> symType
-	| NotEqualCmp(_,_,_,symType)-> symType
-	| LessThanCmp(_,_,_,symType)-> symType
-	| GreaterThanCmp(_,_,_,symType)-> symType
-	| LessThanOrEqualCmp(_,_,_,symType)-> symType
-	| GreaterThanOrEqualCmp(_,_,_,symType)-> symType
-	| AddOp(_,_,_,symType)-> symType
-	| MinusOp(_,_,_,symType)-> symType
-	| OrOp(_,_,_,symType)-> symType
-	| CaretOp(_,_,_,symType)-> symType
-	| MulOp(_,_,_,symType)-> symType
-	| DivOp(_,_,_,symType)-> symType
-	| ModuloOp(_,_,_,symType)-> symType
-	| SrOp(_,_,_,symType)-> symType
-	| SlOp(_,_,_,symType)-> symType
-	| AndOp(_,_,_,symType)-> symType
-	| AndCaretOp(_,_,_,symType)-> symType
-	| OperandParenthesis(_,_,symType)-> symType
-	| Indexexpr(_,_,_,symType)-> symType
-	| Unaryexpr(_,_,symType)-> symType
-	| Binaryexpr(_,_,symType)-> symType
-	| FuncCallExpr(_,_,_,symType)-> symType
-	| UnaryPlus(_,_,symType)-> symType
-	| UnaryMinus(_,_,symType)-> symType
-	| UnaryNot(_,_,symType)-> symType
-	| UnaryCaret(_,_,symType)-> symType
-	| Value(_,_,symType)-> symType
-	| Selectorexpr(_,_,_,symType)-> symType
-	| TypeCastExpr(_,_,_,symType)	-> symType
+    | OperandName(_,_,symType)-> symType
+    | AndAndOp(_,_,_,symType)-> symType
+    | OrOrOp(_,_,_,symType)-> symType
+    | EqualEqualCmp(_,_,_,symType)-> symType
+    | NotEqualCmp(_,_,_,symType)-> symType
+    | LessThanCmp(_,_,_,symType)-> symType
+    | GreaterThanCmp(_,_,_,symType)-> symType
+    | LessThanOrEqualCmp(_,_,_,symType)-> symType
+    | GreaterThanOrEqualCmp(_,_,_,symType)-> symType
+    | AddOp(_,_,_,symType)-> symType
+    | MinusOp(_,_,_,symType)-> symType
+    | OrOp(_,_,_,symType)-> symType
+    | CaretOp(_,_,_,symType)-> symType
+    | MulOp(_,_,_,symType)-> symType
+    | DivOp(_,_,_,symType)-> symType
+    | ModuloOp(_,_,_,symType)-> symType
+    | SrOp(_,_,_,symType)-> symType
+    | SlOp(_,_,_,symType)-> symType
+    | AndOp(_,_,_,symType)-> symType
+    | AndCaretOp(_,_,_,symType)-> symType
+    | OperandParenthesis(_,_,symType)-> symType
+    | Indexexpr(_,_,_,symType)-> symType
+    | Unaryexpr(_,_,symType)-> symType
+    | Binaryexpr(_,_,symType)-> symType
+    | FuncCallExpr(_,_,_,symType)-> symType
+    | UnaryPlus(_,_,symType)-> symType
+    | UnaryMinus(_,_,symType)-> symType
+    | UnaryNot(_,_,symType)-> symType
+    | UnaryCaret(_,_,symType)-> symType
+    | Value(_,_,symType)-> symType
+    | Selectorexpr(_,_,_,symType)-> symType
+    | TypeCastExpr(_,_,_,symType)   -> symType
     | Appendexpr(_,_,_,symType)-> symType
 
-let generate_load typename varname linenum= match typename with 
+let generate_load typename varname linenum = match typename with 
     | SymInt -> "iload"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64 -> "fload"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune -> "iload"^" "^(search_previous_scopes varname !symbol_table)
@@ -152,7 +152,7 @@ let generate_store typename varnameIden = match typename, varnameIden with
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
-let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
+let apply_func_on_element_from_two_lsts lst1 lst2 func = match lst1,lst2 with 
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
@@ -208,7 +208,10 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 type structTable = (string, string) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-let init_struct field_dcl_list struct_iden = 
+type structVarTable = (string, string) Hashtbl.t;;
+let (struct_var_table : structVarTable) = Hashtbl.create 1234;;
+
+let init_struct_type field_dcl_list struct_iden = 
     let struct_class_name = !jasmin_main_class^"_struct_"^struct_iden in 
     let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
     let struct_file = open_out struct_filename in
@@ -252,6 +255,20 @@ let init_struct field_dcl_list struct_iden =
         close_out struct_file
     end
 let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
+
+let is_struct_type struct_iden =
+    if (Hashtbl.mem struct_table struct_iden) then true else false
+
+let store_struct_var iden struct_class = match iden with
+    | Identifier(var_name, _) -> Hashtbl.add struct_var_table var_name struct_class
+
+let retrieve_struct_class_from_var struct_iden = Hashtbl.find struct_var_table struct_iden
+
+
+(* let search_struct_field_type var_name field_name =
+    let field_dcl_list = Hashtbl.find struct_table var_name in () *)
+        (* (identifier list * type_i) *)
+
 
 (* --------------------------------END-------------------------------- *)
 
@@ -404,10 +421,10 @@ let generate program filedir filename =
             end
     in 
     let print_literal lit = match lit with
-        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value))
-        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value))
-        | Runeliteral(value, _) -> ()   (*TO BE IMPLEMENTED*)
-        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value))
+        | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value)); SymInt
+        | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value)); SymFloat64
+        | Runeliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString   (*TO BE IMPLEMENTED*)
+        | Stringliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
                         | SymInt, SymInt -> print_string_with_tab 1 "i";
@@ -580,7 +597,16 @@ let generate program filedir filename =
         | OperandParenthesis (exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Unaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
-        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) -> println_one_tab (invoke_func value); symt
+        | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) ->
+            let rec print_expr_list expr_list = match expr_list with
+                | head::[] -> print_expr head; ()
+                | head::tail -> print_expr head; print_expr_list tail; ()
+            in
+            begin
+                print_expr_list exprs;
+                println_one_tab (invoke_func value);
+                symt
+            end
         | UnaryPlus(exp1, _, symt) -> (*DONE*)
             let typeexpr1= print_expr exp1 in 
             symt
@@ -606,7 +632,7 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | Value(value, _, symt) -> print_literal value; symt (*MISSING RUNES*)
+        | Value(value, _, symt) -> print_literal value (*MISSING RUNES*)
         | Unaryexpr(exp1, _, _) -> print_expr exp1
         | Binaryexpr(exp1, _, _) -> print_expr exp1
         | FuncCallExpr(exp1, exprs, _, symt) -> 
@@ -663,13 +689,36 @@ let generate program filedir filename =
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden1, _), linenum1, symt1) -> symt1
-(*             (match exp1 with
-            (* Simple struct access s.a *)
-            | OperandName(value2, linenum2, symt2) ->
-            (* Nested struct access s1.s2.a *)
-            | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
-            ) *)
+        | Selectorexpr(exp1, Identifier(iden,_), linenum1, symt1) ->
+            (match exp1 with 
+                | OperandName(struct_var_name, linenum, symt) ->
+                    let rec find_field field_iden field_list =
+                        match field_list with
+                            | [] -> NotDefined
+                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
+                                                    else find_field field_iden tail
+                    in
+                    let struct_class = retrieve_struct_class_from_var struct_var_name in
+                    let symt2 = (print_expr exp1) in
+                    (match symt2 with 
+                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
+                            (match field_sym_type with
+                                | SymInt -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
+                                | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
+                                | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"C")
+                                | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymArray(sym_type) -> ()
+                                | SymSlice(sym_type) -> ()
+                                | SymStruct(fields) -> ()
+                                | NotDefined -> ()
+                            )
+                        | _ -> code_gen_error ("struct type does not resolve")
+                    );
+                    symt1
+                (* Do nested structs *)
+                | _ -> code_gen_error ("selector type does not resolve")
+            )
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
             let pType = get_sym_type typename in 
             (
@@ -768,8 +817,17 @@ let generate program filedir filename =
         | FuncReturnType(type_i, _) -> string_jasmin_type type_i
         | Empty -> "V"
     in
-    let print_var_default_value typename = match typename with 
-        | Definedtype(Identifier(value, _), _,_) -> () (*TO BE IMPLEMENTED*)
+    let print_var_decl_default_value type_i iden = match type_i with 
+        (* ONLY USED FOR STRUCTS ? *)
+        | Definedtype(Identifier(value, _), _,_) -> 
+            if (is_struct_type value) then
+                let struct_class = invoke_struct value in
+                    begin
+                        store_struct_var iden struct_class;
+                        println_one_tab ("new "^struct_class);
+                        println_one_tab "dup";
+                        println_one_tab ("invokenonvirtual "^struct_class^"/<init>()V")            
+                    end
         | Primitivetype(value, _) -> 
             (match value with
                 | "int" -> println_one_tab  "iconst_0"
@@ -778,14 +836,14 @@ let generate program filedir filename =
                 | "string" -> println_one_tab  "ldc \"\""
                 | "float64" -> println_one_tab  "fconst_0"
             )
-        | Arraytype(len, type_name2, _)-> () (*TO BE IMPLEMENTED*)
-        | Slicetype(type_name2, _)-> () (*TO BE IMPLEMENTED*)
+        | Arraytype(len, type_i2, _)-> () (*TO BE IMPLEMENTED*)
+        | Slicetype(type_i2, _)-> () (*TO BE IMPLEMENTED*)
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
-        | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
+        | Structtype(field_dcl_list, _) -> ()
     in
     let emit_var_decl type_i iden = 
         begin
-            print_var_default_value type_i;
+            print_var_decl_default_value type_i iden;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
             println_one_tab (generate_store (get_sym_type type_i) iden);
@@ -812,11 +870,14 @@ let generate program filedir filename =
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+            (* STRUCT ASSIGNMENT *)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> ""
         | _ -> code_gen_error "Lvalue function error"
     in 
     let generate_assignment expr1 expr2 = match expr1 with
-        | OperandName(iden,linenum,ast_type) -> let exprtype = print_expr expr2 in println_one_tab (generate_assign_expr_lh expr1 exprtype); 
+        | OperandName(iden,linenum,ast_type) -> 
+            let exprtype = print_expr expr2 in
+                println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in
                 let symtype = (match exp_type with
@@ -830,7 +891,41 @@ let generate program filedir filename =
                 print_tab 1;
                 if is_i then println_string "iastore" else println_string "aastore";
                 ();
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> () (*NOT IMPLEMENTED*)
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> 
+            print_expr expr2;
+            (match exp1 with 
+                | OperandName(struct_var_name, linenum, symt) ->
+                    let rec find_field field_iden field_list =
+                        match field_list with
+                            | [] -> NotDefined
+                            | (field_name, sym_type)::tail -> if field_name = field_iden then sym_type
+                                                    else find_field field_iden tail
+                    in
+                    let struct_class = retrieve_struct_class_from_var struct_var_name in
+                    let symt2 = (print_expr exp1) in
+                    (match symt2 with 
+                        | SymType(SymStruct(field_list)) -> let field_sym_type = find_field iden field_list in
+                            (match field_sym_type with
+                                | SymInt -> 
+                                    begin
+(*                                         println_one_tab (generate_load (SymStruct(field_list)) struct_var_name linenum2); *)
+                                        println_one_tab "swap";
+                                        println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I");
+                                    end
+                                | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
+                                | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"C")
+                                | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymArray(sym_type) -> ()
+                                | SymSlice(sym_type) -> ()
+                                | SymStruct(fields) -> ()
+                                | NotDefined -> ()
+                            )
+                        | _ -> code_gen_error ("struct type does not resolve")
+                    )
+                (* Do nested structs *)
+                | _ -> code_gen_error ("selector type does not resolve")
+            );
         | _ -> code_gen_error "Lvalue function error"
     in
     let print_inc_dec_stmt stmt = match stmt with 
@@ -849,7 +944,7 @@ let generate program filedir filename =
                 print_tab 1;
                 println_string "iconst_m1";
                 print_tab 1;
-                println_string "iadd";
+                println_string "isub";
                 println_one_tab (generate_assign_expr_lh expr exprtype);
             end
     in
@@ -879,14 +974,32 @@ let generate program filedir filename =
                 println_one_tab (generate_assign_expr_lh exprs1 exprtype);
             end
     in
+    let print_type_decl decl = match decl with
+        | TypeSpec(Identifier(iden, _), type_i, _)->
+            (match type_i with 
+                | Structtype([], _) -> ()
+                | Structtype(field_dcl_list, _) -> init_struct_type field_dcl_list iden
+                | _ -> () (* Do nothing for type dcl *)
+            )
+        | _ -> ast_error ("type_dcl error")
+    in
     let print_short_var_decl_stmt dcl = match dcl with
         | ShortVarDecl(idens, exprs, _) ->
             let short_var_decl_expr (iden, expr) =
                 let symt = print_expr expr in
-                    if (search_iden_not_find_current_scope iden) then
-                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
-                        localcounter();
-                    println_one_tab (generate_store symt iden);
+                    (match (search_iden_not_find_current_scope iden) with
+                        | true ->
+                            begin
+                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                                localcounter();       
+                            end
+                        | false ->
+                            begin
+                                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                                localcounter();    
+                                println_one_tab (generate_store symt iden);
+                            end
+                    )     
             in
             List.iter short_var_decl_expr (combine_two_lists idens exprs)
     in
@@ -901,7 +1014,7 @@ let generate program filedir filename =
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
-                | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen Type*)
+                | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
@@ -943,8 +1056,8 @@ let generate program filedir filename =
                 print_stmt_list (level+1) stmt_list startlabel endlabel;
                 end_scope();
             end
-| Conditional(conditional, _) ->  (*DONE*)
-            let print_if_init if_init start_label end_label= match if_init with
+        | Conditional(conditional, _) ->  (*DONE*)
+            let print_if_init if_init = match if_init with
                 | IfInitSimple(simplestmt, _) ->
                     begin
                         print_simple_stmt simplestmt;
@@ -959,12 +1072,13 @@ let generate program filedir filename =
                 | IfInit(if_init, condition, stmts, _) -> (*DONE*)
                     begin
                         start_scope();
-                        print_if_init if_init start_label end_label;
+                        print_if_init if_init;
                         print_if_cond condition;
                         let currlabel= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int currlabel) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_one_tab ("ifeq stop"^(string_of_int currlabel));
+                        println_one_tab ("ifeq "^currlabelstr);
                         start_scope();
                         print_stmt_list 1 stmts start_label end_label;
                         end_scope();
@@ -975,37 +1089,37 @@ let generate program filedir filename =
                 | IfInit(if_init, condition, stmts, _) -> 
                     begin
                         start_scope();
-                        print_if_init if_init start_label end_label;
+                        print_if_init if_init;
                         print_if_cond condition;
                         let curr_else_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_else_label) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
+                        println_string_with_tab 1 ("ifeq "^currlabelstr) ;
                         start_scope();
-                        print_stmt_list 1 stmts start_label end_label;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
                         let curr_stop_label= !labelcountfalse in 
                         println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
                         println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
-
-
                     end
             in
-            let rec print_else_stmt level stmt start_label end_label=  match stmt with 
+            let rec print_else_stmt level stmt start_label end_label =  match stmt with 
                 | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
-                        print_if_stmt_with_else 1 if_stmt start_label end_label;
+                        print_if_stmt_with_else 1 if_stmt;
                         let curr_stop_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_stop_label) in
                         labelcountertrue();
                         labelcounterfalse();
                         start_scope();
-                        print_stmt_list 1 stmts start_label end_label;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
-                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
+                        println_string_with_tab 1 (currlabelstr^":");
                     end
                 | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
-                        print_if_stmt_with_else 1 if_stmt start_label end_label;
+                        print_if_stmt_with_else 1 if_stmt;
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
@@ -1031,7 +1145,7 @@ let generate program filedir filename =
 
                     end
             in
-            let print_conditional_stmt level cond start_label end_label= match cond with (*needs testing*)
+            let print_conditional_stmt level cond start_label end_label = match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
                         print_if_stmt 1 if_stmt start_label end_label;
@@ -1135,8 +1249,8 @@ let generate program filedir filename =
                         print_for_cond condition;
                         (*check condition *)
                         println_string_with_tab 1 ("ifne "^currlabelendstr) ;
-                        print_simple_stmt simple2;
                         print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
+                        print_simple_stmt simple2;
                     let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
                         println_string (currlabelendstr^":");
@@ -1179,6 +1293,7 @@ let generate program filedir filename =
                                 println_string ("goto "^currlabelendstr);
                                 println_string (currlabelstartstr^":");
                                 print_stmt_list (level+1) stmts start_label end_label; 
+                                println_one_tab ("goto "^end_label);
                                 println_string (currlabelendstr^":");
                             end
                     )
@@ -1224,7 +1339,7 @@ let generate program filedir filename =
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
-        | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen *)
+        | TypeDcl(decl_list, _) -> List.iter print_type_decl decl_list
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, line) ->
