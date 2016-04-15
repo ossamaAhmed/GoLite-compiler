@@ -5,9 +5,7 @@ type point3d struct{
 }
 
 func main() {
-    
-    var y int;
-    for i:=0;i<10;i++{
-        y=i+1
-    }
+
+    var y [] int;
+    y=append(y,10)
 }
