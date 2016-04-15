@@ -552,6 +552,7 @@ let generate program filedir filename =
         | Binaryexpr(exp1, _, symt) -> print_expr exp1; symt (*DONE*)
         | FuncCallExpr(OperandName(value, linenum, symt), exprs, _, _) ->
             let rec print_expr_list expr_list = match expr_list with
+                | [] -> ()
                 | head::[] -> print_expr head; ()
                 | head::tail -> print_expr head; print_expr_list tail; ()
             in
