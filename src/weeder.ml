@@ -22,7 +22,7 @@ let weed_type_declaration decl = match decl with
     | TypeSpec(Identifier(value,linenum1), typename,linenum2) -> ""
                                 
 let rec weed_expression exp = match exp with
-    | OperandName(value,linenum,ast_type) -> value
+    | OperandName(value,linenum,ast_type) -> if value="_" then ast_error "underscore is not allowed for RSIDE" else value
     | AndAndOp(exp1,exp2,linenum,ast_type) -> ""
     | OrOrOp(exp1,exp2,linenum,ast_type) -> ""
     | EqualEqualCmp(exp1,exp2,linenum,ast_type) -> ""
