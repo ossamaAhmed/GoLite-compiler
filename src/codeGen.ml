@@ -52,45 +52,45 @@ let add_variable_to_current_scope mytype myvar = match myvar with
                     code_gen_error ("variable is defined more than one time")
         )
 
-let get_primitive_type type_of_type_i = match type_of_type_i with
-        | Primitivetype(value, _) -> 
-            (match value with
-                | "int" -> SymInt
-                | "rune" -> SymRune
-                | "bool" -> SymBool
-                | "string" -> SymString
-                | "float64" -> SymString
-            )
-        | Arraytype(len, type_name2, _)-> Void (*TO BE IMPLEMENTED*)
-        | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
-        | Slicetype(type_name2, _)-> Void (*TO BE IMPLEMENTED*)
-        | Structtype([], _) -> Void (*TO BE IMPLEMENTED*)
-        | Structtype(field_dcl_list, _) -> Void (*TO BE IMPLEMENTED*)
+let rec get_sym_type type_of_type_i = match type_of_type_i with
+    | Primitivetype(value, _) -> 
+        (match value with
+            | "int" -> SymInt
+            | "rune" -> SymRune
+            | "bool" -> SymBool
+            | "string" -> SymString
+            | "float64" -> SymString
+        )
+    | Arraytype(len, type_name2, _)-> SymArray((get_sym_type type_name2))
+    | Definedtype(Identifier(value, _), _) -> Void (*TO BE IMPLEMENTED*)
+    | Slicetype(type_name2, _)-> SymSlice((get_sym_type type_name2))
+    | Structtype([], _) -> SymStruct([])
+    | Structtype(field_dcl_list, _) -> SymStruct([]) (*TO BE IMPLEMENTED*)
 
 let rec sym_to_type symt = match symt with
-        | SymInt -> "int"
-        | SymFloat64 -> "float"
-        | SymRune -> "char"
-        | SymString -> "[Ljava/lang/String;"
-        | SymBool -> "boolean"
-        | SymArray(subType) ->"["^sym_to_type subType  
-        | SymSlice(subType) -> "["^sym_to_type subType  
-        | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
-        | _ -> ""
+    | SymInt -> "int"
+    | SymFloat64 -> "float"
+    | SymRune -> "char"
+    | SymString -> "[Ljava/lang/String;"
+    | SymBool -> "boolean"
+    | SymArray(subType) ->"["^sym_to_type subType  
+    | SymSlice(subType) -> "["^sym_to_type subType  
+    | SymStruct(fieldlist) -> "struct" (*this needs to be fixed*) 
+    | _ -> ""
     
 let is_immediate exp_type linenum = match exp_type with
-        | SymInt -> true 
-        | SymFloat64 -> true 
-        | SymRune -> true
-        | SymString -> false 
-        | SymBool -> true
-        | SymArray(subType) -> false 
-        | SymSlice(subType) -> false
-        | SymStruct(fieldlist) -> false
-        | SymFunc(subType,arglist) -> false
-        | SymType(subType) -> false
-        | Void -> true
-        | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
+    | SymInt -> true 
+    | SymFloat64 -> true 
+    | SymRune -> true
+    | SymString -> false 
+    | SymBool -> true
+    | SymArray(subType) -> false 
+    | SymSlice(subType) -> false
+    | SymStruct(fieldlist) -> false
+    | SymFunc(subType,arglist) -> false
+    | SymType(subType) -> false
+    | Void -> true
+    | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
 let get_expr_type exp1 = match exp1 with
 	| OperandName(_,_,symType)-> symType
@@ -143,12 +143,15 @@ let generate_store typename varnameIden = match typename, varnameIden with
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
-    | _,_ -> "Other" (*TODO: place holder *)
+    | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
 let apply_func_on_element_from_two_lsts lst1 lst2 func= match lst1,lst2 with 
     | [],[]-> ()
     | head1::tail1,head2::tail2-> func head1 head2
 
+let rec combine_two_lists list1 list2 = match list1, list2 with
+    | head1::[], head2::[] -> (head1, head2)::[]
+    | head1::tail1, head2::tail2 -> (head1, head2)::(combine_two_lists tail1 tail2)
 
 (* --------------------------------END-------------------------------- *)
 
@@ -194,22 +197,45 @@ let invoke_func func_name = "invokestatic "^(Hashtbl.find func_table func_name)
 
 (* ----------------------- Struct manipulation ----------------------- *)
 
-(* Store a table of struct type name => Jasmin object invocation string *)
-type structTable = (string, symType) Hashtbl.t;;
+(* Store a table of struct type name => jasmin class string *)
+type structTable = (string, string) Hashtbl.t;;
 let (struct_table : structTable) = Hashtbl.create 1234;;
 
-let init_struct iden field_dcl_list = 
-    let struct_class_name = !jasmin_main_class^"_struct_"^iden in 
+let init_struct field_dcl_list struct_iden = 
+    let struct_class_name = !jasmin_main_class^"_struct_"^struct_iden in 
     let struct_filename = !jasmin_file_dir^(Filename.dir_sep)^struct_class_name^".j" in
     let struct_file = open_out struct_filename in
     let print_struct_string s = output_string struct_file s in
     let println_struct_string s = output_string struct_file (s^"\n") in
     let println_struct_one_tab s = print_struct_string (String.make 1 '\t'); println_struct_string s in
+    let print_struct_field_type type_name identifier = match identifier, type_name with
+        | Identifier(field_iden, _), Definedtype(Identifier(value, _), _) -> () (* TODO *)
+        | Identifier(field_iden, _), Primitivetype(value, _) ->
+            (match value with
+            | "int" -> println_struct_string (".field "^field_iden^" I")
+            | "rune" -> println_struct_string (".field "^field_iden^" C")
+            | "bool" -> println_struct_string (".field "^field_iden^" Z")
+            | "string" -> println_struct_string (".field "^field_iden^" [Ljava/lang/String;")
+            | "float64" -> println_struct_string (".field "^field_iden^" F")
+            | _ -> code_gen_error ("unknown struct field type"))
+        | Identifier(field_iden, _), Arraytype(len, type_name2, _) -> () (* TODO *)
+        | Identifier(field_iden, _), Slicetype(type_name2, _) -> () (* TODO *)
+        | Identifier(field_iden, _), Structtype([], _) -> () (* TODO *)
+        | Identifier(field_iden, _), Structtype(dcl_list, _) -> () (* TODO *)
+    in
+    let print_struct_field field = match field with 
+        | (iden_list,type_name) -> List.iter (print_struct_field_type type_name) iden_list 
+        | _ -> ast_error ("field_dcl_print error")
+    in
     begin
-        println_struct_string (".class public "^iden^"");
+        (* Store struct name => jasmin class filename *)
+        Hashtbl.add struct_table struct_iden struct_class_name;
+        (* Print separate jasmin class file *)
+        println_struct_string (".class public "^struct_class_name^"");
         println_struct_string ".super java/lang/Object\n";
         (* Print fields *)
-        println_struct_string ".method public <init>()V";
+        List.iter print_struct_field field_dcl_list;
+        println_struct_string "\n.method public <init>()V";
         println_struct_one_tab ".limit locals 99";
         println_struct_one_tab ".limit stack 99";
         println_struct_one_tab "aload_0";
@@ -218,7 +244,7 @@ let init_struct iden field_dcl_list =
         println_struct_string ".end method";
         close_out struct_file
     end
-let invoke_struct iden = "invokenonvirtual "^(!jasmin_main_class)^"_struct_"^iden^"/<init>()V"
+let invoke_struct struct_iden = Hashtbl.find struct_table struct_iden
 
 (* --------------------------------END-------------------------------- *)
 
@@ -624,20 +650,21 @@ let generate program filedir filename =
                 ) in
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
-                print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_expr exp2; (*put array index on stack*) 
                 print_tab 1;
                 if is_i then println_string "iaload" else println_string "aaload";
                 symt;
             end
         
-        | Selectorexpr(exp1, Identifier(iden, _), linenum, symbolType) ->
-                (*TODO: GET STRCUT NAME*)
-            begin
-                print_string "getfield structName fieldType";
-                symbolType
-            end
+        | Selectorexpr(exp1, Identifier(iden1, _), linenum1, symt1) -> symt1
+(*             (match exp1 with
+            (* Simple struct access s.a *)
+            | OperandName(value2, linenum2, symt2) ->
+            (* Nested struct access s1.s2.a *)
+            | Selectorexpr(exp2, Identifier(iden2, _), linenum2, symt2) ->
+            ) *)
         | TypeCastExpr(typename, exp1, linenum, symbolType) ->
-            let pType = get_primitive_type typename in 
+            let pType = get_sym_type typename in 
             (
             match symbolType, pType with
             | SymInt, SymInt -> print_expr exp1; symbolType;
@@ -693,13 +720,31 @@ let generate program filedir filename =
             end
 
         | _ -> code_gen_error ("expression error")
+    and print_expr_list_switch expr_list start_label = match expr_list with
+        | [] -> ()
+        | head::[] ->
+            begin
+                print_tab 1;
+                println_string "dup";
+                print_expr head;
+                print_tab 1;
+                println_string ("ifeq "^start_label);
+            end
+        | head::tail ->
+            begin
+                print_tab 1;
+                println_string "dup";
+                print_expr head;
+                print_tab 1;
+                println_string ("ifeq "^start_label);
+                print_expr_list_switch tail start_label;
+            end
     and print_expr_list expr_list = match expr_list with
         | [] -> ()
         | head::[] -> print_expr head;()
         | head::tail ->
             begin
                 print_expr head;
-                print_string ", ";
                 print_expr_list tail;
             end
     and generate_comparable_binary_ints optype= 
@@ -731,92 +776,40 @@ let generate program filedir filename =
         | Structtype([], _) -> () (*TO BE IMPLEMENTED*)
         | Structtype(field_dcl_list, _) -> () (*TO BE IMPLEMENTED*)
     in
-    let emit_var_decl typename iden = 
+    let emit_var_decl type_i iden = 
         begin
-            print_var_default_value typename;
+            print_var_default_value type_i;
             add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
             localcounter();
-            println_one_tab (generate_store (get_primitive_type typename) iden);
+            println_one_tab (generate_store (get_sym_type type_i) iden);
         end
     in
+    let emit_var_decl_expr (iden, expr) =
+        let symt = print_expr expr in
+            begin 
+                add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                localcounter();
+                println_one_tab (generate_store symt iden);
+            end
+    in
     let print_var_decl level decl = match decl with
-        | VarSpecWithType(iden_list, typename, exprs, _) -> 
-            if exprs = [] then
-                begin
-                    List.map (emit_var_decl typename) iden_list;
-                    ();
-                end
-            else
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string " ";
-                    print_type_name level typename;
-                    print_string " = ";
-                    print_expr_list exprs;
-                    print_string ";\n";     
-                end
-        | VarSpecWithoutType (iden_list, exprs, _) -> 
-            if exprs = [] then
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string ";\n"; 
-                end
-            else
-                begin
-                    print_tab (level);
-                    print_string "var ";
-                    print_identifier_list iden_list;
-                    print_string " = ";
-                    print_expr_list exprs;
-                    print_string ";\n";                
-                end
+        (* STRUCT ARE DECLARED HERE, ALONG PRIMITIVES, ARRAYS AND SLICES *)
+        | VarSpecWithType(iden_list, type_i, exprs, _) ->
+            (match exprs with
+            | [] -> List.iter (emit_var_decl type_i) iden_list
+            | _ -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
+            )
+        (* NO STRUCT DECLARED HERE ONLY PRIMITIVES, ARRAYS AND SLICES *)
+        | VarSpecWithoutType (iden_list, exprs, _) -> List.iter emit_var_decl_expr (combine_two_lists iden_list exprs)
         | _ -> ast_error ("var_dcl error")
-    in
-    let print_type_decl level decl = match decl with
-        | TypeSpec(Identifier(iden, _), typename, _) -> 
-            let print_jasmin_type_decl typename = match typename with
-                | Definedtype(Identifier(value, _), _) -> () (* TODO *)
-                | Primitivetype(value, _) -> () (* TODO *)
-                | Arraytype(len, type_name2, _)-> () (* TODO *)
-                | Slicetype(type_name2, _)-> () (* TODO *)
-                | Structtype([], _) -> ()
-                | Structtype(field_dcl_list, _) -> init_struct iden field_dcl_list
-(*                     let print_field_dcl level field = match field with 
-                        | (iden_list,type_name1) -> 
-                        begin
-                            print_tab (level);
-                            print_identifier_list iden_list;
-                            print_string " ";
-                            print_type_name (level) type_name1;
-                            print_string ";\n";
-                        end
-                        | _ -> ast_error ("field_dcl_print error")
-                    in
-                        print_string "struct {\n";
-                        List.iter (print_field_dcl (level+1)) field_dcl_list;
-                        print_tab (level);
-                        print_string "}"; *)
-            in print_jasmin_type_decl typename
-        | _ -> ast_error ("type_dcl error")
-    in
-    let print_inc_dec_stmt stmt = match stmt with 
-        | Increment(expr, _) ->
-            begin
-                print_expr expr;
-                print_string "++";
-            end
-        | Decrement(expr, _) ->
-            begin
-                print_expr expr;
-                print_string "--";
-            end
     in
     let generate_assign_expr_lh expr exprtype= match expr with 
         | OperandName(iden,linenum,ast_type) -> generate_store exprtype (Identifier(iden,linenum))
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+        | _ -> code_gen_error "Lvalue function error"
+    in 
+    let generate_assignment expr1 expr2 = match expr1 with
+        | OperandName(iden,linenum,ast_type) -> let exprtype = print_expr expr2 in println_one_tab (generate_assign_expr_lh expr1 exprtype); 
         | Indexexpr(exp1,exp2,linenum,ast_type) ->
                 let exp_type = get_expr_type exp1 in
                 let symtype = (match exp_type with
@@ -826,49 +819,83 @@ let generate program filedir filename =
                 let is_i = is_immediate symtype linenum in 
                 print_expr exp1; (*put array ref on stack*)
                 print_expr exp2; (*put array index on stack*) (* TODO: eval expression to immediate or ref*)
+                print_expr expr2;
                 print_tab 1;
                 if is_i then println_string "iastore" else println_string "aastore";
-                "";
-        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> "" (*NOT IMPLEMENTED*)
+                ();
+        | Selectorexpr(exp1,Identifier(iden,linenum1),linenum2,ast_type) -> () (*NOT IMPLEMENTED*)
         | _ -> code_gen_error "Lvalue function error"
-    in 
-    let generate_assignment expr1 expr2 = 
-        let exprtype = print_expr expr2 in 
-            println_one_tab (generate_assign_expr_lh expr1 exprtype);
+    in
+    let print_inc_dec_stmt stmt = match stmt with 
+        | Increment(expr, _) ->
+            let exprtype = print_expr expr in
+            begin
+                print_tab 1;
+                println_string "iconst_1";
+                print_tab 1;
+                println_string "iadd";
+                println_one_tab (generate_assign_expr_lh expr exprtype);
+            end
+        | Decrement(expr, _) ->
+            let exprtype = print_expr expr in
+            begin
+                print_tab 1;
+                println_string "iconst_m1";
+                print_tab 1;
+                println_string "iadd";
+                println_one_tab (generate_assign_expr_lh expr exprtype);
+            end
     in
     let print_assignment_stmt stmt = match stmt with 
         | AssignmentBare(exprs1, exprs2, _) ->
             begin
-                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment;
+                apply_func_on_element_from_two_lsts exprs1 exprs2 generate_assignment; (*not working*)
             end
         | AssignmentOp(exprs1, assign_op, exprs2, _) ->
+                let exprtype = print_expr exprs1 in
             begin
-                print_expr exprs1;
-                print_string assign_op;
                 print_expr exprs2;
-                ()
+                (*TODO: DO THIS FOR FLAOTS TOO*)
+                (match assign_op with
+                    | "+="-> println_one_tab "iadd";
+                    | "-="-> println_one_tab "isub";
+                    | "|="-> println_one_tab "ior";
+                    | "^="-> println_one_tab "ixor";
+                    | "*="-> println_one_tab "imul";
+                    | "/="-> println_one_tab "idiv";
+                    | "%="-> println_one_tab "irem";
+                    | ">>="-> println_one_tab "ishr";
+                    | "<<="-> println_one_tab "ishl";
+                    |  "&="-> println_one_tab "iand";
+                    |  "&^="-> println_one_tab "iand"; println_one_tab "ineg"; println_one_tab "iconst_m1"; println_one_tab "iadd";
+                );
+                println_one_tab (generate_assign_expr_lh exprs1 exprtype);
             end
     in
     let print_short_var_decl_stmt dcl = match dcl with
         | ShortVarDecl(idens, exprs, _) ->
-            begin
-                print_identifier_list idens;
-                print_string " := ";
-                print_expr_list exprs;
-            end
+            let short_var_decl_expr (iden, expr) =
+                let symt = print_expr expr in
+                    begin 
+                        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden;
+                        localcounter();
+                        println_one_tab (generate_store symt iden);
+                    end
+            in
+            List.iter short_var_decl_expr (combine_two_lists idens exprs)
     in
     let print_simple_stmt stmt = match stmt with 
         | SimpleExpression(expr, _) -> print_expr expr;()
-        | IncDec(incdec, _) -> print_inc_dec_stmt incdec 
+        | IncDec(incdec, _) -> print_inc_dec_stmt incdec; ()
         | Assignment(assignment_stmt, _) -> print_assignment_stmt assignment_stmt
         | ShortVardecl(short_var_decl, _) -> print_short_var_decl_stmt short_var_decl
         | Empty -> ()
     in
-    let rec print_stmt level stmt = match stmt with
+    let rec print_stmt level stmt startlabel endlabel = match stmt with
         | Declaration(decl, _) -> 
             (match decl with
                 | TypeDcl([], _) -> ()
-                | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
+                | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen Type*)
                 | VarDcl([], _) ->  ()
                 | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
                 | Function(func_name, func_sig, stmt_list, line) ->
@@ -893,19 +920,21 @@ let generate program filedir filename =
             in
             print_return_stmt level rt_stmt
         | Break(_) -> 
+            let breakpoint = "goto "^endlabel in
             begin
                 print_tab level;
-                print_string "break\n";
+                print_string breakpoint;
             end
         | Continue(_) ->
+            let contpoint = "goto "^startlabel in
             begin
                 print_tab level;
-                print_string "continue\n";
+                print_string contpoint; 
             end
         | Block(stmt_list, _) -> (*DONE*)
             begin
                 start_scope();
-                print_stmt_list (level+1) stmt_list;
+                print_stmt_list (level+1) stmt_list startlabel endlabel;
                 end_scope();
             end
         | Conditional(conditional, _) ->  (*DONE*)
@@ -920,53 +949,54 @@ let generate program filedir filename =
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
-            let print_if_stmt level if_stmt = match if_stmt with
+            let print_if_stmt level if_stmt start_label end_label= match if_stmt with
                 | IfInit(if_init, condition, stmts, _) -> (*DONE*)
                     begin
                         start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
                         let currlabel= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int currlabel) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_one_tab ("ifeq stop"^(string_of_int currlabel));
+                        println_one_tab ("ifeq "^currlabelstr);
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label;
                         end_scope();
                         println_one_tab ("stop"^(string_of_int currlabel)^":");
                     end
             in
-            let print_if_stmt_with_else level if_stmt = match if_stmt with (*DONE*)
+            let print_if_stmt_with_else level if_stmt start_label end_label= match if_stmt with (*DONE*)
                 | IfInit(if_init, condition, stmts, _) -> 
                     begin
                         start_scope();
                         print_if_init if_init;
                         print_if_cond condition;
                         let curr_else_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_else_label) in
                         labelcountertrue();
                         labelcounterfalse();
-                        println_string_with_tab 1 ("ifeq stop"^(string_of_int curr_else_label));
+                        println_string_with_tab 1 ("ifeq "^currlabelstr) ;
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
                         let curr_stop_label= !labelcountfalse in 
                         println_string_with_tab 1 ("goto stop"^(string_of_int curr_stop_label));
                         println_string_with_tab 1 ("stop"^(string_of_int curr_else_label)^":");
-
-
                     end
             in
-            let rec print_else_stmt level stmt =  match stmt with 
+            let rec print_else_stmt level stmt start_label end_label =  match stmt with 
                 | ElseSingle(if_stmt, stmts, _) -> (*DONE*)
                     begin
                         print_if_stmt_with_else 1 if_stmt;
                         let curr_stop_label= !labelcountfalse in 
+                        let currlabelstr = "stop"^(string_of_int curr_stop_label) in
                         labelcountertrue();
                         labelcounterfalse();
                         start_scope();
-                        print_stmt_list 1 stmts;
+                        print_stmt_list 1 stmts start_label end_label; 
                         end_scope();
-                        println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
+                        println_string_with_tab 1 (currlabelstr^":");
                     end
                 | ElseIFMultiple(if_stmt, else_stmt, _) -> (*DONE*)
                     begin
@@ -974,18 +1004,18 @@ let generate program filedir filename =
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
-                        print_else_stmt 1 else_stmt;
+                        print_else_stmt 1 else_stmt start_label end_label;
                         println_string_with_tab 1 ("stop"^(string_of_int curr_stop_label)^":");
                     end
                 | ElseIFSingle(if_stmt1, if_stmt2, _) -> (*DONE*)
 
                     begin
-                        print_if_stmt_with_else 1 if_stmt1;
+                        print_if_stmt_with_else 1 if_stmt1 start_label end_label;
                         let curr_stop_label= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
                         
-                        print_if_stmt_with_else 1 if_stmt2;
+                        print_if_stmt_with_else 1 if_stmt2 start_label end_label;
                         let curr_stop_label2= !labelcountfalse in 
                         labelcountertrue();
                         labelcounterfalse();
@@ -996,19 +1026,19 @@ let generate program filedir filename =
 
                     end
             in
-            let print_conditional_stmt level cond = match cond with (*needs testing*)
+            let print_conditional_stmt level cond start_label end_label = match cond with (*needs testing*)
                 | IfStmt(if_stmt, _) -> 
                     begin
-                        print_if_stmt 1 if_stmt;
+                        print_if_stmt 1 if_stmt start_label end_label;
                         end_scope();
                     end
                 | ElseStmt(else_stmt, _) ->
                     begin
-                        print_else_stmt level else_stmt;
+                        print_else_stmt level else_stmt start_label end_label;
                         end_scope();
                     end
             in
-            print_conditional_stmt level conditional
+            print_conditional_stmt level conditional startlabel endlabel
         | Simple(simple, _) -> 
             begin
                 print_simple_stmt simple;
@@ -1042,52 +1072,70 @@ let generate program filedir filename =
                 | ConditionExpression(expr, _) -> print_expr expr;()
                 | Empty -> ()
             in
-            let print_for_clause clause = match clause with 
-                | ForClauseCond(simple1, condition, simple2, _) -> 
-                    begin
-                        print_simple_stmt simple1;
-                        print_string "; ";
-                        print_for_cond condition;
-                        print_string "; ";
-                        print_simple_stmt simple2;
-                    end
-            in
             let print_for_stmt level stmt = match stmt with 
                 | Forstmt(stmts, _) ->
                     begin
-                        let currlabel = !labelcountfalse in
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
                         labelcountertrue(); 
                         labelcounterfalse(); 
                         (*infinite loop*)
                         start_scope();
                         (*generate label*)
-                        println_string ("stop"^(string_of_int currlabel)^":");
-                        print_stmt_list (level+1) stmts; (*TODO: pass in end label*)
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                         (*print goto label *)
-                    let gotocmd = "goto stop"^(string_of_int currlabel) in
+                    let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
                         end_scope();
                     end
 
                 | ForCondition(condition, stmts, _) -> 
                     begin
-                        print_tab (level);
-                        print_string "for ";
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        start_scope();
+                        (*evaluate condition *)
                         print_for_cond condition;
-                        print_string " {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        (*check condition *)
+                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
+                    let gotocmd = "goto "^currlabelstartstr in
+                        println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
+                        end_scope();
                     end
-                | ForClause (for_clause, stmts, _) ->
+                | ForClause (ForClauseCond(simple1, condition, simple2, linenum), stmts, _) ->
                     begin
-                        print_tab (level);
-                        print_string "for ";
-                        print_for_clause for_clause;
-                        print_string " {\n";
-                        print_stmt_list (level+1) stmts;
-                        print_tab (level);
-                        print_string "}\n";
+                        (*eval simple 1*)
+                        print_simple_stmt simple1;
+                        (*check condition*)
+                        let currlabelend = !labelcountfalse in
+                        let currlabelstart = !labelcounttrue in
+                        let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                        let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                        labelcountertrue(); 
+                        labelcounterfalse(); 
+                        println_string ("start"^(string_of_int currlabelstart)^":");
+                        start_scope();
+                        (*evaluate condition *)
+                        print_for_cond condition;
+                        (*check condition *)
+                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        print_simple_stmt simple2;
+                        print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
+                    let gotocmd = "goto "^currlabelstartstr in
+                        println_one_tab gotocmd;
+                        println_string (currlabelendstr^":");
+                        end_scope();
                     end
             in
             print_for_stmt level for_stmt
@@ -1096,7 +1144,6 @@ let generate program filedir filename =
                 | SwitchClause(simple_stmt, _) -> 
                     begin
                         print_simple_stmt simple_stmt;
-                        print_string "; ";
                     end
                 | Empty -> ()
             in
@@ -1108,61 +1155,71 @@ let generate program filedir filename =
                     end
                 | Empty -> ()
             in
-            let print_switch_case_clause level clause = match clause with 
+            let print_switch_case_clause level start_label end_label clause = match clause with 
                 | SwitchCaseClause(exprs, stmts, _) -> 
                     (match exprs with
                         | [] -> 
                             begin
-                                print_tab (level);
-                                print_string "default :\n";
-                                print_stmt_list (level+1) stmts;
+                                print_stmt_list (level+1) stmts start_label end_label;
                             end
                         | head::tail ->
                             begin
-                                print_tab (level);
-                                print_string "case ";
-                                print_expr_list exprs;
-                                print_string " :\n";
-                                print_stmt_list (level+1) stmts;
+                                let currlabelend = !labelcountfalse in
+                                let currlabelstart = !labelcounttrue in
+                                let currlabelendstr = "stopcase"^(string_of_int currlabelend) in
+                                let currlabelstartstr = "startcase"^(string_of_int currlabelstart) in
+
+                                (*duplicate exp and check *)
+                                print_expr_list_switch exprs currlabelstartstr;
+                                println_string ("goto "^currlabelendstr);
+                                println_string (currlabelstartstr^":");
+                                print_stmt_list (level+1) stmts start_label end_label; 
+                                println_string (currlabelendstr^":");
                             end
                     )
                 | Empty -> ()   
             in
-            let print_switch_case_stmt level stmts = match stmts with
+            let print_switch_case_stmt level stmts start_label end_label= match stmts with
                 | SwitchCasestmt([], _) -> ()
-                | SwitchCasestmt(switch_case_clauses, _) -> List.iter (print_switch_case_clause level) switch_case_clauses
+                | SwitchCasestmt(switch_case_clauses, _) -> List.iter (print_switch_case_clause level start_label end_label) switch_case_clauses
             in       
             begin
-                print_tab (level);
-                print_string "switch ";
+                start_scope();
+                (*do simple stmt*)
                 print_switch_clause switch_clause;
+                (*put expr on stack*)
                 print_switch_expr switch_expr;
-                print_string "{\n";
-                print_switch_case_stmt (level+1) switch_case_stmts;
-                print_tab (level);
-                print_string "}\n";
+                
+                (*make labels*)
+                let currlabelend = !labelcountfalse in
+                let currlabelstart = !labelcounttrue in
+                let currlabelendstr = "stop"^(string_of_int currlabelend) in
+                let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                labelcountertrue(); 
+                labelcounterfalse(); 
+                
+                print_switch_case_stmt (level+1) switch_case_stmts startlabel currlabelendstr;
+                print_tab 1;
+                println_string "pop";
+                end_scope();
             end
         | _ -> ()
-    and print_stmt_list level stmt_list = match stmt_list with
+    and print_stmt_list level stmt_list startlabel endlabel= match stmt_list with
         | [] -> ()
-        | head::[] -> print_stmt level head
+        | head::[] -> print_stmt level head startlabel endlabel
         | head::tail ->
             begin
-                print_stmt level head;
-                print_stmt_list level tail;
+                print_stmt level head startlabel endlabel;
+                print_stmt_list level tail startlabel endlabel;
             end
     and print_method_decl func_name signature stmt_list = match signature with
         | FuncSig(FuncParams(func_params, _), return_type, _) ->
             begin
-                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type));
-                println_one_tab ".limit stack 99";
-                println_one_tab  ".limit locals 99";
-                print_stmt_list 1 stmt_list;
-                println_string ".end method\n";
+                println_string (Printf.sprintf ".method public static %s(%s)%s" func_name "" (string_method_return_type return_type)); println_one_tab ".limit stack 99"; println_one_tab  ".limit locals 99"; print_stmt_list 1 stmt_list; println_string ".end method\n";
             end
     and print_decl level decl = match decl with
         | TypeDcl([], _) -> ()
-        | TypeDcl(decl_list, _) -> List.iter (print_type_decl level) decl_list
+        | TypeDcl(decl_list, _) -> () (* Nothing to do in codegen *)
         | VarDcl([], _) ->  ()
         | VarDcl(decl_list, _) -> List.iter (print_var_decl level) decl_list
         | Function(func_name, signature, stmt_list, line) ->
@@ -1173,7 +1230,7 @@ let generate program filedir filename =
                     println_string ".method public static main([Ljava/lang/String;)V";
                     println_one_tab ".limit stack 99";
                     println_one_tab ".limit locals 99";
-                    print_stmt_list 1 stmt_list;
+                    print_stmt_list 1 stmt_list "" "";
                     println_string "";
                     println_one_tab "return";
                     println_string ".end method";
