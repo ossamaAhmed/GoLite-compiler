@@ -601,47 +601,6 @@ let generate program filedir filename =
                 print_string " )";
                 symt
             end
-        | Value(value, _, symt) -> print_literal value (*MISSING RUNES*)
-        | Unaryexpr(exp1, _, _) -> print_expr exp1
-        | Binaryexpr(exp1, _, _) -> print_expr exp1
-        | FuncCallExpr(exp1, exprs, _, symt) -> 
-            begin
-                print_string "( ";
-                print_expr exp1;
-                print_string "(";
-                print_expr_list exprs;
-                print_string ")";
-                print_string " )";
-                symt;
-            end
-        | UnaryPlus(exp1, _, symt) -> 
-            begin
-                print_string "( +";
-                print_expr exp1;
-                print_string " )";
-                symt;
-            end
-        | UnaryMinus(exp1, _, symt) ->
-            begin
-                print_string "( -";
-                print_expr exp1;
-                print_string " )";
-                symt
-            end
-        | UnaryNot(exp1, _, symt) ->
-            begin
-                print_string "( !";
-                print_expr exp1;
-                print_string " )";
-                symt
-            end
-        | UnaryCaret(exp1, _,symt) ->
-            begin
-                print_string "( ^";
-                print_expr exp1;
-                print_string " )";
-                symt
-            end
         | Value(value, _, symt) -> print_literal value; symt;
         | Indexexpr(exp1, exp2, linenum, symt) -> 
             begin

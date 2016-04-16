@@ -503,8 +503,9 @@ and pretty_typecheck_expression exp =
 and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs with 
 															| [],[]-> []
 															| head1::tail1, head2::tail2-> let exp_type=pretty_typecheck_expression head2 in 
-																						   let _= add_variable_to_current_scope (extract_type_from_expr_tuple exp_type) head1 in 
-																						   (extract_node_from_expr_tuple exp_type)::(typecheck_var_decl_without_type tail1 tail2 linenum)
+																						   let _= add_variable_to_current_scope (extract_type_from_expr_tuple exp_type) head1 in
+																						   let tailresult= (typecheck_var_decl_without_type tail1 tail2 linenum) in
+																						   (extract_node_from_expr_tuple exp_type)::tailresult
 
 (*DONE*)
 
@@ -533,10 +534,10 @@ let search_current_scope_for_return mytype = match !symbol_table with
 		Hashtbl.iter find_value current_scope
 
 let typecheck_return_stmt rt_stmt = match rt_stmt with
-    | ReturnStatement(exp1, _) -> let mytype = pretty_typecheck_expression exp1 in
-									let mytype_name = extract_type_from_expr_tuple mytype in
-								    mytype_name
-    | Empty -> Void
+    | ReturnStatement(exp1, linenum) -> let mytype = pretty_typecheck_expression exp1 in
+									let mytype_name = extract_node_from_expr_tuple mytype in
+								    (ReturnStatement(mytype_name,linenum), (extract_type_from_expr_tuple mytype))
+    | Empty -> (Empty,Void)
 
 (*DONE*)
 let rec typecheck_stmts stmts ret = match stmts with
@@ -546,10 +547,10 @@ let rec typecheck_stmts stmts ret = match stmts with
 
 (*DONE*)
 and typecheck_stmt stmt ret = match stmt with
-				    | Declaration(dcl,linenum)-> let _ = typecheck_declaration dcl in stmt
+				    | Declaration(dcl,linenum)-> let result = typecheck_declaration dcl in Declaration(result,linenum)
 	(*NOT DONE*)	| Return(rt_stmt,linenum) -> let mytype = typecheck_return_stmt rt_stmt in 
-												  if mytype!=ret then type_checking_error ("return stmt doesnt have the same type at linenum:="^(Printf.sprintf "%i" linenum))
-												  else stmt (* typecheck_return_stmt rt_stmt (*DONE*) *)
+												  if (extract_type_from_expr_tuple mytype)!=ret then type_checking_error ("return stmt doesnt have the same type at linenum:="^(Printf.sprintf "%i" linenum))
+												  else Return((extract_node_from_expr_tuple mytype),linenum) (* typecheck_return_stmt rt_stmt (*DONE*) *)
 				    | Break(linenum) -> stmt(* "break "  *)
 				    | Continue(linenum) -> stmt(* "continue " *)
 				    | Block(stmt_list,linenum)-> let _= start_scope() in 
@@ -815,7 +816,7 @@ and typecheck_signature signature func_name= match signature with
 													 
 
 and typecheck_function_declaration func_name signature stmts linenum= let ret= typecheck_signature signature func_name in 
-															   let new_stmts=typecheck_stmts stmts  ret in 
+															   let new_stmts=typecheck_stmts stmts ret in 
 															   let _= print_stack symbol_table linenum in 
 															   let _= end_scope() in 
 															  (*  let _= print_stack symbol_table linenum in 
