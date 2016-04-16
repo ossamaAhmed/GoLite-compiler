@@ -78,7 +78,7 @@ let rec sym_to_type symt = match symt with
     | SymInt -> "int"
     | SymFloat64 -> "float"
     | SymRune -> "char"
-    | SymString -> "[Ljava/lang/String;"
+    | SymString -> "Ljava/lang/String;"
     | SymBool -> "boolean"
     | SymArray(subType) ->"["^sym_to_type subType  
     | SymSlice(subType) -> "["^sym_to_type subType  
@@ -185,7 +185,7 @@ let string_jasmin_type go_type = match go_type with
             | "bool" -> "Z"
             | "float64" -> "F"
             | "rune" -> "C"
-            | "string" -> "[Ljava/lang/String;"
+            | "string" -> "Ljava/lang/String;"
         )
     | Arraytype(len, type_name2, _) -> ""
         (* What is array type in jasmin? *)
@@ -245,7 +245,7 @@ let init_struct_type field_dcl_list struct_iden =
             | "int" -> println_struct_string (".field "^field_iden^" I")
             | "rune" -> println_struct_string (".field "^field_iden^" C")
             | "bool" -> println_struct_string (".field "^field_iden^" Z")
-            | "string" -> println_struct_string (".field "^field_iden^" [Ljava/lang/String;")
+            | "string" -> println_struct_string (".field "^field_iden^" Ljava/lang/String;")
             | "float64" -> println_struct_string (".field "^field_iden^" F")
             | _ -> code_gen_error ("unknown struct field type"))
         | Identifier(field_iden, _), Arraytype(len, type_name2, _) -> () (* TODO *)
@@ -668,7 +668,7 @@ let generate program filedir filename =
                                 | SymInt -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
                                 | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
                                 | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"C")
-                                | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
                                 | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
                                 | SymArray(sym_type) -> ()
                                 | SymSlice(sym_type) -> ()
@@ -884,7 +884,7 @@ let generate program filedir filename =
                                     end
                                 | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
                                 | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"C")
-                                | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"[Ljava/lang/String;")
+                                | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
                                 | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
                                 | SymArray(sym_type) -> ()
                                 | SymSlice(sym_type) -> ()
