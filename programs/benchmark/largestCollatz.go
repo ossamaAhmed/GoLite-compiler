@@ -22,8 +22,9 @@ func main() {
 
         var maxLen = 0;
         var maxNum = 0;
+        var len int
         for x:= 2;x<50000000;x++ {
-          var len = getCollatsLen(x)
+           len = getCollatsLen(x)
           if(len>maxLen){
               maxLen = len
               maxNum = x;

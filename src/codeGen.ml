@@ -157,12 +157,14 @@ let generate_load typename varname linenum = match typename with
     | _ ->"aload"^" "^(search_previous_scopes varname !symbol_table)
 
 
-let generate_store typename varnameIden = match typename, varnameIden with 
+let rec generate_store typename varnameIden = match typename, varnameIden with 
     | SymInt, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymFloat64, Identifier(varname,_) -> "fstore"^" "^(search_previous_scopes varname !symbol_table)
     | SymRune, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
     | SymString, Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table)
     | SymBool, Identifier(varname,_) -> "istore"^" "^(search_previous_scopes varname !symbol_table)
+    | SymFunc(symt,_), Identifier(varname,_) -> generate_store symt varnameIden
+    | SymType(symt), Identifier(varname,_) -> generate_store symt varnameIden
     | _,Identifier(varname,_) -> "astore"^" "^(search_previous_scopes varname !symbol_table) (*TODO: place holder *)
 
 let apply_func_on_element_from_two_lsts lst1 lst2 func = match lst1,lst2 with 
