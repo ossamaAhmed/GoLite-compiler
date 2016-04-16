@@ -72,7 +72,7 @@ let weed_variable_declaration decl = match decl with
 
 let rec weed_stmts_for_return stmts acc = match stmts with
     | [] -> acc
-    | head::tail -> let tempAcc = weed_stmt_for_return head acc in weed_stmts_for_return tail tempAcc
+    | head::tail -> let tempAcc = weed_stmt_for_return head acc in (weed_stmts_for_return tail acc)+tempAcc
 
 and  weed_stmt_for_return stmt acc = 
     if acc<0 then begin
@@ -258,7 +258,7 @@ and weed_signature signature = match signature with
 and weed_function_declaration func_name signature stmts =
     if weed_signature signature then begin
         (*look for all paths with return *)
-        if 0 < weed_stmts_for_return stmts 0 then begin
+        if 0 <= weed_stmts_for_return stmts 0 then begin
             (weed_stmts stmts "withoutbreakandcontinue")::[];
         end else begin
             ast_error "Not all paths have return"
