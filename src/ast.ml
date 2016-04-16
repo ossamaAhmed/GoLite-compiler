@@ -1,4 +1,5 @@
 open Symboltbl
+open Symboltbl
 
 exception AST_error of string
 
@@ -102,7 +103,7 @@ type func_return =
 	| Stringliteral of string * int 
     and
     type_i =
-	| Definedtype of identifier * type_i * int (*just added the real type attached*)
+	| Definedtype of identifier * symType * int (*just added the real type attached*)
 	| Primitivetype of string * int(*can accept INT, RUNE, BOOL, STRING, FLOAT64, *)
 	| Arraytype of int * type_i* int
 	| Slicetype of type_i* int

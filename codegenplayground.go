@@ -2,10 +2,13 @@ package main
 
 
 func main() {
-	if (1 > 2) {
-		println ("code 1")
+	var x rune
+	x='c'
+	x='c'-1
+	if ("hi1" == "hi") {
+		println ("works")
 
-	} else if (1 > 2) {
+	} else if (1 == 2) {
 		println ("code 2")
 
 	} else {
