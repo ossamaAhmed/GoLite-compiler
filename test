@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for validinvalid in ./TEST_PROGRAMS/VALID/05/*; do
+for validinvalid in ./TEST_PROGRAMS/typing_benchmarks/valid/*; do
         echo "$validinvalid" 
         ./src/goLite.native $validinvalid 
   

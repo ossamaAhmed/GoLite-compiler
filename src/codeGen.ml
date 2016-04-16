@@ -182,6 +182,7 @@ let rec combine_two_lists list1 list2 = match list1, list2 with
 (* Store a table of function name => Jasmin function invocation string *)
 type funcTable = (string, string) Hashtbl.t;;
 let (func_table : funcTable) = Hashtbl.create 1234;;
+let my_label_stack = Stack.create () ;;
 
 (* Refer to print_type_name in prettyPrinter *)
 let string_jasmin_type go_type = match go_type with 
@@ -710,17 +711,29 @@ let generate program filedir filename =
             begin
                 print_tab 1;
                 println_string "dup";
-                print_expr head;
-                print_tab 1;
-                println_string ("ifeq "^start_label);
+                let mytype_expr= print_expr head in 
+                let _= print_tab 1 in 
+                (match mytype_expr with 
+                    | SymInt->  println_string ("if_icmpne "^start_label);
+                    | SymBool-> println_string ("if_icmpne "^start_label);
+                    | SymFloat64-> ()
+                    | SymString-> ()
+                    | _->()
+                )
             end
         | head::tail ->
             begin
                 print_tab 1;
                 println_string "dup";
-                print_expr head;
-                print_tab 1;
-                println_string ("ifeq "^start_label);
+                let mytype_expr=print_expr head in
+                let _= print_tab 1 in 
+                 (match mytype_expr with 
+                    | SymInt->  println_string ("if_icmpne "^start_label);
+                    | SymBool-> println_string ("if_icmpne "^start_label);
+                    | SymFloat64-> ()
+                    | SymString-> ()
+                    | _->()
+                );
                 print_expr_list_switch tail start_label;
             end
     and print_expr_list expr_list = match expr_list with
@@ -1028,13 +1041,13 @@ let generate program filedir filename =
             let breakpoint = "goto "^endlabel in
             begin
                 print_tab level;
-                print_string breakpoint;
+                println_string_with_tab 1 breakpoint;
             end
         | Continue(_) ->
             let contpoint = "goto "^startlabel in
             begin
                 print_tab level;
-                print_string contpoint; 
+                print_string_with_tab 1 contpoint; 
             end
         | Block(stmt_list, _) -> (*DONE*)
             begin
@@ -1210,7 +1223,7 @@ let generate program filedir filename =
                         (*evaluate condition *)
                         print_for_cond condition;
                         (*check condition *)
-                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        println_string_with_tab 1 ("ifeq "^currlabelendstr) ;
                         print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                     let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
@@ -1230,16 +1243,18 @@ let generate program filedir filename =
                         labelcounterfalse(); 
                         println_string ("start"^(string_of_int currlabelstart)^":");
                         start_scope();
+                        Stack.push currlabelendstr my_label_stack;
                         (*evaluate condition *)
                         print_for_cond condition;
                         (*check condition *)
-                        println_string_with_tab 1 ("ifne "^currlabelendstr) ;
+                        println_string_with_tab 1 ("ifeq "^currlabelendstr) ;
                         print_stmt_list (level+1) stmts currlabelstartstr currlabelendstr;
                         print_simple_stmt simple2;
                     let gotocmd = "goto "^currlabelstartstr in
                         println_one_tab gotocmd;
                         println_string (currlabelendstr^":");
                         end_scope();
+                        let _= Stack.pop my_label_stack in ()
                     end
             in
             print_for_stmt level for_stmt
@@ -1270,12 +1285,14 @@ let generate program filedir filename =
                             begin
                                 let currlabelend = !labelcountfalse in
                                 let currlabelstart = !labelcounttrue in
+
                                 let currlabelendstr = "stopcase"^(string_of_int currlabelend) in
                                 let currlabelstartstr = "startcase"^(string_of_int currlabelstart) in
-
+                                labelcounterfalse();
+                                labelcountertrue();
                                 (*duplicate exp and check *)
-                                print_expr_list_switch exprs currlabelstartstr;
-                                println_string ("goto "^currlabelendstr);
+                                print_expr_list_switch exprs currlabelendstr;
+                                
                                 println_string (currlabelstartstr^":");
                                 print_stmt_list (level+1) stmts start_label end_label; 
                                 println_one_tab ("goto "^end_label);
@@ -1300,11 +1317,13 @@ let generate program filedir filename =
                 let currlabelstart = !labelcounttrue in
                 let currlabelendstr = "stop"^(string_of_int currlabelend) in
                 let currlabelstartstr = "start"^(string_of_int currlabelstart) in
+                println_string_with_tab 1 (currlabelstartstr^":");
                 labelcountertrue(); 
                 labelcounterfalse(); 
                 
                 print_switch_case_stmt (level+1) switch_case_stmts startlabel currlabelendstr;
                 print_tab 1;
+                println_string_with_tab 1 (currlabelendstr^":");
                 println_string "pop";
                 end_scope();
             end

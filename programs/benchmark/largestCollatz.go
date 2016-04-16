@@ -6,7 +6,7 @@ func getCollatsLen(num int) int{
 
         var len = 1;
         for ;num!=1;{
-            if( (num % 2 )==0){
+            if( (num % 2) ==0){
                 num = num/2
             }else{
                 num = num*3 +1;
@@ -22,10 +22,8 @@ func main() {
 
         var maxLen = 0;
         var maxNum = 0;
-        var len int
         for x:= 2;x<50000000;x++ {
-          println ("hi")
-           len = getCollatsLen(x)
+          var len = getCollatsLen(x)
           if(len>maxLen){
               maxLen = len
               maxNum = x;
