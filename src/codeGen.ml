@@ -66,7 +66,7 @@ let rec get_sym_type type_of_type_i = match type_of_type_i with
             | "rune" -> SymRune
             | "bool" -> SymBool
             | "string" -> SymString
-            | "float64" -> SymString
+            | "float64" -> SymFloat64
         )
     | Arraytype(len, type_name2, _)-> SymArray((get_sym_type type_name2))
     | Definedtype(Identifier(value, _), _,_) -> Void (*TO BE IMPLEMENTED*)
@@ -100,8 +100,13 @@ let is_immediate exp_type linenum = match exp_type with
     | NotDefined -> (let errMsg = "Symtype wasnt attached in type checking at line: "^string_of_int linenum in code_gen_error errMsg)
 
 let rec get_type_i type_i = match type_i with
-	| Definedtype(_,t,_) -> get_type_i t 
-	| Primitivetype(str,_) -> str
+	| Definedtype(_,t,_) -> (* get_type_i t  *) ""
+	| Primitivetype(str,_) -> (match str with 
+                                | "rune"-> "char"
+                                | "string"-> "java/lang/String"
+                                | "float64"-> "float"
+                                | "bool" ->"boolean"
+                                | _ -> str )
 	| Arraytype(_,t,_) -> "["^(get_type_i t)
 	| Slicetype(t,_) -> "["^(get_type_i t)
 	| Structtype(t,_) -> "" (*TODO: THIS*)
@@ -384,7 +389,7 @@ let generate program filedir filename =
     let print_literal lit = match lit with
         | Intliteral(value, _) -> println_one_tab ("ldc "^(string_of_int value)); SymInt
         | Floatliteral(value, _) -> println_one_tab ("ldc "^(string_of_float value)); SymFloat64
-        | Runeliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString   (*TO BE IMPLEMENTED*)
+        | Runeliteral(value, _) -> println_one_tab ("ldc "^(string_of_int (Char.code (String.get value 1)))); SymRune   (*TO BE IMPLEMENTED*)
         | Stringliteral(value, _) -> println_one_tab ("ldc "^(value)); SymString
     in
     let generate_binary_arithmetic type1 type2 = match type1,type2 with 
@@ -394,7 +399,9 @@ let generate program filedir filename =
                                                 print_string_with_tab 1 "i";
                         | SymFloat64, SymInt -> println_one_tab "i2f";
                                                 print_string_with_tab 1 "f";
-                        | SymRune, SymRune-> ()  (*NOT YET IMPLEMENTED*)
+                        | SymRune, SymRune-> print_string_with_tab 1 "i";
+                        | SymRune, SymInt-> print_string_with_tab 1 "i";
+                        | SymInt, SymRune-> print_string_with_tab 1 "i";
                         | _ ,_ -> code_gen_error "addition function error"
     in
     let rec print_expr exp = match exp with 
@@ -432,60 +439,60 @@ let generate program filedir filename =
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "eq";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 -> generate_comparable_binary_floats "eq";symt
+            | SymRune -> generate_comparable_binary_ints "eq";symt
+            | SymString -> generate_comparable_binary_strings "eq";symt
+            | SymBool -> generate_comparable_binary_bool "eq";symt
             )
         | NotEqualCmp(exp1, exp2, _, symt) ->  (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "ne";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 ->generate_comparable_binary_floats "ne" ;symt
+            | SymRune -> generate_comparable_binary_ints "ne";symt
+            | SymString -> generate_comparable_binary_strings "ne";symt
+            | SymBool ->  generate_comparable_binary_bool "ne";symt
             )
         | LessThanCmp(exp1, exp2, _, symt) ->  (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "lt";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 ->generate_comparable_binary_floats "lt" ;symt
+            | SymRune -> generate_comparable_binary_ints "lt";symt
+            | SymString -> code_gen_error "cannot do lt on strings"
+            | SymBool -> code_gen_error "cannot do lt on bools"
             )
         | GreaterThanCmp (exp1, exp2, _, symt) -> (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "gt";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 -> generate_comparable_binary_floats "gt";symt
+            | SymRune -> generate_comparable_binary_ints "gt";symt
+            | SymString -> code_gen_error "cannot do lt on strings"
+            | SymBool -> code_gen_error "cannot do lt on bools"
             )
         | LessThanOrEqualCmp(exp1, exp2, _, symt) -> (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "le";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 ->  generate_comparable_binary_floats "le";symt
+            | SymRune -> generate_comparable_binary_ints "le";symt
+            | SymString -> code_gen_error "cannot do lt on strings"
+            | SymBool -> code_gen_error "cannot do lt on bools"
             )
         | GreaterThanOrEqualCmp(exp1, exp2, _, symt) -> (*NOT COMPLETLY DONE*)
             let typeexpr1= print_expr exp1 in
             let typeexpr2= print_expr exp2 in
             (match typeexpr1 with 
             | SymInt -> generate_comparable_binary_ints "ge";symt
-            | SymFloat64 -> symt
-            | SymRune -> symt
-            | SymString -> symt
-            | SymBool -> symt
+            | SymFloat64 ->  generate_comparable_binary_floats "ge";symt
+            | SymRune ->  generate_comparable_binary_ints "ge";symt
+            | SymString -> code_gen_error "cannot gt on strings"
+            | SymBool -> code_gen_error "cannot do lt on bools"
             )
         | AddOp(exp1, exp2, _, symt) ->   (*DONE*)
                 let typeexpr1= print_expr exp1 in
@@ -772,6 +779,48 @@ let generate program filedir filename =
                   println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
                   labelcountertrue();
                   labelcounterfalse();    
+
+    and generate_comparable_binary_floats optype= 
+
+                  (match optype with 
+                        | "eq"  -> println_one_tab ("fcmpl");  println_one_tab ("ifeq "^"true"^(string_of_int !labelcounttrue));
+                        | "ne" ->  println_one_tab ("fcmpl");  println_one_tab ("ifne "^"true"^(string_of_int !labelcounttrue));
+                        | "lt" ->  println_one_tab ("fcmpl"); println_one_tab ("ldc -1"); println_one_tab ("if_icmpeq "^"true"^(string_of_int !labelcounttrue));
+                        | "gt" ->  println_one_tab ("fcmpl"); println_one_tab ("ldc 1"); println_one_tab ("if_icmpeq "^"true"^(string_of_int !labelcounttrue));
+                        | "le" ->  println_one_tab ("fcmpl"); println_one_tab ("ldc 1"); println_one_tab ("if_icmpne "^"true"^(string_of_int !labelcounttrue));
+                        | "ge" ->  println_one_tab ("fcmpl"); println_one_tab ("ldc -1"); println_one_tab ("if_icmpne "^"true"^(string_of_int !labelcounttrue));
+                );
+                  println_one_tab ("iconst_0");
+                  println_one_tab ("goto stop"^(string_of_int !labelcountfalse));
+                  println_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                  println_one_tab ("iconst_1");
+                  println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
+                  labelcountertrue();
+                  labelcounterfalse();
+    
+     and generate_comparable_binary_strings optype= 
+                  println_one_tab ("invokevirtual java/lang/String.equals(Ljava/lang/Object;)Z");
+                  (match optype with 
+                    | "eq"->   println_one_tab ("ifne true"^(string_of_int !labelcounttrue));
+                    | "ne"->   println_one_tab ("ifeq true"^(string_of_int !labelcounttrue));
+                  );
+                  println_one_tab ("iconst_0");
+                  println_one_tab ("goto stop"^(string_of_int !labelcountfalse));
+                  println_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                  println_one_tab ("iconst_1");
+                  println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
+                  labelcountertrue();
+                  labelcounterfalse();   
+    
+    and generate_comparable_binary_bool optype= 
+                  println_one_tab ("if_icmp"^optype^" "^"true"^(string_of_int !labelcounttrue));
+                  println_one_tab ("iconst_0");
+                  println_one_tab ("goto stop"^(string_of_int !labelcountfalse));
+                  println_one_tab ("true"^(string_of_int !labelcounttrue)^":");
+                  println_one_tab ("iconst_1");
+                  println_one_tab ("stop"^(string_of_int !labelcountfalse)^":");
+                  labelcountertrue();
+                  labelcounterfalse();    
     in
     let string_method_return_type return_type = match return_type with
         | FuncReturnType(type_i, _) -> string_jasmin_type type_i
@@ -800,7 +849,13 @@ let generate program filedir filename =
                 begin
                     println_one_tab ("ldc "^(string_of_int len));
                     let typename = get_type_i type_i2 in
-                    println_one_tab ("newarray "^typename);
+                    (match typename with 
+                        | "boolean"-> println_one_tab ("newarray "^typename);
+                        | "int"-> println_one_tab ("newarray "^typename); println_one_tab ("newarray "^typename);
+                        | "float"-> println_one_tab ("newarray "^typename);
+                        | "char"-> println_one_tab ("newarray "^typename);
+                        | _ -> println_one_tab ("anewarray "^typename); )
+                   
                 end
         | Slicetype(type_i2, _)-> 
                 begin

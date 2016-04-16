@@ -97,6 +97,14 @@ let rec is_basetype_typecheck a= match a with
 						| SymType(anothert)-> is_basetype_typecheck (get_propagated_type anothert)
 						| _ -> false
 
+let rec is_basetype_typecheck_rhs a= match a with 
+						| SymInt -> true
+						| SymFloat64-> true
+						| SymRune-> true
+						| SymBool-> true
+						| SymString-> true
+						| _ -> false
+
 let rec is_basetype_numeric_typecheck a= match a with 
 						| SymInt -> true
 						| SymFloat64-> true
@@ -119,6 +127,8 @@ let rec numeric_typecheck a b= match a,b with
 						| SymInt, SymInt -> SymInt
 						| SymFloat64, SymFloat64 -> SymFloat64
 						| SymRune, SymRune->SymRune
+						| SymRune, SymInt->SymRune
+						| SymInt, SymRune->SymRune
 						| SymType(anothert), _ -> numeric_typecheck (get_propagated_type anothert) b
 						| _ , SymType(anothert)-> numeric_typecheck a (get_propagated_type anothert)
 						| _ ,_ -> type_checking_error "arithmetic operation should be done on a numeric value"
@@ -154,6 +164,8 @@ let rec numeric_string_typecheck a b= match a,b with
 						| SymFloat64, SymFloat64 -> SymFloat64
 						| SymRune, SymRune->SymRune
 						| SymString, SymString -> SymString
+						| SymRune, SymInt->SymRune
+						| SymInt, SymRune->SymRune
 						| SymType(anothert), _ -> numeric_string_typecheck (get_propagated_type anothert) b
 						| _ , SymType(anothert)-> numeric_string_typecheck a (get_propagated_type anothert)
 						| _ ,_ -> type_checking_error "plus operation should be done on a numeric value or string"
@@ -404,7 +416,7 @@ and pretty_typecheck_expression exp =
 																					 	(Binaryexpr(mytype_node,linenum,mytype_name),mytype_name)
 												| FuncCallExpr(expr,exprs,linenum,ast_type)-> 
 																							  (match expr,exprs with 
-																								| OperandName(iden,l,t),head::[]-> if (search_not_find_current_scope (iden^"typiing")) then pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
+																								| OperandName(iden,l,t),head::[]-> if (search_not_find_current_scope (iden^"typiing")) then pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NotDefined, linenum),head,linenum,ast_type))
 																															else let exp_type= pretty_typecheck_expression expr in
 																							  let mytype_name= extract_type_from_expr_tuple exp_type in 
 																							  let mytype_node = extract_node_from_expr_tuple exp_type in
@@ -412,7 +424,7 @@ and pretty_typecheck_expression exp =
 																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
 																							  ( match mytype_name, expr,exprs with 
 																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
-																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NotDefined, linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum)))
 
 
@@ -424,7 +436,7 @@ and pretty_typecheck_expression exp =
 																							  let new_exprs = List.map extract_node_from_expr_tuple (List.map pretty_typecheck_expression exprs) in
 																							  ( match mytype_name, expr,exprs with 
 																							  	| SymFunc(symType,argslist),_,_-> let _= (check_func_call_args exprs argslist linenum) in (FuncCallExpr(mytype_node,new_exprs,linenum,symType) ,symType)
-																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NoneType, linenum),head,linenum,ast_type))
+																							  	| _ ,OperandName(iden,l,t),head::[] -> pretty_typecheck_expression (TypeCastExpr(Definedtype(Identifier(iden,linenum),NotDefined, linenum),head,linenum,ast_type))
 																							  	| _ ,OperandName(iden,l,t),head::tail-> type_checking_error ("type casting expression only accepts one argument linenum:="^(Printf.sprintf "%i" linenum))
 																							  ) 
 																							)
@@ -680,11 +692,18 @@ and type_check_assignment_exprs exprs1 exprs2 linenum= match exprs1,exprs2 with
 											| [] ,[] -> ([],[]) 
 											| head1::tail1, head2::tail2 -> let lhsexpr_type= pretty_typecheck_expression head1 in
 																			let rhsexprs_type= pretty_typecheck_expression head2 in 
+																			let final_typel= (extract_type_from_expr_tuple lhsexpr_type) in 
 																(* 			let _= print_string (print_type (extract_type_from_expr_tuple rhsexprs_type)) in  *)
-																			if (((extract_type_from_expr_tuple lhsexpr_type)==( extract_type_from_expr_tuple rhsexprs_type)) && (extract_type_from_expr_tuple lhsexpr_type)!=Void ) 
+																			 (match is_basetype_typecheck_rhs ( extract_type_from_expr_tuple rhsexprs_type) with 
+																				| true -> (if (((get_propagated_type final_typel)==( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
 																				then let result = type_check_assignment_exprs tail1 tail2 linenum in 
 																				((extract_node_from_expr_tuple lhsexpr_type)::(extract_node_from_expr_tuple result), (extract_node_from_expr_tuple rhsexprs_type)::(extract_type_from_expr_tuple result))
-																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum))
+																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum)))
+																				| false -> (if ((final_typel==( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
+																				then let result = type_check_assignment_exprs tail1 tail2 linenum in 
+																				((extract_node_from_expr_tuple lhsexpr_type)::(extract_node_from_expr_tuple result), (extract_node_from_expr_tuple rhsexprs_type)::(extract_type_from_expr_tuple result))
+																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum)))) 
+																			
 and type_check_assignment_op exp1 exp2 assign_op = match assign_op with 
 													    | "+="-> let exp_type1= pretty_typecheck_expression exp1 in 
 															     let exp_type2= pretty_typecheck_expression exp2 in 
