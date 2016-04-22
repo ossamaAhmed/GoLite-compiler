@@ -96,11 +96,13 @@ open Ast
 
 (* Associativity and precedence *)
 
+%left STAR SLASH PERCENT SHIFT_LEFT SHIFT_RIGHT AND AND_CARET
 %left DOUBLE_BAR
 %left DOUBLE_AND
 %left DOUBLE_EQ NOT_EQ LT LT_EQ GT GT_EQ
 %left PLUS MINUS BAR CARET 
-%left STAR SLASH PERCENT SHIFT_LEFT SHIFT_RIGHT AND AND_CARET
+
+
 %nonassoc idenlist
 %nonassoc unary
 
