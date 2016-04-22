@@ -8,7 +8,7 @@ package main
 func isPrime(primes []int,test int,len int) bool{
 
     for v:=0;v<len;v++{
-        if test%v == 0 {
+        if (test%v) == 0 {
             return false;
         }
     }
@@ -23,11 +23,11 @@ func main() {
             primes = append(primes,2)
 
             for i:=2;i<1000000;i++ {
-                if(isPrime(primes,i)){
+                if(isPrime(primes,i,0)){
                     primes=append(primes,i)
                     len++;
                 }
             }
-            println(primes)
+            // println(primes)
 }
 

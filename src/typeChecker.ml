@@ -247,7 +247,7 @@ let rec check_func_call_args exprs args_list linenum= if List.length exprs != Li
 											| [],[]-> []
 											| head1::tail1, (str,symType)::tail2-> let exp_type= pretty_typecheck_expression head1 in 
 																		  		 let arg_type = symType in 
-																		  		 if ((extract_type_from_expr_tuple exp_type)==arg_type) then (extract_node_from_expr_tuple exp_type)::(check_func_call_args tail1 tail2 linenum)
+																		  		 if ((extract_type_from_expr_tuple exp_type)=arg_type) then (extract_node_from_expr_tuple exp_type)::(check_func_call_args tail1 tail2 linenum)
 																		  		 else type_checking_error ("function call and argument list type mismatch linenum:="^(Printf.sprintf "%i" linenum)))
 
 
@@ -512,7 +512,7 @@ and typecheck_var_decl_without_type idenlist exprs linenum= match idenlist,exprs
 and typecheck_exprs_of_type exprs typename linenum= match exprs with
 										| [] -> [] 
 										| head::tail -> let head_type= pretty_typecheck_expression head in 
-														if (extract_type_from_expr_tuple head_type)==typename then (extract_node_from_expr_tuple head_type)::(typecheck_exprs_of_type tail typename linenum)
+														if (extract_type_from_expr_tuple head_type)=typename then (extract_node_from_expr_tuple head_type)::(typecheck_exprs_of_type tail typename linenum)
 														else type_checking_error ("expressions have to be the same as variable declaration at linenum:="^(Printf.sprintf "%i" linenum))
 
 (*DONE*)
@@ -613,7 +613,7 @@ and typecheck_simple_stmt stmt = match stmt with
 and  typecheck_condition cond = match cond with 
 							| ConditionExpression (expr,linenum)->
 															let cond_type= pretty_typecheck_expression expr in 
-														   if (get_propagated_type (extract_type_from_expr_tuple cond_type)) == SymBool then ConditionExpression ((extract_node_from_expr_tuple cond_type),linenum)
+														   if (get_propagated_type (extract_type_from_expr_tuple cond_type)) = SymBool then ConditionExpression ((extract_node_from_expr_tuple cond_type),linenum)
 														   else type_checking_error ("condition has to be bool linenum:="^(Printf.sprintf "%i" linenum))
 							| Empty -> Empty
 and typecheck_else_stmt stmt ret=  match stmt with 
@@ -696,11 +696,11 @@ and type_check_assignment_exprs exprs1 exprs2 linenum= match exprs1,exprs2 with
 																			let final_typel= (extract_type_from_expr_tuple lhsexpr_type) in 
 																(* 			let _= print_string (print_type (extract_type_from_expr_tuple rhsexprs_type)) in  *)
 																			 (match is_basetype_typecheck_rhs ( extract_type_from_expr_tuple rhsexprs_type) with 
-																				| true -> (if (((get_propagated_type final_typel)==( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
+																				| true -> (if (((get_propagated_type final_typel)=( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
 																				then let result = type_check_assignment_exprs tail1 tail2 linenum in 
 																				((extract_node_from_expr_tuple lhsexpr_type)::(extract_node_from_expr_tuple result), (extract_node_from_expr_tuple rhsexprs_type)::(extract_type_from_expr_tuple result))
 																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum)))
-																				| false -> (if ((final_typel==( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
+																				| false -> (if ((final_typel=( extract_type_from_expr_tuple rhsexprs_type)) && final_typel!=Void ) 
 																				then let result = type_check_assignment_exprs tail1 tail2 linenum in 
 																				((extract_node_from_expr_tuple lhsexpr_type)::(extract_node_from_expr_tuple result), (extract_node_from_expr_tuple rhsexprs_type)::(extract_type_from_expr_tuple result))
 																			else type_checking_error ("assignment should have the same type linenum:="^(Printf.sprintf "%i" linenum)))) 
