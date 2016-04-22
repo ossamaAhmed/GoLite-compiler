@@ -42,7 +42,7 @@ let search_iden_not_find_current_scope iden = match iden with
         )
 
 let rec search_previous_scopes x table = match table with (*called with !symbol_table*)
-    | []-> code_gen_error ("variable is not defined in current and previous scopes")
+    | [] -> print_string x; code_gen_error ("variable is not defined in current and previous scopes")
     | Scope(current_scope)::tail -> 
         if (Hashtbl.mem current_scope x) then 
             Hashtbl.find current_scope x
@@ -192,7 +192,7 @@ let string_jasmin_type go_type = match go_type with
             | "int" -> "I"
             | "bool" -> "Z"
             | "float64" -> "F"
-            | "rune" -> "C"
+            | "rune" -> "I"
             | "string" -> "Ljava/lang/String;"
         )
     | Arraytype(len, type_name2, _) -> ""
@@ -221,7 +221,7 @@ let rec insert_method_params_to_current_scope iden_list = match iden_list with
     | TypeSpec(iden, iden_type, _)::[] -> 
         add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden; localcounter(); ()
     | TypeSpec(iden, iden_type, _)::tail ->
-        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden; localcounter(); ()
+        add_variable_to_current_scope (Printf.sprintf "%d" ((!localcount))) iden; localcounter(); insert_method_params_to_current_scope tail; ()
 
 let init_method_params func_sig = match func_sig with
     | FuncSig(FuncParams(params_list, _), _, _) -> 
@@ -636,7 +636,7 @@ let generate program filedir filename =
                             (match field_sym_type with
                                 | SymInt -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
                                 | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
-                                | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"C")
+                                | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
                                 | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
                                 | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
                                 | SymArray(sym_type) -> ()
@@ -912,7 +912,7 @@ let generate program filedir filename =
                                         println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I");
                                     end
                                 | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
-                                | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"C")
+                                | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I")
                                 | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
                                 | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
                                 | SymArray(sym_type) -> ()
@@ -1365,6 +1365,7 @@ let generate program filedir filename =
                     println_string "";
                     println_one_tab "return";
                     println_string ".end method";
+                    end_scope ();
                 end
             | _ ->
                 begin
@@ -1380,6 +1381,7 @@ let generate program filedir filename =
         jasmin_file_dir := filedir;
         print_class_header filename;
         print_init_header filename;
+        start_scope ();
         print_decl_list 0 decl_list;
         close_out output_file
     end
