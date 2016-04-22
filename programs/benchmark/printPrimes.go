@@ -8,7 +8,8 @@ package main
 func isPrime(primes []int,test int,len int) bool{
 
     for v:=0;v<len;v++{
-        if (test%v) == 0 {
+        if test%v == 0 {
+            y:= 1/2+3/5
             return false;
         }
     }
