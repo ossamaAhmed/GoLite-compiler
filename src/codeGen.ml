@@ -190,7 +190,7 @@ let string_jasmin_type go_type = match go_type with
     | Primitivetype(value, _) ->
         (match value with 
             | "int" -> "I"
-            | "bool" -> "Z"
+            | "bool" -> "I"
             | "float64" -> "F"
             | "rune" -> "I"
             | "string" -> "Ljava/lang/String;"
@@ -251,8 +251,8 @@ let init_struct_type field_dcl_list struct_iden =
         | Identifier(field_iden, _), Primitivetype(value, _) ->
             (match value with
             | "int" -> println_struct_string (".field "^field_iden^" I")
-            | "rune" -> println_struct_string (".field "^field_iden^" C")
-            | "bool" -> println_struct_string (".field "^field_iden^" Z")
+            | "rune" -> println_struct_string (".field "^field_iden^" I")
+            | "bool" -> println_struct_string (".field "^field_iden^" I")
             | "string" -> println_struct_string (".field "^field_iden^" Ljava/lang/String;")
             | "float64" -> println_struct_string (".field "^field_iden^" F")
             | _ -> code_gen_error ("unknown struct field type"))
@@ -638,7 +638,7 @@ let generate program filedir filename =
                                 | SymFloat64 -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"F")
                                 | SymRune -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
                                 | SymString -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
-                                | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymBool -> println_one_tab ("getfield "^struct_class^"/"^iden^" "^"I")
                                 | SymArray(sym_type) -> ()
                                 | SymSlice(sym_type) -> ()
                                 | SymStruct(fields) -> ()
@@ -914,7 +914,7 @@ let generate program filedir filename =
                                 | SymFloat64 -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"F")
                                 | SymRune -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I")
                                 | SymString -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Ljava/lang/String;")
-                                | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"Z")
+                                | SymBool -> println_one_tab ("putfield "^struct_class^"/"^iden^" "^"I")
                                 | SymArray(sym_type) -> ()
                                 | SymSlice(sym_type) -> ()
                                 | SymStruct(fields) -> ()
@@ -1168,7 +1168,7 @@ let generate program filedir filename =
                     | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/print(F)V";
                     | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
                     | SymString -> println_one_tab "invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V";
-                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/print(Z)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/print(I)V";
                     | NotDefined -> ()
             in
             List.iter print_jasmin_exp exprs;    
@@ -1180,7 +1180,7 @@ let generate program filedir filename =
                     | SymFloat64 -> println_one_tab "invokevirtual java/io/PrintStream/println(F)V";
                     | SymRune -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
                     | SymString -> println_one_tab "invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V";
-                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/println(Z)V";
+                    | SymBool -> println_one_tab "invokevirtual java/io/PrintStream/println(I)V";
                     | NotDefined -> ()
             in
             List.iter println_jasmin_exp exprs;  
