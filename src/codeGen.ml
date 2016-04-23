@@ -825,7 +825,7 @@ let generate program filedir filename =
                     let typename = get_type_i type_i2 in
                     (match typename with 
                         | "boolean"-> println_one_tab ("newarray "^typename);
-                        | "int"-> println_one_tab ("newarray "^typename); println_one_tab ("newarray "^typename);
+                        | "int"-> println_one_tab ("newarray "^typename); 
                         | "float"-> println_one_tab ("newarray "^typename);
                         | "char"-> println_one_tab ("newarray "^typename);
                         | _ -> println_one_tab ("anewarray "^typename); )
