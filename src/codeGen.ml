@@ -185,7 +185,7 @@ let (func_table : funcTable) = Hashtbl.create 1234;;
 let my_label_stack = Stack.create () ;;
 
 (* Refer to print_type_name in prettyPrinter *)
-let string_jasmin_type go_type = match go_type with 
+let rec string_jasmin_type go_type = match go_type with 
     | Definedtype(Identifier(value, _), _,_) -> value
     | Primitivetype(value, _) ->
         (match value with 
@@ -195,9 +195,9 @@ let string_jasmin_type go_type = match go_type with
             | "rune" -> "I"
             | "string" -> "Ljava/lang/String;"
         )
-    | Arraytype(len, type_name2, _) -> ""
+    | Arraytype(len, type_name2, _) -> "["^(string_jasmin_type type_name2)
         (* What is array type in jasmin? *)
-    | Slicetype(type_name2, _) -> ""
+    | Slicetype(type_name2, _) -> "["^(string_jasmin_type type_name2)
         (* What is slice type in jasmin? *)
     | Structtype([], _) -> ""
         (*TO BE IMPLEMENTED*)
