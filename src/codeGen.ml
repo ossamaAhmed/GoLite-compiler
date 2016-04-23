@@ -1034,7 +1034,7 @@ let generate program filedir filename =
                         | SymBool -> println_one_tab "ireturn"
                         | NotDefined -> ()
                     )
-                | Empty -> ()
+                | Empty ->  println_one_tab "return"
             in
             print_return_stmt level rt_stmt
         | Break(_) -> 
